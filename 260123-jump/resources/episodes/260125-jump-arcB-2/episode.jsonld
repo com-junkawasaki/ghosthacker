@@ -563,8 +563,20 @@
       "gh:pageNumber": 7,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:YamashitaTsuyoshi", "character:Takeru"],
+          "dialogue": [
+            {
+              "speaker": "YamashitaTsuyoshi",
+              "text": "もう動かしていいだろ！出庫が遅れてる！"
+            },
+            {
+              "speaker": "Takeru",
+              "text": "『動いた』は終わりじゃない。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 管制室で山下本部長が声を荒げる。48歳、グレーの作業ポロシャツ、現場叩き上げの目。Takeruが手順書を盾に冷静に対峙する。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 管制室で山下本部長が声を荒げる。48歳、グレーの作業ポロシャツ、現場叩き上げの目。Takeruが手順書を盾に冷静に対峙する。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -576,11 +588,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "visual": "管制室で山下本部長が声を荒げる。48歳、グレーの作業ポロシャツ、現場叩き上げの目。Takeruが手順書を盾に冷静に対峙する。"
         },
         {
-          "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:TamuraSeiichi"],
+          "dialogue": [
+            {
+              "speaker": "TamuraSeiichi",
+              "text": "山下さん、この子の言う通りです。…今動かすと、また同じことに。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. 田村IT部長が眼鏡を直しながら間に入る。42歳、温厚そうだが今日は腰が据わっている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. 田村IT部長が眼鏡を直しながら間に入る。42歳、温厚そうだが今日は腰が据わっている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -592,11 +613,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "visual": "田村IT部長が眼鏡を直しながら間に入る。42歳、温厚そうだが今日は腰が据わっている。"
         },
         {
-          "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:YamashitaTsuyoshi"],
+          "dialogue": [
+            {
+              "speaker": "YamashitaTsuyoshi",
+              "text": "…トヨタに遅延報告したくねぇんだよ。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Close-up, ARIA-style. 山下の目。焦りと怒りが混ざっている。でもどこかで田村の言葉が刺さっている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. 山下の目。焦りと怒りが混ざっている。でもどこかで田村の言葉が刺さっている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "frontal",
             "gh:aperture": "f/1.2",
@@ -609,7 +639,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "visual": "山下の目。焦りと怒りが混ざっている。でもどこかで田村の言葉が刺さっている。"
         }
       ]
     },
@@ -617,8 +648,16 @@
       "gh:pageNumber": 8,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:SasakiKenta"],
+          "dialogue": [
+            {
+              "speaker": "SasakiKenta",
+              "text": "本部長…現場も限界です。でも、もう一回止まったら終わりです。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 佐々木センター長が安全ベストを着たまま管制室に入ってくる。35歳、熱血漢だが今は板挟みで疲弊している。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 佐々木センター長が安全ベストを着たまま管制室に入ってくる。35歳、熱血漢だが今は板挟みで疲弊している。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -630,11 +669,24 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "visual": "佐々木センター長が安全ベストを着たまま管制室に入ってくる。35歳、熱血漢だが今は板挟みで疲弊している。"
         },
         {
-          "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Takeru", "character:SasakiKenta"],
+          "dialogue": [
+            {
+              "speaker": "Takeru",
+              "text": "だから終わらせる。…ちゃんと。"
+            },
+            {
+              "speaker": "SasakiKenta",
+              "text": "…何が『ちゃんと』だ。現場見てんのか？"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Takeruと佐々木が対峙する。二人とも目が真剣。でも怒りの質が違う。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. Takeruと佐々木が対峙する。二人とも目が真剣。でも怒りの質が違う。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -646,11 +698,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "visual": "Takeruと佐々木が対峙する。二人とも目が真剣。でも怒りの質が違う。"
         },
         {
-          "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Takeru"],
+          "dialogue": [
+            {
+              "speaker": "Takeru",
+              "text": "見てる。…だから『終わり』を決める。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Close-up, ARIA-style. Takeruの目。怒りはあるけど、それを『定義』に変える目。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. Takeruの目。怒りはあるけど、それを『定義』に変える目。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "frontal",
             "gh:aperture": "f/1.2",
@@ -663,7 +724,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "visual": "Takeruの目。怒りはあるけど、それを『定義』に変える目。"
         }
       ]
     },
@@ -671,8 +733,16 @@
       "gh:pageNumber": 9,
       "gh:panels": [
         {
-          "gh:imagePrompt": "POV Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "POV Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:GhostClock"],
+          "dialogue": [
+            {
+              "speaker": "SE",
+              "text": "カン…カン…（鐘の音、加速）"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "POV Shot, ARIA-style. 空気が歪む。倉庫の奥から、秒針の刃が再び動き出す。「始業の鐘」が戻ってきた。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "POV Shot, ARIA-style. 空気が歪む。倉庫の奥から、秒針の刃が再び動き出す。「始業の鐘」が戻ってきた。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "first-person POV",
             "gh:aperture": "f/2.8",
@@ -684,11 +754,24 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "POV Shot"
+          "shot": "POV Shot",
+          "visual": "空気が歪む。倉庫の奥から、秒針の刃が再び動き出す。「始業の鐘」が戻ってきた。"
         },
         {
-          "gh:imagePrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Nei", "character:Takeru"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "…また来た。前より強い。"
+            },
+            {
+              "speaker": "Takeru",
+              "text": "『終わってない』から戻ってきた。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Ghost「始業の鐘」が再出現。秒針の刃が複数に分裂し、現場の人々の首元に迫る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Ghost「始業の鐘」が再出現。秒針の刃が複数に分裂し、現場の人々の首元に迫る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -700,11 +783,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "visual": "Ghost「始業の鐘」が再出現。秒針の刃が複数に分裂し、現場の人々の首元に迫る。"
         },
         {
-          "gh:imagePrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "UI",
+              "text": "INCIDENT: REOPENED / no DONE criteria"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. モニター画面。『復旧済み』のステータスが赤く点滅して『再発』に変わる。DONEの定義がないから、終わらない。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. モニター画面。『復旧済み』のステータスが赤く点滅して『再発』に変わる。DONEの定義がないから、終わらない。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "over-shoulder or top-down insert",
             "gh:aperture": "f/2.0",
@@ -716,7 +808,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "visual": "モニター画面。『復旧済み』のステータスが赤く点滅して『再発』に変わる。DONEの定義がないから、終わらない。"
         }
       ]
     },
@@ -724,8 +817,20 @@
       "gh:pageNumber": 10,
       "gh:panels": [
         {
-          "gh:imagePrompt": "POV Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "POV Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:YamashitaTsuyoshi", "character:GhostClock"],
+          "dialogue": [
+            {
+              "speaker": "YamashitaTsuyoshi",
+              "text": "な、なんだこれは…！"
+            },
+            {
+              "speaker": "GhostClock",
+              "text": "（出庫）（始業）（間に合わせろ）"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "POV Shot, ARIA-style. 山下本部長の視界。Ghostの刃が自分の首元にも迫っているのを初めて見る。自分の『短気』が生んだ怪物。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "POV Shot, ARIA-style. 山下本部長の視界。Ghostの刃が自分の首元にも迫っているのを初めて見る。自分の『短気』が生んだ怪物。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "first-person POV",
             "gh:aperture": "f/2.8",
@@ -737,11 +842,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "POV Shot"
+          "shot": "POV Shot",
+          "visual": "山下本部長の視界。Ghostの刃が自分の首元にも迫っているのを初めて見る。自分の『短気』が生んだ怪物。"
         },
         {
-          "gh:imagePrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Takeru", "character:YamashitaTsuyoshi"],
+          "dialogue": [
+            {
+              "speaker": "Takeru",
+              "text": "これがあんたの『短気』だ。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Takeruが山下の前に立つ。守るためじゃない。「見せる」ため。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Takeruが山下の前に立つ。守るためじゃない。「見せる」ため。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -753,11 +867,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "visual": "Takeruが山下の前に立つ。守るためじゃない。「見せる」ため。"
         },
         {
-          "gh:imagePrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "UI",
+              "text": "SIP: ENGAGE / rate ↓"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. NeiがSIPを起動。Ghostの動きが鈍る。時間稼ぎ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. NeiがSIPを起動。Ghostの動きが鈍る。時間稼ぎ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "over-shoulder or top-down insert",
             "gh:aperture": "f/2.0",
@@ -769,7 +892,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "visual": "NeiがSIPを起動。Ghostの動きが鈍る。時間稼ぎ。"
         }
       ]
     },
@@ -777,8 +901,20 @@
       "gh:pageNumber": 11,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:GhostClock", "character:Takeru", "character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "GhostClock",
+              "text": "（急げ）（止めるな）（始業）"
+            },
+            {
+              "speaker": "Takeru",
+              "text": "うるせぇ…！"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Ghost Battle開始。秒針の刃が四方から迫る。Takeruが怒りを込めて構える。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Ghost Battle開始。秒針の刃が四方から迫る。Takeruが怒りを込めて構える。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -790,11 +926,24 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "visual": "Ghost Battle開始。秒針の刃が四方から迫る。Takeruが怒りを込めて構える。"
         },
         {
-          "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Takeru", "character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "DONE条件、今書く。言って。"
+            },
+            {
+              "speaker": "Takeru",
+              "text": "一、出庫ラインが安定稼働。二、同じ症状の再発が24時間ない。三、ログが揃う。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. TakeruとNeiが背中合わせ。Ghostと戦いながら、『DONE』を定義していく。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. TakeruとNeiが背中合わせ。Ghostと戦いながら、『DONE』を定義していく。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -806,11 +955,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "visual": "TakeruとNeiが背中合わせ。Ghostと戦いながら、『DONE』を定義していく。"
         },
         {
-          "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Takeru"],
+          "dialogue": [
+            {
+              "speaker": "Takeru",
+              "text": "終わりを、刻む。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Close-up, ARIA-style. Takeruの目に炎。怒りを『定義』の力に変える瞬間。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. Takeruの目に炎。怒りを『定義』の力に変える瞬間。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "frontal",
             "gh:aperture": "f/1.2",
@@ -823,7 +981,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "visual": "Takeruの目に炎。怒りを『定義』の力に変える瞬間。"
         }
       ]
     },
@@ -831,8 +990,20 @@
       "gh:pageNumber": 12,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:GhostClock", "character:TamuraSeiichi"],
+          "dialogue": [
+            {
+              "speaker": "TamuraSeiichi",
+              "text": "ログ収集完了…！今ので相関取れました！"
+            },
+            {
+              "speaker": "GhostClock",
+              "text": "（遅い）（まだ）"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 田村IT部長がサーバールームから叫ぶ。Ghost弱体化の第一条件クリア。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 田村IT部長がサーバールームから叫ぶ。Ghost弱体化の第一条件クリア。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -844,11 +1015,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "visual": "田村IT部長がサーバールームから叫ぶ。Ghost弱体化の第一条件クリア。"
         },
         {
-          "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:SasakiKenta"],
+          "dialogue": [
+            {
+              "speaker": "SasakiKenta",
+              "text": "出庫ライン…動いた！安定してる！"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. 佐々木がコンベヤの稼働を確認。第二条件クリア。Ghostの刃が一本消える。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. 佐々木がコンベヤの稼働を確認。第二条件クリア。Ghostの刃が一本消える。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -860,11 +1040,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "visual": "佐々木がコンベヤの稼働を確認。第二条件クリア。Ghostの刃が一本消える。"
         },
         {
-          "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "あと一つ。24時間の再発監視。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Close-up, ARIA-style. Neiの目。条件の残りを冷静に読み上げる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. Neiの目。条件の残りを冷静に読み上げる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "frontal",
             "gh:aperture": "f/1.2",
@@ -877,7 +1066,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "visual": "Neiの目。条件の残りを冷静に読み上げる。"
         }
       ]
     },
@@ -885,8 +1075,20 @@
       "gh:pageNumber": 13,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Action Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Action Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Takeru", "character:GhostClock"],
+          "dialogue": [
+            {
+              "speaker": "SE",
+              "text": "SHAAK!!"
+            },
+            {
+              "speaker": "Takeru",
+              "text": "終わり。刻む。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Action Shot, ARIA-style. Takeruが最後の刃を砕く。『DONE』のスタンプを押すように。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Action Shot, ARIA-style. Takeruが最後の刃を砕く。『DONE』のスタンプを押すように。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "dynamic tracking",
             "gh:aperture": "f/2.0",
@@ -899,11 +1101,20 @@
             "gh:movement": "handheld or tracking shot, subtle motion blur"
           },
           "panel": 1,
-          "shot": "Action Shot"
+          "shot": "Action Shot",
+          "visual": "Takeruが最後の刃を砕く。『DONE』のスタンプを押すように。"
         },
         {
-          "gh:imagePrompt": "Full Page Splash, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Full Page Splash, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:GhostClock"],
+          "dialogue": [
+            {
+              "speaker": "SE",
+              "text": "……（鐘の音が止まる）"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Full Page Splash, ARIA-style. Ghost「始業の鐘」が砕け散る。『DONE』の定義が刻まれた瞬間、怪物は存在理由を失う。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Full Page Splash, ARIA-style. Ghost「始業の鐘」が砕け散る。『DONE』の定義が刻まれた瞬間、怪物は存在理由を失う。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "dynamic angle",
             "gh:aperture": "f/2.8",
@@ -915,7 +1126,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Full Page Splash"
+          "shot": "Full Page Splash",
+          "visual": "Ghost「始業の鐘」が砕け散る。『DONE』の定義が刻まれた瞬間、怪物は存在理由を失う。"
         }
       ]
     },
@@ -923,8 +1135,20 @@
       "gh:pageNumber": 14,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Action Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Action Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:YamashitaTsuyoshi", "character:Takeru"],
+          "dialogue": [
+            {
+              "speaker": "YamashitaTsuyoshi",
+              "text": "…何だったんだ、あれは。"
+            },
+            {
+              "speaker": "Takeru",
+              "text": "『短気』が形になっただけ。消えたんじゃない、制御しただけ。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Action Shot, ARIA-style. 静寂が戻る。山下が呆然とTakeruを見る。初めて「敵」じゃなく「味方」として。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Action Shot, ARIA-style. 静寂が戻る。山下が呆然とTakeruを見る。初めて「敵」じゃなく「味方」として。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "dynamic tracking",
             "gh:aperture": "f/2.0",
@@ -937,11 +1161,20 @@
             "gh:movement": "handheld or tracking shot, subtle motion blur"
           },
           "panel": 1,
-          "shot": "Action Shot"
+          "shot": "Action Shot",
+          "visual": "静寂が戻る。山下が呆然とTakeruを見る。初めて「敵」じゃなく「味方」として。"
         },
         {
-          "gh:imagePrompt": "Full Page Splash, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Full Page Splash, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "SE",
+              "text": "ゴォォ…（コンベヤ再稼働）"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Full Page Splash, ARIA-style. コンベヤが再び動き出す。今度は「急げ」の焦りじゃなく、「手順」の上で回っている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Full Page Splash, ARIA-style. コンベヤが再び動き出す。今度は「急げ」の焦りじゃなく、「手順」の上で回っている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "dynamic angle",
             "gh:aperture": "f/2.8",
@@ -953,7 +1186,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Full Page Splash"
+          "shot": "Full Page Splash",
+          "visual": "コンベヤが再び動き出す。今度は「急げ」の焦りじゃなく、「手順」の上で回っている。"
         }
       ]
     },
@@ -961,8 +1195,20 @@
       "gh:pageNumber": 15,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:YamashitaTsuyoshi", "character:TamuraSeiichi", "character:SasakiKenta"],
+          "dialogue": [
+            {
+              "speaker": "YamashitaTsuyoshi",
+              "text": "…24時間監視。やるか。"
+            },
+            {
+              "speaker": "TamuraSeiichi",
+              "text": "山下さん…！"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 山下が初めて「待つ」を選ぶ。田村と佐々木が驚いた顔で見つめる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 山下が初めて「待つ」を選ぶ。田村と佐々木が驚いた顔で見つめる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -974,11 +1220,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "visual": "山下が初めて「待つ」を選ぶ。田村と佐々木が驚いた顔で見つめる。"
         },
         {
-          "gh:imagePrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "UI",
+              "text": "DONE CRITERIA: [x] stable [x] log [  ] 24h monitor"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. ホワイトボードのDONE条件。残り一つにチェックが入るのを待つ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. ホワイトボードのDONE条件。残り一つにチェックが入るのを待つ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "over-shoulder or top-down insert",
             "gh:aperture": "f/2.0",
@@ -990,11 +1245,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "visual": "ホワイトボードのDONE条件。残り一つにチェックが入るのを待つ。"
         },
         {
-          "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:SasakiKenta"],
+          "dialogue": [
+            {
+              "speaker": "SasakiKenta",
+              "text": "…本部長が『待つ』って言った。初めてだ。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Close-up, ARIA-style. 佐々木の目。組織が変わり始める瞬間を見ている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. 佐々木の目。組織が変わり始める瞬間を見ている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "frontal",
             "gh:aperture": "f/1.2",
@@ -1007,7 +1271,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "visual": "佐々木の目。組織が変わり始める瞬間を見ている。"
         }
       ]
     },
@@ -1015,8 +1280,20 @@
       "gh:pageNumber": 16,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Takeru", "character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "24時間後、また来る？"
+            },
+            {
+              "speaker": "Takeru",
+              "text": "来る。最後のチェック入れに。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. TakeruとNeiが倉庫を出る。夕暮れの光。まだ終わっていないけど、終わりが見えている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. TakeruとNeiが倉庫を出る。夕暮れの光。まだ終わっていないけど、終わりが見えている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -1028,11 +1305,24 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "visual": "TakeruとNeiが倉庫を出る。夕暮れの光。まだ終わっていないけど、終わりが見えている。"
         },
         {
-          "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:YamashitaTsuyoshi"],
+          "dialogue": [
+            {
+              "speaker": "YamashitaTsuyoshi",
+              "text": "…あのガキ。"
+            },
+            {
+              "speaker": "YamashitaTsuyoshi (Monologue)",
+              "text": "（短気を…手順に変えやがった）"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. 山下が窓から二人を見送る。複雑な表情。でも敵意はもうない。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. 山下が窓から二人を見送る。複雑な表情。でも敵意はもうない。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -1044,11 +1334,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "visual": "山下が窓から二人を見送る。複雑な表情。でも敵意はもうない。"
         },
         {
-          "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Takeru"],
+          "dialogue": [
+            {
+              "speaker": "Takeru",
+              "text": "「動いた」で終わりにすんな。…次も。"
+            }
+          ],
+          "environment": "env:logistics-warehouse",
+          "gh:imagePrompt": "Close-up, ARIA-style. Takeruの目。怒りはまだある。でもそれを『終わらせる力』に変える術を知っている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. Takeruの目。怒りはまだある。でもそれを『終わらせる力』に変える術を知っている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "frontal",
             "gh:aperture": "f/1.2",
@@ -1061,7 +1360,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "visual": "Takeruの目。怒りはまだある。でもそれを『終わらせる力』に変える術を知っている。"
         }
       ]
     }
