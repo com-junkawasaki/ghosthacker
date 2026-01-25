@@ -22,24 +22,31 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "dct:title": "Ghost Hacker Origin (The Phantom Purchase)",
+  "dct:title": "Arc 0-1: 「出会い」 — 3年前、港南第一中学校",
   "gh:arc": "Arc 0",
-  "gh:episode": 2,
+  "gh:episode": 1,
   "gh:episodeId": "episode:arc0-1-origin",
-  "gh:episodeIndex": 2,
-  "gh:incidentDescription": "Yuto falls for a limited-time offer scam, leading to account hijacking. Ren and Nei intervene using the SIP Project Map to visualize the malice (ghosts) and sever the connection with the NULL AXE.",
-  "gh:industry": "School / Consumer Electronics",
+  "gh:episodeIndex": 1,
+  "gh:incidentDescription": "3年前、14歳の沼野蓮（Ren）は港南第一中学校で孤独に過ごしていた。ある日、謎の転校生「Nei」が現れる。クラスメイトの田中洋（Hiroshi）が個人情報流出事件に巻き込まれ、クラス中から責められる。Renは独自に調査を始め、Neiの正体がAIであることを発見する。二人は初めてGhost Hackを行い、絆を築く。",
+  "gh:industry": "Education / Middle School",
   "gh:mainCharacter": "character:Ren",
+  "gh:organization": "org:KounanMiddleSchool",
+  "gh:timeframe": "3年前（2023年春）",
   "gh:pages": [
     {
       "gh:pageNumber": 1,
       "gh:panels": [
         {
           "characters": [],
-          "dialogue": [],
-          "environment": "env:cschool-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto looking at a group of popular students (mixed gender) chatting. Ren is sleeping at his desk in the background. Nei is reading a book quietly.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto looking at a group of popular students (mixed gender) chatting. Ren is sleeping at his desk in the background. Nei is reading a book quietly.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "dialogue": [
+            {
+              "speaker": "Narration",
+              "text": "3年前 — 港南第一中学校"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 春の放課後の教室。窓際の後ろの席で、14歳のRenが机に突っ伏して寝ている。紺のブレザー、乱れた黒髪。桜の花びらが窓から入ってくる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 春の放課後の教室。窓際の後ろの席で、14歳のRenが机に突っ伏して寝ている。紺のブレザー、乱れた黒髪。桜の花びらが窓から入ってくる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -52,7 +59,57 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Yuto looking at a group of popular students (mixed gender) chatting. Ren is sleeping at his desk in the background. Nei is reading a book quietly."
+          "visual": "春の放課後の教室。窓際の後ろの席で、14歳のRenが机に突っ伏して寝ている。紺のブレザー、乱れた黒髪。桜の花びらが窓から入ってくる。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Classmate",
+              "text": "沼野って、いつも寝てるよね。"
+            },
+            {
+              "speaker": "Classmate B",
+              "text": "話しかけても無視だし。"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. クラスメイトたちがRenを遠巻きに見ている。Renは気にせず眠っている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. クラスメイトたちがRenを遠巻きに見ている。Renは気にせず眠っている。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/1.8",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Medium Shot",
+            "gh:focus": "subject focus, soft background",
+            "gh:lens": "50mm",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "クラスメイトたちがRenを遠巻きに見ている。Renは気にせず眠っている。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "gh:imagePrompt": "Close-up, ARIA-style. Renの閉じた目。14歳、でも既に銀灰色の瞳。孤独だが、どこか達観した表情。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 85mm, f/1.2, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. Renの閉じた目。14歳、でも既に銀灰色の瞳。孤独だが、どこか達観した表情。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 85mm, f/1.2, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "frontal",
+            "gh:aperture": "f/1.2",
+            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+            "gh:composition": "clean composition, clear subject separation",
+            "gh:distance": "Close-up",
+            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
+            "gh:focus": "shallow depth of field, creamy bokeh",
+            "gh:lens": "85mm prime",
+            "gh:lighting": "soft diffused daylight, gentle shadows"
+          },
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "Renの閉じた目。14歳、でも既に銀灰色の瞳。孤独だが、どこか達観した表情。"
         }
       ]
     },
