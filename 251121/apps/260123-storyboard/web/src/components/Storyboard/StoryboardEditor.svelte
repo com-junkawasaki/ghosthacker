@@ -3,7 +3,8 @@
 	import { getEpisodes, getEpisodePanels, storyboardClient, streamUpdates } from '$lib/client/storyboard-client';
 	import StoryboardPage from './StoryboardPage.svelte';
 	import MangaEditor from './MangaEditor.svelte';
-	import StoryEditorView from './StoryEditorView.svelte';
+	import ScriptView from './ScriptView.svelte';
+	import ShootingView from './ShootingView.svelte';
 	import NodeTree from './NodeTree.svelte';
 	import ChatPanel from './ChatPanel.svelte';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
@@ -16,7 +17,7 @@
 	let selectedPage = $state(1);
 	let selectedPanelIndex = $state(1);
 	let selectedPanelData = $state<PanelData | undefined>(undefined);
-	let viewMode = $state<'storyboard' | 'manga' | 'story'>('storyboard');
+	let viewMode = $state<'storyboard' | 'manga' | 'script' | 'shooting'>('storyboard');
 	
 	// Chat Panel reference
 	let chatPanel = $state<any>(undefined);
@@ -284,9 +285,13 @@
 				onclick={() => viewMode = 'manga'}
 			>Manga</button>
 			<button 
-				class:active={viewMode === 'story'} 
-				onclick={() => viewMode = 'story'}
-			>Story</button>
+				class:active={viewMode === 'script'} 
+				onclick={() => viewMode = 'script'}
+			>Script</button>
+			<button 
+				class:active={viewMode === 'shooting'} 
+				onclick={() => viewMode = 'shooting'}
+			>Shooting</button>
 		</div>
 
 		<div class="episode-info">
@@ -349,16 +354,19 @@
 							on:update={({ detail }) =>
 								handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
 						/>
-					{:else if viewMode === 'story'}
-						<StoryEditorView 
+					{:else if viewMode === 'script'}
+						<ScriptView 
 							{panels} 
 							episodeId={selectedEpisode} 
 							{storyboardPath}
 							on:update={({ detail }) =>
 								handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
-							on:agentTrigger={({ detail }) => {
-								openChatWithAgent(detail.agent);
-							}}
+						/>
+					{:else if viewMode === 'shooting'}
+						<ShootingView 
+							{panels} 
+							episodeId={selectedEpisode} 
+							{storyboardPath}
 						/>
 					{/if}
 				</div>
