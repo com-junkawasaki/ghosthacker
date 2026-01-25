@@ -36,57 +36,109 @@
 		transform: scale(${panelLayout.imageScale || 1.0});
 	` : '';
 
-	let isDraggingImage = false;
+	// State for unified drag system
+	let draggingElement: { type: 'image' | 'dialogue' | 'sfx', index?: number } | null = null;
+	let dragStartPos = { x: 0, y: 0 };
+	let initialElementPos = { x: 0, y: 0 };
+	let containerRect: DOMRect | null = null;
 
-	function handleImageMouseDown(event: MouseEvent) {
-		// Only drag if clicking the background image, not a bubble or tool
-		if ((event.target as HTMLElement).classList.contains('panel-image') || (event.target as HTMLElement).classList.contains('panel-overlay')) {
-			isDraggingImage = true;
-			const startX = event.clientX;
-			const startY = event.clientY;
-			const initialX = panelLayout?.imageX ?? 50;
-			const initialY = panelLayout?.imageY ?? 50;
+	function handlePointerDown(event: PointerEvent, type: 'image' | 'dialogue' | 'sfx', index?: number) {
+		const target = event.currentTarget as HTMLElement;
+		containerRect = target.closest('.manga-panel')?.getBoundingClientRect() || null;
+		if (!containerRect) return;
 
-			const onMouseMove = (moveEvent: MouseEvent) => {
-				const dx = ((moveEvent.clientX - startX) / 300) * 100;
-				const dy = ((moveEvent.clientY - startY) / 400) * 100;
-				updateImagePosition(initialX - dx, initialY - dy);
-			};
+		// Prevent background drag when clicking on bubbles/sfx
+		if (type !== 'image') {
+			event.stopPropagation();
+		}
 
-			const onMouseUp = () => {
-				isDraggingImage = false;
-				window.removeEventListener('mousemove', onMouseMove);
-				window.removeEventListener('mouseup', onMouseUp);
-			};
+		draggingElement = { type, index };
+		dragStartPos = { x: event.clientX, y: event.clientY };
 
-			window.addEventListener('mousemove', onMouseMove);
-			window.addEventListener('mouseup', onMouseUp);
+		if (type === 'image') {
+			initialElementPos = { x: panelLayout?.imageX ?? 50, y: panelLayout?.imageY ?? 50 };
+		} else if (type === 'dialogue' && index !== undefined) {
+			const d = dialogues[index];
+			initialElementPos = { x: d?.mangaLayout?.x ?? 10, y: d?.mangaLayout?.y ?? 20 };
+		} else if (type === 'sfx' && index !== undefined) {
+			const s = mangaLayout?.texts[index];
+			initialElementPos = { x: s?.x ?? 50, y: s?.y ?? 50 };
+		}
+
+		window.addEventListener('pointermove', handlePointerMove);
+		window.addEventListener('pointerup', handlePointerUp);
+		target.setPointerCapture(event.pointerId);
+	}
+
+	function handlePointerMove(event: PointerEvent) {
+		if (!draggingElement || !containerRect) return;
+
+		const dx = ((event.clientX - dragStartPos.x) / containerRect.width) * 100;
+		const dy = ((event.clientY - dragStartPos.y) / containerRect.height) * 100;
+
+		if (draggingElement.type === 'image') {
+			// Reverse dx/dy for image panning (natural feel)
+			updateImagePositionLocal(initialElementPos.x - dx, initialElementPos.y - dy);
+		} else if (draggingElement.type === 'dialogue' && draggingElement.index !== undefined) {
+			updateDialoguePositionLocal(draggingElement.index, initialElementPos.x + dx, initialElementPos.y + dy);
+		} else if (draggingElement.type === 'sfx' && draggingElement.index !== undefined) {
+			updateSFXPositionLocal(draggingElement.index, initialElementPos.x + dx, initialElementPos.y + dy);
 		}
 	}
 
-	function updateImagePosition(x: number, y: number) {
-		if (!mangaLayout || !panelLayout) return;
+	function handlePointerUp(event: PointerEvent) {
+		if (draggingElement) {
+			// Final save to backend
+			saveCurrentState();
+		}
+		draggingElement = null;
+		window.removeEventListener('pointermove', handlePointerMove);
+		window.removeEventListener('pointerup', handlePointerUp);
+	}
 
+	// Local state updates for smooth dragging
+	function updateImagePositionLocal(x: number, y: number) {
+		if (!mangaLayout || !panelLayout) return;
 		const newPanels = mangaLayout.panels.map(p => {
 			if (p.panelIndex === panel.panel) {
-				return {
-					...p,
-					imageX: Math.max(0, Math.min(100, x)),
-					imageY: Math.max(0, Math.min(100, y))
-				};
+				return { ...p, imageX: Math.max(0, Math.min(100, x)), imageY: Math.max(0, Math.min(100, y)) };
 			}
 			return p;
 		});
+		panel.data = create(PanelDataSchema, { ...panel.data, mangaLayout: { ...mangaLayout, panels: newPanels } });
+	}
 
-		const updatedData = create(PanelDataSchema, {
-			...panel.data,
-			mangaLayout: {
-				...mangaLayout,
-				panels: newPanels
-			}
-		});
+	function updateDialoguePositionLocal(index: number, x: number, y: number) {
+		const newDialogues = [...dialogues];
+		const d = newDialogues[index];
+		if (d) {
+			newDialogues[index] = create(DialogueSchema, {
+				...d,
+				mangaLayout: create(MangaTextSchema, {
+					...(d.mangaLayout || {}),
+					text: d.text, type: 'dialogue',
+					x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)),
+					fontSize: d.mangaLayout?.fontSize || 16, style: d.mangaLayout?.style || 'vertical'
+				})
+			});
+		}
+		panel.data = create(PanelDataSchema, { ...panel.data, dialogue: newDialogues });
+	}
 
-		dispatch('update', updatedData);
+	function updateSFXPositionLocal(index: number, x: number, y: number) {
+		if (!mangaLayout) return;
+		const newTexts = [...mangaLayout.texts];
+		if (newTexts[index]) {
+			newTexts[index] = create(MangaTextSchema, {
+				...newTexts[index],
+				x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y))
+			});
+		}
+		panel.data = create(PanelDataSchema, { ...panel.data, mangaLayout: { ...mangaLayout, texts: newTexts } });
+	}
+
+	function saveCurrentState() {
+		dispatch('update', panel.data);
 	}
 
 	function handleZoom(event: WheelEvent) {
@@ -97,52 +149,14 @@
 
 		const newPanels = mangaLayout.panels.map(p => {
 			if (p.panelIndex === panel.panel) {
-				return {
-					...p,
-					imageScale: newScale
-				};
+				return { ...p, imageScale: newScale };
 			}
 			return p;
 		});
 
 		const updatedData = create(PanelDataSchema, {
 			...panel.data,
-			mangaLayout: {
-				...mangaLayout,
-				panels: newPanels
-			}
-		});
-
-		dispatch('update', updatedData);
-	}
-
-	function handleDialogueDragEnd(event: DragEvent, index: number) {
-		const rect = (event.currentTarget as HTMLElement).parentElement?.getBoundingClientRect();
-		if (!rect) return;
-
-		const x = ((event.clientX - rect.left) / rect.width) * 100;
-		const y = ((event.clientY - rect.top) / rect.height) * 100;
-
-		const newDialogues = [...dialogues];
-		const d = newDialogues[index];
-		if (d) {
-			newDialogues[index] = create(DialogueSchema, {
-				...d,
-				mangaLayout: create(MangaTextSchema, {
-					...(d.mangaLayout || {}),
-					text: d.text,
-					type: 'dialogue',
-					x,
-					y,
-					fontSize: d.mangaLayout?.fontSize || 16,
-					style: d.mangaLayout?.style || 'vertical'
-				})
-			});
-		}
-
-		const updatedData = create(PanelDataSchema, {
-			...panel.data,
-			dialogue: newDialogues
+			mangaLayout: { ...mangaLayout, panels: newPanels }
 		});
 
 		dispatch('update', updatedData);
@@ -150,61 +164,22 @@
 
 	function addSFX() {
 		if (!panel.data) return;
-		// SFX are special dialogues or we can keep using mangaLayout.texts for non-dialogue elements
 		const newSFX = create(MangaTextSchema, {
-			text: 'SFX',
-			type: 'sfx',
-			x: 50,
-			y: 50,
-			fontSize: 32,
-			style: 'vertical'
+			text: 'SFX', type: 'sfx', x: 50, y: 50, fontSize: 32, style: 'vertical'
 		});
-
 		const newTexts = mangaLayout?.texts ? [...mangaLayout.texts, newSFX] : [newSFX];
-
 		const updatedData = create(PanelDataSchema, {
 			...panel.data,
-			mangaLayout: {
-				...mangaLayout,
-				texts: newTexts
-			}
+			mangaLayout: { ...mangaLayout, texts: newTexts }
 		});
-
-		dispatch('update', updatedData);
-	}
-
-	function handleSFXDragEnd(event: DragEvent, index: number) {
-		const rect = (event.currentTarget as HTMLElement).parentElement?.getBoundingClientRect();
-		if (!rect) return;
-
-		const x = ((event.clientX - rect.left) / rect.width) * 100;
-		const y = ((event.clientY - rect.top) / rect.height) * 100;
-
-		const newTexts = mangaLayout?.texts ? [...mangaLayout.texts] : [];
-		if (newTexts[index]) {
-			newTexts[index] = create(MangaTextSchema, {
-				...newTexts[index],
-				x,
-				y
-			});
-		}
-
-		const updatedData = create(PanelDataSchema, {
-			...panel.data,
-			mangaLayout: {
-				...mangaLayout,
-				texts: newTexts
-			}
-		});
-
 		dispatch('update', updatedData);
 	}
 </script>
 
 <div 
 	class="manga-panel" 
-	class:dragging={isDraggingImage}
-	on:mousedown={handleImageMouseDown}
+	class:dragging={draggingElement?.type === 'image'}
+	on:pointerdown={(e) => handlePointerDown(e, 'image')}
 	on:wheel={handleZoom}
 >
 	{#if currentImageUrl}
@@ -225,13 +200,13 @@
 		{#each dialogues as dialogue, i}
 			<div 
 				class="dialogue-bubble"
+				class:active={draggingElement?.type === 'dialogue' && draggingElement.index === i}
 				style="
 					left: {dialogue.mangaLayout?.x ?? 10}%; 
 					top: {dialogue.mangaLayout?.y ?? 20}%;
 					font-size: {dialogue.mangaLayout?.fontSize ?? 16}px;
 				"
-				draggable="true"
-				on:dragend={(e) => handleDialogueDragEnd(e, i)}
+				on:pointerdown={(e) => handlePointerDown(e, 'dialogue', i)}
 			>
 				{dialogue.text}
 			</div>
@@ -241,9 +216,9 @@
 			{#each mangaLayout.texts as text, i}
 				<div 
 					class="manga-text {text.type}"
+					class:active={draggingElement?.type === 'sfx' && draggingElement.index === i}
 					style="left: {text.x}%; top: {text.y}%; font-size: {text.fontSize}px;"
-					draggable="true"
-					on:dragend={(e) => handleSFXDragEnd(e, i)}
+					on:pointerdown={(e) => handlePointerDown(e, 'sfx', i)}
 				>
 					{text.text}
 				</div>
@@ -252,7 +227,7 @@
 	</div>
 
 	<div class="panel-tools">
-		<button on:click={addSFX} title="Add SFX">+S</button>
+		<button on:click|stopPropagation={addSFX} title="Add SFX">+S</button>
 	</div>
 </div>
 
@@ -264,6 +239,7 @@
 		background: #eee;
 		aspect-ratio: 3 / 4;
 		cursor: crosshair;
+		touch-action: none; /* Important for pointer events */
 	}
 
 	.manga-panel.dragging {
@@ -274,7 +250,8 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		pointer-events: auto;
+		pointer-events: none;
+		user-select: none;
 	}
 
 	.panel-placeholder {
@@ -309,6 +286,13 @@
 		cursor: grab;
 		outline: 2px dashed #28a745;
 		z-index: 10;
+		user-select: none;
+	}
+
+	.dialogue-bubble.active {
+		cursor: grabbing;
+		outline: 3px solid #28a745;
+		box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
 	}
 
 	.manga-text {
@@ -318,6 +302,13 @@
 		cursor: grab;
 		outline: 2px dashed #ffc107;
 		z-index: 11;
+		user-select: none;
+	}
+
+	.manga-text.active {
+		cursor: grabbing;
+		outline: 3px solid #ffc107;
+		box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
 	}
 
 	.manga-text.sfx {
