@@ -18,7 +18,7 @@
   "gh:meta": {
     "gh:audience": "週刊少年ジャンプ編集部向け",
     "gh:hook": "情報が『質量』を持ったとき、嘘は『幽霊』になる。",
-    "gh:oneLiner": "AI時代の情報攻撃を"物理現象"として描く、ハッキング×心理×組織の少年漫画。",
+    "gh:oneLiner": "AI時代の情報攻撃を\"物理現象\"として描く、ハッキング×心理×組織の少年漫画。",
     "gh:tags": ["Cyber", "Thriller", "Shonen", "AI", "Corporate", "Ghost", "CISSP", "CISA", "情報安全確保支援士"]
   },
 
@@ -26,7 +26,7 @@
   "gh:runwayConstraints": "Max 3 key entities per prompt (2 characters + 1 prop/ghost), no dialogue text, stable shot schema via gh:shotProperties.",
 
   "gh:directingGuide": {
-    "gh:goal": "会話と"間"で進める（映画・ドラマ的）。急ぎすぎる場面は、台詞の前後に沈黙/呼吸/視線/所作の小ビートを入れて読者の認知を追いつかせる。",
+    "gh:goal": "会話と\"間\"で進める（映画・ドラマ的）。急ぎすぎる場面は、台詞の前後に沈黙/呼吸/視線/所作の小ビートを入れて読者の認知を追いつかせる。",
     "gh:note": "これらは追加フィールド（後方互換）として扱う。Runway用プロンプトには台詞を入れない（既存ルール維持）。"
   },
 
