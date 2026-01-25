@@ -3,6 +3,10 @@
 	import MangaPage from './MangaPage.svelte';
 	import { storyboardClient } from '$lib/client/storyboard-client';
 	import type { PanelData } from '$lib/gen/proto/storyboard_pb';
+import type { LayoutTemplate } from '$lib/manga-layouts';
+	import { MANGA_TEMPLATES, applyTemplate } from '$lib/manga-layouts';
+	import { PanelDataSchema, MangaLayoutSchema } from '$lib/gen/proto/storyboard_pb';
+	import { create } from '@bufbuild/protobuf';
 
 	export let panels: Panel[] = [];
 	export let episodeId: string = '';
@@ -11,6 +15,29 @@
 
 	$: {
 		console.log('[MangaEditor] selectedPage prop updated:', selectedPage);
+	}
+
+	$: currentPagePanels = pagesMap[selectedPage] || [];
+	$: templates = MANGA_TEMPLATES[currentPagePanels.length] || [];
+
+	async function handleApplyTemplate(template: LayoutTemplate) {
+		if (currentPagePanels.length === 0) return;
+
+		const newPanelLayouts = applyTemplate(currentPagePanels, template);
+		
+		for (let i = 0; i < currentPagePanels.length; i++) {
+			const panel = currentPagePanels[i];
+			
+			const updatedData = create(PanelDataSchema, {
+				...panel.data,
+				mangaLayout: create(MangaLayoutSchema, {
+					panels: newPanelLayouts,
+					texts: panel.data?.mangaLayout?.texts || []
+				})
+			});
+
+			await handlePanelUpdate(panel.pageNumber, panel.panel, updatedData);
+		}
 	}
 
 	async function handlePanelUpdate(
@@ -62,6 +89,16 @@
 			</select>
 		</div>
 		<div class="tools">
+			{#if templates.length > 0}
+				<div class="template-selector">
+					<span>Layout:</span>
+					{#each templates as template}
+						<button class="tool-btn" on:click={() => handleApplyTemplate(template)}>
+							{template.name}
+						</button>
+					{/each}
+				</div>
+			{/if}
 			<button class="tool-btn">Add Text</button>
 			<button class="tool-btn">Add SFX</button>
 		</div>
@@ -99,6 +136,20 @@
 		padding: 0.5rem 1rem;
 		background: #222;
 		border-bottom: 1px solid #444;
+	}
+
+	.template-selector {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-right: 1rem;
+		padding-right: 1rem;
+		border-right: 1px solid #444;
+	}
+
+	.template-selector span {
+		font-size: 0.8rem;
+		color: #888;
 	}
 
 	.page-nav {

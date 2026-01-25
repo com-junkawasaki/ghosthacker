@@ -80,6 +80,7 @@ message MangaPanelLayout {
   float width = 4;
   float height = 5;
   string shape = 6; // "rectangle", "trapezoid", etc.
+  int32 z_index = 7;
 }
 
 message MangaText {
