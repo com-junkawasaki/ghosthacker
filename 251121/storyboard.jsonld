@@ -29,6 +29,30 @@
   ],
   "dct:description": "Full Season 1 storyboard: episodes are ordered by gh:episodeIndex and identified by date-based gh:episodeId (stable). Realistic live-action Runway base prompts with ARIA aesthetic (clean luminous air, soft light) and structured shot properties.",
   "dct:title": "Ghost Hacker Season 1: Master Storyboard (ARIA Cinematic Base - FULL)",
+  "gh:directingGuide": {
+    "gh:goal": "会話と“間”で進める（映画・ドラマ的）。急ぎすぎる場面は、台詞の前後に沈黙/呼吸/視線/所作の小ビートを入れて読者の認知を追いつかせる。",
+    "gh:panelDirectingFields": [
+      "gh:actingDirection.gh:tempo",
+      "gh:actingDirection.gh:blocking",
+      "gh:actingDirection.gh:eyeLine",
+      "gh:actingDirection.gh:gesture",
+      "gh:actingDirection.gh:microBeats"
+    ],
+    "gh:dialogueDirectingFields": [
+      "gh:delivery",
+      "gh:subtext",
+      "gh:emotion",
+      "gh:pauseBeforeMs",
+      "gh:pauseAfterMs"
+    ],
+    "gh:pageBeatFields": [
+      "gh:pageBeat.gh:turn",
+      "gh:pageBeat.gh:tempo",
+      "gh:pageBeat.gh:emotionalShift",
+      "gh:pageBeat.gh:hook"
+    ],
+    "gh:note": "これらは追加フィールド（後方互換）として扱う。Runway用プロンプトには台詞を入れない（既存ルール維持）。"
+  },
   "gh:characters": [
     {
       "@id": "character:Ren",
@@ -498,6 +522,12 @@
       "gh:pages": [
         {
           "gh:pageNumber": 1,
+          "gh:pageBeat": {
+            "gh:turn": "日常の軽口の中に、違和感の種（スマホ/通知/欲望）を落とす",
+            "gh:tempo": "loose → tiny sting",
+            "gh:emotionalShift": "ゆるい幸福 → ほんの一瞬の焦り/欲",
+            "gh:hook": "“限定”という言葉が、Yutoの指を動かす"
+          },
           "gh:panels": [
             {
               "characters": [
@@ -510,14 +540,33 @@
               "dialogue": [
                 {
                   "speaker": "Sakuraba Mei (Mei-chan)",
-                  "text": "今日さ、体育ないの神〜。"
+                  "text": "今日さ、体育ないの神〜。",
+                  "gh:delivery": "椅子にだらっともたれて、語尾を伸ばす。小さく笑って、みんなを巻き込む。",
+                  "gh:subtext": "『今日くらい楽したい』っていう等身大の共有",
+                  "gh:emotion": "relief",
+                  "gh:pauseAfterMs": 120
                 },
                 {
                   "speaker": "Yuto",
-                  "text": "わかる。昼まで生きれる。"
+                  "text": "わかる。昼まで生きれる。",
+                  "gh:delivery": "軽く笑って合わせる。笑い終わりに、机の上のスマホへ視線が一瞬だけ落ちる。",
+                  "gh:subtext": "楽しいのに、どこか落ち着かない“予兆”がある",
+                  "gh:emotion": "light",
+                  "gh:pauseAfterMs": 180
                 }
               ],
               "environment": "env:cschool-classroom",
+              "gh:actingDirection": {
+                "gh:tempo": "loose",
+                "gh:blocking": "机を囲む輪。Yutoは中心寄り、Renは少し離れて気怠げ、Neiは本に視線を落としている。",
+                "gh:eyeLine": "会話→スマホ→また会話（違和感はまだ言語化しない）",
+                "gh:gesture": "Meiは伸び、Yutoは頬を緩めつつ指先だけ落ち着かない。",
+                "gh:microBeats": [
+                  "笑い声が落ち着く",
+                  "スマホが小さく震える/通知が光る（気づくか気づかないかの境界）",
+                  "Yutoが『見なかったこと』にして会話へ戻る"
+                ]
+              },
               "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. C-school classroom during break time: Yuto laughs with classmates around a desk; Ren is lazy in the background, Nei is reading. shot on 35mm, f/2.8, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "eye level",
@@ -540,10 +589,33 @@
               "dialogue": [
                 {
                   "speaker": "Kurokawa Akira (Aki)",
-                  "text": "見て。これ限定販売なんだぜ！もう手に入らない。"
+                  "text": "見て。これ限定販売なんだぜ！もう手に入らない。",
+                  "gh:delivery": "少し早口。得意げに“限定”を強調して、周りの視線を確かめる。",
+                  "gh:subtext": "羨望を集めたい／優位に立ちたい",
+                  "gh:emotion": "pride",
+                  "gh:pauseAfterMs": 120
+                },
+                {
+                  "speaker": "Yuto",
+                  "text": "いいなぁ。",
+                  "gh:delivery": "笑って言うけど、視線は服→スマホへ。欲しいのに、言い切れない。",
+                  "gh:subtext": "『欲しい』が小さく刺さる",
+                  "gh:emotion": "envy",
+                  "gh:pauseBeforeMs": 180
                 }
               ],
               "environment": "env:cschool-classroom",
+              "gh:actingDirection": {
+                "gh:tempo": "snappy",
+                "gh:blocking": "Akiraが机上に広げて見せる。Yutoは半歩引いて見て、すぐスマホを触りたくなる。",
+                "gh:eyeLine": "服→周囲の反応→Yutoの目→スマホ（欲望の導線）",
+                "gh:gesture": "Akiraは手でタグを指す。Yutoは指先が無意識にポケット/スマホへ。",
+                "gh:microBeats": [
+                  "『限定』で空気が一段上がる",
+                  "『いいなぁ』が小さく落ちる",
+                  "次ページへ：Yutoの“指”がスマホへ向かう"
+                ]
+              },
               "gh:runwayPrompt": "Insert Shot, top-down, ARIA-style. Akira boasts about a trendy limited-drop hoodie on a desk; a small 'limited' tag is visible. shot on 50mm, f/2.0, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "top-down insert",
@@ -5236,6 +5308,12 @@
         },
         {
           "gh:pageNumber": 45,
+          "gh:pageBeat": {
+            "gh:turn": "“返さない”という選択で、被害者が主導権を取り戻す",
+            "gh:tempo": "afterglow",
+            "gh:emotionalShift": "恐怖の反射 → 静かな自尊",
+            "gh:hook": "『消せないなら、切れ』を読者の自分ごとに落とす"
+          },
           "gh:panels": [
             {
               "characters": [
@@ -5246,18 +5324,40 @@
               "dialogue": [
                 {
                   "speaker": "Kenta",
-                  "text": "…ありがと。俺、もう…返さない。"
+                  "text": "…ありがと。俺、もう…返さない。",
+                  "gh:delivery": "息を吐いて、短く。言い切る前に一拍だけ迷うけど、最後は目を上げる。",
+                  "gh:subtext": "相手に勝つより、自分の反射を止めたい",
+                  "gh:emotion": "relief",
+                  "gh:pauseBeforeMs": 250
                 },
                 {
                   "speaker": "Nei",
-                  "text": "OK。証拠は残せた。被害も止まった。"
+                  "text": "OK。証拠は残せた。被害も止まった。",
+                  "gh:delivery": "淡々と事実を置く。安心させるために、言葉を短く切る。",
+                  "gh:subtext": "感情に飲まれない“足場”を作る",
+                  "gh:emotion": "calm"
                 },
                 {
                   "speaker": "Ren",
-                  "text": "…消せない。だから、切る。手順にすれば勝てる。"
+                  "text": "…消せない。だから、切る。手順にすれば勝てる。",
+                  "gh:delivery": "最初は小声。『切る』で声が少しだけ芯を持つ。熱くしない、でも逃げない。",
+                  "gh:subtext": "正しさじゃなく再現性を渡す",
+                  "gh:emotion": "resolve",
+                  "gh:pauseAfterMs": 180
                 }
               ],
               "environment": "env:cschool-hallway",
+              "gh:actingDirection": {
+                "gh:tempo": "afterglow",
+                "gh:blocking": "廊下の端で立ち止まる3人。距離は近すぎない。Kentaが一歩前に出た瞬間だけ、空気が変わる。",
+                "gh:eyeLine": "Kentaは床→二人→前。NeiはKentaの手元/呼吸。Renは目だけで肯定。",
+                "gh:gesture": "Kentaはスマホを握る手をゆるめる。Renは肩の力を抜いたまま、視線で“切る”を示す。",
+                "gh:microBeats": [
+                  "Kentaの『返さない』で沈黙が落ちる",
+                  "Neiが事実で支える",
+                  "Renが“勝ち方”を言語化して、読者へ渡す"
+                ]
+              },
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. In the hallway, Ren and Nei face Kenta; Kenta looks exhausted but standing, the crisis stabilized. shot on 50mm, f/1.8, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "eye level",
