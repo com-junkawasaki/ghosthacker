@@ -1594,6 +1594,85 @@ func (s *StoryboardService) buildPanelCol(p *storyboardpb.Panel) core.Col {
 	)
 }
 
+// panelLayoutDef defines a panel's position in percentage
+type panelLayoutDef struct {
+	x, y, width, height float64
+}
+
+// getJumpMangaLayout returns Jump-style manga layouts based on panel count
+func getJumpMangaLayout(panelCount int) []panelLayoutDef {
+	switch panelCount {
+	case 1:
+		return []panelLayoutDef{
+			{0, 0, 100, 100},
+		}
+	case 2:
+		return []panelLayoutDef{
+			{0, 0, 100, 55},
+			{0, 55, 100, 45},
+		}
+	case 3:
+		return []panelLayoutDef{
+			{0, 0, 100, 50},
+			{0, 50, 55, 50},
+			{55, 50, 45, 50},
+		}
+	case 4:
+		// Jump Impact - L Shape (Top wide + 3 bottom)
+		return []panelLayoutDef{
+			{0, 0, 100, 55},
+			{0, 55, 35, 45},
+			{35, 55, 35, 45},
+			{70, 55, 30, 45},
+		}
+	case 5:
+		return []panelLayoutDef{
+			{0, 0, 100, 40},
+			{0, 40, 50, 30},
+			{50, 40, 50, 30},
+			{0, 70, 60, 30},
+			{60, 70, 40, 30},
+		}
+	case 6:
+		return []panelLayoutDef{
+			{0, 0, 100, 35},
+			{0, 35, 50, 32},
+			{50, 35, 50, 32},
+			{0, 67, 33, 33},
+			{33, 67, 34, 33},
+			{67, 67, 33, 33},
+		}
+	case 7:
+		return []panelLayoutDef{
+			{0, 0, 100, 30},
+			{0, 30, 50, 25},
+			{50, 30, 50, 25},
+			{0, 55, 33, 22},
+			{33, 55, 34, 22},
+			{67, 55, 33, 22},
+			{0, 77, 100, 23},
+		}
+	default:
+		// Grid layout for 8+ panels
+		cols := 3
+		rows := (panelCount + cols - 1) / cols
+		layouts := make([]panelLayoutDef, panelCount)
+		w := 100.0 / float64(cols)
+		h := 100.0 / float64(rows)
+		for i := 0; i < panelCount; i++ {
+			col := i % cols
+			row := i / cols
+			layouts[i] = panelLayoutDef{
+				x:      float64(col) * w,
+				y:      float64(row) * h,
+				width:  w,
+				height: h,
+			}
+		}
+		return layouts
+	}
+}
+
 // createMangaPageImage creates a composite image of a manga page with all panels positioned correctly
 func (s *StoryboardService) createMangaPageImage(panels []*storyboardpb.Panel, workspaceRoot string, pageWidth, pageHeight int) ([]byte, error) {
 	// Create a white background canvas
@@ -1616,27 +1695,39 @@ func (s *StoryboardService) createMangaPageImage(panels []*storyboardpb.Panel, w
 		return sortedPanels[i].Panel < sortedPanels[j].Panel
 	})
 	
+	// Get default Jump manga layout based on panel count
+	defaultLayouts := getJumpMangaLayout(len(sortedPanels))
+	
 	// Draw each panel
 	for i, p := range sortedPanels {
-		// Get layout for this panel
-		var layout *storyboardpb.MangaPanelLayout
-		if mangaLayout != nil && i < len(mangaLayout.Panels) {
-			layout = mangaLayout.Panels[i]
-		}
-		
-		// Default layout if not specified (simple grid)
+		// Get layout for this panel - prefer stored layout, fall back to default
 		var x, y, w, h float64
-		if layout != nil {
+		var imgX, imgY float64 = 50, 50
+		var imgScale float64 = 1.0
+		
+		if mangaLayout != nil && i < len(mangaLayout.Panels) {
+			layout := mangaLayout.Panels[i]
 			x = float64(layout.X)
 			y = float64(layout.Y)
 			w = float64(layout.Width)
 			h = float64(layout.Height)
-		} else {
-			// Generate default layout based on panel count and index
-			cols := 2
-			if len(panels) > 4 {
-				cols = 3
+			if layout.ImageX != 0 || layout.ImageY != 0 {
+				imgX = float64(layout.ImageX)
+				imgY = float64(layout.ImageY)
 			}
+			if layout.ImageScale > 0 {
+				imgScale = float64(layout.ImageScale)
+			}
+		} else if i < len(defaultLayouts) {
+			// Use Jump manga default layout
+			dl := defaultLayouts[i]
+			x = dl.x
+			y = dl.y
+			w = dl.width
+			h = dl.height
+		} else {
+			// Fallback grid
+			cols := 3
 			rows := (len(panels) + cols - 1) / cols
 			col := i % cols
 			row := i / cols
