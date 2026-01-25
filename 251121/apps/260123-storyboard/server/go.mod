@@ -5,6 +5,7 @@ go 1.25.0
 require (
 	connectrpc.com/connect v1.17.0
 	cuelang.org/go v0.15.3
+	github.com/mark3labs/mcp-go v0.43.2
 	github.com/rs/cors v1.11.1
 	go.temporal.io/sdk v1.28.1
 	golang.org/x/net v0.46.0
@@ -12,6 +13,8 @@ require (
 )
 
 require (
+	github.com/bahlo/generic-list-go v0.2.0 // indirect
+	github.com/buger/jsonparser v1.1.1 // indirect
 	github.com/cockroachdb/apd/v3 v3.2.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/emicklei/proto v1.14.2 // indirect
@@ -21,7 +24,8 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.22.0 // indirect
-	github.com/mark3labs/mcp-go v0.43.2 // indirect
+	github.com/invopop/jsonschema v0.13.0 // indirect
+	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
 	github.com/nexus-rpc/sdk-go v0.0.10 // indirect
 	github.com/pborman/uuid v1.2.1 // indirect
@@ -29,8 +33,11 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/protocolbuffers/txtpbfmt v0.0.0-20251016062345-16587c79cd91 // indirect
 	github.com/robfig/cron v1.2.0 // indirect
+	github.com/spf13/cast v1.7.1 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/stretchr/testify v1.9.0 // indirect
+	github.com/wk8/go-ordered-map/v2 v2.1.8 // indirect
+	github.com/yosida95/uritemplate/v3 v3.0.2 // indirect
 	go.temporal.io/api v1.37.0 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
 	golang.org/x/exp v0.0.0-20250620022241-b7579e27df2b // indirect

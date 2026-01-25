@@ -95,3 +95,67 @@ type episodeDraft struct {
 	Content string
 	Params  AutonomousGenerationParams
 }
+
+// ScenarioGenerationWorkflow handles high-level plot generation
+func ScenarioGenerationWorkflow(ctx workflow.Context, params AutonomousGenerationParams) (AutonomousGenerationResult, error) {
+	options := workflow.ActivityOptions{
+		StartToCloseTimeout: 10 * 60 * 1e9,
+	}
+	ctx = workflow.WithActivityOptions(ctx, options)
+
+	var output string
+	err := workflow.ExecuteActivity(ctx, ScenarioAgentActivity, params).Get(ctx, &output)
+	if err != nil {
+		return AutonomousGenerationResult{Success: false, Message: err.Error()}, err
+	}
+
+	return AutonomousGenerationResult{Success: true, Message: output}, nil
+}
+
+// EpisodeGenerationWorkflow handles detailed episode generation
+func EpisodeGenerationWorkflow(ctx workflow.Context, params AutonomousGenerationParams) (AutonomousGenerationResult, error) {
+	options := workflow.ActivityOptions{
+		StartToCloseTimeout: 10 * 60 * 1e9,
+	}
+	ctx = workflow.WithActivityOptions(ctx, options)
+
+	var output string
+	err := workflow.ExecuteActivity(ctx, EpisodeAgentActivity, params.Goal).Get(ctx, &output)
+	if err != nil {
+		return AutonomousGenerationResult{Success: false, Message: err.Error()}, err
+	}
+
+	return AutonomousGenerationResult{Success: true, Message: output}, nil
+}
+
+// CharacterRefinementWorkflow handles character consistency refinement
+func CharacterRefinementWorkflow(ctx workflow.Context, params AutonomousGenerationParams) (AutonomousGenerationResult, error) {
+	options := workflow.ActivityOptions{
+		StartToCloseTimeout: 10 * 60 * 1e9,
+	}
+	ctx = workflow.WithActivityOptions(ctx, options)
+
+	var output string
+	err := workflow.ExecuteActivity(ctx, CharacterAgentActivity, episodeDraft{Content: params.Goal, Params: params}).Get(ctx, &output)
+	if err != nil {
+		return AutonomousGenerationResult{Success: false, Message: err.Error()}, err
+	}
+
+	return AutonomousGenerationResult{Success: true, Message: output}, nil
+}
+
+// CinematicSketchWorkflow handles visual prompt generation
+func CinematicSketchWorkflow(ctx workflow.Context, params AutonomousGenerationParams) (AutonomousGenerationResult, error) {
+	options := workflow.ActivityOptions{
+		StartToCloseTimeout: 10 * 60 * 1e9,
+	}
+	ctx = workflow.WithActivityOptions(ctx, options)
+
+	var output string
+	err := workflow.ExecuteActivity(ctx, CinematicAgentActivity, params.Goal).Get(ctx, &output)
+	if err != nil {
+		return AutonomousGenerationResult{Success: false, Message: err.Error()}, err
+	}
+
+	return AutonomousGenerationResult{Success: true, Message: output}, nil
+}

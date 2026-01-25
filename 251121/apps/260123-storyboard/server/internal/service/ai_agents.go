@@ -13,6 +13,7 @@ import (
 	"storyboard-editor/backend/proto"
 
 	"connectrpc.com/connect"
+	"github.com/mark3labs/mcp-go/mcp"
 	"go.temporal.io/sdk/client"
 )
 
