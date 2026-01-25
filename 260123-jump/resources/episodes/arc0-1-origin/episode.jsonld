@@ -609,18 +609,18 @@
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769354371,
-              "gh:imagePrompt": "スニーカーのアップ。ブランドロゴが光る限定モデル。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Dialogue: Classmate_A: うわ、マジ？それ即完売だったやつじゃん！.",
+              "gh:imagePrompt": "スニーカーのアップ。ブランドロゴが光る限定モデル。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Dialogue: Ken: うわ、マジ？それ即完売だったやつじゃん！.",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/N9XqqSr8KpAa_v1.png",
               "gh:model": "google/gemini-3-pro-image-preview"
             },
             {
               "gh:generatedAt": 1769354448,
-              "gh:imagePrompt": "スニーカーのアップ。ブランドロゴが光る限定モデル。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Dialogue: Classmate_A: うわ、マジ？それ即完売だったやつじゃん！.",
+              "gh:imagePrompt": "スニーカーのアップ。ブランドロゴが光る限定モデル。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Dialogue: Ken: うわ、マジ？それ即完売だったやつじゃん！.",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/N9XqqSr8KpAa_v2.png",
               "gh:model": "google/gemini-3-pro-image-preview"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. スニーカーのアップ。ブランドロゴが光る限定モデル。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Dialogue: Classmate_A: うわ、マジ？それ即完売だったやつじゃん！.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. スニーカーのアップ。ブランドロゴが光る限定モデル。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Dialogue: Ken: うわ、マジ？それ即完売だったやつじゃん！.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -638,7 +638,7 @@
           "dialogue": [
             {
               "gh:emotion": "impressed",
-              "speaker": "Classmate_A",
+              "speaker": "Ken",
               "text": "うわ、マジ？それ即完売だったやつじゃん！"
             },
             {
@@ -1131,7 +1131,16 @@
           "dialogue": [],
           "environment": "env:yuto-home-living",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/rhfOaxIBg52a_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/rhfOaxIBg52a_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769354709,
+              "gh:imagePrompt": "親のバッグ。財布が見える。. Shot type: Close Up",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/rhfOaxIBg52a_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 親のバッグ。財布が見える。. Shot type: Close Up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
@@ -1142,6 +1151,7 @@
           "visual": "親のバッグ。財布が見える。"
         },
         {
+          "@id": "panel:Bm_1GGAJEERE",
           "characters": [
             "character:Yuto"
           ],
@@ -1153,7 +1163,18 @@
             }
           ],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Single illustration. Close Up, high angle. Hand pulling credit card from wallet. Slight trembling. Guilt. Night lighting.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/Bm_1GGAJEERE_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/Bm_1GGAJEERE_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769354692,
+              "gh:imagePrompt": "財布からカードを抜き取る手。罪悪感で震えている。. Shot type: Close Up. Dialogue: Yuto: ママのカード…ちょっとだけ….",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/Bm_1GGAJEERE_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 財布からカードを抜き取る手。罪悪感で震えている。. Shot type: Close Up. Dialogue: Yuto: ママのカード…ちょっとだけ….. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
             "gh:distance": "Close Up"
@@ -1163,12 +1184,24 @@
           "visual": "財布からカードを抜き取る手。罪悪感で震えている。"
         },
         {
+          "@id": "panel:Gf0ERC-yxaDQ",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy back in bedroom, holding credit card, looking at smartphone. Serious expression. shot on 50mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/Gf0ERC-yxaDQ_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/Gf0ERC-yxaDQ_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769354709,
+              "gh:imagePrompt": "部屋に戻り、カードを手にスマホを見るYuto。真剣な表情。. Shot type: Medium Close Up",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/Gf0ERC-yxaDQ_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 部屋に戻り、カードを手にスマホを見るYuto。真剣な表情。. Shot type: Medium Close Up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -1178,10 +1211,22 @@
           "visual": "部屋に戻り、カードを手にスマホを見るYuto。真剣な表情。"
         },
         {
+          "@id": "panel:xc8qGx_iyvgl",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Credit card payment form. Card number being typed digit by digit. Japanese text.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/xc8qGx_iyvgl_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/xc8qGx_iyvgl_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769354711,
+              "gh:imagePrompt": "クレジットカード情報入力画面。番号を一桁ずつ入力中。. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/xc8qGx_iyvgl_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. クレジットカード情報入力画面。番号を一桁ずつ入力中。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1191,10 +1236,22 @@
           "visual": "クレジットカード情報入力画面。番号を一桁ずつ入力中。"
         },
         {
+          "@id": "panel:fbZGDuz-L2Oz",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Extreme Close Up. Security code field. Last 3 digits being entered. Point of no return approaching.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/fbZGDuz-L2Oz_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/fbZGDuz-L2Oz_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769354706,
+              "gh:imagePrompt": "セキュリティコード入力。最後の3桁。. Shot type: Extreme Close Up",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/fbZGDuz-L2Oz_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. セキュリティコード入力。最後の3桁。. Shot type: Extreme Close Up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Extreme Close Up"
@@ -1204,6 +1261,7 @@
           "visual": "セキュリティコード入力。最後の3桁。"
         },
         {
+          "@id": "panel:YXbO2cemJo36",
           "characters": [],
           "dialogue": [
             {
@@ -1213,7 +1271,18 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. 'Purchase' button. Finger touching at exact moment. Dramatic instant. Point of no return.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/YXbO2cemJo36_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/YXbO2cemJo36_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769354727,
+              "gh:imagePrompt": "「購入」ボタン。指が触れる瞬間。ドラマチックな一瞬。. Shot type: Insert. Dialogue: Yuto: （…ポチッ）.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/YXbO2cemJo36_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 「購入」ボタン。指が触れる瞬間。ドラマチックな一瞬。. Shot type: Insert. Dialogue: Yuto: （…ポチッ）.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "slight angle",
             "gh:distance": "Insert"
@@ -1334,13 +1403,25 @@
       "gh:panelCount": 5,
       "gh:panels": [
         {
+          "@id": "panel:8kVf1H5H2on6",
           "characters": [
             "character:Yuto",
             "character:HomeroomTeacher"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Wide Shot, ARIA-style. Middle school classroom during lesson. Teacher at blackboard, students listening. Normal school day. shot on 24mm, f/4, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/8kVf1H5H2on6_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/8kVf1H5H2on6_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769354766,
+              "gh:imagePrompt": "翌日。授業中の教室全景。黒板に先生、生徒たちは真剣に聞いている。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/8kVf1H5H2on6_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 翌日。授業中の教室全景。黒板に先生、生徒たちは真剣に聞いている。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "slightly high",
             "gh:aperture": "f/4",
@@ -1352,12 +1433,24 @@
           "visual": "翌日。授業中の教室全景。黒板に先生、生徒たちは真剣に聞いている。"
         },
         {
+          "@id": "panel:EaVFjwjnHxof",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy sitting at desk, restless. Fidgeting. Can't concentrate. shot on 50mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/EaVFjwjnHxof_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/EaVFjwjnHxof_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769354774,
+              "gh:imagePrompt": "席に座るYuto。落ち着かない様子。机の下で足が動いている。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/EaVFjwjnHxof_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 席に座るYuto。落ち着かない様子。机の下で足が動いている。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1367,12 +1460,24 @@
           "visual": "席に座るYuto。落ち着かない様子。机の下で足が動いている。"
         },
         {
+          "@id": "panel:ZCytwLcADRV9",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy glancing at wall clock. Impatient expression. shot on 85mm, f/2, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/ZCytwLcADRV9_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/ZCytwLcADRV9_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769354775,
+              "gh:imagePrompt": "チラリと壁の時計を見るYuto。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/ZCytwLcADRV9_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. チラリと壁の時計を見るYuto。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -1382,10 +1487,22 @@
           "visual": "チラリと壁の時計を見るYuto。"
         },
         {
+          "@id": "panel:voiWQhGpyR-K",
           "characters": [],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Insert shot. Wall clock showing 2:45. Hands moving slowly. Time dragging.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/voiWQhGpyR-K_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/voiWQhGpyR-K_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769354763,
+              "gh:imagePrompt": "壁の時計。針がゆっくり進む。2時45分。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/voiWQhGpyR-K_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 壁の時計。針がゆっくり進む。2時45分。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "straight on",
             "gh:distance": "Insert"
@@ -1395,6 +1512,7 @@
           "visual": "壁の時計。針がゆっくり進む。2時45分。"
         },
         {
+          "@id": "panel:t0B_3ih3kdTp",
           "characters": [
             "character:Yuto"
           ],
@@ -1407,7 +1525,9 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy impatient to go home. Mix of anticipation and urgency. shot on 50mm, f/2, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/t0B_3ih3kdTp_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/t0B_3ih3kdTp_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 早く帰りたいYuto。期待と焦りが入り混じった表情。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Close Up. Dialogue: Yuto: （早く帰って届いてるか確認したい…）.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -1430,10 +1550,13 @@
       "gh:panelCount": 6,
       "gh:panels": [
         {
+          "@id": "panel:7Hcd6Zdc_r8Q",
           "characters": [],
           "dialogue": [],
           "environment": "env:yuto-home-exterior",
-          "gh:imagePrompt": "Single illustration. Wide Shot. Title card '3 DAYS LATER'. Overcast sky. Japanese residential house exterior. Ominous mood. shot on 24mm, f/4, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/7Hcd6Zdc_r8Q_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/7Hcd6Zdc_r8Q_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. インタータイトル「3日後」。曇り空。Yutoの家の外観。. Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:atmosphere": "不穏",
@@ -1445,12 +1568,15 @@
           "visual": "インタータイトル「3日後」。曇り空。Yutoの家の外観。"
         },
         {
+          "@id": "panel:o6BEpt-Mj-Je",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:yuto-home-exterior",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy checking mailbox. Hopeful expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/o6BEpt-Mj-Je_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/o6BEpt-Mj-Je_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 郵便受けを確認するYuto。期待の表情。. Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1460,10 +1586,13 @@
           "visual": "郵便受けを確認するYuto。期待の表情。"
         },
         {
+          "@id": "panel:unhHlrzGJzt4",
           "characters": [],
           "dialogue": [],
           "environment": "env:yuto-home-exterior",
-          "gh:imagePrompt": "Single illustration. Insert shot, POV. Empty mailbox interior. Nothing inside. Disappointment.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/unhHlrzGJzt4_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/unhHlrzGJzt4_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 空の郵便受け。何も入っていない。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "POV",
             "gh:distance": "Insert"
@@ -1473,12 +1602,15 @@
           "visual": "空の郵便受け。何も入っていない。"
         },
         {
+          "@id": "panel:GnVaJ34K21P1",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:yuto-home-exterior",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's disappointed face. Hope fading. shot on 85mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/GnVaJ34K21P1_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/GnVaJ34K21P1_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 落胆するYutoの表情。. Shot type: Close Up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2149,7 +2281,7 @@
         },
         {
           "characters": [
-            "character:Classmate_A"
+            "character:Ken"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
@@ -2164,12 +2296,12 @@
         },
         {
           "characters": [
-            "character:Classmate_A"
+            "character:Ken"
           ],
           "dialogue": [
             {
               "gh:emotion": "angry",
-              "speaker": "Classmate_A",
+              "speaker": "Ken",
               "text": "おい、昨日のメッセージなんだよ？"
             }
           ],
@@ -2207,9 +2339,9 @@
         {
           "characters": [
             "character:Yuto",
-            "character:Classmate_A",
-            "character:Classmate_B",
-            "character:Classmate_C"
+            "character:Ken",
+            "character:Shota",
+            "character:Tsubasa"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
@@ -2238,12 +2370,12 @@
       "gh:panels": [
         {
           "characters": [
-            "character:Classmate_A"
+            "character:Ken"
           ],
           "dialogue": [
             {
               "gh:emotion": "accusatory",
-              "speaker": "Classmate_A",
+              "speaker": "Ken",
               "text": "お前のアカウントから、こんなの送られてきたんだけど！"
             }
           ],
@@ -2321,12 +2453,12 @@
         },
         {
           "characters": [
-            "character:Classmate_B"
+            "character:Shota"
           ],
           "dialogue": [
             {
               "gh:emotion": "upset",
-              "speaker": "Classmate_B",
+              "speaker": "Shota",
               "text": "俺もリンク踏んだら、変なサイトに飛ばされた…"
             }
           ],
@@ -2363,12 +2495,12 @@
         },
         {
           "characters": [
-            "character:Classmate_C"
+            "character:Tsubasa"
           ],
           "dialogue": [
             {
               "gh:emotion": "worried",
-              "speaker": "Classmate_C",
+              "speaker": "Tsubasa",
               "text": "俺のアカウントもなんかおかしくなった…"
             }
           ],
@@ -2497,12 +2629,12 @@
         },
         {
           "characters": [
-            "character:Classmate_A"
+            "character:Ken"
           ],
           "dialogue": [
             {
               "gh:emotion": "accusatory",
-              "speaker": "Classmate_A",
+              "speaker": "Ken",
               "text": "全部お前（Yuto）のせいだろ！お前が変なリンク送ってきたから！"
             }
           ],
@@ -3817,8 +3949,8 @@
         },
         {
           "characters": [
-            "character:Classmate_A",
-            "character:Classmate_B"
+            "character:Ken",
+            "character:Shota"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
@@ -3829,12 +3961,12 @@
         },
         {
           "characters": [
-            "character:Classmate_A"
+            "character:Ken"
           ],
           "dialogue": [
             {
               "gh:emotion": "mocking",
-              "speaker": "Classmate_A",
+              "speaker": "Ken",
               "text": "今更やっても意味なくね？"
             }
           ],
@@ -3846,12 +3978,12 @@
         },
         {
           "characters": [
-            "character:Classmate_A"
+            "character:Ken"
           ],
           "dialogue": [
             {
               "gh:emotion": "accusatory",
-              "speaker": "Classmate_A",
+              "speaker": "Ken",
               "text": "もう俺らの情報漏れてんだよ。お前のせいで。"
             }
           ],
@@ -3864,14 +3996,14 @@
         {
           "characters": [
             "character:Yuto",
-            "character:Classmate_A",
-            "character:Classmate_B",
-            "character:Classmate_C"
+            "character:Ken",
+            "character:Shota",
+            "character:Tsubasa"
           ],
           "dialogue": [
             {
               "gh:emotion": "accusatory",
-              "speaker": "Classmate_B",
+              "speaker": "Shota",
               "text": "ほんとだよ。俺のアカウントもおかしくなった。"
             }
           ],
@@ -3908,7 +4040,7 @@
         {
           "characters": [
             "character:Yuto",
-            "character:Classmate_A"
+            "character:Ken"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
@@ -4090,7 +4222,7 @@
         {
           "characters": [
             "character:Yuto",
-            "character:Classmate_A"
+            "character:Ken"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
@@ -4141,7 +4273,7 @@
         },
         {
           "characters": [
-            "character:Classmate_A"
+            "character:Ken"
           ],
           "dialogue": [],
           "environment": "env:information-field",
@@ -4375,59 +4507,93 @@
         "gh:templateName": "Action Setup"
       },
       "gh:pageNumber": 36,
-      "gh:pageTitle": "Ren vs Ghost",
-      "gh:panelCount": 5,
+      "gh:pageTitle": "NULL AXE説明 / 安全第一",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
           "characters": [
-            "character:RenMiddleSchool"
+            "character:NeiMiddleSchool"
           ],
-          "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Ren taking stance. Raising NULL AXE.",
+          "dialogue": [
+            {
+              "gh:delivery": "淡々と",
+              "gh:emotion": "calm",
+              "speaker": "Nei",
+              "text": "あれはNULL AXE。情報を物質化した斧だから大丈夫。"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Nei explaining calmly. 'That's NULL AXE. An axe materialized from information, so it's safe.'",
           "panel": 1,
           "shot": "Medium Shot",
-          "visual": "Renが構える。NULL AXEを掲げる。"
+          "visual": "Neiが淡々と説明する。「あれはNULL AXE。情報を物質化した斧だから大丈夫。」"
         },
         {
-          "characters": [],
-          "dialogue": [],
+          "characters": [
+            "character:RenMiddleSchool"
+          ],
+          "dialogue": [
+            {
+              "gh:emotion": "alert",
+              "speaker": "Ren",
+              "text": "Nei、ちょっとでかいの来るかも。隔離して。"
+            }
+          ],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Close Up. Ghost approaching. Grotesque digital form.",
+          "gh:imagePrompt": "Single illustration. Close Up. Ren looking tense, sensing danger. 'Nei, something big might be coming. Isolate the area.'",
           "panel": 2,
           "shot": "Close Up",
-          "visual": "Ghostが迫る。不気味な形状。"
+          "visual": "Renが緊張した表情で警告。「Nei、ちょっとでかいの来るかも。隔離して。」"
         },
         {
           "characters": [
-            "character:RenMiddleSchool"
+            "character:NeiMiddleSchool"
           ],
           "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Wide Shot, dynamic action. Ren slashing through Ghost with NULL AXE. Motion blur. Sparks of data.",
+          "environment": "env:middle-school-classroom",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Nei pulling out yellow caution tape marked '安全第一' (Safety First) from nowhere.",
           "panel": 3,
-          "shot": "Wide Shot",
-          "visual": "RenがNULL AXEでGhostを切り裂く。ダイナミックなアクション。"
-        },
-        {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Insert shot. Moment of slash. Data sparks scattering.",
-          "panel": 4,
-          "shot": "Insert",
-          "visual": "斬撃の瞬間。データの火花が散る。"
+          "shot": "Medium Shot",
+          "visual": "Neiが徐に「安全第一」と書かれた黄色いテープを取り出す。"
         },
         {
           "characters": [
-            "character:RenMiddleSchool"
+            "character:NeiMiddleSchool"
+          ],
+          "dialogue": [
+            {
+              "gh:emotion": "calm",
+              "speaker": "Nei",
+              "text": "ちょっと、離れてね。"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Nei surrounding area with '安全第一' tape. 'Please step back a bit.'",
+          "panel": 4,
+          "shot": "Wide Shot",
+          "visual": "Neiがテープで周囲を囲う。「ちょっと、離れてね。」"
+        },
+        {
+          "characters": [
+            "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Ren after slash. Ready for follow-up attack.",
+          "gh:imagePrompt": "Single illustration. Close Up. Yuto in extreme anguish. Eyes unfocused. Can't perceive surroundings. Internal struggle maximizing.",
           "panel": 5,
+          "shot": "Close Up",
+          "visual": "まだ苦しんでいて周囲が見えていないYuto。葛藤が最大化している。"
+        },
+        {
+          "characters": [
+            "character:Yuto"
+          ],
+          "dialogue": [],
+          "environment": "env:information-field",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Dark energy swelling around Yuto. Something massive forming.",
+          "panel": 6,
           "shot": "Medium Shot",
-          "visual": "斬撃後のRen。連続攻撃の構え。"
+          "visual": "Yutoの周囲に黒いエネルギーが膨れ上がる。何か巨大なものが形成されていく。"
         }
       ]
     },
@@ -4435,7 +4601,7 @@
       "gh:act": "act:7-daemon-battle",
       "gh:pageLayout": {
         "gh:category": "impact",
-        "gh:layoutNote": "Daemon出現。不気味な敵の登場をインパクト重視で",
+        "gh:layoutNote": "Daemon出現。巨大な敵の登場をインパクト重視で",
         "gh:templateName": "Jump Classic - Top Hero"
       },
       "gh:pageNumber": 37,
@@ -4448,52 +4614,58 @@
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Close Up. Yuto clutching chest. Inner pain swelling.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Massive Ghost erupting from Yuto. Giant shadow forming.",
           "panel": 1,
-          "shot": "Close Up",
-          "visual": "Yutoが胸を押さえる。内なる痛みが膨れ上がる。"
+          "shot": "Wide Shot",
+          "visual": "Yutoから大きめのGhostが現れる。巨大な影が形成される。"
         },
         {
           "characters": [
-            "character:Yuto"
+            "character:RenMiddleSchool"
           ],
-          "dialogue": [],
+          "dialogue": [
+            {
+              "gh:delivery": "やれやれという感じで",
+              "gh:emotion": "analytical",
+              "speaker": "Ren",
+              "text": "Daemonか。ちょっとメモリ食うなぁ。"
+            }
+          ],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Dark shadow leaking from Yuto's body.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Ren looking at forming Daemon with slight annoyance. 'A Daemon, huh. This one's gonna eat some memory.'",
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "Yutoの体から黒い影が漏れ出す。"
-        },
-        {
-          "characters": [
-            "character:Yuto"
-          ],
-          "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Close Up. Yuto screaming. Guilt and self-blame erupting.",
-          "panel": 3,
-          "shot": "Close Up",
-          "visual": "叫ぶYuto。罪悪感と自責の念。"
-        },
-        {
-          "characters": [
-            "character:Yuto"
-          ],
-          "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Wide Shot. Massive dark shadow erupting from Yuto. Guilt manifesting as giant Daemon entity.",
-          "panel": 4,
-          "shot": "Wide Shot",
-          "visual": "彼の葛藤が巨大なDaemonとして実体化する。"
+          "visual": "Renがやれやれという顔で形成中のDaemonを見る。「Daemonか。ちょっとメモリ食うなぁ。」"
         },
         {
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Wide Shot. Full view of Daemon. Massive, amorphous mass of malice.",
+          "gh:imagePrompt": "Single illustration. Extreme Wide Shot. Massive Daemon fully manifested. Giant dark entity towering over classroom. More powerful than regular Ghosts.",
+          "panel": 3,
+          "shot": "Extreme Wide Shot",
+          "visual": "巨大なDaemonが完全に実体化。ゴーストより強大な姿。教室を見下ろす巨体。"
+        },
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:information-field",
+          "gh:imagePrompt": "Single illustration. Close Up. Daemon's information field surface. Text fragments visible: insults, credit card fraud alerts, messages of guilt to parents. Various data swirling.",
+          "panel": 4,
+          "shot": "Close Up",
+          "visual": "Daemonの情報場の表面。悪口、クレジットカードの不正請求、親への申し訳なさなど、様々なデータが渦巻いている。"
+        },
+        {
+          "characters": [
+            "character:Ken",
+            "character:Shota"
+          ],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Classmates behind safety tape watching in terror. Daemon looming above.",
           "panel": 5,
           "shot": "Wide Shot",
-          "visual": "Daemon全貌。巨大で不定形な悪意の塊。"
+          "visual": "安全テープの向こうで恐怖に怯えるクラスメイトたち。Daemonが迫る。"
         }
       ]
     },
@@ -4501,71 +4673,95 @@
       "gh:act": "act:7-daemon-battle",
       "gh:pageLayout": {
         "gh:category": "climax",
-        "gh:layoutNote": "Daemonの呪い。心理的圧迫をスパイラル構成で",
+        "gh:layoutNote": "Daemon攻撃とRenの受け。心理的圧迫をスパイラル構成で",
         "gh:templateName": "Spiral Focus"
       },
       "gh:pageNumber": 38,
-      "gh:pageTitle": "Daemonの呪い",
-      "gh:panelCount": 5,
+      "gh:pageTitle": "Daemonの攻撃 / Renの覚悟",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Close Up. Daemon's core. Malevolent presence.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Daemon launching attack at Ren. Wave of malicious data.",
           "panel": 1,
-          "shot": "Close Up",
-          "visual": "Daemonの顔（あれば）、または核部分。"
-        },
-        {
-          "characters": [],
-          "dialogue": [
-            {
-              "gh:emotion": "rage",
-              "speaker": "Daemon",
-              "text": "全部あんたのせいだ！"
-            }
-          ],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Wide Shot. Daemon screaming curse. 'IT'S ALL YOUR FAULT!' Text as visual weapon.",
-          "panel": 2,
           "shot": "Wide Shot",
-          "visual": "Daemonが呪いの言葉を叫ぶ。"
-        },
-        {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Insert shot. Text 'IT'S ALL YOUR FAULT' flying like bullets.",
-          "panel": 3,
-          "shot": "Insert",
-          "visual": "「全部あんたのせいだ」の文字が弾丸のように飛ぶ。"
+          "visual": "DaemonがRenを攻撃する。悪意のデータの波が襲いかかる。"
         },
         {
           "characters": [],
           "dialogue": [
             {
-              "gh:emotion": "condemnation",
-              "speaker": "Daemon",
-              "text": "取り返しがつかない！許されない！"
+              "gh:delivery": "絶望と怒りを込めて",
+              "gh:emotion": "rage",
+              "speaker": "Daemon (Yuto)",
+              "text": "今更、遅い！何をしてもやったものはどうにもならない！！"
             }
           ],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Medium Shot. More curse words. 'IT'S IRREVERSIBLE! UNFORGIVABLE!' Text weapons.",
-          "panel": 4,
-          "shot": "Medium Shot",
-          "visual": "さらなる呪いの言葉。"
+          "gh:imagePrompt": "Single illustration. Close Up. Daemon's face (Yuto's distorted features). Screaming in despair. 'It's too late! No matter what you do, what's done is done!!'",
+          "panel": 2,
+          "shot": "Close Up",
+          "visual": "Daemon（Yutoの歪んだ顔）が絶望と怒りで叫ぶ。"
         },
         {
           "characters": [
-            "character:Yuto"
+            "character:RenMiddleSchool"
           ],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Close Up. Yuto suffering under curse words. Pain from his own guilt.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Ren getting hit by attack. Pushed back. Taking damage.",
+          "panel": 3,
+          "shot": "Medium Shot",
+          "visual": "攻撃を受けるRen。吹き飛ばされる。ダメージを受ける。"
+        },
+        {
+          "characters": [
+            "character:RenMiddleSchool"
+          ],
+          "dialogue": [],
+          "environment": "env:information-field",
+          "gh:imagePrompt": "Single illustration. Low Angle. Ren on one knee. Struggling to stand. Determined eyes.",
+          "panel": 4,
+          "shot": "Low Angle",
+          "visual": "片膝をつくRen。立ち上がろうとする。決意の目。"
+        },
+        {
+          "characters": [
+            "character:RenMiddleSchool"
+          ],
+          "dialogue": [
+            {
+              "gh:delivery": "静かに、しかし力強く",
+              "gh:emotion": "accepting",
+              "speaker": "Ren",
+              "text": "そうだな。やったものは元に戻せない。"
+            }
+          ],
+          "environment": "env:information-field",
+          "gh:imagePrompt": "Single illustration. Close Up. Ren standing up slowly. Acknowledging truth. 'You're right. What's done can't be undone.'",
           "panel": 5,
           "shot": "Close Up",
-          "visual": "呪いの言葉に苦しむYuto。"
+          "visual": "ゆっくりと立ち上がるRen。真実を認める。「そうだな。やったものは元に戻せない。」"
+        },
+        {
+          "characters": [
+            "character:RenMiddleSchool"
+          ],
+          "dialogue": [
+            {
+              "gh:delivery": "NULL AXEを構えながら",
+              "gh:emotion": "determined",
+              "speaker": "Ren",
+              "text": "だがな——"
+            }
+          ],
+          "environment": "env:information-field",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Ren raising NULL AXE. Building up for counter. 'But——'",
+          "panel": 6,
+          "shot": "Medium Shot",
+          "visual": "NULL AXEを構えるRen。反撃の構え。「だがな——」"
         }
       ]
     },
@@ -4573,34 +4769,30 @@
       "gh:act": "act:7-daemon-battle",
       "gh:pageLayout": {
         "gh:category": "impact",
-        "gh:layoutNote": "/dev/null SLASH!!。必殺技のインパクト。上部大パネルで技名と一撃",
+        "gh:layoutNote": "/dev/null SLASH!!。呪いの言葉を断ち切る必殺技のインパクト",
         "gh:templateName": "Jump Impact - L Shape"
       },
       "gh:pageNumber": 39,
-      "gh:pageTitle": "/dev/null SLASH!!",
-      "gh:panelCount": 4,
+      "gh:pageTitle": "/dev/null SLASH!! - 呪いを断つ",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
           "characters": [
             "character:RenMiddleSchool"
           ],
-          "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Ren charging. Running toward Daemon.",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Renが走り出す。Daemonに向かって。"
-        },
-        {
-          "characters": [
-            "character:RenMiddleSchool"
+          "dialogue": [
+            {
+              "gh:delivery": "諭すように",
+              "gh:emotion": "battle wisdom",
+              "speaker": "Ren",
+              "text": "俺が切るのは「常識（呪い）」という情報（言葉）だ。"
+            }
           ],
-          "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Close Up. Ren's determined face. Raising NULL AXE.",
-          "panel": 2,
+          "gh:imagePrompt": "Single illustration. Close Up. Ren's eyes focused. 'What I cut is the information (words) called \"common sense (curse)\".'",
+          "panel": 1,
           "shot": "Close Up",
-          "visual": "Renの決意の表情。NULL AXEを振りかぶる。"
+          "visual": "Renの集中した目。「俺が切るのは『常識（呪い）』という情報（言葉）だ。」"
         },
         {
           "characters": [
@@ -4608,25 +4800,52 @@
           ],
           "dialogue": [
             {
+              "gh:emotion": "insightful",
+              "speaker": "Ren",
+              "text": "きっかけをつくったのはお前だが、悪口を書いたのはお前じゃない。"
+            }
+          ],
+          "environment": "env:information-field",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Ren preparing strike. 'You created the opportunity, but you're not the one who wrote the insults.'",
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "Renが構える。「きっかけをつくったのはお前だが、悪口を書いたのはお前じゃない。」"
+        },
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:information-field",
+          "gh:imagePrompt": "Single illustration. Insert shot. Visual representation of connection between Mei (friend who was exposed) and Yuto. The words '全部あんたのせいだ' (It's all your fault) forming a chain binding them.",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "MeiとYutoの情報場の繋がり。「全部あんたのせいだ」という言葉が二人を縛る鎖のように見える。"
+        },
+        {
+          "characters": [
+            "character:RenMiddleSchool"
+          ],
+          "dialogue": [
+            {
+              "gh:delivery": "叫びながら",
               "gh:emotion": "battle cry",
               "speaker": "Ren",
               "text": "/dev/null SLASH!!"
             }
           ],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Full Page, epic action. Ren executing special attack. '/dev/null SLASH!!' text effect. Breaking through curse.",
-          "panel": 3,
+          "gh:imagePrompt": "Single illustration. Full Page, epic action. Ren executing special attack on the curse words, not the Daemon itself. NULL AXE cutting through text '全部あんたのせいだ'. Explosive visual effect.",
+          "panel": 4,
           "shot": "Full Page",
-          "visual": "必殺技発動。「/dev/null SLASH!!」"
+          "visual": "必殺技発動。Daemonそのものではなく、「全部あんたのせいだ」という呪いの言葉をNULL AXEで斬る。"
         },
         {
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Insert shot. Slash cutting through Daemon. Moment of impact.",
-          "panel": 4,
-          "shot": "Insert",
-          "visual": "斬撃がDaemonを両断する瞬間。"
+          "gh:imagePrompt": "Single illustration. Wide Shot. The curse words shattering into light particles. Chain between Mei and Yuto breaking. Daemon beginning to dissolve.",
+          "panel": 5,
+          "shot": "Wide Shot",
+          "visual": "呪いの言葉が砕け散る。MeiとYutoの間の鎖が断ち切られる。Daemonが消え始める。"
         }
       ]
     },
@@ -4634,72 +4853,94 @@
       "gh:act": "act:7-daemon-battle",
       "gh:pageLayout": {
         "gh:category": "impact",
-        "gh:layoutNote": "Daemon消滅。勝利の瞬間を上部大パネルで",
+        "gh:layoutNote": "Daemon消滅とYuto覚醒。勝利と謝罪の瞬間",
         "gh:templateName": "Jump Classic - Top Hero"
       },
       "gh:pageNumber": 40,
-      "gh:pageTitle": "Daemon消滅",
-      "gh:panelCount": 5,
+      "gh:pageTitle": "Daemon消滅 / Yutoの謝罪",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
           "characters": [],
           "dialogue": [],
           "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Wide Shot. Daemon dissolving into digital particles.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Daemon dissolving completely. Surrounding Ghosts also disappearing. Light particles filling the scene.",
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Daemonが粒子となって消滅していく。"
-        },
-        {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Insert shot. Curse words shattering. Text becoming light particles.",
-          "panel": 2,
-          "shot": "Insert",
-          "visual": "呪いの言葉が砕け散る。文字が光の粒子に。"
-        },
-        {
-          "characters": [
-            "character:RenMiddleSchool"
-          ],
-          "dialogue": [],
-          "environment": "env:information-field",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Ren after the attack. Standing quietly.",
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "斬撃後のRen。静かに立つ。"
+          "visual": "Daemonが完全に消滅。周りからゴーストも消える。光の粒子が舞う。"
         },
         {
           "characters": [],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Wide Shot. Information Field fading. Classroom returning to normal.",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Classroom returning to normal. Information field fading.",
+          "panel": 2,
+          "shot": "Wide Shot",
+          "visual": "教室が元に戻っていく。情報場が薄れる。"
+        },
+        {
+          "characters": [
+            "character:Yuto"
+          ],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "gh:imagePrompt": "Single illustration. Close Up. Yuto's eyes opening. Consciousness returning. Confused expression.",
+          "panel": 3,
+          "shot": "Close Up",
+          "visual": "Yutoが目を開ける。意識が戻る。困惑した表情。"
+        },
+        {
+          "characters": [
+            "character:Yuto"
+          ],
+          "dialogue": [],
+          "environment": "env:middle-school-classroom",
+          "gh:imagePrompt": "Single illustration. Wide Shot. Yuto looking around at devastated classroom and stunned classmates. Still doesn't understand situation.",
           "panel": 4,
           "shot": "Wide Shot",
-          "visual": "情報場が静まり、教室が元に戻っていく。"
+          "visual": "Yutoが周囲を見回す。呆然とするクラスメイトたち。状況がよくわからない。"
         },
         {
           "characters": [
             "character:Yuto",
-            "character:NeiMiddleSchool",
-            "character:RenMiddleSchool"
+            "character:Mei",
+            "character:Ken",
+            "character:Shota"
+          ],
+          "dialogue": [
+            {
+              "gh:delivery": "深く頭を下げながら",
+              "gh:emotion": "remorseful",
+              "speaker": "Yuto",
+              "text": "みんなごめん！俺の不注意のせいで…"
+            }
+          ],
+          "environment": "env:middle-school-classroom",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Yuto bowing deeply to classmates, especially to Mei who was hurt. 'I'm so sorry everyone! It's all because of my carelessness...'",
+          "panel": 5,
+          "shot": "Medium Shot",
+          "visual": "Yutoが罵倒を浴びせたクラスメイトと周囲のクラスメイトに深く頭を下げる。「みんなごめん！俺の不注意のせいで…」"
+        },
+        {
+          "characters": [
+            "character:Ken",
+            "character:Shota"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Wide Shot. Normal classroom restored. Three students standing. Calm after storm.",
-          "panel": 5,
-          "shot": "Wide Shot",
-          "visual": "通常に戻った教室。3人が立っている。"
+          "gh:imagePrompt": "Single illustration. Medium Shot. Classmates processing the situation. Some starting to realize the Ghosts were their own insults.",
+          "panel": 6,
+          "shot": "Medium Shot",
+          "visual": "状況を飲み込もうとするクラスメイトたち。さっきのゴーストが自分たちの罵倒だと気づき始める。"
         }
       ]
     },
     {
       "gh:act": "act:7-daemon-battle",
       "gh:pageLayout": {
-        "gh:category": "establishing",
-        "gh:layoutNote": "和解の空気。穏やかな雰囲気への転換",
-        "gh:templateName": "Establishing Scene"
+        "gh:category": "dialogue",
+        "gh:layoutNote": "和解と対立。Yutoの成長とMeiの逃走",
+        "gh:templateName": "Dialogue Rhythm"
       },
       "gh:pageNumber": 41,
       "gh:pageTitle": "和解の空気",
@@ -4707,14 +4948,14 @@
       "gh:panels": [
         {
           "characters": [
-            "character:Classmate_A",
-            "character:Classmate_B",
-            "character:Classmate_C"
+            "character:Ken",
+            "character:Shota",
+            "character:Tsubasa"
           ],
           "dialogue": [
             {
               "gh:emotion": "dazed",
-              "speaker": "Classmate_A",
+              "speaker": "Ken",
               "text": "なんだったんだ…"
             }
           ],
@@ -4726,7 +4967,7 @@
         },
         {
           "characters": [
-            "character:Classmate_A"
+            "character:Ken"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
@@ -4748,8 +4989,8 @@
         },
         {
           "characters": [
-            "character:Classmate_A",
-            "character:Classmate_B"
+            "character:Ken",
+            "character:Shota"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
@@ -5069,9 +5310,9 @@
     "character:Akira",
     "character:Mei",
     "character:Saki",
-    "character:Classmate_A",
-    "character:Classmate_B",
-    "character:Classmate_C"
+    "character:Ken",
+    "character:Shota",
+    "character:Tsubasa"
   ],
   "gh:timeframe": "3年前（2023年春）",
   "gh:totalPages": 45

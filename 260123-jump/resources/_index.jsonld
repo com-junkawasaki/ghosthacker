@@ -19,14 +19,14 @@
     "character:0FFnOqBf5pPJFepYxQ-EC": "characters/NakamuraShunsuke/profile.jsonld",
     "character:3uK7KwU1i00hzTOOWHYv0": "characters/Ren/profile.jsonld",
     "character:71oPhbAr4TKWDXzmzOmCr": "characters/MizukiShinji/profile.jsonld",
-    "character:7KjlW57YY77g4Pwd3cz8G": "characters/Classmate_C/profile.jsonld",
+    "character:7KjlW57YY77g4Pwd3cz8G": "characters/Tsubasa/profile.jsonld",
     "character:7M1ZB8O_k92uby_CDC7tc": "characters/Saki/profile.jsonld",
     "character:AXruDPGkc1uCMpC6_b_UZ": "characters/SoraAoyama/profile.jsonld",
     "character:E6xXDDLkMPAsUfvulgNg7": "characters/Shouta/profile.jsonld",
     "character:EHQYDRl3bsq5oa5BSFVfW": "characters/RyoKuroda/profile.jsonld",
     "character:E_d1jipHs2TAOCuRU4iqf": "characters/Yuto/profile.jsonld",
     "character:JFCqrbye-y1D4fIjf73zO": "characters/Kaname/profile.jsonld",
-    "character:LW08K0WgZ_rUwJntWZ4q0": "characters/Classmate_B/profile.jsonld",
+    "character:LW08K0WgZ_rUwJntWZ4q0": "characters/Shota/profile.jsonld",
     "character:MIw9dVKD94CqVygXm7V-d": "characters/NeiPuni/profile.jsonld",
     "character:N_IL_eSN_TB13MoJ6um_F": "characters/AokiReina/profile.jsonld",
     "character:O-Bd4oHSDgK1SAxK-mV5W": "characters/DaichiMori/profile.jsonld",
@@ -45,7 +45,7 @@
     "character:hV4weJL67XBV2Bmhn7Zk-": "characters/Akira/profile.jsonld",
     "character:hbC4o7NspCupH02VLoMo3": "characters/Yasumoto/profile.jsonld",
     "character:luC8lvmc3uHqj7xOIAFvH": "characters/ShiraishiYuko/profile.jsonld",
-    "character:mBTP0fosNXeEUH_sR5eyI": "characters/Classmate_A/profile.jsonld",
+    "character:mBTP0fosNXeEUH_sR5eyI": "characters/Ken/profile.jsonld",
     "character:nXNHr6ILqqJWjW0emVq9V": "characters/EndoRisa/profile.jsonld",
     "character:pD19FOB9_NAee3MGLLjL3": "characters/YuiTanaka/profile.jsonld",
     "character:qZg3Z6iB1Fem4HgwiJz7y": "characters/NeiMiddleSchool/profile.jsonld",
@@ -141,9 +141,9 @@
     "act:8-resolution": "act:VEj3Vins59IHwjVjkTUvc",
     "character:Akira": "character:hV4weJL67XBV2Bmhn7Zk-",
     "character:AokiReina": "character:N_IL_eSN_TB13MoJ6um_F",
-    "character:Classmate_A": "character:mBTP0fosNXeEUH_sR5eyI",
-    "character:Classmate_B": "character:LW08K0WgZ_rUwJntWZ4q0",
-    "character:Classmate_C": "character:7KjlW57YY77g4Pwd3cz8G",
+    "character:Ken": "character:mBTP0fosNXeEUH_sR5eyI",
+    "character:Shota": "character:LW08K0WgZ_rUwJntWZ4q0",
+    "character:Tsubasa": "character:7KjlW57YY77g4Pwd3cz8G",
     "character:DaichiMori": "character:O-Bd4oHSDgK1SAxK-mV5W",
     "character:EndoRisa": "character:nXNHr6ILqqJWjW0emVq9V",
     "character:HERO": "character:xaLtrSnWZVVyL1HzV4p4J",
@@ -436,7 +436,7 @@
     },
     "character:7KjlW57YY77g4Pwd3cz8G": {
       "@id": "character:7KjlW57YY77g4Pwd3cz8G",
-      "gh:slug": "Classmate_C",
+      "gh:slug": "Tsubasa",
       "title": "鈴木 翼 (Tsubasa Suzuki)",
       "references": [
         "character:7KjlW57YY77g4Pwd3cz8G"
@@ -494,7 +494,7 @@
     },
     "character:LW08K0WgZ_rUwJntWZ4q0": {
       "@id": "character:LW08K0WgZ_rUwJntWZ4q0",
-      "gh:slug": "Classmate_B",
+      "gh:slug": "Shota",
       "title": "佐藤 莉子 (Riko Sato)",
       "references": [
         "character:LW08K0WgZ_rUwJntWZ4q0"
@@ -655,7 +655,7 @@
     },
     "character:mBTP0fosNXeEUH_sR5eyI": {
       "@id": "character:mBTP0fosNXeEUH_sR5eyI",
-      "gh:slug": "Classmate_A",
+      "gh:slug": "Ken",
       "title": "田中 健 (Ken Tanaka)",
       "references": [
         "character:mBTP0fosNXeEUH_sR5eyI"

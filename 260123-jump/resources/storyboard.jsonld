@@ -152,19 +152,19 @@
       "gh:sourceFile": "characters/HomeroomTeacher/profile.jsonld"
     },
     {
-      "@id": "character:Classmate_A",
+      "@id": "character:Ken",
       "gh:role": "Arc 0 - Student / Athlete",
-      "gh:sourceFile": "characters/Classmate_A/profile.jsonld"
+      "gh:sourceFile": "characters/Ken/profile.jsonld"
     },
     {
-      "@id": "character:Classmate_B",
-      "gh:role": "Arc 0 - Student / Bookworm",
-      "gh:sourceFile": "characters/Classmate_B/profile.jsonld"
+      "@id": "character:Shota",
+      "gh:role": "Arc 0 - Student / Quiet Observer",
+      "gh:sourceFile": "characters/Shota/profile.jsonld"
     },
     {
-      "@id": "character:Classmate_C",
+      "@id": "character:Tsubasa",
       "gh:role": "Arc 0 - Student / Gamer",
-      "gh:sourceFile": "characters/Classmate_C/profile.jsonld"
+      "gh:sourceFile": "characters/Tsubasa/profile.jsonld"
     },
     {
       "@id": "character:Misaki",
