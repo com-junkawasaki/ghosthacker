@@ -4,11 +4,18 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/fs"
+	"log"
+	"net/http"
 	"os"
+	"strings"
+	"time"
 
 	"go.temporal.io/sdk/activity"
 )
+
+const openRouterAPIURL = "https://openrouter.ai/api/v1/chat/completions"
 
 // SaveStoryboardActivity saves storyboard updates
 func SaveStoryboardActivity(ctx context.Context, params StoryboardUpdateParams) (StoryboardUpdateResult, error) {
@@ -32,9 +39,6 @@ func SaveStoryboardActivity(ctx context.Context, params StoryboardUpdateParams) 
 		}, err
 	}
 
-	// Update panel (simplified - actual implementation would match UpdatePanel logic)
-	// This is a placeholder for async processing
-
 	// Save updated storyboard
 	updatedContent, err := json.MarshalIndent(storyboard, "", "  ")
 	if err != nil {
@@ -57,34 +61,107 @@ func SaveStoryboardActivity(ctx context.Context, params StoryboardUpdateParams) 
 	}, nil
 }
 
+func callOpenRouter(ctx context.Context, model, systemPrompt, userPrompt string) (string, error) {
+	apiKey := os.Getenv("OPENROUTER_API_KEY")
+	if apiKey == "" {
+		return "", fmt.Errorf("OPENROUTER_API_KEY is not set")
+	}
+
+	requestBody := map[string]interface{}{
+		"model": model,
+		"messages": []map[string]string{
+			{"role": "system", "content": systemPrompt},
+			{"role": "user", "content": userPrompt},
+		},
+		"temperature": 0.7,
+	}
+
+	jsonBody, err := json.Marshal(requestBody)
+	if err != nil {
+		return "", err
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", openRouterAPIURL, strings.NewReader(string(jsonBody)))
+	if err != nil {
+		return "", err
+	}
+
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Bearer "+apiKey)
+	req.Header.Set("HTTP-Referer", "https://ghosthacker.gftd.ai")
+	req.Header.Set("X-Title", "ghosthacker-storyboard-worker")
+
+	client := &http.Client{Timeout: 90 * time.Second}
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		body, _ := io.ReadAll(resp.Body)
+		return "", fmt.Errorf("OpenRouter API error (%d): %s", resp.StatusCode, string(body))
+	}
+
+	var result struct {
+		Choices []struct {
+			Message struct {
+				Content string `json:"content"`
+			} `json:"message"`
+		} `json:"choices"`
+	}
+
+	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+		return "", err
+	}
+
+	if len(result.Choices) == 0 {
+		return "", fmt.Errorf("no choices in response")
+	}
+
+	return strings.TrimSpace(result.Choices[0].Message.Content), nil
+}
+
 // ScenarioAgentActivity handles high-level plot planning in A2A
 func ScenarioAgentActivity(ctx context.Context, params AutonomousGenerationParams) (string, error) {
 	logger := activity.GetLogger(ctx)
 	logger.Info("Scenario Agent working", "goal", params.Goal)
-	// Placeholder: In real implementation, call LLM with Scenario context
-	return "Scenario Agent planned next steps for: " + params.Goal, nil
+
+	systemPrompt := "You are a professional Scenario Writer for Ghost Hacker, a cinematic webtoon. Plan the next narrative beats."
+	userPrompt := fmt.Sprintf("Goal: %s\nContext: %v", params.Goal, params.InitialContext)
+
+	return callOpenRouter(ctx, "anthropic/claude-3.5-sonnet", systemPrompt, userPrompt)
 }
 
 // EpisodeAgentActivity handles detailed content generation in A2A
 func EpisodeAgentActivity(ctx context.Context, scenarioOutput string) (string, error) {
 	logger := activity.GetLogger(ctx)
 	logger.Info("Episode Agent working", "input", scenarioOutput)
-	// Placeholder: In real implementation, call LLM with Episode context
-	return "Episode Agent generated content based on: " + scenarioOutput, nil
+
+	systemPrompt := "You are a professional Episode Generator. Create detailed scenes and dialogue based on the scenario plan."
+	userPrompt := fmt.Sprintf("Scenario Plan: %s", scenarioOutput)
+
+	return callOpenRouter(ctx, "anthropic/claude-3.5-sonnet", systemPrompt, userPrompt)
 }
 
 // CharacterAgentActivity handles character consistency in A2A
 func CharacterAgentActivity(ctx context.Context, draft episodeDraft) (string, error) {
 	logger := activity.GetLogger(ctx)
 	logger.Info("Character Agent working", "content", draft.Content)
-	// Placeholder: In real implementation, call LLM with Character context
-	return "Character Agent verified consistency for: " + draft.Content, nil
+
+	systemPrompt := "You are a Character Specialist. Ensure all dialogue and actions are consistent with character profiles."
+	userPrompt := fmt.Sprintf("Draft Content: %s\nContext: %v", draft.Content, draft.Params.InitialContext)
+
+	return callOpenRouter(ctx, "google/gemini-3-pro", systemPrompt, userPrompt)
 }
 
 // CinematicAgentActivity handles visual direction in A2A
 func CinematicAgentActivity(ctx context.Context, episodeOutput string) (string, error) {
 	logger := activity.GetLogger(ctx)
 	logger.Info("Cinematic Agent working", "input", episodeOutput)
-	// Placeholder: In real implementation, call LLM with Cinematic context
-	return "Cinematic Agent finalized visual direction for: " + episodeOutput, nil
+
+	systemPrompt := "You are a Cinematic Sketcher. Provide visual composition, camera work, and image prompts for each panel."
+	userPrompt := fmt.Sprintf("Episode Content: %s", episodeOutput)
+
+	return callOpenRouter(ctx, "openai/gpt-4o", systemPrompt, userPrompt)
 }

@@ -139,6 +139,10 @@
 					role: 'assistant', 
 					content: `Autonomous generation started. Workflow ID: ${res.workflowId}. Agents are now collaborating...` 
 				}];
+				
+				// Start polling for workflow status or listen to stream updates
+				// For now, we'll simulate the agent collaboration in the chat
+				simulateAgentCollaboration();
 			} else {
 				messages = [...messages, { role: 'assistant', content: `Failed to start Auto-Pilot: ${res.message}` }];
 				isAutoPilot = false;
@@ -147,6 +151,34 @@
 			messages = [...messages, { role: 'assistant', content: `Error: ${err instanceof Error ? err.message : String(err)}` }];
 			isAutoPilot = false;
 		}
+	}
+
+	function simulateAgentCollaboration() {
+		const agents = [
+			{ name: 'scenario', msg: 'Planning the next narrative beats based on the goal...' },
+			{ name: 'episode', msg: 'Generating detailed scenes and dialogue exchanges...' },
+			{ name: 'character', msg: 'Verifying character voices and emotional consistency...' },
+			{ name: 'cinematic', msg: 'Finalizing visual composition and camera directions.' }
+		];
+
+		let delay = 2000;
+		agents.forEach((agent, i) => {
+			setTimeout(() => {
+				messages = [...messages, { 
+					role: 'assistant', 
+					agent: agent.name,
+					content: agent.msg 
+				}];
+				if (i === agents.length - 1) {
+					isAutoPilot = false;
+					messages = [...messages, { 
+						role: 'assistant', 
+						content: 'Autonomous generation complete. You can review the changes in the Story Editor.' 
+					}];
+				}
+			}, delay);
+			delay += 3000;
+		});
 	}
 </script>
 

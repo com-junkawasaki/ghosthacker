@@ -148,30 +148,6 @@ You must return a JSON object with the following fields:
 2. "patches": An array of JSON patches to apply to the storyboard. Each patch has "op" (add, replace, remove), "path", and "value" (as a JSON string).
 3. "tool_call": (Optional) An object with "name" and "arguments" if you need to consult a specialized agent.
 
-Example response with tool call:
-{
-  "response": "I'm consulting the Cinematic Sketcher to improve the visual direction.",
-  "tool_call": {
-    "name": "cinematic_sketcher",
-    "arguments": {
-      "instruction": "Suggest a more dramatic camera angle for this hacker reveal.",
-      "panel_data": "{...}"
-    }
-  }
-}
-
-Example response:
-{
-  "response": "I've updated the dialogue for Panel 1 to be more dramatic.",
-  "patches": [
-    {
-      "op": "replace",
-      "path": "/gh:episodes/0/gh:pages/0/gh:panels/0/dialogue/0/text",
-      "value": "「この場所のASC制御帯、少し不安定じゃないか？」"
-    }
-  ]
-}
-
 Important:
 - Return ONLY the JSON object. No markdown, no extra text.
 - Paths in patches should follow the structure of the storyboard JSON-LD.
@@ -189,15 +165,35 @@ Important:
 	agentInstruction := ""
 	switch req.Msg.AgentMode {
 	case "scenario":
-		agentInstruction = "\nMODE: Scenario Writer. Focus on high-level plot, beats, and narrative structure."
+		agentInstruction = `
+MODE: Scenario Writer.
+Task: Focus on high-level plot, beats, and narrative structure.
+Context Strategy: Provide overall arc summaries and episode plot points.
+`
 	case "episode":
-		agentInstruction = "\nMODE: Episode Generator. Focus on detailed scene breakdown, dialogue, and pacing."
+		agentInstruction = `
+MODE: Episode Generator.
+Task: Focus on detailed scene breakdown, dialogue, and pacing.
+Context Strategy: Provide full page/panel data for the current episode.
+`
 	case "character":
-		agentInstruction = "\nMODE: Character Specialist. Focus on character consistency, emotional state, and motives."
+		agentInstruction = `
+MODE: Character Specialist.
+Task: Focus on character consistency, emotional state, and motives.
+Context Strategy: Provide character voice definitions (gh:voice) and sample lines.
+`
 	case "cinematic":
-		agentInstruction = "\nMODE: Cinematic Sketcher. Focus on visual composition, camera work, and image prompts."
+		agentInstruction = `
+MODE: Cinematic Sketcher.
+Task: Focus on visual composition, camera work, and image prompts.
+Context Strategy: Provide ARIA Cinematic Base settings and shot properties.
+`
 	case "dialogue":
-		agentInstruction = "\nMODE: Dialogue Coach. Focus on natural speech, delivery, and subtext."
+		agentInstruction = `
+MODE: Dialogue Coach.
+Task: Focus on natural speech, delivery, and subtext.
+Context Strategy: Provide recent dialogue history and character sentence traits.
+`
 	}
 
 	userPrompt := fmt.Sprintf("Context:\n%s\n%s\n\nUser Message: %s", contextStr.String(), agentInstruction, req.Msg.Message)
