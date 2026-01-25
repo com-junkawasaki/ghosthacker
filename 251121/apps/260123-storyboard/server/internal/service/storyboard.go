@@ -124,13 +124,16 @@ func (s *StoryboardService) aggregateMaster(filePath string) (map[string]interfa
 		master[key] = resolvedItems
 	}
 
-	// 1. Resolve Characters
+	// 1. Resolve Organizations
+	resolveLinks("gh:organizations")
+
+	// 2. Resolve Characters
 	resolveLinks("gh:characters")
 
-	// 2. Resolve Environments
+	// 3. Resolve Environments
 	resolveLinks("gh:environments")
 
-	// 3. Resolve Episodes
+	// 4. Resolve Episodes
 	resolveLinks("gh:episodes")
 
 	return master, nil

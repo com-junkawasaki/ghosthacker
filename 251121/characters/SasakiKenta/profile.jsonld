@@ -1,0 +1,36 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "character": "gh:character/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+  },
+  "@id": "character:SasakiKenta",
+  "@type": "gh:Character",
+  "schema:name": "佐々木 健太 (Kenta Sasaki)",
+  "schema:role": "Warehouse Manager / Arc B Ally",
+  "schema:age": 35,
+  "gh:arc": "Arc B",
+  "gh:organization": "company:KojimaLogistics",
+
+  "gh:appearance": {
+    "gh:face": "35-year-old Japanese male, energetic face, passionate eyes, slightly sweaty from warehouse work.",
+    "gh:hair": "Messy short black hair, practical cut.",
+    "gh:build": "Athletic, fit from physical labor. Wears safety vest over work clothes.",
+    "gh:eyes": "Passionate brown eyes, conflicted between orders and doing right, determined catchlights.",
+    "gh:style": "Photorealistic, warehouse lighting, blue-collar leader, 8k.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 35-year-old Japanese male, energetic passionate expression, messy short black hair, safety vest, warehouse with conveyor belts background."
+  },
+
+  "gh:personality": {
+    "gh:core": "熱血漢。部下思い。『止めるな』と『守れ』の板挟み。",
+    "gh:arc": "最終的にTakeruの『止めて守る』を受け入れる。"
+  },
+
+  "gh:relationships": {
+    "gh:takeru": {
+      "gh:initial": "反発。『現場を止めるな！』",
+      "gh:final": "手順の意味を理解して協力者に。"
+    }
+  }
+}
