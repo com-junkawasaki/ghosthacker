@@ -9,30 +9,32 @@
   "@type": ["gh:Project", "prov:Entity"],
   "dct:title": "Manga Ghost Hacker: Case Study Series (260123-jump)",
   "dct:description": "A manga series designed to teach cybersecurity through case studies, using real-world terminology and frameworks (CISA, CISSP, CMMI).",
-  "gh:status": "Arc 0-2/0-3 restructured - Chise (female) and Kaname as main characters",
+  "gh:status": "Arc 0-1「パスワードは覚えるな」45ページ最終構成完成",
   "gh:currentSession": {
     "@type": "prov:Activity",
-    "prov:startedAtTime": "2026-01-25T21:00:00Z",
+    "prov:startedAtTime": "2026-01-26T00:00:00Z",
     "gh:goals": [
-      "Add Cyber Defense Agency (サイバー防衛庁) - fictional government organization",
-      "Create virtual HQ environment (Las Vegas Convention Center style)",
-      "Create Hyper Loop access tunnel environment"
+      "Arc 0-1「パスワードは覚えるな」45ページ最終構成の再設計"
     ],
     "gh:results": [
-      "Created CyberDefenseAgency organization profile - 内閣府直轄の独立機関",
-      "Public profile: 内閣サイバーセキュリティ戦略本部の実働部門（NISCの発展形）",
-      "Virtual HQ in cyberspace - staff occasionally recruits Ren, Kakeru, Kaname for cases",
-      "Building design: Las Vegas Convention Center inspired, glass/metal futuristic architecture",
-      "Access via Hyper Loop - authentication tunnel with biometric/quantum encryption",
-      "Created cda-virtual-hq environment profile",
-      "Created cda-hyperloop transit environment profile",
-      "Added religious hidden backgrounds for three hackers:",
-      "  - Chise: 神道 (Shinto) - 八幡信仰、守護・浄化の精神",
-      "  - Ren: 仏教 (Buddhist) - 浄土真宗、蓮の名は祖父が命名、諦観・受容",
-      "  - Kaname: キリスト教 (Christian) - 聖公会、洗礼名ミカエル、正義・裁きの倫理"
+      "Arc 0-1 episode.jsonld を45ページ構成で再設計完了",
+      "構成: プレタイトル(p0) + 8幕構成(p1-45)",
+      "第一幕(p1-8): タイトルスプレッド + 日常と誘惑",
+      "第二幕(p9-15): 異変の兆候",
+      "第三幕(p16-19): 崩壊",
+      "第四幕(p20-21): 救いの手",
+      "第五幕(p22-29): 対策（4つの対策×2ページ: 漏えいチェック/カード停止/パスワード管理/注意喚起）",
+      "第六幕(p30-35): Ghost説明＋バトル（ランダウアーの原理、NULL AXE召喚）",
+      "第七幕(p36-41): Daemonバトル（/dev/null SLASH!!）",
+      "終幕(p42-45): 決意（真の敵「ワクワク電気」指摘、東京見下ろしエンディング）"
     ]
   },
   "gh:previousSessions": [
+    {
+      "@type": "prov:Activity",
+      "prov:endedAtTime": "2026-01-25T23:00:00Z",
+      "gh:summary": "Cyber Defense Agency world building, religious backgrounds for three hackers (Chise/神道, Ren/仏教, Kaname/キリスト教)"
+    },
     {
       "@type": "prov:Activity",
       "prov:endedAtTime": "2026-01-25T20:30:00Z",
@@ -119,7 +121,12 @@
     {
       "gh:name": "Religious Hidden Backgrounds",
       "gh:status": "Completed",
-      "gh:description": "三者三様の宗教的背景: Chise(神道/八幡信仰), Ren(仏教/浄土真宗), Kaname(キリスト教/聖公会)"
+      "gh:description": "三者三様の宗教的背景: Chise(神道/八幡信仰), Ren(仏教/天台宗), Kaname(キリスト教/聖公会)"
+    },
+    {
+      "gh:name": "Arc 0-1 Final Structure",
+      "gh:status": "Completed",
+      "gh:description": "「パスワードは覚えるな」45ページ最終構成。プレタイトル+8幕構成。対策パート4つ×2ページ。Ghost/Daemonバトル。"
     }
   ]
 }
