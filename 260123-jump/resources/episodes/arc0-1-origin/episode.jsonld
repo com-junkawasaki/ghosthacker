@@ -254,6 +254,9 @@
           "characters": [
             "character:Yuto"
           ],
+          "dialogue": [],
+          "environment": "env:yuto-bedroom",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n2-fearful-yuto_v2.png",
           "gh:characterIntro": [
             {
               "gh:characterId": "character:Yuto",
@@ -261,9 +264,6 @@
               "gh:nameReading": "ふじさき ゆうと"
             }
           ],
-          "dialogue": [],
-          "environment": "env:yuto-bedroom",
-          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n2-fearful-yuto_v2.png",
           "gh:currentImageIndex": 1,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n2-fearful-yuto_v2.png",
           "gh:generatedImages": [
@@ -575,6 +575,18 @@
           ],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/VjC4xWjN3zXh_v1.png",
+          "gh:characterIntro": [
+            {
+              "gh:characterId": "character:Mei",
+              "gh:name": "高橋 芽依",
+              "gh:nameReading": "たかはし めい"
+            },
+            {
+              "gh:characterId": "character:Saki",
+              "gh:name": "中村 咲希",
+              "gh:nameReading": "なかむら さき"
+            }
+          ],
           "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/VjC4xWjN3zXh_v1.png",
           "gh:generatedImages": [
@@ -610,9 +622,16 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/N9XqqSr8KpAa_v2.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/N9XqqSr8KpAa_v2.png",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/N9XqqSr8KpAa_v3.png",
+          "gh:characterIntro": [
+            {
+              "gh:characterId": "character:Akira",
+              "gh:name": "鈴木 暁",
+              "gh:nameReading": "すずき あきら"
+            }
+          ],
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/N9XqqSr8KpAa_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769354371,
@@ -625,9 +644,15 @@
               "gh:imagePrompt": "スニーカーのアップ。ブランドロゴが光る限定モデル。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Dialogue: Ken: うわ、マジ？それ即完売だったやつじゃん！.",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/N9XqqSr8KpAa_v2.png",
               "gh:model": "google/gemini-3-pro-image-preview"
+            },
+            {
+              "gh:generatedAt": 1769355120,
+              "gh:imagePrompt": "スニーカーのアップ。ブランドロゴが光る限定モデル。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Dialogue: Ken: うわ、マジ？それ即完売だったやつじゃん！. Akira: 発売30秒で勝負ついたわ。指の速さがモノを言う. Mei: えー、いくらしたの？. Akira: 定価で2万5千。転売だと5万超えてたからな.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/N9XqqSr8KpAa_v3.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. スニーカーのアップ。ブランドロゴが光る限定モデル。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Dialogue: Ken: うわ、マジ？それ即完売だったやつじゃん！.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. スニーカーのアップ。ブランドロゴが光る限定モデル。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Dialogue: Ken: うわ、マジ？それ即完売だったやつじゃん！. Akira: 発売30秒で勝負ついたわ。指の速さがモノを言う. Mei: えー、いくらしたの？. Akira: 定価で2万5千。転売だと5万超えてたからな.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -777,6 +802,14 @@
           "dialogue": [],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/giBULx0BO_4Y_v1.png",
+          "gh:characterIntro": [
+            {
+              "gh:characterId": "character:RenMiddleSchool",
+              "gh:name": "沼野 蓮",
+              "gh:nameReading": "ぬまの れん",
+              "gh:subtitle": "好きな美徳：怠惰"
+            }
+          ],
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/giBULx0BO_4Y_v1.png",
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 机に突っ伏したRen。目だけ開いている。. Characters: 沼野 蓮 (Ren Numano) - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
@@ -795,6 +828,13 @@
           "dialogue": [],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/FV5tRdjlME-e_v1.png",
+          "gh:characterIntro": [
+            {
+              "gh:characterId": "character:NeiMiddleSchool",
+              "gh:name": "寧",
+              "gh:nameReading": "ねい"
+            }
+          ],
           "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/FV5tRdjlME-e_v1.png",
           "gh:generatedImages": [
@@ -830,7 +870,16 @@
           ],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/tvYfmqSDRydk_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/tvYfmqSDRydk_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355135,
+              "gh:imagePrompt": "Renが大きく欠伸をする。. Characters: 沼野 蓮 (Ren Numano) - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Dialogue: Ren: （あー、だりぃ…）.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/tvYfmqSDRydk_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Renが大きく欠伸をする。. Characters: 沼野 蓮 (Ren Numano) - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Dialogue: Ren: （あー、だりぃ…）.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
@@ -1118,12 +1167,24 @@
       "gh:panelCount": 7,
       "gh:panels": [
         {
+          "@id": "panel:VvmuSXI067Ty",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy getting up from bed, heading to dark hallway. Sneaking movement. Night atmosphere. shot on 35mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/VvmuSXI067Ty_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/VvmuSXI067Ty_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355142,
+              "gh:imagePrompt": "Yutoがベッドから起き上がり、リビングへ向かう。薄暗い廊下。. Shot type: Medium Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/VvmuSXI067Ty_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Yutoがベッドから起き上がり、リビングへ向かう。薄暗い廊下。. Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1312,10 +1373,22 @@
       "gh:panelCount": 5,
       "gh:panels": [
         {
+          "@id": "panel:6GT_vj_bEDHg",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. 'Purchase Complete!' popup with confetti animation effect. Celebratory design. Japanese text.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/6GT_vj_bEDHg_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/6GT_vj_bEDHg_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355172,
+              "gh:imagePrompt": "「購入完了！」のポップアップ。紙吹雪のアニメーション表現。. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/6GT_vj_bEDHg_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 「購入完了！」のポップアップ。紙吹雪のアニメーション表現。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1325,10 +1398,22 @@
           "visual": "「購入完了！」のポップアップ。紙吹雪のアニメーション表現。"
         },
         {
+          "@id": "panel:ZqMHPdX5dL2A",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. 'Shipping tomorrow' 'Expected delivery: Next day' confirmation screen. Japanese text.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/ZqMHPdX5dL2A_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/ZqMHPdX5dL2A_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355152,
+              "gh:imagePrompt": "「明日発送予定」「お届け予定：翌日」の確認画面。. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/ZqMHPdX5dL2A_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 「明日発送予定」「お届け予定：翌日」の確認画面。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1338,6 +1423,7 @@
           "visual": "「明日発送予定」「お届け予定：翌日」の確認画面。"
         },
         {
+          "@id": "panel:pB2Mm_da2yAO",
           "characters": [
             "character:Yuto"
           ],
@@ -1349,7 +1435,18 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy exhaling with relief. Tension releasing. Excited smile. Night bedroom. shot on 50mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/pB2Mm_da2yAO_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/pB2Mm_da2yAO_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355156,
+              "gh:imagePrompt": "安堵の息をつくYuto。緊張が解ける。. Shot type: Medium Close Up. Dialogue: Yuto: やった！明日届く！.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/pB2Mm_da2yAO_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 安堵の息をつくYuto。緊張が解ける。. Shot type: Medium Close Up. Dialogue: Yuto: やった！明日届く！.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -1359,6 +1456,7 @@
           "visual": "安堵の息をつくYuto。緊張が解ける。"
         },
         {
+          "@id": "panel:dXHLR_uHF8RO",
           "characters": [
             "character:Yuto"
           ],
@@ -1370,7 +1468,18 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Medium Shot, high angle. Japanese boy falling back onto bed, clutching smartphone to chest. Satisfied smile. Dreaming of showing off. shot on 35mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/dXHLR_uHF8RO_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/dXHLR_uHF8RO_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355179,
+              "gh:imagePrompt": "ベッドに仰向けに倒れ込む。スマホを胸に抱えて、満足げな笑顔。. Shot type: Medium Shot. Dialogue: Yuto: Akiraに自慢してやる…！.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/dXHLR_uHF8RO_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. ベッドに仰向けに倒れ込む。スマホを胸に抱えて、満足げな笑顔。. Shot type: Medium Shot. Dialogue: Yuto: Akiraに自慢してやる…！.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
             "gh:distance": "Medium Shot"
@@ -1380,12 +1489,24 @@
           "visual": "ベッドに仰向けに倒れ込む。スマホを胸に抱えて、満足げな笑顔。"
         },
         {
+          "@id": "panel:9I2g5kLSTQqx",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Wide Shot, high angle. Dark bedroom at night. Japanese boy falling asleep happily. Ominous calm. Darkness outside window. Calm before the storm. shot on 24mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/9I2g5kLSTQqx_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/9I2g5kLSTQqx_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355209,
+              "gh:imagePrompt": "夜の部屋。幸せそうに眠りにつくYuto。不穏な静けさ。窓の外は暗い。. Shot type: Wide Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/9I2g5kLSTQqx_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 夜の部屋。幸せそうに眠りにつくYuto。不穏な静けさ。窓の外は暗い。. Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
             "gh:atmosphere": "不穏な静けさ、嵐の前の静寂",
@@ -1743,12 +1864,24 @@
       "gh:panelCount": 8,
       "gh:panels": [
         {
+          "@id": "panel:aHnd5ev-MRsm",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy typing message on smartphone. Worried expression. Bedroom evening light. shot on 50mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/aHnd5ev-MRsm_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/aHnd5ev-MRsm_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355188,
+              "gh:imagePrompt": "スマホでメッセージを打つYuto。心配そうな表情。. Shot type: Medium Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/aHnd5ev-MRsm_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. スマホでメッセージを打つYuto。心配そうな表情。. Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1758,6 +1891,7 @@
           "visual": "スマホでメッセージを打つYuto。心配そうな表情。"
         },
         {
+          "@id": "panel:Vw0vVnshyor8",
           "characters": [],
           "dialogue": [
             {
@@ -1767,7 +1901,18 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Messaging app. Yuto's polite message: 'Excuse me, it still hasn't arrived...' Sent timestamp shown.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/Vw0vVnshyor8_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/Vw0vVnshyor8_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355195,
+              "gh:imagePrompt": "メッセージ画面。Yutoが丁寧に問い合わせを送信。. Shot type: Insert. Dialogue: Yuto: すみません、まだ届かないんですが….",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/Vw0vVnshyor8_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. メッセージ画面。Yutoが丁寧に問い合わせを送信。. Shot type: Insert. Dialogue: Yuto: すみません、まだ届かないんですが….. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1777,17 +1922,29 @@
           "visual": "メッセージ画面。Yutoが丁寧に問い合わせを送信。"
         },
         {
+          "@id": "panel:hfeK7PPVA28z",
           "characters": [],
           "dialogue": [
             {
-              "gh:via": "message",
               "gh:emotion": "friendly",
+              "gh:via": "message",
               "speaker": "出品者",
               "text": "お問い合わせありがとうございます！確認させてください(^^)"
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Reply message with friendly emoticon: 'Thank you for contacting! Let me check (^^)' Overly friendly tone.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/hfeK7PPVA28z_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/hfeK7PPVA28z_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355206,
+              "gh:imagePrompt": "即座に返信。やけに丁寧で親しみやすい文面。顔文字付き。. Shot type: Insert. Dialogue: 出品者: お問い合わせありがとうございます！確認させてください(^^).",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/hfeK7PPVA28z_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 即座に返信。やけに丁寧で親しみやすい文面。顔文字付き。. Shot type: Insert. Dialogue: 出品者: お問い合わせありがとうございます！確認させてください(^^).. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1797,17 +1954,29 @@
           "visual": "即座に返信。やけに丁寧で親しみやすい文面。顔文字付き。"
         },
         {
+          "@id": "panel:KdsQf7l19Aou",
           "characters": [],
           "dialogue": [
             {
-              "gh:via": "message",
               "gh:emotion": "apologetic",
+              "gh:via": "message",
               "speaker": "出品者",
               "text": "配送元に確認したところ、住所確認が必要みたいです💦 お手数おかけしてすみません！"
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Another message: 'I checked with the shipping company and they need address verification. Sorry for the trouble!' Sweat emoji. Very polite.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/KdsQf7l19Aou_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/KdsQf7l19Aou_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355209,
+              "gh:imagePrompt": "続けて返信。「配送元に確認したら住所確認が必要みたいです」申し訳なさそうな絵文字。. Shot type: Insert. Dialogue: 出品者: 配送元に確認したところ、住所確認が必要みたいです💦 お手数おかけしてすみません！.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/KdsQf7l19Aou_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 続けて返信。「配送元に確認したら住所確認が必要みたいです」申し訳なさそうな絵文字。. Shot type: Insert. Dialogue: 出品者: 配送元に確認したところ、住所確認が必要みたいです💦 お手数おかけしてすみません！.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1817,6 +1986,7 @@
           "visual": "続けて返信。「配送元に確認したら住所確認が必要みたいです」申し訳なさそうな絵文字。"
         },
         {
+          "@id": "panel:GJAePeQuNhYv",
           "characters": [
             "character:Yuto"
           ],
@@ -1828,7 +1998,18 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy looking relieved at phone. 'Glad they're being responsive...' Slight smile. Guard lowered.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/GJAePeQuNhYv_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/GJAePeQuNhYv_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355221,
+              "gh:imagePrompt": "安心した表情のYuto。丁寧な対応に警戒心が緩む。. Shot type: Close Up. Dialogue: Yuto（内心）: ちゃんと対応してくれる人でよかった….",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/GJAePeQuNhYv_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 安心した表情のYuto。丁寧な対応に警戒心が緩む。. Shot type: Close Up. Dialogue: Yuto（内心）: ちゃんと対応してくれる人でよかった….. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -1838,17 +2019,29 @@
           "visual": "安心した表情のYuto。丁寧な対応に警戒心が緩む。"
         },
         {
+          "@id": "panel:G3UC6og9WW0e",
           "characters": [],
           "dialogue": [
             {
-              "gh:via": "message",
               "gh:emotion": "casual",
+              "gh:via": "message",
               "speaker": "出品者",
               "text": "今からSMSで確認番号が届くので、その番号を教えてもらえますか？配送会社への本人確認に使います！"
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Critical message: 'An SMS verification code will arrive now. Can you tell me that number? It's for identity verification with the shipping company!' The trap is set.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/G3UC6og9WW0e_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/G3UC6og9WW0e_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355226,
+              "gh:imagePrompt": "核心のメッセージ。「SMSで確認番号が届くので教えて」配送会社への確認という口実。. Shot type: Insert. Dialogue: 出品者: 今からSMSで確認番号が届くので、その番号を教えてもらえますか？配送会社への本人確認に使います！.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/G3UC6og9WW0e_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 核心のメッセージ。「SMSで確認番号が届くので教えて」配送会社への確認という口実。. Shot type: Insert. Dialogue: 出品者: 今からSMSで確認番号が届くので、その番号を教えてもらえますか？配送会社への本人確認に使います！.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1858,12 +2051,24 @@
           "visual": "核心のメッセージ。「SMSで確認番号が届くので教えて」配送会社への確認という口実。"
         },
         {
+          "@id": "panel:LOlh8jYxLWxE",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy receives SMS notification. Phone vibrates. New message alert. Unsuspecting.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/LOlh8jYxLWxE_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/LOlh8jYxLWxE_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355238,
+              "gh:imagePrompt": "YutoのスマホにSMS通知が届く。ブルッと振動。. Shot type: Medium Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/LOlh8jYxLWxE_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. YutoのスマホにSMS通知が届く。ブルッと振動。. Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "slight high angle",
             "gh:distance": "Medium Shot"
@@ -1873,10 +2078,22 @@
           "visual": "YutoのスマホにSMS通知が届く。ブルッと振動。"
         },
         {
+          "@id": "panel:fnL7srMXc3cI",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. SMS notification from SNS service. '【重要】認証コード: 847293 ※このコードは絶対に他人に教えないでください' Warning text clearly visible but ignored. Two-factor authentication code.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/fnL7srMXc3cI_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/fnL7srMXc3cI_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355243,
+              "gh:imagePrompt": "SMS画面。「【SNS名】認証コード: 847293 ※このコードは絶対に他人に教えないでください」警告文がはっきり見える。. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/fnL7srMXc3cI_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. SMS画面。「【SNS名】認証コード: 847293 ※このコードは絶対に他人に教えないでください」警告文がはっきり見える。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert",
@@ -1900,6 +2117,7 @@
       "gh:panelCount": 7,
       "gh:panels": [
         {
+          "@id": "panel:n8lIihAxjh0f",
           "characters": [
             "character:Yuto"
           ],
@@ -1911,7 +2129,18 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy looking at SMS code on phone. Trusting expression. About to make a mistake. shot on 50mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/n8lIihAxjh0f_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/n8lIihAxjh0f_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355241,
+              "gh:imagePrompt": "SMSの認証コードを見るYuto。信じきった表情。. Shot type: Medium Close Up. Dialogue: Yuto（内心）: 配送会社の確認なら…教えても大丈夫だよな.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/n8lIihAxjh0f_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. SMSの認証コードを見るYuto。信じきった表情。. Shot type: Medium Close Up. Dialogue: Yuto（内心）: 配送会社の確認なら…教えても大丈夫だよな.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -1921,10 +2150,22 @@
           "visual": "SMSの認証コードを見るYuto。信じきった表情。"
         },
         {
+          "@id": "panel:dxFHfBsaPPvC",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Extreme Close Up. SMS warning text '※このコードは絶対に他人に教えないでください' but it's being scrolled past. The warning is visible but not read. Dramatic irony.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/dxFHfBsaPPvC_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/dxFHfBsaPPvC_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355270,
+              "gh:imagePrompt": "SMS画面の警告文「※このコードは絶対に他人に教えないでください」しかしYutoの指がスワイプして通り過ぎる。. Shot type: Extreme Close Up",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/dxFHfBsaPPvC_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. SMS画面の警告文「※このコードは絶対に他人に教えないでください」しかしYutoの指がスワイプして通り過ぎる。. Shot type: Extreme Close Up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Extreme Close Up",
@@ -1935,6 +2176,7 @@
           "visual": "SMS画面の警告文「※このコードは絶対に他人に教えないでください」しかしYutoの指がスワイプして通り過ぎる。"
         },
         {
+          "@id": "panel:PZbaVhaeq7HP",
           "characters": [],
           "dialogue": [
             {
@@ -1944,7 +2186,18 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Message being sent with the verification code '847293'. The fateful message. Japanese text.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/PZbaVhaeq7HP_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/PZbaVhaeq7HP_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355259,
+              "gh:imagePrompt": "メッセージ画面。認証コード「847293」を送信。運命の瞬間。. Shot type: Insert. Dialogue: Yuto: 847293 です！.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/PZbaVhaeq7HP_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. メッセージ画面。認証コード「847293」を送信。運命の瞬間。. Shot type: Insert. Dialogue: Yuto: 847293 です！.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1954,17 +2207,29 @@
           "visual": "メッセージ画面。認証コード「847293」を送信。運命の瞬間。"
         },
         {
+          "@id": "panel:8ygFNWmeJaho",
           "characters": [],
           "dialogue": [
             {
-              "gh:via": "message",
               "gh:emotion": "grateful",
+              "gh:via": "message",
               "speaker": "出品者",
               "text": "ありがとうございます！確認できました✨ これで発送手続き進められます！"
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Reply: 'Thank you! Confirmed! Now I can proceed with shipping!' Sparkle emoji. Deceptively cheerful. The scammer has what they need.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/8ygFNWmeJaho_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/8ygFNWmeJaho_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355296,
+              "gh:imagePrompt": "即座に返信。「ありがとうございます！確認できました」キラキラ絵文字。詐欺師は目的を達成。. Shot type: Insert. Dialogue: 出品者: ありがとうございます！確認できました✨ これで発送手続き進められます！.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/8ygFNWmeJaho_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 即座に返信。「ありがとうございます！確認できました」キラキラ絵文字。詐欺師は目的を達成。. Shot type: Insert. Dialogue: 出品者: ありがとうございます！確認できました✨ これで発送手続き進められます！.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1974,6 +2239,7 @@
           "visual": "即座に返信。「ありがとうございます！確認できました」キラキラ絵文字。詐欺師は目的を達成。"
         },
         {
+          "@id": "panel:XW5_CP1qMEv0",
           "characters": [
             "character:Yuto"
           ],
@@ -1985,7 +2251,18 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy putting down phone with relieved smile. Unaware of what he's just done. False sense of security. shot on 50mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/XW5_CP1qMEv0_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/XW5_CP1qMEv0_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355279,
+              "gh:imagePrompt": "安堵してスマホを置くYuto。自分が何をしたか気づいていない。. Shot type: Medium Shot. Dialogue: Yuto: よかった…これで届くはず.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/XW5_CP1qMEv0_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 安堵してスマホを置くYuto。自分が何をしたか気づいていない。. Shot type: Medium Shot. Dialogue: Yuto: よかった…これで届くはず.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -1995,20 +2272,33 @@
           "visual": "安堵してスマホを置くYuto。自分が何をしたか気づいていない。"
         },
         {
+          "@id": "panel:R641xuqebmXw",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Time skip. New notification: 'Your password has been changed' from SNS service. Account takeover beginning. Ominous.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/R641xuqebmXw_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/R641xuqebmXw_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355291,
+              "gh:imagePrompt": "時間経過。新しい通知「パスワードが変更されました」SNSからの通知。乗っ取りの始まり。. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/R641xuqebmXw_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 時間経過。新しい通知「パスワードが変更されました」SNSからの通知。乗っ取りの始まり。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
-            "gh:distance": "Insert",
-            "gh:atmosphere": "不穏"
+            "gh:atmosphere": "不穏",
+            "gh:distance": "Insert"
           },
           "panel": 6,
           "shot": "Insert",
           "visual": "時間経過。新しい通知「パスワードが変更されました」SNSからの通知。乗っ取りの始まり。"
         },
         {
+          "@id": "panel:rW0M2p0-cLQb",
           "characters": [
             "character:Yuto"
           ],
@@ -2020,7 +2310,18 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's face showing confusion turning to worry. 'Password changed? But I didn't do anything...' Reality starting to sink in. shot on 85mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/rW0M2p0-cLQb_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/rW0M2p0-cLQb_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355282,
+              "gh:imagePrompt": "困惑から不安に変わるYutoの表情。何かがおかしいと気づき始める。. Shot type: Close Up. Dialogue: Yuto: え…？パスワード変更…？俺、何もしてないのに….",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/12/rW0M2p0-cLQb_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 困惑から不安に変わるYutoの表情。何かがおかしいと気づき始める。. Shot type: Close Up. Dialogue: Yuto: え…？パスワード変更…？俺、何もしてないのに….. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2043,12 +2344,24 @@
       "gh:panelCount": 6,
       "gh:panels": [
         {
+          "@id": "panel:5pETRbZ7RNFl",
           "characters": [
             "character:YutoMother"
           ],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Single illustration. Wide Shot. Japanese living room. Mother on phone call. Serious expression. shot on 35mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/5pETRbZ7RNFl_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/5pETRbZ7RNFl_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355305,
+              "gh:imagePrompt": "リビング。母親が電話中。険しい表情。. Shot type: Wide Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/5pETRbZ7RNFl_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. リビング。母親が電話中。険しい表情。. Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Wide Shot"
@@ -2058,12 +2371,24 @@
           "visual": "リビング。母親が電話中。険しい表情。"
         },
         {
+          "@id": "panel:J1Ml1HnTtlC2",
           "characters": [
             "character:YutoMother"
           ],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese mother hanging up phone. Suppressed anger on face. shot on 50mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/J1Ml1HnTtlC2_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/J1Ml1HnTtlC2_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355327,
+              "gh:imagePrompt": "電話を切る母親。怒りを抑えた表情。. Shot type: Medium Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/J1Ml1HnTtlC2_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 電話を切る母親。怒りを抑えた表情。. Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2073,12 +2398,24 @@
           "visual": "電話を切る母親。怒りを抑えた表情。"
         },
         {
+          "@id": "panel:f_DrovkUR8EP",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy entering living room. Noticing something is wrong with mother. shot on 50mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/f_DrovkUR8EP_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/f_DrovkUR8EP_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355315,
+              "gh:imagePrompt": "部屋に入ってくるYuto。母親の様子がおかしいことに気づく。. Shot type: Medium Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/f_DrovkUR8EP_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 部屋に入ってくるYuto。母親の様子がおかしいことに気づく。. Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2088,6 +2425,7 @@
           "visual": "部屋に入ってくるYuto。母親の様子がおかしいことに気づく。"
         },
         {
+          "@id": "panel:ZKkkG8B5RO0i",
           "characters": [
             "character:YutoMother"
           ],
@@ -2099,7 +2437,18 @@
             }
           ],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese mother looking at son with stern eyes. Calling his name. shot on 50mm, f/2, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/ZKkkG8B5RO0i_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/ZKkkG8B5RO0i_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355324,
+              "gh:imagePrompt": "母親がYutoを見る。厳しい目。. Shot type: Medium Close Up. Dialogue: YutoMother: Yuto。.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/ZKkkG8B5RO0i_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 母親がYutoを見る。厳しい目。. Shot type: Medium Close Up. Dialogue: YutoMother: Yuto。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -2109,6 +2458,7 @@
           "visual": "母親がYutoを見る。厳しい目。"
         },
         {
+          "@id": "panel:1XC91KYk-h4j",
           "characters": [
             "character:YutoMother"
           ],
@@ -2120,7 +2470,18 @@
             }
           ],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Single illustration. Medium Shot, low angle. Japanese mother confronting, looking down at camera/Yuto's POV. Angry expression. shot on 35mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/1XC91KYk-h4j_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/1XC91KYk-h4j_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355322,
+              "gh:imagePrompt": "母親が問い詰める。. Shot type: Medium Shot. Dialogue: YutoMother: カードが止められたって。身に覚えある…？.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/1XC91KYk-h4j_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 母親が問い詰める。. Shot type: Medium Shot. Dialogue: YutoMother: カードが止められたって。身に覚えある…？.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "low angle from Yuto's POV",
             "gh:distance": "Medium Shot"
@@ -2130,6 +2491,7 @@
           "visual": "母親が問い詰める。"
         },
         {
+          "@id": "panel:c1NW9w-ED_u4",
           "characters": [
             "character:Yuto"
           ],
@@ -2141,7 +2503,18 @@
             }
           ],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's face turning pale. Blood draining from face. Shock and fear. shot on 85mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/c1NW9w-ED_u4_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/c1NW9w-ED_u4_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355338,
+              "gh:imagePrompt": "青ざめるYuto。血の気が引いていく。. Shot type: Close Up. Dialogue: Yuto: え…？.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/c1NW9w-ED_u4_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 青ざめるYuto。血の気が引いていく。. Shot type: Close Up. Dialogue: Yuto: え…？.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up",
@@ -2165,12 +2538,15 @@
       "gh:panelCount": 6,
       "gh:panels": [
         {
+          "@id": "panel:VVI-_-rJ77MH",
           "characters": [
             "character:YutoMother"
           ],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese mother unfolding credit card statement. Stern expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/VVI-_-rJ77MH_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/VVI-_-rJ77MH_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 母親がカード明細を広げる。. Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2180,10 +2556,13 @@
           "visual": "母親がカード明細を広げる。"
         },
         {
+          "@id": "panel:zCkKcizVOdLy",
           "characters": [],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Single illustration. Insert shot. Credit card statement close-up. Multiple charges: 'Amazon Gift Card', 'iTunes Gift Card'... Fraudulent purchases.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/zCkKcizVOdLy_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/zCkKcizVOdLy_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. カード明細のアップ。大量の請求が並ぶ。「Amazonギフトカード」「iTunesギフトカード」…. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -2193,10 +2572,22 @@
           "visual": "カード明細のアップ。大量の請求が並ぶ。「Amazonギフトカード」「iTunesギフトカード」…"
         },
         {
+          "@id": "panel:-P3DxROvzFYP",
           "characters": [],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Single illustration. Insert shot. Total amount: ¥523,000. Red numbers. Shocking amount.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/-P3DxROvzFYP_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/-P3DxROvzFYP_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769355348,
+              "gh:imagePrompt": "合計金額。¥523,000。赤い数字。. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/-P3DxROvzFYP_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 合計金額。¥523,000。赤い数字。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -2206,12 +2597,15 @@
           "visual": "合計金額。¥523,000。赤い数字。"
         },
         {
+          "@id": "panel:0hmxsZf1RCRw",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's eyes widening seeing the statement. Shock. shot on 85mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/0hmxsZf1RCRw_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/0hmxsZf1RCRw_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 明細を見るYuto。目が見開く。. Shot type: Close Up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -2221,6 +2615,7 @@
           "visual": "明細を見るYuto。目が見開く。"
         },
         {
+          "@id": "panel:6qrehMtL2koX",
           "characters": [
             "character:YutoMother"
           ],
@@ -2232,7 +2627,9 @@
             }
           ],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese mother pointing at statement, demanding explanation. Stern expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/6qrehMtL2koX_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/6qrehMtL2koX_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 母親が説明を求める。指で明細を指している。. Shot type: Medium Shot. Dialogue: YutoMother: これ、全部ギフトカード購入になってる。知らない店ばっかり。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -2242,6 +2639,7 @@
           "visual": "母親が説明を求める。指で明細を指している。"
         },
         {
+          "@id": "panel:VDz7Y-SZGjsD",
           "characters": [
             "character:Yuto"
           ],
@@ -2253,7 +2651,9 @@
             }
           ],
           "environment": "env:yuto-home-living",
-          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy in panic, desperately denying. 'I didn't buy any of that!' shot on 50mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/VDz7Y-SZGjsD_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/VDz7Y-SZGjsD_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. パニック状態のYuto。必死に否定。. Shot type: Medium Close Up. Dialogue: Yuto: 俺、そんなの買ってない…！.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -2438,6 +2838,13 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
+          "gh:characterIntro": [
+            {
+              "gh:characterId": "character:Ken",
+              "gh:name": "佐藤 健",
+              "gh:nameReading": "さとう けん"
+            }
+          ],
           "gh:imagePrompt": "Single illustration. Medium Shot. Classmate standing up and approaching Yuto. Angry expression. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
