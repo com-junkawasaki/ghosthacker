@@ -7,6 +7,7 @@ import (
 	"io/fs"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 	"sync"
 
@@ -93,7 +94,6 @@ func (s *StoryboardService) aggregateMaster(filePath string) (map[string]interfa
 
 			sourceFile, ok := m["gh:sourceFile"].(string)
 			if !ok {
-				// If no sourceFile, keep as is
 				resolvedItems = append(resolvedItems, item)
 				continue
 			}
@@ -514,10 +514,14 @@ func (s *StoryboardService) GetEpisodes(
 		filePath = s.storyboardPath
 	}
 
-	storyboard, err := s.validateAndLoad(filePath)
+	storyboard, err := s.aggregateMaster(filePath)
 	if err != nil {
-		log.Printf("GetEpisodes: validation failed: %v", err)
-		// Continue even if validation fails for now
+		log.Printf("GetEpisodes: aggregation failed: %v", err)
+		// Fallback to direct load
+		storyboard, err = s.validateAndLoad(filePath)
+		if err != nil {
+			return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("failed to read storyboard file: %w", err))
+		}
 	}
 
 	episodeList, ok := storyboard["gh:episodes"].([]interface{})
@@ -563,9 +567,14 @@ func (s *StoryboardService) GetEpisodePanels(
 		filePath = s.storyboardPath
 	}
 
-	storyboard, err := s.validateAndLoad(filePath)
+	storyboard, err := s.aggregateMaster(filePath)
 	if err != nil {
-		log.Printf("GetEpisodePanels: validation failed: %v", err)
+		log.Printf("GetEpisodePanels: aggregation failed: %v", err)
+		// Fallback to direct load
+		storyboard, err = s.validateAndLoad(filePath)
+		if err != nil {
+			return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("failed to read storyboard file: %w", err))
+		}
 	}
 
 	episodeList, ok := storyboard["gh:episodes"].([]interface{})
@@ -953,9 +962,14 @@ func (s *StoryboardService) AnalyzeStructure(
 		filePath = s.storyboardPath
 	}
 
-	storyboard, err := s.validateAndLoad(filePath)
+	storyboard, err := s.aggregateMaster(filePath)
 	if err != nil {
-		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid storyboard: %w", err))
+		log.Printf("AnalyzeStructure: aggregation failed: %v", err)
+		// Fallback to direct load
+		storyboard, err = s.validateAndLoad(filePath)
+		if err != nil {
+			return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("failed to read storyboard file: %w", err))
+		}
 	}
 
 	episode := findEpisode(storyboard, req.Msg.EpisodeId)

@@ -1,8 +1,6 @@
 ---
-description: Rules for generating base video clips using Runway Gen-2/Gen-3. Focuses on realistic cinematic descriptions with ARIA-style aesthetic (clean air, soft light, detailed eyes).
-globs: 251121/storyboard.jsonld, 251121/character_profiles.jsonld
+alwaysApply: false
 ---
-
 # Runway Base Video Generation Standards (ARIA Cinematic Base)
 
 This rule defines how to construct prompts for Runway to generate high-quality, realistic video clips that serve as the base for later style transfer. It emphasizes the "ARIA aesthetic": pristine air, soft diffused lighting, and extreme ocular detail.
