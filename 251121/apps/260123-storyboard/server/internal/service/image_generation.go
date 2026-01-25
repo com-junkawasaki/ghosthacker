@@ -57,7 +57,12 @@ func (s *StoryboardService) GeneratePanelImage(
 		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("failed to build prompt: %w", err))
 	}
 
-	log.Printf("Generating image with prompt: %s", prompt)
+	// Apply Mai Yoneyama and High-End Webtoon Aesthetic for cinematic sketching
+	stylePrefix := "Professional cinematic storyboard sketch, Mai Yoneyama illustrator style, High-End Webtoon Aesthetic, Fine Line Art with Screen Tones, Modern Bishonen Manga Style. "
+	styleSuffix := ". High contrast monochrome, sharp focus on expressive eyes, intricate iris detail, consistent facial features, slender male youth, atmospheric lighting, cinematic composition, 85mm lens."
+	fullPrompt := stylePrefix + prompt + styleSuffix
+
+	log.Printf("Generating image with prompt: %s", fullPrompt)
 
 	// Create images directory: 251121/images/episodes/{episode_id}/pages/{page_number}/
 	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
@@ -80,10 +85,10 @@ func (s *StoryboardService) GeneratePanelImage(
 
 	// Update storyboard JSON-LD with the expected path before actual generation
 	// This ensures the UI knows where the image will be even if generation takes time
-	s.preUpdateStoryboard(filePath, req.Msg.EpisodeId, req.Msg.PageNumber, req.Msg.Panel, urlPath, prompt)
+	s.preUpdateStoryboard(filePath, req.Msg.EpisodeId, req.Msg.PageNumber, req.Msg.Panel, urlPath, fullPrompt)
 
 	// Call OpenRouter API
-	imageDataURL, err := s.callOpenRouterAPI(ctx, apiKey, prompt)
+	imageDataURL, err := s.callOpenRouterAPI(ctx, apiKey, fullPrompt)
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to generate image: %w", err))
 	}
