@@ -174,6 +174,9 @@
 					storyboardPath={storyboardPath}
 					on:update={({ detail }) =>
 						handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+					on:pageChange={({ detail }) => {
+						selectedPage = detail;
+					}}
 				/>
 			</div>
 			<div class="manga-view">

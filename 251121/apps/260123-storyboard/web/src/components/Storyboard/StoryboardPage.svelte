@@ -9,6 +9,8 @@
 
 	const dispatch = createEventDispatcher();
 
+	let container: HTMLElement;
+
 	// Group panels by page number
 	$: pagesMap = panels.reduce((acc, panel) => {
 		const pageNum = panel.pageNumber;
@@ -31,9 +33,32 @@
 			data,
 		});
 	}
+
+	function handleScroll() {
+		if (!container) return;
+
+		const sections = container.querySelectorAll('.page-section');
+		let currentVisiblePage = 1;
+		const containerRect = container.getBoundingClientRect();
+
+		for (const section of sections) {
+			const rect = section.getBoundingClientRect();
+			// If the top of the section is within the top half of the container, consider it the current page
+			if (rect.top < containerRect.top + containerRect.height / 3) {
+				const pageNumAttr = section.getAttribute('data-page');
+				if (pageNumAttr) {
+					currentVisiblePage = Number(pageNumAttr);
+				}
+			} else {
+				break;
+			}
+		}
+
+		dispatch('pageChange', currentVisiblePage);
+	}
 </script>
 
-<div class="storyboard-page">
+<div class="storyboard-page" bind:this={container} on:scroll={handleScroll}>
 	<div class="storyboard-container">
 		<!-- Ghibli-style 5-column layout: カット | 画 | 生成画 | 内容 | 秒 -->
 		<div class="grid-header">
@@ -45,7 +70,7 @@
 		</div>
 
 		{#each pageNumbers as pageNum}
-			<div class="page-section">
+			<div class="page-section" data-page={pageNum}>
 				<div class="page-header">
 					<div class="page-number">Page {pageNum}</div>
 				</div>
