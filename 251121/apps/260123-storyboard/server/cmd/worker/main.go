@@ -13,7 +13,10 @@ import (
 )
 
 func main() {
-	temporalAddress := os.Getenv("TEMPORAL_ADDRESS")
+	temporalAddress := os.Getenv("TEMPORAL_HOST")
+	if temporalAddress == "" {
+		temporalAddress = os.Getenv("TEMPORAL_ADDRESS")
+	}
 	if temporalAddress == "" {
 		temporalAddress = "localhost:7233"
 	}

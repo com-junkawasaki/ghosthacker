@@ -19,7 +19,7 @@ func (s *StoryboardService) GenerateScenario(
 	log.Printf("GenerateScenario: prompt=%s", req.Msg.Prompt)
 
 	c, err := client.Dial(client.Options{
-		HostPort: os.Getenv("TEMPORAL_HOST_PORT"),
+		HostPort: os.Getenv("TEMPORAL_HOST"),
 	})
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to dial temporal: %w", err))
