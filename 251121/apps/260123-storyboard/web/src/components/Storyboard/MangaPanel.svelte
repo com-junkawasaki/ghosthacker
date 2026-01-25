@@ -31,14 +31,47 @@
 	$: mangaLayout = panel.data?.mangaLayout;
 
 	function handleDragEnd(event: DragEvent, textIndex: number) {
-		if (!event.currentTarget) return;
+		const rect = (event.currentTarget as HTMLElement).parentElement?.getBoundingClientRect();
+		if (!rect) return;
+
+		// Use clientX/Y which are relative to the viewport, then subtract rect.left/top
+		const x = ((event.clientX - rect.left) / rect.width) * 100;
+		const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+		updateTextPosition(textIndex, x, y);
+	}
+
+	function handleDialogueDragEnd(event: DragEvent, dialogueIndex: number) {
 		const rect = (event.currentTarget as HTMLElement).parentElement?.getBoundingClientRect();
 		if (!rect) return;
 
 		const x = ((event.clientX - rect.left) / rect.width) * 100;
 		const y = ((event.clientY - rect.top) / rect.height) * 100;
 
-		updateTextPosition(textIndex, x, y);
+		// Convert this dialogue to a mangaText entry
+		const dialogue = dialogues[dialogueIndex];
+		if (!dialogue) return;
+
+		const newText = create(MangaTextSchema, {
+			text: dialogue.text,
+			type: 'dialogue',
+			x,
+			y,
+			fontSize: 16,
+			style: 'vertical'
+		});
+
+		const newTexts = mangaLayout?.texts ? [...mangaLayout.texts, newText] : [newText];
+
+		const updatedData = create(PanelDataSchema, {
+			...panel.data,
+			mangaLayout: {
+				...mangaLayout,
+				texts: newTexts
+			}
+		});
+
+		dispatch('update', updatedData);
 	}
 
 	function updateTextPosition(index: number, x: number, y: number) {
@@ -100,7 +133,7 @@
 	{/if}
 
 	<div class="panel-overlay">
-		{#if mangaLayout?.texts}
+		{#if mangaLayout?.texts && mangaLayout.texts.length > 0}
 			{#each mangaLayout.texts as text, i}
 				<div 
 					class="manga-text {text.type}"
@@ -111,13 +144,20 @@
 					{text.text}
 				</div>
 			{/each}
-		{:else}
-			{#each dialogues as dialogue}
-				<div class="dialogue-bubble">
+		{/if}
+		
+		{#each dialogues as dialogue, i}
+			<!-- Only show if not already positioned in mangaLayout.texts -->
+			{#if !mangaLayout?.texts?.find(t => t.text === dialogue.text)}
+				<div 
+					class="dialogue-bubble"
+					draggable="true"
+					on:dragend={(e) => handleDialogueDragEnd(e, i)}
+				>
 					{dialogue.text}
 				</div>
-			{/each}
-		{/if}
+			{/if}
+		{/each}
 	</div>
 
 	<div class="panel-tools">

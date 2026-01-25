@@ -186,6 +186,8 @@
 					episodeId={selectedEpisode}
 					{storyboardPath}
 					bind:selectedPage
+					on:update={({ detail }) =>
+						handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
 				/>
 			</div>
 		</div>

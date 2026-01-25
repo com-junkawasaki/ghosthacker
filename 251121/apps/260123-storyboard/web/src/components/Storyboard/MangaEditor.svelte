@@ -1,66 +1,23 @@
 <script lang="ts">
-	import type { Panel } from '$lib/gen/proto/storyboard_pb';
 	import MangaPage from './MangaPage.svelte';
-	import { storyboardClient } from '$lib/client/storyboard-client';
-	import type { PanelData } from '$lib/gen/proto/storyboard_pb';
-import type { LayoutTemplate } from '$lib/manga-layouts';
+	import type { Panel, PanelData } from '$lib/gen/proto/storyboard_pb';
+	import type { LayoutTemplate } from '$lib/manga-layouts';
 	import { MANGA_TEMPLATES, applyTemplate } from '$lib/manga-layouts';
 	import { PanelDataSchema, MangaLayoutSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
+	import { createEventDispatcher } from 'svelte';
 
 	export let panels: Panel[] = [];
 	export let episodeId: string = '';
 	export let storyboardPath: string = '';
 	export let selectedPage: number = 1;
 
+	const dispatch = createEventDispatcher();
+
 	$: {
 		console.log('[MangaEditor] selectedPage prop updated:', selectedPage);
 	}
 
-	$: currentPagePanels = pagesMap[selectedPage] || [];
-	$: templates = MANGA_TEMPLATES[currentPagePanels.length] || [];
-
-	async function handleApplyTemplate(template: LayoutTemplate) {
-		if (currentPagePanels.length === 0) return;
-
-		const newPanelLayouts = applyTemplate(currentPagePanels, template);
-		
-		for (let i = 0; i < currentPagePanels.length; i++) {
-			const panel = currentPagePanels[i];
-			
-			const updatedData = create(PanelDataSchema, {
-				...panel.data,
-				mangaLayout: create(MangaLayoutSchema, {
-					panels: newPanelLayouts,
-					texts: panel.data?.mangaLayout?.texts || []
-				})
-			});
-
-			await handlePanelUpdate(panel.pageNumber, panel.panel, updatedData);
-		}
-	}
-
-	async function handlePanelUpdate(
-		pageNumber: number,
-		panel: number,
-		data: PanelData
-	) {
-		if (!episodeId) return;
-		try {
-			await storyboardClient.updatePanel({
-				filePath: storyboardPath,
-				episodeId: episodeId,
-				pageNumber,
-				panel,
-				panelData: data
-			});
-			// The parent component will reload panels via reactive selectedEpisode
-		} catch (err) {
-			console.error('Failed to update panel from MangaEditor:', err);
-		}
-	}
-
-	// Group panels by page number
 	$: pagesMap = panels.reduce((acc, panel) => {
 		const pageNum = panel.pageNumber;
 		if (!acc[pageNum]) {
@@ -76,6 +33,43 @@ import type { LayoutTemplate } from '$lib/manga-layouts';
 		.sort((a, b) => a - b);
 
 	$: currentPagePanels = pagesMap[selectedPage] || [];
+	$: templates = MANGA_TEMPLATES[currentPagePanels.length] || [];
+
+	async function handleApplyTemplate(template: LayoutTemplate) {
+		if (currentPagePanels.length === 0) return;
+
+		const newPanelLayouts = applyTemplate(currentPagePanels, template);
+		
+		// Update the first panel of the page with the new layout for the whole page
+		const firstPanel = currentPagePanels[0];
+		if (!firstPanel) return;
+
+		const updatedData = create(PanelDataSchema, {
+			...firstPanel.data,
+			mangaLayout: create(MangaLayoutSchema, {
+				panels: newPanelLayouts,
+				texts: firstPanel.data?.mangaLayout?.texts || []
+			})
+		});
+
+		dispatch('update', {
+			pageNumber: firstPanel.pageNumber,
+			panel: firstPanel.panel,
+			data: updatedData
+		});
+	}
+
+	function handlePanelUpdate(
+		pageNumber: number,
+		panel: number,
+		data: PanelData
+	) {
+		dispatch('update', {
+			pageNumber,
+			panel,
+			data
+		});
+	}
 </script>
 
 <div class="manga-editor">

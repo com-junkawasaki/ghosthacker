@@ -39,17 +39,18 @@
 			return p;
 		});
 
-		// Update all panels on the page with the new layout
-		panels.forEach(panel => {
-			const updatedData = {
-				...panel.data,
-				mangaLayout: {
-					...pageLayout,
-					panels: newPanels
-				}
-			};
-			handleUpdate(panel.panel, updatedData as any);
-		});
+		// Update only the first panel of the page with the new layout
+		const firstPanel = panels[0];
+		if (!firstPanel) return;
+
+		const updatedData = {
+			...firstPanel.data,
+			mangaLayout: {
+				...pageLayout,
+				panels: newPanels
+			}
+		};
+		handleUpdate(firstPanel.panel, updatedData as any);
 	}
 </script>
 
