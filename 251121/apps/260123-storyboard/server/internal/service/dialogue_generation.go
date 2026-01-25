@@ -17,7 +17,15 @@ import (
 )
 
 const (
-	openRouterTextModelDefault = "openai/gpt-4o-mini"
+	openRouterTextModelDefault = "anthropic/claude-4.5-sonnet" // Fallback to latest available
+)
+
+const (
+	modelScenarioWriter    = "anthropic/claude-4.5"
+	modelEpisodeGenerator  = "anthropic/claude-4.5"
+	modelCharacterSpecialist = "google/gemini-3-pro"
+	modelCinematicSketcher = "openai/gpt-5.2"
+	modelDialogueCoach     = "anthropic/claude-4.5-haiku"
 )
 
 type openRouterTextResponse struct {
@@ -99,7 +107,7 @@ If unsure, keep it vague and emotionally grounded instead of inventing details.
 
 	model := strings.TrimSpace(os.Getenv("OPENROUTER_TEXT_MODEL"))
 	if model == "" {
-		model = openRouterTextModelDefault
+		model = modelDialogueCoach
 	}
 
 	content, err := s.callOpenRouterText(ctx, apiKey, model, systemPrompt, userPrompt)

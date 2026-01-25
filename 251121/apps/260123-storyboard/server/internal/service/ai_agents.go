@@ -8,6 +8,8 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"time"
+	"storyboard-editor/backend/internal/temporal"
 	"storyboard-editor/backend/proto"
 
 	"connectrpc.com/connect"
@@ -111,7 +113,20 @@ func (s *StoryboardService) InteractWithAI(
 
 	model := strings.TrimSpace(os.Getenv("OPENROUTER_TEXT_MODEL"))
 	if model == "" {
-		model = openRouterTextModelDefault
+		switch req.Msg.AgentMode {
+		case "scenario":
+			model = modelScenarioWriter
+		case "episode":
+			model = modelEpisodeGenerator
+		case "character":
+			model = modelCharacterSpecialist
+		case "cinematic":
+			model = modelCinematicSketcher
+		case "dialogue":
+			model = modelDialogueCoach
+		default:
+			model = openRouterTextModelDefault
+		}
 	}
 
 	systemPrompt := `You are an AI Story Assistant for the Ghost Hacker project.
@@ -260,6 +275,67 @@ Important:
 		Message:    "Interaction successful",
 		AiResponse: result.Response,
 		Patches:    protoPatches,
+	}), nil
+}
+
+// StartAutonomousGeneration starts the A2A autonomous generation workflow
+func (s *StoryboardService) StartAutonomousGeneration(
+	ctx context.Context,
+	req *connect.Request[storyboardpb.StartAutonomousGenerationRequest],
+) (*connect.Response[storyboardpb.StartAutonomousGenerationResponse], error) {
+	log.Printf("StartAutonomousGeneration: goal=%s", req.Msg.Goal)
+
+	temporalHost := os.Getenv("TEMPORAL_HOST")
+	if temporalHost == "" {
+		return connect.NewResponse(&storyboardpb.StartAutonomousGenerationResponse{
+			Success: false,
+			Message: "Temporal server not configured (TEMPORAL_HOST missing)",
+		}), nil
+	}
+
+	c, err := client.Dial(client.Options{
+		HostPort: temporalHost,
+	})
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to dial temporal: %w", err))
+	}
+	defer c.Close()
+
+	// Convert context to map
+	initialContext := make([]map[string]interface{}, len(req.Msg.InitialContext))
+	for i, ctx := range req.Msg.InitialContext {
+		initialContext[i] = map[string]interface{}{
+			"type":        ctx.Type,
+			"id":          ctx.Id,
+			"page_number": ctx.PageNumber,
+			"panel":       ctx.Panel,
+			"json":        ctx.JsonContent,
+		}
+	}
+
+	workflowOptions := client.StartWorkflowOptions{
+		ID:        "a2a-gen-" + time.Now().Format("20060102-150405"),
+		TaskQueue: "storyboard-task-queue",
+	}
+
+	params := temporal.AutonomousGenerationParams{
+		FilePath:       req.Msg.FilePath,
+		EpisodeID:      req.Msg.EpisodeId,
+		Goal:           req.Msg.Goal,
+		InitialContext: initialContext,
+		SessionID:      req.Msg.SessionId,
+	}
+
+	we, err := c.ExecuteWorkflow(ctx, workflowOptions, "AutonomousGenerationWorkflow", params)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to start workflow: %w", err))
+	}
+
+	return connect.NewResponse(&storyboardpb.StartAutonomousGenerationResponse{
+		Success:    true,
+		Message:    "Autonomous A2A generation started",
+		WorkflowId: we.GetID(),
+		RunId:      we.GetRunID(),
 	}), nil
 }
 

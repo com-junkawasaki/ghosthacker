@@ -33,3 +33,65 @@ func StoryboardUpdateWorkflow(ctx workflow.Context, params StoryboardUpdateParam
 
 	return result, nil
 }
+
+type AutonomousGenerationParams struct {
+	FilePath       string
+	EpisodeID      string
+	Goal           string
+	InitialContext []map[string]interface{}
+	SessionID      string
+}
+
+type AutonomousGenerationResult struct {
+	Success bool
+	Message string
+}
+
+// AutonomousGenerationWorkflow orchestrates A2A autonomous story generation
+func AutonomousGenerationWorkflow(ctx workflow.Context, params AutonomousGenerationParams) (AutonomousGenerationResult, error) {
+	options := workflow.ActivityOptions{
+		StartToCloseTimeout: 15 * 60 * 1e9, // 15 minutes
+	}
+	ctx = workflow.WithActivityOptions(ctx, options)
+
+	logger := workflow.GetLogger(ctx)
+	logger.Info("Starting Autonomous Generation", "goal", params.Goal)
+
+	// 1. Scenario Agent: Plan the next steps
+	var scenarioOutput string
+	err := workflow.ExecuteActivity(ctx, ScenarioAgentActivity, params).Get(ctx, &scenarioOutput)
+	if err != nil {
+		return AutonomousGenerationResult{Success: false, Message: "Scenario Agent failed: " + err.Error()}, err
+	}
+
+	// 2. Episode Agent: Generate detailed content
+	var episodeOutput string
+	err = workflow.ExecuteActivity(ctx, EpisodeAgentActivity, scenarioOutput).Get(ctx, &episodeOutput)
+	if err != nil {
+		return AutonomousGenerationResult{Success: false, Message: "Episode Agent failed: " + err.Error()}, err
+	}
+
+	// 3. Character Agent: Verify and Refine
+	var characterFeedback string
+	err = workflow.ExecuteActivity(ctx, CharacterAgentActivity, episodeDraft{Content: episodeOutput, Params: params}).Get(ctx, &characterFeedback)
+	if err != nil {
+		return AutonomousGenerationResult{Success: false, Message: "Character Agent failed: " + err.Error()}, err
+	}
+
+	// 4. Cinematic Agent: Finalize visual direction
+	var finalResult string
+	err = workflow.ExecuteActivity(ctx, CinematicAgentActivity, episodeOutput).Get(ctx, &finalResult)
+	if err != nil {
+		return AutonomousGenerationResult{Success: false, Message: "Cinematic Agent failed: " + err.Error()}, err
+	}
+
+	return AutonomousGenerationResult{
+		Success: true,
+		Message: "Autonomous generation completed successfully",
+	}, nil
+}
+
+type episodeDraft struct {
+	Content string
+	Params  AutonomousGenerationParams
+}

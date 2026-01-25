@@ -56,3 +56,35 @@ func SaveStoryboardActivity(ctx context.Context, params StoryboardUpdateParams) 
 		Message: "Storyboard updated successfully",
 	}, nil
 }
+
+// ScenarioAgentActivity handles high-level plot planning in A2A
+func ScenarioAgentActivity(ctx context.Context, params AutonomousGenerationParams) (string, error) {
+	logger := activity.GetLogger(ctx)
+	logger.Info("Scenario Agent working", "goal", params.Goal)
+	// Placeholder: In real implementation, call LLM with Scenario context
+	return "Scenario Agent planned next steps for: " + params.Goal, nil
+}
+
+// EpisodeAgentActivity handles detailed content generation in A2A
+func EpisodeAgentActivity(ctx context.Context, scenarioOutput string) (string, error) {
+	logger := activity.GetLogger(ctx)
+	logger.Info("Episode Agent working", "input", scenarioOutput)
+	// Placeholder: In real implementation, call LLM with Episode context
+	return "Episode Agent generated content based on: " + scenarioOutput, nil
+}
+
+// CharacterAgentActivity handles character consistency in A2A
+func CharacterAgentActivity(ctx context.Context, draft episodeDraft) (string, error) {
+	logger := activity.GetLogger(ctx)
+	logger.Info("Character Agent working", "content", draft.Content)
+	// Placeholder: In real implementation, call LLM with Character context
+	return "Character Agent verified consistency for: " + draft.Content, nil
+}
+
+// CinematicAgentActivity handles visual direction in A2A
+func CinematicAgentActivity(ctx context.Context, episodeOutput string) (string, error) {
+	logger := activity.GetLogger(ctx)
+	logger.Info("Cinematic Agent working", "input", episodeOutput)
+	// Placeholder: In real implementation, call LLM with Cinematic context
+	return "Cinematic Agent finalized visual direction for: " + episodeOutput, nil
+}

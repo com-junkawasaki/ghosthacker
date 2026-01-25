@@ -46,6 +46,24 @@ service StoryboardService {
 
   // Interact with AI assistant for chat-based editing and generation
   rpc InteractWithAI(InteractWithAIRequest) returns (InteractWithAIResponse);
+
+  // Start autonomous agent-to-agent generation workflow
+  rpc StartAutonomousGeneration(StartAutonomousGenerationRequest) returns (StartAutonomousGenerationResponse);
+}
+
+message StartAutonomousGenerationRequest {
+  string file_path = 1;
+  string episode_id = 2;
+  string goal = 3; // e.g. "Advance the story by 3 panels"
+  repeated AIContext initial_context = 4;
+  string session_id = 5;
+}
+
+message StartAutonomousGenerationResponse {
+  bool success = 1;
+  string message = 2;
+  string workflow_id = 3;
+  string run_id = 4;
 }
 
 message InteractWithAIRequest {

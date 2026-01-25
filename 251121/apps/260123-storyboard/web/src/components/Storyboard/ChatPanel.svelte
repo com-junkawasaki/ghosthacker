@@ -12,6 +12,7 @@
 	let loading = $state(false);
 	let dropContext = $state<any[]>([]);
 	let currentAgentMode = $state<'general' | 'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue'>('general');
+	let isAutoPilot = $state(false);
 
 	// Expose a method to trigger agent commands from outside
 	export function triggerAgent(agent: typeof currentAgentMode, initialPrompt?: string) {
@@ -106,12 +107,61 @@
 			onApplyPatches(patches);
 		}
 	}
+
+	async function startAutoPilot() {
+		if (!selectedEpisode) return;
+		isAutoPilot = true;
+		const goal = inputValue || "Advance the story naturally";
+		inputValue = '';
+		
+		messages = [...messages, { 
+			role: 'user', 
+			content: `[AUTO-PILOT START] Goal: ${goal}`,
+			context: [...dropContext]
+		}];
+
+		try {
+			const res = await storyboardClient.startAutonomousGeneration({
+				filePath: storyboardPath,
+				episodeId: selectedEpisode,
+				goal: goal,
+				initialContext: dropContext.map(ctx => ({
+					type: ctx.type,
+					id: String(ctx.id || ''),
+					pageNumber: Number(ctx.pageNumber || 0),
+					panel: Number(ctx.panel || 0),
+					jsonContent: ctx.data ? JSON.stringify(ctx.data) : ''
+				}))
+			});
+
+			if (res.success) {
+				messages = [...messages, { 
+					role: 'assistant', 
+					content: `Autonomous generation started. Workflow ID: ${res.workflowId}. Agents are now collaborating...` 
+				}];
+			} else {
+				messages = [...messages, { role: 'assistant', content: `Failed to start Auto-Pilot: ${res.message}` }];
+				isAutoPilot = false;
+			}
+		} catch (err) {
+			messages = [...messages, { role: 'assistant', content: `Error: ${err instanceof Error ? err.message : String(err)}` }];
+			isAutoPilot = false;
+		}
+	}
 </script>
 
 <div class="chat-panel">
 	<div class="chat-header">
 		<div class="header-top">
 			<span>AI STORY ASSISTANT (LIVE)</span>
+			<button 
+				class="autopilot-btn" 
+				class:active={isAutoPilot}
+				onclick={startAutoPilot}
+				disabled={isAutoPilot || !selectedEpisode}
+			>
+				{isAutoPilot ? 'AUTO-PILOT ON' : 'START AUTO-PILOT'}
+			</button>
 		</div>
 		<div class="agent-mode-selector">
 			<button 
@@ -242,6 +292,36 @@
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
+	}
+
+	.autopilot-btn {
+		background: #333;
+		color: #aaa;
+		border: 1px solid #444;
+		padding: 2px 8px;
+		border-radius: 4px;
+		font-size: 0.6rem;
+		font-weight: bold;
+		cursor: pointer;
+		transition: all 0.3s;
+	}
+
+	.autopilot-btn:hover:not(:disabled) {
+		background: #444;
+		color: white;
+	}
+
+	.autopilot-btn.active {
+		background: #e74c3c;
+		color: white;
+		border-color: transparent;
+		animation: pulse 2s infinite;
+	}
+
+	@keyframes pulse {
+		0% { opacity: 1; }
+		50% { opacity: 0.7; }
+		100% { opacity: 1; }
 	}
 
 	.agent-mode-selector {

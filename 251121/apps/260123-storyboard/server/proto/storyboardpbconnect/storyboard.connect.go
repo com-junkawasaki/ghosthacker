@@ -72,24 +72,28 @@ const (
 	// StoryboardServiceInteractWithAIProcedure is the fully-qualified name of the StoryboardService's
 	// InteractWithAI RPC.
 	StoryboardServiceInteractWithAIProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/InteractWithAI"
+	// StoryboardServiceStartAutonomousGenerationProcedure is the fully-qualified name of the
+	// StoryboardService's StartAutonomousGeneration RPC.
+	StoryboardServiceStartAutonomousGenerationProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/StartAutonomousGeneration"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
 var (
-	storyboardServiceServiceDescriptor                       = proto.File_proto_storyboard_proto.Services().ByName("StoryboardService")
-	storyboardServiceLoadStoryboardMethodDescriptor          = storyboardServiceServiceDescriptor.Methods().ByName("LoadStoryboard")
-	storyboardServiceUpdatePanelMethodDescriptor             = storyboardServiceServiceDescriptor.Methods().ByName("UpdatePanel")
-	storyboardServiceSaveStoryboardMethodDescriptor          = storyboardServiceServiceDescriptor.Methods().ByName("SaveStoryboard")
-	storyboardServiceGetEpisodesMethodDescriptor             = storyboardServiceServiceDescriptor.Methods().ByName("GetEpisodes")
-	storyboardServiceGetEpisodePanelsMethodDescriptor        = storyboardServiceServiceDescriptor.Methods().ByName("GetEpisodePanels")
-	storyboardServiceStreamUpdatesMethodDescriptor           = storyboardServiceServiceDescriptor.Methods().ByName("StreamUpdates")
-	storyboardServiceGeneratePanelImageMethodDescriptor      = storyboardServiceServiceDescriptor.Methods().ByName("GeneratePanelImage")
-	storyboardServiceGenerateDialogueMethodDescriptor        = storyboardServiceServiceDescriptor.Methods().ByName("GenerateDialogue")
-	storyboardServiceGenerateScenarioMethodDescriptor        = storyboardServiceServiceDescriptor.Methods().ByName("GenerateScenario")
-	storyboardServiceGenerateEpisodeMethodDescriptor         = storyboardServiceServiceDescriptor.Methods().ByName("GenerateEpisode")
-	storyboardServiceRefineCharactersMethodDescriptor        = storyboardServiceServiceDescriptor.Methods().ByName("RefineCharacters")
-	storyboardServiceGenerateCinematicSketchMethodDescriptor = storyboardServiceServiceDescriptor.Methods().ByName("GenerateCinematicSketch")
-	storyboardServiceInteractWithAIMethodDescriptor          = storyboardServiceServiceDescriptor.Methods().ByName("InteractWithAI")
+	storyboardServiceServiceDescriptor                         = proto.File_proto_storyboard_proto.Services().ByName("StoryboardService")
+	storyboardServiceLoadStoryboardMethodDescriptor            = storyboardServiceServiceDescriptor.Methods().ByName("LoadStoryboard")
+	storyboardServiceUpdatePanelMethodDescriptor               = storyboardServiceServiceDescriptor.Methods().ByName("UpdatePanel")
+	storyboardServiceSaveStoryboardMethodDescriptor            = storyboardServiceServiceDescriptor.Methods().ByName("SaveStoryboard")
+	storyboardServiceGetEpisodesMethodDescriptor               = storyboardServiceServiceDescriptor.Methods().ByName("GetEpisodes")
+	storyboardServiceGetEpisodePanelsMethodDescriptor          = storyboardServiceServiceDescriptor.Methods().ByName("GetEpisodePanels")
+	storyboardServiceStreamUpdatesMethodDescriptor             = storyboardServiceServiceDescriptor.Methods().ByName("StreamUpdates")
+	storyboardServiceGeneratePanelImageMethodDescriptor        = storyboardServiceServiceDescriptor.Methods().ByName("GeneratePanelImage")
+	storyboardServiceGenerateDialogueMethodDescriptor          = storyboardServiceServiceDescriptor.Methods().ByName("GenerateDialogue")
+	storyboardServiceGenerateScenarioMethodDescriptor          = storyboardServiceServiceDescriptor.Methods().ByName("GenerateScenario")
+	storyboardServiceGenerateEpisodeMethodDescriptor           = storyboardServiceServiceDescriptor.Methods().ByName("GenerateEpisode")
+	storyboardServiceRefineCharactersMethodDescriptor          = storyboardServiceServiceDescriptor.Methods().ByName("RefineCharacters")
+	storyboardServiceGenerateCinematicSketchMethodDescriptor   = storyboardServiceServiceDescriptor.Methods().ByName("GenerateCinematicSketch")
+	storyboardServiceInteractWithAIMethodDescriptor            = storyboardServiceServiceDescriptor.Methods().ByName("InteractWithAI")
+	storyboardServiceStartAutonomousGenerationMethodDescriptor = storyboardServiceServiceDescriptor.Methods().ByName("StartAutonomousGeneration")
 )
 
 // StoryboardServiceClient is a client for the gftd.ghosthacker.storyboard.v1.StoryboardService
@@ -121,6 +125,8 @@ type StoryboardServiceClient interface {
 	GenerateCinematicSketch(context.Context, *connect.Request[proto.GenerateCinematicSketchRequest]) (*connect.Response[proto.GenerateCinematicSketchResponse], error)
 	// Interact with AI assistant for chat-based editing and generation
 	InteractWithAI(context.Context, *connect.Request[proto.InteractWithAIRequest]) (*connect.Response[proto.InteractWithAIResponse], error)
+	// Start autonomous agent-to-agent generation workflow
+	StartAutonomousGeneration(context.Context, *connect.Request[proto.StartAutonomousGenerationRequest]) (*connect.Response[proto.StartAutonomousGenerationResponse], error)
 }
 
 // NewStoryboardServiceClient constructs a client for the
@@ -212,24 +218,31 @@ func NewStoryboardServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(storyboardServiceInteractWithAIMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		startAutonomousGeneration: connect.NewClient[proto.StartAutonomousGenerationRequest, proto.StartAutonomousGenerationResponse](
+			httpClient,
+			baseURL+StoryboardServiceStartAutonomousGenerationProcedure,
+			connect.WithSchema(storyboardServiceStartAutonomousGenerationMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // storyboardServiceClient implements StoryboardServiceClient.
 type storyboardServiceClient struct {
-	loadStoryboard          *connect.Client[proto.LoadStoryboardRequest, proto.LoadStoryboardResponse]
-	updatePanel             *connect.Client[proto.UpdatePanelRequest, proto.UpdatePanelResponse]
-	saveStoryboard          *connect.Client[proto.SaveStoryboardRequest, proto.SaveStoryboardResponse]
-	getEpisodes             *connect.Client[proto.GetEpisodesRequest, proto.GetEpisodesResponse]
-	getEpisodePanels        *connect.Client[proto.GetEpisodePanelsRequest, proto.GetEpisodePanelsResponse]
-	streamUpdates           *connect.Client[proto.StreamUpdatesRequest, proto.StreamUpdatesResponse]
-	generatePanelImage      *connect.Client[proto.GeneratePanelImageRequest, proto.GeneratePanelImageResponse]
-	generateDialogue        *connect.Client[proto.GenerateDialogueRequest, proto.GenerateDialogueResponse]
-	generateScenario        *connect.Client[proto.GenerateScenarioRequest, proto.GenerateScenarioResponse]
-	generateEpisode         *connect.Client[proto.GenerateEpisodeRequest, proto.GenerateEpisodeResponse]
-	refineCharacters        *connect.Client[proto.RefineCharactersRequest, proto.RefineCharactersResponse]
-	generateCinematicSketch *connect.Client[proto.GenerateCinematicSketchRequest, proto.GenerateCinematicSketchResponse]
-	interactWithAI          *connect.Client[proto.InteractWithAIRequest, proto.InteractWithAIResponse]
+	loadStoryboard            *connect.Client[proto.LoadStoryboardRequest, proto.LoadStoryboardResponse]
+	updatePanel               *connect.Client[proto.UpdatePanelRequest, proto.UpdatePanelResponse]
+	saveStoryboard            *connect.Client[proto.SaveStoryboardRequest, proto.SaveStoryboardResponse]
+	getEpisodes               *connect.Client[proto.GetEpisodesRequest, proto.GetEpisodesResponse]
+	getEpisodePanels          *connect.Client[proto.GetEpisodePanelsRequest, proto.GetEpisodePanelsResponse]
+	streamUpdates             *connect.Client[proto.StreamUpdatesRequest, proto.StreamUpdatesResponse]
+	generatePanelImage        *connect.Client[proto.GeneratePanelImageRequest, proto.GeneratePanelImageResponse]
+	generateDialogue          *connect.Client[proto.GenerateDialogueRequest, proto.GenerateDialogueResponse]
+	generateScenario          *connect.Client[proto.GenerateScenarioRequest, proto.GenerateScenarioResponse]
+	generateEpisode           *connect.Client[proto.GenerateEpisodeRequest, proto.GenerateEpisodeResponse]
+	refineCharacters          *connect.Client[proto.RefineCharactersRequest, proto.RefineCharactersResponse]
+	generateCinematicSketch   *connect.Client[proto.GenerateCinematicSketchRequest, proto.GenerateCinematicSketchResponse]
+	interactWithAI            *connect.Client[proto.InteractWithAIRequest, proto.InteractWithAIResponse]
+	startAutonomousGeneration *connect.Client[proto.StartAutonomousGenerationRequest, proto.StartAutonomousGenerationResponse]
 }
 
 // LoadStoryboard calls gftd.ghosthacker.storyboard.v1.StoryboardService.LoadStoryboard.
@@ -298,6 +311,12 @@ func (c *storyboardServiceClient) InteractWithAI(ctx context.Context, req *conne
 	return c.interactWithAI.CallUnary(ctx, req)
 }
 
+// StartAutonomousGeneration calls
+// gftd.ghosthacker.storyboard.v1.StoryboardService.StartAutonomousGeneration.
+func (c *storyboardServiceClient) StartAutonomousGeneration(ctx context.Context, req *connect.Request[proto.StartAutonomousGenerationRequest]) (*connect.Response[proto.StartAutonomousGenerationResponse], error) {
+	return c.startAutonomousGeneration.CallUnary(ctx, req)
+}
+
 // StoryboardServiceHandler is an implementation of the
 // gftd.ghosthacker.storyboard.v1.StoryboardService service.
 type StoryboardServiceHandler interface {
@@ -327,6 +346,8 @@ type StoryboardServiceHandler interface {
 	GenerateCinematicSketch(context.Context, *connect.Request[proto.GenerateCinematicSketchRequest]) (*connect.Response[proto.GenerateCinematicSketchResponse], error)
 	// Interact with AI assistant for chat-based editing and generation
 	InteractWithAI(context.Context, *connect.Request[proto.InteractWithAIRequest]) (*connect.Response[proto.InteractWithAIResponse], error)
+	// Start autonomous agent-to-agent generation workflow
+	StartAutonomousGeneration(context.Context, *connect.Request[proto.StartAutonomousGenerationRequest]) (*connect.Response[proto.StartAutonomousGenerationResponse], error)
 }
 
 // NewStoryboardServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -413,6 +434,12 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 		connect.WithSchema(storyboardServiceInteractWithAIMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	storyboardServiceStartAutonomousGenerationHandler := connect.NewUnaryHandler(
+		StoryboardServiceStartAutonomousGenerationProcedure,
+		svc.StartAutonomousGeneration,
+		connect.WithSchema(storyboardServiceStartAutonomousGenerationMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/gftd.ghosthacker.storyboard.v1.StoryboardService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case StoryboardServiceLoadStoryboardProcedure:
@@ -441,6 +468,8 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 			storyboardServiceGenerateCinematicSketchHandler.ServeHTTP(w, r)
 		case StoryboardServiceInteractWithAIProcedure:
 			storyboardServiceInteractWithAIHandler.ServeHTTP(w, r)
+		case StoryboardServiceStartAutonomousGenerationProcedure:
+			storyboardServiceStartAutonomousGenerationHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -500,4 +529,8 @@ func (UnimplementedStoryboardServiceHandler) GenerateCinematicSketch(context.Con
 
 func (UnimplementedStoryboardServiceHandler) InteractWithAI(context.Context, *connect.Request[proto.InteractWithAIRequest]) (*connect.Response[proto.InteractWithAIResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.InteractWithAI is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) StartAutonomousGeneration(context.Context, *connect.Request[proto.StartAutonomousGenerationRequest]) (*connect.Response[proto.StartAutonomousGenerationResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.StartAutonomousGeneration is not implemented"))
 }
