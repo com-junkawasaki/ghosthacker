@@ -28,8 +28,7 @@
       "@id": "character:Nei",
       "gh:roleAtOrg": "転校生（2年B組）",
       "gh:ageAtTime": 14,
-      "gh:description": "謎の転校生として現れた。実はAIプロトタイプで、人間の学校生活を観察するために派遣された。",
-      "gh:trueNature": "AI/Android Prototype (v0.8)"
+      "gh:description": "謎の転校生として現れた。転校の理由を誰にも話さない。静かで観察力が鋭い。"
     },
     {
       "@id": "character:HiroshiTanaka",

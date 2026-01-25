@@ -10,14 +10,14 @@
   },
   "@id": "character:Nei",
   "schema:name": "Nei",
-  "schema:role": "AI Partner / Android",
+  "schema:role": "Ghost Hacker Partner",
   "schema:age": 16,
   "gh:appearance": {
-    "gh:face": "16-year-old stunningly beautiful Japanese female android, intelligent and mischievous sharp eyes with glowing blue intricate iris patterns.",
+    "gh:face": "16-year-old stunningly beautiful Japanese female, intelligent and mischievous sharp eyes with striking blue irises.",
     "gh:hair": "Platinum blonde layered bob hair.",
     "gh:build": "Slender, wearing a white long-sleeve blouse and black sleeveless dress.",
-    "gh:eyes": "Intelligent glowing blue irises with complex mechanical-like patterns, bright crystalline catchlights.",
-    "gh:style": "Photorealistic, cinematic soft lighting, high-end android aesthetic, 8k.",
-    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, beautiful 16-year-old Japanese female android, platinum blonde layered bob, glowing blue irises with intricate mechanical patterns and sharp catchlights, white blouse, black dress."
+    "gh:eyes": "Intelligent striking blue irises, bright crystalline catchlights, sharp perceptive gaze.",
+    "gh:style": "Photorealistic, cinematic soft lighting, 8k.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, beautiful 16-year-old Japanese female, platinum blonde layered bob, striking blue irises and sharp catchlights, white blouse, black dress."
   }
 }
