@@ -64,8 +64,6 @@ func handleGenerateDialogueAndCinematics(ctx context.Context, req mcp.CallToolRe
 			continue
 		}
 		
-		// incidentDesc, _ := episode["gh:incidentDescription"].(string)
-		
 		pages := episode["gh:pages"].([]interface{})
 		for _, pg := range pages {
 			page := pg.(map[string]interface{})
@@ -81,47 +79,44 @@ func handleGenerateDialogueAndCinematics(ctx context.Context, req mcp.CallToolRe
 				shot, _ := panel["shot"].(string)
 				chars, _ := panel["characters"].([]interface{})
 
-				// 1. Dialogue Coach Logic (Character-Specific)
-				if dialogues, ok := panel["dialogue"].([]interface{}); ok && len(dialogues) == 0 {
-					newDialogues := []interface{}{}
-					
-					// Determine speaker based on characters in panel
+				// 1. Dialogue Coach Logic (Update existing or generate new)
+				dialogues, ok := panel["dialogue"].([]interface{})
+				if !ok || len(dialogues) == 0 {
+					// Generate new if empty
 					mainSpeaker := "character:Ren"
 					if len(chars) > 0 {
 						mainSpeaker = chars[0].(string)
 					}
-
-					// Generate dialogue based on character voice traits
-					text := ""
-					delivery := ""
-					subtext := ""
-
-					switch mainSpeaker {
-					case "character:Ren":
-						text = "……あー。まあ、やるか。順番に消してくだけだし。"
-						delivery = "椅子に深く沈み込み、気怠げに視線だけをモニターに向ける。"
-						subtext = "面倒だが、技術的な興味は失っていない。"
-					case "character:Nei":
-						text = "結論から言います。パッチ未適用。これが全ての原因です。"
-						delivery = "タブレットを指し示し、一切の感情を排した冷静なトーンで。"
-						subtext = "Renを動かすための事実提示。"
-					default:
-						text = "（沈黙）"
-						delivery = "ARIAの光の中で、静かに佇む。"
-						subtext = "状況の推移を見守る。"
+					
+					text, delivery, subtext, emotion := getCharacterDefaults(mainSpeaker, visual)
+					panel["dialogue"] = []interface{}{
+						map[string]interface{}{
+							"speaker":     mainSpeaker,
+							"text":        text,
+							"gh:delivery": delivery,
+							"gh:subtext":  subtext,
+							"gh:emotion":   emotion,
+						},
 					}
-
-					newDialogues = append(newDialogues, map[string]interface{}{
-						"speaker": mainSpeaker,
-						"text":    text,
-						"gh:delivery": delivery,
-						"gh:subtext": subtext,
-					})
-					panel["dialogue"] = newDialogues
+				} else {
+					// Update existing dialogues
+					for i, d := range dialogues {
+						diag := d.(map[string]interface{})
+						speaker, _ := diag["speaker"].(string)
+						
+						// Fill missing fields
+						if _, exists := diag["gh:delivery"]; !exists || diag["gh:delivery"] == "" {
+							_, delivery, subtext, emotion := getCharacterDefaults(speaker, visual)
+							diag["gh:delivery"] = delivery
+							diag["gh:subtext"] = subtext
+							diag["gh:emotion"] = emotion
+						}
+						dialogues[i] = diag
+					}
+					panel["dialogue"] = dialogues
 				}
 
 				// 2. Cinematic Sketcher Logic (ARIA Base)
-				// Enhance prompt with incident context and character details
 				charContext := ""
 				if len(chars) > 0 {
 					charNames := []string{}
@@ -145,8 +140,34 @@ func handleGenerateDialogueAndCinematics(ctx context.Context, req mcp.CallToolRe
 	os.WriteFile(storyboardPath, updatedData, 0644)
 
 	return &mcp.CallToolResult{
-		Content: []mcp.Content{mcp.TextContent{Type: "text", Text: fmt.Sprintf("Successfully processed %d panels for %s (Pages %d-%d) with high-quality dialogue and ARIA prompts.", count, epID, int(startPage), int(endPage))}},
+		Content: []mcp.Content{mcp.TextContent{Type: "text", Text: fmt.Sprintf("Successfully updated %d panels for %s (Pages %d-%d) with full dialogue elements (delivery, emotion, subtext) and ARIA prompts.", count, epID, int(startPage), int(endPage))}},
 	}, nil
+}
+
+func getCharacterDefaults(speaker, visual string) (text, delivery, subtext, emotion string) {
+	switch speaker {
+	case "character:Ren":
+		text = "……あー。まあ、やるか。順番に消してくだけだし。"
+		delivery = "椅子に深く沈み込み、気怠げに視線だけをモニターに向ける。"
+		subtext = "面倒だが、技術的な興味は失っていない。"
+		emotion = "neutral"
+	case "character:Nei":
+		text = "結論から言います。パッチ未適用。これが全ての原因です。"
+		delivery = "タブレットを指し示し、一切の感情を排した冷静なトーンで。"
+		subtext = "Renを動かすための事実提示。"
+		emotion = "calm"
+	case "character:Yuto":
+		text = "……嘘だろ。全部、消えた……？"
+		delivery = "震える手でスマホを握りしめ、青ざめた顔で画面を見つめる。"
+		subtext = "現実を受け入れられない絶望。"
+		emotion = "despair"
+	default:
+		text = "（沈黙）"
+		delivery = "ARIAの光の中で、静かに佇む。"
+		subtext = "状況の推移を見守る。"
+		emotion = "neutral"
+	}
+	return
 }
 
 func handleGenerateAllMissingAriaPrompts(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {

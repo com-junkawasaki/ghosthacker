@@ -858,10 +858,25 @@ func (s *StoryboardService) AnalyzeStructure(
 
 	validation := ValidateEpisodeStructure(episode)
 
+	readingUnits := 0
+	if ru, ok := validation.Metrics["readingUnits"].(int); ok {
+		readingUnits = ru
+	}
+
+	dialogueRatio := 0.0
+	if dr, ok := validation.Metrics["dialogueRatio"].(float64); ok {
+		dialogueRatio = dr
+	}
+
+	beatCount := 0
+	if beats, ok := episode["gh:beats"].([]interface{}); ok {
+		beatCount = len(beats)
+	}
+
 	metrics := &storyboardpb.StructuralMetrics{
-		ReadingUnits:     int32(validation.Metrics["readingUnits"].(int)),
-		DialogueRatio:    float32(validation.Metrics["dialogueRatio"].(float64)),
-		BeatCount:        int32(len(episode["gh:beats"].([]interface{}))),
+		ReadingUnits:     int32(readingUnits),
+		DialogueRatio:    float32(dialogueRatio),
+		BeatCount:        int32(beatCount),
 		PanelCount:       int32(countTotalPanels(episode)),
 		ValidationErrors: validation.Errors,
 	}
