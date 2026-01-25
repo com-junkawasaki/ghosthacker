@@ -156,30 +156,52 @@ func (s *StoryboardService) GeneratePanelImage(
 }
 
 func (s *StoryboardService) preUpdateStoryboard(filePath, episodeID string, pageNumber, panel int32, urlPath, prompt string) {
-	storyboard, err := s.validateAndLoad(filePath)
+	// Find and update the individual episode file, not the master storyboard
+	episodeFilePath, err := s.getEpisodeFilePath(filePath, episodeID)
 	if err != nil {
-		log.Printf("preUpdateStoryboard: failed to load: %v", err)
+		log.Printf("preUpdateStoryboard: failed to find episode file: %v", err)
 		return
 	}
 
-	s.updatePanelInMap(storyboard, episodeID, pageNumber, panel, func(p map[string]interface{}) {
+	episodeData, err := s.loadEpisodeFile(episodeFilePath)
+	if err != nil {
+		log.Printf("preUpdateStoryboard: failed to load episode file %s: %v", episodeFilePath, err)
+		return
+	}
+
+	updated := s.updatePanelInEpisode(episodeData, pageNumber, panel, func(p map[string]interface{}) {
 		p["gh:generatedImageUrl"] = urlPath
 		p["generatedImageUrl"] = urlPath
 		p["gh:imagePrompt"] = prompt
 	})
 
-	updatedContent, _ := json.MarshalIndent(storyboard, "", "  ")
-	os.WriteFile(filePath, updatedContent, fs.FileMode(0644))
-}
-
-func (s *StoryboardService) finalUpdateStoryboard(filePath, episodeID string, pageNumber, panel int32, genImg *storyboardpb.GeneratedImage) {
-	storyboard, err := s.validateAndLoad(filePath)
-	if err != nil {
-		log.Printf("finalUpdateStoryboard: failed to load: %v", err)
+	if !updated {
+		log.Printf("preUpdateStoryboard: panel not found (episode=%s, page=%d, panel=%d)", episodeID, pageNumber, panel)
 		return
 	}
 
-	s.updatePanelInMap(storyboard, episodeID, pageNumber, panel, func(p map[string]interface{}) {
+	updatedContent, _ := json.MarshalIndent(episodeData, "", "  ")
+	if err := os.WriteFile(episodeFilePath, updatedContent, fs.FileMode(0644)); err != nil {
+		log.Printf("preUpdateStoryboard: failed to write episode file: %v", err)
+	}
+	log.Printf("preUpdateStoryboard: updated episode file %s", episodeFilePath)
+}
+
+func (s *StoryboardService) finalUpdateStoryboard(filePath, episodeID string, pageNumber, panel int32, genImg *storyboardpb.GeneratedImage) {
+	// Find and update the individual episode file, not the master storyboard
+	episodeFilePath, err := s.getEpisodeFilePath(filePath, episodeID)
+	if err != nil {
+		log.Printf("finalUpdateStoryboard: failed to find episode file: %v", err)
+		return
+	}
+
+	episodeData, err := s.loadEpisodeFile(episodeFilePath)
+	if err != nil {
+		log.Printf("finalUpdateStoryboard: failed to load episode file %s: %v", episodeFilePath, err)
+		return
+	}
+
+	updated := s.updatePanelInEpisode(episodeData, pageNumber, panel, func(p map[string]interface{}) {
 		p["gh:generatedImageUrl"] = genImg.ImageUrl
 		p["generatedImageUrl"] = genImg.ImageUrl
 		
@@ -229,8 +251,16 @@ func (s *StoryboardService) finalUpdateStoryboard(filePath, episodeID string, pa
 		p["gh:currentImageIndex"] = len(history) - 1
 	})
 
-	updatedContent, _ := json.MarshalIndent(storyboard, "", "  ")
-	os.WriteFile(filePath, updatedContent, fs.FileMode(0644))
+	if !updated {
+		log.Printf("finalUpdateStoryboard: panel not found (episode=%s, page=%d, panel=%d)", episodeID, pageNumber, panel)
+		return
+	}
+
+	updatedContent, _ := json.MarshalIndent(episodeData, "", "  ")
+	if err := os.WriteFile(episodeFilePath, updatedContent, fs.FileMode(0644)); err != nil {
+		log.Printf("finalUpdateStoryboard: failed to write episode file: %v", err)
+	}
+	log.Printf("finalUpdateStoryboard: updated episode file %s with generated image", episodeFilePath)
 }
 
 func (s *StoryboardService) updatePanelInMap(storyboard map[string]interface{}, episodeID string, pageNumber, panel int32, updateFn func(map[string]interface{})) {
@@ -280,6 +310,111 @@ func (s *StoryboardService) updatePanelInMap(storyboard map[string]interface{}, 
 			}
 		}
 	}
+}
+
+// getEpisodeFilePath finds the episode's source file path from the master storyboard
+func (s *StoryboardService) getEpisodeFilePath(masterFilePath, episodeID string) (string, error) {
+	content, err := os.ReadFile(masterFilePath)
+	if err != nil {
+		return "", fmt.Errorf("failed to read master storyboard: %w", err)
+	}
+
+	var master map[string]interface{}
+	if err := json.Unmarshal(content, &master); err != nil {
+		return "", fmt.Errorf("failed to parse master storyboard: %w", err)
+	}
+
+	episodes, ok := master["gh:episodes"].([]interface{})
+	if !ok {
+		return "", fmt.Errorf("master storyboard has no gh:episodes")
+	}
+
+	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
+	if workspaceRoot == "" {
+		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(masterFilePath))))
+	}
+
+	for _, e := range episodes {
+		episode, ok := e.(map[string]interface{})
+		if !ok {
+			continue
+		}
+
+		epID, _ := episode["gh:episodeId"].(string)
+		if epID != episodeID {
+			continue
+		}
+
+		sourceFile, ok := episode["gh:sourceFile"].(string)
+		if !ok {
+			return "", fmt.Errorf("episode %s has no gh:sourceFile", episodeID)
+		}
+
+		// sourceFile is relative to resources/ directory
+		fullPath := filepath.Join(workspaceRoot, "260123-jump/resources", sourceFile)
+		return fullPath, nil
+	}
+
+	return "", fmt.Errorf("episode %s not found in master storyboard", episodeID)
+}
+
+// loadEpisodeFile loads an individual episode file
+func (s *StoryboardService) loadEpisodeFile(filePath string) (map[string]interface{}, error) {
+	content, err := os.ReadFile(filePath)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read episode file: %w", err)
+	}
+
+	var data map[string]interface{}
+	if err := json.Unmarshal(content, &data); err != nil {
+		return nil, fmt.Errorf("failed to parse episode file: %w", err)
+	}
+
+	return data, nil
+}
+
+// updatePanelInEpisode updates a panel in an individual episode file
+// Episode files have gh:pages at the root level (not inside gh:episodes)
+func (s *StoryboardService) updatePanelInEpisode(episode map[string]interface{}, pageNumber, panel int32, updateFn func(map[string]interface{})) bool {
+	pages, ok := episode["gh:pages"].([]interface{})
+	if !ok {
+		log.Printf("updatePanelInEpisode: no gh:pages found in episode")
+		return false
+	}
+
+	for _, pg := range pages {
+		page, ok := pg.(map[string]interface{})
+		if !ok {
+			continue
+		}
+
+		pNum, _ := page["gh:pageNumber"].(float64)
+		if int32(pNum) != pageNumber {
+			continue
+		}
+
+		panels, ok := page["gh:panels"].([]interface{})
+		if !ok {
+			log.Printf("updatePanelInEpisode: no gh:panels found in page %d", pageNumber)
+			continue
+		}
+
+		for _, p := range panels {
+			pMap, ok := p.(map[string]interface{})
+			if !ok {
+				continue
+			}
+
+			pIdx, _ := pMap["panel"].(float64)
+			if int32(pIdx) == panel {
+				updateFn(pMap)
+				log.Printf("updatePanelInEpisode: updated panel %d on page %d", panel, pageNumber)
+				return true
+			}
+		}
+	}
+
+	return false
 }
 
 func (s *StoryboardService) callOpenRouterAPI(ctx context.Context, apiKey, prompt string) (string, error) {

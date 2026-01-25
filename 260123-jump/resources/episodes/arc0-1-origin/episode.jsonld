@@ -151,23 +151,69 @@
       "gh:pageNumber": 0,
       "gh:act": "act:0-pretitle",
       "gh:pageTitle": "プレタイトル - 通知",
+      "gh:panelCount": 4,
       "gh:panels": [
         {
           "panel": 1,
-          "shot": "Close Up",
+          "shot": "Wide Shot",
           "environment": "env:yuto-bedroom",
-          "characters": ["character:Yuto"],
-          "visual": "夜。Yutoの部屋。ベッドに寝転がりながらスマホを見ている。画面に通知が光る。",
+          "characters": [],
+          "visual": "夜。Yutoの部屋全景。暗い部屋にベッドだけが見える。窓からわずかな街灯の光。",
           "dialogue": [],
           "gh:shotProperties": {
-            "gh:distance": "Close Up",
+            "gh:distance": "Wide Shot",
             "gh:angle": "high angle",
+            "gh:lens": "24mm",
+            "gh:aperture": "f/2.8",
+            "gh:lighting": "街灯のわずかな光、深い闇",
+            "gh:atmosphere": "静寂、孤独"
+          },
+          "gh:imagePrompt": "Wide Shot, cinematic. Dark bedroom at night. Bed barely visible. Faint streetlight through window. Silence and solitude. shot on 24mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "ベッドに寝転がるYuto。スマホの画面が顔を照らす。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8",
-            "gh:lighting": "スマホの画面光が顔を照らす、暗い部屋",
-            "gh:atmosphere": "静寂、夜の孤独感"
+            "gh:lighting": "スマホの青白い光"
           },
-          "gh:imagePrompt": "Close Up, cinematic. 14-year-old Japanese boy lying in bed at night, smartphone light illuminating his face. Notification badge glowing. Dark bedroom. shot on 50mm, f/1.8, cinematic live-action."
+          "gh:imagePrompt": "Medium Shot. 14-year-old Japanese boy lying in bed, smartphone light illuminating his face. Dark bedroom. shot on 50mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 3,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "スマホ画面のアップ。SNSのタイムライン。通知バッジが光る。「限定商品入荷！」の広告。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Smartphone screen close-up. SNS timeline. Notification badge glowing red. Ad banner: 'Limited Edition Available!' Japanese text."
+        },
+        {
+          "panel": 4,
+          "shot": "Extreme Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoの目だけのアップ。通知を見て、わずかに目が見開く。欲望の始まり。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Extreme Close Up",
+            "gh:angle": "eye level",
+            "gh:lens": "100mm macro",
+            "gh:aperture": "f/1.4",
+            "gh:lighting": "スマホの反射光が瞳に映る"
+          },
+          "gh:imagePrompt": "Extreme Close Up. Japanese boy's eyes only. Eyes slightly widening at notification. Smartphone light reflecting in pupils. Beginning of desire. shot on 100mm macro, f/1.4, cinematic live-action."
         }
       ]
     },
@@ -227,20 +273,54 @@
       "gh:pageNumber": 3,
       "gh:act": "act:1-daily-temptation",
       "gh:pageTitle": "教室 - 日常会話",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
           "panel": 1,
           "shot": "Wide Shot",
           "environment": "env:middle-school-classroom",
-          "characters": ["character:Yuto", "character:Mei", "character:Akira"],
-          "visual": "休憩時間の教室。Meiが伸びをしながら話す。Akiraが限定品（スニーカー）を自慢げに見せている。",
+          "characters": ["character:Yuto", "character:Mei", "character:Akira", "character:Classmate_A", "character:Classmate_B"],
+          "visual": "休憩時間の教室全景。生徒たちが机を囲んで和やかに話している。窓から柔らかい光。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "slightly high",
+            "gh:lens": "24mm",
+            "gh:aperture": "f/4",
+            "gh:lighting": "soft diffused daylight",
+            "gh:atmosphere": "ARIA-style: luminous, clean"
+          },
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Middle school classroom during break. Japanese students in navy blazer uniforms gathered around desks. Soft window light. luminous atmosphere. shot on 24mm, f/4, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Mei"],
+          "visual": "Meiが椅子にだらっともたれ、伸びをしている。",
           "dialogue": [
             {
               "speaker": "Mei",
               "text": "今日さ、体育ないの神〜",
               "gh:emotion": "relief",
               "gh:delivery": "だらっと伸びながら"
-            },
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.8"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese middle school girl stretching lazily in chair. Relaxed, happy expression. Navy blazer uniform. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Akira"],
+          "visual": "Akiraが得意げにスニーカーを見せびらかす。",
+          "dialogue": [
             {
               "speaker": "Akira",
               "text": "見てこれ！限定モデル、やっとゲットしたわ",
@@ -249,21 +329,57 @@
             }
           ],
           "gh:shotProperties": {
-            "gh:distance": "Wide Shot",
+            "gh:distance": "Medium Shot",
             "gh:angle": "eye level",
-            "gh:lens": "35mm",
-            "gh:aperture": "f/2.8",
-            "gh:lighting": "soft diffused daylight",
-            "gh:atmosphere": "ARIA-style: luminous, clean"
+            "gh:lens": "50mm",
+            "gh:aperture": "f/2.8"
           },
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Middle school classroom during break. Japanese students in navy blazer uniforms. One girl stretching happily, one boy showing off limited edition sneakers. Yuto watching with envy. luminous atmosphere, soft diffused natural light. shot on 35mm, f/2.8, cinematic live-action."
+          "gh:imagePrompt": "Medium Shot. Japanese middle school boy proudly showing off limited edition sneakers. Smug expression. Navy blazer uniform. shot on 50mm, f/2.8, cinematic live-action."
         },
         {
-          "panel": 2,
+          "panel": 4,
+          "shot": "Insert",
+          "environment": "env:middle-school-classroom",
+          "characters": [],
+          "visual": "スニーカーのアップ。ブランドロゴが光る限定モデル。",
+          "dialogue": [
+            {
+              "speaker": "Classmate_A",
+              "text": "うわ、マジ？それ即完売だったやつじゃん！",
+              "gh:emotion": "impressed"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "low angle"
+          },
+          "gh:imagePrompt": "Insert shot. Close-up of limited edition sneakers. Brand logo shining. Premium quality visible."
+        },
+        {
+          "panel": 5,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Classmate_A", "character:Classmate_B"],
+          "visual": "周囲のクラスメイトが感心して見ている。",
+          "dialogue": [
+            {
+              "speaker": "Classmate_B",
+              "text": "いいな〜、俺も欲しかったんだよな",
+              "gh:emotion": "envious"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese middle school students looking impressed at sneakers. Envious expressions. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 6,
           "shot": "Medium Close Up",
           "environment": "env:middle-school-classroom",
           "characters": ["character:Yuto"],
-          "visual": "Yutoの羨望の眼差し。",
+          "visual": "Yutoの羨望の眼差し。輪から少し離れた位置で見ている。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -278,7 +394,7 @@
             "gh:lens": "85mm",
             "gh:aperture": "f/2"
           },
-          "gh:imagePrompt": "Medium Close Up. Japanese middle school boy looking enviously at classmate's sneakers. Longing expression. shot on 85mm, f/2, cinematic live-action."
+          "gh:imagePrompt": "Medium Close Up. Japanese middle school boy looking enviously at classmate's sneakers from slight distance. Longing expression. Isolated feeling. shot on 85mm, f/2, cinematic live-action."
         }
       ]
     },
@@ -286,13 +402,14 @@
       "gh:pageNumber": 4,
       "gh:act": "act:1-daily-temptation",
       "gh:pageTitle": "教室続き - Ren/Nei",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
           "panel": 1,
           "shot": "Wide Shot",
           "environment": "env:middle-school-classroom",
           "characters": ["character:RenMiddleSchool", "character:NeiMiddleSchool"],
-          "visual": "教室の隅。Renは気怠げに机に突っ伏している。Neiは窓際で本を読んでいる。",
+          "visual": "教室の隅。賑やかなグループとは離れた静かな空間。Renは机に突っ伏し、Neiは窓際。",
           "dialogue": [],
           "gh:shotProperties": {
             "gh:distance": "Wide Shot",
@@ -300,16 +417,43 @@
             "gh:lens": "35mm",
             "gh:aperture": "f/2.8",
             "gh:lighting": "窓からの自然光",
-            "gh:atmosphere": "静謐"
+            "gh:atmosphere": "静謐、二人だけの世界"
           },
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Corner of middle school classroom. One boy (Ren) slumped lazily on desk. One girl (Nei) reading by window. Separate from the group. luminous atmosphere. shot on 35mm, f/2.8, cinematic live-action."
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Corner of middle school classroom. One boy (Ren) slumped lazily on desk. One girl (Nei) reading by window. Separate from the noisy group. Quiet bubble. luminous atmosphere. shot on 35mm, f/2.8, cinematic live-action."
         },
         {
           "panel": 2,
           "shot": "Medium Shot",
           "environment": "env:middle-school-classroom",
           "characters": ["character:RenMiddleSchool"],
-          "visual": "Renが欠伸をする。",
+          "visual": "机に突っ伏したRen。目だけ開いている。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "low angle from desk level"
+          },
+          "gh:imagePrompt": "Medium Shot, low angle from desk level. Japanese middle school boy slumped on desk, only eyes visible, half-open. Lazy posture. Navy blazer uniform. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "窓際で本を読むNei。穏やかな光に包まれている。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level",
+            "gh:lighting": "窓からの逆光、輪郭が光る"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese middle school girl reading book by window. Backlit by soft window light. Serene expression. Navy blazer uniform. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 4,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renが大きく欠伸をする。",
           "dialogue": [
             {
               "speaker": "Ren",
@@ -319,10 +463,23 @@
             }
           ],
           "gh:shotProperties": {
-            "gh:distance": "Medium Shot",
+            "gh:distance": "Close Up",
             "gh:angle": "eye level"
           },
-          "gh:imagePrompt": "Medium Shot. Japanese middle school boy yawning lazily at desk. Bored expression. Navy blazer uniform. shot on 50mm, f/2.8, cinematic live-action."
+          "gh:imagePrompt": "Close Up. Japanese middle school boy yawning widely. Bored expression. shot on 85mm, f/2, cinematic live-action."
+        },
+        {
+          "panel": 5,
+          "shot": "Insert",
+          "environment": "env:middle-school-classroom",
+          "characters": [],
+          "visual": "窓の外。青い空と雲。平和な日常の象徴。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "looking up"
+          },
+          "gh:imagePrompt": "Insert shot. View through classroom window. Blue sky and white clouds. Symbol of peaceful everyday life."
         }
       ]
     },
@@ -330,13 +487,59 @@
       "gh:pageNumber": 5,
       "gh:act": "act:1-daily-temptation",
       "gh:pageTitle": "夜ベッド - 偽サイト発見",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
           "panel": 1,
+          "shot": "Wide Shot",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "夜。暗いYutoの部屋全景。ベッドに寝転がるYuto、スマホの光だけが部屋を照らす。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "high angle",
+            "gh:lens": "24mm",
+            "gh:aperture": "f/2.8",
+            "gh:lighting": "スマホの青白い光のみ",
+            "gh:atmosphere": "夜の孤独、静寂"
+          },
+          "gh:imagePrompt": "Wide Shot, high angle. Dark bedroom at night. Japanese boy lying in bed, only smartphone light illuminating the room. Solitude. shot on 24mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
           "shot": "Close Up",
           "environment": "env:yuto-bedroom",
           "characters": ["character:Yuto"],
-          "visual": "夜。ベッドでスマホをスクロールするYuto。SNS広告で「ワクワク電気」の激安商品を発見。",
+          "visual": "スマホをスクロールする指。画面の光が顔に反射。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "over shoulder",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8"
+          },
+          "gh:imagePrompt": "Close Up, over shoulder. Finger scrolling smartphone screen. Blue light reflecting on Japanese boy's face. Night bedroom. shot on 50mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 3,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "SNSタイムラインをスクロール中。広告バナーが現れる。「緊急入荷！」の文字。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. SNS timeline scrolling. Ad banner appearing: 'Emergency Stock!' Attention-grabbing design. Japanese text."
+        },
+        {
+          "panel": 4,
+          "shot": "Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoの目が見開く。驚きの表情。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -346,31 +549,49 @@
           ],
           "gh:shotProperties": {
             "gh:distance": "Close Up",
-            "gh:angle": "over shoulder",
-            "gh:lens": "50mm",
-            "gh:aperture": "f/1.8",
-            "gh:lighting": "スマホ画面の青白い光"
+            "gh:angle": "eye level",
+            "gh:lens": "85mm",
+            "gh:aperture": "f/1.8"
           },
-          "gh:imagePrompt": "Close Up, over shoulder. Japanese boy in bed at night, smartphone illuminating face. Excited expression seeing cheap price. Dark room, phone glow. shot on 50mm, f/1.8, cinematic live-action."
+          "gh:imagePrompt": "Close Up. Japanese boy's face, eyes widening in surprise. Smartphone light on face. Excited discovery. shot on 85mm, f/1.8, cinematic live-action."
         },
         {
-          "panel": 2,
+          "panel": 5,
           "shot": "Insert",
           "environment": "env:smartphone-screen",
           "characters": [],
-          "visual": "スマホ画面。「ワクワク電気」偽サイト。「緊急入荷！80%OFF！時間限定」の文字。",
+          "visual": "「ワクワク電気」偽サイトの商品ページ。Akiraが見せたのと同じスニーカー。80%OFF。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Fake shopping site 'Wakuwaku Denki' product page. Same limited edition sneakers. '80% OFF!' Price too good to be true. Japanese text."
+        },
+        {
+          "panel": 6,
+          "shot": "Medium Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "画面を見つめるYuto。欲望と焦りが入り混じった表情。",
           "dialogue": [
             {
               "speaker": "Yuto",
               "text": "時間限定…？マジか…",
               "gh:emotion": "tempted"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "（今買わないと、なくなる…！）",
+              "gh:emotion": "urgency",
+              "gh:isThought": true
             }
           ],
           "gh:shotProperties": {
-            "gh:distance": "Insert",
-            "gh:angle": "flat"
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level"
           },
-          "gh:imagePrompt": "Insert shot. Smartphone screen showing fake shopping site 'Wakuwaku Denki'. '80% OFF! Limited Time!' banner. Too-good-to-be-true prices. Japanese text."
+          "gh:imagePrompt": "Medium Close Up. Japanese boy staring at phone screen. Mix of desire and urgency on face. Night bedroom. shot on 50mm, f/1.8, cinematic live-action."
         }
       ]
     },
@@ -378,23 +599,19 @@
       "gh:pageNumber": 6,
       "gh:act": "act:1-daily-temptation",
       "gh:pageTitle": "葛藤",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
           "panel": 1,
           "shot": "Medium Close Up",
           "environment": "env:yuto-bedroom",
           "characters": ["character:Yuto"],
-          "visual": "Yutoの葛藤する表情。",
+          "visual": "Yutoの葛藤する表情。唇を噛んでいる。",
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "怪しいけど…でも大手っぽいし…",
-              "gh:emotion": "conflicted"
-            },
-            {
-              "speaker": "Yuto",
-              "text": "レビューもいいし…大丈夫だよな…",
-              "gh:emotion": "rationalizing"
+              "text": "怪しいけど…",
+              "gh:emotion": "suspicious"
             }
           ],
           "gh:shotProperties": {
@@ -403,16 +620,78 @@
             "gh:lens": "85mm",
             "gh:aperture": "f/1.8"
           },
-          "gh:imagePrompt": "Medium Close Up. Japanese boy's face showing internal conflict. Biting lip, eyes on phone. Night bedroom lighting. shot on 85mm, f/1.8, cinematic live-action."
+          "gh:imagePrompt": "Medium Close Up. Japanese boy's face showing suspicion. Biting lip. Night bedroom lighting. shot on 85mm, f/1.8, cinematic live-action."
         },
         {
           "panel": 2,
           "shot": "Insert",
           "environment": "env:smartphone-screen",
           "characters": [],
-          "visual": "スマホ画面。5つ星レビューが並ぶ（すべて偽）。",
+          "visual": "サイトのロゴ。大手っぽいデザイン。「安心のカスタマーサポート」の文字。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "でも大手っぽいし…",
+              "gh:emotion": "rationalizing"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Fake site logo. Professional-looking design. 'Reliable Customer Support' text. Deceptively legitimate appearance. Japanese text."
+        },
+        {
+          "panel": 3,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "5つ星レビューがずらりと並ぶ。「最高！」「すぐ届いた！」「本物でした！」（全て偽）",
           "dialogue": [],
-          "gh:imagePrompt": "Insert shot. Smartphone screen showing fake 5-star reviews. Japanese text. Suspicious but convincing layout."
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Fake 5-star reviews scrolling. 'Amazing!' 'Fast delivery!' 'Authentic!' All fabricated. Japanese text."
+        },
+        {
+          "panel": 4,
+          "shot": "Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "自分を説得するような表情。目がレビューを追っている。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "レビューもいいし…大丈夫だよな…",
+              "gh:emotion": "rationalizing"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy convincing himself. Eyes scanning reviews. Self-rationalization visible on face. shot on 85mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 5,
+          "shot": "Extreme Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "指が画面に触れようとする瞬間。決断の直前。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "（…買おう）",
+              "gh:emotion": "decided",
+              "gh:isThought": true
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Extreme Close Up",
+            "gh:angle": "from below"
+          },
+          "gh:imagePrompt": "Extreme Close Up. Finger hovering over smartphone screen. Moment of decision. About to tap. shot on 100mm macro, f/1.4, cinematic live-action."
         }
       ]
     },
