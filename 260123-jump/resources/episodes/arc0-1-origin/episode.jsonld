@@ -4011,13 +4011,19 @@
           ],
           "environment": "env:smartphone-screen",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/b9Cdz4YCIaxp_v2.png",
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/b9Cdz4YCIaxp_v2.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769356099,
               "gh:imagePrompt": "ぷにNEIのアドバイスカード。「#1 漏えいチェック」. Shot type: Insert. Dialogue: NeiPuni: 【NEIちゃんのアドバイス #1】.",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/b9Cdz4YCIaxp_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            },
+            {
+              "gh:generatedAt": 1769356122,
+              "gh:imagePrompt": "ぷにNEIのアドバイスカード。「#1 漏えいチェック」. Shot type: Insert. Dialogue: NeiPuni: 【NEIちゃんのアドバイス #1】.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/b9Cdz4YCIaxp_v2.png",
               "gh:model": "bytedance-seed/seedream-4.5"
             }
           ],
@@ -4031,6 +4037,7 @@
           "visual": "ぷにNEIのアドバイスカード。「#1 漏えいチェック」"
         },
         {
+          "@id": "panel:znrMGVq4zKBr",
           "characters": [
             "character:NeiMiddleSchool"
           ],
@@ -4042,7 +4049,18 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese girl explaining, holding up one finger. 'First, make it visible. Check where the leak came from.' shot on 50mm, f/2, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/znrMGVq4zKBr_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/znrMGVq4zKBr_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356137,
+              "gh:imagePrompt": "Neiが説明する。指を立てて。. Characters: Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Close Up. Dialogue: Nei: まず「見える化」。どこから漏れたか確認する。.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/znrMGVq4zKBr_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Neiが説明する。指を立てて。. Characters: Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Close Up. Dialogue: Nei: まず「見える化」。どこから漏れたか確認する。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -4052,10 +4070,13 @@
           "visual": "Neiが説明する。指を立てて。"
         },
         {
+          "@id": "panel:AyqIoEvBdIue",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Breach check website input screen. Email address field. Japanese text.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/AyqIoEvBdIue_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/AyqIoEvBdIue_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 漏えいチェックサイト（Have I Been Pwned風）の入力画面。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -4065,12 +4086,24 @@
           "visual": "漏えいチェックサイト（Have I Been Pwned風）の入力画面。"
         },
         {
+          "@id": "panel:jpxJeOfARjZh",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy watching screen anxiously. Worried about results. shot on 85mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/jpxJeOfARjZh_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/jpxJeOfARjZh_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356136,
+              "gh:imagePrompt": "不安げに画面を見るYuto。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/22/jpxJeOfARjZh_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 不安げに画面を見るYuto。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -4094,10 +4127,22 @@
       "gh:panelCount": 5,
       "gh:panels": [
         {
+          "@id": "panel:Ophs-TIfjvna",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Results screen. Red warning: '5 breaches found'. Alarming display. Japanese text.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/23/Ophs-TIfjvna_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/23/Ophs-TIfjvna_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356136,
+              "gh:imagePrompt": "結果画面。赤い警告。「5件の漏えいが見つかりました」. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/23/Ophs-TIfjvna_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 結果画面。赤い警告。「5件の漏えいが見つかりました」. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -4107,6 +4152,7 @@
           "visual": "結果画面。赤い警告。「5件の漏えいが見つかりました」"
         },
         {
+          "@id": "panel:bpyvsWK6e_mf",
           "characters": [],
           "dialogue": [
             {
@@ -4116,7 +4162,9 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. List of breached services: SNS, game site, shopping site, etc. Multiple compromised accounts. Japanese text.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/23/bpyvsWK6e_mf_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/23/bpyvsWK6e_mf_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 漏えいしたサービスのリスト。SNS、ゲームサイト、通販サイトなど。. Shot type: Insert. Dialogue: Nei: ここに足あとがある。複数のサイトに漏えいしてる。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -4126,6 +4174,7 @@
           "visual": "漏えいしたサービスのリスト。SNS、ゲームサイト、通販サイトなど。"
         },
         {
+          "@id": "panel:rl4hWDLPHU36",
           "characters": [
             "character:Yuto"
           ],
@@ -4137,7 +4186,9 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy shocked. 'This many...' Realizing extent of damage. shot on 50mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/23/rl4hWDLPHU36_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/23/rl4hWDLPHU36_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. ショックを受けるYuto。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Close Up. Dialogue: Yuto: こんなに….. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -4147,6 +4198,7 @@
           "visual": "ショックを受けるYuto。"
         },
         {
+          "@id": "panel:jdYAwZqbOzun",
           "characters": [
             "character:NeiMiddleSchool"
           ],
@@ -4158,7 +4210,9 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl asking calmly. 'Were you reusing the same password?' shot on 50mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/23/jdYAwZqbOzun_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/23/jdYAwZqbOzun_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Neiが冷静に続ける。. Characters: Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Nei: 同じパスワード、使い回してた？.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -4168,6 +4222,7 @@
           "visual": "Neiが冷静に続ける。"
         },
         {
+          "@id": "panel:kOrqnz_I23Of",
           "characters": [
             "character:Yuto"
           ],
@@ -4179,7 +4234,9 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy nodding guiltily. 'Yeah...' Realizing his mistake. shot on 85mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/23/kOrqnz_I23Of_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/23/kOrqnz_I23Of_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 図星のYuto。頷く。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Dialogue: Yuto: …うん….. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
