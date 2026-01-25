@@ -2,16 +2,29 @@
 	import MangaPage from './MangaPage.svelte';
 	import type { Panel, PanelData } from '$lib/gen/proto/storyboard_pb';
 	import type { LayoutTemplate } from '$lib/manga-layouts';
-	import { MANGA_TEMPLATES, applyTemplate } from '$lib/manga-layouts';
+	import { MANGA_TEMPLATES, applyTemplate, getTemplateByName, selectLayoutForPage } from '$lib/manga-layouts';
 	import { PanelDataSchema, MangaLayoutSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
 	import { createEventDispatcher } from 'svelte';
 
-	let { panels = [], episodeId = '', storyboardPath = '', selectedPage = $bindable(1) } = $props<{
+	interface PageLayoutInfo {
+		templateName?: string;
+		category?: string;
+		layoutNote?: string;
+	}
+
+	let { 
+		panels = [], 
+		episodeId = '', 
+		storyboardPath = '', 
+		selectedPage = $bindable(1),
+		pageLayouts = {}
+	} = $props<{
 		panels: Panel[];
 		episodeId?: string;
 		storyboardPath?: string;
 		selectedPage: number;
+		pageLayouts?: Record<number, PageLayoutInfo>;
 	}>();
 
 	const dispatch = createEventDispatcher();
@@ -32,6 +45,46 @@
 
 	let currentPagePanels = $derived(pagesMap[selectedPage] || []);
 	let templates = $derived(MANGA_TEMPLATES[currentPagePanels.length] || []);
+	
+	// Get the stored layout info for the current page
+	let currentPageLayoutInfo = $derived(pageLayouts[selectedPage]);
+	
+	// Check if current page already has layout applied
+	let hasAppliedLayout = $derived(
+		currentPagePanels.length > 0 && 
+		currentPagePanels[0]?.data?.mangaLayout?.panels?.length > 0
+	);
+
+	// Auto-apply layout when page changes and no layout is applied
+	$effect(() => {
+		if (currentPagePanels.length > 0 && !hasAppliedLayout) {
+			autoApplyLayout();
+		}
+	});
+
+	function autoApplyLayout() {
+		if (currentPagePanels.length === 0) return;
+		
+		const panelCount = currentPagePanels.length;
+		let template: LayoutTemplate | undefined;
+		
+		// First try to use the stored template name from episode.jsonld
+		if (currentPageLayoutInfo?.templateName) {
+			template = getTemplateByName(panelCount, currentPageLayoutInfo.templateName);
+		}
+		
+		// If no stored template or not found, auto-select based on context
+		if (!template) {
+			template = selectLayoutForPage(panelCount, {
+				actKeyBeat: currentPageLayoutInfo?.category,
+				hasDialogue: currentPagePanels.some((panel: Panel) => (panel.data?.dialogue?.length ?? 0) > 0)
+			});
+		}
+		
+		if (template) {
+			handleApplyTemplate(template);
+		}
+	}
 
 	async function handleApplyTemplate(template: LayoutTemplate) {
 		if (currentPagePanels.length === 0) return;

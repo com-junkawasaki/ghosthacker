@@ -3,6 +3,15 @@
 	import MangaPanel from './MangaPanel.svelte';
 	import { createEventDispatcher } from 'svelte';
 
+	interface PanelLayoutInfo {
+		x: number;
+		y: number;
+		width: number;
+		height: number;
+		zIndex?: number;
+		panelIndex?: number;
+	}
+
 	let { panels = [], pageNumber = 1, episodeId = '', storyboardPath = '' } = $props<{
 		panels: Panel[];
 		pageNumber: number;
@@ -14,7 +23,106 @@
 
 	// Derived states
 	let sortedPanels = $derived([...panels].sort((a, b) => a.panel - b.panel));
-	let pageLayout = $derived(panels[0]?.data?.mangaLayout);
+	let storedLayout = $derived(panels[0]?.data?.mangaLayout);
+	
+	// Generate fallback layout based on panel count if no stored layout
+	let pageLayout = $derived(storedLayout?.panels?.length > 0 ? storedLayout : generateDefaultLayout(sortedPanels.length));
+	
+	/**
+	 * Generate Jump manga-style default layout based on panel count
+	 */
+	function generateDefaultLayout(panelCount: number): { panels: PanelLayoutInfo[] } {
+		const layouts: Record<number, PanelLayoutInfo[]> = {
+			1: [{ x: 0, y: 0, width: 100, height: 100 }],
+			2: [
+				{ x: 0, y: 0, width: 100, height: 60 },
+				{ x: 0, y: 60, width: 100, height: 40 }
+			],
+			3: [
+				{ x: 0, y: 0, width: 100, height: 45 },
+				{ x: 0, y: 45, width: 55, height: 55 },
+				{ x: 55, y: 45, width: 45, height: 55 }
+			],
+			4: [
+				{ x: 0, y: 0, width: 100, height: 50 },
+				{ x: 0, y: 50, width: 35, height: 50 },
+				{ x: 35, y: 50, width: 35, height: 50 },
+				{ x: 70, y: 50, width: 30, height: 50 }
+			],
+			5: [
+				{ x: 0, y: 0, width: 100, height: 42 },
+				{ x: 0, y: 42, width: 50, height: 30 },
+				{ x: 50, y: 42, width: 50, height: 30 },
+				{ x: 0, y: 72, width: 60, height: 28 },
+				{ x: 60, y: 72, width: 40, height: 28 }
+			],
+			6: [
+				{ x: 0, y: 0, width: 100, height: 38 },
+				{ x: 0, y: 38, width: 50, height: 32 },
+				{ x: 50, y: 38, width: 50, height: 32 },
+				{ x: 0, y: 70, width: 33, height: 30 },
+				{ x: 33, y: 70, width: 34, height: 30 },
+				{ x: 67, y: 70, width: 33, height: 30 }
+			],
+			7: [
+				{ x: 0, y: 0, width: 100, height: 35 },
+				{ x: 0, y: 35, width: 40, height: 25 },
+				{ x: 40, y: 35, width: 30, height: 25 },
+				{ x: 70, y: 35, width: 30, height: 25 },
+				{ x: 0, y: 60, width: 50, height: 20 },
+				{ x: 50, y: 60, width: 50, height: 20 },
+				{ x: 0, y: 80, width: 100, height: 20 }
+			],
+			8: [
+				{ x: 0, y: 0, width: 60, height: 30 },
+				{ x: 60, y: 0, width: 40, height: 15 },
+				{ x: 60, y: 15, width: 40, height: 15 },
+				{ x: 0, y: 30, width: 50, height: 25 },
+				{ x: 50, y: 30, width: 50, height: 25 },
+				{ x: 0, y: 55, width: 33, height: 22 },
+				{ x: 33, y: 55, width: 34, height: 22 },
+				{ x: 67, y: 55, width: 33, height: 22 }
+			],
+			9: [
+				{ x: 0, y: 0, width: 100, height: 30 },
+				{ x: 0, y: 30, width: 33, height: 23 },
+				{ x: 33, y: 30, width: 34, height: 23 },
+				{ x: 67, y: 30, width: 33, height: 23 },
+				{ x: 0, y: 53, width: 50, height: 24 },
+				{ x: 50, y: 53, width: 50, height: 24 },
+				{ x: 0, y: 77, width: 33, height: 23 },
+				{ x: 33, y: 77, width: 34, height: 23 },
+				{ x: 67, y: 77, width: 33, height: 23 }
+			]
+		};
+		
+		// Get the appropriate layout or fallback to grid
+		const layoutPanels = layouts[panelCount];
+		if (layoutPanels) {
+			return { panels: layoutPanels.map((p, i) => ({ ...p, zIndex: i, panelIndex: i + 1 })) };
+		}
+		
+		// Fallback: generate a reasonable grid for any panel count
+		const cols = panelCount <= 4 ? 2 : 3;
+		const rows = Math.ceil(panelCount / cols);
+		const panelWidth = 100 / cols;
+		const panelHeight = 100 / rows;
+		
+		const gridPanels: PanelLayoutInfo[] = [];
+		for (let i = 0; i < panelCount; i++) {
+			const row = Math.floor(i / cols);
+			const col = i % cols;
+			gridPanels.push({
+				x: col * panelWidth,
+				y: row * panelHeight,
+				width: panelWidth,
+				height: panelHeight,
+				zIndex: i,
+				panelIndex: i + 1
+			});
+		}
+		return { panels: gridPanels };
+	}
 
 	function handleUpdate(panelNumber: number, data: PanelData) {
 		dispatch('update', {
@@ -57,57 +165,46 @@
 
 <div class="manga-page">
 	<div class="manga-page-content">
-		{#if pageLayout && pageLayout.panels && pageLayout.panels.length > 0}
-			{#each sortedPanels as panel, i (panel.panel + '-' + i)}
-				{@const layout = pageLayout.panels[i]}
-				{#if layout}
-					<div 
-						class="layout-wrapper"
-						style="
-							position: absolute;
-							left: {layout.x}%;
-							top: {layout.y}%;
-							width: {layout.width}%;
-							height: {layout.height}%;
-							z-index: {layout.zIndex || 0};
-						"
-					>
-						<MangaPanel
-							{panel}
-							{episodeId}
-							{storyboardPath}
-							on:update={(e) => handleUpdate(panel.panel, e.detail)}
-						/>
-						<div class="resize-handle" onmousedown={(e) => {
-							const startX = e.clientX;
-							const startY = e.clientY;
-							const onMouseMove = (moveEvent: MouseEvent) => {
-								const dx = ((moveEvent.clientX - startX) / 600) * 100;
-								const dy = ((moveEvent.clientY - startY) / 848) * 100;
-								handlePanelResize(i, { x: 0, y: 0, w: dx, h: dy });
-							};
-							const onMouseUp = () => {
-								window.removeEventListener('mousemove', onMouseMove);
-								window.removeEventListener('mouseup', onMouseUp);
-							};
-							window.addEventListener('mousemove', onMouseMove);
-							window.addEventListener('mouseup', onMouseUp);
-						}}></div>
-					</div>
-				{/if}
-			{/each}
-		{:else}
-			<div class="default-grid">
-				{#each sortedPanels as panel, i (panel.panel + '-' + i)}
+		{#each sortedPanels as panel, i (panel.panel + '-' + i)}
+			{@const layout = pageLayout?.panels?.[i]}
+			{#if layout}
+				<div 
+					class="layout-wrapper"
+					class:emphasis={layout.emphasis}
+					style="
+						position: absolute;
+						left: {layout.x}%;
+						top: {layout.y}%;
+						width: {layout.width}%;
+						height: {layout.height}%;
+						z-index: {layout.zIndex || i};
+					"
+				>
 					<MangaPanel
 						{panel}
 						{episodeId}
 						{storyboardPath}
 						on:update={(e) => handleUpdate(panel.panel, e.detail)}
 					/>
-				{/each}
-			</div>
-		{/if}
+					<!-- svelte-ignore a11y_no_static_element_interactions -->
+					<div class="resize-handle" onmousedown={(e) => {
+						const startX = e.clientX;
+						const startY = e.clientY;
+						const onMouseMove = (moveEvent: MouseEvent) => {
+							const dx = ((moveEvent.clientX - startX) / 600) * 100;
+							const dy = ((moveEvent.clientY - startY) / 848) * 100;
+							handlePanelResize(i, { x: 0, y: 0, w: dx, h: dy });
+						};
+						const onMouseUp = () => {
+							window.removeEventListener('mousemove', onMouseMove);
+							window.removeEventListener('mouseup', onMouseUp);
+						};
+						window.addEventListener('mousemove', onMouseMove);
+						window.addEventListener('mouseup', onMouseUp);
+					}}></div>
+				</div>
+			{/if}
+		{/each}
 	</div>
 	<div class="page-footer">
 		{pageNumber}
@@ -129,22 +226,22 @@
 	.manga-page-content {
 		position: relative;
 		flex: 1;
-	}
-
-	.default-grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 10px;
-		height: 100%;
+		min-height: 768px;
 	}
 
 	.layout-wrapper {
 		border: 1px solid transparent;
-		transition: border-color 0.2s;
+		transition: border-color 0.2s, box-shadow 0.2s;
+		padding: 2px;
 	}
 
 	.layout-wrapper:hover {
 		border-color: #007bff;
+	}
+
+	/* Jump manga style: emphasis panels get subtle highlight */
+	.layout-wrapper.emphasis {
+		z-index: 100 !important;
 	}
 
 	.resize-handle {
@@ -155,11 +252,12 @@
 		height: 15px;
 		background: rgba(0, 123, 255, 0.5);
 		cursor: nwse-resize;
-		display: block;
+		display: none;
+		border-radius: 2px;
 	}
 
 	.layout-wrapper:hover .resize-handle {
-		border-color: #007bff;
+		display: block;
 	}
 
 	.page-footer {

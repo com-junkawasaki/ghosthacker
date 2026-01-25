@@ -410,11 +410,59 @@ export function applyTemplate(panels: any[], template: LayoutTemplate) {
 			y: p.y,
 			width: p.width,
 			height: p.height,
-			shape: 'rectangle',
-			zIndex: i,
+			shape: p.shape || 'rectangle',
+			zIndex: p.emphasis ? 100 + i : i,
 			imageX: 50,
 			imageY: 50,
-			imageScale: 1.0
+			imageScale: p.emphasis ? 1.1 : 1.0
 		});
 	});
 }
+
+/**
+ * Get layout template by name
+ */
+export function getTemplateByName(panelCount: number, templateName: string): LayoutTemplate | undefined {
+	const templates = MANGA_TEMPLATES[panelCount];
+	if (!templates) return undefined;
+	return templates.find((t) => t.name === templateName || t.nameJa === templateName);
+}
+
+/**
+ * Layout presets for specific page types in Jump manga style
+ */
+export const PAGE_LAYOUT_PRESETS = {
+	// Pre-title / Hook pages - high tension
+	'pretitle-terror': { panelCount: 4, templateName: 'Terror Descent' },
+	'pretitle-impact': { panelCount: 4, templateName: 'Jump Impact - L Shape' },
+
+	// Title spread
+	'title-spread': { panelCount: 1, templateName: 'Full Page Impact' },
+
+	// Establishing / Introduction
+	'establishing-school': { panelCount: 7, templateName: 'Character Introduction' },
+	'establishing-scene': { panelCount: 5, templateName: 'Establishing Scene' },
+
+	// Daily life / Dialogue
+	'dialogue-casual': { panelCount: 5, templateName: 'Dialogue Rhythm' },
+	'dialogue-rapid': { panelCount: 6, templateName: 'Rapid Fire Dialogue' },
+
+	// Action sequences
+	'action-sequence': { panelCount: 5, templateName: 'Action Sequence Flow' },
+	'action-dense': { panelCount: 7, templateName: 'Jump Dense Action' },
+	'action-battle': { panelCount: 9, templateName: 'Chaos Battle' },
+
+	// Climax / Revelation
+	'climax-revelation': { panelCount: 7, templateName: 'Revelation Moment' },
+	'climax-tension': { panelCount: 6, templateName: 'Tension Build' },
+
+	// Emotional / Transition
+	'emotional-cascade': { panelCount: 6, templateName: 'Emotional Cascade' },
+	'transition-flow': { panelCount: 3, templateName: 'Cascade Right' },
+
+	// Impact moments
+	'impact-hero': { panelCount: 5, templateName: 'Jump Classic - Top Hero' },
+	'impact-standard': { panelCount: 6, templateName: 'Jump Standard - Hero Top' }
+} as const;
+
+export type PageLayoutPreset = keyof typeof PAGE_LAYOUT_PRESETS;

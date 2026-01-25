@@ -204,6 +204,11 @@
   "gh:pages": [
     {
       "gh:act": "act:0-pretitle",
+      "gh:pageLayout": {
+        "gh:templateName": "Terror Descent",
+        "gh:category": "climax",
+        "gh:layoutNote": "恐怖と孤立を強調するレイアウト。上部横長パネルで部屋全体を、中央の大きなパネルでYutoの恐怖を強調"
+      },
       "gh:pageNote": "page 20（Neiの声かけ）の前日の夜。詐欺被害に遭い、友人関係が崩壊した後のYutoが、スマホの通知に恐怖するシーン。",
       "gh:pageNumber": 0,
       "gh:pageTitle": "プレタイトル - 恐怖の夜",
@@ -335,6 +340,11 @@
     {
       "gh:act": "act:1-daily-temptation",
       "gh:isSpread": true,
+      "gh:pageLayout": {
+        "gh:templateName": "Full Page Impact",
+        "gh:category": "impact",
+        "gh:layoutNote": "タイトル見開き左ページ。RenとNeiのダイナミックなアクションポーズ"
+      },
       "gh:pageNumber": 1,
       "gh:pageTitle": "タイトルスプレッド（左）",
       "gh:panels": [
@@ -364,6 +374,11 @@
     {
       "gh:act": "act:1-daily-temptation",
       "gh:isSpread": true,
+      "gh:pageLayout": {
+        "gh:templateName": "Full Page Impact",
+        "gh:category": "impact",
+        "gh:layoutNote": "タイトル見開き右ページ。東京タワーを背景にした壮大なシーン"
+      },
       "gh:pageNumber": 2,
       "gh:pageTitle": "タイトルスプレッド（右）",
       "gh:panels": [
@@ -392,6 +407,11 @@
     },
     {
       "gh:act": "act:1-daily-temptation",
+      "gh:pageLayout": {
+        "gh:templateName": "Character Introduction",
+        "gh:category": "establishing",
+        "gh:layoutNote": "学校と主要キャラクターの紹介。上部大パネルで学校全景、下部で教室内の様子とYutoの羨望"
+      },
       "gh:pageNumber": 3,
       "gh:pageTitle": "登校 - 学校への導入",
       "gh:panelCount": 7,
@@ -555,6 +575,11 @@
     },
     {
       "gh:act": "act:1-daily-temptation",
+      "gh:pageLayout": {
+        "gh:templateName": "Dialogue Rhythm",
+        "gh:category": "dialogue",
+        "gh:layoutNote": "RenとNeiの静かな存在感を対比的に見せる。リズミカルな対話パネル配置"
+      },
       "gh:pageNumber": 4,
       "gh:pageTitle": "教室続き - Ren/Nei",
       "gh:panelCount": 5,
@@ -649,6 +674,11 @@
     },
     {
       "gh:act": "act:1-daily-temptation",
+      "gh:pageLayout": {
+        "gh:templateName": "Emotional Cascade",
+        "gh:category": "transition",
+        "gh:layoutNote": "夜の静寂から詐欺サイト発見へ。上部大パネルで孤独な夜の雰囲気、下部で欲望の高まり"
+      },
       "gh:pageNumber": 5,
       "gh:pageTitle": "夜ベッド - 偽サイト発見",
       "gh:panelCount": 6,
@@ -769,6 +799,11 @@
     },
     {
       "gh:act": "act:1-daily-temptation",
+      "gh:pageLayout": {
+        "gh:templateName": "Spiral Focus",
+        "gh:category": "climax",
+        "gh:layoutNote": "葛藤から決断へ。上部大パネルでYutoの内面的葛藤、スパイラル状に決断の瞬間へ収束"
+      },
       "gh:pageNumber": 6,
       "gh:pageTitle": "葛藤",
       "gh:panelCount": 5,
@@ -875,6 +910,11 @@
     },
     {
       "gh:act": "act:1-daily-temptation",
+      "gh:pageLayout": {
+        "gh:templateName": "Jump Dense Action",
+        "gh:category": "action",
+        "gh:layoutNote": "緊張感あるカード入力シーケンス。上部大パネルでYutoの決意、小さなパネルで一つ一つの入力を追う"
+      },
       "gh:pageNumber": 7,
       "gh:pageTitle": "カード入力・決済",
       "gh:panelCount": 7,
@@ -992,6 +1032,11 @@
     },
     {
       "gh:act": "act:1-daily-temptation",
+      "gh:pageLayout": {
+        "gh:templateName": "Action Sequence Flow",
+        "gh:category": "action",
+        "gh:layoutNote": "購入完了から不穏な静寂へ。喜びから嵐の前の静けさを表現"
+      },
       "gh:pageNumber": 8,
       "gh:pageTitle": "購入完了",
       "gh:panelCount": 5,
@@ -1085,6 +1130,11 @@
     },
     {
       "gh:act": "act:2-signs",
+      "gh:pageLayout": {
+        "gh:templateName": "Dialogue Rhythm",
+        "gh:category": "dialogue",
+        "gh:layoutNote": "期待と焦りの日常。授業中のYutoの落ち着かなさをリズミカルに"
+      },
       "gh:pageNumber": 9,
       "gh:pageTitle": "翌日学校",
       "gh:panelCount": 5,
@@ -1176,6 +1226,11 @@
     },
     {
       "gh:act": "act:2-signs",
+      "gh:pageLayout": {
+        "gh:templateName": "Tension Build",
+        "gh:category": "climax",
+        "gh:layoutNote": "3日後の不安。中央大パネルで空の郵便受け、上下で期待と落胆の対比"
+      },
       "gh:pageNumber": 10,
       "gh:pageTitle": "3日後 - 届かない",
       "gh:panelCount": 6,
@@ -1276,6 +1331,11 @@
     },
     {
       "gh:act": "act:2-signs",
+      "gh:pageLayout": {
+        "gh:templateName": "Dialogue Rhythm",
+        "gh:category": "dialogue",
+        "gh:layoutNote": "メッセージのやり取り。スマホ画面とYutoの表情を交互に"
+      },
       "gh:pageNumber": 11,
       "gh:pageTitle": "出品者に問い合わせ",
       "gh:panelCount": 5,
@@ -1371,6 +1431,11 @@
     },
     {
       "gh:act": "act:2-signs",
+      "gh:pageLayout": {
+        "gh:templateName": "Revelation Moment",
+        "gh:category": "climax",
+        "gh:layoutNote": "電話番号を渡す決断。中央大パネルで重大な判断の瞬間を強調"
+      },
       "gh:pageNumber": 12,
       "gh:pageTitle": "番号を渡す",
       "gh:panelCount": 7,
@@ -1489,6 +1554,11 @@
     },
     {
       "gh:act": "act:2-signs",
+      "gh:pageLayout": {
+        "gh:templateName": "Tension Build",
+        "gh:category": "climax",
+        "gh:layoutNote": "異変の始まり。カード停止の衝撃を中央大パネルで"
+      },
       "gh:pageNumber": 13,
       "gh:pageTitle": "カードが止まる",
       "gh:panelCount": 6,
@@ -1606,6 +1676,11 @@
     },
     {
       "gh:act": "act:2-signs",
+      "gh:pageLayout": {
+        "gh:templateName": "Tension Build",
+        "gh:category": "climax",
+        "gh:layoutNote": "不正請求の発覚。絶望へ向かう緊張感を段階的に"
+      },
       "gh:pageNumber": 14,
       "gh:pageTitle": "不正請求発覚",
       "gh:panelCount": 6,
@@ -1712,6 +1787,11 @@
     },
     {
       "gh:act": "act:2-signs",
+      "gh:pageLayout": {
+        "gh:templateName": "Emotional Cascade",
+        "gh:category": "transition",
+        "gh:layoutNote": "詐欺サイト消失。希望の崩壊をカスケード状に表現"
+      },
       "gh:pageNumber": 15,
       "gh:pageTitle": "サイト消失",
       "gh:panelCount": 6,
@@ -1820,6 +1900,11 @@
     },
     {
       "gh:act": "act:3-collapse",
+      "gh:pageLayout": {
+        "gh:templateName": "Jump Dense Action",
+        "gh:category": "action",
+        "gh:layoutNote": "友人たちからの詰問。上部大パネルで対立の緊張感、密度の高いパネルで圧迫感"
+      },
       "gh:pageNumber": 16,
       "gh:pageTitle": "学校 - 詰め寄られる",
       "gh:panelCount": 7,
@@ -1948,6 +2033,11 @@
     },
     {
       "gh:act": "act:3-collapse",
+      "gh:pageLayout": {
+        "gh:templateName": "Maximum Impact",
+        "gh:category": "action",
+        "gh:layoutNote": "アカウント乗っ取りの衝撃。上部インパクトパネル後、大量のパネルで混乱を表現"
+      },
       "gh:pageNumber": 17,
       "gh:pageTitle": "乗っ取り発覚",
       "gh:panelCount": 9,
@@ -2117,6 +2207,11 @@
     },
     {
       "gh:act": "act:3-collapse",
+      "gh:pageLayout": {
+        "gh:templateName": "Chaos Battle",
+        "gh:category": "climax",
+        "gh:layoutNote": "DM悪口公開の惨事。混沌としたレイアウトで友情崩壊のカオスを表現"
+      },
       "gh:pageNumber": 18,
       "gh:pageTitle": "悪口公開 - 友情崩壊",
       "gh:panelCount": 9,
@@ -2307,6 +2402,11 @@
     },
     {
       "gh:act": "act:3-collapse",
+      "gh:pageLayout": {
+        "gh:templateName": "Tension Build",
+        "gh:category": "climax",
+        "gh:layoutNote": "完全ロックアウト。絶望の頂点。中央大パネルでYutoの絶望を強調"
+      },
       "gh:pageNumber": 19,
       "gh:pageTitle": "完全ロックアウト",
       "gh:panelCount": 6,
@@ -2430,6 +2530,11 @@
     },
     {
       "gh:act": "act:4-rescue",
+      "gh:pageLayout": {
+        "gh:templateName": "Rapid Fire Dialogue",
+        "gh:category": "dialogue",
+        "gh:layoutNote": "Neiの声かけ。絶望から希望への転換点。対話のリズムで救いの瞬間を"
+      },
       "gh:pageNumber": 20,
       "gh:pageTitle": "Neiの声かけ",
       "gh:panelCount": 6,
@@ -2550,6 +2655,11 @@
     },
     {
       "gh:act": "act:4-rescue",
+      "gh:pageLayout": {
+        "gh:templateName": "Jump Standard - Hero Top",
+        "gh:category": "action",
+        "gh:layoutNote": "RenとNeiが動き出す。上部大パネルでヒーローの登場感を"
+      },
       "gh:pageNumber": 21,
       "gh:pageTitle": "Ren/Nei動き出す",
       "gh:panelCount": 6,
@@ -2662,6 +2772,11 @@
     {
       "gh:act": "act:5-countermeasures",
       "gh:countermeasure": 1,
+      "gh:pageLayout": {
+        "gh:templateName": "Dialogue Rhythm",
+        "gh:category": "dialogue",
+        "gh:layoutNote": "漏えいチェックの説明。RenとNeiの解説をわかりやすく"
+      },
       "gh:pageNumber": 22,
       "gh:pageTitle": "対策① 漏えいチェック（説明）",
       "gh:panelCount": 5,
@@ -2756,6 +2871,11 @@
     {
       "gh:act": "act:5-countermeasures",
       "gh:countermeasure": 1,
+      "gh:pageLayout": {
+        "gh:templateName": "Action Sequence Flow",
+        "gh:category": "action",
+        "gh:layoutNote": "漏えいチェック実行。操作手順をアクションシーケンスで"
+      },
       "gh:pageNumber": 23,
       "gh:pageTitle": "対策① 漏えいチェック（実行）",
       "gh:panelCount": 5,
@@ -2860,6 +2980,11 @@
     {
       "gh:act": "act:5-countermeasures",
       "gh:countermeasure": 2,
+      "gh:pageLayout": {
+        "gh:templateName": "Dialogue Rhythm",
+        "gh:category": "dialogue",
+        "gh:layoutNote": "カード停止の説明。緊急性を伝えつつわかりやすく"
+      },
       "gh:pageNumber": 24,
       "gh:pageTitle": "対策② カード停止（説明）",
       "gh:panelCount": 5,
@@ -2960,6 +3085,11 @@
     {
       "gh:act": "act:5-countermeasures",
       "gh:countermeasure": 2,
+      "gh:pageLayout": {
+        "gh:templateName": "Jump Standard - Hero Top",
+        "gh:category": "action",
+        "gh:layoutNote": "カード停止実行。上部で決断、下部で具体的手順"
+      },
       "gh:pageNumber": 25,
       "gh:pageTitle": "対策② カード停止（実行）",
       "gh:panelCount": 6,
@@ -3081,6 +3211,11 @@
     {
       "gh:act": "act:5-countermeasures",
       "gh:countermeasure": 3,
+      "gh:pageLayout": {
+        "gh:templateName": "Rapid Fire Dialogue",
+        "gh:category": "dialogue",
+        "gh:layoutNote": "パスワード管理の重要性。Renの熱い解説"
+      },
       "gh:pageNumber": 26,
       "gh:pageTitle": "対策③ パスワード管理（説明）",
       "gh:panelCount": 6,
@@ -3182,6 +3317,11 @@
     {
       "gh:act": "act:5-countermeasures",
       "gh:countermeasure": 3,
+      "gh:pageLayout": {
+        "gh:templateName": "Jump Standard - Hero Top",
+        "gh:category": "action",
+        "gh:layoutNote": "パスワードマネージャー設定。操作手順を視覚的に"
+      },
       "gh:pageNumber": 27,
       "gh:pageTitle": "対策③ パスワード管理（実行）",
       "gh:panelCount": 6,
@@ -3275,6 +3415,11 @@
     {
       "gh:act": "act:5-countermeasures",
       "gh:countermeasure": 4,
+      "gh:pageLayout": {
+        "gh:templateName": "Dialogue Rhythm",
+        "gh:category": "dialogue",
+        "gh:layoutNote": "注意喚起の大切さ。Neiの優しい説得"
+      },
       "gh:pageNumber": 28,
       "gh:pageTitle": "対策④ 注意喚起（説明）",
       "gh:panelCount": 5,
@@ -3361,6 +3506,11 @@
     {
       "gh:act": "act:5-countermeasures",
       "gh:countermeasure": 4,
+      "gh:pageLayout": {
+        "gh:templateName": "Emotional Cascade",
+        "gh:category": "transition",
+        "gh:layoutNote": "注意喚起実行。対策完了から次の展開へ"
+      },
       "gh:pageNumber": 29,
       "gh:pageTitle": "対策④ 注意喚起（実行）",
       "gh:panelCount": 6,
@@ -3449,6 +3599,11 @@
     },
     {
       "gh:act": "act:6-ghost-battle",
+      "gh:pageLayout": {
+        "gh:templateName": "Rapid Fire Dialogue",
+        "gh:category": "dialogue",
+        "gh:layoutNote": "クラスメイトの罵倒。複数のセリフが飛び交う緊張感"
+      },
       "gh:pageNumber": 30,
       "gh:pageTitle": "クラスメイトの罵倒",
       "gh:panelCount": 6,
@@ -3547,6 +3702,11 @@
     },
     {
       "gh:act": "act:6-ghost-battle",
+      "gh:pageLayout": {
+        "gh:templateName": "Spiral Focus",
+        "gh:category": "climax",
+        "gh:layoutNote": "幻肢痛の苦しみ。Yutoの内面的苦痛をスパイラル構成で"
+      },
       "gh:pageNumber": 31,
       "gh:pageTitle": "幻肢痛",
       "gh:panelCount": 5,
@@ -3654,6 +3814,11 @@
     },
     {
       "gh:act": "act:6-ghost-battle",
+      "gh:pageLayout": {
+        "gh:templateName": "Jump Classic - Top Hero",
+        "gh:category": "impact",
+        "gh:layoutNote": "SIP Project Map起動。上部大パネルで技術の覚醒感を演出"
+      },
       "gh:pageNumber": 32,
       "gh:pageTitle": "SIP Project Map起動",
       "gh:panelCount": 5,
@@ -3744,6 +3909,11 @@
     },
     {
       "gh:act": "act:6-ghost-battle",
+      "gh:pageLayout": {
+        "gh:templateName": "Jump Classic - Top Hero",
+        "gh:category": "impact",
+        "gh:layoutNote": "情報場の可視化。サイバー空間の壮大さを表現"
+      },
       "gh:pageNumber": 33,
       "gh:pageTitle": "情報場の可視化",
       "gh:panelCount": 5,
@@ -3839,6 +4009,11 @@
     },
     {
       "gh:act": "act:6-ghost-battle",
+      "gh:pageLayout": {
+        "gh:templateName": "Jump Impact - L Shape",
+        "gh:category": "impact",
+        "gh:layoutNote": "ランダウアーの原理解説。科学的概念を視覚的インパクトで"
+      },
       "gh:pageNumber": 34,
       "gh:pageTitle": "ランダウアーの原理",
       "gh:panelCount": 4,
@@ -3905,6 +4080,11 @@
     },
     {
       "gh:act": "act:6-ghost-battle",
+      "gh:pageLayout": {
+        "gh:templateName": "Jump Standard - Hero Top",
+        "gh:category": "action",
+        "gh:layoutNote": "Ghost攻撃とNULL AXE召喚。バトル開始のダイナミズム"
+      },
       "gh:pageNumber": 35,
       "gh:pageTitle": "Ghost攻撃 / NULL AXE召喚",
       "gh:panelCount": 6,
@@ -3989,6 +4169,11 @@
     },
     {
       "gh:act": "act:7-daemon-battle",
+      "gh:pageLayout": {
+        "gh:templateName": "Action Sequence Flow",
+        "gh:category": "action",
+        "gh:layoutNote": "Ren vs Ghost。アクションの流れをダイナミックに"
+      },
       "gh:pageNumber": 36,
       "gh:pageTitle": "Ren vs Ghost",
       "gh:panelCount": 5,
@@ -4048,6 +4233,11 @@
     },
     {
       "gh:act": "act:7-daemon-battle",
+      "gh:pageLayout": {
+        "gh:templateName": "Jump Classic - Top Hero",
+        "gh:category": "impact",
+        "gh:layoutNote": "Daemon出現。不気味な敵の登場をインパクト重視で"
+      },
       "gh:pageNumber": 37,
       "gh:pageTitle": "Daemon出現",
       "gh:panelCount": 5,
@@ -4109,6 +4299,11 @@
     },
     {
       "gh:act": "act:7-daemon-battle",
+      "gh:pageLayout": {
+        "gh:templateName": "Spiral Focus",
+        "gh:category": "climax",
+        "gh:layoutNote": "Daemonの呪い。心理的圧迫をスパイラル構成で"
+      },
       "gh:pageNumber": 38,
       "gh:pageTitle": "Daemonの呪い",
       "gh:panelCount": 5,
@@ -4176,6 +4371,11 @@
     },
     {
       "gh:act": "act:7-daemon-battle",
+      "gh:pageLayout": {
+        "gh:templateName": "Jump Impact - L Shape",
+        "gh:category": "impact",
+        "gh:layoutNote": "/dev/null SLASH!!。必殺技のインパクト。上部大パネルで技名と一撃"
+      },
       "gh:pageNumber": 39,
       "gh:pageTitle": "/dev/null SLASH!!",
       "gh:panelCount": 4,
@@ -4232,6 +4432,11 @@
     },
     {
       "gh:act": "act:7-daemon-battle",
+      "gh:pageLayout": {
+        "gh:templateName": "Jump Classic - Top Hero",
+        "gh:category": "impact",
+        "gh:layoutNote": "Daemon消滅。勝利の瞬間を上部大パネルで"
+      },
       "gh:pageNumber": 40,
       "gh:pageTitle": "Daemon消滅",
       "gh:panelCount": 5,
@@ -4291,6 +4496,11 @@
     },
     {
       "gh:act": "act:7-daemon-battle",
+      "gh:pageLayout": {
+        "gh:templateName": "Establishing Scene",
+        "gh:category": "establishing",
+        "gh:layoutNote": "和解の空気。穏やかな雰囲気への転換"
+      },
       "gh:pageNumber": 41,
       "gh:pageTitle": "和解の空気",
       "gh:panelCount": 5,
@@ -4365,6 +4575,11 @@
     },
     {
       "gh:act": "act:8-resolution",
+      "gh:pageLayout": {
+        "gh:templateName": "Dialogue Rhythm",
+        "gh:category": "dialogue",
+        "gh:layoutNote": "Yutoの謝罪。感情的な対話をリズミカルに"
+      },
       "gh:pageNumber": 42,
       "gh:pageTitle": "Yutoの謝罪",
       "gh:panelCount": 5,
@@ -4446,6 +4661,11 @@
     },
     {
       "gh:act": "act:8-resolution",
+      "gh:pageLayout": {
+        "gh:templateName": "Jump Classic - Top Hero",
+        "gh:category": "impact",
+        "gh:layoutNote": "真の敵の指摘。重要なメッセージを上部大パネルで強調"
+      },
       "gh:pageNumber": 43,
       "gh:pageTitle": "真の敵",
       "gh:panelCount": 5,
@@ -4526,6 +4746,11 @@
     {
       "gh:act": "act:8-resolution",
       "gh:isSpread": true,
+      "gh:pageLayout": {
+        "gh:templateName": "Full Page Impact",
+        "gh:category": "impact",
+        "gh:layoutNote": "東京を見下ろす見開き左。壮大なエンディングの始まり"
+      },
       "gh:pageNumber": 44,
       "gh:pageTitle": "東京を見下ろす（左）",
       "gh:panelCount": 3,
@@ -4574,6 +4799,11 @@
     {
       "gh:act": "act:8-resolution",
       "gh:isSpread": true,
+      "gh:pageLayout": {
+        "gh:templateName": "Full Page Impact",
+        "gh:category": "impact",
+        "gh:layoutNote": "決意の見開き右。次章への布石と主人公たちの決意"
+      },
       "gh:pageNumber": 45,
       "gh:pageTitle": "決意（右）",
       "gh:panelCount": 3,
