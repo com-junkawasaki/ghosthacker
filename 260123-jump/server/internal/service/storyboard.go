@@ -22,6 +22,7 @@ import (
 
 	"bytes"
 	goimage "image"
+	"image/color"
 	"image/jpeg"
 	"image/png"
 	// Import for side effects - registers decoders
@@ -1367,41 +1368,37 @@ func (s *StoryboardService) ExportPdf(
 		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("no panels found to export"))
 	}
 
-	// Generate PDF with manga page size (B5 portrait: 176mm x 250mm)
+	// Manga page dimensions in pixels (B5 portrait aspect ratio: 176mm x 250mm ≈ 7:10)
+	const pageWidth = 1200
+	const pageHeight = 1714 // 1200 * 250 / 176
+
+	// Generate PDF with manga page size (B5 portrait)
 	cfg := config.NewBuilder().
 		WithPageNumber().
 		WithDimensions(176, 250).
-		WithLeftMargin(5).
-		WithTopMargin(5).
-		WithRightMargin(5).
-		WithBottomMargin(10).
+		WithLeftMargin(2).
+		WithTopMargin(2).
+		WithRightMargin(2).
+		WithBottomMargin(5).
 		Build()
 
 	m := maroto.New(cfg)
 
 	// Title Page
 	m.AddRows(
-		row.New(30).Add(
+		row.New(25).Add(
 			col.New(12).Add(
 				text.New(fmt.Sprintf("Storyboard: %s", title), props.Text{
-					Top:   10,
-					Size:  16,
+					Top:   8,
+					Size:  14,
 					Style: fontstyle.Bold,
 					Align: align.Center,
 				}),
 			),
 		),
-		row.New(15).Add(
+		row.New(10).Add(
 			col.New(12).Add(
-				text.New(fmt.Sprintf("Mode: %s", req.Msg.Mode), props.Text{
-					Size:  10,
-					Align: align.Center,
-				}),
-			),
-		),
-		row.New(15).Add(
-			col.New(12).Add(
-				text.New(fmt.Sprintf("Generated at: %s", time.Now().Format("2006-01-02 15:04:05")), props.Text{
+				text.New(fmt.Sprintf("Mode: %s | Generated: %s", req.Msg.Mode, time.Now().Format("2006-01-02 15:04")), props.Text{
 					Size:  8,
 					Align: align.Center,
 				}),
@@ -1424,84 +1421,37 @@ func (s *StoryboardService) ExportPdf(
 		return pageNums[i] < pageNums[j]
 	})
 
-	// Render each manga page
+	// Render each manga page as a composite image
 	for _, pageNum := range pageNums {
 		pagePanels := groups[pageNum]
-		panelCount := len(pagePanels)
 		
-		// Add page header
-		m.AddRows(row.New(6).Add(col.New(12).Add(text.New(fmt.Sprintf("Page %d", pageNum), props.Text{Style: fontstyle.Bold, Size: 10, Align: align.Center}))))
-
-		// Render panels based on count - mimicking manga layout patterns
-		switch {
-		case panelCount == 1:
-			// Single full-width panel
-			r := row.New(200)
-			r.Add(s.buildPanelColWithImage(pagePanels[0], workspaceRoot))
-			m.AddRows(r)
-			
-		case panelCount == 2:
-			// Two panels stacked vertically
-			for _, p := range pagePanels {
-				r := row.New(95)
-				r.Add(s.buildPanelColFull(p, workspaceRoot))
-				m.AddRows(r)
-			}
-			
-		case panelCount == 3:
-			// Top panel full width, bottom two side by side
-			r1 := row.New(90)
-			r1.Add(s.buildPanelColFull(pagePanels[0], workspaceRoot))
-			m.AddRows(r1)
-			
-			r2 := row.New(90)
-			r2.Add(s.buildPanelColWithImage(pagePanels[1], workspaceRoot))
-			r2.Add(s.buildPanelColWithImage(pagePanels[2], workspaceRoot))
-			m.AddRows(r2)
-			
-		case panelCount == 4:
-			// 2x2 grid
-			for i := 0; i < 4; i += 2 {
-				r := row.New(95)
-				r.Add(s.buildPanelColWithImage(pagePanels[i], workspaceRoot))
-				if i+1 < panelCount {
-					r.Add(s.buildPanelColWithImage(pagePanels[i+1], workspaceRoot))
-				}
-				m.AddRows(r)
-			}
-			
-		case panelCount >= 5 && panelCount <= 6:
-			// First panel large, rest in 2-column grid
-			r1 := row.New(70)
-			r1.Add(s.buildPanelColFull(pagePanels[0], workspaceRoot))
-			m.AddRows(r1)
-			
-			for i := 1; i < panelCount; i += 2 {
-				r := row.New(55)
-				r.Add(s.buildPanelColWithImage(pagePanels[i], workspaceRoot))
-				if i+1 < panelCount {
-					r.Add(s.buildPanelColWithImage(pagePanels[i+1], workspaceRoot))
-				} else {
-					r.Add(col.New(6))
-				}
-				m.AddRows(r)
-			}
-			
-		default:
-			// Many panels - 3-column grid
-			for i := 0; i < panelCount; i += 3 {
-				r := row.New(60)
-				for j := 0; j < 3 && i+j < panelCount; j++ {
-					r.Add(s.buildPanelColThird(pagePanels[i+j], workspaceRoot))
-				}
-				// Fill remaining columns
-				remaining := 3 - min(3, panelCount-i)
-				for k := 0; k < remaining; k++ {
-					r.Add(col.New(4))
-				}
-				m.AddRows(r)
-			}
+		// Create composite manga page image
+		compositeData, err := s.createMangaPageImage(pagePanels, workspaceRoot, pageWidth, pageHeight)
+		if err != nil {
+			log.Printf("Warning: could not create manga page %d: %v", pageNum, err)
+			// Add placeholder text for failed pages
+			m.AddRows(row.New(200).Add(col.New(12).Add(
+				text.New(fmt.Sprintf("Page %d - Failed to render", pageNum), props.Text{
+					Size:  12,
+					Align: align.Center,
+				}),
+			)))
+			continue
 		}
+		
+		// Add page number header
+		m.AddRows(row.New(5).Add(col.New(12).Add(text.New(fmt.Sprintf("Page %d", pageNum), props.Text{
+			Size:  8,
+			Align: align.Center,
+		}))))
+		
+		// Add the composite manga page image - fills the page
+		m.AddRows(row.New(225).Add(col.New(12).Add(
+			image.NewFromBytes(compositeData, extension.Jpg, props.Rect{
+				Center:  true,
+				Percent: 100,
+			}),
+		)))
 	}
 
 	doc, err := m.Generate()
@@ -1642,6 +1592,237 @@ func (s *StoryboardService) buildPanelCol(p *storyboardpb.Panel) core.Col {
 		text.New(visual, props.Text{Top: 5, Size: 8}),
 		text.New(dialogue, props.Text{Top: 25, Size: 8, Color: &props.Color{Red: 0, Green: 100, Blue: 0}}),
 	)
+}
+
+// createMangaPageImage creates a composite image of a manga page with all panels positioned correctly
+func (s *StoryboardService) createMangaPageImage(panels []*storyboardpb.Panel, workspaceRoot string, pageWidth, pageHeight int) ([]byte, error) {
+	// Create a white background canvas
+	canvas := goimage.NewRGBA(goimage.Rect(0, 0, pageWidth, pageHeight))
+	
+	// Fill with white background
+	white := goimage.NewUniform(goimage.White)
+	draw.Draw(canvas, canvas.Bounds(), white, goimage.Point{}, draw.Src)
+	
+	// Get layout from the first panel (layouts are stored on first panel)
+	var mangaLayout *storyboardpb.MangaLayout
+	if len(panels) > 0 && panels[0].Data != nil {
+		mangaLayout = panels[0].Data.MangaLayout
+	}
+	
+	// Sort panels by panel number
+	sortedPanels := make([]*storyboardpb.Panel, len(panels))
+	copy(sortedPanels, panels)
+	sort.Slice(sortedPanels, func(i, j int) bool {
+		return sortedPanels[i].Panel < sortedPanels[j].Panel
+	})
+	
+	// Draw each panel
+	for i, p := range sortedPanels {
+		// Get layout for this panel
+		var layout *storyboardpb.MangaPanelLayout
+		if mangaLayout != nil && i < len(mangaLayout.Panels) {
+			layout = mangaLayout.Panels[i]
+		}
+		
+		// Default layout if not specified (simple grid)
+		var x, y, w, h float64
+		if layout != nil {
+			x = float64(layout.X)
+			y = float64(layout.Y)
+			w = float64(layout.Width)
+			h = float64(layout.Height)
+		} else {
+			// Generate default layout based on panel count and index
+			cols := 2
+			if len(panels) > 4 {
+				cols = 3
+			}
+			rows := (len(panels) + cols - 1) / cols
+			col := i % cols
+			row := i / cols
+			w = 100.0 / float64(cols)
+			h = 100.0 / float64(rows)
+			x = float64(col) * w
+			y = float64(row) * h
+		}
+		
+		// Convert percentage to pixels
+		destX := int(x * float64(pageWidth) / 100)
+		destY := int(y * float64(pageHeight) / 100)
+		destW := int(w * float64(pageWidth) / 100)
+		destH := int(h * float64(pageHeight) / 100)
+		
+		// Add small gap between panels (1% of page)
+		gap := pageWidth / 100
+		destX += gap / 2
+		destY += gap / 2
+		destW -= gap
+		destH -= gap
+		
+		// Get panel image
+		if p.Data != nil && len(p.Data.GeneratedImages) > 0 {
+			imgIdx := int(p.Data.CurrentImageIndex)
+			if imgIdx < 0 || imgIdx >= len(p.Data.GeneratedImages) {
+				imgIdx = len(p.Data.GeneratedImages) - 1
+			}
+			
+			imgURL := p.Data.GeneratedImages[imgIdx].ImageUrl
+			if imgURL != "" {
+				cleanURL := strings.TrimPrefix(imgURL, "/")
+				imgPath := filepath.Join(workspaceRoot, "260123-jump", "resources", cleanURL)
+				
+				// Load and decode image
+				panelImg, err := loadImage(imgPath)
+				if err != nil {
+					log.Printf("Warning: could not load panel image %s: %v", imgPath, err)
+					// Draw placeholder rectangle
+					drawPanelPlaceholder(canvas, destX, destY, destW, destH, p.Panel)
+					continue
+				}
+				
+				// Get image offset and scale from layout
+				var imgX, imgY float64 = 50, 50
+				var imgScale float64 = 1.0
+				if layout != nil {
+					if layout.ImageX != 0 || layout.ImageY != 0 {
+						imgX = float64(layout.ImageX)
+						imgY = float64(layout.ImageY)
+					}
+					if layout.ImageScale > 0 {
+						imgScale = float64(layout.ImageScale)
+					}
+				}
+				
+				// Draw panel image with proper scaling and positioning
+				drawPanelImage(canvas, panelImg, destX, destY, destW, destH, imgX, imgY, imgScale)
+				
+				// Draw panel border
+				drawPanelBorder(canvas, destX, destY, destW, destH)
+			} else {
+				drawPanelPlaceholder(canvas, destX, destY, destW, destH, p.Panel)
+			}
+		} else {
+			drawPanelPlaceholder(canvas, destX, destY, destW, destH, p.Panel)
+		}
+	}
+	
+	// Encode as JPEG
+	var buf bytes.Buffer
+	err := jpeg.Encode(&buf, canvas, &jpeg.Options{Quality: 90})
+	if err != nil {
+		return nil, fmt.Errorf("failed to encode manga page: %w", err)
+	}
+	
+	return buf.Bytes(), nil
+}
+
+// loadImage loads an image from file, auto-detecting format
+func loadImage(imgPath string) (goimage.Image, error) {
+	data, err := os.ReadFile(imgPath)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read image: %w", err)
+	}
+
+	reader := bytes.NewReader(data)
+	img, _, err := goimage.Decode(reader)
+	if err != nil {
+		// Try specific decoders
+		reader.Seek(0, 0)
+		img, err = png.Decode(reader)
+		if err != nil {
+			reader.Seek(0, 0)
+			img, err = jpeg.Decode(reader)
+			if err != nil {
+				return nil, fmt.Errorf("failed to decode image: %w", err)
+			}
+		}
+	}
+	return img, nil
+}
+
+// drawPanelImage draws a panel image onto the canvas with proper cropping and scaling
+func drawPanelImage(canvas *goimage.RGBA, img goimage.Image, destX, destY, destW, destH int, imgX, imgY, imgScale float64) {
+	bounds := img.Bounds()
+	srcW := bounds.Dx()
+	srcH := bounds.Dy()
+	
+	// Calculate scaled source dimensions
+	scaledW := int(float64(srcW) * imgScale)
+	scaledH := int(float64(srcH) * imgScale)
+	
+	// Calculate aspect ratios
+	srcAspect := float64(scaledW) / float64(scaledH)
+	destAspect := float64(destW) / float64(destH)
+	
+	// Calculate viewport size (what portion of source to use)
+	var viewW, viewH int
+	if srcAspect > destAspect {
+		// Source is wider - use height as base
+		viewH = scaledH
+		viewW = int(float64(scaledH) * destAspect)
+	} else {
+		// Source is taller - use width as base
+		viewW = scaledW
+		viewH = int(float64(scaledW) / destAspect)
+	}
+	
+	// Calculate offset based on imgX, imgY (percentage of movable range)
+	maxOffsetX := scaledW - viewW
+	maxOffsetY := scaledH - viewH
+	offsetX := int(float64(maxOffsetX) * (imgX / 100.0))
+	offsetY := int(float64(maxOffsetY) * (imgY / 100.0))
+	
+	// Convert back to unscaled coordinates
+	srcRect := goimage.Rect(
+		int(float64(offsetX)/imgScale),
+		int(float64(offsetY)/imgScale),
+		int(float64(offsetX+viewW)/imgScale),
+		int(float64(offsetY+viewH)/imgScale),
+	)
+	
+	destRect := goimage.Rect(destX, destY, destX+destW, destY+destH)
+	
+	// Draw with high-quality scaling
+	draw.CatmullRom.Scale(canvas, destRect, img, srcRect, draw.Over, nil)
+}
+
+// drawPanelPlaceholder draws a placeholder rectangle for missing images
+func drawPanelPlaceholder(canvas *goimage.RGBA, x, y, w, h int, panelNum int32) {
+	// Light gray background
+	gray := goimage.NewUniform(color.RGBA{R: 240, G: 240, B: 240, A: 255})
+	draw.Draw(canvas, goimage.Rect(x, y, x+w, y+h), gray, goimage.Point{}, draw.Src)
+	drawPanelBorder(canvas, x, y, w, h)
+}
+
+// drawPanelBorder draws a black border around a panel
+func drawPanelBorder(canvas *goimage.RGBA, x, y, w, h int) {
+	black := color.RGBA{R: 0, G: 0, B: 0, A: 255}
+	borderWidth := 2
+	
+	// Top border
+	for i := 0; i < borderWidth; i++ {
+		for px := x; px < x+w; px++ {
+			canvas.Set(px, y+i, black)
+		}
+	}
+	// Bottom border
+	for i := 0; i < borderWidth; i++ {
+		for px := x; px < x+w; px++ {
+			canvas.Set(px, y+h-1-i, black)
+		}
+	}
+	// Left border
+	for i := 0; i < borderWidth; i++ {
+		for py := y; py < y+h; py++ {
+			canvas.Set(x+i, py, black)
+		}
+	}
+	// Right border
+	for i := 0; i < borderWidth; i++ {
+		for py := y; py < y+h; py++ {
+			canvas.Set(x+w-1-i, py, black)
+		}
+	}
 }
 
 // resizeImageForPDF reads an image file, resizes it to fit within maxWidth x maxHeight, and returns JPEG bytes

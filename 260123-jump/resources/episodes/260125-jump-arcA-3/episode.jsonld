@@ -7,134 +7,57 @@
     "dialogue": "gh:dialogue",
     "env": "gh:environment/",
     "environment": "gh:environment",
-    "environments": "gh:environments",
-    "episodeId": "gh:episodeId",
-    "episodeIndex": "gh:episodeIndex",
     "gh": "https://ghosthacker.gftd.ai/ns/",
     "panel": "gh:panelIndex",
-    "prompt": "gh:runwayPrompt",
-    "properties": "gh:shotProperties",
-    "prov": "http://www.w3.org/ns/prov#",
-    "purpose": "gh:narrativePurpose",
     "schema": "http://schema.org/",
     "shot": "gh:shotType",
     "speaker": "gh:speaker",
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "dct:title": "Arc A-3: 「善意で設計をサボるな」",
+  "dct:title": "Arc A-3: 「仕組みで守れ」",
   "gh:arc": "Arc A",
-  "gh:credentials": [
-    "CISSP",
-    "CEH"
-  ],
   "gh:episode": 4,
   "gh:episodeId": "episode:260125-jump-arcA-3",
   "gh:episodeIndex": 4,
-  "gh:incidentDescription": "『動いているからいい』とパッチ適用をサボった『怠惰』が全業務を止めた。RenはCISSPの知見で、暗号化の嵐から生き残った微細なデータを繋ぎ合わせ、一瞬でシステムを再起動する。",
   "gh:industry": "Construction (建設)",
-  "gh:mainCharacter": "character:Ren",
-  "gh:nistFocus": [
-    "PR.IP (Backup Protection)",
-    "GV.PO (Vulnerability Policy)"
-  ],
+  "gh:mainCharacter": "character:Shouta",
   "gh:pages": [
     {
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "characters": [
-            "character:President",
-            "character:Shouta",
-            "character:Yasumoto"
-          ],
+          "characters": ["character:Ren", "character:Nei"],
           "dialogue": [
-            {
-              "speaker": "President",
-              "text": "安本も反省してる。会社は家族だ。戻ってもらう。"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "親父…それ、また同じ入口になる。"
-            }
+            {"speaker": "Narration", "text": "――RenとNeiが去った後。"}
           ],
-          "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 復旧後の大門建設。電話と紙と怒号は止まらないのに、会議だけは“いい話”で締めようとする空気。安本の席に『復職』の札が置かれそうになっている。 Featuring President, Shouta, Yasumoto.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 復旧後の大門建設。電話と紙と怒号は止まらないのに、会議だけは“いい話”で締めようとする空気。安本の席に『復職』の札が置かれそうになっている。 Featuring President, Shouta, Yasumoto.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "environment": "env:kamata-street-evening",
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "復旧後の大門建設。電話と紙と怒号は止まらないのに、会議だけは“いい話”で締めようとする空気。安本の席に『復職』の札が置かれそうになっている。"
+          "visual": "夕暮れの蒲田。RenとNeiの後ろ姿が遠ざかる。"
         },
         {
-          "characters": [
-            "character:Ren",
-            "character:President",
-            "character:Shouta"
-          ],
+          "characters": ["character:Nei", "character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "“許す”のは勝手。でも“任せる”のは設計だよ。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "元の権限に戻したら、次はもっと静かに壊れる。"
-            }
+            {"speaker": "Nei", "text": "今回は大変でしたね。Ghost二体は久しぶりでした。"},
+            {"speaker": "Ren", "text": "うん。でも、根っこは同じだった。"}
           ],
-          "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. Renが紙束（前話の“最初のスプリント”）の見出しを指でトントン叩く。『復職条件』『権限の見直し』『職務分掌』『承認フロー』。 Featuring Ren, President, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. Renが紙束（前話の“最初のスプリント”）の見出しを指でトントン叩く。『復職条件』『権限の見直し』『職務分掌』『承認フロー』。 Featuring Ren, President, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "environment": "env:kamata-street-evening",
           "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Renが紙束（前話の“最初のスプリント”）の見出しを指でトントン叩く。『復職条件』『権限の見直し』『職務分掌』『承認フロー』。"
+          "shot": "Two Shot",
+          "visual": "二人で歩きながら話す。"
         },
         {
-          "characters": [
-            "character:Ren"
-          ],
+          "characters": ["character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "社長。善意で設計をサボるな。"
-            }
+            {"speaker": "Ren", "text": "『見てもらえなかった』『認めてもらえなかった』…"},
+            {"speaker": "Ren", "text": "安本さんも松田さんも、同じ苦しみだった。"},
+            {"speaker": "Ren", "text": "でも、選んだ道が違った。それだけだ。"}
           ],
-          "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Close-up, ARIA-style. Renの目のアップ。優しい言葉の裏にある“穴”を見抜く目。机上の復職札が、鎖みたいに見える。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. Renの目のアップ。優しい言葉の裏にある“穴”を見抜く目。机上の復職札が、鎖みたいに見える。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "frontal",
-            "gh:aperture": "f/1.2",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Close-up",
-            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
-            "gh:focus": "shallow depth of field, creamy bokeh",
-            "gh:lens": "85mm prime",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "environment": "env:kamata-street-evening",
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Renの目のアップ。優しい言葉の裏にある“穴”を見抜く目。机上の復職札が、鎖みたいに見える。"
+          "visual": "Renの横顔。夕日に照らされる。"
         }
       ]
     },
@@ -142,62 +65,40 @@
       "gh:pageNumber": 2,
       "gh:panels": [
         {
-          "characters": [],
+          "characters": ["character:Nei", "character:Ren"],
           "dialogue": [
-            {
-              "speaker": "UI",
-              "text": "ALERT: new device + payee change + withdrawal"
-            }
+            {"speaker": "Nei", "text": "安本さんは温情で済みましたけど…松田さんは逮捕。"},
+            {"speaker": "Nei", "text": "同じ原因なのに、この差は…なんか、複雑ですね。"},
+            {"speaker": "Ren", "text": "…そうだな。"}
           ],
-          "environment": "env:finance-hq",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. インシデントダッシュボード。『新規端末ログイン』『受取口座追加』『出金要求』が短時間に重なっている（危険な並び）。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. インシデントダッシュボード。『新規端末ログイン』『受取口座追加』『出金要求』が短時間に重なっている（危険な並び）。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "environment": "env:kamata-street-evening",
           "panel": 1,
-          "shot": "Insert Shot",
-          "visual": "インシデントダッシュボード。『新規端末ログイン』『受取口座追加』『出金要求』が短時間に重なっている（危険な並び）。"
+          "shot": "Two Shot",
+          "visual": "Neiが少し沈んだ表情。"
         },
         {
-          "gh:imagePrompt": "Medium Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "でも、盗んだ金は戻らない。"},
+            {"speaker": "Ren", "text": "被害者がいる以上、責任は取らなきゃいけない。"},
+            {"speaker": "Ren", "text": "…それが、社会ってやつだ。"}
+          ],
+          "environment": "env:kamata-street-evening",
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Close-up",
+          "visual": "Renの真剣な表情。"
         },
         {
-          "gh:imagePrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "frontal",
-            "gh:aperture": "f/1.2",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Close-up",
-            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
-            "gh:focus": "shallow depth of field, creamy bokeh",
-            "gh:lens": "85mm prime",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "俺たちにできるのは、Ghostを斬ること。"},
+            {"speaker": "Ren", "text": "その後のことは、人間が決める。"},
+            {"speaker": "Ren", "text": "…だりー。帰って寝よ。"}
+          ],
+          "environment": "env:kamata-street-evening",
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Medium Shot",
+          "visual": "Renがあくびをしながら歩く。"
         }
       ]
     },
@@ -205,94 +106,37 @@
       "gh:pageNumber": 3,
       "gh:panels": [
         {
-          "characters": [
-            "character:Shouta",
-            "character:Sato",
-            "character:Matsuda"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Sato",
-              "text": "起動したし、現場回しましょう！"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "待て。今は“止血”だ。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 現場を止める号令。誰かが『とりあえず再起動！』と言いかけて、空気がざわつく。 Featuring Shouta, Sato, Matsuda.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 現場を止める号令。誰かが『とりあえず再起動！』と言いかけて、空気がざわつく。 Featuring Shouta, Sato, Matsuda.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "現場を止める号令。誰かが『とりあえず再起動！』と言いかけて、空気がざわつく。"
-        },
-        {
           "characters": [],
           "dialogue": [
-            {
-              "speaker": "UI",
-              "text": "RUNBOOK: CONTAINMENT / 1) isolate  2) preserve logs  3) revoke access  4) comms"
-            }
+            {"speaker": "Narration", "text": "――同時刻。大門建設。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. 紙の手順書（runbook）にチェックが入っていく。『隔離』『証跡保全』『権限停止』『連絡系統』。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. 紙の手順書（runbook）にチェックが入っていく。『隔離』『証跡保全』『権限停止』『連絡系統』。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 2,
-          "shot": "Insert Shot",
-          "visual": "紙の手順書（runbook）にチェックが入っていく。『隔離』『証跡保全』『権限停止』『連絡系統』。"
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "夕暮れのオフィス。まだ数人が残っている。"
         },
         {
-          "characters": [
-            "character:Ren",
-            "character:Shouta"
-          ],
+          "characters": ["character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "起動は復旧じゃない。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "先に権限。ログ。境界。"
-            }
+            {"speaker": "Shouta", "text": "…………"},
+            {"speaker": "Shouta (Monologue)", "text": "（俺は、何をすべきなんだ…）"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. Renが手のひらで“停止”を作る。焦りの手が電源に伸びるのを、静かに止める。 Featuring Ren, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. Renが手のひらで“停止”を作る。焦りの手が電源に伸びるのを、静かに止める。 Featuring Ren, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "翔太が机に向かっている。真剣な表情。"
+        },
+        {
+          "characters": ["character:Shouta"],
+          "dialogue": [
+            {"speaker": "Shouta (Monologue)", "text": "（Renさんは言った。『仕組みを作れ』と）"},
+            {"speaker": "Shouta (Monologue)", "text": "（気持ちだけじゃダメ。仕組みで守らなきゃいけない）"},
+            {"speaker": "Shouta (Monologue)", "text": "（…具体的に、何をすればいい？）"}
+          ],
+          "environment": "env:kamata-daimon-office",
           "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "Renが手のひらで“停止”を作る。焦りの手が電源に伸びるのを、静かに止める。"
+          "shot": "Close-up",
+          "visual": "翔太がパソコンに向かう。"
         }
       ]
     },
@@ -300,95 +144,40 @@
       "gh:pageNumber": 4,
       "gh:panels": [
         {
-          "characters": [
-            "character:President",
-            "character:Shouta",
-            "character:Matsuda"
-          ],
+          "characters": ["character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "President",
-              "text": "もう十分だろ。動かさないと現場が死ぬ。"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "動かすなら、“終端”を決めてからだ。"
-            }
+            {"speaker": "Shouta", "text": "…よし。"},
+            {"speaker": "Shouta", "text": "まずは、現状の整理からだ。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. “現場を止める”ことに社内が反発する。社長は情で丸く収めたい。翔太は板挟みで拳を握る。 Featuring President, Shouta, Matsuda.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. “現場を止める”ことに社内が反発する。社長は情で丸く収めたい。翔太は板挟みで拳を握る。 Featuring President, Shouta, Matsuda.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "“現場を止める”ことに社内が反発する。社長は情で丸く収めたい。翔太は板挟みで拳を握る。"
+          "shot": "Medium Shot",
+          "visual": "翔太がホワイトボードに向かう。"
         },
         {
-          "characters": [],
+          "characters": ["character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "UI",
-              "text": "NOTE: reinstatement != restore privileges / 2-person approval / time-bound exceptions"
-            }
+            {"speaker": "Shouta", "text": "問題点。一つ、アクセス権限が管理されてない。"},
+            {"speaker": "Shouta", "text": "二つ、システム担当が安本さん一人だった。"},
+            {"speaker": "Shouta", "text": "三つ、バックアップ体制がなかった。"},
+            {"speaker": "Shouta", "text": "四つ、経理のチェック体制がなかった。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. チェック欄の横に赤字メモ。『復職＝権限復活ではない』『職務分掌』『承認は二名』『例外は期限付き』。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. チェック欄の横に赤字メモ。『復職＝権限復活ではない』『職務分掌』『承認は二名』『例外は期限付き』。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 2,
           "shot": "Insert Shot",
-          "visual": "チェック欄の横に赤字メモ。『復職＝権限復活ではない』『職務分掌』『承認は二名』『例外は期限付き』。"
+          "visual": "ホワイトボードに書き出された問題点。"
         },
         {
-          "characters": [
-            "character:Ren",
-            "character:President",
-            "character:Shouta"
-          ],
+          "characters": ["character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "“いい話”にして、責任を溶かすな。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "社長が許すなら、社長が条件を書く。"
-            }
+            {"speaker": "Shouta", "text": "…これを全部、『仕組み』で防ぐ。"},
+            {"speaker": "Shouta", "text": "規定を作る。マニュアルを作る。チェック体制を作る。"},
+            {"speaker": "Shouta", "text": "誰が何をするか、明確にする。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. Renが社長の前で手を上げて止める。言葉は静かだが、引かない。 Featuring Ren, President, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. Renが社長の前で手を上げて止める。言葉は静かだが、引かない。 Featuring Ren, President, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "Renが社長の前で手を上げて止める。言葉は静かだが、引かない。"
+          "shot": "Close-up",
+          "visual": "翔太の決意に満ちた目。"
         }
       ]
     },
@@ -396,94 +185,39 @@
       "gh:pageNumber": 5,
       "gh:panels": [
         {
-          "characters": [
-            "character:Ren",
-            "character:Shouta",
-            "character:Nei"
-          ],
+          "characters": ["character:President", "character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "台帳。鍵。権限。例外。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "“誰でもできるように”は、だいたい誰の責任でもない。"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "…やります。"
-            }
+            {"speaker": "President", "text": "翔太。まだ残ってたのか。"},
+            {"speaker": "Shouta", "text": "親父。…ちょっと、考えることがあって。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. 壁のホワイトボードが“戦場”になる。Renが指差すのは『誰が何を持つか』の台帳欄。人の善意で、鍵が増えていった跡。 Featuring Ren, Shouta, Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. 壁のホワイトボードが“戦場”になる。Renが指差すのは『誰が何を持つか』の台帳欄。人の善意で、鍵が増えていった跡。 Featuring Ren, Shouta, Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "壁のホワイトボードが“戦場”になる。Renが指差すのは『誰が何を持つか』の台帳欄。人の善意で、鍵が増えていった跡。"
+          "shot": "Two Shot",
+          "visual": "社長が戻ってくる。翔太を見つける。"
         },
         {
-          "characters": [],
+          "characters": ["character:President"],
           "dialogue": [
-            {
-              "speaker": "UI",
-              "text": "DONE TIMER  00:42:18  /  containment > evidence > access > restore"
-            }
+            {"speaker": "President", "text": "…そうか。"},
+            {"speaker": "President", "text": "俺も、考えてた。今日のこと。"},
+            {"speaker": "President", "text": "あのガキ…Renって子に言われたこと。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. “DONE”のタイマーが回る。『隔離→証跡→権限→復元→再発防止』の順番が、時間に刻まれる。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. “DONE”のタイマーが回る。『隔離→証跡→権限→復元→再発防止』の順番が、時間に刻まれる。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 2,
-          "shot": "Insert Shot",
-          "visual": "“DONE”のタイマーが回る。『隔離→証跡→権限→復元→再発防止』の順番が、時間に刻まれる。"
+          "shot": "Close-up",
+          "visual": "社長が遠くを見る目。"
         },
         {
-          "characters": [
-            "character:Ren"
-          ],
+          "characters": ["character:President"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "二度やらない。だから今やる。"
-            }
+            {"speaker": "President", "text": "『怠惰』か。確かにその通りだった。"},
+            {"speaker": "President", "text": "俺は、考えることを避けてきた。"},
+            {"speaker": "President", "text": "『動いてるから大丈夫』で、全部逃げてた。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Close-up, ARIA-style. Renの目。眠そうな顔のまま、手順だけは一切ズレない。口元がほんの少しだけ歪む（怠惰の笑い）。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. Renの目。眠そうな顔のまま、手順だけは一切ズレない。口元がほんの少しだけ歪む（怠惰の笑い）。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "frontal",
-            "gh:aperture": "f/1.2",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Close-up",
-            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
-            "gh:focus": "shallow depth of field, creamy bokeh",
-            "gh:lens": "85mm prime",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Renの目。眠そうな顔のまま、手順だけは一切ズレない。口元がほんの少しだけ歪む（怠惰の笑い）。"
+          "visual": "社長の自省の表情。"
         }
       ]
     },
@@ -491,90 +225,40 @@
       "gh:pageNumber": 6,
       "gh:panels": [
         {
-          "characters": [
-            "character:Ren",
-            "character:Shouta",
-            "character:President"
-          ],
+          "characters": ["character:Shouta", "character:President"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "例外は、期限付き。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "承認は二名。ログは残す。ここだけはサボるな。"
-            }
+            {"speaker": "Shouta", "text": "親父。俺、規定を作ろうと思う。"},
+            {"speaker": "President", "text": "規定？"},
+            {"speaker": "Shouta", "text": "うん。情報セキュリティ規定、経理規定、職務分掌規定…"},
+            {"speaker": "Shouta", "text": "『誰が何をするか』を、全部文書にする。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. 台帳の“例外”欄に赤線。『期限』『承認者2名』『監査ログ』が太字で追加される。 Featuring Ren, Shouta, President.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. 台帳の“例外”欄に赤線。『期限』『承認者2名』『監査ログ』が太字で追加される。 Featuring Ren, Shouta, President.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "台帳の“例外”欄に赤線。『期限』『承認者2名』『監査ログ』が太字で追加される。"
+          "shot": "Two Shot",
+          "visual": "翔太がホワイトボードを指しながら説明。"
         },
         {
-          "characters": [],
+          "characters": ["character:President"],
           "dialogue": [
-            {
-              "speaker": "UI",
-              "text": "復職：安本 / 承認：社長（単独） / 権限：復活予定"
-            }
-          ],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. タイマーの横に“承認”の通知が割り込む。『復職：社長 承認済み（単独）』。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. タイマーの横に“承認”の通知が割り込む。『復職：社長 承認済み（単独）』。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 2,
-          "shot": "Insert Shot",
-          "visual": "タイマーの横に“承認”の通知が割り込む。『復職：社長 承認済み（単独）』。"
-        },
-        {
-          "characters": [
-            "character:Ren"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "…ほら。もう穴が開いた。"
-            }
+            {"speaker": "President", "text": "…大変な作業だな。うちみたいな中小企業で、そこまで…"},
+            {"speaker": "Shouta", "text": "だからこそ必要なんだ、親父。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Close-up, ARIA-style. Renの目が冷える。善意の承認が、鍵穴を増やす音がする（ミニ引き）。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. Renの目が冷える。善意の承認が、鍵穴を増やす音がする（ミニ引き）。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "frontal",
-            "gh:aperture": "f/1.2",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Close-up",
-            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
-            "gh:focus": "shallow depth of field, creamy bokeh",
-            "gh:lens": "85mm prime",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "社長が難色を示す。"
+        },
+        {
+          "characters": ["character:Shouta"],
+          "dialogue": [
+            {"speaker": "Shouta", "text": "大企業は人数が多いから、自然とチェックが働く。"},
+            {"speaker": "Shouta", "text": "でもうちは50人だ。一人に任せきりになりやすい。"},
+            {"speaker": "Shouta", "text": "だから『仕組み』で補わないと、また同じことが起きる。"}
+          ],
+          "environment": "env:kamata-daimon-office",
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Renの目が冷える。善意の承認が、鍵穴を増やす音がする（ミニ引き）。"
+          "visual": "翔太の真剣な表情。"
         }
       ]
     },
@@ -582,97 +266,38 @@
       "gh:pageNumber": 7,
       "gh:panels": [
         {
-          "characters": [
-            "character:President",
-            "character:Shouta",
-            "character:Ren"
-          ],
+          "characters": ["character:President"],
           "dialogue": [
-            {
-              "speaker": "President",
-              "text": "会社は人で回ってる。あいつを潰したら終わりだ。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "潰すんじゃない。境界を引く。"
-            }
+            {"speaker": "President", "text": "…………"},
+            {"speaker": "President", "text": "…わかった。やれ、翔太。"},
+            {"speaker": "President", "text": "俺も協力する。今度こそ、逃げない。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 会議スペース。社長の“情”が、全員の肩にのしかかる。翔太は改革を言い出した当事者なのに、痛みを想像して言葉が詰まる。 Featuring President, Shouta, Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 会議スペース。社長の“情”が、全員の肩にのしかかる。翔太は改革を言い出した当事者なのに、痛みを想像して言葉が詰まる。 Featuring President, Shouta, Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "会議スペース。社長の“情”が、全員の肩にのしかかる。翔太は改革を言い出した当事者なのに、痛みを想像して言葉が詰まる。"
-        },
-        {
-          "characters": [
-            "character:Ren",
-            "character:Shouta"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "…俺がやります。条件、俺が書く。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "いい。書ける人が書く。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. Renは椅子に座ったまま、紙束を一枚ずつめくる。怒号の中で、手だけが淡々と“設計”を進める。 Featuring Ren, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. Renは椅子に座ったまま、紙束を一枚ずつめくる。怒号の中で、手だけが淡々と“設計”を進める。 Featuring Ren, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Renは椅子に座ったまま、紙束を一枚ずつめくる。怒号の中で、手だけが淡々と“設計”を進める。"
-        },
-        {
-          "characters": [
-            "character:Ren"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Ren (Monologue)",
-              "text": "（善意が混ざると、責任は薄まる）"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Close-up, ARIA-style. Renの目。社長の善意と、翔太の覚悟と、安本の恐怖。その“混ざり”が一番危ないと見ている。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. Renの目。社長の善意と、翔太の覚悟と、安本の恐怖。その“混ざり”が一番危ないと見ている。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "frontal",
-            "gh:aperture": "f/1.2",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Close-up",
-            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
-            "gh:focus": "shallow depth of field, creamy bokeh",
-            "gh:lens": "85mm prime",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 3,
           "shot": "Close-up",
-          "visual": "Renの目。社長の善意と、翔太の覚悟と、安本の恐怖。その“混ざり”が一番危ないと見ている。"
+          "visual": "社長が頷く。決意の表情。"
+        },
+        {
+          "characters": ["character:Shouta"],
+          "dialogue": [
+            {"speaker": "Shouta", "text": "…ありがとう、親父。"},
+            {"speaker": "Shouta", "text": "一緒に、この会社を作り直そう。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Two Shot",
+          "visual": "父と子が向き合う。"
+        },
+        {
+          "characters": ["character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "…俺も、手伝わせてください。"},
+            {"speaker": "Yasumoto", "text": "30年、システムやってきた経験、役立てたい。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Medium Shot",
+          "visual": "安本がオフィスの隅から声をかける。"
         }
       ]
     },
@@ -680,97 +305,39 @@
       "gh:pageNumber": 8,
       "gh:panels": [
         {
-          "characters": [
-            "character:President",
-            "character:Shouta",
-            "character:Ren"
-          ],
+          "characters": ["character:Shouta", "character:Yasumoto"],
           "dialogue": [
-            {
-              "speaker": "President",
-              "text": "もう承認した。やり直しはできん。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "できる。条件を書き直すだけ。"
-            }
+            {"speaker": "Shouta", "text": "安本さん…！"},
+            {"speaker": "Yasumoto", "text": "俺が一番、この会社のシステムの弱点を知ってる。"},
+            {"speaker": "Yasumoto", "text": "…だから、俺が直す。今度こそ、ちゃんとやる。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 同じ会議室、同じ空気。でも“承認通知”が出たことで、善意が既成事実になりかける。 Featuring President, Shouta, Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 同じ会議室、同じ空気。でも“承認通知”が出たことで、善意が既成事実になりかける。 Featuring President, Shouta, Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "同じ会議室、同じ空気。でも“承認通知”が出たことで、善意が既成事実になりかける。"
+          "shot": "Two Shot",
+          "visual": "安本が翔太に歩み寄る。"
         },
         {
-          "characters": [
-            "character:Ren",
-            "character:Shouta"
-          ],
+          "characters": ["character:President", "character:Yasumoto"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "情は残していい。権限は残すな。"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "…わかった。"
-            }
+            {"speaker": "President", "text": "安本…すまなかった。お前の力、借りたい。"},
+            {"speaker": "Yasumoto", "text": "社長…俺こそ、すみませんでした。"},
+            {"speaker": "Yasumoto", "text": "今度は…ちゃんと話します。困ったら、相談します。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. Renは紙束を“半分”に分ける。片方に『情』、片方に『設計』。置き方が露骨。 Featuring Ren, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. Renは紙束を“半分”に分ける。片方に『情』、片方に『設計』。置き方が露骨。 Featuring Ren, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Renは紙束を“半分”に分ける。片方に『情』、片方に『設計』。置き方が露骨。"
+          "shot": "Two Shot",
+          "visual": "社長と安本が握手。"
         },
         {
-          "characters": [
-            "character:Ren"
-          ],
+          "characters": ["character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "Ren (Monologue)",
-              "text": "（来るな。…来る）"
-            }
+            {"speaker": "Shouta", "text": "よし。じゃあ、始めよう。"},
+            {"speaker": "Shouta", "text": "大門建設の、新しい『仕組み』作りを。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Close-up, ARIA-style. Renの目の奥に、笑顔の仮面がチラつく。次のGhostが“善意”から育つ予感（ミニ引き）。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. Renの目の奥に、笑顔の仮面がチラつく。次のGhostが“善意”から育つ予感（ミニ引き）。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "frontal",
-            "gh:aperture": "f/1.2",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Close-up",
-            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
-            "gh:focus": "shallow depth of field, creamy bokeh",
-            "gh:lens": "85mm prime",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Renの目の奥に、笑顔の仮面がチラつく。次のGhostが“善意”から育つ予感（ミニ引き）。"
+          "visual": "翔太が笑顔で宣言。"
         }
       ]
     },
@@ -778,97 +345,32 @@
       "gh:pageNumber": 9,
       "gh:panels": [
         {
-          "characters": [
-            "character:Ren",
-            "character:GhostPreviousPresident",
-            "character:PreviousPresident"
-          ],
+          "characters": [],
           "dialogue": [
-            {
-              "speaker": "GhostPreviousPresident",
-              "text": "（家族）"
-            },
-            {
-              "speaker": "GhostPreviousPresident",
-              "text": "（現場）"
-            }
+            {"speaker": "Narration", "text": "――2週間後。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "POV Shot, ARIA-style. Ren視点のAR。笑顔の仮面の奥に、古い社判（ハンコ）の圧が見える。『先代のやり方』が“正しさ”として貼り付いて、責任だけが薄れる。 Featuring Ren, GhostPreviousPresident, PreviousPresident.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "POV Shot, ARIA-style. Ren視点のAR。笑顔の仮面の奥に、古い社判（ハンコ）の圧が見える。『先代のやり方』が“正しさ”として貼り付いて、責任だけが薄れる。 Featuring Ren, GhostPreviousPresident, PreviousPresident.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "first-person POV",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "POV",
-            "gh:focus": "subject focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "POV Shot",
-          "visual": "Ren視点のAR。笑顔の仮面の奥に、古い社判（ハンコ）の圧が見える。『先代のやり方』が“正しさ”として貼り付いて、責任だけが薄れる。"
-        },
-        {
-          "characters": [
-            "character:GhostPreviousPresident",
-            "character:President",
-            "character:Shouta"
-          ],
-          "dialogue": [
-            {
-              "speaker": "President",
-              "text": "…親父の頃は、これで回ってた。"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "だから今、詰んでる。"
-            }
-          ],
-          "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 紙が舞い、空気が揺れる。机の隅に“古い社訓フレーム”が影を落とし、その影がゆっくり伸びる。 Featuring GhostPreviousPresident, President, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 紙が舞い、空気が揺れる。机の隅に“古い社訓フレーム”が影を落とし、その影がゆっくり伸びる。 Featuring GhostPreviousPresident, President, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 2,
           "shot": "Wide Shot",
-          "visual": "紙が舞い、空気が揺れる。机の隅に“古い社訓フレーム”が影を落とし、その影がゆっくり伸びる。"
+          "visual": "大門建設オフィス。以前より整理されている。"
         },
         {
-          "characters": [
-            "character:Nei"
-          ],
+          "characters": ["character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "固定いける。逃げ道、塞ぐ。"
-            }
+            {"speaker": "Shouta", "text": "ふぅ…やっと形になってきた…"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. SIPがON。先代Ghostの“社判の圧”を、輪郭ごと固定する準備。 Featuring Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. SIPがON。先代Ghostの“社判の圧”を、輪郭ごと固定する準備。 Featuring Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "翔太が机に向かっている。目の下にクマ。"
+        },
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:kamata-daimon-office",
           "panel": 3,
-          "shot": "Insert Shot",
-          "visual": "SIPがON。先代Ghostの“社判の圧”を、輪郭ごと固定する準備。"
+          "shot": "Wide Shot",
+          "visual": "翔太の机の上には大量のファイルが積まれている。"
         }
       ]
     },
@@ -876,52 +378,40 @@
       "gh:pageNumber": 10,
       "gh:panels": [
         {
-          "gh:imagePrompt": "POV Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "POV Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "first-person POV",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "POV",
-            "gh:focus": "subject focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "characters": [],
+          "dialogue": [
+            {"speaker": "Narration", "text": "『情報セキュリティ基本規定』"},
+            {"speaker": "Narration", "text": "『アクセス権限管理規定』"},
+            {"speaker": "Narration", "text": "『バックアップ運用規定』"}
+          ],
+          "environment": "env:kamata-daimon-office",
           "panel": 1,
-          "shot": "POV Shot"
+          "shot": "Insert Shot",
+          "visual": "ファイルの背表紙が映る。きちんとラベリングされている。"
         },
         {
-          "gh:imagePrompt": "Wide Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "characters": [],
+          "dialogue": [
+            {"speaker": "Narration", "text": "『経理業務規定』"},
+            {"speaker": "Narration", "text": "『内部統制規定』"},
+            {"speaker": "Narration", "text": "『職務分掌規定』"}
+          ],
+          "environment": "env:kamata-daimon-office",
           "panel": 2,
-          "shot": "Wide Shot"
+          "shot": "Insert Shot",
+          "visual": "さらに積まれたファイル。"
         },
         {
-          "gh:imagePrompt": "Insert Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "characters": [],
+          "dialogue": [
+            {"speaker": "Narration", "text": "『インシデント対応マニュアル』"},
+            {"speaker": "Narration", "text": "『システム運用手順書』"},
+            {"speaker": "Narration", "text": "『人事評価制度規定』"}
+          ],
+          "environment": "env:kamata-daimon-office",
           "panel": 3,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "visual": "机の上に山のように積まれた規定類。"
         }
       ]
     },
@@ -929,87 +419,40 @@
       "gh:pageNumber": 11,
       "gh:panels": [
         {
-          "characters": [
-            "character:GhostPreviousPresident",
-            "character:President",
-            "character:Ren"
-          ],
+          "characters": ["character:Sato", "character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "GhostPreviousPresident",
-              "text": "（絆）"
-            },
-            {
-              "speaker": "Ren",
-              "text": "その絆、穴だらけ。"
-            }
+            {"speaker": "Sato", "text": "翔太さん…これ、全部作ったんすか…？"},
+            {"speaker": "Shouta", "text": "まあ…安本さんにも手伝ってもらったけど。"},
+            {"speaker": "Sato", "text": "すげえ…何冊あるんすか…"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 先代Ghostが完全に立ち上がる。紙仮面の笑顔の中心に社判の赤が滲み、フレーム化した社訓が鎧になる。 Featuring GhostPreviousPresident, President, Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 先代Ghostが完全に立ち上がる。紙仮面の笑顔の中心に社判の赤が滲み、フレーム化した社訓が鎧になる。 Featuring GhostPreviousPresident, President, Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "先代Ghostが完全に立ち上がる。紙仮面の笑顔の中心に社判の赤が滲み、フレーム化した社訓が鎧になる。"
+          "shot": "Two Shot",
+          "visual": "佐藤が驚愕の表情で規定類を見つめる。"
         },
         {
-          "characters": [
-            "character:Ren",
-            "character:Nei",
-            "character:GhostPreviousPresident"
-          ],
+          "characters": ["character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "曖昧さ、切る。"
-            },
-            {
-              "speaker": "Nei",
-              "text": "固定。今。"
-            }
+            {"speaker": "Shouta", "text": "12冊。でも、これで終わりじゃない。"},
+            {"speaker": "Shouta", "text": "運用して、問題があれば直す。継続的に改善していく。"},
+            {"speaker": "Shouta", "text": "『仕組み』は作って終わりじゃない。育てていくものだ。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. Neiが固定、Renが切る。先代の“慣習”を、境界線で分解していく。 Featuring Ren, Nei, GhostPreviousPresident.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. Neiが固定、Renが切る。先代の“慣習”を、境界線で分解していく。 Featuring Ren, Nei, GhostPreviousPresident.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Neiが固定、Renが切る。先代の“慣習”を、境界線で分解していく。"
+          "shot": "Close-up",
+          "visual": "翔太の疲れているが充実した表情。"
         },
         {
-          "gh:imagePrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style.  . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "frontal",
-            "gh:aperture": "f/1.2",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Close-up",
-            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
-            "gh:focus": "shallow depth of field, creamy bokeh",
-            "gh:lens": "85mm prime",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "characters": ["character:Yasumoto", "character:Shouta"],
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "翔太くん。アクセス権限の設定、終わったぞ。"},
+            {"speaker": "Shouta", "text": "ありがとうございます、安本さん。"},
+            {"speaker": "Yasumoto", "text": "これで、経理データは経理しか触れない。俺も触れなくなった。"}
+          ],
+          "environment": "env:kamata-daimon-office",
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Two Shot",
+          "visual": "安本がノートパソコンを持ってくる。"
         }
       ]
     },
@@ -1017,98 +460,39 @@
       "gh:pageNumber": 12,
       "gh:panels": [
         {
-          "characters": [
-            "character:GhostPreviousPresident",
-            "character:President",
-            "character:Shouta"
-          ],
+          "characters": ["character:Shouta", "character:Yasumoto"],
           "dialogue": [
-            {
-              "speaker": "President",
-              "text": "……親父…"
-            },
-            {
-              "speaker": "Shouta",
-              "text": "親父の名前で、逃げるな。"
-            }
+            {"speaker": "Shouta", "text": "『最小権限の原則』ですね。"},
+            {"speaker": "Yasumoto", "text": "ああ。必要な人に、必要な権限だけ。"},
+            {"speaker": "Yasumoto", "text": "これなら、俺一人で全部やらなくていい。楽になった。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 先代Ghostが“最後の圧”をかける。笑顔の仮面が増殖し、社判の赤が空気に滲む。社長の背中が少しだけ小さく見える。 Featuring GhostPreviousPresident, President, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 先代Ghostが“最後の圧”をかける。笑顔の仮面が増殖し、社判の赤が空気に滲む。社長の背中が少しだけ小さく見える。 Featuring GhostPreviousPresident, President, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "先代Ghostが“最後の圧”をかける。笑顔の仮面が増殖し、社判の赤が空気に滲む。社長の背中が少しだけ小さく見える。"
+          "shot": "Two Shot",
+          "visual": "翔太と安本が笑顔で話す。"
         },
         {
-          "characters": [
-            "character:Ren",
-            "character:Nei",
-            "character:GhostPreviousPresident"
-          ],
+          "characters": ["character:President"],
           "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "固定。核、ここ。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "じゃ、切る。"
-            }
+            {"speaker": "President", "text": "翔太、安本。ご苦労だな。"},
+            {"speaker": "President", "text": "…見てたぞ。お前たちの頑張り。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. Neiが固定する光の格子が、社判の“圧”を止める。Renは結び目（慣習）だけを狙って切る。 Featuring Ren, Nei, GhostPreviousPresident.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. Neiが固定する光の格子が、社判の“圧”を止める。Renは結び目（慣習）だけを狙って切る。 Featuring Ren, Nei, GhostPreviousPresident.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "Neiが固定する光の格子が、社判の“圧”を止める。Renは結び目（慣習）だけを狙って切る。"
+          "visual": "社長がコーヒーを持って入ってくる。"
         },
         {
-          "characters": [
-            "character:Ren"
-          ],
+          "characters": ["character:President"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "…境界、結ぶ。"
-            }
+            {"speaker": "President", "text": "俺も、変わらなきゃな。"},
+            {"speaker": "President", "text": "『動いてるから大丈夫』は、もう言わない。"},
+            {"speaker": "President", "text": "毎月、ちゃんと報告会やろう。俺も出る。"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Close-up, ARIA-style. Renの目。仮面の光が走る中で、“線”だけを拾う。優しさの言葉に、境界線を引く目。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. Renの目。仮面の光が走る中で、“線”だけを拾う。優しさの言葉に、境界線を引く目。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "frontal",
-            "gh:aperture": "f/1.2",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Close-up",
-            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
-            "gh:focus": "shallow depth of field, creamy bokeh",
-            "gh:lens": "85mm prime",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Renの目。仮面の光が走る中で、“線”だけを拾う。優しさの言葉に、境界線を引く目。"
+          "visual": "社長の真剣な表情。"
         }
       ]
     },
@@ -1116,66 +500,39 @@
       "gh:pageNumber": 13,
       "gh:panels": [
         {
-          "characters": [
-            "character:Ren",
-            "character:GhostPreviousPresident"
-          ],
+          "characters": ["character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "SE",
-              "text": "SHAAK!!"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…切るのは、穴。"
-            }
+            {"speaker": "Shouta", "text": "…ありがとう、親父。"},
+            {"speaker": "Shouta (Monologue)", "text": "（Renさんが言ってたこと、少しわかった気がする）"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Action Shot, ARIA-style. Renが一閃。切るのは“情”じゃない。曖昧さの結び目だけ。紙の鎧がほどけて舞う。 Featuring Ren, GhostPreviousPresident.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Action Shot, ARIA-style. Renが一閃。切るのは“情”じゃない。曖昧さの結び目だけ。紙の鎧がほどけて舞う。 Featuring Ren, GhostPreviousPresident.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "dynamic tracking",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject tracking focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows",
-            "gh:movement": "handheld or tracking shot, subtle motion blur"
-          },
           "panel": 1,
-          "shot": "Action Shot",
-          "visual": "Renが一閃。切るのは“情”じゃない。曖昧さの結び目だけ。紙の鎧がほどけて舞う。"
+          "shot": "Close-up",
+          "visual": "翔太の穏やかな表情。"
         },
         {
-          "characters": [
-            "character:GhostPreviousPresident",
-            "character:Ren",
-            "character:Nei"
-          ],
+          "characters": ["character:Shouta"],
           "dialogue": [
-            {
-              "speaker": "SE",
-              "text": "…PASHAAA…"
-            }
+            {"speaker": "Shouta (Monologue)", "text": "（『仕組み』は、人を縛るものじゃない）"},
+            {"speaker": "Shouta (Monologue)", "text": "（人を守るものだ）"},
+            {"speaker": "Shouta (Monologue)", "text": "（安本さんみたいに追い詰められる人を、作らないために）"}
           ],
           "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Full Page Splash, ARIA-style. 大ゴマ。核（社判の赤）が砕け、紙仮面が光の粒にほどける。空気が一段澄む。 Featuring GhostPreviousPresident, Ren, Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Full Page Splash, ARIA-style. 大ゴマ。核（社判の赤）が砕け、紙仮面が光の粒にほどける。空気が一段澄む。 Featuring GhostPreviousPresident, Ren, Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "dynamic angle",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "impact composition, clear silhouette and motion lines",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus with emphasized subject",
-            "gh:lens": "28mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 2,
-          "shot": "Full Page Splash",
-          "visual": "大ゴマ。核（社判の赤）が砕け、紙仮面が光の粒にほどける。空気が一段澄む。"
+          "shot": "Close-up",
+          "visual": "翔太が規定類を見つめる。"
+        },
+        {
+          "characters": ["character:Shouta"],
+          "dialogue": [
+            {"speaker": "Shouta (Monologue)", "text": "（松田さんみたいに犯罪に走る人を、作らないために）"},
+            {"speaker": "Shouta (Monologue)", "text": "（『仕組み』で、人を守る）"},
+            {"speaker": "Shouta (Monologue)", "text": "（…これが、俺のやるべきことだ）"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "翔太の決意に満ちた目。"
         }
       ]
     },
@@ -1183,64 +540,36 @@
       "gh:pageNumber": 14,
       "gh:panels": [
         {
-          "characters": [
-            "character:President"
-          ],
+          "characters": [],
           "dialogue": [
-            {
-              "speaker": "President",
-              "text": "…親父の言葉で、楽をしてた。"
-            }
+            {"speaker": "Narration", "text": "――同時刻。東京・世田谷区。"}
           ],
-          "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Action Shot, ARIA-style. 社長が自分の手で、古い社訓フレームを外す。重い。けど、外す。 Featuring President.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Action Shot, ARIA-style. 社長が自分の手で、古い社訓フレームを外す。重い。けど、外す。 Featuring President.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "dynamic tracking",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject tracking focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows",
-            "gh:movement": "handheld or tracking shot, subtle motion blur"
-          },
+          "environment": "env:ren-office",
           "panel": 1,
-          "shot": "Action Shot",
-          "visual": "社長が自分の手で、古い社訓フレームを外す。重い。けど、外す。"
+          "shot": "Wide Shot",
+          "visual": "Renの拠点。モニターの光だけが灯っている。"
         },
         {
-          "characters": [
-            "character:Shouta",
-            "character:Ren"
-          ],
+          "characters": ["character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "…俺が、条件を書く。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "それでいい。"
-            }
+            {"speaker": "SE", "text": "zzz...zzz..."}
           ],
-          "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Full Page Splash, ARIA-style. 大ゴマ。社訓フレームの跡に、署名入りの『復職条件』と責任分界表が貼られる。紙の粉が花びらみたいに落ちて、終わる。 Featuring Shouta, Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Full Page Splash, ARIA-style. 大ゴマ。社訓フレームの跡に、署名入りの『復職条件』と責任分界表が貼られる。紙の粉が花びらみたいに落ちて、終わる。 Featuring Shouta, Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "dynamic angle",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "impact composition, clear silhouette and motion lines",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus with emphasized subject",
-            "gh:lens": "28mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "environment": "env:ren-office",
           "panel": 2,
-          "shot": "Full Page Splash",
-          "visual": "大ゴマ。社訓フレームの跡に、署名入りの『復職条件』と責任分界表が貼られる。紙の粉が花びらみたいに落ちて、終わる。"
+          "shot": "Medium Shot",
+          "visual": "Renがソファで爆睡している。"
+        },
+        {
+          "characters": ["character:Nei", "character:Ren"],
+          "dialogue": [
+            {"speaker": "Nei", "text": "レン。大門建設から連絡が来てます。"},
+            {"speaker": "Ren", "text": "んー…なに…"},
+            {"speaker": "Nei", "text": "『規定類が完成した。礼を言いたい』と。"}
+          ],
+          "environment": "env:ren-office",
+          "panel": 3,
+          "shot": "Two Shot",
+          "visual": "Neiがタブレットを見せる。Renが薄目を開ける。"
         }
       ]
     },
@@ -1248,86 +577,40 @@
       "gh:pageNumber": 15,
       "gh:panels": [
         {
-          "characters": [
-            "character:Matsuda",
-            "character:Sato",
-            "character:Shouta"
-          ],
+          "characters": ["character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Matsuda",
-              "text": "…助かった。今度は手順、残すわよ。"
-            }
+            {"speaker": "Ren", "text": "…ふーん。ちゃんとやったんだ、あの人。"},
+            {"speaker": "Ren", "text": "…えらいじゃん。"}
           ],
-          "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 修羅場が“整列”し始める。まだ忙しい。でも、誰が何をやるかが見える。 Featuring Matsuda, Sato, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 修羅場が“整列”し始める。まだ忙しい。でも、誰が何をやるかが見える。 Featuring Matsuda, Sato, Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "environment": "env:ren-office",
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "修羅場が“整列”し始める。まだ忙しい。でも、誰が何をやるかが見える。"
+          "shot": "Close-up",
+          "visual": "Renが小さく笑う。珍しく温かい表情。"
         },
         {
-          "characters": [],
+          "characters": ["character:Nei", "character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "証拠、残した。次は設計。"
-            }
+            {"speaker": "Nei", "text": "返信はどうしますか？"},
+            {"speaker": "Ren", "text": "いらない。"},
+            {"speaker": "Nei", "text": "え？"},
+            {"speaker": "Ren", "text": "俺の仕事は終わった。あとは向こうの問題。"}
           ],
-          "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. 証跡パック（ログ/タイムライン/スクショ）がきれいに束ねられる。“優しさ”じゃなく“証拠”で守る。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. 証跡パック（ログ/タイムライン/スクショ）がきれいに束ねられる。“優しさ”じゃなく“証拠”で守る。 . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "over-shoulder or top-down insert",
-            "gh:aperture": "f/2.0",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Insert",
-            "gh:focus": "sharp focus on object/screen",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "environment": "env:ren-office",
           "panel": 2,
-          "shot": "Insert Shot",
-          "visual": "証跡パック（ログ/タイムライン/スクショ）がきれいに束ねられる。“優しさ”じゃなく“証拠”で守る。"
+          "shot": "Two Shot",
+          "visual": "Renがまた目を閉じる。"
         },
         {
-          "characters": [
-            "character:Shouta"
-          ],
+          "characters": ["character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Shouta",
-              "text": "…もう“いい話”で終わらせない。"
-            }
+            {"speaker": "Ren", "text": "…まあ、よかったんじゃない。"},
+            {"speaker": "Ren", "text": "あの会社、もうGhostは生まれないだろ。"},
+            {"speaker": "Ren", "text": "『仕組み』ができたから。"}
           ],
-          "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Close-up, ARIA-style. 翔太の目。怖さは残ってる。でも、逃げない光が入る。 Featuring Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. 翔太の目。怖さは残ってる。でも、逃げない光が入る。 Featuring Shouta.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "frontal",
-            "gh:aperture": "f/1.2",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Close-up",
-            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
-            "gh:focus": "shallow depth of field, creamy bokeh",
-            "gh:lens": "85mm prime",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "environment": "env:ren-office",
           "panel": 3,
           "shot": "Close-up",
-          "visual": "翔太の目。怖さは残ってる。でも、逃げない光が入る。"
+          "visual": "Renの穏やかな表情。"
         }
       ]
     },
@@ -1335,101 +618,114 @@
       "gh:pageNumber": 16,
       "gh:panels": [
         {
-          "characters": [
-            "character:Nei",
-            "character:Ren"
-          ],
+          "characters": ["character:Nei"],
           "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "供給網。次の会社に波及する。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…また、入口。"
-            }
+            {"speaker": "Nei", "text": "…レン。また新しい依頼が来てますよ。"},
+            {"speaker": "Nei", "text": "今度は物流会社です。"}
           ],
-          "environment": "env:kamata-daimon-office",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 落ち着いたのに、終わってない。委託先の遠隔管理基盤に“同型”の痕跡が残り、線が別の業種へ伸びる。 Featuring Nei, Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 落ち着いたのに、終わってない。委託先の遠隔管理基盤に“同型”の痕跡が残り、線が別の業種へ伸びる。 Featuring Nei, Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "environment": "env:ren-office",
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "落ち着いたのに、終わってない。委託先の遠隔管理基盤に“同型”の痕跡が残り、線が別の業種へ伸びる。"
-        },
-        {
-          "characters": [
-            "character:Ren",
-            "character:Nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "…来月のご飯代、少しは戻りましたね。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "寝る。"
-            }
-          ],
-          "environment": "env:kamata-street-evening",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. RenとNeiが歩き出す。Renは欠伸しそうな顔で、でも足は迷わない。 Featuring Ren, Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. RenとNeiが歩き出す。Renは欠伸しそうな顔で、でも足は迷わない。 Featuring Ren, Nei.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/1.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Medium Shot",
-            "gh:focus": "subject focus, soft background",
-            "gh:lens": "50mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 2,
           "shot": "Medium Shot",
-          "visual": "RenとNeiが歩き出す。Renは欠伸しそうな顔で、でも足は迷わない。"
+          "visual": "Neiがタブレットを操作。"
         },
         {
-          "characters": [
-            "character:Ren"
-          ],
+          "characters": ["character:Ren"],
           "dialogue": [
-            {
-              "speaker": "Ren (Monologue)",
-              "text": "（切れないなら、切る場所を変える）"
-            }
+            {"speaker": "Ren", "text": "…………"},
+            {"speaker": "Ren", "text": "…明日でいい？"},
+            {"speaker": "Nei", "text": "緊急だそうです。"},
+            {"speaker": "Ren", "text": "…だりー。"}
           ],
-          "environment": "env:kamata-street-evening",
-          "gh:imagePrompt": "Close-up, ARIA-style. Renの目。次の“線”がもう見えている。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. Renの目。次の“線”がもう見えている。 Featuring Ren.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "frontal",
-            "gh:aperture": "f/1.2",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Close-up",
-            "gh:eyeDetail": "highly detailed expressive eyes, intricate iris patterns, sharp sparkling catchlights, crystalline ocular texture",
-            "gh:focus": "shallow depth of field, creamy bokeh",
-            "gh:lens": "85mm prime",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
+          "environment": "env:ren-office",
+          "panel": 2,
+          "shot": "Two Shot",
+          "visual": "Renが渋々起き上がる。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "…世の中、バグだらけだな。"},
+            {"speaker": "Ren", "text": "まあいいか。行くか。"}
+          ],
+          "environment": "env:ren-office",
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Renの目。次の“線”がもう見えている。"
+          "visual": "Renがフードを被る。目が鋭く光る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 17,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {"speaker": "Narration", "text": "一つのGhostが消えても、また新しいGhostが生まれる。"}
+          ],
+          "environment": "env:tokyo-skyline-night",
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "夜の東京。ビルの明かり。"
+        },
+        {
+          "characters": [],
+          "dialogue": [
+            {"speaker": "Narration", "text": "人の心がある限り、歪みは消えない。"}
+          ],
+          "environment": "env:tokyo-skyline-night",
+          "panel": 2,
+          "shot": "Wide Shot",
+          "visual": "街のどこかで、黒い靄がうごめいている。"
+        },
+        {
+          "characters": [],
+          "dialogue": [
+            {"speaker": "Narration", "text": "だから、Ghost Hackerは今日も行く。"}
+          ],
+          "environment": "env:tokyo-skyline-night",
+          "panel": 3,
+          "shot": "Wide Shot",
+          "visual": "夜空を飛ぶ飛行機のライト。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 18,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {"speaker": "Narration", "text": "大門建設は、生まれ変わった。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "翌朝の大門建設。社員たちが元気に出社。"
+        },
+        {
+          "characters": ["character:Shouta", "character:President", "character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "Narration", "text": "『仕組み』を作り、人を守る会社へと。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Wide Shot",
+          "visual": "翔太、社長、安本が並んで立っている。後ろに規定類のファイルが並ぶ棚。"
+        },
+        {
+          "characters": [],
+          "dialogue": [
+            {"speaker": "Narration", "text": "Arc A「怠惰」編――完"},
+            {"speaker": "Narration", "text": "Next Arc: 「嫉妬」編"}
+          ],
+          "environment": "env:intertitle-black",
+          "panel": 3,
+          "shot": "Full Page Splash",
+          "visual": "黒背景に大きくタイトル。Arc A完結。"
         }
       ]
     }
   ],
-  "gh:presentationTagline": "Arc A | Corporate Culture",
-  "gh:realCase": "Handa Hospital Ransomware (2021) / Iseto (2024)",
-  "gh:sinContrast": "Passive Sloth (Vulnerability Neglect) vs. Active Sloth (Hyper-Efficiency)"
+  "gh:presentationTagline": "Arc A | Building Systems to Protect People",
+  "gh:sinContrast": "Systems don't restrict people - they protect them"
 }
