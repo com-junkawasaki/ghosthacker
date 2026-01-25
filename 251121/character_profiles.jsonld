@@ -276,6 +276,155 @@
         "gh:style": "Photorealistic, 8k, high-end webtoon aesthetic.",
         "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 16-year-old Japanese high school boy, messy black hair with bangs, focused expression, school uniform, slouched posture."
       }
+    },
+
+    {
+      "@id": "character:MizukiShinji",
+      "schema:name": "水城 慎司 (Shinji Mizuki)",
+      "schema:role": "Kaname's Uncle / Shadow Strategist",
+      "schema:age": 52,
+      "gh:arc": "Arc C",
+      "gh:appearance": {
+        "gh:face": "52-year-old Japanese male, seemingly timid and unassuming expression, round glasses, slightly hunched posture. Behind the mild exterior, sharp intelligent eyes that notice everything.",
+        "gh:hair": "Thinning black hair with gray streaks, neatly combed but unremarkable.",
+        "gh:build": "Slim, average height, forgettable presence. Wears plain gray suits that blend in.",
+        "gh:eyes": "Behind round glasses, dark intelligent eyes with subtle sharp catchlights. Eyes that see through deception.",
+        "gh:style": "Photorealistic, understated elegance, bureaucratic aesthetic, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 52-year-old Japanese male, seemingly timid expression, round glasses, thinning gray-streaked hair, plain gray suit, hunched posture but sharp intelligent eyes behind glasses, natural office lighting."
+      },
+      "gh:personality": {
+        "gh:public": "Appears weak, apologetic, self-deprecating. 'I'm just a humble advisor...'",
+        "gh:private": "Brilliant strategist with encyclopedic knowledge of finance law, accounting fraud, and organizational dynamics. Plays the long game.",
+        "gh:motivation": "Restore the Mizuki family's influence in the financial world through legitimate but calculated means."
+      }
+    },
+
+    {
+      "@id": "character:YamashitaTsuyoshi",
+      "schema:name": "山下 剛 (Tsuyoshi Yamashita)",
+      "schema:role": "Logistics Director / Arc B Client",
+      "schema:age": 48,
+      "gh:arc": "Arc B",
+      "gh:appearance": {
+        "gh:face": "48-year-old Japanese male, weathered face from years on the logistics floor, intense eyes, perpetual urgency in expression.",
+        "gh:hair": "Short cropped black hair with gray at temples, military-style cut.",
+        "gh:build": "Stocky, muscular from physical work. Wears company polo shirt with rolled sleeves.",
+        "gh:eyes": "Intense dark eyes, stress lines visible, sharp but impatient catchlights.",
+        "gh:style": "Photorealistic, industrial lighting, blue-collar executive, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 48-year-old Japanese male, weathered face, intense impatient eyes, short cropped black hair with gray temples, company polo shirt, industrial warehouse background."
+      }
+    },
+
+    {
+      "@id": "character:TamuraSeiichi",
+      "schema:name": "田村 誠一 (Seiichi Tamura)",
+      "schema:role": "IT Director / Arc B Ally",
+      "schema:age": 42,
+      "gh:arc": "Arc B",
+      "gh:appearance": {
+        "gh:face": "42-year-old Japanese male, gentle face, slight worry lines, glasses, non-confrontational expression.",
+        "gh:hair": "Neat black hair, standard business cut.",
+        "gh:build": "Slim, office worker physique. Wears button-down shirt, no tie.",
+        "gh:eyes": "Soft brown eyes behind glasses, apologetic catchlights, technically competent but politically weak.",
+        "gh:style": "Photorealistic, office lighting, IT professional aesthetic, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 42-year-old Japanese male, gentle worried expression, glasses, neat black hair, button-down shirt, server room background with monitor glow."
+      }
+    },
+
+    {
+      "@id": "character:SasakiKenta",
+      "schema:name": "佐々木 健太 (Kenta Sasaki)",
+      "schema:role": "Warehouse Manager / Arc B Ally",
+      "schema:age": 35,
+      "gh:arc": "Arc B",
+      "gh:appearance": {
+        "gh:face": "35-year-old Japanese male, energetic face, passionate eyes, slightly sweaty from warehouse work.",
+        "gh:hair": "Messy short black hair, practical cut.",
+        "gh:build": "Athletic, fit from physical labor. Wears safety vest over work clothes.",
+        "gh:eyes": "Passionate brown eyes, conflicted between orders and doing right, determined catchlights.",
+        "gh:style": "Photorealistic, warehouse lighting, blue-collar leader, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 35-year-old Japanese male, energetic passionate expression, messy short black hair, safety vest, warehouse with conveyor belts background."
+      }
+    },
+
+    {
+      "@id": "character:EndoRisa",
+      "schema:name": "遠藤 理沙 (Risa Endo)",
+      "schema:role": "System Operations Chief / Arc B Tech Support",
+      "schema:age": 28,
+      "gh:arc": "Arc B",
+      "gh:appearance": {
+        "gh:face": "28-year-old Japanese female, calm analytical face, professional demeanor, slight frustration at being ignored.",
+        "gh:hair": "Black hair tied in practical ponytail.",
+        "gh:build": "Slim, professional. Wears company polo and utility vest with tools.",
+        "gh:eyes": "Sharp analytical eyes, cool blue-gray iris, observant catchlights.",
+        "gh:style": "Photorealistic, tech operations aesthetic, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 28-year-old Japanese female, calm professional expression, black ponytail, company polo, utility vest, multiple monitors background."
+      }
+    },
+
+    {
+      "@id": "character:KurodaMasahiko",
+      "schema:name": "黒田 雅彦 (Masahiko Kuroda)",
+      "schema:role": "Executive VP / Arc C Antagonist-Client",
+      "schema:age": 58,
+      "gh:arc": "Arc C",
+      "gh:appearance": {
+        "gh:face": "58-year-old Japanese male, stern dignified face, silver-rimmed glasses, expression of absolute confidence in rules.",
+        "gh:hair": "Silver-gray hair, impeccably styled, executive cut.",
+        "gh:build": "Tall, commanding presence. Perfectly tailored navy pinstripe suit.",
+        "gh:eyes": "Cold authoritative eyes behind glasses, pride in regulatory compliance, rigid catchlights.",
+        "gh:style": "Photorealistic, executive boardroom lighting, old money aesthetic, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 58-year-old Japanese male, stern dignified expression, silver-gray hair, silver-rimmed glasses, navy pinstripe suit, marble boardroom background."
+      }
+    },
+
+    {
+      "@id": "character:ShiraishiYuko",
+      "schema:name": "白石 悠子 (Yuko Shiraishi)",
+      "schema:role": "Compliance Director / Arc C Inside Ally",
+      "schema:age": 45,
+      "gh:arc": "Arc C",
+      "gh:appearance": {
+        "gh:face": "45-year-old Japanese female, sharp intelligent face, subtle frustration at organizational blindness, former regulator's precision.",
+        "gh:hair": "Short professional black hair with subtle styling.",
+        "gh:build": "Slim, poised. Conservative but quality business suit.",
+        "gh:eyes": "Sharp dark eyes, sees the gap between rules and reality, knowing catchlights.",
+        "gh:style": "Photorealistic, professional office lighting, ex-government official aesthetic, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 45-year-old Japanese female, sharp intelligent expression, short professional black hair, conservative business suit, compliance office with regulation binders background."
+      }
+    },
+
+    {
+      "@id": "character:NakamuraShunsuke",
+      "schema:name": "中村 俊介 (Shunsuke Nakamura)",
+      "schema:role": "InfoSec Director / Arc C Technical Ally",
+      "schema:age": 40,
+      "gh:arc": "Arc C",
+      "gh:appearance": {
+        "gh:face": "40-year-old Japanese male, tired but determined face, technical competence overshadowed by politics.",
+        "gh:hair": "Slightly messy black hair, too busy to style.",
+        "gh:build": "Average, IT professional physique. Business casual with security badge prominently displayed.",
+        "gh:eyes": "Intelligent tired eyes, frustrated by being ignored, hopeful catchlights at Kaname's arrival.",
+        "gh:style": "Photorealistic, SOC room lighting with monitors, cybersecurity professional, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 40-year-old Japanese male, tired but determined expression, slightly messy black hair, business casual, security badge, SOC monitors background."
+      }
+    },
+
+    {
+      "@id": "character:AokiReina",
+      "schema:name": "青木 玲奈 (Reina Aoki)",
+      "schema:role": "Internal Audit Manager / Arc C Young Ally",
+      "schema:age": 32,
+      "gh:arc": "Arc C",
+      "gh:appearance": {
+        "gh:face": "32-year-old Japanese female, bright eager face, questioning established norms, aspiring CISA.",
+        "gh:hair": "Medium-length black hair, neat professional style.",
+        "gh:build": "Slim, energetic. Professional but slightly more fashionable than typical auditor.",
+        "gh:eyes": "Bright curious eyes, questioning everything, inspired catchlights.",
+        "gh:style": "Photorealistic, office lighting, young professional aesthetic, 8k.",
+        "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 32-year-old Japanese female, bright eager expression, medium-length black hair, professional attire, audit documents and laptop background."
+      }
     }
   ]
 }

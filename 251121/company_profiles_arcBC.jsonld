@@ -1,0 +1,257 @@
+{
+  "@context": {
+    "schema": "http://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "company": "gh:company/",
+    "character": "gh:character/",
+    "incident": "gh:incident/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dct": "http://purl.org/dc/terms/"
+  },
+  "@id": "gh:company/profiles-arcBC",
+  "@type": "gh:CompanyProfiles",
+  "dct:title": "Arc B/C 会社組織プロファイル",
+
+  "gh:companies": [
+    {
+      "@id": "company:KojimaLogistics",
+      "@type": "gh:CompanyProfile",
+      "schema:name": "小島ロジスティクス株式会社 (Kojima Logistics Co., Ltd.)",
+      "gh:arc": "Arc B",
+      "schema:location": {
+        "@type": "schema:Place",
+        "schema:address": "神奈川県川崎市川崎区 (Kawasaki, Kawasaki-ku)",
+        "schema:description": "京浜工業地帯に隣接する物流拠点。自動車部品のジャストインタイム配送を担う一次サプライヤー。"
+      },
+      "schema:employeeCount": 320,
+      "schema:foundingDate": "1978",
+      "gh:businessType": "自動車部品物流（トヨタ系サプライチェーンの一次下請け）",
+      "gh:atmosphere": "24時間稼働の物流センター。始業の鐘が絶対。遅延は死活問題。現場は『急げ』の空気が支配。VPNで本社・工場と接続しているが、セキュリティよりスピード優先。",
+
+      "gh:organizationChart": {
+        "gh:description": "典型的な日本の物流会社。現場と本社の温度差が大きい。",
+        "gh:levels": [
+          {
+            "gh:level": 1,
+            "gh:title": "経営層",
+            "gh:positions": [
+              {"gh:title": "代表取締役社長", "gh:name": "小島 雄三 (Yuzo Kojima)", "gh:characterId": "character:KojimaYuzo"},
+              {"gh:title": "専務取締役（営業統括）", "gh:name": "三浦 正人 (Masato Miura)", "gh:characterId": "character:MiuraMasato"}
+            ]
+          },
+          {
+            "gh:level": 2,
+            "gh:title": "部長クラス",
+            "gh:positions": [
+              {"gh:title": "物流本部長", "gh:name": "山下 剛 (Tsuyoshi Yamashita)", "gh:characterId": "character:YamashitaTsuyoshi"},
+              {"gh:title": "情報システム部長", "gh:name": "田村 誠一 (Seiichi Tamura)", "gh:characterId": "character:TamuraSeiichi"}
+            ]
+          },
+          {
+            "gh:level": 3,
+            "gh:title": "現場リーダー",
+            "gh:positions": [
+              {"gh:title": "川崎センター長", "gh:name": "佐々木 健太 (Kenta Sasaki)", "gh:characterId": "character:SasakiKenta"},
+              {"gh:title": "システム運用チーフ", "gh:name": "遠藤 理沙 (Risa Endo)", "gh:characterId": "character:EndoRisa"}
+            ]
+          }
+        ]
+      },
+
+      "gh:keyCharacters": [
+        {
+          "@id": "character:YamashitaTsuyoshi",
+          "schema:name": "山下 剛 (Tsuyoshi Yamashita)",
+          "schema:role": "物流本部長 / クライアント",
+          "schema:age": 48,
+          "gh:personality": "『始業絶対』の信念。現場叩き上げ。スピード至上主義で、セキュリティより納期。今回の事件で「短気」が招いた災厄を目の当たりにする。",
+          "gh:relationship": "Takeruの手順主義と最初は衝突するが、最終的にその価値を認める。",
+          "gh:ghost": "『始業の鐘』- 締切のプレッシャーが物理化したGhost。秒針の刃が首元に迫る形で顕現。"
+        },
+        {
+          "@id": "character:TamuraSeiichi",
+          "schema:name": "田村 誠一 (Seiichi Tamura)",
+          "schema:role": "情報システム部長 / 内部協力者",
+          "schema:age": 42,
+          "gh:personality": "温厚だが優柔不断。現場の『急げ』に押されてVPN接続を許可してしまった。技術はわかるが政治に弱い。",
+          "gh:relationship": "Takeruの技術を尊敬。内部から情報提供する。",
+          "gh:function": "技術的な説明役。Takeruの専門用語を現場向けに翻訳。"
+        },
+        {
+          "@id": "character:SasakiKenta",
+          "schema:name": "佐々木 健太 (Kenta Sasaki)",
+          "schema:role": "川崎センター長 / 現場代表",
+          "schema:age": 35,
+          "gh:personality": "熱血漢。部下思い。『止めるな』と『守れ』の板挟み。最終的にTakeruの『止めて守る』を受け入れる。",
+          "gh:relationship": "Takeruと同世代。最初は反発するが、手順の意味を理解して協力者に。"
+        },
+        {
+          "@id": "character:EndoRisa",
+          "schema:name": "遠藤 理沙 (Risa Endo)",
+          "schema:role": "システム運用チーフ / 技術サポート",
+          "schema:age": 28,
+          "gh:personality": "冷静沈着。セキュリティの重要性を理解しているが、現場で発言力がない。Takeruの介入で初めて声を上げる。",
+          "gh:relationship": "Takeruの技術力に感銘。事件後、セキュリティ強化の推進役に。"
+        }
+      ],
+
+      "gh:incidentReport": {
+        "@id": "incident:251121-SupplyChain",
+        "dct:date": "2026-11-25",
+        "dct:title": "サプライチェーン攻撃によるライン停止",
+        "gh:symptoms": [
+          "VPN経由での不正アクセス検知",
+          "在庫管理システムのデータ改ざん",
+          "コンベヤ制御システムへの横展開",
+          "『始業の鐘』に間に合わせようとした場当たり的再起動が被害拡大"
+        ],
+        "gh:impact": "トヨタ系サプライチェーン全体への波及リスク。数十億円規模の損害可能性。",
+        "gh:rootCause": "リスク計算を放棄した『短気』な判断。場当たり的VPN接続と証拠を消す再起動指示。"
+      }
+    },
+
+    {
+      "@id": "company:TokaiSecurities",
+      "@type": "gh:CompanyProfile",
+      "schema:name": "東海証券株式会社 (Tokai Securities Co., Ltd.)",
+      "gh:arc": "Arc C",
+      "schema:location": {
+        "@type": "schema:Place",
+        "schema:address": "東京都千代田区丸の内 (Tokyo, Chiyoda-ku, Marunouchi)",
+        "schema:description": "丸の内のガラス張り高層ビル。老舗証券会社の本社。表は洗練されているが、内部は旧態依然。"
+      },
+      "schema:employeeCount": 2800,
+      "schema:foundingDate": "1952",
+      "gh:businessType": "総合証券（リテール・機関投資家向け）",
+      "gh:atmosphere": "金融庁ガイドライン遵守を誇る。だが『遵守した』ことが免罪符になり、実効性の検証が甘い。大理石のロビー、ガラス会議室、形式主義が支配。",
+
+      "gh:organizationChart": {
+        "gh:description": "伝統的な金融機関の縦割り組織。規程は完璧だが運用が形骸化。",
+        "gh:levels": [
+          {
+            "gh:level": 1,
+            "gh:title": "経営層",
+            "gh:positions": [
+              {"gh:title": "代表取締役社長", "gh:name": "東海 正太郎 (Shotaro Tokai)", "gh:characterId": "character:TokaiShotaro"},
+              {"gh:title": "専務取締役（リスク管理統括）", "gh:name": "黒田 雅彦 (Masahiko Kuroda)", "gh:characterId": "character:KurodaMasahiko"}
+            ]
+          },
+          {
+            "gh:level": 2,
+            "gh:title": "部長クラス",
+            "gh:positions": [
+              {"gh:title": "コンプライアンス部長", "gh:name": "白石 悠子 (Yuko Shiraishi)", "gh:characterId": "character:ShiraishiYuko"},
+              {"gh:title": "情報セキュリティ部長", "gh:name": "中村 俊介 (Shunsuke Nakamura)", "gh:characterId": "character:NakamuraShunsuke"},
+              {"gh:title": "システム統括部長", "gh:name": "橋本 大輔 (Daisuke Hashimoto)", "gh:characterId": "character:HashimotoDaisuke"}
+            ]
+          },
+          {
+            "gh:level": 3,
+            "gh:title": "実務担当",
+            "gh:positions": [
+              {"gh:title": "内部監査課長", "gh:name": "青木 玲奈 (Reina Aoki)", "gh:characterId": "character:AokiReina"},
+              {"gh:title": "SOCアナリスト", "gh:name": "木村 翔 (Sho Kimura)", "gh:characterId": "character:KimuraSho"}
+            ]
+          }
+        ]
+      },
+
+      "gh:keyCharacters": [
+        {
+          "@id": "character:KurodaMasahiko",
+          "schema:name": "黒田 雅彦 (Masahiko Kuroda)",
+          "schema:role": "専務取締役 / 主要対話相手",
+          "schema:age": 58,
+          "gh:personality": "金融庁ガイドライン遵守を絶対視。『規程を守っている』が口癖。形式主義の権化だが、根は責任感がある。Kanameに論破されて目が覚める。",
+          "gh:relationship": "Kanameの最大の対話相手。傲慢さを指摘され、最終的に改革を受け入れる。",
+          "gh:ghost": "『規程の城』- ガイドライン文書で築かれた砂の城。見た目は堅牢だが、一点を突くと崩れる。"
+        },
+        {
+          "@id": "character:ShiraishiYuko",
+          "schema:name": "白石 悠子 (Yuko Shiraishi)",
+          "schema:role": "コンプライアンス部長 / 内部協力者",
+          "schema:age": 45,
+          "gh:personality": "元金融庁職員。ガイドラインの『最低ライン』の意味を本当に理解している数少ない人物。だが社内で孤立。",
+          "gh:relationship": "Kanameのおじさん経由で紹介。内部から情報提供し、改革を後押し。",
+          "gh:function": "規制の本質を説明する役割。『満たした≠安全』を体現。"
+        },
+        {
+          "@id": "character:NakamuraShunsuke",
+          "schema:name": "中村 俊介 (Shunsuke Nakamura)",
+          "schema:role": "情報セキュリティ部長 / 技術対話相手",
+          "schema:age": 40,
+          "gh:personality": "技術はわかるが政治に潰される。『ログインMFAだけでは不十分』と提言したが却下された過去。Kanameの介入で再び声を上げる。",
+          "gh:relationship": "Kanameの技術的な対話相手。支援士同士の専門会話。"
+        },
+        {
+          "@id": "character:AokiReina",
+          "schema:name": "青木 玲奈 (Reina Aoki)",
+          "schema:role": "内部監査課長 / 若手協力者",
+          "schema:age": 32,
+          "gh:personality": "CISA取得を目指す若手。形骸化した監査に疑問を持っている。Kanameの監査眼に感銘を受け、弟子入り志願。",
+          "gh:relationship": "Kanameの理想を体現しようとする若手。事件後の改革推進役。"
+        }
+      ],
+
+      "gh:incidentReport": {
+        "@id": "incident:251121-AccountFraud",
+        "dct:date": "2026-11-28",
+        "dct:title": "顧客口座不正出金事件",
+        "gh:symptoms": [
+          "複数顧客の受取口座が無断変更",
+          "変更直後の大口出金",
+          "ログインMFAは突破されていない（セッションハイジャック）",
+          "重要操作へのMFA未適用が露呈",
+          "ログは存在したが相関分析されておらず検知遅延"
+        ],
+        "gh:impact": "顧客資産流出。金融庁への報告義務。レピュテーションリスク。",
+        "gh:rootCause": "『金融庁ガイドライン遵守』という傲慢。最低ラインを満たしただけで安心し、重要操作MFA・異常検知・冷却期間・24/7監視・委託先統制が不十分だった。"
+      }
+    }
+  ],
+
+  "gh:mizukiFamily": {
+    "@id": "gh:family/Mizuki",
+    "dct:title": "水城家 - 金融界の影の実力者",
+    "gh:description": "表向きは没落した旧華族。だが金融・法曹界に広がる人脈と情報網を持つ。Kanameのおじさんが現当主として、一族の復興を静かに進めている。",
+    "gh:members": [
+      {
+        "@id": "character:MizukiShinji",
+        "schema:name": "水城 慎司 (Shinji Mizuki)",
+        "schema:role": "Kanameのおじさん / 影の支援者",
+        "schema:age": 52,
+        "gh:relationship": "Kanameの父の弟。Kanameの才能を見出し、金融業界の案件を紹介する。",
+        "gh:background": {
+          "gh:education": "東京大学法学部卒",
+          "gh:career": [
+            "元財務省主計局",
+            "元金融庁総務企画局",
+            "現在は複数の金融機関の社外取締役"
+          ],
+          "gh:expertise": [
+            "金融規制",
+            "コーポレートガバナンス",
+            "不正調査"
+          ]
+        },
+        "gh:personality": {
+          "gh:appearance": "気弱そうな中年男性。丸眼鏡、やや猫背、地味なグレーのスーツ。誰もが侮る風貌。",
+          "gh:reality": "金融業界の不正、業界の闘、組織構造の問題を熟知。一族のポジションを高めるため、戦略的にKanameを活用。だがKanameへの愛情は本物。",
+          "gh:speech": "「いやぁ、僕なんかが口出しすることじゃないんですが…」と謙遜しながら、核心を突く。",
+          "gh:intellect": "法律、会計、IT、組織論のすべてに精通。表に出ない参謀タイプ。"
+        },
+        "gh:function": {
+          "gh:storyRole": "Kanameを企業に紹介するフィクサー。表向きは『親戚の紹介』だが、実際は一族の戦略の一環。",
+          "gh:dialoguePartner": "Kanameと知的な会話を交わし、金融業界の構造的問題を解説する役割。",
+          "gh:futurePlot": "一族の野望と、Kanameの正義感の間で、将来的に葛藤が生まれる伏線。"
+        }
+      },
+      {
+        "@id": "character:Kaname",
+        "gh:familyPosition": "水城家本家の長男",
+        "gh:relationToShinji": "甥。慎司の兄の息子。",
+        "gh:familyDynamic": "両親は事故で他界。慎司が後見人的立場。Kanameは叔父の知性を尊敬しつつも、その計算高さに違和感を感じることも。"
+      }
+    ]
+  }
+}

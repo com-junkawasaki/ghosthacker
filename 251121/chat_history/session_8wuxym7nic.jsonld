@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "chat:8wuxym7nic",
+  "@type": "gh:ChatSession",
+  "dct:title": "🚀 Requesting OpenRouter\nModel...",
+  "gh:messages": [
+    {
+      "role": "debug",
+      "agent_mode": "episode",
+      "content": "🚀 Requesting OpenRouter\nModel: anthropic/claude-sonnet-4.5\nPrompt Length: 1671 chars"
+    }
+  ],
+  "schema:dateCreated": 1769339230613
+}

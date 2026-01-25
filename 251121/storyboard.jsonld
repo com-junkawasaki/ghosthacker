@@ -110,6 +110,60 @@
     {
       "@id": "character:Matsuda",
       "gh:sourceFile": "characters/Matsuda/profile.jsonld"
+    },
+    {
+      "@id": "character:MizukiShinji",
+      "gh:sourceFile": "characters/MizukiShinji/profile.jsonld",
+      "gh:arc": "Arc C",
+      "gh:role": "Kaname's Uncle / Shadow Strategist"
+    },
+    {
+      "@id": "character:YamashitaTsuyoshi",
+      "gh:sourceFile": "characters/YamashitaTsuyoshi/profile.jsonld",
+      "gh:arc": "Arc B",
+      "gh:role": "Logistics Director / Client"
+    },
+    {
+      "@id": "character:TamuraSeiichi",
+      "gh:sourceFile": "characters/TamuraSeiichi/profile.jsonld",
+      "gh:arc": "Arc B",
+      "gh:role": "IT Director / Ally"
+    },
+    {
+      "@id": "character:SasakiKenta",
+      "gh:sourceFile": "characters/SasakiKenta/profile.jsonld",
+      "gh:arc": "Arc B",
+      "gh:role": "Warehouse Manager / Ally"
+    },
+    {
+      "@id": "character:EndoRisa",
+      "gh:sourceFile": "characters/EndoRisa/profile.jsonld",
+      "gh:arc": "Arc B",
+      "gh:role": "System Operations Chief / Tech Support"
+    },
+    {
+      "@id": "character:KurodaMasahiko",
+      "gh:sourceFile": "characters/KurodaMasahiko/profile.jsonld",
+      "gh:arc": "Arc C",
+      "gh:role": "Executive VP / Antagonist-Client"
+    },
+    {
+      "@id": "character:ShiraishiYuko",
+      "gh:sourceFile": "characters/ShiraishiYuko/profile.jsonld",
+      "gh:arc": "Arc C",
+      "gh:role": "Compliance Director / Inside Ally"
+    },
+    {
+      "@id": "character:NakamuraShunsuke",
+      "gh:sourceFile": "characters/NakamuraShunsuke/profile.jsonld",
+      "gh:arc": "Arc C",
+      "gh:role": "InfoSec Director / Technical Ally"
+    },
+    {
+      "@id": "character:AokiReina",
+      "gh:sourceFile": "characters/AokiReina/profile.jsonld",
+      "gh:arc": "Arc C",
+      "gh:role": "Internal Audit Manager / Young Ally"
     }
   ],
   "gh:directingGuide": {
