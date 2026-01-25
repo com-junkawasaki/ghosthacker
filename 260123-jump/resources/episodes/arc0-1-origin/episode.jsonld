@@ -699,13 +699,40 @@
       "gh:pageNumber": 7,
       "gh:act": "act:1-daily-temptation",
       "gh:pageTitle": "カード入力・決済",
+      "gh:panelCount": 7,
       "gh:panels": [
         {
           "panel": 1,
           "shot": "Medium Shot",
           "environment": "env:yuto-bedroom",
           "characters": ["character:Yuto"],
-          "visual": "Yutoが親の財布からカードを取り出す。",
+          "visual": "Yutoがベッドから起き上がり、リビングへ向かう。薄暗い廊下。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese boy getting up from bed, heading to dark hallway. Sneaking movement. Night atmosphere. shot on 35mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:yuto-home-living",
+          "characters": [],
+          "visual": "親のバッグ。財布が見える。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Parent's bag on table. Wallet visible inside. Dark living room. Temptation."
+        },
+        {
+          "panel": 3,
+          "shot": "Close Up",
+          "environment": "env:yuto-home-living",
+          "characters": ["character:Yuto"],
+          "visual": "財布からカードを抜き取る手。罪悪感で震えている。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -714,26 +741,56 @@
             }
           ],
           "gh:shotProperties": {
-            "gh:distance": "Medium Shot",
+            "gh:distance": "Close Up",
             "gh:angle": "high angle"
           },
-          "gh:imagePrompt": "Medium Shot, high angle. Japanese boy taking credit card from parent's wallet. Guilty expression. Night bedroom. shot on 35mm, f/2.8, cinematic live-action."
+          "gh:imagePrompt": "Close Up, high angle. Hand pulling credit card from wallet. Slight trembling. Guilt. Night lighting."
         },
         {
-          "panel": 2,
-          "shot": "Close Up",
-          "environment": "env:smartphone-screen",
-          "characters": [],
-          "visual": "クレジットカード情報入力画面。番号、名前、セキュリティコード。",
+          "panel": 4,
+          "shot": "Medium Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "部屋に戻り、カードを手にスマホを見るYuto。真剣な表情。",
           "dialogue": [],
-          "gh:imagePrompt": "Close Up. Fingers typing credit card information on smartphone. Payment form. Night lighting."
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Close Up. Japanese boy back in bedroom, holding credit card, looking at smartphone. Serious expression. shot on 50mm, f/1.8, cinematic live-action."
         },
         {
-          "panel": 3,
+          "panel": 5,
           "shot": "Insert",
           "environment": "env:smartphone-screen",
           "characters": [],
-          "visual": "「購入」ボタンを押す指。",
+          "visual": "クレジットカード情報入力画面。番号を一桁ずつ入力中。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Credit card payment form. Card number being typed digit by digit. Japanese text."
+        },
+        {
+          "panel": 6,
+          "shot": "Extreme Close Up",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "セキュリティコード入力。最後の3桁。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Extreme Close Up",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Extreme Close Up. Security code field. Last 3 digits being entered. Point of no return approaching."
+        },
+        {
+          "panel": 7,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "「購入」ボタン。指が触れる瞬間。ドラマチックな一瞬。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -741,7 +798,11 @@
               "gh:isThought": true
             }
           ],
-          "gh:imagePrompt": "Insert shot. Finger pressing 'Purchase' button on smartphone screen. Moment of no return."
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "slight angle"
+          },
+          "gh:imagePrompt": "Insert shot. 'Purchase' button. Finger touching at exact moment. Dramatic instant. Point of no return."
         }
       ]
     },
@@ -749,28 +810,60 @@
       "gh:pageNumber": 8,
       "gh:act": "act:1-daily-temptation",
       "gh:pageTitle": "購入完了",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
           "panel": 1,
-          "shot": "Close Up",
+          "shot": "Insert",
           "environment": "env:smartphone-screen",
           "characters": [],
-          "visual": "「購入完了！」「明日発送予定」の画面。",
+          "visual": "「購入完了！」のポップアップ。紙吹雪のアニメーション表現。",
           "dialogue": [],
-          "gh:imagePrompt": "Close Up. Smartphone screen showing 'Purchase Complete!' 'Shipping tomorrow' message. Celebratory design."
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. 'Purchase Complete!' popup with confetti animation effect. Celebratory design. Japanese text."
         },
         {
           "panel": 2,
-          "shot": "Medium Shot",
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "「明日発送予定」「お届け予定：翌日」の確認画面。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. 'Shipping tomorrow' 'Expected delivery: Next day' confirmation screen. Japanese text."
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Close Up",
           "environment": "env:yuto-bedroom",
           "characters": ["character:Yuto"],
-          "visual": "安堵して笑顔のYuto。期待に胸を膨らませる。",
+          "visual": "安堵の息をつくYuto。緊張が解ける。",
           "dialogue": [
             {
               "speaker": "Yuto",
               "text": "やった！明日届く！",
               "gh:emotion": "excited"
-            },
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Close Up. Japanese boy exhaling with relief. Tension releasing. Excited smile. Night bedroom. shot on 50mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Shot",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "ベッドに仰向けに倒れ込む。スマホを胸に抱えて、満足げな笑顔。",
+          "dialogue": [
             {
               "speaker": "Yuto",
               "text": "Akiraに自慢してやる…！",
@@ -779,9 +872,24 @@
           ],
           "gh:shotProperties": {
             "gh:distance": "Medium Shot",
-            "gh:angle": "eye level"
+            "gh:angle": "high angle"
           },
-          "gh:imagePrompt": "Medium Shot. Japanese boy smiling excitedly in bed, phone in hand. Anticipation. Night bedroom. shot on 50mm, f/2, cinematic live-action."
+          "gh:imagePrompt": "Medium Shot, high angle. Japanese boy falling back onto bed, clutching smartphone to chest. Satisfied smile. Dreaming of showing off. shot on 35mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 5,
+          "shot": "Wide Shot",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "夜の部屋。幸せそうに眠りにつくYuto。不穏な静けさ。窓の外は暗い。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "high angle",
+            "gh:lighting": "月明かりのわずかな光",
+            "gh:atmosphere": "不穏な静けさ、嵐の前の静寂"
+          },
+          "gh:imagePrompt": "Wide Shot, high angle. Dark bedroom at night. Japanese boy falling asleep happily. Ominous calm. Darkness outside window. Calm before the storm. shot on 24mm, f/2.8, cinematic live-action."
         }
       ]
     },
@@ -789,13 +897,68 @@
       "gh:pageNumber": 9,
       "gh:act": "act:2-signs",
       "gh:pageTitle": "翌日学校",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
           "panel": 1,
           "shot": "Wide Shot",
           "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto", "character:HomeroomTeacher"],
+          "visual": "翌日。授業中の教室全景。黒板に先生、生徒たちは真剣に聞いている。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "slightly high",
+            "gh:lens": "24mm",
+            "gh:aperture": "f/4"
+          },
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Middle school classroom during lesson. Teacher at blackboard, students listening. Normal school day. shot on 24mm, f/4, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
           "characters": ["character:Yuto"],
-          "visual": "翌日。教室で授業中のYuto。ソワソワしながら時計を見る。",
+          "visual": "席に座るYuto。落ち着かない様子。机の下で足が動いている。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese boy sitting at desk, restless. Fidgeting. Can't concentrate. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 3,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "チラリと壁の時計を見るYuto。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy glancing at wall clock. Impatient expression. shot on 85mm, f/2, cinematic live-action."
+        },
+        {
+          "panel": 4,
+          "shot": "Insert",
+          "environment": "env:middle-school-classroom",
+          "characters": [],
+          "visual": "壁の時計。針がゆっくり進む。2時45分。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "straight on"
+          },
+          "gh:imagePrompt": "Insert shot. Wall clock showing 2:45. Hands moving slowly. Time dragging."
+        },
+        {
+          "panel": 5,
+          "shot": "Medium Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "早く帰りたいYuto。期待と焦りが入り混じった表情。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -805,10 +968,10 @@
             }
           ],
           "gh:shotProperties": {
-            "gh:distance": "Wide Shot",
+            "gh:distance": "Medium Close Up",
             "gh:angle": "eye level"
           },
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Middle school classroom during lesson. One boy (Yuto) distracted, looking at clock. Anticipation. shot on 35mm, f/2.8, cinematic live-action."
+          "gh:imagePrompt": "Medium Close Up. Japanese boy impatient to go home. Mix of anticipation and urgency. shot on 50mm, f/2, cinematic live-action."
         }
       ]
     },
@@ -816,22 +979,81 @@
       "gh:pageNumber": 10,
       "gh:act": "act:2-signs",
       "gh:pageTitle": "3日後 - 届かない",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
           "panel": 1,
-          "shot": "Full Page",
-          "environment": "env:yuto-home",
+          "shot": "Wide Shot",
+          "environment": "env:yuto-home-exterior",
           "characters": [],
-          "visual": "インタータイトル「3日後」。空の郵便受け。",
+          "visual": "インタータイトル「3日後」。曇り空。Yutoの家の外観。",
           "dialogue": [],
-          "gh:imagePrompt": "Establishing shot with title card '3 DAYS LATER'. Empty mailbox. Japanese residential area. Overcast mood."
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lighting": "曇り、暗い",
+            "gh:atmosphere": "不穏"
+          },
+          "gh:imagePrompt": "Wide Shot. Title card '3 DAYS LATER'. Overcast sky. Japanese residential house exterior. Ominous mood. shot on 24mm, f/4, cinematic live-action."
         },
         {
           "panel": 2,
           "shot": "Medium Shot",
+          "environment": "env:yuto-home-exterior",
+          "characters": ["character:Yuto"],
+          "visual": "郵便受けを確認するYuto。期待の表情。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese boy checking mailbox. Hopeful expression. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 3,
+          "shot": "Insert",
+          "environment": "env:yuto-home-exterior",
+          "characters": [],
+          "visual": "空の郵便受け。何も入っていない。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "POV"
+          },
+          "gh:imagePrompt": "Insert shot, POV. Empty mailbox interior. Nothing inside. Disappointment."
+        },
+        {
+          "panel": 4,
+          "shot": "Close Up",
+          "environment": "env:yuto-home-exterior",
+          "characters": ["character:Yuto"],
+          "visual": "落胆するYutoの表情。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy's disappointed face. Hope fading. shot on 85mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 5,
+          "shot": "Medium Shot",
           "environment": "env:yuto-bedroom",
           "characters": ["character:Yuto"],
-          "visual": "不安げにスマホで配送状況を確認するYuto。",
+          "visual": "部屋でスマホを見るYuto。配送状況を確認。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese boy in bedroom checking phone. Delivery tracking. Worried expression. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 6,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "配送状況画面。「配送準備中」のまま変わらない。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -839,7 +1061,11 @@
               "gh:emotion": "worried"
             }
           ],
-          "gh:imagePrompt": "Medium Shot. Japanese boy checking phone anxiously. Worried expression. 'Preparing for shipment' status on screen."
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Delivery tracking screen. 'Preparing for shipment' status unchanged for 3 days. Japanese text."
         }
       ]
     },
@@ -847,13 +1073,27 @@
       "gh:pageNumber": 11,
       "gh:act": "act:2-signs",
       "gh:pageTitle": "出品者に問い合わせ",
+      "gh:panelCount": 5,
       "gh:panels": [
         {
           "panel": 1,
-          "shot": "Close Up",
+          "shot": "Medium Shot",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "メッセージを打つYuto。真剣な表情。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese boy typing message on smartphone. Serious expression. Bedroom. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Insert",
           "environment": "env:smartphone-screen",
           "characters": [],
-          "visual": "メッセージ画面。Yutoが出品者に問い合わせ。",
+          "visual": "メッセージ画面。Yutoが問い合わせを送信。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -861,14 +1101,31 @@
               "gh:via": "message"
             }
           ],
-          "gh:imagePrompt": "Close Up. Smartphone messaging app. Yuto's message asking about delivery. Japanese text."
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Messaging app. Yuto's message: 'It still hasn't arrived...' Sent. Japanese text."
         },
         {
-          "panel": 2,
-          "shot": "Close Up",
+          "panel": 3,
+          "shot": "Insert",
           "environment": "env:smartphone-screen",
           "characters": [],
-          "visual": "返信。「配送トラブルです。電話番号を教えてください」",
+          "visual": "「…」の入力中表示。返信を待つ緊張感。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Messaging app showing '...' typing indicator. Waiting for reply. Tension."
+        },
+        {
+          "panel": 4,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "返信が届く。「配送トラブルです。確認のため電話番号を教えてください」",
           "dialogue": [
             {
               "speaker": "出品者",
@@ -876,7 +1133,30 @@
               "gh:via": "message"
             }
           ],
-          "gh:imagePrompt": "Close Up. Reply message asking for phone number. Suspicious request. Japanese text."
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Reply message: 'There's a shipping problem. Please provide your phone number for verification.' Suspicious request. Japanese text."
+        },
+        {
+          "panel": 5,
+          "shot": "Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "メッセージを見て困惑するYuto。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "電話番号…？",
+              "gh:emotion": "confused"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy looking confused at phone screen. 'Phone number...?' shot on 85mm, f/1.8, cinematic live-action."
         }
       ]
     },
@@ -884,13 +1164,14 @@
       "gh:pageNumber": 12,
       "gh:act": "act:2-signs",
       "gh:pageTitle": "番号を渡す",
+      "gh:panelCount": 7,
       "gh:panels": [
         {
           "panel": 1,
           "shot": "Medium Close Up",
           "environment": "env:yuto-bedroom",
           "characters": ["character:Yuto"],
-          "visual": "迷いながらも電話番号を入力するYuto。",
+          "visual": "迷うYuto。指が画面の上で止まっている。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -898,14 +1179,84 @@
               "gh:emotion": "uncertain"
             }
           ],
-          "gh:imagePrompt": "Medium Close Up. Japanese boy hesitantly typing phone number. Uncertain expression."
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Close Up. Japanese boy hesitating. Finger hovering over phone screen. Uncertain expression. shot on 50mm, f/1.8, cinematic live-action."
         },
         {
           "panel": 2,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "電話番号を入力している画面。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Phone number being typed into message field. Japanese text."
+        },
+        {
+          "panel": 3,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "送信ボタンを押す。「送信しました」の表示。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Send button pressed. 'Message sent' notification."
+        },
+        {
+          "panel": 4,
           "shot": "Wide Shot",
           "environment": "env:yuto-bedroom",
           "characters": ["character:Yuto"],
-          "visual": "その後。スマホが鳴り続ける。迷惑メールが大量に届く。",
+          "visual": "時間経過を示す。Yutoがベッドに座っている。窓の外が暗くなっている。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:atmosphere": "時間経過"
+          },
+          "gh:imagePrompt": "Wide Shot. Time passage. Japanese boy sitting on bed. Window showing it's gotten darker. Time has passed."
+        },
+        {
+          "panel": 5,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "スマホに大量の通知。迷惑メールが次々と届く。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Smartphone screen flooded with notifications. Spam emails arriving one after another. Notification badges piling up."
+        },
+        {
+          "panel": 6,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "知らない番号からの着信。無言電話。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Incoming call from unknown number. Silent call. Ominous."
+        },
+        {
+          "panel": 7,
+          "shot": "Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "焦るYuto。何かがおかしいと気づき始める。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -913,7 +1264,11 @@
               "gh:emotion": "alarmed"
             }
           ],
-          "gh:imagePrompt": "Wide Shot. Japanese boy looking at phone with alarm. Multiple notification badges. Spam messages flooding in."
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy looking alarmed at phone. Something is wrong. Fear creeping in. shot on 85mm, f/1.8, cinematic live-action."
         }
       ]
     },
@@ -921,28 +1276,91 @@
       "gh:pageNumber": 13,
       "gh:act": "act:2-signs",
       "gh:pageTitle": "カードが止まる",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
           "panel": 1,
-          "shot": "Medium Shot",
+          "shot": "Wide Shot",
           "environment": "env:yuto-home-living",
-          "characters": ["character:Yuto", "character:YutoMother"],
-          "visual": "リビング。母親が怒った顔で電話を切る。",
-          "dialogue": [
-            {
-              "speaker": "YutoMother",
-              "text": "Yuto。カードが止められたって。身に覚えある…？",
-              "gh:emotion": "angry"
-            }
-          ],
-          "gh:imagePrompt": "Medium Shot. Japanese mother confronting son in living room. Angry expression. Holding phone."
+          "characters": ["character:YutoMother"],
+          "visual": "リビング。母親が電話中。険しい表情。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Wide Shot. Japanese living room. Mother on phone call. Serious expression. shot on 35mm, f/2.8, cinematic live-action."
         },
         {
           "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:yuto-home-living",
+          "characters": ["character:YutoMother"],
+          "visual": "電話を切る母親。怒りを抑えた表情。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese mother hanging up phone. Suppressed anger on face. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "environment": "env:yuto-home-living",
+          "characters": ["character:Yuto"],
+          "visual": "部屋に入ってくるYuto。母親の様子がおかしいことに気づく。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese boy entering living room. Noticing something is wrong with mother. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Close Up",
+          "environment": "env:yuto-home-living",
+          "characters": ["character:YutoMother"],
+          "visual": "母親がYutoを見る。厳しい目。",
+          "dialogue": [
+            {
+              "speaker": "YutoMother",
+              "text": "Yuto。",
+              "gh:emotion": "stern"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Close Up. Japanese mother looking at son with stern eyes. Calling his name. shot on 50mm, f/2, cinematic live-action."
+        },
+        {
+          "panel": 5,
+          "shot": "Medium Shot",
+          "environment": "env:yuto-home-living",
+          "characters": ["character:YutoMother"],
+          "visual": "母親が問い詰める。",
+          "dialogue": [
+            {
+              "speaker": "YutoMother",
+              "text": "カードが止められたって。身に覚えある…？",
+              "gh:emotion": "angry"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "low angle from Yuto's POV"
+          },
+          "gh:imagePrompt": "Medium Shot, low angle. Japanese mother confronting, looking down at camera/Yuto's POV. Angry expression. shot on 35mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 6,
           "shot": "Close Up",
           "environment": "env:yuto-home-living",
           "characters": ["character:Yuto"],
-          "visual": "青ざめるYuto。",
+          "visual": "青ざめるYuto。血の気が引いていく。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -950,7 +1368,12 @@
               "gh:emotion": "shock"
             }
           ],
-          "gh:imagePrompt": "Close Up. Japanese boy's face turning pale. Shock and fear. shot on 85mm, f/1.8."
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level",
+            "gh:lighting": "顔色が悪く見える"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy's face turning pale. Blood draining from face. Shock and fear. shot on 85mm, f/1.8, cinematic live-action."
         }
       ]
     },
@@ -958,35 +1381,97 @@
       "gh:pageNumber": 14,
       "gh:act": "act:2-signs",
       "gh:pageTitle": "不正請求発覚",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
           "panel": 1,
-          "shot": "Insert",
+          "shot": "Medium Shot",
           "environment": "env:yuto-home-living",
-          "characters": [],
-          "visual": "カード明細。50万円以上の不正請求が並ぶ。",
+          "characters": ["character:YutoMother"],
+          "visual": "母親がカード明細を広げる。",
           "dialogue": [],
-          "gh:imagePrompt": "Insert shot. Credit card statement showing multiple fraudulent charges. Over 500,000 yen. Red highlight on suspicious transactions."
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese mother unfolding credit card statement. Stern expression. shot on 50mm, f/2.8, cinematic live-action."
         },
         {
           "panel": 2,
+          "shot": "Insert",
+          "environment": "env:yuto-home-living",
+          "characters": [],
+          "visual": "カード明細のアップ。大量の請求が並ぶ。「Amazonギフトカード」「iTunesギフトカード」…",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Credit card statement close-up. Multiple charges: 'Amazon Gift Card', 'iTunes Gift Card'... Fraudulent purchases."
+        },
+        {
+          "panel": 3,
+          "shot": "Insert",
+          "environment": "env:yuto-home-living",
+          "characters": [],
+          "visual": "合計金額。¥523,000。赤い数字。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Total amount: ¥523,000. Red numbers. Shocking amount."
+        },
+        {
+          "panel": 4,
+          "shot": "Close Up",
+          "environment": "env:yuto-home-living",
+          "characters": ["character:Yuto"],
+          "visual": "明細を見るYuto。目が見開く。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy's eyes widening seeing the statement. Shock. shot on 85mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 5,
           "shot": "Medium Shot",
           "environment": "env:yuto-home-living",
-          "characters": ["character:Yuto", "character:YutoMother"],
-          "visual": "明細を見せられるYuto。母親の厳しい視線。",
+          "characters": ["character:YutoMother"],
+          "visual": "母親が説明を求める。指で明細を指している。",
           "dialogue": [
             {
               "speaker": "YutoMother",
               "text": "これ、全部ギフトカード購入になってる。知らない店ばっかり。",
               "gh:emotion": "stern"
-            },
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese mother pointing at statement, demanding explanation. Stern expression. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 6,
+          "shot": "Medium Close Up",
+          "environment": "env:yuto-home-living",
+          "characters": ["character:Yuto"],
+          "visual": "パニック状態のYuto。必死に否定。",
+          "dialogue": [
             {
               "speaker": "Yuto",
               "text": "俺、そんなの買ってない…！",
               "gh:emotion": "panic"
             }
           ],
-          "gh:imagePrompt": "Medium Shot. Mother showing credit card statement to son. Stern expression. Son in panic."
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Close Up. Japanese boy in panic, desperately denying. 'I didn't buy any of that!' shot on 50mm, f/1.8, cinematic live-action."
         }
       ]
     },
@@ -994,35 +1479,99 @@
       "gh:pageNumber": 15,
       "gh:act": "act:2-signs",
       "gh:pageTitle": "サイト消失",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
           "panel": 1,
-          "shot": "Close Up",
-          "environment": "env:smartphone-screen",
-          "characters": [],
-          "visual": "「ワクワク電気」のURLにアクセス。「このサイトは存在しません」のエラー画面。",
+          "shot": "Medium Shot",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "自分の部屋に逃げ込むYuto。スマホを取り出す。",
           "dialogue": [],
-          "gh:imagePrompt": "Close Up. Smartphone showing '404 Not Found' error. 'Wakuwaku Denki' site gone. Japanese error message."
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese boy retreating to bedroom. Pulling out smartphone. Desperate to check something. shot on 50mm, f/2.8, cinematic live-action."
         },
         {
           "panel": 2,
-          "shot": "Medium Close Up",
+          "shot": "Close Up",
           "environment": "env:yuto-bedroom",
           "characters": ["character:Yuto"],
-          "visual": "恐怖に震えるYuto。",
+          "visual": "焦ってスマホを操作するYuto。履歴から「ワクワク電気」を探す。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "over shoulder"
+          },
+          "gh:imagePrompt": "Close Up, over shoulder. Japanese boy frantically searching browser history. Looking for 'Wakuwaku Denki'. shot on 50mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 3,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "ブラウザ読み込み中…",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Browser loading... Spinning indicator. Tension building."
+        },
+        {
+          "panel": 4,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "エラー画面。「404 Not Found」「このページは存在しません」",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Error screen: '404 Not Found' 'This page does not exist'. 'Wakuwaku Denki' site completely gone. Japanese text."
+        },
+        {
+          "panel": 5,
+          "shot": "Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "目が見開き、恐怖に震えるYuto。",
           "dialogue": [
             {
               "speaker": "Yuto",
               "text": "サイトが…消えてる…？",
               "gh:emotion": "terror"
-            },
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy's eyes wide with terror. 'The site... is gone...?' Trembling. shot on 85mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 6,
+          "shot": "Medium Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "全てを理解してしまったYuto。不安の頂点。暗い部屋に一人。",
+          "dialogue": [
             {
               "speaker": "Yuto",
               "text": "もしかして…騙された…？",
               "gh:emotion": "realization"
             }
           ],
-          "gh:imagePrompt": "Medium Close Up. Japanese boy's face showing horror and realization. Trembling. shot on 85mm, f/1.8."
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level",
+            "gh:lighting": "暗い、影が顔を覆う",
+            "gh:atmosphere": "不安の頂点"
+          },
+          "gh:imagePrompt": "Medium Close Up. Japanese boy's face as horrible realization dawns. 'Was I... scammed...?' Dark room, shadows on face. Peak of anxiety. shot on 85mm, f/1.8, cinematic live-action."
         }
       ]
     },

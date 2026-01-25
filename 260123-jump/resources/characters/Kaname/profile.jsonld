@@ -77,5 +77,17 @@
   "gh:slug": "Kaname",
   "schema:age": 18,
   "schema:name": "水城 要 (Kaname Mizuki)",
-  "schema:role": "Elite Hacker / Rival"
+  "schema:role": "Elite Hacker / Rival",
+
+  "gh:onlinePresence": {
+    "gh:avatar": {
+      "gh:type": "verylonganimals",
+      "gh:animal": "ペンギン (Penguin)",
+      "gh:description": "verylonganimalsのながーいペンギン。スーツのような白黒のカラーリングがエリート感を演出。冷静で隙がないが、実は仲間想い。",
+      "gh:color": "白黒 / クールな黒い目",
+      "gh:usage": "企業関連の調査や公式な場での活動時に使用",
+      "gh:reason": "ペンギン＝整然とした外見と集団行動。Kanameの完璧主義とエリート感、でも実は群れを守る性質を反映。"
+    },
+    "gh:handleVariations": ["3pa11er3apiv0t", "Emperor_Penguin", "ながぺんぎん"]
+  }
 }

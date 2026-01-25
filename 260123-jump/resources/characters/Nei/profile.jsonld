@@ -20,5 +20,17 @@
   "gh:slug": "Nei",
   "schema:age": 16,
   "schema:name": "Nei",
-  "schema:role": "Ghost Hacker Partner"
+  "schema:role": "Ghost Hacker Partner",
+
+  "gh:onlinePresence": {
+    "gh:avatar": {
+      "gh:type": "verylonganimals",
+      "gh:animal": "ネコ (Cat)",
+      "gh:description": "verylonganimalsのながーいネコ。クールでミステリアス、でも実は仲間想い。Neiの知的で独立心の強い性格を反映。",
+      "gh:color": "プラチナシルバー / 青い目",
+      "gh:usage": "Renとのペアアバターとして活動時に使用",
+      "gh:reason": "ネコ＝独立心と知性の象徴。フクロウとネコ＝夜の賢者コンビ。"
+    },
+    "gh:handleVariations": ["Nei", "Silver_Cat", "ながねこ"]
+  }
 }

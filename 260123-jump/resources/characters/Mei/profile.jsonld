@@ -20,5 +20,17 @@
   "gh:slug": "Mei",
   "schema:age": 16,
   "schema:name": "桜庭 メイ (Mei Sakuraba)",
-  "schema:role": "Student / Mood Maker"
+  "schema:role": "Student / Mood Maker",
+
+  "gh:onlinePresence": {
+    "gh:avatar": {
+      "gh:type": "verylonganimals",
+      "gh:animal": "ウサギ (Rabbit)",
+      "gh:description": "verylonganimalsのながーいウサギ。元気いっぱいで愛嬌たっぷり。Meiの明るくてムードメーカーな性格にピッタリ。",
+      "gh:color": "ピンク / キラキラした目",
+      "gh:usage": "SNSやグループチャットでのコミュニケーション時に使用",
+      "gh:reason": "ウサギ＝活発さと親しみやすさの象徴。桜庭＝春＝ウサギは春のイメージとも合致。"
+    },
+    "gh:handleVariations": ["Mei_chan", "Pink_Bunny", "ながうさぎ"]
+  }
 }

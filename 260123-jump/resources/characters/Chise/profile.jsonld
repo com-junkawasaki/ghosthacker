@@ -112,5 +112,17 @@
       "gh:description": "ストリートの格好で手を合わせる。「ばあちゃん、また厄介ごと拾っちまった」",
       "gh:impact": "家族への想い"
     }
-  ]
+  ],
+
+  "gh:onlinePresence": {
+    "gh:avatar": {
+      "gh:type": "verylonganimals",
+      "gh:animal": "キツネ (Fox)",
+      "gh:description": "verylonganimalsのながーいキツネ。賢くてずる賢い印象だが、実は守護神的な存在。Chiseのストリートスマートと神社の守護精神を象徴。",
+      "gh:color": "赤茶色 / 琥珀色の目",
+      "gh:usage": "アンダーグラウンドでの活動時に使用",
+      "gh:reason": "キツネ＝お稲荷さん＝神社と関連。知恵と守護の象徴。赤羽八幡神社の巫女としてのルーツも反映。"
+    },
+    "gh:handleVariations": ["aka_chise1", "Red_Fox", "ながきつね"]
+  }
 }

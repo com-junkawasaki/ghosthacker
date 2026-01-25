@@ -67,6 +67,18 @@
     ]
   },
 
+  "gh:onlinePresence": {
+    "gh:avatar": {
+      "gh:type": "verylonganimals",
+      "gh:animal": "フクロウ (Owl)",
+      "gh:description": "verylonganimalsのながーいフクロウ。夜行性で物静か、でも鋭い目で全てを見通す。Renの『だるい』けど本質を見抜く性格にピッタリ。",
+      "gh:color": "ダークグレー / 銀色の目",
+      "gh:usage": "SNS、チャット、匿名掲示板での活動時に使用",
+      "gh:reason": "フクロウ＝夜の賢者。止観（観察と洞察）の象徴。一見眠そうだが、実は何も見逃さない。"
+    },
+    "gh:handleVariations": ["Ren", "Ghost_Owl", "ながふくろう"]
+  },
+
   "gh:relationships": {
     "gh:nei": {
       "gh:type": "パートナー",
