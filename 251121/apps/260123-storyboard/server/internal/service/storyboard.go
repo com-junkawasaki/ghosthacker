@@ -151,10 +151,21 @@ func (s *StoryboardService) UpdatePanel(
 					if req.Msg.PanelData.Dialogue != nil {
 						dialogue := make([]interface{}, len(req.Msg.PanelData.Dialogue))
 						for j, d := range req.Msg.PanelData.Dialogue {
-							dialogue[j] = map[string]interface{}{
+							dMap := map[string]interface{}{
 								"speaker": d.Speaker,
 								"text":    d.Text,
 							}
+							if d.MangaLayout != nil {
+								dMap["gh:mangaLayout"] = map[string]interface{}{
+									"text":     d.MangaLayout.Text,
+									"type":     d.MangaLayout.Type,
+									"x":        d.MangaLayout.X,
+									"y":        d.MangaLayout.Y,
+									"fontSize": d.MangaLayout.FontSize,
+									"style":    d.MangaLayout.Style,
+								}
+							}
+							dialogue[j] = dMap
 						}
 						panel["dialogue"] = dialogue
 					}
@@ -502,10 +513,33 @@ func (s *StoryboardService) GetEpisodePanels(
 					}
 					speaker, _ := dialogue["speaker"].(string)
 					text, _ := dialogue["text"].(string)
-					panelData.Dialogue = append(panelData.Dialogue, &storyboardpb.Dialogue{
+					dObj := &storyboardpb.Dialogue{
 						Speaker: speaker,
 						Text:    text,
-					})
+					}
+					if ml, ok := dialogue["gh:mangaLayout"].(map[string]interface{}); ok {
+						mt := &storyboardpb.MangaText{}
+						if val, ok := ml["text"].(string); ok {
+							mt.Text = val
+						}
+						if val, ok := ml["type"].(string); ok {
+							mt.Type = val
+						}
+						if val, ok := ml["x"].(float64); ok {
+							mt.X = float32(val)
+						}
+						if val, ok := ml["y"].(float64); ok {
+							mt.Y = float32(val)
+						}
+						if val, ok := ml["fontSize"].(float64); ok {
+							mt.FontSize = float32(val)
+						}
+						if val, ok := ml["style"].(string); ok {
+							mt.Style = val
+						}
+						dObj.MangaLayout = mt
+					}
+					panelData.Dialogue = append(panelData.Dialogue, dObj)
 				}
 			}
 

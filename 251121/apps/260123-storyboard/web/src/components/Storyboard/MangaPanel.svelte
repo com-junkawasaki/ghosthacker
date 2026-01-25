@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { Panel } from '$lib/gen/proto/storyboard_pb';
-	import { MangaTextSchema, PanelDataSchema } from '$lib/gen/proto/storyboard_pb';
+	import type { Panel, Dialogue } from '$lib/gen/proto/storyboard_pb';
+	import { MangaTextSchema, PanelDataSchema, DialogueSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
 
 	export let panel: Panel;
@@ -29,8 +29,6 @@
 
 	$: dialogues = panel.data?.dialogue ?? [];
 	$: mangaLayout = panel.data?.mangaLayout;
-
-	// Find the layout for this specific panel from the page-level mangaLayout
 	$: panelLayout = mangaLayout?.panels?.find(p => p.panelIndex === panel.panel);
 
 	$: imageStyle = panelLayout ? `
@@ -38,31 +36,32 @@
 		transform: scale(${panelLayout.imageScale || 1.0});
 	` : '';
 
-	type SelectionMode = 'panel' | 'image' | 'text';
-	let selectionMode: SelectionMode = 'panel';
+	let isDraggingImage = false;
 
 	function handleImageMouseDown(event: MouseEvent) {
-		if (selectionMode !== 'image' || !panelLayout) return;
-		
-		const startX = event.clientX;
-		const startY = event.clientY;
-		const initialX = panelLayout.imageX;
-		const initialY = panelLayout.imageY;
+		// Only drag if clicking the background image, not a bubble or tool
+		if ((event.target as HTMLElement).classList.contains('panel-image') || (event.target as HTMLElement).classList.contains('panel-overlay')) {
+			isDraggingImage = true;
+			const startX = event.clientX;
+			const startY = event.clientY;
+			const initialX = panelLayout?.imageX ?? 50;
+			const initialY = panelLayout?.imageY ?? 50;
 
-		const onMouseMove = (moveEvent: MouseEvent) => {
-			const dx = ((moveEvent.clientX - startX) / 300) * 100; // Approx panel width
-			const dy = ((moveEvent.clientY - startY) / 400) * 100; // Approx panel height
-			
-			updateImagePosition(initialX - dx, initialY - dy);
-		};
+			const onMouseMove = (moveEvent: MouseEvent) => {
+				const dx = ((moveEvent.clientX - startX) / 300) * 100;
+				const dy = ((moveEvent.clientY - startY) / 400) * 100;
+				updateImagePosition(initialX - dx, initialY - dy);
+			};
 
-		const onMouseUp = () => {
-			window.removeEventListener('mousemove', onMouseMove);
-			window.removeEventListener('mouseup', onMouseUp);
-		};
+			const onMouseUp = () => {
+				isDraggingImage = false;
+				window.removeEventListener('mousemove', onMouseMove);
+				window.removeEventListener('mouseup', onMouseUp);
+			};
 
-		window.addEventListener('mousemove', onMouseMove);
-		window.addEventListener('mouseup', onMouseUp);
+			window.addEventListener('mousemove', onMouseMove);
+			window.addEventListener('mouseup', onMouseUp);
+		}
 	}
 
 	function updateImagePosition(x: number, y: number) {
@@ -90,9 +89,10 @@
 		dispatch('update', updatedData);
 	}
 
-	function handleZoom(delta: number) {
-		if (selectionMode !== 'image' || !mangaLayout || !panelLayout) return;
-
+	function handleZoom(event: WheelEvent) {
+		if (!mangaLayout || !panelLayout) return;
+		event.preventDefault();
+		const delta = event.deltaY > 0 ? -0.1 : 0.1;
 		const newScale = Math.max(0.1, Math.min(5.0, (panelLayout.imageScale || 1.0) + delta));
 
 		const newPanels = mangaLayout.panels.map(p => {
@@ -116,40 +116,51 @@
 		dispatch('update', updatedData);
 	}
 
-	function handleDragEnd(event: DragEvent, textIndex: number) {
-		if (selectionMode !== 'text') return;
+	function handleDialogueDragEnd(event: DragEvent, index: number) {
 		const rect = (event.currentTarget as HTMLElement).parentElement?.getBoundingClientRect();
 		if (!rect) return;
 
-		// Use clientX/Y which are relative to the viewport, then subtract rect.left/top
 		const x = ((event.clientX - rect.left) / rect.width) * 100;
 		const y = ((event.clientY - rect.top) / rect.height) * 100;
 
-		updateTextPosition(textIndex, x, y);
+		const newDialogues = [...dialogues];
+		const d = newDialogues[index];
+		if (d) {
+			newDialogues[index] = create(DialogueSchema, {
+				...d,
+				mangaLayout: create(MangaTextSchema, {
+					...(d.mangaLayout || {}),
+					text: d.text,
+					type: 'dialogue',
+					x,
+					y,
+					fontSize: d.mangaLayout?.fontSize || 16,
+					style: d.mangaLayout?.style || 'vertical'
+				})
+			});
+		}
+
+		const updatedData = create(PanelDataSchema, {
+			...panel.data,
+			dialogue: newDialogues
+		});
+
+		dispatch('update', updatedData);
 	}
 
-	function handleDialogueDragEnd(event: DragEvent, dialogueIndex: number) {
-		if (selectionMode !== 'text') return;
-		const rect = (event.currentTarget as HTMLElement).parentElement?.getBoundingClientRect();
-		if (!rect) return;
-
-		const x = ((event.clientX - rect.left) / rect.width) * 100;
-		const y = ((event.clientY - rect.top) / rect.height) * 100;
-
-		// Convert this dialogue to a mangaText entry
-		const dialogue = dialogues[dialogueIndex];
-		if (!dialogue) return;
-
-		const newText = create(MangaTextSchema, {
-			text: dialogue.text,
-			type: 'dialogue',
-			x,
-			y,
-			fontSize: 16,
+	function addSFX() {
+		if (!panel.data) return;
+		// SFX are special dialogues or we can keep using mangaLayout.texts for non-dialogue elements
+		const newSFX = create(MangaTextSchema, {
+			text: 'SFX',
+			type: 'sfx',
+			x: 50,
+			y: 50,
+			fontSize: 32,
 			style: 'vertical'
 		});
 
-		const newTexts = mangaLayout?.texts ? [...mangaLayout.texts, newText] : [newText];
+		const newTexts = mangaLayout?.texts ? [...mangaLayout.texts, newSFX] : [newSFX];
 
 		const updatedData = create(PanelDataSchema, {
 			...panel.data,
@@ -162,9 +173,13 @@
 		dispatch('update', updatedData);
 	}
 
-	function updateTextPosition(index: number, x: number, y: number) {
-		if (!panel.data) return;
-		
+	function handleSFXDragEnd(event: DragEvent, index: number) {
+		const rect = (event.currentTarget as HTMLElement).parentElement?.getBoundingClientRect();
+		if (!rect) return;
+
+		const x = ((event.clientX - rect.left) / rect.width) * 100;
+		const y = ((event.clientY - rect.top) / rect.height) * 100;
+
 		const newTexts = mangaLayout?.texts ? [...mangaLayout.texts] : [];
 		if (newTexts[index]) {
 			newTexts[index] = create(MangaTextSchema, {
@@ -184,45 +199,13 @@
 
 		dispatch('update', updatedData);
 	}
-
-	function addMangaText(type: 'dialogue' | 'sfx') {
-		if (!panel.data) return;
-
-		const newText = create(MangaTextSchema, {
-			text: type === 'dialogue' ? 'New Dialogue' : 'SFX',
-			type,
-			x: 50,
-			y: 50,
-			fontSize: type === 'dialogue' ? 16 : 32,
-			style: 'vertical'
-		});
-
-		const newTexts = mangaLayout?.texts ? [...mangaLayout.texts, newText] : [newText];
-
-		const updatedData = create(PanelDataSchema, {
-			...panel.data,
-			mangaLayout: {
-				...mangaLayout,
-				texts: newTexts
-			}
-		});
-
-		dispatch('update', updatedData);
-	}
 </script>
 
 <div 
 	class="manga-panel" 
-	class:mode-image={selectionMode === 'image'}
-	class:mode-text={selectionMode === 'text'}
-	class:mode-panel={selectionMode === 'panel'}
+	class:dragging={isDraggingImage}
 	on:mousedown={handleImageMouseDown}
-	on:wheel={(e) => {
-		if (selectionMode === 'image') {
-			e.preventDefault();
-			handleZoom(e.deltaY > 0 ? -0.1 : 0.1);
-		}
-	}}
+	on:wheel={handleZoom}
 >
 	{#if currentImageUrl}
 		<img 
@@ -230,6 +213,7 @@
 			alt="Panel {panel.panel}" 
 			class="panel-image" 
 			style={imageStyle}
+			draggable="false"
 		/>
 	{:else}
 		<div class="panel-placeholder">
@@ -238,61 +222,37 @@
 	{/if}
 
 	<div class="panel-overlay">
-		{#if mangaLayout?.texts && mangaLayout.texts.length > 0}
+		{#each dialogues as dialogue, i}
+			<div 
+				class="dialogue-bubble"
+				style="
+					left: {dialogue.mangaLayout?.x ?? 10}%; 
+					top: {dialogue.mangaLayout?.y ?? 20}%;
+					font-size: {dialogue.mangaLayout?.fontSize ?? 16}px;
+				"
+				draggable="true"
+				on:dragend={(e) => handleDialogueDragEnd(e, i)}
+			>
+				{dialogue.text}
+			</div>
+		{/each}
+
+		{#if mangaLayout?.texts}
 			{#each mangaLayout.texts as text, i}
 				<div 
 					class="manga-text {text.type}"
 					style="left: {text.x}%; top: {text.y}%; font-size: {text.fontSize}px;"
-					draggable={selectionMode === 'text'}
-					on:dragend={(e) => handleDragEnd(e, i)}
+					draggable="true"
+					on:dragend={(e) => handleSFXDragEnd(e, i)}
 				>
 					{text.text}
 				</div>
 			{/each}
 		{/if}
-		
-		{#each dialogues as dialogue, i}
-			<!-- Only show if not already positioned in mangaLayout.texts -->
-			{#if !mangaLayout?.texts?.find(t => t.text === dialogue.text)}
-				<div 
-					class="dialogue-bubble"
-					draggable={selectionMode === 'text'}
-					on:dragend={(e) => handleDialogueDragEnd(e, i)}
-				>
-					{dialogue.text}
-				</div>
-			{/if}
-		{/each}
 	</div>
 
 	<div class="panel-tools">
-		<div class="mode-selector">
-			<button 
-				class:active={selectionMode === 'panel'} 
-				on:click={() => selectionMode = 'panel'}
-				title="Edit Panel Layout"
-			>
-				Pnl
-			</button>
-			<button 
-				class:active={selectionMode === 'image'} 
-				on:click={() => selectionMode = 'image'}
-				title="Move/Zoom Image"
-			>
-				Img
-			</button>
-			<button 
-				class:active={selectionMode === 'text'} 
-				on:click={() => selectionMode = 'text'}
-				title="Edit Text/Dialogue"
-			>
-				Txt
-			</button>
-		</div>
-		<div class="action-buttons">
-			<button on:click={() => addMangaText('dialogue')}>+T</button>
-			<button on:click={() => addMangaText('sfx')}>+S</button>
-		</div>
+		<button on:click={addSFX} title="Add SFX">+S</button>
 	</div>
 </div>
 
@@ -303,30 +263,18 @@
 		overflow: hidden;
 		background: #eee;
 		aspect-ratio: 3 / 4;
-		cursor: default;
-		transition: border-color 0.2s;
+		cursor: crosshair;
 	}
 
-	.manga-panel.mode-image {
+	.manga-panel.dragging {
 		cursor: move;
-		border-color: #007bff;
-		box-shadow: inset 0 0 10px rgba(0, 123, 255, 0.3);
-	}
-
-	.manga-panel.mode-text {
-		border-color: #28a745;
-	}
-
-	.manga-panel.mode-panel {
-		border-color: #6c757d;
 	}
 
 	.panel-image {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		transition: transform 0.1s ease-out;
-		pointer-events: none;
+		pointer-events: auto;
 	}
 
 	.panel-placeholder {
@@ -358,22 +306,18 @@
 		color: #000;
 		max-width: 80%;
 		pointer-events: auto;
-		/* Default position for now */
-		top: 20%;
-		left: 10%;
-		cursor: grab;
-	}
-
-	.dialogue-bubble,
-	.manga-text {
 		cursor: grab;
 		outline: 2px dashed #28a745;
+		z-index: 10;
 	}
 
 	.manga-text {
 		position: absolute;
 		pointer-events: auto;
 		color: #000;
+		cursor: grab;
+		outline: 2px dashed #ffc107;
+		z-index: 11;
 	}
 
 	.manga-text.sfx {
@@ -387,42 +331,21 @@
 		bottom: 5px;
 		right: 5px;
 		display: flex;
-		flex-direction: column;
 		gap: 5px;
-		opacity: 1;
 		z-index: 100;
 	}
 
-	.mode-selector, .action-buttons {
-		display: flex;
-		gap: 2px;
-		background: rgba(0, 0, 0, 0.6);
-		padding: 3px;
-		border-radius: 4px;
-	}
-
 	.panel-tools button {
-		background: rgba(255, 255, 255, 0.2);
+		background: rgba(0, 0, 0, 0.6);
 		color: #fff;
 		border: 1px solid rgba(255, 255, 255, 0.3);
-		border-radius: 2px;
-		padding: 2px 6px;
-		font-size: 0.7rem;
+		border-radius: 4px;
+		padding: 4px 8px;
+		font-size: 0.8rem;
 		cursor: pointer;
-		transition: all 0.2s;
 	}
 
 	.panel-tools button:hover {
-		background: rgba(255, 255, 255, 0.4);
+		background: rgba(0, 0, 0, 0.8);
 	}
-
-	.panel-tools button.active {
-		background: #fff;
-		color: #000;
-		font-weight: bold;
-	}
-
-	.mode-selector button.active[title*="Panel"] { background: #6c757d; color: white; }
-	.mode-selector button.active[title*="Image"] { background: #007bff; color: white; }
-	.mode-selector button.active[title*="Text"] { background: #28a745; color: white; }
 </style>

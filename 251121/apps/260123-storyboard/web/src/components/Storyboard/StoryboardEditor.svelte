@@ -107,6 +107,15 @@
 		data: PanelData
 	) {
 		if (!selectedEpisode) return;
+		
+		// Optimistic local update
+		panels = panels.map(p => {
+			if (p.pageNumber === pageNumber && p.panel === panel) {
+				return { ...p, data };
+			}
+			return p;
+		});
+
 		try {
 			await storyboardClient.updatePanel({
 				filePath: storyboardPath,
@@ -115,10 +124,11 @@
 				panel,
 				panelData: data
 			});
-			await loadPanels(); // Reload to reflect changes
+			// No need to reload everything if we updated local state correctly
 		} catch (err) {
 			error = err instanceof Error ? err.message : 'Failed to update panel';
 			console.error('Failed to update panel:', err);
+			await loadPanels(); // Reload on error to ensure consistency
 		}
 	}
 

@@ -93,8 +93,6 @@
 					{/each}
 				</div>
 			{/if}
-			<button class="tool-btn">Add Text</button>
-			<button class="tool-btn">Add SFX</button>
 		</div>
 	</div>
 
