@@ -11,7 +11,13 @@ export default defineConfig({
 		port: 1421,
 		strictPort: true,
 		host: true,
-		allowedHosts: true
+		allowedHosts: true,
+		watch: {
+			usePolling: true
+		},
+		hmr: {
+			clientPort: 1421
+		}
 	},
 	ssr: {
 		noExternal: [
