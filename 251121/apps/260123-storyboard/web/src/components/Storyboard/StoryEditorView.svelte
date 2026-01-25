@@ -63,6 +63,15 @@
 		});
 		editBuffer.dialogue = newDialogues;
 	}
+
+	function getAvatarUrl(speaker: string) {
+		if (!speaker || speaker === 'Narration' || speaker === 'NewsHacker') return '';
+		const id = speaker;
+		const baseUrl = typeof window !== 'undefined' 
+			? (window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin)
+			: 'http://localhost:8081';
+		return `${baseUrl}/images/characters/${id}.png`;
+	}
 </script>
 
 <div class="story-editor-view">
@@ -157,7 +166,12 @@
 										<div class="dialogue-display">
 											{#each panel.data?.dialogue ?? [] as d}
 												<div class="dialogue-line">
-													<span class="speaker">{d.speaker}:</span>
+													<div class="speaker-info">
+														{#if getAvatarUrl(d.speaker)}
+															<img src={getAvatarUrl(d.speaker)} alt={d.speaker} class="speaker-avatar" onerror="this.style.display='none'" />
+														{/if}
+														<span class="speaker">{d.speaker}:</span>
+													</div>
 													<span class="text">「{d.text}」</span>
 													{#if d.delivery}
 														<span class="delivery">({d.delivery})</span>
@@ -296,6 +310,24 @@
 
 	.dialogue-line {
 		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.speaker-info {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.speaker-avatar {
+		width: 28px;
+		height: 28px;
+		border-radius: 50%;
+		object-fit: cover;
+		border: 1px solid #eee;
+		background: #f9f9f9;
 	}
 
 	.speaker {

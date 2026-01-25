@@ -185,6 +185,17 @@
 		}
 	}
 
+	function getAvatarUrl(speaker: string) {
+		if (!speaker || speaker === 'Narration' || speaker === 'NewsHacker') return '';
+		
+		// Map speaker names to IDs if necessary
+		const id = speaker;
+		const baseUrl = typeof window !== 'undefined' 
+			? (window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin)
+			: 'http://localhost:8081';
+		return `${baseUrl}/images/characters/${id}.png`;
+	}
+
 	async function handleGenerateImage() {
 		if (generatingImage || !episodeId) return;
 
@@ -519,7 +530,15 @@
 					<div class="dialogue">
 						{#each dialogues as dialogue}
 							<div class="dialogue-line">
-								<strong>{dialogue.speaker}:</strong> {dialogue.text}
+								<div class="speaker-info">
+									{#if getAvatarUrl(dialogue.speaker)}
+										<img src={getAvatarUrl(dialogue.speaker)} alt={dialogue.speaker} class="speaker-avatar" onerror="this.style.display='none'" />
+									{/if}
+									<strong>{dialogue.speaker}:</strong>
+								</div>
+								<div class="dialogue-text-content">
+									{dialogue.text}
+								</div>
 							</div>
 						{/each}
 					</div>
@@ -821,6 +840,28 @@
 		margin-bottom: 0.5rem;
 		padding-left: 1rem;
 		border-left: 2px solid #ddd;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.speaker-info {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.speaker-avatar {
+		width: 24px;
+		height: 24px;
+		border-radius: 50%;
+		object-fit: cover;
+		border: 1px solid #ddd;
+		background: #eee;
+	}
+
+	.dialogue-text-content {
+		padding-left: 0;
 	}
 
 	.dialogue-line strong {
