@@ -293,16 +293,30 @@
 		alert(`AI suggested ${patches.length} changes. Patch application logic is being developed.`);
 	}
 
+	let lastContextId = $state<string | null>(null);
+
+	// Only load panels when an episode or arc is selected
 	$effect(() => {
-		if (editMode === 'episode' && selectedEpisode && selectedEpisode.trim() !== '') {
-			console.log('[StoryboardEditor] Effect: selectedEpisode changed, loading all panels', selectedEpisode);
-			loadPanels();
-			addContextToChat('episode', { id: selectedEpisode });
-		} else if (editMode === 'arc' && selectedArc && selectedArc.trim() !== '') {
-			console.log('[StoryboardEditor] Effect: selectedArc changed, loading arc panels', selectedArc);
-			loadArcPanelsData();
-			addContextToChat('arc', { id: selectedArc });
-		} else if (editMode === 'episode' && !selectedEpisode && episodes.length > 0) {
+		const currentId = editMode === 'episode' ? selectedEpisode : selectedArc;
+		if (!currentId || currentId.trim() === '') return;
+
+		if (currentId !== lastContextId) {
+			console.log('[StoryboardEditor] Effect: selection changed, loading panels for', currentId);
+			lastContextId = currentId;
+			
+			if (editMode === 'episode') {
+				loadPanels();
+				addContextToChat('episode', { id: currentId });
+			} else {
+				loadArcPanelsData();
+				addContextToChat('arc', { id: currentId });
+			}
+		}
+	});
+
+	// Handle initial selection
+	$effect(() => {
+		if (editMode === 'episode' && !selectedEpisode && episodes.length > 0) {
 			selectedEpisode = episodes[0].id;
 		} else if (editMode === 'arc' && !selectedArc && arcs.length > 0) {
 			selectedArc = arcs[0].id;
