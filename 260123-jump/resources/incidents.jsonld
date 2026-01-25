@@ -109,7 +109,7 @@
       "gh:realCase": "SBI Securities Account Fraud (2020)",
       "gh:sinContrast": "Passive Pride (Rule Blindness) vs. Active Pride (Rule Definition)",
       "gh:nistFocus": ["PR.AA-01 (Identity/Access)", "ID.RA-01 (Risk Assessment)"],
-      "gh:description": "『金融庁ガイドラインの項目を満たしているから大丈夫』という『傲慢』が資産を盗ませた。ログインだけの対策で満足し、重要操作（受取口座の追加/変更・出金）への強制MFA、異常検知によるステップアップ、変更の冷却期間、ログの一元収集と24/7監視、委託先も含む統制テストが甘かった。国内規制の"最低ライン"だけに依存し、国際的な統制要求（例: AML/CFT系の不正取引監視・統制要求）まで含めた運用・監査設計が追いついていなかった。KanameはCISAの監査眼でその欺瞞を暴き、支援士の設計力で『新・絶対ルール（ゼロトラスト）』を敷く。",
+      "gh:description": "『金融庁ガイドラインの項目を満たしているから大丈夫』という『傲慢』が資産を盗ませた。ログインだけの対策で満足し、重要操作（受取口座の追加/変更・出金）への強制MFA、異常検知によるステップアップ、変更の冷却期間、ログの一元収集と24/7監視、委託先も含む統制テストが甘かった。国内規制の『最低ライン』だけに依存し、国際的な統制要求（例: AML/CFT系の不正取引監視・統制要求）まで含めた運用・監査設計が追いついていなかった。KanameはCISAの監査眼でその欺瞞を暴き、支援士の設計力で『新・絶対ルール（ゼロトラスト）』を敷く。",
       "gh:storyStructure": {
         "gh:opening": "Ren, Nei が相談を受ける（水城慎司おじさん経由で東海証券から依頼）。Renは『金融は規制が複雑』としてKanameを推薦。慎司が甥のKanameを紹介。",
         "gh:main": "Kaname が本社入り。黒田専務（傲慢な規程主義）、白石部長（内部協力者）、中村部長（技術協力者）、青木課長（弟子志願）と対話しながら解決。",
@@ -120,7 +120,7 @@
         {
           "gh:characters": ["character:Kaname", "character:KurodaMasahiko"],
           "gh:theme": "規程遵守 vs 実効性",
-          "gh:conflict": "黒田『金融庁ガイドラインを満たしている』vs Kaname『最低ラインは"外"があるという意味』"
+          "gh:conflict": "黒田『金融庁ガイドラインを満たしている』vs Kaname『最低ラインは〈外〉があるという意味』"
         },
         {
           "gh:characters": ["character:Kaname", "character:ShiraishiYuko"],

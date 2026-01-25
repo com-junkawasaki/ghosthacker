@@ -157,8 +157,8 @@
             }
           ],
           "environment": "env:cschool-classroom",
-          "gh:imagePrompt": "Full Page Vertical, ARIA-style. C高校の静かな教室。RenとNei。背後に"パスワード保管庫""メールの別名""闇市場のリスト"が薄く重なるタイトルページ。luminous atmosphere, soft diffused natural light, pristine clean air. shot on 24mm, f/4, cinematic live-action.",
-          "gh:runwayPrompt": "Full Page Vertical, ARIA-style. C高校の静かな教室。RenとNei。背後に"パスワード保管庫""メールの別名""闇市場のリスト"が薄く重なるタイトルページ。luminous atmosphere, soft diffused natural light, pristine clean air. shot on 24mm, f/4, cinematic live-action.",
+          "gh:imagePrompt": "Full Page Vertical, ARIA-style. C高校の静かな教室。RenとNei。背後に『パスワード保管庫』『メールの別名』『闇市場のリスト』が薄く重なるタイトルページ。luminous atmosphere, soft diffused natural light, pristine clean air. shot on 24mm, f/4, cinematic live-action.",
+          "gh:runwayPrompt": "Full Page Vertical, ARIA-style. C高校の静かな教室。RenとNei。背後に『パスワード保管庫』『メールの別名』『闇市場のリスト』が薄く重なるタイトルページ。luminous atmosphere, soft diffused natural light, pristine clean air. shot on 24mm, f/4, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "vertical framing",
             "gh:aperture": "f/4",
@@ -171,7 +171,7 @@
           },
           "panel": 2,
           "shot": "Full Page Vertical",
-          "visual": "C高校の静かな教室。RenとNei。背後に"パスワード保管庫""メールの別名""闇市場のリスト"が薄く重なるタイトルページ。"
+          "visual": "C高校の静かな教室。RenとNei。背後に『パスワード保管庫』『メールの別名』『闇市場のリスト』が薄く重なるタイトルページ。"
         }
       ]
     },
@@ -229,8 +229,8 @@
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. 目当ての商品が"超格安""時間限定"で出てくる。大手SNSのマーケット風画面。luminous atmosphere, phone glow in dim room. shot on 50mm, f/2.0, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. 目当ての商品が"超格安""時間限定"で出てくる。大手SNSのマーケット風画面。luminous atmosphere, phone glow in dim room. shot on 50mm, f/2.0, cinematic live-action.",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. 目当ての商品が『超格安』『時間限定』で出てくる。大手SNSのマーケット風画面。luminous atmosphere, phone glow in dim room. shot on 50mm, f/2.0, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. 目当ての商品が『超格安』『時間限定』で出てくる。大手SNSのマーケット風画面。luminous atmosphere, phone glow in dim room. shot on 50mm, f/2.0, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "top-down insert",
             "gh:aperture": "f/2.0",
@@ -243,7 +243,7 @@
           },
           "panel": 1,
           "shot": "Insert Shot",
-          "visual": "目当ての商品が"超格安""時間限定"で出てくる。大手SNSのマーケット風画面。"
+          "visual": "目当ての商品が『超格安』『時間限定』で出てくる。大手SNSのマーケット風画面。"
         },
         {
           "characters": ["character:Yuto"],
@@ -254,8 +254,8 @@
             }
           ],
           "environment": "env:home-desk",
-          "gh:imagePrompt": "Close-up, ARIA-style. 一瞬だけ"怪しい"がよぎる。けど、画面は"いつもの大手"っぽい。luminous atmosphere, phone glow in dim room. shot on 85mm prime, f/1.2, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. 一瞬だけ"怪しい"がよぎる。けど、画面は"いつもの大手"っぽい。luminous atmosphere, phone glow in dim room. shot on 85mm prime, f/1.2, cinematic live-action.",
+          "gh:imagePrompt": "Close-up, ARIA-style. 一瞬だけ『怪しい』がよぎる。けど、画面は『いつもの大手』っぽい。luminous atmosphere, phone glow in dim room. shot on 85mm prime, f/1.2, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. 一瞬だけ『怪しい』がよぎる。けど、画面は『いつもの大手』っぽい。luminous atmosphere, phone glow in dim room. shot on 85mm prime, f/1.2, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "frontal",
             "gh:aperture": "f/1.2",
@@ -269,7 +269,7 @@
           },
           "panel": 2,
           "shot": "Close-up",
-          "visual": "一瞬だけ"怪しい"がよぎる。けど、画面は"いつもの大手"っぽい。"
+          "visual": "一瞬だけ『怪しい』がよぎる。けど、画面は『いつもの大手』っぽい。"
         }
       ]
     },

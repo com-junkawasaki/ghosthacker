@@ -8,6 +8,7 @@
   ],
   "gh:byId": {
     "act:-dFLQU3XboE3zhwn5olr7": "episodes/260123-cschool-privacy/acts/act-4-rescue.jsonld",
+    "act:1-introduction": "episodes/260123-cschool-privacy/acts/act-1-introduction.jsonld",
     "act:OLeLGPD-htJAgC5xmlg1O": "episodes/260123-cschool-privacy/acts/act-6-ghost-battle.jsonld",
     "act:VEj3Vins59IHwjVjkTUvc": "episodes/260123-cschool-privacy/acts/act-8-resolution.jsonld",
     "act:b4NFhIkZcgF_z6WH9zwTt": "episodes/260123-cschool-privacy/acts/act-7-daemon-battle.jsonld",
@@ -104,6 +105,7 @@
     "env:xajVRCe97ELJKNtxOjvhO": "environments/cschool-exterior-dusk/profile.jsonld",
     "env:yfGEwdB-z80tA8h4UdDWF": "environments/intertitle-black/profile.jsonld",
     "family:nh2xoeciCrnkdWubP48ni": "organizations/MizukiFamily/profile.jsonld",
+    "gh:data/incident-master-plan-final": "incidents.jsonld",
     "gh:environment:UaLkdgubnyoLJU3dhIvR-": "environments/daimon_office.jsonld",
     "gh:environment:lWWWzrCBFZ6lGk6Drwcak": "environments/rens_office.jsonld",
     "gh:environment:qeiAQ_6eH4xDQdGamtJKp": "environments/ar_vision.jsonld",
@@ -120,6 +122,7 @@
     "story:dGKv-7XAKkJQlRVxvDSRY": "episodes/260123-cschool-yami-baito/story-outline.jsonld"
   },
   "gh:byNumber": {
+    "act:260123-cschool-privacy:1": "act:1-introduction",
     "act:260123-cschool-privacy:2": "act:u30Bj1t60TV-p16fxrX8k",
     "act:260123-cschool-privacy:3": "act:piWQ6LKyTQzelk7dh6S_V",
     "act:260123-cschool-privacy:4": "act:-dFLQU3XboE3zhwn5olr7",
@@ -254,10 +257,38 @@
       "parentId": "260123-cschool-privacy",
       "references": [
         "act:-dFLQU3XboE3zhwn5olr7",
-        "gh:Act",
-        "prov:Entity",
         "gh:speaker",
-        "gh:environment"
+        "gh:environment",
+        "gh:Act",
+        "prov:Entity"
+      ]
+    },
+    "act:1-introduction": {
+      "@id": "act:1-introduction",
+      "@type": [
+        "gh:Act",
+        "prov:Entity"
+      ],
+      "title": "日常と誘惑",
+      "number": 1,
+      "parentId": "260123-cschool-privacy",
+      "references": [
+        "act:1-introduction",
+        "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+        "character:Yuto",
+        "character:Akira",
+        "character:Mei",
+        "character:Saki",
+        "character:Kota",
+        "env:cschool-classroom",
+        "character:Ren",
+        "character:Nei",
+        "env:home-desk",
+        "env:smartphone-screen",
+        "gh:environment",
+        "gh:speaker",
+        "gh:Act",
+        "prov:Entity"
       ]
     },
     "act:OLeLGPD-htJAgC5xmlg1O": {
@@ -272,10 +303,10 @@
       "parentId": "260123-cschool-privacy",
       "references": [
         "act:OLeLGPD-htJAgC5xmlg1O",
-        "gh:environment",
-        "gh:speaker",
         "gh:Act",
-        "prov:Entity"
+        "prov:Entity",
+        "gh:environment",
+        "gh:speaker"
       ]
     },
     "act:VEj3Vins59IHwjVjkTUvc": {
@@ -290,10 +321,10 @@
       "parentId": "260123-cschool-privacy",
       "references": [
         "act:VEj3Vins59IHwjVjkTUvc",
-        "gh:Act",
-        "prov:Entity",
         "gh:speaker",
-        "gh:environment"
+        "gh:environment",
+        "gh:Act",
+        "prov:Entity"
       ]
     },
     "act:b4NFhIkZcgF_z6WH9zwTt": {
@@ -310,8 +341,8 @@
         "act:b4NFhIkZcgF_z6WH9zwTt",
         "gh:Act",
         "prov:Entity",
-        "gh:speaker",
-        "gh:environment"
+        "gh:environment",
+        "gh:speaker"
       ]
     },
     "act:bjCvYulbwF2Z-XkwY13El": {
@@ -326,10 +357,10 @@
       "parentId": "260123-cschool-privacy",
       "references": [
         "act:bjCvYulbwF2Z-XkwY13El",
-        "gh:environment",
-        "gh:speaker",
         "gh:Act",
-        "prov:Entity"
+        "prov:Entity",
+        "gh:environment",
+        "gh:speaker"
       ]
     },
     "act:piWQ6LKyTQzelk7dh6S_V": {
@@ -344,10 +375,10 @@
       "parentId": "260123-cschool-privacy",
       "references": [
         "act:piWQ6LKyTQzelk7dh6S_V",
-        "gh:speaker",
-        "gh:environment",
         "gh:Act",
-        "prov:Entity"
+        "prov:Entity",
+        "gh:speaker",
+        "gh:environment"
       ]
     },
     "act:u30Bj1t60TV-p16fxrX8k": {
@@ -362,10 +393,10 @@
       "parentId": "260123-cschool-privacy",
       "references": [
         "act:u30Bj1t60TV-p16fxrX8k",
-        "gh:Act",
-        "prov:Entity",
         "gh:environment",
-        "gh:speaker"
+        "gh:speaker",
+        "gh:Act",
+        "prov:Entity"
       ]
     },
     "character:-92K_XHOYpG8IqRwbvCqb": {
@@ -618,8 +649,8 @@
       "title": "白石 悠子 (Yuko Shiraishi)",
       "references": [
         "character:luC8lvmc3uHqj7xOIAFvH",
-        "company:TokaiSecurities",
-        "gh:Character"
+        "gh:Character",
+        "company:TokaiSecurities"
       ]
     },
     "character:mBTP0fosNXeEUH_sR5eyI": {
@@ -662,8 +693,8 @@
       "title": "黒田 雅彦 (Masahiko Kuroda)",
       "references": [
         "character:r5A3LxXDtqiMyIzW3xzn_",
-        "gh:Character",
-        "company:TokaiSecurities"
+        "company:TokaiSecurities",
+        "gh:Character"
       ]
     },
     "character:rqbsK-PoU9FA3sVHEU-qu": {
@@ -672,8 +703,8 @@
       "title": "田村 誠一 (Seiichi Tamura)",
       "references": [
         "character:rqbsK-PoU9FA3sVHEU-qu",
-        "gh:Character",
-        "company:KojimaLogistics"
+        "company:KojimaLogistics",
+        "gh:Character"
       ]
     },
     "character:wzr4oAYexEuRn5q-TEbls": {
@@ -896,14 +927,14 @@
       "title": "小島ロジスティクス株式会社 (Kojima Logistics Co., Ltd.)",
       "references": [
         "company:2hwbkQ7QZVVOmyEzUsmOE",
-        "gh:CompanyProfile",
         "incident:260125-jump-SupplyChain",
-        "character:KojimaYuzo",
-        "character:MiuraMasato",
         "character:YamashitaTsuyoshi",
         "character:TamuraSeiichi",
         "character:SasakiKenta",
-        "character:EndoRisa"
+        "character:EndoRisa",
+        "gh:CompanyProfile",
+        "character:KojimaYuzo",
+        "character:MiuraMasato"
       ]
     },
     "company:YeAcqTBOBCj-7yWuPYCE0": {
@@ -912,15 +943,15 @@
       "title": "東海証券株式会社 (Tokai Securities Co., Ltd.)",
       "references": [
         "company:YeAcqTBOBCj-7yWuPYCE0",
+        "incident:260125-jump-AccountFraud",
+        "gh:CompanyProfile",
         "character:KurodaMasahiko",
         "character:ShiraishiYuko",
         "character:NakamuraShunsuke",
         "character:AokiReina",
         "character:TokaiShotaro",
         "character:HashimotoDaisuke",
-        "character:KimuraSho",
-        "gh:CompanyProfile",
-        "incident:260125-jump-AccountFraud"
+        "character:KimuraSho"
       ]
     },
     "company:ah33KaKFscNnZKffuc6aZ": {
@@ -944,9 +975,9 @@
       "title": "Logistics warehouse",
       "references": [
         "env:0--_EUAxsO89KPNden10g",
+        "gh:environment",
         "gh:characters",
-        "gh:speaker",
-        "gh:environment"
+        "gh:speaker"
       ]
     },
     "env:0KGEEBb7M4qBs-J0NGxqI": {
@@ -955,8 +986,8 @@
       "title": "Kamata street (evening)",
       "references": [
         "env:0KGEEBb7M4qBs-J0NGxqI",
-        "gh:characters",
         "gh:speaker",
+        "gh:characters",
         "gh:environment"
       ]
     },
@@ -966,9 +997,9 @@
       "title": "Evolution nature backdrop",
       "references": [
         "env:0KVhLEQygO_kN0RTS44sc",
+        "gh:environment",
         "gh:characters",
-        "gh:speaker",
-        "gh:environment"
+        "gh:speaker"
       ]
     },
     "env:2hJwTpUFMFmX2Jo0XWSn6": {
@@ -997,8 +1028,8 @@
       "title": "C-school classroom",
       "references": [
         "env:5lNoad9f84I2ThgHn3Sl0",
-        "gh:speaker",
         "gh:characters",
+        "gh:speaker",
         "gh:environment"
       ]
     },
@@ -1020,8 +1051,8 @@
       "references": [
         "env:7Wtrh6_RIXFx6yp4vj6B7",
         "gh:environment",
-        "gh:characters",
-        "gh:speaker"
+        "gh:speaker",
+        "gh:characters"
       ]
     },
     "env:98-LmrfpKrtbp9ndZ6qWS": {
@@ -1030,8 +1061,8 @@
       "title": "Historical montage",
       "references": [
         "env:98-LmrfpKrtbp9ndZ6qWS",
-        "gh:characters",
         "gh:speaker",
+        "gh:characters",
         "gh:environment"
       ]
     },
@@ -1041,9 +1072,9 @@
       "title": "Cyberspace title page",
       "references": [
         "env:FSVg8-uQQyJ5Y_LOUCLgu",
-        "gh:speaker",
+        "gh:environment",
         "gh:characters",
-        "gh:environment"
+        "gh:speaker"
       ]
     },
     "env:KTeoySdvYb9Aoi754FTMT": {
@@ -1072,9 +1103,9 @@
       "title": "Daimon Construction office (Kamata)",
       "references": [
         "env:MfBWpppnHoGr3Q4WF51Q1",
-        "gh:speaker",
+        "gh:environment",
         "gh:characters",
-        "gh:environment"
+        "gh:speaker"
       ]
     },
     "env:NBMhWmj8G6p0lC-gBj9p9": {
@@ -1083,9 +1114,9 @@
       "title": "Tokyo 2026 cityscape",
       "references": [
         "env:NBMhWmj8G6p0lC-gBj9p9",
+        "gh:environment",
         "gh:speaker",
-        "gh:characters",
-        "gh:environment"
+        "gh:characters"
       ]
     },
     "env:NWdURkHIjHCKREZiWYdf9": {
@@ -1094,9 +1125,9 @@
       "title": "Ren office",
       "references": [
         "env:NWdURkHIjHCKREZiWYdf9",
-        "gh:speaker",
         "gh:environment",
-        "gh:characters"
+        "gh:characters",
+        "gh:speaker"
       ]
     },
     "env:OW8PV51yapVU84X4txgVE": {
@@ -1105,8 +1136,8 @@
       "title": "Street (daytime)",
       "references": [
         "env:OW8PV51yapVU84X4txgVE",
-        "gh:environment",
         "gh:speaker",
+        "gh:environment",
         "gh:characters"
       ]
     },
@@ -1116,8 +1147,8 @@
       "title": "Financial HQ",
       "references": [
         "env:QsSD7hThgx8lv_gAc98TD",
-        "gh:environment",
         "gh:characters",
+        "gh:environment",
         "gh:speaker"
       ]
     },
@@ -1127,9 +1158,9 @@
       "title": "Quiet room",
       "references": [
         "env:ZcOS_Tv8p2pSsJEzhDgVW",
+        "gh:environment",
         "gh:speaker",
-        "gh:characters",
-        "gh:environment"
+        "gh:characters"
       ]
     },
     "env:aNQ9RS4TOVtjyW6WAUiU5": {
@@ -1138,9 +1169,9 @@
       "title": "C-school virtual campus",
       "references": [
         "env:aNQ9RS4TOVtjyW6WAUiU5",
+        "gh:speaker",
         "gh:characters",
-        "gh:environment",
-        "gh:speaker"
+        "gh:environment"
       ]
     },
     "env:cxYb8T9gYUqPztEMh-OON": {
@@ -1160,9 +1191,9 @@
       "title": "Home desk",
       "references": [
         "env:iOY_e64N3q0y13UxigttG",
-        "gh:speaker",
         "gh:characters",
-        "gh:environment"
+        "gh:environment",
+        "gh:speaker"
       ]
     },
     "env:jAtjXcAWuErClNXGySbJS": {
@@ -1171,9 +1202,9 @@
       "title": "Neutral meeting place",
       "references": [
         "env:jAtjXcAWuErClNXGySbJS",
+        "gh:environment",
         "gh:speaker",
-        "gh:characters",
-        "gh:environment"
+        "gh:characters"
       ]
     },
     "env:oR6FjiBIUq4_Y9soyIkWR": {
@@ -1182,9 +1213,9 @@
       "title": "News Hacker board",
       "references": [
         "env:oR6FjiBIUq4_Y9soyIkWR",
-        "gh:characters",
         "gh:environment",
-        "gh:speaker"
+        "gh:speaker",
+        "gh:characters"
       ]
     },
     "env:qnyR7FZ70l5DLem_olBMd": {
@@ -1193,9 +1224,9 @@
       "title": "C-school consultation room",
       "references": [
         "env:qnyR7FZ70l5DLem_olBMd",
+        "gh:characters",
         "gh:environment",
-        "gh:speaker",
-        "gh:characters"
+        "gh:speaker"
       ]
     },
     "env:xajVRCe97ELJKNtxOjvhO": {
@@ -1204,8 +1235,8 @@
       "title": "C-school exterior (dusk)",
       "references": [
         "env:xajVRCe97ELJKNtxOjvhO",
-        "gh:speaker",
         "gh:characters",
+        "gh:speaker",
         "gh:environment"
       ]
     },
@@ -1215,9 +1246,9 @@
       "title": "Intertitle (black)",
       "references": [
         "env:yfGEwdB-z80tA8h4UdDWF",
-        "gh:speaker",
+        "gh:environment",
         "gh:characters",
-        "gh:environment"
+        "gh:speaker"
       ]
     },
     "family:nh2xoeciCrnkdWubP48ni": {
@@ -1226,9 +1257,47 @@
       "title": "水城家 - 金融界の影の実力者",
       "references": [
         "family:nh2xoeciCrnkdWubP48ni",
+        "gh:FamilyProfile",
         "character:MizukiShinji",
+        "character:Kaname"
+      ]
+    },
+    "gh:data/incident-master-plan-final": {
+      "@id": "gh:data/incident-master-plan-final",
+      "references": [
+        "gh:data/incident-master-plan-final",
+        "gh:IncidentKnowledgeBase",
+        "episode:260123-cschool-privacy",
+        "episode:260123-cschool-defamation",
+        "episode:260123-cschool-yami-baito",
+        "character:Ren",
+        "character:Nei",
+        "character:Takeru",
         "character:Kaname",
-        "gh:FamilyProfile"
+        "episode:260125-jump-arcA-1",
+        "episode:260125-jump-arcA-2",
+        "episode:260125-jump-arcA-3",
+        "character:YamashitaTsuyoshi",
+        "character:TamuraSeiichi",
+        "character:SasakiKenta",
+        "character:EndoRisa",
+        "episode:260125-jump-arcB-1",
+        "episode:260125-jump-arcB-2",
+        "episode:260125-jump-arcB-3",
+        "company:KojimaLogistics",
+        "character:MizukiShinji",
+        "『金融庁ガイドラインの項目を満たしているから大丈夫』という『傲慢』が資産を盗ませた。ログインだけの対策で満足し、重要操作（受取口座の追加/変更・出金）への強制MFA、異常検知によるステップアップ、変更の冷却期間、ログの一元収集と24/7監視、委託先も含む統制テストが甘かった。国内規制の『最低ライン』だけに依存し、国際的な統制要求（例: AML/CFT系の不正取引監視・統制要求）まで含めた運用・監査設計が追いついていなかった。KanameはCISAの監査眼でその欺瞞を暴き、支援士の設計力で『新・絶対ルール（ゼロトラスト）』を敷く。",
+        "episode:260125-jump-arcC-1",
+        "episode:260125-jump-arcC-2",
+        "episode:260125-jump-arcC-3",
+        "company:TokaiSecurities",
+        "character:KurodaMasahiko",
+        "character:ShiraishiYuko",
+        "character:NakamuraShunsuke",
+        "character:AokiReina",
+        "episode:260125-jump-arcD-1",
+        "episode:260125-jump-arcD-2",
+        "episode:260125-jump-arcD-3"
       ]
     },
     "gh:environment:UaLkdgubnyoLJU3dhIvR-": {
@@ -1301,14 +1370,14 @@
       "title": "C高校 (C-School)",
       "references": [
         "gh:org:XeU7QzGvLDLdZTx6a8kxO",
-        "gh:OrganizationProfile",
-        "schema:EducationalOrganization",
         "character:HomeroomTeacher",
         "character:Yuto",
         "character:Akira",
         "character:Mei",
         "character:Saki",
-        "character:Kota"
+        "character:Kota",
+        "gh:OrganizationProfile",
+        "schema:EducationalOrganization"
       ]
     },
     "gh:props:aFtAQj-ZRchH79rpWPMz6": {
@@ -1329,6 +1398,7 @@
       "gh:slug": "episode01-v3",
       "references": [
         "gh:script:DQ6LSCQSS3NC8XgWDIglw",
+        "gh:MangaScript",
         "page:1",
         "page:2",
         "gh:TitlePage",
@@ -1346,8 +1416,7 @@
         "page:15",
         "page:16",
         "page:17",
-        "Ghost Hacker: Episode 1 (v3)",
-        "gh:MangaScript"
+        "Ghost Hacker: Episode 1 (v3)"
       ]
     },
     "gh:storyboard:b4gVlUSKsMw4GpHU8QRBj": {
@@ -1360,8 +1429,6 @@
       "title": "Ghost Hacker Season 1: Master Storyboard",
       "references": [
         "gh:storyboard:b4gVlUSKsMw4GpHU8QRBj",
-        "gh:MasterStoryboard",
-        "prov:Entity",
         "episode:arc0-1-origin",
         "episode:260123-cschool-privacy",
         "episode:260123-cschool-defamation",
@@ -1378,13 +1445,33 @@
         "episode:260125-jump-arcD-1",
         "episode:260125-jump-arcD-2",
         "episode:260125-jump-arcD-3",
-        "company:DaimonConstruction",
-        "company:KojimaLogistics",
-        "company:TokaiSecurities",
-        "family:Mizuki",
-        "gh:org/Cschool",
         "Max 3 key entities per prompt (2 characters + 1 prop/ghost), no dialogue text, stable shot schema via gh:shotProperties.",
-        "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Emphasize detailed expressive eyes with intricate iris patterns and sharp catchlights.",
+        "gh:MasterStoryboard",
+        "prov:Entity",
+        "env:quiet-room",
+        "env:news-hacker-board",
+        "env:cschool-consult",
+        "env:finance-hq",
+        "env:street-day",
+        "env:logistics-warehouse",
+        "env:sns-timeline",
+        "env:home-desk",
+        "env:kamata-daimon-office",
+        "env:tokyo-2026-aerial",
+        "env:intertitle-black",
+        "env:cschool-exterior-dusk",
+        "env:cschool-hallway",
+        "env:elite-school-campus",
+        "env:meeting-neutral",
+        "env:ren-office",
+        "env:cschool-virtual-campus",
+        "env:cyberspace-title",
+        "env:evolution-nature",
+        "env:kamata-street-evening",
+        "env:station-night-street",
+        "env:smartphone-screen",
+        "env:historical-montage",
+        "env:cschool-classroom",
         "character:Ren",
         "character:Nei",
         "character:NeiPuni",
@@ -1414,30 +1501,12 @@
         "character:Classmate_A",
         "character:Classmate_B",
         "character:Classmate_C",
-        "env:quiet-room",
-        "env:news-hacker-board",
-        "env:cschool-consult",
-        "env:finance-hq",
-        "env:street-day",
-        "env:logistics-warehouse",
-        "env:sns-timeline",
-        "env:home-desk",
-        "env:kamata-daimon-office",
-        "env:tokyo-2026-aerial",
-        "env:intertitle-black",
-        "env:cschool-exterior-dusk",
-        "env:cschool-hallway",
-        "env:elite-school-campus",
-        "env:meeting-neutral",
-        "env:ren-office",
-        "env:cschool-virtual-campus",
-        "env:cyberspace-title",
-        "env:evolution-nature",
-        "env:kamata-street-evening",
-        "env:station-night-street",
-        "env:smartphone-screen",
-        "env:historical-montage",
-        "env:cschool-classroom"
+        "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. Emphasize detailed expressive eyes with intricate iris patterns and sharp catchlights.",
+        "company:DaimonConstruction",
+        "company:KojimaLogistics",
+        "company:TokaiSecurities",
+        "family:Mizuki",
+        "gh:org/Cschool"
       ]
     },
     "org:9deNCkvH6RrEL3nBIm-2P": {
@@ -1450,13 +1519,13 @@
       "title": "星蘭学院高等部 (Seiran Academy High School)",
       "references": [
         "org:9deNCkvH6RrEL3nBIm-2P",
+        "gh:OrganizationProfile",
+        "schema:EducationalOrganization",
         "character:Kaname",
         "character:SoraAoyama",
         "character:RikaShirakawa",
         "character:KenjiOhara",
-        "character:TakashiNomura",
-        "gh:OrganizationProfile",
-        "schema:EducationalOrganization"
+        "character:TakashiNomura"
       ]
     },
     "org:PG8SGaowPdGWv8TQV9nMk": {
@@ -1469,13 +1538,13 @@
       "title": "都立工科高等学校 (Tokyo Metropolitan Technical High School)",
       "references": [
         "org:PG8SGaowPdGWv8TQV9nMk",
-        "gh:OrganizationProfile",
-        "schema:EducationalOrganization",
         "character:Takeru",
         "character:RyoKuroda",
         "character:ShotaHayashi",
         "character:YuiTanaka",
-        "character:DaichiMori"
+        "character:DaichiMori",
+        "gh:OrganizationProfile",
+        "schema:EducationalOrganization"
       ]
     },
     "org:mO2xsygzx4PMcjgkptdxN": {
@@ -1497,6 +1566,11 @@
       "references": [
         "story:YrbPwKlZToL8EirNZ2tMi",
         "character:Takeru",
+        "都立工科高校の3年生（休学中）。元eスポーツ部エース。フリーランスのセキュリティコンサルタント。HN: aka_chise1。",
+        "character:RyoKuroda",
+        "character:ShotaHayashi",
+        "character:YuiTanaka",
+        "character:DaichiMori",
         "org:TokyoTechHighSchool",
         "act:1-daily-life",
         "act:2-escalation",
@@ -1504,12 +1578,7 @@
         "act:4-countermeasures",
         "act:5-investigation",
         "act:6-confrontation",
-        "act:7-resolution",
-        "character:RyoKuroda",
-        "都立工科高校の3年生（休学中）。元eスポーツ部エース。フリーランスのセキュリティコンサルタント。HN: aka_chise1。",
-        "character:ShotaHayashi",
-        "character:YuiTanaka",
-        "character:DaichiMori"
+        "act:7-resolution"
       ]
     },
     "story:dGKv-7XAKkJQlRVxvDSRY": {
@@ -1518,13 +1587,6 @@
       "title": "Arc 0-3: 「やめたい…でも、怖い」",
       "references": [
         "story:dGKv-7XAKkJQlRVxvDSRY",
-        "character:Kaname",
-        "星蘭学院3年。生徒会副会長。水城家の跡取り。HN: 3pa11er3apiv0t。法と論理で戦う。",
-        "character:SoraAoyama",
-        "character:RikaShirakawa",
-        "character:KenjiOhara",
-        "character:TakashiNomura",
-        "character:MizukiShinji",
         "act:1-temptation",
         "act:2-escalation",
         "act:3-trap",
@@ -1532,7 +1594,14 @@
         "act:5-rescue",
         "act:6-confrontation",
         "act:7-resolution",
-        "org:SeiranAcademy"
+        "character:SoraAoyama",
+        "org:SeiranAcademy",
+        "character:Kaname",
+        "星蘭学院3年。生徒会副会長。水城家の跡取り。HN: 3pa11er3apiv0t。法と論理で戦う。",
+        "character:RikaShirakawa",
+        "character:KenjiOhara",
+        "character:TakashiNomura",
+        "character:MizukiShinji"
       ]
     }
   }
