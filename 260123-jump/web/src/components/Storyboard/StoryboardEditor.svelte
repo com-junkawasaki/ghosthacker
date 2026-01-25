@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { getEpisodes, getEpisodePanels, getArcs, getArcPanels, storyboardClient, streamUpdates } from '$lib/client/storyboard-client';
+	import { getEpisodes, getEpisodePanels, getArcs, getArcPanels, storyboardClient, streamUpdates, exportPdf } from '$lib/client/storyboard-client';
 	import StoryboardPage from './StoryboardPage.svelte';
 	import MangaEditor from './MangaEditor.svelte';
 	import ScriptView from './ScriptView.svelte';
 	import ShootingView from './ShootingView.svelte';
 	import NodeTree from './NodeTree.svelte';
 	import ChatPanel from './ChatPanel.svelte';
-	import { exportToPdf, type ExportMode } from '$lib/pdf-export';
+	// import { exportToPdf, type ExportMode } from '$lib/pdf-export';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 
 	let episodes: Array<{ id: string; title: string; totalPages: number }> = $state([]);
@@ -344,16 +344,28 @@
 		isExporting = true;
 		try {
 			const currentId = editMode === 'episode' ? selectedEpisode : selectedArc;
-			const currentTitle = editMode === 'episode' 
-				? episodes.find(e => e.id === currentId)?.title || currentId
-				: arcs.find(a => a.id === currentId)?.title || currentId;
+			const episodeId = editMode === 'episode' ? currentId : '';
+			const arcId = editMode === 'arc' ? currentId : '';
 			
-			await exportToPdf({
-				panels,
-				episodeId: currentId,
-				episodeTitle: currentTitle,
-				mode: viewMode as ExportMode
-			});
+			const response = await exportPdf(
+				storyboardPath,
+				episodeId,
+				arcId,
+				viewMode
+			);
+
+			if (response.pdfContent) {
+				// Download the PDF
+				const blob = new Blob([response.pdfContent], { type: 'application/pdf' });
+				const url = window.URL.createObjectURL(blob);
+				const a = document.createElement('a');
+				a.href = url;
+				a.download = response.filename || `storyboard_${currentId}.pdf`;
+				document.body.appendChild(a);
+				a.click();
+				window.URL.revokeObjectURL(url);
+				document.body.removeChild(a);
+			}
 		} catch (err) {
 			console.error('PDF export failed:', err);
 			error = err instanceof Error ? err.message : 'PDF export failed';

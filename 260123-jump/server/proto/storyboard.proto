@@ -70,6 +70,23 @@ service StoryboardService {
 
   // Persistence: Get all chat sessions
   rpc GetChatSessions(GetChatSessionsRequest) returns (GetChatSessionsResponse);
+
+  // Export storyboard to PDF
+  rpc ExportPdf(ExportPdfRequest) returns (ExportPdfResponse);
+}
+
+message ExportPdfRequest {
+  string file_path = 1;
+  string episode_id = 2;
+  string arc_id = 3; // Optional: export by arc
+  string mode = 4; // "storyboard", "manga", "script", "shooting"
+}
+
+message ExportPdfResponse {
+  bool success = 1;
+  string message = 2;
+  bytes pdf_content = 3; // The generated PDF file content
+  string filename = 4;
 }
 
 message InternalBroadcastChatMessageRequest {

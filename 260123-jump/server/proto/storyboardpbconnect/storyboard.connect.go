@@ -96,6 +96,9 @@ const (
 	// StoryboardServiceGetChatSessionsProcedure is the fully-qualified name of the StoryboardService's
 	// GetChatSessions RPC.
 	StoryboardServiceGetChatSessionsProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/GetChatSessions"
+	// StoryboardServiceExportPdfProcedure is the fully-qualified name of the StoryboardService's
+	// ExportPdf RPC.
+	StoryboardServiceExportPdfProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/ExportPdf"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
@@ -122,6 +125,7 @@ var (
 	storyboardServiceAnalyzeStructureMethodDescriptor              = storyboardServiceServiceDescriptor.Methods().ByName("AnalyzeStructure")
 	storyboardServiceSaveChatSessionMethodDescriptor               = storyboardServiceServiceDescriptor.Methods().ByName("SaveChatSession")
 	storyboardServiceGetChatSessionsMethodDescriptor               = storyboardServiceServiceDescriptor.Methods().ByName("GetChatSessions")
+	storyboardServiceExportPdfMethodDescriptor                     = storyboardServiceServiceDescriptor.Methods().ByName("ExportPdf")
 )
 
 // StoryboardServiceClient is a client for the gftd.ghosthacker.storyboard.v1.StoryboardService
@@ -169,6 +173,8 @@ type StoryboardServiceClient interface {
 	SaveChatSession(context.Context, *connect.Request[proto.SaveChatSessionRequest]) (*connect.Response[proto.SaveChatSessionResponse], error)
 	// Persistence: Get all chat sessions
 	GetChatSessions(context.Context, *connect.Request[proto.GetChatSessionsRequest]) (*connect.Response[proto.GetChatSessionsResponse], error)
+	// Export storyboard to PDF
+	ExportPdf(context.Context, *connect.Request[proto.ExportPdfRequest]) (*connect.Response[proto.ExportPdfResponse], error)
 }
 
 // NewStoryboardServiceClient constructs a client for the
@@ -308,6 +314,12 @@ func NewStoryboardServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(storyboardServiceGetChatSessionsMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		exportPdf: connect.NewClient[proto.ExportPdfRequest, proto.ExportPdfResponse](
+			httpClient,
+			baseURL+StoryboardServiceExportPdfProcedure,
+			connect.WithSchema(storyboardServiceExportPdfMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -334,6 +346,7 @@ type storyboardServiceClient struct {
 	analyzeStructure              *connect.Client[proto.AnalyzeStructureRequest, proto.AnalyzeStructureResponse]
 	saveChatSession               *connect.Client[proto.SaveChatSessionRequest, proto.SaveChatSessionResponse]
 	getChatSessions               *connect.Client[proto.GetChatSessionsRequest, proto.GetChatSessionsResponse]
+	exportPdf                     *connect.Client[proto.ExportPdfRequest, proto.ExportPdfResponse]
 }
 
 // LoadStoryboard calls gftd.ghosthacker.storyboard.v1.StoryboardService.LoadStoryboard.
@@ -445,6 +458,11 @@ func (c *storyboardServiceClient) GetChatSessions(ctx context.Context, req *conn
 	return c.getChatSessions.CallUnary(ctx, req)
 }
 
+// ExportPdf calls gftd.ghosthacker.storyboard.v1.StoryboardService.ExportPdf.
+func (c *storyboardServiceClient) ExportPdf(ctx context.Context, req *connect.Request[proto.ExportPdfRequest]) (*connect.Response[proto.ExportPdfResponse], error) {
+	return c.exportPdf.CallUnary(ctx, req)
+}
+
 // StoryboardServiceHandler is an implementation of the
 // gftd.ghosthacker.storyboard.v1.StoryboardService service.
 type StoryboardServiceHandler interface {
@@ -490,6 +508,8 @@ type StoryboardServiceHandler interface {
 	SaveChatSession(context.Context, *connect.Request[proto.SaveChatSessionRequest]) (*connect.Response[proto.SaveChatSessionResponse], error)
 	// Persistence: Get all chat sessions
 	GetChatSessions(context.Context, *connect.Request[proto.GetChatSessionsRequest]) (*connect.Response[proto.GetChatSessionsResponse], error)
+	// Export storyboard to PDF
+	ExportPdf(context.Context, *connect.Request[proto.ExportPdfRequest]) (*connect.Response[proto.ExportPdfResponse], error)
 }
 
 // NewStoryboardServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -624,6 +644,12 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 		connect.WithSchema(storyboardServiceGetChatSessionsMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	storyboardServiceExportPdfHandler := connect.NewUnaryHandler(
+		StoryboardServiceExportPdfProcedure,
+		svc.ExportPdf,
+		connect.WithSchema(storyboardServiceExportPdfMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/gftd.ghosthacker.storyboard.v1.StoryboardService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case StoryboardServiceLoadStoryboardProcedure:
@@ -668,6 +694,8 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 			storyboardServiceSaveChatSessionHandler.ServeHTTP(w, r)
 		case StoryboardServiceGetChatSessionsProcedure:
 			storyboardServiceGetChatSessionsHandler.ServeHTTP(w, r)
+		case StoryboardServiceExportPdfProcedure:
+			storyboardServiceExportPdfHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -759,4 +787,8 @@ func (UnimplementedStoryboardServiceHandler) SaveChatSession(context.Context, *c
 
 func (UnimplementedStoryboardServiceHandler) GetChatSessions(context.Context, *connect.Request[proto.GetChatSessionsRequest]) (*connect.Response[proto.GetChatSessionsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.GetChatSessions is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ExportPdf(context.Context, *connect.Request[proto.ExportPdfRequest]) (*connect.Response[proto.ExportPdfResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.ExportPdf is not implemented"))
 }

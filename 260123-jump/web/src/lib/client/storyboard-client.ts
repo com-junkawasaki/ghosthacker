@@ -1,7 +1,7 @@
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-web';
 import { StoryboardService } from '$lib/gen/proto/storyboard_pb';
-import type { GetEpisodesResponse, GetEpisodePanelsResponse, StreamUpdatesResponse, GetArcsResponse, GetArcPanelsResponse } from '$lib/gen/proto/storyboard_pb';
+import type { GetEpisodesResponse, GetEpisodePanelsResponse, StreamUpdatesResponse, GetArcsResponse, GetArcPanelsResponse, ExportPdfResponse } from '$lib/gen/proto/storyboard_pb';
 
 // Determine API base URL
 const getApiBaseUrl = (): string => {
@@ -201,6 +201,33 @@ export async function generatePanelDialogue(
 
 	if (!response.success) {
 		throw new Error(response.message || 'Failed to generate dialogue');
+	}
+
+	return response;
+}
+
+/**
+ * Export storyboard to PDF using backend API
+ */
+export async function exportPdf(
+	filePath: string,
+	episodeId: string,
+	arcId: string,
+	mode: string
+): Promise<ExportPdfResponse> {
+	const response = await storyboardClient.exportPdf({
+		filePath,
+		episodeId,
+		arcId,
+		mode
+	});
+
+	if (!response || typeof response !== 'object') {
+		throw new Error('Invalid response: response is not an object');
+	}
+
+	if (!response.success) {
+		throw new Error(response.message || 'Failed to export PDF');
 	}
 
 	return response;

@@ -360,16 +360,51 @@
     {
       "gh:act": "act:1-daily-temptation",
       "gh:pageNumber": 3,
-      "gh:pageTitle": "教室 - 日常会話",
+      "gh:pageTitle": "登校 - 学校への導入",
       "gh:panelCount": 7,
       "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:middle-school-exterior",
+          "gh:imagePrompt": "Establishing Shot, ARIA-style. Japanese middle school entrance gate. Cherry blossom trees (or seasonal green). Students in navy blazer uniforms walking through the gate. Morning sunlight. Warm, inviting atmosphere. School name plate visible. shot on 24mm, f/5.6, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "slightly low looking up",
+            "gh:aperture": "f/5.6",
+            "gh:atmosphere": "ARIA-style: luminous, clean morning light",
+            "gh:distance": "Establishing Shot",
+            "gh:lens": "24mm",
+            "gh:lighting": "warm morning sunlight"
+          },
+          "panel": 1,
+          "shot": "Establishing Shot",
+          "visual": "中学校の正門。登校する生徒たち。朝の光が差し込み、温かみのある雰囲気。校名のプレートが見える。"
+        },
+        {
+          "characters": [
+            "character:Yuto"
+          ],
+          "dialogue": [],
+          "environment": "env:middle-school-exterior",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Japanese middle school main building exterior. Three-story concrete building with large windows. Students walking on pathway towards entrance. One boy (Yuto) among them. Blue sky background. shot on 35mm, f/4, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:aperture": "f/4",
+            "gh:atmosphere": "明るく活気ある",
+            "gh:distance": "Wide Shot",
+            "gh:lens": "35mm",
+            "gh:lighting": "自然光"
+          },
+          "panel": 2,
+          "shot": "Wide Shot",
+          "visual": "校舎の全景。玄関に向かう生徒たち。その中にYutoの姿。"
+        },
         {
           "characters": [
             "character:Yuto",
             "character:Mei",
             "character:Saki",
-            "character:Akira",
-            "character:Classmate_A"
+            "character:Akira"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
@@ -382,7 +417,7 @@
             "gh:lens": "24mm",
             "gh:lighting": "soft diffused daylight"
           },
-          "panel": 1,
+          "panel": 3,
           "shot": "Wide Shot",
           "visual": "休憩時間の教室全景。生徒たちが机を囲んで和やかに話している。MeiとSakiが隣同士で仲良さそう。窓から柔らかい光。"
         },
@@ -412,36 +447,9 @@
             "gh:distance": "Medium Shot",
             "gh:lens": "50mm"
           },
-          "panel": 2,
+          "panel": 4,
           "shot": "Medium Shot",
           "visual": "MeiとSakiが並んで座っている。Meiが伸びをし、Sakiが笑顔で返す。親友の雰囲気。"
-        },
-        {
-          "characters": [
-            "character:Mei",
-            "character:Saki"
-          ],
-          "dialogue": [
-            {
-              "gh:emotion": "playful",
-              "speaker": "Mei",
-              "text": "ねぇSaki、週末どこ行く？"
-            },
-            {
-              "gh:emotion": "excited",
-              "speaker": "Saki",
-              "text": "新しくできたカフェ行こ！インスタ映えするって話題のとこ"
-            }
-          ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Close Up. Two girls' faces close together, chatting excitedly. Planning weekend together. Best friends. shot on 85mm, f/2, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:distance": "Close Up"
-          },
-          "panel": 3,
-          "shot": "Close Up",
-          "visual": "MeiとSakiが顔を寄せ合って、週末の予定を相談。楽しそうな親友。"
         },
         {
           "characters": [
@@ -463,7 +471,7 @@
             "gh:distance": "Medium Shot",
             "gh:lens": "50mm"
           },
-          "panel": 4,
+          "panel": 5,
           "shot": "Medium Shot",
           "visual": "Akiraが得意げにスニーカーを見せびらかす。"
         },
@@ -482,31 +490,9 @@
             "gh:angle": "low angle",
             "gh:distance": "Insert"
           },
-          "panel": 4,
+          "panel": 5,
           "shot": "Insert",
           "visual": "スニーカーのアップ。ブランドロゴが光る限定モデル。"
-        },
-        {
-          "characters": [
-            "character:Classmate_A",
-            "character:Classmate_B"
-          ],
-          "dialogue": [
-            {
-              "gh:emotion": "envious",
-              "speaker": "Classmate_B",
-              "text": "いいな〜、俺も欲しかったんだよな"
-            }
-          ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Medium Shot. Japanese middle school students looking impressed at sneakers. Envious expressions. shot on 50mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:distance": "Medium Shot"
-          },
-          "panel": 5,
-          "shot": "Medium Shot",
-          "visual": "周囲のクラスメイトが感心して見ている。"
         },
         {
           "characters": [

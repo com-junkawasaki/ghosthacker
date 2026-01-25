@@ -8,8 +8,10 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"sync"
+	"time"
 
 	"connectrpc.com/connect"
 	"cuelang.org/go/cue"
@@ -17,6 +19,16 @@ import (
 	"storyboard-editor/backend/internal/mcp"
 	"storyboard-editor/backend/internal/schema"
 	"storyboard-editor/backend/proto"
+
+	"github.com/johnfercher/maroto/v2"
+	"github.com/johnfercher/maroto/v2/pkg/components/col"
+	"github.com/johnfercher/maroto/v2/pkg/components/row"
+	"github.com/johnfercher/maroto/v2/pkg/components/text"
+	"github.com/johnfercher/maroto/v2/pkg/config"
+	"github.com/johnfercher/maroto/v2/pkg/consts/align"
+	"github.com/johnfercher/maroto/v2/pkg/consts/fontstyle"
+	"github.com/johnfercher/maroto/v2/pkg/core"
+	"github.com/johnfercher/maroto/v2/pkg/props"
 )
 
 type StoryboardService struct {
@@ -1295,6 +1307,161 @@ func (s *StoryboardService) extractMetadata(storyboard map[string]interface{}) *
 	}
 
 	return metadata
+}
+
+// ExportPdf exports the storyboard to a PDF file
+func (s *StoryboardService) ExportPdf(
+	ctx context.Context,
+	req *connect.Request[storyboardpb.ExportPdfRequest],
+) (*connect.Response[storyboardpb.ExportPdfResponse], error) {
+	filePath := req.Msg.FilePath
+	if filePath == "" {
+		filePath = s.storyboardPath
+	}
+
+	var panels []*storyboardpb.Panel
+	var title string
+
+	if req.Msg.ArcId != "" {
+		res, err := s.GetArcPanels(ctx, connect.NewRequest(&storyboardpb.GetArcPanelsRequest{
+			FilePath: filePath,
+			ArcId:    req.Msg.ArcId,
+		}))
+		if err != nil {
+			return nil, err
+		}
+		panels = res.Msg.Panels
+		title = req.Msg.ArcId
+	} else if req.Msg.EpisodeId != "" {
+		res, err := s.GetEpisodePanels(ctx, connect.NewRequest(&storyboardpb.GetEpisodePanelsRequest{
+			FilePath:  filePath,
+			EpisodeId: req.Msg.EpisodeId,
+		}))
+		if err != nil {
+			return nil, err
+		}
+		panels = res.Msg.Panels
+		title = req.Msg.EpisodeId
+	} else {
+		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("episode_id or arc_id is required"))
+	}
+
+	if len(panels) == 0 {
+		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("no panels found to export"))
+	}
+
+	// Generate PDF
+	cfg := config.NewBuilder().
+		WithPageNumber().
+		Build()
+
+	m := maroto.New(cfg)
+
+	// Title Page
+	m.AddRows(
+		row.New(40).Add(
+			col.New(12).Add(
+				text.New(fmt.Sprintf("Storyboard: %s", title), props.Text{
+					Top:   10,
+					Size:  20,
+					Style: fontstyle.Bold,
+					Align: align.Center,
+				}),
+			),
+		),
+		row.New(20).Add(
+			col.New(12).Add(
+				text.New(fmt.Sprintf("Mode: %s", req.Msg.Mode), props.Text{
+					Size:  12,
+					Align: align.Center,
+				}),
+			),
+		),
+		row.New(20).Add(
+			col.New(12).Add(
+				text.New(fmt.Sprintf("Generated at: %s", time.Now().Format("2006-01-02 15:04:05")), props.Text{
+					Size:  10,
+					Align: align.Center,
+				}),
+			),
+		),
+	)
+
+	// Group panels by page
+	groups := make(map[int32][]*storyboardpb.Panel)
+	var pageNums []int32
+	for _, p := range panels {
+		if _, ok := groups[p.PageNumber]; !ok {
+			pageNums = append(pageNums, p.PageNumber)
+		}
+		groups[p.PageNumber] = append(groups[p.PageNumber], p)
+	}
+
+	// Sort page numbers
+	sort.Slice(pageNums, func(i, j int) bool {
+		return pageNums[i] < pageNums[j]
+	})
+
+	for _, pageNum := range pageNums {
+		m.AddRows(row.New(10).Add(col.New(12).Add(text.New(fmt.Sprintf("Page %d", pageNum), props.Text{Style: fontstyle.Bold, Size: 14}))))
+
+		pagePanels := groups[pageNum]
+		for i := 0; i < len(pagePanels); i += 2 {
+			r := row.New(60)
+			// Panel 1
+			p1 := pagePanels[i]
+			r.Add(s.buildPanelCol(p1))
+
+			// Panel 2
+			if i+1 < len(pagePanels) {
+				p2 := pagePanels[i+1]
+				r.Add(s.buildPanelCol(p2))
+			} else {
+				r.Add(col.New(6))
+			}
+			m.AddRows(r)
+		}
+	}
+
+	doc, err := m.Generate()
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to generate PDF: %w", err))
+	}
+
+	pdfBytes := doc.GetBytes()
+	filename := fmt.Sprintf("storyboard_%s_%s.pdf", title, req.Msg.Mode)
+
+	return connect.NewResponse(&storyboardpb.ExportPdfResponse{
+		Success:    true,
+		Message:    "PDF generated successfully",
+		PdfContent: pdfBytes,
+		Filename:   filename,
+	}), nil
+}
+
+func (s *StoryboardService) buildPanelCol(p *storyboardpb.Panel) core.Col {
+	visual := "-"
+	if p.Data != nil && p.Data.VisualNote != "" {
+		visual = p.Data.VisualNote
+		if len(visual) > 100 {
+			visual = visual[:97] + "..."
+		}
+	}
+
+	dialogue := ""
+	if p.Data != nil && len(p.Data.Dialogue) > 0 {
+		d := p.Data.Dialogue[0]
+		dialogue = fmt.Sprintf("%s: %s", d.Speaker, d.Text)
+		if len(dialogue) > 100 {
+			dialogue = dialogue[:97] + "..."
+		}
+	}
+
+	return col.New(6).Add(
+		text.New(fmt.Sprintf("Panel %d", p.Panel), props.Text{Style: fontstyle.Bold, Size: 10}),
+		text.New(visual, props.Text{Top: 5, Size: 8}),
+		text.New(dialogue, props.Text{Top: 25, Size: 8, Color: &props.Color{Red: 0, Green: 100, Blue: 0}}),
+	)
 }
 
 func getKeys(m map[string]interface{}) []string {
