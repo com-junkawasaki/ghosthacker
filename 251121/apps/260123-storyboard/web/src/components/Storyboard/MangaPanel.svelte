@@ -30,7 +30,94 @@
 	$: dialogues = panel.data?.dialogue ?? [];
 	$: mangaLayout = panel.data?.mangaLayout;
 
+	// Find the layout for this specific panel from the page-level mangaLayout
+	$: panelLayout = mangaLayout?.panels?.find(p => p.panelIndex === panel.panel);
+
+	$: imageStyle = panelLayout ? `
+		object-position: ${panelLayout.imageX}% ${panelLayout.imageY}%;
+		transform: scale(${panelLayout.imageScale || 1.0});
+	` : '';
+
+	type SelectionMode = 'panel' | 'image' | 'text';
+	let selectionMode: SelectionMode = 'panel';
+
+	function handleImageMouseDown(event: MouseEvent) {
+		if (selectionMode !== 'image' || !panelLayout) return;
+		
+		const startX = event.clientX;
+		const startY = event.clientY;
+		const initialX = panelLayout.imageX;
+		const initialY = panelLayout.imageY;
+
+		const onMouseMove = (moveEvent: MouseEvent) => {
+			const dx = ((moveEvent.clientX - startX) / 300) * 100; // Approx panel width
+			const dy = ((moveEvent.clientY - startY) / 400) * 100; // Approx panel height
+			
+			updateImagePosition(initialX - dx, initialY - dy);
+		};
+
+		const onMouseUp = () => {
+			window.removeEventListener('mousemove', onMouseMove);
+			window.removeEventListener('mouseup', onMouseUp);
+		};
+
+		window.addEventListener('mousemove', onMouseMove);
+		window.addEventListener('mouseup', onMouseUp);
+	}
+
+	function updateImagePosition(x: number, y: number) {
+		if (!mangaLayout || !panelLayout) return;
+
+		const newPanels = mangaLayout.panels.map(p => {
+			if (p.panelIndex === panel.panel) {
+				return {
+					...p,
+					imageX: Math.max(0, Math.min(100, x)),
+					imageY: Math.max(0, Math.min(100, y))
+				};
+			}
+			return p;
+		});
+
+		const updatedData = create(PanelDataSchema, {
+			...panel.data,
+			mangaLayout: {
+				...mangaLayout,
+				panels: newPanels
+			}
+		});
+
+		dispatch('update', updatedData);
+	}
+
+	function handleZoom(delta: number) {
+		if (selectionMode !== 'image' || !mangaLayout || !panelLayout) return;
+
+		const newScale = Math.max(0.1, Math.min(5.0, (panelLayout.imageScale || 1.0) + delta));
+
+		const newPanels = mangaLayout.panels.map(p => {
+			if (p.panelIndex === panel.panel) {
+				return {
+					...p,
+					imageScale: newScale
+				};
+			}
+			return p;
+		});
+
+		const updatedData = create(PanelDataSchema, {
+			...panel.data,
+			mangaLayout: {
+				...mangaLayout,
+				panels: newPanels
+			}
+		});
+
+		dispatch('update', updatedData);
+	}
+
 	function handleDragEnd(event: DragEvent, textIndex: number) {
+		if (selectionMode !== 'text') return;
 		const rect = (event.currentTarget as HTMLElement).parentElement?.getBoundingClientRect();
 		if (!rect) return;
 
@@ -42,6 +129,7 @@
 	}
 
 	function handleDialogueDragEnd(event: DragEvent, dialogueIndex: number) {
+		if (selectionMode !== 'text') return;
 		const rect = (event.currentTarget as HTMLElement).parentElement?.getBoundingClientRect();
 		if (!rect) return;
 
@@ -123,9 +211,26 @@
 	}
 </script>
 
-<div class="manga-panel">
+<div 
+	class="manga-panel" 
+	class:mode-image={selectionMode === 'image'}
+	class:mode-text={selectionMode === 'text'}
+	class:mode-panel={selectionMode === 'panel'}
+	on:mousedown={handleImageMouseDown}
+	on:wheel={(e) => {
+		if (selectionMode === 'image') {
+			e.preventDefault();
+			handleZoom(e.deltaY > 0 ? -0.1 : 0.1);
+		}
+	}}
+>
 	{#if currentImageUrl}
-		<img src={currentImageUrl} alt="Panel {panel.panel}" class="panel-image" />
+		<img 
+			src={currentImageUrl} 
+			alt="Panel {panel.panel}" 
+			class="panel-image" 
+			style={imageStyle}
+		/>
 	{:else}
 		<div class="panel-placeholder">
 			Panel {panel.panel}
@@ -138,7 +243,7 @@
 				<div 
 					class="manga-text {text.type}"
 					style="left: {text.x}%; top: {text.y}%; font-size: {text.fontSize}px;"
-					draggable="true"
+					draggable={selectionMode === 'text'}
 					on:dragend={(e) => handleDragEnd(e, i)}
 				>
 					{text.text}
@@ -151,7 +256,7 @@
 			{#if !mangaLayout?.texts?.find(t => t.text === dialogue.text)}
 				<div 
 					class="dialogue-bubble"
-					draggable="true"
+					draggable={selectionMode === 'text'}
 					on:dragend={(e) => handleDialogueDragEnd(e, i)}
 				>
 					{dialogue.text}
@@ -161,8 +266,33 @@
 	</div>
 
 	<div class="panel-tools">
-		<button on:click={() => addMangaText('dialogue')}>+T</button>
-		<button on:click={() => addMangaText('sfx')}>+S</button>
+		<div class="mode-selector">
+			<button 
+				class:active={selectionMode === 'panel'} 
+				on:click={() => selectionMode = 'panel'}
+				title="Edit Panel Layout"
+			>
+				Pnl
+			</button>
+			<button 
+				class:active={selectionMode === 'image'} 
+				on:click={() => selectionMode = 'image'}
+				title="Move/Zoom Image"
+			>
+				Img
+			</button>
+			<button 
+				class:active={selectionMode === 'text'} 
+				on:click={() => selectionMode = 'text'}
+				title="Edit Text/Dialogue"
+			>
+				Txt
+			</button>
+		</div>
+		<div class="action-buttons">
+			<button on:click={() => addMangaText('dialogue')}>+T</button>
+			<button on:click={() => addMangaText('sfx')}>+S</button>
+		</div>
 	</div>
 </div>
 
@@ -173,12 +303,19 @@
 		overflow: hidden;
 		background: #eee;
 		aspect-ratio: 3 / 4;
+		cursor: default;
+	}
+
+	.manga-panel.moving-image {
+		cursor: move;
+		border-color: #007bff;
 	}
 
 	.panel-image {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		transition: transform 0.1s ease-out;
 	}
 
 	.panel-placeholder {
@@ -253,5 +390,10 @@
 
 	.panel-tools button:hover {
 		background: rgba(0, 0, 0, 0.8);
+	}
+
+	.panel-tools button.active {
+		background: #007bff;
+		color: #fff;
 	}
 </style>

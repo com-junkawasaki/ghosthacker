@@ -81,6 +81,9 @@ message MangaPanelLayout {
   float height = 5;
   string shape = 6; // "rectangle", "trapezoid", etc.
   int32 z_index = 7;
+  float image_x = 8; // Image offset X (%)
+  float image_y = 9; // Image offset Y (%)
+  float image_scale = 10; // Image scale (1.0 = 100%)
 }
 
 message MangaText {

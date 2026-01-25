@@ -100,7 +100,10 @@ export function applyTemplate(panels: any[], template: LayoutTemplate) {
 			width: p.width,
 			height: p.height,
 			shape: 'rectangle',
-			zIndex: i
+			zIndex: i,
+			imageX: 50,
+			imageY: 50,
+			imageScale: 1.0
 		});
 	});
 }

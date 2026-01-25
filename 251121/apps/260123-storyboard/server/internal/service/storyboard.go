@@ -208,6 +208,9 @@ func (s *StoryboardService) UpdatePanel(
 									"height":     p.Height,
 									"shape":      p.Shape,
 									"zIndex":     p.ZIndex,
+									"imageX":     p.ImageX,
+									"imageY":     p.ImageY,
+									"imageScale": p.ImageScale,
 								}
 							}
 							mangaLayout["panels"] = mangaPanels
@@ -575,6 +578,15 @@ func (s *StoryboardService) GetEpisodePanels(
 							}
 							if val, ok := pMap["zIndex"].(float64); ok {
 								mpl.ZIndex = int32(val)
+							}
+							if val, ok := pMap["imageX"].(float64); ok {
+								mpl.ImageX = float32(val)
+							}
+							if val, ok := pMap["imageY"].(float64); ok {
+								mpl.ImageY = float32(val)
+							}
+							if val, ok := pMap["imageScale"].(float64); ok {
+								mpl.ImageScale = float32(val)
 							}
 							mangaLayout.Panels = append(mangaLayout.Panels, mpl)
 						}
