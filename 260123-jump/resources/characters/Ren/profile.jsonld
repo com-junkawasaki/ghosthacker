@@ -8,17 +8,72 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "schema": "http://schema.org/"
   },
-  "@id": "character:3uK7KwU1i00hzTOOWHYv0",
+  "@id": "character:Ren",
+  "schema:name": "沼野 蓮 (Ren Numano)",
+  "schema:role": "Ghost Hacker",
+  "schema:age": 17,
+  "gh:slug": "Ren",
+  "gh:arc": "Arc 0-1 (Main) / All Arcs",
+
   "gh:appearance": {
+    "gh:face": "17-year-old stunningly beautiful Japanese male, pale translucent skin, melancholic half-lidded eyes with silver-grey crystalline irises.",
+    "gh:hair": "Messy voluminous stylish raven black hair.",
     "gh:build": "Slender and graceful, wearing an oversized dark charcoal hoodie.",
     "gh:eyes": "Clear silver-grey crystalline iris, sharp sparkling catchlights, deep melancholic expression.",
-    "gh:face": "17-year-old stunningly beautiful Japanese male, pale translucent skin, melancholic half-lidded eyes with silver-grey crystalline irises.",
-    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, stunningly beautiful 17-year-old Japanese male, pale porcelain skin, messy voluminous raven black hair, melancholic half-lidded eyes with silver-grey crystalline irises and sharp catchlights, oversized dark charcoal hoodie.",
-    "gh:hair": "Messy voluminous stylish raven black hair.",
-    "gh:style": "Photorealistic, high fashion photography, dramatic shadows, 8k."
+    "gh:style": "Photorealistic, high fashion photography, dramatic shadows, 8k.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, stunningly beautiful 17-year-old Japanese male, pale porcelain skin, messy voluminous raven black hair, melancholic half-lidded eyes with silver-grey crystalline irises and sharp catchlights, oversized dark charcoal hoodie."
   },
-  "gh:slug": "Ren",
-  "schema:age": 17,
-  "schema:name": "沼野 蓮 (Ren Numano)",
-  "schema:role": "Ghost Hacker"
+
+  "gh:background": {
+    "gh:family": {
+      "gh:structure": "両親と二人暮らし。父は大学教授（哲学）、母は翻訳家。",
+      "gh:atmosphere": "放任主義。Renの才能を認めつつ、干渉しない。"
+    },
+    "gh:school": "C高校 2年。成績は中の上だが、授業中はほぼ寝ている。",
+    "gh:hackerOrigin": "中学時代に独学でプログラミングを習得。『退屈だから』という理由でセキュリティの世界へ。",
+    "gh:currentState": "Neiとコンビで活動。Ghost Hackerとして知られる。"
+  },
+
+  "gh:hiddenBackground": {
+    "gh:religion": "仏教（浄土真宗）",
+    "gh:connection": "沼野家は代々、小さな寺の檀家総代を務めてきた。祖父は熱心な門徒だった。",
+    "gh:nameOrigin": "『蓮（Ren）』は蓮華＝仏教の象徴。祖父が「泥の中から美しく咲く蓮のように」と願いを込めて名付けた。",
+    "gh:influence": "Ren自身は無宗教を自認しているが、『執着を捨てる』『あるがままを受け入れる』という仏教的な達観が無意識に行動に出る。",
+    "gh:symbol": "蓮は泥（混沌・情報の海）の中から咲く。Renがデジタルの混沌から真実を見出すメタファー。",
+    "gh:storyUse": "表立っては出てこないが、Renの『だるい』『めんどくさい』の裏にある諦観は仏教的な無常観に通じる。"
+  },
+
+  "gh:personality": {
+    "gh:surface": "気怠げ。「だるい」「めんどくさい」が口癖。やる気がなさそう。",
+    "gh:hidden": "実は観察眼が鋭く、本質を見抜く。困っている人を放っておけない。",
+    "gh:motivation": "『退屈しのぎ』と言いつつ、正義感は強い。",
+    "gh:weakness": "人付き合いが苦手。感情を表に出さない。"
+  },
+
+  "gh:skills": {
+    "gh:hackerName": "Ghost Hacker / Ren",
+    "gh:specialAbility": "SIP Project Map - 情報場を可視化し、Ghostを認識する能力",
+    "gh:weapon": "NULL AXE - Ghostを断つデジタル武器",
+    "gh:technical": [
+      "直感的なパターン認識",
+      "ネットワーク解析",
+      "ソーシャルエンジニアリング",
+      "即興的な問題解決"
+    ]
+  },
+
+  "gh:relationships": {
+    "gh:nei": {
+      "gh:type": "パートナー",
+      "gh:dynamic": "阿吽の呼吸。言葉少なくても通じ合う。"
+    },
+    "gh:chise": {
+      "gh:type": "ライバル / 同志",
+      "gh:dynamic": "手法は違うが目指す場所は同じ。Chiseの直情的な部分にたまにイラっとする。"
+    },
+    "gh:kaname": {
+      "gh:type": "ライバル / 対照的な存在",
+      "gh:dynamic": "Kanameの『論理』にRenの『直感』。水と油だが、互いの実力は認めている。"
+    }
+  }
 }

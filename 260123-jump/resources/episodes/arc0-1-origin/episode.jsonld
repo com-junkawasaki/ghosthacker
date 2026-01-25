@@ -22,1703 +22,1769 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "dct:title": "Arc 0-1: Ghost Hacker Origin (The Phantom Purchase) — 港南第一中学校",
+  "dct:title": "Arc 0-1: 「パスワードは覚えるな」",
   "gh:arc": "Arc 0",
   "gh:episode": 1,
   "gh:episodeId": "episode:arc0-1-origin",
   "gh:episodeIndex": 1,
-  "gh:incidentDescription": "3年前、港南第一中学校。Yutoが限定商品詐欺に引っかかり、アカウント乗っ取りの被害に。RenとNeiがSIP Project Mapを使って悪意（Ghost）を可視化し、NULL AXEで接続を断ち切る。",
+  "gh:totalPages": 45,
+  "gh:incidentDescription": "中学2年生のYutoが限定商品詐欺に引っかかり、アカウント乗っ取りの被害に遭う。RenとNeiがSIP Project Mapを使って悪意（Ghost）を可視化し、NULL AXEで接続を断ち切る。",
   "gh:industry": "Education / Middle School",
-  "gh:mainCharacter": "character:RenMiddleSchool",
+  "gh:mainCharacter": "character:Ren",
   "gh:organization": "org:KounanMiddleSchool",
   "gh:timeframe": "3年前（2023年春）",
   "gh:setting": "港南第一中学校 2年B組",
+  "gh:realCase": "Phishing / Account Takeover",
+  "gh:nistFocus": [
+    "PR.AA (Identity Management)",
+    "PR.AC (Access Control)",
+    "PR.DS (Data Security)"
+  ],
+  "gh:actStructure": [
+    {
+      "@id": "act:0-pretitle",
+      "gh:actNumber": 0,
+      "gh:actTitle": "プレタイトル",
+      "gh:actTitleEn": "Pre-title Hook",
+      "gh:pageRange": [0, 0],
+      "gh:emotionalArc": "日常 → 違和感",
+      "gh:narrativePurpose": "読者をYutoの日常に引き込む",
+      "gh:keyBeat": "hook"
+    },
+    {
+      "@id": "act:1-daily-temptation",
+      "gh:actNumber": 1,
+      "gh:actTitle": "日常と誘惑",
+      "gh:actTitleEn": "Daily Life & Temptation",
+      "gh:pageRange": [1, 8],
+      "gh:pageCount": 8,
+      "gh:emotionalArc": "平穏 → 羨望 → 誘惑 → 決断",
+      "gh:narrativePurpose": "読者をYutoに同一化させ、詐欺への導線を描く",
+      "gh:keyBeat": "hook"
+    },
+    {
+      "@id": "act:2-signs",
+      "gh:actNumber": 2,
+      "gh:actTitle": "異変の兆候",
+      "gh:actTitleEn": "Signs of Trouble",
+      "gh:pageRange": [9, 15],
+      "gh:pageCount": 7,
+      "gh:emotionalArc": "期待 → 不安 → 恐怖",
+      "gh:narrativePurpose": "詐欺被害の進行と心理的圧迫を描く",
+      "gh:keyBeat": "build"
+    },
+    {
+      "@id": "act:3-collapse",
+      "gh:actNumber": 3,
+      "gh:actTitle": "崩壊",
+      "gh:actTitleEn": "Collapse",
+      "gh:pageRange": [16, 19],
+      "gh:pageCount": 4,
+      "gh:emotionalArc": "恐怖 → 絶望 → 孤立",
+      "gh:narrativePurpose": "友人関係の崩壊と社会的孤立を描く",
+      "gh:keyBeat": "crisis"
+    },
+    {
+      "@id": "act:4-rescue",
+      "gh:actNumber": 4,
+      "gh:actTitle": "救いの手",
+      "gh:actTitleEn": "Helping Hand",
+      "gh:pageRange": [20, 21],
+      "gh:pageCount": 2,
+      "gh:emotionalArc": "孤立 → 接触 → 希望",
+      "gh:narrativePurpose": "Nei/Renの介入、救済の始まり",
+      "gh:keyBeat": "turn"
+    },
+    {
+      "@id": "act:5-countermeasures",
+      "gh:actNumber": 5,
+      "gh:actTitle": "対策",
+      "gh:actTitleEn": "Countermeasures",
+      "gh:pageRange": [22, 29],
+      "gh:pageCount": 8,
+      "gh:emotionalArc": "混乱 → 理解 → 達成感",
+      "gh:narrativePurpose": "具体的なセキュリティ対策を読者に伝える（4つの対策×2ページ）",
+      "gh:keyBeat": "education",
+      "gh:countermeasures": [
+        {"gh:step": 1, "gh:title": "漏えいチェック", "gh:titleEn": "Breach Check", "gh:pages": [22, 23]},
+        {"gh:step": 2, "gh:title": "カード停止", "gh:titleEn": "Card Suspension", "gh:pages": [24, 25]},
+        {"gh:step": 3, "gh:title": "パスワード管理", "gh:titleEn": "Password Management", "gh:pages": [26, 27]},
+        {"gh:step": 4, "gh:title": "注意喚起", "gh:titleEn": "Warning Friends", "gh:pages": [28, 29]}
+      ]
+    },
+    {
+      "@id": "act:6-ghost-battle",
+      "gh:actNumber": 6,
+      "gh:actTitle": "Ghost説明＋バトル",
+      "gh:actTitleEn": "Ghost Revelation & Battle",
+      "gh:pageRange": [30, 35],
+      "gh:pageCount": 6,
+      "gh:emotionalArc": "罵倒 → 驚愕 → 理解 → 戦闘開始",
+      "gh:narrativePurpose": "情報の物理性を示し、Ghostの存在を明かす",
+      "gh:keyBeat": "revelation"
+    },
+    {
+      "@id": "act:7-daemon-battle",
+      "gh:actNumber": 7,
+      "gh:actTitle": "Daemonバトル",
+      "gh:actTitleEn": "Daemon Battle",
+      "gh:pageRange": [36, 41],
+      "gh:pageCount": 6,
+      "gh:emotionalArc": "戦闘 → 葛藤の実体化 → 断絶 → 和解",
+      "gh:narrativePurpose": "内面の呪いを断ち、和解への道を開く",
+      "gh:keyBeat": "climax"
+    },
+    {
+      "@id": "act:8-resolution",
+      "gh:actNumber": 8,
+      "gh:actTitle": "終幕：決意",
+      "gh:actTitleEn": "Resolution",
+      "gh:pageRange": [42, 45],
+      "gh:pageCount": 4,
+      "gh:emotionalArc": "和解 → 真の敵の認識 → 決意",
+      "gh:narrativePurpose": "真の敵を指摘し、次章への布石",
+      "gh:keyBeat": "resolution"
+    }
+  ],
   "gh:pages": [
     {
-      "gh:pageNumber": 1,
+      "gh:pageNumber": 0,
+      "gh:act": "act:0-pretitle",
+      "gh:pageTitle": "プレタイトル - 通知",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto looking at a group of popular students (mixed gender) chatting. Ren is sleeping at his desk in the background. Nei is reading a book quietly. 中学校の教室、紺のブレザー制服。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto looking at a group of popular students (mixed gender) chatting. Ren is sleeping at his desk in the background. Nei is reading a book quietly. 中学校の教室、紺のブレザー制服。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Yuto looking at a group of popular students (mixed gender) chatting. Ren is sleeping at his desk in the background. Nei is reading a book quietly. 中学校の教室、紺のブレザー制服。"
+          "shot": "Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "夜。Yutoの部屋。ベッドに寝転がりながらスマホを見ている。画面に通知が光る。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "high angle",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8",
+            "gh:lighting": "スマホの画面光が顔を照らす、暗い部屋",
+            "gh:atmosphere": "静寂、夜の孤独感"
+          },
+          "gh:imagePrompt": "Close Up, cinematic. 14-year-old Japanese boy lying in bed at night, smartphone light illuminating his face. Notification badge glowing. Dark bedroom. shot on 50mm, f/1.8, cinematic live-action."
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 1,
+      "gh:act": "act:1-daily-temptation",
+      "gh:pageTitle": "タイトルスプレッド（左）",
+      "gh:isSpread": true,
+      "gh:spreadWith": 2,
+      "gh:panels": [
+        {
+          "panel": 1,
+          "shot": "Extreme Wide Shot",
+          "environment": "env:tokyo-skyline",
+          "characters": ["character:Ren", "character:Nei"],
+          "visual": "東京の街並み、上空。RenとNeiがジャンプしている動的なシーン。タイトル「Ghost Hacker」が大きく入る。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Extreme Wide Shot",
+            "gh:angle": "low angle looking up",
+            "gh:lens": "24mm",
+            "gh:aperture": "f/8",
+            "gh:lighting": "夕暮れの逆光、シルエット",
+            "gh:atmosphere": "ダイナミック、解放感"
+          },
+          "gh:imagePrompt": "Extreme Wide Shot, dynamic action. Two teenagers (Ren and Nei in middle school uniforms) leaping above Tokyo skyline at sunset. Title 'Ghost Hacker' in bold typography. Silhouette against orange sky. shot on 24mm, f/8, cinematic live-action."
         }
       ]
     },
     {
       "gh:pageNumber": 2,
+      "gh:act": "act:1-daily-temptation",
+      "gh:pageTitle": "タイトルスプレッド（右）",
+      "gh:isSpread": true,
+      "gh:spreadWith": 1,
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Unknown",
-              "text": "\"Got the limited drop! Sold out in seconds.\""
-            }
-          ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Classmate A (Popular guy) shows off a \"Brand X\" limited edition item (sneakers or accessory). Action: Friends admire it. Yuto thinks, \"I want that too...\". 中学校の教室。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Classmate A (Popular guy) shows off a \"Brand X\" limited edition item (sneakers or accessory). Action: Friends admire it. Yuto thinks, \"I want that too...\". 中学校の教室。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Classmate A (Popular guy) shows off a \"Brand X\" limited edition item (sneakers or accessory). Action: Friends admire it. Yuto thinks, \"I want that too...\". 中学校の教室。"
+          "shot": "Extreme Wide Shot",
+          "environment": "env:tokyo-skyline",
+          "characters": ["character:Ren", "character:Nei"],
+          "visual": "見開き続き。東京タワーやビル群を背景に、二人が着地するシーン。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Extreme Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "24mm",
+            "gh:aperture": "f/8",
+            "gh:lighting": "夕暮れ、ゴールデンアワー",
+            "gh:atmosphere": "壮大、希望"
+          },
+          "gh:imagePrompt": "Extreme Wide Shot continuation. Tokyo Tower and skyscrapers in background. Dynamic landing pose. Golden hour lighting. shot on 24mm, f/8, cinematic live-action."
         }
       ]
     },
     {
       "gh:pageNumber": 3,
+      "gh:act": "act:1-daily-temptation",
+      "gh:pageTitle": "教室 - 日常会話",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto asking where he got it. Classmate A: \"You can't get it anymore. Resale is 3x the price.\" Beat: Yuto's envy grows. 中学校の教室。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto asking where he got it. Classmate A: \"You can't get it anymore. Resale is 3x the price.\" Beat: Yuto's envy grows. 中学校の教室。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Yuto asking where he got it. Classmate A: \"You can't get it anymore. Resale is 3x the price.\" Beat: Yuto's envy grows. 中学校の教室。"
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto", "character:Mei", "character:Akira"],
+          "visual": "休憩時間の教室。Meiが伸びをしながら話す。Akiraが限定品（スニーカー）を自慢げに見せている。",
+          "dialogue": [
+            {
+              "speaker": "Mei",
+              "text": "今日さ、体育ないの神〜",
+              "gh:emotion": "relief",
+              "gh:delivery": "だらっと伸びながら"
+            },
+            {
+              "speaker": "Akira",
+              "text": "見てこれ！限定モデル、やっとゲットしたわ",
+              "gh:emotion": "proud",
+              "gh:delivery": "得意げに靴を見せる"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8",
+            "gh:lighting": "soft diffused daylight",
+            "gh:atmosphere": "ARIA-style: luminous, clean"
+          },
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Middle school classroom during break. Japanese students in navy blazer uniforms. One girl stretching happily, one boy showing off limited edition sneakers. Yuto watching with envy. luminous atmosphere, soft diffused natural light. shot on 35mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoの羨望の眼差し。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "（いいなぁ…俺も欲しい…）",
+              "gh:emotion": "envy",
+              "gh:isThought": true
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level",
+            "gh:lens": "85mm",
+            "gh:aperture": "f/2"
+          },
+          "gh:imagePrompt": "Medium Close Up. Japanese middle school boy looking enviously at classmate's sneakers. Longing expression. shot on 85mm, f/2, cinematic live-action."
         }
       ]
     },
     {
       "gh:pageNumber": 4,
+      "gh:act": "act:1-daily-temptation",
+      "gh:pageTitle": "教室続き - Ren/Nei",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:home-desk",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto lying in bed, smartphone light on his face. Scrolling SNS. Action: \"Damn, it's so expensive...\" suddenly, an Ad appears. \"Emergency Stock! 80% OFF! Time Limited!\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto lying in bed, smartphone light on his face. Scrolling SNS. Action: \"Damn, it's so expensive...\" suddenly, an Ad appears. \"Emergency Stock! 80% OFF! Time Limited!\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Yuto lying in bed, smartphone light on his face. Scrolling SNS. Action: \"Damn, it's so expensive...\" suddenly, an Ad appears. \"Emergency Stock! 80% OFF! Time Limited!\""
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:RenMiddleSchool", "character:NeiMiddleSchool"],
+          "visual": "教室の隅。Renは気怠げに机に突っ伏している。Neiは窓際で本を読んでいる。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lens": "35mm",
+            "gh:aperture": "f/2.8",
+            "gh:lighting": "窓からの自然光",
+            "gh:atmosphere": "静謐"
+          },
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Corner of middle school classroom. One boy (Ren) slumped lazily on desk. One girl (Nei) reading by window. Separate from the group. luminous atmosphere. shot on 35mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renが欠伸をする。",
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "（あー、だりぃ…）",
+              "gh:emotion": "bored",
+              "gh:isThought": true
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese middle school boy yawning lazily at desk. Bored expression. Navy blazer uniform. shot on 50mm, f/2.8, cinematic live-action."
         }
       ]
     },
     {
       "gh:pageNumber": 5,
+      "gh:act": "act:1-daily-temptation",
+      "gh:pageTitle": "夜ベッド - 偽サイト発見",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. The fake site \"Wakuwaku Denki\" (or similar generic name). It looks legitimate *enough*.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. The fake site \"Wakuwaku Denki\" (or similar generic name). It looks legitimate *enough*.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "The fake site \"Wakuwaku Denki\" (or similar generic name). It looks legitimate *enough*."
+          "shot": "Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "夜。ベッドでスマホをスクロールするYuto。SNS広告で「ワクワク電気」の激安商品を発見。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "えっ、安っ！？",
+              "gh:emotion": "surprise"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "over shoulder",
+            "gh:lens": "50mm",
+            "gh:aperture": "f/1.8",
+            "gh:lighting": "スマホ画面の青白い光"
+          },
+          "gh:imagePrompt": "Close Up, over shoulder. Japanese boy in bed at night, smartphone illuminating face. Excited expression seeing cheap price. Dark room, phone glow. shot on 50mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "スマホ画面。「ワクワク電気」偽サイト。「緊急入荷！80%OFF！時間限定」の文字。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "時間限定…？マジか…",
+              "gh:emotion": "tempted"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Smartphone screen showing fake shopping site 'Wakuwaku Denki'. '80% OFF! Limited Time!' banner. Too-good-to-be-true prices. Japanese text."
         }
       ]
     },
     {
       "gh:pageNumber": 6,
+      "gh:act": "act:1-daily-temptation",
+      "gh:pageTitle": "葛藤",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:home-desk",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto hesitating, then running to get his parent's wallet (or his own card). Action: Typing in details. Credit Card Number. Expiry.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto hesitating, then running to get his parent's wallet (or his own card). Action: Typing in details. Credit Card Number. Expiry.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Yuto hesitating, then running to get his parent's wallet (or his own card). Action: Typing in details. Credit Card Number. Expiry."
+          "shot": "Medium Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoの葛藤する表情。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "怪しいけど…でも大手っぽいし…",
+              "gh:emotion": "conflicted"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "レビューもいいし…大丈夫だよな…",
+              "gh:emotion": "rationalizing"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level",
+            "gh:lens": "85mm",
+            "gh:aperture": "f/1.8"
+          },
+          "gh:imagePrompt": "Medium Close Up. Japanese boy's face showing internal conflict. Biting lip, eyes on phone. Night bedroom lighting. shot on 85mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "スマホ画面。5つ星レビューが並ぶ（すべて偽）。",
+          "dialogue": [],
+          "gh:imagePrompt": "Insert shot. Smartphone screen showing fake 5-star reviews. Japanese text. Suspicious but convincing layout."
         }
       ]
     },
     {
       "gh:pageNumber": 7,
+      "gh:act": "act:1-daily-temptation",
+      "gh:pageTitle": "カード入力・決済",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. The form asks for more than usual. \"ID for verification.\" \"Password (create a new one).\" Action: Yuto uses his standard password (the one he uses for everything). \"Just this once.\" *CLICK*.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. The form asks for more than usual. \"ID for verification.\" \"Password (create a new one).\" Action: Yuto uses his standard password (the one he uses for everything). \"Just this once.\" *CLICK*.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "The form asks for more than usual. \"ID for verification.\" \"Password (create a new one).\" Action: Yuto uses his standard password (the one he uses for everything). \"Just this once.\" *CLICK*."
+          "shot": "Medium Shot",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoが親の財布からカードを取り出す。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "ママのカード…ちょっとだけ…",
+              "gh:emotion": "guilty"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "high angle"
+          },
+          "gh:imagePrompt": "Medium Shot, high angle. Japanese boy taking credit card from parent's wallet. Guilty expression. Night bedroom. shot on 35mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "クレジットカード情報入力画面。番号、名前、セキュリティコード。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Fingers typing credit card information on smartphone. Payment form. Night lighting."
+        },
+        {
+          "panel": 3,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "「購入」ボタンを押す指。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "（…ポチッ）",
+              "gh:isThought": true
+            }
+          ],
+          "gh:imagePrompt": "Insert shot. Finger pressing 'Purchase' button on smartphone screen. Moment of no return."
         }
       ]
     },
     {
       "gh:pageNumber": 8,
+      "gh:act": "act:1-daily-temptation",
+      "gh:pageTitle": "購入完了",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:home-desk",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. \"Purchase Complete!\" \"We will ship tomorrow!\" 5-star reviews shown. Beat: Yuto sighs in relief. \"I got it!\" He sleeps happily.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. \"Purchase Complete!\" \"We will ship tomorrow!\" 5-star reviews shown. Beat: Yuto sighs in relief. \"I got it!\" He sleeps happily.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "\"Purchase Complete!\" \"We will ship tomorrow!\" 5-star reviews shown. Beat: Yuto sighs in relief. \"I got it!\" He sleeps happily."
+          "shot": "Close Up",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "「購入完了！」「明日発送予定」の画面。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Smartphone screen showing 'Purchase Complete!' 'Shipping tomorrow' message. Celebratory design."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "安堵して笑顔のYuto。期待に胸を膨らませる。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "やった！明日届く！",
+              "gh:emotion": "excited"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "Akiraに自慢してやる…！",
+              "gh:emotion": "anticipation"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese boy smiling excitedly in bed, phone in hand. Anticipation. Night bedroom. shot on 50mm, f/2, cinematic live-action."
         }
       ]
     },
     {
       "gh:pageNumber": 9,
+      "gh:act": "act:2-signs",
+      "gh:pageTitle": "翌日学校",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto smiling, looking at Classmate A.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto smiling, looking at Classmate A.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Yuto smiling, looking at Classmate A."
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "翌日。教室で授業中のYuto。ソワソワしながら時計を見る。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "（早く帰って届いてるか確認したい…）",
+              "gh:isThought": true,
+              "gh:emotion": "impatient"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Middle school classroom during lesson. One boy (Yuto) distracted, looking at clock. Anticipation. shot on 35mm, f/2.8, cinematic live-action."
         }
       ]
     },
     {
       "gh:pageNumber": 10,
+      "gh:act": "act:2-signs",
+      "gh:pageTitle": "3日後 - 届かない",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:home-desk",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Checking the mailbox. Empty. Action: Checking the tracking. \"Preparing for shipment.\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Checking the mailbox. Empty. Action: Checking the tracking. \"Preparing for shipment.\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Checking the mailbox. Empty. Action: Checking the tracking. \"Preparing for shipment.\""
+          "shot": "Full Page",
+          "environment": "env:yuto-home",
+          "characters": [],
+          "visual": "インタータイトル「3日後」。空の郵便受け。",
+          "dialogue": [],
+          "gh:imagePrompt": "Establishing shot with title card '3 DAYS LATER'. Empty mailbox. Japanese residential area. Overcast mood."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "不安げにスマホで配送状況を確認するYuto。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "なんで届かないんだ…？",
+              "gh:emotion": "worried"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Japanese boy checking phone anxiously. Worried expression. 'Preparing for shipment' status on screen."
         }
       ]
     },
     {
       "gh:pageNumber": 11,
+      "gh:act": "act:2-signs",
+      "gh:pageTitle": "出品者に問い合わせ",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Email from \"Support\". \"Shipping trouble. Please confirm your details via this link.\" Action: Yuto, anxious, clicks and enters info again. (Phishing Step 2).. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Email from \"Support\". \"Shipping trouble. Please confirm your details via this link.\" Action: Yuto, anxious, clicks and enters info again. (Phishing Step 2).. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Email from \"Support\". \"Shipping trouble. Please confirm your details via this link.\" Action: Yuto, anxious, clicks and enters info again. (Phishing Step 2)."
+          "shot": "Close Up",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "メッセージ画面。Yutoが出品者に問い合わせ。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "まだ届かないんですが…",
+              "gh:via": "message"
+            }
+          ],
+          "gh:imagePrompt": "Close Up. Smartphone messaging app. Yuto's message asking about delivery. Japanese text."
+        },
+        {
+          "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "返信。「配送トラブルです。電話番号を教えてください」",
+          "dialogue": [
+            {
+              "speaker": "出品者",
+              "text": "配送にトラブルが発生しました。確認のため、電話番号を教えてください。",
+              "gh:via": "message"
+            }
+          ],
+          "gh:imagePrompt": "Close Up. Reply message asking for phone number. Suspicious request. Japanese text."
         }
       ]
     },
     {
       "gh:pageNumber": 12,
+      "gh:act": "act:2-signs",
+      "gh:pageTitle": "番号を渡す",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 2-3 days pass. Weird things happen. Spam emails increase. Strange phone calls (silent). Beat: The creeping sense of wrongness.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 2-3 days pass. Weird things happen. Spam emails increase. Strange phone calls (silent). Beat: The creeping sense of wrongness.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
+          "shot": "Medium Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "迷いながらも電話番号を入力するYuto。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "まあ、配送の確認だし…",
+              "gh:emotion": "uncertain"
+            }
+          ],
+          "gh:imagePrompt": "Medium Close Up. Japanese boy hesitantly typing phone number. Uncertain expression."
+        },
+        {
+          "panel": 2,
           "shot": "Wide Shot",
-          "visual": "2-3 days pass. Weird things happen. Spam emails increase. Strange phone calls (silent). Beat: The creeping sense of wrongness."
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "その後。スマホが鳴り続ける。迷惑メールが大量に届く。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "え、なにこれ…？メールが止まらない…",
+              "gh:emotion": "alarmed"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot. Japanese boy looking at phone with alarm. Multiple notification badges. Spam messages flooding in."
         }
       ]
     },
     {
       "gh:pageNumber": 13,
+      "gh:act": "act:2-signs",
+      "gh:pageTitle": "カードが止まる",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:home-desk",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Mother/Father angry. \"The credit card was stopped! Someone tried to buy $5000 worth of gift cards!\" Action: Yuto turns pale. \"What?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Mother/Father angry. \"The credit card was stopped! Someone tried to buy $5000 worth of gift cards!\" Action: Yuto turns pale. \"What?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Mother/Father angry. \"The credit card was stopped! Someone tried to buy $5000 worth of gift cards!\" Action: Yuto turns pale. \"What?\""
+          "shot": "Medium Shot",
+          "environment": "env:yuto-home-living",
+          "characters": ["character:Yuto", "character:YutoMother"],
+          "visual": "リビング。母親が怒った顔で電話を切る。",
+          "dialogue": [
+            {
+              "speaker": "YutoMother",
+              "text": "Yuto。カードが止められたって。身に覚えある…？",
+              "gh:emotion": "angry"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Japanese mother confronting son in living room. Angry expression. Holding phone."
+        },
+        {
+          "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:yuto-home-living",
+          "characters": ["character:Yuto"],
+          "visual": "青ざめるYuto。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "え…？",
+              "gh:emotion": "shock"
+            }
+          ],
+          "gh:imagePrompt": "Close Up. Japanese boy's face turning pale. Shock and fear. shot on 85mm, f/1.8."
         }
       ]
     },
     {
       "gh:pageNumber": 14,
+      "gh:act": "act:2-signs",
+      "gh:pageTitle": "不正請求発覚",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:home-desk",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto rushes to the site.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto rushes to the site.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Yuto rushes to the site."
+          "shot": "Insert",
+          "environment": "env:yuto-home-living",
+          "characters": [],
+          "visual": "カード明細。50万円以上の不正請求が並ぶ。",
+          "dialogue": [],
+          "gh:imagePrompt": "Insert shot. Credit card statement showing multiple fraudulent charges. Over 500,000 yen. Red highlight on suspicious transactions."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:yuto-home-living",
+          "characters": ["character:Yuto", "character:YutoMother"],
+          "visual": "明細を見せられるYuto。母親の厳しい視線。",
+          "dialogue": [
+            {
+              "speaker": "YutoMother",
+              "text": "これ、全部ギフトカード購入になってる。知らない店ばっかり。",
+              "gh:emotion": "stern"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "俺、そんなの買ってない…！",
+              "gh:emotion": "panic"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Mother showing credit card statement to son. Stern expression. Son in panic."
         }
       ]
     },
     {
       "gh:pageNumber": 15,
+      "gh:act": "act:2-signs",
+      "gh:pageTitle": "サイト消失",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto walks in. The atmosphere is heavy. Everyone looks at him. Action: Classmate A approaches. \"Hey. What's with that message last night?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto walks in. The atmosphere is heavy. Everyone looks at him. Action: Classmate A approaches. \"Hey. What's with that message last night?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Yuto walks in. The atmosphere is heavy. Everyone looks at him. Action: Classmate A approaches. \"Hey. What's with that message last night?\""
+          "shot": "Close Up",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "「ワクワク電気」のURLにアクセス。「このサイトは存在しません」のエラー画面。",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Smartphone showing '404 Not Found' error. 'Wakuwaku Denki' site gone. Japanese error message."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Close Up",
+          "environment": "env:yuto-bedroom",
+          "characters": ["character:Yuto"],
+          "visual": "恐怖に震えるYuto。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "サイトが…消えてる…？",
+              "gh:emotion": "terror"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "もしかして…騙された…？",
+              "gh:emotion": "realization"
+            }
+          ],
+          "gh:imagePrompt": "Medium Close Up. Japanese boy's face showing horror and realization. Trembling. shot on 85mm, f/1.8."
         }
       ]
     },
     {
       "gh:pageNumber": 16,
+      "gh:act": "act:3-collapse",
+      "gh:pageTitle": "学校 - 詰め寄られる",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Friend shows phone. Yuto's account sent: \"Click this link! It's awesome!\" and \"You're actually annoying lol.\" Action: Yuto: \"I didn't send this!\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Friend shows phone. Yuto's account sent: \"Click this link! It's awesome!\" and \"You're actually annoying lol.\" Action: Yuto: \"I didn't send this!\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Friend shows phone. Yuto's account sent: \"Click this link! It's awesome!\" and \"You're actually annoying lol.\" Action: Yuto: \"I didn't send this!\""
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto", "character:Classmate_A", "character:Classmate_B"],
+          "visual": "翌日の教室。重い空気。Yutoに友人が詰め寄る。",
+          "dialogue": [
+            {
+              "speaker": "Classmate_A",
+              "text": "おい、昨日のメッセージなんだよ？",
+              "gh:emotion": "angry"
+            },
+            {
+              "speaker": "Yuto",
+              "text": "メッセージ…？",
+              "gh:emotion": "confused"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot. Middle school classroom. Heavy atmosphere. Classmates confronting one boy aggressively. shot on 35mm, f/2.8."
         }
       ]
     },
     {
       "gh:pageNumber": 17,
+      "gh:act": "act:3-collapse",
+      "gh:pageTitle": "乗っ取り発覚",
       "gh:panels": [
         {
+          "panel": 1,
+          "shot": "Close Up",
+          "environment": "env:smartphone-screen",
           "characters": [],
+          "visual": "友人のスマホ画面。Yutoのアカウントから送られた怪しいDM。「これ見て！最高！」「お前、実はウザいって思ってたwww」",
           "dialogue": [
             {
-              "speaker": "Unknown",
-              "text": "\"You were the only one I told! Traitor!\""
+              "speaker": "Classmate_A",
+              "text": "お前のアカウントから、こんなの送られてきたんだけど！",
+              "gh:emotion": "accusatory"
             }
           ],
+          "gh:imagePrompt": "Close Up. Smartphone showing DM messages from Yuto's hijacked account. Spam links and insults. Japanese text."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Close Up",
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Another girl screams. \"My private photos! Why are they on your timeline!?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Another girl screams. \"My private photos! Why are they on your timeline!?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Another girl screams. \"My private photos! Why are they on your timeline!?\""
+          "characters": ["character:Yuto"],
+          "visual": "愕然とするYuto。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "俺、そんなの送ってない…！",
+              "gh:emotion": "desperate"
+            }
+          ],
+          "gh:imagePrompt": "Medium Close Up. Japanese boy looking devastated, denying sending messages. Desperate expression."
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Classmate_B"],
+          "visual": "別の友人も被害に。",
+          "dialogue": [
+            {
+              "speaker": "Classmate_B",
+              "text": "俺もリンク踏んだら、変なサイトに飛ばされた…",
+              "gh:emotion": "upset"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Another classmate looking upset, holding phone."
         }
       ]
     },
     {
       "gh:pageNumber": 18,
+      "gh:act": "act:3-collapse",
+      "gh:pageTitle": "悪口公開",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -> \"Email not found.\" Beat: Complete lockout.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -> \"Email not found.\" Beat: Complete lockout.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
+          "shot": "Close Up",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "Yutoの鍵垢にあったはずのプライベートな悪口が公開されている。",
+          "dialogue": [
+            {
+              "speaker": "Classmate_C",
+              "text": "なにこれ…お前、裏でこんなこと言ってたの…？",
+              "gh:emotion": "betrayed"
+            }
+          ],
+          "gh:imagePrompt": "Close Up. Smartphone showing private posts made public. Personal complaints about friends now visible. Japanese text."
+        },
+        {
+          "panel": 2,
           "shot": "Wide Shot",
-          "visual": "Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -> \"Email not found.\" Beat: Complete lockout."
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "クラス中から冷たい視線を浴びるYuto。関係が崩壊していく。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "（息ができない…）",
+              "gh:isThought": true,
+              "gh:emotion": "suffocating"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot. Japanese boy isolated in classroom. Cold stares from all around. Crushing atmosphere. shot on 35mm, f/2.8."
         }
       ]
     },
     {
       "gh:pageNumber": 19,
+      "gh:act": "act:3-collapse",
+      "gh:pageTitle": "完全ロックアウト",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. The class surrounds him. \"Die.\" \"Creep.\" \"Scammer.\" Action: Yuto curling up. The malice is palpable (visualized as dark static).. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. The class surrounds him. \"Die.\" \"Creep.\" \"Scammer.\" Action: Yuto curling up. The malice is palpable (visualized as dark static).. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "The class surrounds him. \"Die.\" \"Creep.\" \"Scammer.\" Action: Yuto curling up. The malice is palpable (visualized as dark static)."
+          "shot": "Close Up",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "SNSログイン画面。「パスワードが正しくありません」。パスワードリセット→「このメールアドレスは登録されていません」",
+          "dialogue": [],
+          "gh:imagePrompt": "Close Up. Smartphone showing 'Incorrect password' error. Then 'Email not found' on reset screen. Complete lockout."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "孤立するYuto。誰も近づかない。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "入れない…もう何もできない…",
+              "gh:emotion": "despair"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Japanese boy sitting alone at desk. Complete isolation. Other students avoiding him. Dark atmosphere."
         }
       ]
     },
     {
       "gh:pageNumber": 20,
+      "gh:act": "act:4-rescue",
+      "gh:pageTitle": "Neiの声かけ",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto alone at his desk, head down. Beat: Total despair. \"It's all my fault...\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto alone at his desk, head down. Beat: Total despair. \"It's all my fault...\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Yuto alone at his desk, head down. Beat: Total despair. \"It's all my fault...\""
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "机に突っ伏すYuto。完全な絶望。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "（全部俺のせいだ…）",
+              "gh:isThought": true,
+              "gh:emotion": "despair"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot. Japanese boy slumped over desk. Total despair. Empty classroom around him."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool", "character:Yuto"],
+          "visual": "Neiが静かに近づく。",
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "大丈夫？",
+              "gh:emotion": "calm"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Japanese girl (Nei) calmly approaching distraught boy. Gentle expression. Calm demeanor."
+        },
+        {
+          "panel": 3,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "顔を上げるYuto。涙が滲んでいる。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "…俺、やってない…でも、クリックしちゃって…",
+              "gh:emotion": "tearful"
+            }
+          ],
+          "gh:imagePrompt": "Close Up. Japanese boy looking up with tears in eyes. Explaining himself. Vulnerable. shot on 85mm, f/1.8."
         }
       ]
     },
     {
       "gh:pageNumber": 21,
+      "gh:act": "act:4-rescue",
+      "gh:pageTitle": "Ren/Nei動き出す",
       "gh:panels": [
         {
-          "characters": [],
+          "panel": 1,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool", "character:RenMiddleSchool"],
+          "visual": "Neiが事情を聞き終え、Renの方を向く。",
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "\"Are you okay?\""
+              "text": "ghost。どうする？",
+              "gh:emotion": "matter-of-fact"
             }
           ],
+          "gh:imagePrompt": "Medium Shot. Japanese girl turning to look at boy (Ren) in background. Calm, businesslike expression."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Close Up",
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. The air is heavy/spiky. Nei walks over calmly.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. The air is heavy/spiky. Nei walks over calmly.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "The air is heavy/spiky. Nei walks over calmly."
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renが伸びをして、面倒くさそうに立ち上がる。",
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "あー。だるいけど…やるか。",
+              "gh:emotion": "reluctant"
+            }
+          ],
+          "gh:imagePrompt": "Medium Close Up. Japanese boy stretching, standing up reluctantly. Lazy but determined expression."
         }
       ]
     },
     {
       "gh:pageNumber": 22,
+      "gh:act": "act:5-countermeasures",
+      "gh:pageTitle": "対策① 漏えいチェック（説明）",
+      "gh:countermeasure": 1,
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto looks up, tears in eyes. Explains briefly. \"I didn't do it... but I did click...\" Action: Nei listens, then turns. \"Ren. Ghost. What do we do?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto looks up, tears in eyes. Explains briefly. \"I didn't do it... but I did click...\" Action: Nei listens, then turns. \"Ren. Ghost. What do we do?\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Yuto looks up, tears in eyes. Explains briefly. \"I didn't do it... but I did click...\" Action: Nei listens, then turns. \"Ren. Ghost. What do we do?\""
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool", "character:Yuto"],
+          "visual": "Neiがスマホを操作しながら説明。ぷにNEIの案内カードが画面端に表示。",
+          "dialogue": [
+            {
+              "speaker": "NeiPuni",
+              "text": "【NEIちゃんのアドバイス #1】",
+              "gh:isGuideCard": true
+            },
+            {
+              "speaker": "Nei",
+              "text": "まず「見える化」。どこから漏れたか確認する。",
+              "gh:emotion": "instructive"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Japanese girl (Nei) explaining while showing phone screen. 'Puuni Nei' mascot advice card visible. Educational tone."
         }
       ]
     },
     {
       "gh:pageNumber": 23,
+      "gh:act": "act:5-countermeasures",
+      "gh:pageTitle": "対策① 漏えいチェック（実行）",
+      "gh:countermeasure": 1,
       "gh:panels": [
         {
+          "panel": 1,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
           "characters": [],
+          "visual": "漏えいチェックサイト（Have I Been Pwned風）の結果画面。複数のサービスで漏えいが確認される。",
           "dialogue": [
             {
-              "speaker": "Ren",
-              "text": "あー。そうだな、やるか。"
+              "speaker": "Nei",
+              "text": "ここに足あとがある。複数のサイトに漏えいしてる。",
+              "gh:emotion": "analytical"
             }
           ],
+          "gh:imagePrompt": "Insert shot. Breach check website results showing multiple compromised accounts. Red warning indicators. Japanese text."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Close Up",
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Ren stretches, looking bored.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Ren stretches, looking bored.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Ren stretches, looking bored."
+          "characters": ["character:Yuto"],
+          "visual": "ショックを受けるYuto。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "こんなに…",
+              "gh:emotion": "shocked"
+            }
+          ],
+          "gh:imagePrompt": "Medium Close Up. Japanese boy looking shocked at phone screen. Realizing the extent of damage."
         }
       ]
     },
     {
       "gh:pageNumber": 24,
+      "gh:act": "act:5-countermeasures",
+      "gh:pageTitle": "対策② カード停止（説明）",
+      "gh:countermeasure": 2,
       "gh:panels": [
         {
-          "characters": [
-            "character:Ren",
-            "character:Nei",
-            "character:Yuto"
-          ],
+          "panel": 1,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが緊急性を強調。",
           "dialogue": [
             {
               "speaker": "NeiPuni",
-              "text": "NEIちゃんのアドバイス #1　まず、カード。"
+              "text": "【NEIちゃんのアドバイス #2】",
+              "gh:isGuideCard": true
             },
             {
               "speaker": "Nei",
-              "text": "親に言って、カード止めよ。いま。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "…増える前に。いったん止める。"
+              "text": "すぐにカード会社に連絡。止めないと被害が広がる。",
+              "gh:emotion": "urgent"
             }
           ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #1】（案内）空気がギスギスの教室。Yutoの手が震えてる。画面端に“ぷにNEI”の案内カード。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #1】（案内）空気がギスギスの教室。Yutoの手が震えてる。画面端に“ぷにNEI”の案内カード。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "【NEIちゃんのアドバイス #1】（案内）空気がギスギスの教室。Yutoの手が震えてる。画面端に“ぷにNEI”の案内カード。"
+          "gh:imagePrompt": "Medium Shot. Japanese girl explaining urgently. Pointing at phone. 'Puuni Nei' advice card visible."
         }
       ]
     },
     {
       "gh:pageNumber": 25,
+      "gh:act": "act:5-countermeasures",
+      "gh:pageTitle": "対策② カード停止（実行）",
+      "gh:countermeasure": 2,
       "gh:panels": [
         {
-          "characters": [
-            "character:Yuto",
-            "character:YutoMother"
-          ],
+          "panel": 1,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoが親に電話。",
           "dialogue": [
             {
-              "speaker": "NeiPuni",
-              "text": "設定ページ。電話して、止める。"
-            },
-            {
               "speaker": "Yuto",
-              "text": "ママ…ごめん。カード、止めたほうがいい…！"
+              "text": "ママ…ごめん。カード、止めたほうがいい…！",
+              "gh:emotion": "apologetic"
             },
             {
               "speaker": "YutoMother",
-              "text": "え、なに？…わかった、すぐやる。"
-            },
-            {
-              "speaker": "Classmates",
-              "text": "今さらやっても意味なくね？"
+              "text": "え、なに？…わかった、すぐやる。",
+              "gh:via": "phone"
             }
           ],
+          "gh:imagePrompt": "Medium Shot. Japanese boy on phone with mother. Apologetic but urgent. Classroom background."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #1】（設定）Yutoが親に電話。カード停止の手続きに入る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #1】（設定）Yutoが親に電話。カード停止の手続きに入る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "【NEIちゃんのアドバイス #1】（設定）Yutoが親に電話。カード停止の手続きに入る。"
+          "characters": ["character:Yuto"],
+          "visual": "電話を切り、一息つくYuto。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "…止められた…",
+              "gh:emotion": "relieved"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Japanese boy sighing with relief after phone call. Small step forward."
         }
       ]
     },
     {
       "gh:pageNumber": 26,
+      "gh:act": "act:5-countermeasures",
+      "gh:pageTitle": "対策③ パスワード管理（説明）",
+      "gh:countermeasure": 3,
       "gh:panels": [
         {
-          "characters": [
-            "character:Nei",
-            "character:Ren",
-            "character:Yuto"
-          ],
+          "panel": 1,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが核心を伝える。エピソードタイトル「パスワードは覚えるな」のキービジュアル。",
           "dialogue": [
             {
               "speaker": "NeiPuni",
-              "text": "NEIちゃんのアドバイス #2　スクショ。"
+              "text": "【NEIちゃんのアドバイス #3】",
+              "gh:isGuideCard": true
             },
             {
               "speaker": "Nei",
-              "text": "消される前に、スクショ。URLと時間も。短くでいい。"
-            },
-            {
-              "speaker": "Yuto",
-              "text": "…見るの、キツい…"
-            },
-            {
-              "speaker": "Nei",
-              "text": "見なくていい。撮るだけ。"
+              "text": "パスワードは覚えるな。作って、預けるんだ。",
+              "gh:emotion": "emphatic"
             }
           ],
+          "gh:imagePrompt": "Medium Shot. Japanese girl making key point. 'Don't memorize passwords - generate and store them.' Emphasis on this line."
+        },
+        {
+          "panel": 2,
+          "shot": "Close Up",
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #2】（案内）消される前に“残す”。スクショとメモ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #2】（案内）消される前に“残す”。スクショとメモ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "【NEIちゃんのアドバイス #2】（案内）消される前に“残す”。スクショとメモ。"
+          "characters": ["character:Yuto"],
+          "visual": "困惑するYuto。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "覚えないって…どうやって…？",
+              "gh:emotion": "confused"
+            }
+          ],
+          "gh:imagePrompt": "Close Up. Japanese boy looking confused. Processing the advice."
         }
       ]
     },
     {
       "gh:pageNumber": 27,
+      "gh:act": "act:5-countermeasures",
+      "gh:pageTitle": "対策③ パスワード管理（実行）",
+      "gh:countermeasure": 3,
       "gh:panels": [
         {
-          "characters": [
-            "character:Yuto",
-            "character:Ren"
-          ],
+          "panel": 1,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "パスワードマネージャーアプリの画面。サイトごとに異なるランダムパスワードが生成されている。",
           "dialogue": [
             {
-              "speaker": "NeiPuni",
-              "text": "設定ページ。スクショ→URL→時間。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "スクショ。あと、リンク。…貼っとけ。"
-            },
-            {
-              "speaker": "Yuto",
-              "text": "…うん。"
-            },
-            {
-              "speaker": "Classmates",
-              "text": "証拠とかさ、もう遅いって。"
+              "speaker": "Nei",
+              "text": "パスワードマネージャー。サイトごとに別の鍵を作る。",
+              "gh:emotion": "instructive"
             }
           ],
+          "gh:imagePrompt": "Insert shot. Password manager app showing unique random passwords for different sites. Secure vault UI."
+        },
+        {
+          "panel": 2,
+          "shot": "Insert",
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #2】（設定）スクショ→URL→時間。最低3点セット。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #2】（設定）スクショ→URL→時間。最低3点セット。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "【NEIちゃんのアドバイス #2】（設定）スクショ→URL→時間。最低3点セット。"
+          "characters": [],
+          "visual": "二段階認証の設定画面。",
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "あと、二段階認証。パスだけじゃ突破される。",
+              "gh:emotion": "instructive"
+            }
+          ],
+          "gh:imagePrompt": "Insert shot. Two-factor authentication setup screen. Security code prompt."
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "設定を進めるYuto。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "…できた。",
+              "gh:emotion": "accomplished"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Japanese boy completing security setup. Small sense of accomplishment."
         }
       ]
     },
     {
       "gh:pageNumber": 28,
+      "gh:act": "act:5-countermeasures",
+      "gh:pageTitle": "対策④ 注意喚起（説明）",
+      "gh:countermeasure": 4,
       "gh:panels": [
         {
-          "characters": [
-            "character:Nei",
-            "character:Yuto",
-            "character:Ren"
-          ],
+          "panel": 1,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが被害拡大防止を説明。",
           "dialogue": [
             {
               "speaker": "NeiPuni",
-              "text": "NEIちゃんのアドバイス #3　そのリンク、触らない。"
+              "text": "【NEIちゃんのアドバイス #4】",
+              "gh:isGuideCard": true
             },
             {
               "speaker": "Nei",
-              "text": "いま触ると、またやられる。確認したい気持ち、わかるけど。"
-            },
-            {
-              "speaker": "Ren",
-              "text": "触るなら…別の端末で。"
+              "text": "別の窓口から友達に連絡。「リンク踏むな」って。",
+              "gh:emotion": "instructive"
             }
           ],
+          "gh:imagePrompt": "Medium Shot. Japanese girl explaining damage control. 'Puuni Nei' advice card visible."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Close Up",
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #3】（案内）そのリンク、触らない。焦りで二回刺さる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #3】（案内）そのリンク、触らない。焦りで二回刺さる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "【NEIちゃんのアドバイス #3】（案内）そのリンク、触らない。焦りで二回刺さる。"
+          "characters": ["character:Yuto"],
+          "visual": "躊躇するYuto。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "でも…みんな怒ってる…",
+              "gh:emotion": "hesitant"
+            },
+            {
+              "speaker": "Nei",
+              "text": "言わないと、もっと増える。",
+              "gh:emotion": "firm"
+            }
+          ],
+          "gh:imagePrompt": "Medium Close Up. Japanese boy hesitating. Fear of confrontation. Girl encouraging him."
         }
       ]
     },
     {
       "gh:pageNumber": 29,
+      "gh:act": "act:5-countermeasures",
+      "gh:pageTitle": "対策④ 注意喚起（実行）",
+      "gh:countermeasure": 4,
       "gh:panels": [
         {
-          "characters": [
-            "character:Yuto",
-            "character:Nei"
-          ],
+          "panel": 1,
+          "shot": "Close Up",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "SMS/電話で友人に警告を送るYuto。",
           "dialogue": [
             {
-              "speaker": "NeiPuni",
-              "text": "設定ページ。別の端末で確認。"
-            },
-            {
-              "speaker": "Nei",
-              "text": "そのスマホ、いったん伏せて。ここで見る。"
-            },
-            {
               "speaker": "Yuto",
-              "text": "…わかった。"
-            },
-            {
-              "speaker": "Classmates",
-              "text": "やってる感すご。もう終わってんのに。"
+              "text": "俺のアカウント乗っ取られた。リンク踏まないで。通報して。",
+              "gh:via": "sms"
             }
           ],
+          "gh:imagePrompt": "Close Up. SMS message being sent. Warning friends about hacked account. Japanese text."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #3】（設定）別端末で確認。いまのスマホは伏せる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #3】（設定）別端末で確認。いまのスマホは伏せる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "【NEIちゃんのアドバイス #3】（設定）別端末で確認。いまのスマホは伏せる。"
+          "characters": ["character:Yuto"],
+          "visual": "メッセージを送り終え、一段落。",
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "…送った。",
+              "gh:emotion": "exhausted"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Japanese boy lowering phone. Exhausted but task done. Small relief."
         }
       ]
     },
     {
       "gh:pageNumber": 30,
+      "gh:act": "act:6-ghost-battle",
+      "gh:pageTitle": "クラスメイトの罵倒",
       "gh:panels": [
         {
-          "characters": [
-            "character:Nei",
-            "character:Yuto"
-          ],
-          "dialogue": [
-            {
-              "speaker": "NeiPuni",
-              "text": "NEIちゃんのアドバイス #4　別アカで一言。"
-            },
-            {
-              "speaker": "Nei",
-              "text": "別アカ作って。“リンク踏まないで”だけでいい。"
-            },
-            {
-              "speaker": "Yuto",
-              "text": "…言ったら、もっと怒られそう…"
-            },
-            {
-              "speaker": "Nei",
-              "text": "言わないと、もっと増える。"
-            }
-          ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #4】（案内）連絡線を作る。“踏まないで”だけ伝える。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #4】（案内）連絡線を作る。“踏まないで”だけ伝える。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "【NEIちゃんのアドバイス #4】（案内）連絡線を作る。“踏まないで”だけ伝える。"
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto", "character:Classmate_A"],
+          "visual": "対策完了後。クラスメイトがYutoに詰め寄る。",
+          "dialogue": [
+            {
+              "speaker": "Classmate_A",
+              "text": "今更やっても意味なくね？",
+              "gh:emotion": "mocking"
+            },
+            {
+              "speaker": "Classmate_A",
+              "text": "もう俺らの情報漏れてんだよ。お前のせいで。",
+              "gh:emotion": "accusatory"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot. Classmates confronting Japanese boy aggressively. Mocking and accusatory. Tense classroom atmosphere."
         }
       ]
     },
     {
       "gh:pageNumber": 31,
+      "gh:act": "act:6-ghost-battle",
+      "gh:pageTitle": "幻肢痛",
       "gh:panels": [
         {
-          "characters": [
-            "character:Yuto"
-          ],
+          "panel": 1,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoが胸を押さえる。言葉が刺さる痛み。",
           "dialogue": [
             {
-              "speaker": "NeiPuni",
-              "text": "設定ページ。『踏まないで』って送る。"
-            },
-            {
               "speaker": "Yuto",
-              "text": "俺の本垢…乗っ取られた。リンク踏まないで。通報して…"
-            },
-            {
-              "speaker": "Unknown",
-              "text": "今さら言われても…もう出てるし。"
-            },
-            {
-              "speaker": "Yuto",
-              "text": "…ごめん。でも、これ以上は増やしたくない。"
+              "text": "（痛い…）",
+              "gh:isThought": true,
+              "gh:emotion": "pain"
             }
           ],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #4】（設定）別アカで告知。友だちからの反発も来る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #4】（設定）別アカで告知。友だちからの反発も来る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "【NEIちゃんのアドバイス #4】（設定）別アカで告知。友だちからの反発も来る。"
+          "gh:imagePrompt": "Close Up. Japanese boy clutching chest in pain. Words hurting like physical wounds. Anguished expression."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool", "character:RenMiddleSchool"],
+          "visual": "Neiが空気を読む。Renに問いかける。",
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "ghost、幻肢痛だ。",
+              "gh:emotion": "analytical"
+            },
+            {
+              "speaker": "Nei",
+              "text": "たおす？",
+              "gh:emotion": "calm"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Japanese girl (Nei) looking at the air analytically. Asking boy (Ren) a question. Calm amidst chaos."
         }
       ]
     },
     {
       "gh:pageNumber": 32,
+      "gh:act": "act:6-ghost-battle",
+      "gh:pageTitle": "SIP Project Map起動",
       "gh:panels": [
         {
-          "characters": [
-            "character:Nei",
-            "character:Yuto",
-            "character:Ren"
-          ],
+          "panel": 1,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが謎のデバイス（キューブ型）を取り出す。",
           "dialogue": [
             {
-              "speaker": "NeiPuni",
-              "text": "NEIちゃんのアドバイス #5　パス、全部変える。"
-            },
-            {
               "speaker": "Nei",
-              "text": "同じパス、使わない。メールも同じの使わない。"
-            },
-            {
-              "speaker": "Yuto",
-              "text": "…覚えらんない…"
-            },
-            {
-              "speaker": "Ren",
-              "text": "覚えなくていい。保存するやつ使え。"
+              "text": "SIP Project Map: ON",
+              "gh:emotion": "commanding"
             }
           ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #5】（案内）パスは全部別。メールも同じの使わない。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #5】（案内）パスは全部別。メールも同じの使わない。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
+          "gh:imagePrompt": "Close Up. Japanese girl holding mysterious cube device. Glowing interface. 'SIP Project Map: ON' text."
+        },
+        {
+          "panel": 2,
           "shot": "Wide Shot",
-          "visual": "【NEIちゃんのアドバイス #5】（案内）パスは全部別。メールも同じの使わない。"
+          "environment": "env:middle-school-classroom",
+          "characters": [],
+          "visual": "波動が教室をスキャン。現実にワイヤーフレームがオーバーレイされていく。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Scanning wave spreading across classroom. Wireframe overlay on reality. Digital transformation beginning."
         }
       ]
     },
     {
       "gh:pageNumber": 33,
+      "gh:act": "act:6-ghost-battle",
+      "gh:pageTitle": "情報場の可視化",
       "gh:panels": [
         {
-          "characters": [
-            "character:Yuto",
-            "character:Nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "NeiPuni",
-              "text": "設定ページ。自動で作って、保存。"
-            },
-            {
-              "speaker": "Yuto",
-              "text": "…同じの、全部使ってた…"
-            },
-            {
-              "speaker": "Nei",
-              "text": "今から変えればいい。ここから。"
-            }
-          ],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #5】（設定）自動で作って保存。『全部ちがう』を作る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #5】（設定）自動で作って保存。『全部ちがう』を作る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "【NEIちゃんのアドバイス #5】（設定）自動で作って保存。『全部ちがう』を作る。"
+          "environment": "env:information-field",
+          "characters": [],
+          "visual": "「情報場」が可視化される。教室がデジタル空間に変容。Ghost（悪意のデータ実体）が現れる。",
+          "dialogue": [
+            {
+              "speaker": "Classmates",
+              "text": "なっ…!? VR!? なにこれ!?",
+              "gh:emotion": "shock"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot. Classroom transformed into 'Information Field'. Digital wireframes. Grotesque Ghost entities visible. Students shocked."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:information-field",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが説明する。",
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "これが情報場。イメージが質量に変換された世界。",
+              "gh:emotion": "explanatory"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Japanese girl explaining calmly amidst digital chaos. 'Information Field - where images become mass.'"
         }
       ]
     },
     {
       "gh:pageNumber": 34,
+      "gh:act": "act:6-ghost-battle",
+      "gh:pageTitle": "ランダウアーの原理",
       "gh:panels": [
         {
-          "characters": [
-            "character:Nei",
-            "character:Yuto"
-          ],
+          "panel": 1,
+          "shot": "Full Page",
+          "environment": "env:information-field",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "テキストオーバーレイ：「Landauer's Principle」「Information is physics」",
           "dialogue": [
             {
-              "speaker": "NeiPuni",
-              "text": "NEIちゃんのアドバイス #6　二段階、入れよ。"
+              "speaker": "Nei",
+              "text": "情報は物理だ。1ビットを消すだけで熱が出る。",
+              "gh:emotion": "lecturing"
             },
             {
               "speaker": "Nei",
-              "text": "パスだけじゃ止まらない。二段階、入れる。"
-            },
-            {
-              "speaker": "Yuto",
-              "text": "でも…俺、もうログインできない…"
-            },
-            {
-              "speaker": "Nei",
-              "text": "できるやつから。できないのは、運営に申請。"
+              "text": "悪意は重さになる。それがGhost。",
+              "gh:emotion": "serious"
             }
           ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #6】（案内）二段階、入れよ。できるとこから。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #6】（案内）二段階、入れよ。できるとこから。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "【NEIちゃんのアドバイス #6】（案内）二段階、入れよ。できるとこから。"
+          "gh:imagePrompt": "Full Page. Text overlay: 'LANDAUER'S PRINCIPLE' and 'INFORMATION IS PHYSICS'. Japanese girl explaining. Digital physics visualization."
         }
       ]
     },
     {
       "gh:pageNumber": 35,
+      "gh:act": "act:6-ghost-battle",
+      "gh:pageTitle": "Ghost攻撃 / NULL AXE召喚",
       "gh:panels": [
         {
-          "characters": [
-            "character:Yuto",
-            "character:Nei",
-            "character:Ren"
-          ],
-          "dialogue": [
-            {
-              "speaker": "NeiPuni",
-              "text": "設定ページ。二段階オン。"
-            },
-            {
-              "speaker": "Unknown",
-              "text": "今さらやっても、もう遅いし。"
-            },
-            {
-              "speaker": "Yuto",
-              "text": "…ごめん…でも…"
-            },
-            {
-              "speaker": "Nei",
-              "text": "ghost、幻肢痛だ。"
-            }
-          ],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #6】（設定）二段階の設定。なのに、クラスの言葉が刺さっていく。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. 【NEIちゃんのアドバイス #6】（設定）二段階の設定。なのに、クラスの言葉が刺さっていく。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "【NEIちゃんのアドバイス #6】（設定）二段階の設定。なのに、クラスの言葉が刺さっていく。"
+          "environment": "env:information-field",
+          "characters": ["character:Classmate_A"],
+          "visual": "Ghostがクラスメイトに襲いかかる。幻肢痛で苦しむクラスメイト。",
+          "dialogue": [
+            {
+              "speaker": "Classmate_A",
+              "text": "痛っ！なんで！？",
+              "gh:emotion": "pain"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot. Ghost entity attacking student. Student feeling phantom pain. Digital horror."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:information-field",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renが前に出る。手を伸ばすと、デジタルの斧「NULL AXE」が実体化する。",
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "ゴーストハックの時間だ。",
+              "gh:emotion": "determined"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Japanese boy (Ren) stepping forward. Digital axe 'NULL AXE' materializing in hand. Determined expression."
         }
       ]
     },
     {
       "gh:pageNumber": 36,
+      "gh:act": "act:7-daemon-battle",
+      "gh:pageTitle": "Ren vs Ghost",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "\"Ren。たおす？\""
-            },
-            {
-              "speaker": "Ren",
-              "text": "\"…うん。\""
-            }
-          ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Nei looks at the air. Action: Ren nods silently.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Nei looks at the air. Action: Ren nods silently.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Nei looks at the air. Action: Ren nods silently."
+          "shot": "Full Page",
+          "environment": "env:information-field",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "RenがNULL AXEでGhostを切り裂く。ダイナミックなアクション。",
+          "dialogue": [],
+          "gh:imagePrompt": "Full Page, dynamic action. Japanese boy slashing through Ghost entity with digital axe. Motion blur. Sparks of data."
         }
       ]
     },
     {
       "gh:pageNumber": 37,
+      "gh:act": "act:7-daemon-battle",
+      "gh:pageTitle": "Daemon出現",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "\"SIP Project Map: ON.\""
-            }
-          ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Nei pulls out a strange device (cube/sphere).. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Nei pulls out a strange device (cube/sphere).. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Nei pulls out a strange device (cube/sphere)."
+          "environment": "env:information-field",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoが叫ぶ。彼の葛藤が巨大なDaemonとして実体化する。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Massive dark shadow erupting from Japanese boy. His guilt and conflict manifesting as giant Daemon entity."
         }
       ]
     },
     {
       "gh:pageNumber": 38,
+      "gh:act": "act:7-daemon-battle",
+      "gh:pageTitle": "Daemonの呪い",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. A wave scans the room. The classroom texture changes. Wireframes overlay reality. Beat: The \"Information Field\" is revealed.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. A wave scans the room. The classroom texture changes. Wireframes overlay reality. Beat: The \"Information Field\" is revealed.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "A wave scans the room. The classroom texture changes. Wireframes overlay reality. Beat: The \"Information Field\" is revealed."
+          "shot": "Full Page",
+          "environment": "env:information-field",
+          "characters": [],
+          "visual": "Daemonが呪いの言葉を叫ぶ。言葉が文字として可視化され、攻撃となる。",
+          "dialogue": [
+            {
+              "speaker": "Daemon",
+              "text": "全部あんたのせいだ！",
+              "gh:emotion": "rage"
+            },
+            {
+              "speaker": "Daemon",
+              "text": "取り返しがつかない！許されない！",
+              "gh:emotion": "condemnation"
+            }
+          ],
+          "gh:imagePrompt": "Full Page. Giant Daemon screaming curse words. Text visualized as attack vectors. 'IT'S ALL YOUR FAULT!' Japanese text weapons."
         }
       ]
     },
     {
       "gh:pageNumber": 39,
+      "gh:act": "act:7-daemon-battle",
+      "gh:pageTitle": "/dev/null SLASH!!",
       "gh:panels": [
         {
-          "characters": [],
+          "panel": 1,
+          "shot": "Full Page",
+          "environment": "env:information-field",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "RenがNULL AXEを振り上げ、必殺技を放つ。",
           "dialogue": [
             {
-              "speaker": "Classmates",
-              "text": "\"What the?! VR?! Ghosts?!\""
+              "speaker": "Ren",
+              "text": "/dev/null SLASH!!",
+              "gh:emotion": "battle cry"
             }
           ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. The \"static\" and \"malice\" take shape. Grotesque, glitchy ghosts clinging to the classmates and binding Yuto.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. The \"static\" and \"malice\" take shape. Grotesque, glitchy ghosts clinging to the classmates and binding Yuto.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "The \"static\" and \"malice\" take shape. Grotesque, glitchy ghosts clinging to the classmates and binding Yuto."
+          "gh:imagePrompt": "Full Page, epic action. Japanese boy executing special attack with digital axe. '/dev/null SLASH!!' text effect. Breaking through curse."
         }
       ]
     },
     {
       "gh:pageNumber": 40,
+      "gh:act": "act:7-daemon-battle",
+      "gh:pageTitle": "Daemon消滅",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "\"This is the Information Field. Images converted to mass.\""
-            }
-          ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Nei stands amidst the chaos.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Nei stands amidst the chaos.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Nei stands amidst the chaos."
+          "environment": "env:information-field",
+          "characters": [],
+          "visual": "Daemonが粒子となって消滅していく。呪いの言葉が断たれる。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Daemon dissolving into digital particles. Curse words shattering. Light breaking through darkness."
+        },
+        {
+          "panel": 2,
+          "shot": "Wide Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": [],
+          "visual": "情報場が静まり、教室が元に戻っていく。",
+          "dialogue": [],
+          "gh:imagePrompt": "Wide Shot. Information Field fading. Classroom returning to normal. Calm after storm."
         }
       ]
     },
     {
       "gh:pageNumber": 41,
+      "gh:act": "act:7-daemon-battle",
+      "gh:pageTitle": "和解の空気",
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Nei",
-              "text": "\"Information is physics. Deleting a bit generates heat. Malice generates weight.\""
-            }
-          ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Text overlay: **Landauer's Principle**.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Text overlay: **Landauer's Principle**.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Text overlay: **Landauer's Principle**."
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Classmate_A", "character:Classmate_B"],
+          "visual": "クラスメイトの幻肢痛が消える。呆然とした空気。",
+          "dialogue": [
+            {
+              "speaker": "Classmate_A",
+              "text": "なんだったんだ…",
+              "gh:emotion": "dazed"
+            }
+          ],
+          "gh:imagePrompt": "Wide Shot. Classmates looking dazed. Phantom pain gone. Confused but calmer atmosphere."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "膝をつくYuto。解放感と疲労。",
+          "dialogue": [],
+          "gh:imagePrompt": "Medium Shot. Japanese boy on knees. Relief and exhaustion. Weight lifted."
         }
       ]
     },
     {
       "gh:pageNumber": 42,
+      "gh:act": "act:8-resolution",
+      "gh:pageTitle": "Yutoの謝罪",
       "gh:panels": [
         {
-          "characters": [],
+          "panel": 1,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "Yutoがクラスメイトに向き合う。",
           "dialogue": [
             {
-              "speaker": "Unknown",
-              "text": "\"It hurts! Why!?\""
+              "speaker": "Yuto",
+              "text": "ごめん…俺…",
+              "gh:emotion": "apologetic"
             }
           ],
+          "gh:imagePrompt": "Medium Shot. Japanese boy facing classmates. Sincere apology. Vulnerable but brave."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. The ghosts (the classmates' own anger) attack them. Action: A ghost scratches a student. The student bleeds/feels pain.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. The ghosts (the classmates' own anger) attack them. Action: A ghost scratches a student. The student bleeds/feels pain.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "The ghosts (the classmates' own anger) attack them. Action: A ghost scratches a student. The student bleeds/feels pain."
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが静かに言う。",
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "言えた時点で勝ち。恥じゃない。",
+              "gh:emotion": "supportive"
+            }
+          ],
+          "gh:imagePrompt": "Medium Shot. Japanese girl (Nei) speaking supportively. 'Admitting it is winning. It's not shame.'"
         }
       ]
     },
     {
       "gh:pageNumber": 43,
+      "gh:act": "act:8-resolution",
+      "gh:pageTitle": "真の敵",
       "gh:panels": [
         {
-          "characters": [],
+          "panel": 1,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renが真実を告げる。",
           "dialogue": [
             {
-              "speaker": "Nei",
-              "text": "\"Ghosts cause Phantom Pain. No physical wound, but the brain feels it.\""
+              "speaker": "Ren",
+              "text": "悪いのはお前じゃない。",
+              "gh:emotion": "matter-of-fact"
             },
             {
-              "speaker": "Nei",
-              "text": "\"I can't. This is *your* malice visualized. I just turned on the light.\""
+              "speaker": "Ren",
+              "text": "仕組みを悪用した「アクター」だ。",
+              "gh:emotion": "serious"
             }
           ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style.  Action: Classmates scream. \"Stop this device!\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style.  Action: Classmates scream. \"Stop this device!\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": " Action: Classmates scream. \"Stop this device!\""
+          "gh:imagePrompt": "Medium Shot. Japanese boy (Ren) making important point. 'The bad guy isn't you. It's the Actor who exploited the system.'"
+        },
+        {
+          "panel": 2,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "消えた偽サイト「ワクワク電気」のスクリーンショット。",
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "偽サイト「ワクワク電気」。そいつがまだどこかにいる。",
+              "gh:emotion": "determined"
+            }
+          ],
+          "gh:imagePrompt": "Insert shot. Screenshot of fake site 'Wakuwaku Denki' now gone. The real enemy is still out there."
         }
       ]
     },
     {
       "gh:pageNumber": 44,
+      "gh:act": "act:8-resolution",
+      "gh:pageTitle": "東京を見下ろす（左）",
+      "gh:isSpread": true,
+      "gh:spreadWith": 45,
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. A ghost lunges at the group. Action: Ren steps in. \"Ghost Hack time.\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. A ghost lunges at the group. Action: Ren steps in. \"Ghost Hack time.\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "A ghost lunges at the group. Action: Ren steps in. \"Ghost Hack time.\""
+          "shot": "Extreme Wide Shot",
+          "environment": "env:tokyo-skyline",
+          "characters": ["character:RenMiddleSchool", "character:NeiMiddleSchool"],
+          "visual": "東京の街並みを見下ろすRenとNei。夕暮れ。",
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "いくかぁ",
+              "gh:emotion": "determined"
+            }
+          ],
+          "gh:imagePrompt": "Extreme Wide Shot. Two teenagers on rooftop overlooking Tokyo skyline at sunset. Silhouettes against orange sky."
         }
       ]
     },
     {
       "gh:pageNumber": 45,
+      "gh:act": "act:8-resolution",
+      "gh:pageTitle": "決意（右）",
+      "gh:isSpread": true,
+      "gh:spreadWith": 44,
       "gh:panels": [
         {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Ren pulls a massive, digital axe out of thin air. **NULL AXE**. Action: SLASH. The ghost is deleted instantly.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Ren pulls a massive, digital axe out of thin air. **NULL AXE**. Action: SLASH. The ghost is deleted instantly.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
           "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Ren pulls a massive, digital axe out of thin air. **NULL AXE**. Action: SLASH. The ghost is deleted instantly."
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 46,
-      "gh:panels": [
-        {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto screams. A massive, dark shadow erupts from him.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto screams. A massive, dark shadow erupts from him.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Yuto screams. A massive, dark shadow erupts from him."
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 47,
-      "gh:panels": [
-        {
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Daemon (Yuto's voice)",
-              "text": "\"Too late! Can't be fixed! Unforgivable!\""
-            }
-          ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. The Daemon attacks Ren. Heavy impact. Action: Ren blocks, slides back. \"Heavy...\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. The Daemon attacks Ren. Heavy impact. Action: Ren blocks, slides back. \"Heavy...\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "The Daemon attacks Ren. Heavy impact. Action: Ren blocks, slides back. \"Heavy...\""
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 48,
-      "gh:panels": [
-        {
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "\"Yeah. You can't undo the leak. You can't undo the click.\""
-            }
-          ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Ren stands up, dusting off. Beat: Ren looks at Yuto.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Ren stands up, dusting off. Beat: Ren looks at Yuto.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Ren stands up, dusting off. Beat: Ren looks at Yuto."
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 49,
-      "gh:panels": [
-        {
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "\"But... the one who wrote the insults wasn't you. The one who stole the money wasn't you.\""
-            }
-          ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Ren raises the axe. Action: **\"/dev/null SLASH!!\"**. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Ren raises the axe. Action: **\"/dev/null SLASH!!\"**. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Ren raises the axe. Action: **\"/dev/null SLASH!!\"**"
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 50,
-      "gh:panels": [
-        {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. The Daemon dissolves into particles. The ghosts fade. The room returns to normal (mostly). Action: Yuto falls to his knees.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. The Daemon dissolves into particles. The ghosts fade. The room returns to normal (mostly). Action: Yuto falls to his knees.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "The Daemon dissolves into particles. The ghosts fade. The room returns to normal (mostly). Action: Yuto falls to his knees."
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 51,
-      "gh:panels": [
-        {
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Yuto",
-              "text": "\"I'm sorry. I was careless. I hurt you.\""
-            }
-          ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Yuto looks at the classmates. Beat: He owns his mistake, but sheds the guilt of the *crime*.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Yuto looks at the classmates. Beat: He owns his mistake, but sheds the guilt of the *crime*.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Yuto looks at the classmates. Beat: He owns his mistake, but sheds the guilt of the *crime*."
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 52,
-      "gh:panels": [
-        {
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Ren",
-              "text": "\"I hate people who make work for me. The guy who made 'Wakuwaku Denki'.\""
-            }
-          ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Ren glares at the void (breaking the 4th wall slightly). Action: Ren interrupts. \"Wrong. The bad guy is the 'Actor' (Hacker).\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Ren glares at the void (breaking the 4th wall slightly). Action: Ren interrupts. \"Wrong. The bad guy is the 'Actor' (Hacker).\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Ren glares at the void (breaking the 4th wall slightly). Action: Ren interrupts. \"Wrong. The bad guy is the 'Actor' (Hacker).\""
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 53,
-      "gh:panels": [
-        {
-          "characters": [],
+          "shot": "Extreme Wide Shot",
+          "environment": "env:tokyo-skyline",
+          "characters": ["character:RenMiddleSchool", "character:NeiMiddleSchool"],
+          "visual": "見開き続き。二人の決意の表情。",
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "\"Internet. Site's gone though.\""
-            }
-          ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Classmates swarm Nei. \"What was that device?!\" \"Where do I buy it?!\" Action: Ren yawns. \"Done. Going home to sleep.\" Nei: \"Clean up first.\" Ren: \"Geh.\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Classmates swarm Nei. \"What was that device?!\" \"Where do I buy it?!\" Action: Ren yawns. \"Done. Going home to sleep.\" Nei: \"Clean up first.\" Ren: \"Geh.\". luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Classmates swarm Nei. \"What was that device?!\" \"Where do I buy it?!\" Action: Ren yawns. \"Done. Going home to sleep.\" Nei: \"Clean up first.\" Ren: \"Geh.\""
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 54,
-      "gh:panels": [
-        {
-          "characters": [],
-          "dialogue": [
+              "text": "うん。",
+              "gh:emotion": "calm"
+            },
             {
-              "speaker": "Ren",
-              "text": "\"Let's go.\" Nei: \"Yeah.\""
+              "speaker": "Both",
+              "text": "ゴーストをハックする。",
+              "gh:emotion": "determined"
             }
           ],
-          "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Wide Shot, ARIA-style. Ren and Nei on a roof/high place overlooking Tokyo.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. Ren and Nei on a roof/high place overlooking Tokyo.. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:aperture": "f/2.8",
-            "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
-            "gh:composition": "clean composition, clear subject separation",
-            "gh:distance": "Wide Shot",
-            "gh:focus": "deep focus",
-            "gh:lens": "35mm",
-            "gh:lighting": "soft diffused daylight, gentle shadows"
-          },
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Ren and Nei on a roof/high place overlooking Tokyo."
+          "gh:imagePrompt": "Extreme Wide Shot continuation. Close on two teenagers' determined faces. Tokyo Tower in background. 'We hack the Ghost.' End title card."
         }
       ]
     }
   ],
-  "gh:presentationTagline": "Arc 0-1 | Origin Story",
-  "gh:realCase": "Phishing / Account Takeover",
   "gh:supportingCharacters": [
-    "character:Nei",
-    "character:Yuto"
-  ]
+    "character:NeiMiddleSchool",
+    "character:Yuto",
+    "character:YutoMother",
+    "character:Akira",
+    "character:Mei",
+    "character:Classmate_A",
+    "character:Classmate_B",
+    "character:Classmate_C"
+  ],
+  "gh:presentationTagline": "Arc 0-1 | パスワードは覚えるな"
 }
