@@ -3114,10 +3114,22 @@
           "visual": "翌日。教室入口に立つYuto。重い足取り。"
         },
         {
+          "@id": "panel:zFlLtPVKNHHT",
           "characters": [],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Inside classroom. Classmates' gazes turning toward Yuto. Murmuring stops. Tense silence. shot on 50mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/zFlLtPVKNHHT_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/zFlLtPVKNHHT_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356880,
+              "gh:imagePrompt": "教室内。クラスメイトたちの視線がYutoに集まる。ざわめきが止まる。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/zFlLtPVKNHHT_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 教室内。クラスメイトたちの視線がYutoに集まる。ざわめきが止まる。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -3127,12 +3139,24 @@
           "visual": "教室内。クラスメイトたちの視線がYutoに集まる。ざわめきが止まる。"
         },
         {
+          "@id": "panel:zkUedNfYEtWx",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy sensing something is wrong. Anxious expression. shot on 85mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/zkUedNfYEtWx_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/zkUedNfYEtWx_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356877,
+              "gh:imagePrompt": "何かがおかしいと気づくYuto。不安な表情。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/zkUedNfYEtWx_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 何かがおかしいと気づくYuto。不安な表情。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -3142,11 +3166,13 @@
           "visual": "何かがおかしいと気づくYuto。不安な表情。"
         },
         {
+          "@id": "panel:2cU9Eyljiugw",
           "characters": [
             "character:Ken"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/2cU9Eyljiugw_v1.png",
           "gh:characterIntro": [
             {
               "gh:characterId": "character:Ken",
@@ -3154,7 +3180,17 @@
               "gh:nameReading": "さとう けん"
             }
           ],
-          "gh:imagePrompt": "Single illustration. Medium Shot. Classmate standing up and approaching Yuto. Angry expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/2cU9Eyljiugw_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356873,
+              "gh:imagePrompt": "友人Aが立ち上がり、Yutoに近づく。怒りの表情。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/2cU9Eyljiugw_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 友人Aが立ち上がり、Yutoに近づく。怒りの表情。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -3164,6 +3200,7 @@
           "visual": "友人Aが立ち上がり、Yutoに近づく。怒りの表情。"
         },
         {
+          "@id": "panel:yLgDH2es9Am3",
           "characters": [
             "character:Ken"
           ],
@@ -3175,7 +3212,18 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Medium Close Up. Classmate confronting Yuto angrily. 'Hey, what was that message last night?' shot on 50mm, f/2, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/yLgDH2es9Am3_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/yLgDH2es9Am3_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356877,
+              "gh:imagePrompt": "詰め寄る友人A。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Close Up. Dialogue: Ken: おい、昨日のメッセージなんだよ？.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/yLgDH2es9Am3_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 詰め寄る友人A。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Close Up. Dialogue: Ken: おい、昨日のメッセージなんだよ？.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -3185,6 +3233,7 @@
           "visual": "詰め寄る友人A。"
         },
         {
+          "@id": "panel:dQsgdtLHbiYn",
           "characters": [
             "character:Yuto"
           ],
@@ -3196,7 +3245,18 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy confused. 'Message...?' shot on 85mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/dQsgdtLHbiYn_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/dQsgdtLHbiYn_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356877,
+              "gh:imagePrompt": "困惑するYuto。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Dialogue: Yuto: メッセージ…？.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/dQsgdtLHbiYn_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 困惑するYuto。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Dialogue: Yuto: メッセージ…？.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -3206,6 +3266,7 @@
           "visual": "困惑するYuto。"
         },
         {
+          "@id": "panel:ZNkHlL7TRdDr",
           "characters": [
             "character:Yuto",
             "character:Ken",
@@ -3214,7 +3275,18 @@
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Wide Shot, high angle. Japanese boy surrounded by hostile classmates. Feeling of being cornered. shot on 24mm, f/4, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/ZNkHlL7TRdDr_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/ZNkHlL7TRdDr_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356883,
+              "gh:imagePrompt": "周囲のクラスメイトも敵意の目でYutoを見ている。包囲される感覚。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/13/ZNkHlL7TRdDr_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 周囲のクラスメイトも敵意の目でYutoを見ている。包囲される感覚。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "high angle looking down",
             "gh:atmosphere": "包囲、敵意",
@@ -3238,6 +3310,7 @@
       "gh:panelCount": 9,
       "gh:panels": [
         {
+          "@id": "panel:jI9xbUe-TD6m",
           "characters": [
             "character:Ken"
           ],
@@ -3249,6 +3322,17 @@
             }
           ],
           "environment": "env:middle-school-classroom",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/jI9xbUe-TD6m_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/jI9xbUe-TD6m_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356891,
+              "gh:imagePrompt": "友人Aがスマホをつきつける。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Ken: お前のアカウントから、こんなの送られてきたんだけど！.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/jI9xbUe-TD6m_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Single illustration. Medium Shot. Classmate thrusting smartphone toward camera/Yuto. Accusatory. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
@@ -3259,10 +3343,22 @@
           "visual": "友人Aがスマホをつきつける。"
         },
         {
+          "@id": "panel:uqjX1jz3WtBn",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Smartphone screen showing DM from Yuto's account. 'Check this out! Amazing!' with suspicious link. Japanese text.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/uqjX1jz3WtBn_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/uqjX1jz3WtBn_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356898,
+              "gh:imagePrompt": "スマホ画面。Yutoのアカウントから送られたDM。「これ見て！最高！」と怪しいリンク。. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/uqjX1jz3WtBn_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. スマホ画面。Yutoのアカウントから送られたDM。「これ見て！最高！」と怪しいリンク。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -3272,10 +3368,22 @@
           "visual": "スマホ画面。Yutoのアカウントから送られたDM。「これ見て！最高！」と怪しいリンク。"
         },
         {
+          "@id": "panel:U0A59J0HZnbN",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Another DM: 'Actually I always thought you were annoying lol' Insulting message. Japanese text.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/U0A59J0HZnbN_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/U0A59J0HZnbN_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356904,
+              "gh:imagePrompt": "別のDM。「お前、実はウザいって思ってたwww」という侮辱メッセージ。. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/U0A59J0HZnbN_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 別のDM。「お前、実はウザいって思ってたwww」という侮辱メッセージ。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -3285,12 +3393,24 @@
           "visual": "別のDM。「お前、実はウザいって思ってたwww」という侮辱メッセージ。"
         },
         {
+          "@id": "panel:_c4bsaSercoX",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's face, devastated. Eyes wide with shock. shot on 85mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/_c4bsaSercoX_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/_c4bsaSercoX_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356894,
+              "gh:imagePrompt": "愕然とするYuto。目が見開く。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/_c4bsaSercoX_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 愕然とするYuto。目が見開く。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
@@ -3300,6 +3420,7 @@
           "visual": "愕然とするYuto。目が見開く。"
         },
         {
+          "@id": "panel:FIfFDiegDdmc",
           "characters": [
             "character:Yuto"
           ],
@@ -3311,7 +3432,18 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy desperately denying. 'I didn't send that!' shot on 50mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/FIfFDiegDdmc_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/FIfFDiegDdmc_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356896,
+              "gh:imagePrompt": "必死に否定するYuto。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Close Up. Dialogue: Yuto: 俺、そんなの送ってない…！.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/FIfFDiegDdmc_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 必死に否定するYuto。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Close Up. Dialogue: Yuto: 俺、そんなの送ってない…！.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -3321,6 +3453,7 @@
           "visual": "必死に否定するYuto。"
         },
         {
+          "@id": "panel:zbhYfmWGeLGj",
           "characters": [
             "character:Shota"
           ],
@@ -3332,7 +3465,18 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Male classmate upset. 'I clicked the link and got sent to a weird site...' shot on 50mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/zbhYfmWGeLGj_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/zbhYfmWGeLGj_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356922,
+              "gh:imagePrompt": "別の友人Bも被害に。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Shota: 俺もリンク踏んだら、変なサイトに飛ばされた….",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/zbhYfmWGeLGj_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 別の友人Bも被害に。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Shota: 俺もリンク踏んだら、変なサイトに飛ばされた….. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -3342,6 +3486,7 @@
           "visual": "別の友人Bも被害に。"
         },
         {
+          "@id": "panel:f7hvztp5XnBu",
           "characters": [
             "character:Saki"
           ],
@@ -3353,7 +3498,18 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl (Saki) looking worried. 'I clicked it too... something weird popped up...' shot on 50mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/f7hvztp5XnBu_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/f7hvztp5XnBu_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356918,
+              "gh:imagePrompt": "Sakiも心配そうに告白。彼女もリンクを踏んでしまった（後でこれが彼女のアカウント乗っ取りにつながる）。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Saki: 私も踏んじゃった…なんか変なの出てきて….",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/f7hvztp5XnBu_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Sakiも心配そうに告白。彼女もリンクを踏んでしまった（後でこれが彼女のアカウント乗っ取りにつながる）。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Saki: 私も踏んじゃった…なんか変なの出てきて….. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -3363,6 +3519,7 @@
           "visual": "Sakiも心配そうに告白。彼女もリンクを踏んでしまった（後でこれが彼女のアカウント乗っ取りにつながる）。"
         },
         {
+          "@id": "panel:nM_6lPxtpiIV",
           "characters": [
             "character:Tsubasa"
           ],
@@ -3374,7 +3531,18 @@
             }
           ],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Third classmate looking worried. 'Something's wrong with my account too...' Chain of damage. shot on 50mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/nM_6lPxtpiIV_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/nM_6lPxtpiIV_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356924,
+              "gh:imagePrompt": "さらに別の友人C。被害の連鎖。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Tsubasa: 俺のアカウントもなんかおかしくなった….",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/nM_6lPxtpiIV_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. さらに別の友人C。被害の連鎖。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Tsubasa: 俺のアカウントもなんかおかしくなった….. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -3384,12 +3552,24 @@
           "visual": "さらに別の友人C。被害の連鎖。"
         },
         {
+          "@id": "panel:Dfw1HGQjiS_6",
           "characters": [
             "character:Yuto"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Wide Shot, high angle. Japanese boy being blamed from all sides. Becoming isolated. shot on 24mm, f/4, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/Dfw1HGQjiS_6_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/Dfw1HGQjiS_6_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356935,
+              "gh:imagePrompt": "四方から責められるYuto。孤立していく。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/Dfw1HGQjiS_6_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 四方から責められるYuto。孤立していく。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
             "gh:distance": "Wide Shot"
