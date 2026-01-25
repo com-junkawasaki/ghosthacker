@@ -826,6 +826,9 @@
                 }
               ],
               "environment": "env:cschool-classroom",
+              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_4_20260125_054337.png",
+              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_4_20260125_054337.png",
+              "gh:imagePrompt": "少し離れたブースでRenは気怠そうに、Neiは本を読んでいる。手前では盛り上がる輪。. Characters: 沼野 蓮 (Ren Numano), Nei. Shot type: Wide Shot. Dialogue: Kurokawa Akira (Aki): これ、限定販売なんだぜ。もう手に入らない。.",
               "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. In the same classroom, Ren lounges lazily at a booth while Nei reads quietly; in the foreground, Yuto's group reacts to a boast. shot on 35mm, f/2.8, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "eye level",
@@ -1040,6 +1043,9 @@
                 }
               ],
               "environment": "env:cschool-classroom",
+              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/5/panel_1_20260125_054412.png",
+              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/5/panel_1_20260125_054412.png",
+              "gh:imagePrompt": "翌日。休憩時間。いつも通りの教室、いつも通りの雑談。. Shot type: Wide Shot. Dialogue: Kurokawa Akira (Aki): マジで、手に入らないからな？.",
               "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Classroom break time again: students chat casually; Yuto listens with a secret smile. shot on 35mm, f/2.8, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "eye level",
