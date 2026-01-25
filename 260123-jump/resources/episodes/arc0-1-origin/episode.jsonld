@@ -895,7 +895,16 @@
           "dialogue": [],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/H2onTZckx-ZE_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/H2onTZckx-ZE_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356621,
+              "gh:imagePrompt": "窓の外。青い空と雲。平和な日常の象徴。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/H2onTZckx-ZE_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 窓の外。青い空と雲。平和な日常の象徴。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "looking up",
@@ -926,7 +935,16 @@
           "dialogue": [],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/VogWvAuFVTrx_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/VogWvAuFVTrx_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356612,
+              "gh:imagePrompt": "夜。暗いYutoの部屋全景。ベッドに寝転がるYuto、スマホの光だけが部屋を照らす。. Shot type: Wide Shot",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/VogWvAuFVTrx_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 夜。暗いYutoの部屋全景。ベッドに寝転がるYuto、スマホの光だけが部屋を照らす。. Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "high angle",
@@ -948,7 +966,16 @@
           "dialogue": [],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/0NyoX8f9OYco_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/0NyoX8f9OYco_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356614,
+              "gh:imagePrompt": "スマホをスクロールする指。画面の光が顔に反射。. Shot type: Close Up",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/0NyoX8f9OYco_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. スマホをスクロールする指。画面の光が顔に反射。. Shot type: Close Up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "over shoulder",
@@ -966,7 +993,16 @@
           "dialogue": [],
           "environment": "env:smartphone-screen",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/poSZyZbgedbz_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/poSZyZbgedbz_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356633,
+              "gh:imagePrompt": "SNSタイムラインをスクロール中。広告バナーが現れる。「緊急入荷！」の文字。. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/poSZyZbgedbz_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. SNSタイムラインをスクロール中。広告バナーが現れる。「緊急入荷！」の文字。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
@@ -990,7 +1026,16 @@
           ],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/gJO7ciMtLLdC_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/gJO7ciMtLLdC_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356621,
+              "gh:imagePrompt": "Yutoの目が見開く。驚きの表情。. Shot type: Close Up. Dialogue: Yuto: えっ、安っ！？.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/gJO7ciMtLLdC_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Yutoの目が見開く。驚きの表情。. Shot type: Close Up. Dialogue: Yuto: えっ、安っ！？.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
@@ -1003,10 +1048,22 @@
           "visual": "Yutoの目が見開く。驚きの表情。"
         },
         {
+          "@id": "panel:hzMkPY9ceA6-",
           "characters": [],
           "dialogue": [],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Fake shopping site 'Wakuwaku Denki' product page. Same limited edition sneakers. '80% OFF!' Price too good to be true. Japanese text.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/hzMkPY9ceA6-_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/hzMkPY9ceA6-_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356624,
+              "gh:imagePrompt": "「アクター通販」偽サイトの商品ページ。Akiraが見せたのと同じスニーカー。80%OFF。. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/hzMkPY9ceA6-_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 「アクター通販」偽サイトの商品ページ。Akiraが見せたのと同じスニーカー。80%OFF。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
@@ -1016,6 +1073,7 @@
           "visual": "「アクター通販」偽サイトの商品ページ。Akiraが見せたのと同じスニーカー。80%OFF。"
         },
         {
+          "@id": "panel:00rLDpJa0WiX",
           "characters": [
             "character:Yuto"
           ],
@@ -1033,7 +1091,18 @@
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy staring at phone screen. Mix of desire and urgency on face. Night bedroom. shot on 50mm, f/1.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/00rLDpJa0WiX_v1.png",
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/00rLDpJa0WiX_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356624,
+              "gh:imagePrompt": "画面を見つめるYuto。欲望と焦りが入り混じった表情。. Shot type: Medium Close Up. Dialogue: Yuto: 時間限定…？マジか…. Yuto: （今買わないと、なくなる…！）.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/00rLDpJa0WiX_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 画面を見つめるYuto。欲望と焦りが入り混じった表情。. Shot type: Medium Close Up. Dialogue: Yuto: 時間限定…？マジか…. Yuto: （今買わないと、なくなる…！）.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Close Up"
@@ -2798,7 +2867,16 @@
           "dialogue": [],
           "environment": "env:smartphone-screen",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/yTE-IgefJ8FG_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/yTE-IgefJ8FG_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356600,
+              "gh:imagePrompt": "ブラウザ読み込み中…. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/yTE-IgefJ8FG_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. ブラウザ読み込み中…. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
@@ -2814,7 +2892,16 @@
           "dialogue": [],
           "environment": "env:smartphone-screen",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/-g8Jn2ZDUeO3_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/-g8Jn2ZDUeO3_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356599,
+              "gh:imagePrompt": "エラー画面。「404 Not Found」「このページは存在しません」. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/-g8Jn2ZDUeO3_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. エラー画面。「404 Not Found」「このページは存在しません」. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
@@ -2838,7 +2925,16 @@
           ],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/XwKeBPFzaOy7_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/XwKeBPFzaOy7_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356591,
+              "gh:imagePrompt": "目が見開き、恐怖に震えるYuto。. Shot type: Close Up. Dialogue: Yuto: サイトが…消えてる…？.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/XwKeBPFzaOy7_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 目が見開き、恐怖に震えるYuto。. Shot type: Close Up. Dialogue: Yuto: サイトが…消えてる…？.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
@@ -2862,7 +2958,16 @@
           ],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/T_hrhxR8CpNw_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/T_hrhxR8CpNw_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356604,
+              "gh:imagePrompt": "全てを理解してしまったYuto。不安の頂点。暗い部屋に一人。. Shot type: Medium Close Up. Dialogue: Yuto: もしかして…騙された…？.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/T_hrhxR8CpNw_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 全てを理解してしまったYuto。不安の頂点。暗い部屋に一人。. Shot type: Medium Close Up. Dialogue: Yuto: もしかして…騙された…？.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
@@ -3214,12 +3319,15 @@
       "gh:panelCount": 9,
       "gh:panels": [
         {
+          "@id": "panel:4-vkALuzaJpb",
           "characters": [
             "character:Mei"
           ],
           "dialogue": [],
           "environment": "env:middle-school-classroom",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese girl (Mei) looking at smartphone, shocked and hurt expression. shot on 50mm, f/2.8, cinematic live-action.",
+          "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/15/4-vkALuzaJpb_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/15/4-vkALuzaJpb_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Meiがスマホを見て、ショックを受けている。信じられないという表情。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
@@ -4163,7 +4271,16 @@
           ],
           "environment": "env:smartphone-screen",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/23/bpyvsWK6e_mf_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/23/bpyvsWK6e_mf_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356592,
+              "gh:imagePrompt": "漏えいしたサービスのリスト。SNS、ゲームサイト、通販サイトなど。. Shot type: Insert. Dialogue: Nei: ここに足あとがある。複数のサイトに漏えいしてる。.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/23/bpyvsWK6e_mf_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 漏えいしたサービスのリスト。SNS、ゲームサイト、通販サイトなど。. Shot type: Insert. Dialogue: Nei: ここに足あとがある。複数のサイトに漏えいしてる。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
@@ -4460,7 +4577,16 @@
           ],
           "environment": "env:smartphone-screen",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/25/Cswf5GNtvh6W_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/25/Cswf5GNtvh6W_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356571,
+              "gh:imagePrompt": "電話画面。「ママ」と表示。通話中。. Shot type: Insert. Dialogue: YutoMother: …わかった。カード会社にすぐ連絡する。.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/25/Cswf5GNtvh6W_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 電話画面。「ママ」と表示。通話中。. Shot type: Insert. Dialogue: YutoMother: …わかった。カード会社にすぐ連絡する。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
@@ -4484,7 +4610,16 @@
           ],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/25/-BIiGL94P9Kv_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/25/-BIiGL94P9Kv_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356576,
+              "gh:imagePrompt": "希望と不安が入り混じった表情のYuto。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Dialogue: Yuto: お金…戻ってくるかな….",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/25/-BIiGL94P9Kv_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 希望と不安が入り混じった表情のYuto。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Dialogue: Yuto: お金…戻ってくるかな….. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
@@ -4508,7 +4643,16 @@
           ],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/25/stRgBTZc6rXo_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/25/stRgBTZc6rXo_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356576,
+              "gh:imagePrompt": "Neiが安心させる笑顔。. Characters: Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Close Up. Dialogue: Nei: 大丈夫。不正利用なら、ほとんど返ってくる。.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/25/stRgBTZc6rXo_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Neiが安心させる笑顔。. Characters: Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Close Up. Dialogue: Nei: 大丈夫。不正利用なら、ほとんど返ってくる。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
@@ -4532,7 +4676,16 @@
           ],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/25/EPZbE579CMIX_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/25/EPZbE579CMIX_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356579,
+              "gh:imagePrompt": "Neiが頷く。次のステップへ。. Characters: Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Nei: よし。次。.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/25/EPZbE579CMIX_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Neiが頷く。次のステップへ。. Characters: Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Dialogue: Nei: よし。次。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
