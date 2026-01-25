@@ -47,9 +47,9 @@ interface StoryboardScene {
   emotions: string[];
 }
 
-const PROJECT_ID = '260125-jump';
+const PROJECT_ID = '260123-jump';
 const STORYBOARD_ID = `storyboard:${PROJECT_ID}`;
-const INPUT_PATH = path.join(process.cwd(), '260125-jump', 'storyboard.jsonld');
+const INPUT_PATH = path.join(process.cwd(), '260123-jump', 'resources/storyboard.jsonld');
 const OUTPUT_DIR = path.join(process.cwd(), 'apps', 'zen-editor', 'data', PROJECT_ID, 'datastore');
 
 function idToFilename(id: string): string {

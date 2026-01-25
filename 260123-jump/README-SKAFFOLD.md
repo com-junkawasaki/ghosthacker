@@ -16,7 +16,7 @@ Skaffoldを使用してKubernetes上でstoryboard-editorをローカル開発し
 ### 開発モードで起動（ホットリロード有効）
 
 ```bash
-cd 260125-jump/apps/260123-storyboard
+cd 260123-jump/apps/260123-storyboard
 skaffold dev --profile dev
 ```
 

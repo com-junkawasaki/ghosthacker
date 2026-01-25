@@ -53,7 +53,7 @@ func handleGenerateDialogueAndCinematics(ctx context.Context, req mcp.CallToolRe
 	if workspaceRoot == "" {
 		workspaceRoot = "../../../.."
 	}
-	storyboardPath := filepath.Join(workspaceRoot, "260125-jump/storyboard.jsonld")
+	storyboardPath := filepath.Join(workspaceRoot, "260123-jump/resources/storyboard.jsonld")
 	
 	data, err := os.ReadFile(storyboardPath)
 	if err != nil {
@@ -184,7 +184,7 @@ func handleGenerateAllMissingAriaPrompts(ctx context.Context, req mcp.CallToolRe
 	if workspaceRoot == "" {
 		workspaceRoot = "../../../.."
 	}
-	storyboardPath := filepath.Join(workspaceRoot, "260125-jump/storyboard.jsonld")
+	storyboardPath := filepath.Join(workspaceRoot, "260123-jump/resources/storyboard.jsonld")
 	
 	data, err := os.ReadFile(storyboardPath)
 	if err != nil {
@@ -254,7 +254,7 @@ func handleRegisterGeneratedImage(ctx context.Context, req mcp.CallToolRequest) 
 	now := time.Now()
 	timestamp := now.Format("20060102_150405")
 	
-	targetDir := filepath.Join(workspaceRoot, "260125-jump/images/episodes", epID, "pages", fmt.Sprintf("%d", int(pageNum)))
+	targetDir := filepath.Join(workspaceRoot, "260123-jump/resources/images/episodes", epID, "pages", fmt.Sprintf("%d", int(pageNum)))
 	if err := os.MkdirAll(targetDir, 0755); err != nil {
 		return nil, fmt.Errorf("failed to create target directory: %w", err)
 	}
@@ -277,7 +277,7 @@ func handleRegisterGeneratedImage(ctx context.Context, req mcp.CallToolRequest) 
 
 	// 3. Update JSON-LD (Episode file)
 	// First find the episode source file from storyboard.jsonld
-	storyboardPath := filepath.Join(workspaceRoot, "260125-jump/storyboard.jsonld")
+	storyboardPath := filepath.Join(workspaceRoot, "260123-jump/resources/storyboard.jsonld")
 	sbData, _ := os.ReadFile(storyboardPath)
 	var storyboard map[string]interface{}
 	json.Unmarshal(sbData, &storyboard)
@@ -296,7 +296,7 @@ func handleRegisterGeneratedImage(ctx context.Context, req mcp.CallToolRequest) 
 		return nil, fmt.Errorf("episode %s not found in storyboard", epID)
 	}
 
-	epPath := filepath.Join(workspaceRoot, "260125-jump", sourceFile)
+	epPath := filepath.Join(workspaceRoot, "260123-jump/resources", sourceFile)
 	epData, err := os.ReadFile(epPath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read episode file: %w", err)
@@ -334,7 +334,7 @@ func handleSyncStoryboardData(ctx context.Context, req mcp.CallToolRequest) (*mc
 		workspaceRoot = "../../../.."
 	}
 
-	storyboardPath := filepath.Join(workspaceRoot, "260125-jump/storyboard.jsonld")
+	storyboardPath := filepath.Join(workspaceRoot, "260123-jump/resources/storyboard.jsonld")
 	sbData, err := os.ReadFile(storyboardPath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read storyboard: %w", err)
@@ -352,7 +352,7 @@ func handleSyncStoryboardData(ctx context.Context, req mcp.CallToolRequest) (*mc
 		epRef := e.(map[string]interface{})
 		epID := epRef["gh:episodeId"].(string)
 		sourceFile := epRef["gh:sourceFile"].(string)
-		epPath := filepath.Join(workspaceRoot, "260125-jump", sourceFile)
+		epPath := filepath.Join(workspaceRoot, "260123-jump/resources", sourceFile)
 
 		if _, err := os.Stat(epPath); os.IsNotExist(err) {
 			report = append(report, fmt.Sprintf("❌ %s: Source file missing at %s", epID, sourceFile))

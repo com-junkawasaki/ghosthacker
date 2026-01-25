@@ -28,7 +28,7 @@ Storyboard EditorをPaketo BuildpacksとScaffold（Temporal Operator）を使用
 ### 1. Scaffold (Temporal Operator) のインストール
 
 ```bash
-cd 260125-jump/apps/260123-storyboard
+cd 260123-jump/apps/260123-storyboard
 chmod +x k8s/setup.sh
 ./k8s/setup.sh
 ```

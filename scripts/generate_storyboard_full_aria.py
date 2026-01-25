@@ -26,9 +26,9 @@ from typing import Any, Dict, List, Optional, Tuple
 
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-SEASON1_BIBLE = os.path.join(ROOT, "apps", "zen-editor", "data", "260125-jump", "season1_bible.jsonld")
-GEN_EP1 = os.path.join(ROOT, "260125-jump", "generation_prompts.jsonld")
-OUT = os.path.join(ROOT, "260125-jump", "storyboard.jsonld")
+SEASON1_BIBLE = os.path.join(ROOT, "apps", "zen-editor", "data", "260123-jump", "season1_bible.jsonld")
+GEN_EP1 = os.path.join(ROOT, "260123-jump", "resources", "generation_prompts.jsonld")
+OUT = os.path.join(ROOT, "260123-jump", "resources", "storyboard.jsonld")
 
 
 ARIA_ATMOSPHERE = "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air"

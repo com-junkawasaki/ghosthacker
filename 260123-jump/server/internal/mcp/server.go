@@ -109,7 +109,7 @@ func (s *StoryboardMCPServer) fetchEpisodeProfile(epID string) (string, error) {
 	}
 
 	// Fallback to master storyboard
-	storyboardPath := filepath.Join(workspaceRoot, "260125-jump", "storyboard.jsonld")
+	storyboardPath := filepath.Join(workspaceRoot, "260123-jump", "resources/storyboard.jsonld")
 	storyboardData, err := os.ReadFile(storyboardPath)
 	if err == nil {
 		var storyboard map[string]interface{}
@@ -181,7 +181,7 @@ func (s *StoryboardMCPServer) fetchCharacterProfile(charID string) (string, erro
 	}
 
 	// Fallback to master storyboard
-	storyboardPath := filepath.Join(workspaceRoot, "260125-jump", "storyboard.jsonld")
+	storyboardPath := filepath.Join(workspaceRoot, "260123-jump", "resources/storyboard.jsonld")
 	storyboardData, err := os.ReadFile(storyboardPath)
 	if err == nil {
 		var storyboard map[string]interface{}
@@ -198,7 +198,7 @@ func (s *StoryboardMCPServer) fetchCharacterProfile(charID string) (string, erro
 	}
 
 	// Last fallback to datastore (legacy)
-	datastoreDir := filepath.Join(workspaceRoot, "260125-jump", "datastore")
+	datastoreDir := filepath.Join(workspaceRoot, "260123-jump", "resources/datastore")
 	encodedID := base64.URLEncoding.EncodeToString([]byte(charID))
 	charFile = filepath.Join(datastoreDir, encodedID+".jsonld")
 
@@ -266,7 +266,7 @@ func (s *StoryboardMCPServer) fetchEnvironmentProfile(envID string) (string, err
 	}
 
 	// Fallback to master storyboard
-	storyboardPath := filepath.Join(workspaceRoot, "260125-jump", "storyboard.jsonld")
+	storyboardPath := filepath.Join(workspaceRoot, "260123-jump", "resources/storyboard.jsonld")
 	storyboardData, err := os.ReadFile(storyboardPath)
 	if err == nil {
 		var storyboard map[string]interface{}

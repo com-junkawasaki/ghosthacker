@@ -5,14 +5,14 @@
     "prov": "http://www.w3.org/ns/prov#",
     "dct": "http://purl.org/dc/terms/"
   },
-  "@id": "gh:project/manga-ghost-hacker-260125-jump",
+  "@id": "gh:project/manga-ghost-hacker-260123-jump",
   "@type": ["gh:Project", "prov:Entity"],
-  "dct:title": "Manga Ghost Hacker: Case Study Series",
+  "dct:title": "Manga Ghost Hacker: Case Study Series (260123-jump)",
   "dct:description": "A manga series designed to teach cybersecurity through case studies, using real-world terminology and frameworks (CISA, CISSP, CMMI).",
   "gh:status": "Planning / Master Storyboard (ARIA Cinematic Base - FULL 12 Episodes) Completed",
   "gh:currentSession": {
     "@type": "prov:Activity",
-    "prov:startedAtTime": "2026-01-22T00:00:00Z",
+    "prov:startedAtTime": "2026-01-23T00:00:00Z",
     "gh:goals": [
       "Define 12-episode case study structure",
       "Update character profiles with real-world security credentials",
@@ -36,31 +36,37 @@
   },
   "gh:artifacts": [
     {
-      "@id": "gh:artifact/master-storyboard-260125-jump",
+      "@id": "gh:artifact/master-storyboard-260123-jump",
       "@type": "gh:Artifact",
       "schema:name": "Master Storyboard (JSON-LD)",
       "schema:encodingFormat": "application/ld+json",
-      "schema:filePath": "260125-jump/storyboard.jsonld"
+      "schema:filePath": "260123-jump/resources/storyboard.jsonld"
     },
     {
-      "@id": "gh:artifact/character-profiles-260125-jump",
+      "@id": "gh:artifact/character-profiles-260123-jump",
       "@type": "gh:Artifact",
       "schema:name": "Character Profiles",
-      "schema:filePath": "260125-jump/character_profiles.jsonld"
+      "schema:filePath": "260123-jump/resources/characters/"
     },
     {
-      "@id": "gh:artifact/environments-prompts-260125-jump",
+      "@id": "gh:artifact/environments-prompts-260123-jump",
       "@type": "gh:Artifact",
       "schema:name": "Environment Base Prompts",
       "schema:description": "Detailed environment-only prompts for consistent scene setup.",
-      "schema:filePath": "260125-jump/environments/"
+      "schema:filePath": "260123-jump/resources/environments/"
     },
     {
-      "@id": "gh:artifact/props-definition-260125-jump",
+      "@id": "gh:artifact/props-definition-260123-jump",
       "@type": "gh:Artifact",
       "schema:name": "Prop & Furniture Definitions",
       "schema:description": "Specific brand and model names for consistent object generation.",
-      "schema:filePath": "260125-jump/props/"
+      "schema:filePath": "260123-jump/resources/props/"
+    },
+    {
+      "@id": "gh:artifact/zen-editor-data-260123-jump",
+      "@type": "gh:Artifact",
+      "schema:name": "Zen Editor Data",
+      "schema:filePath": "apps/zen-editor/data/260123-jump/"
     },
     {
       "@id": "gh:artifact/zen-editor-3d-assembler",

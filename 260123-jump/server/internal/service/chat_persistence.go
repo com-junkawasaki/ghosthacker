@@ -30,7 +30,7 @@ func (s *StoryboardService) SaveChatSession(
 		workspaceRoot = "../../../.."
 	}
 
-	chatHistoryDir := filepath.Join(workspaceRoot, "260125-jump", "chat_history")
+	chatHistoryDir := filepath.Join(workspaceRoot, "260123-jump", "resources/chat_history")
 	if err := os.MkdirAll(chatHistoryDir, fs.FileMode(0755)); err != nil {
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to create chat history directory: %w", err))
 	}
@@ -79,7 +79,7 @@ func (s *StoryboardService) GetChatSessions(
 		workspaceRoot = "../../../.."
 	}
 
-	chatHistoryDir := filepath.Join(workspaceRoot, "260125-jump", "chat_history")
+	chatHistoryDir := filepath.Join(workspaceRoot, "260123-jump", "resources/chat_history")
 	if _, err := os.Stat(chatHistoryDir); os.IsNotExist(err) {
 		return connect.NewResponse(&storyboardpb.GetChatSessionsResponse{
 			Sessions: []*storyboardpb.ChatSessionData{},

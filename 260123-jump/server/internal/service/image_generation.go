@@ -75,7 +75,7 @@ func (s *StoryboardService) GeneratePanelImage(
 	if workspaceRoot == "" {
 		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(filePath))))
 	}
-	imagesDir := filepath.Join(workspaceRoot, "260125-jump", "images", "episodes", req.Msg.EpisodeId, "pages", fmt.Sprintf("%d", req.Msg.PageNumber))
+	imagesDir := filepath.Join(workspaceRoot, "260123-jump", "resources/images", "episodes", req.Msg.EpisodeId, "pages", fmt.Sprintf("%d", req.Msg.PageNumber))
 	if err := os.MkdirAll(imagesDir, fs.FileMode(0755)); err != nil {
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to create images directory: %w", err))
 	}
@@ -357,7 +357,7 @@ func (s *StoryboardService) saveImage(filePath, episodeID string, pageNumber, pa
 		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(filePath))))
 	}
 
-	imagesDir := filepath.Join(workspaceRoot, "260125-jump", "images", "episodes", episodeID, "pages", fmt.Sprintf("%d", pageNumber))
+	imagesDir := filepath.Join(workspaceRoot, "260123-jump", "resources/images", "episodes", episodeID, "pages", fmt.Sprintf("%d", pageNumber))
 	if err := os.MkdirAll(imagesDir, fs.FileMode(0755)); err != nil {
 		return "", fmt.Errorf("failed to create images directory: %w", err)
 	}
@@ -438,7 +438,7 @@ func (s *StoryboardService) loadCharacterDetails(characterIDs []string, storyboa
 		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(storyboardPath))))
 	}
 
-	charDir := filepath.Join(workspaceRoot, "260125-jump", "characters")
+	charDir := filepath.Join(workspaceRoot, "260123-jump", "resources/characters")
 	details := []string{}
 
 	for _, charID := range characterIDs {
@@ -541,7 +541,7 @@ func (s *StoryboardService) loadEnvironmentDetails(environmentID string, storybo
 
 	if !found {
 		// Try environments/ directory (new design: environments/ID/profile.jsonld)
-		envDir := filepath.Join(workspaceRoot, "260125-jump", "environments")
+		envDir := filepath.Join(workspaceRoot, "260123-jump", "resources/environments")
 		id := strings.TrimPrefix(environmentID, "env:")
 		envFile := filepath.Join(envDir, id, "profile.jsonld")
 		data, err := os.ReadFile(envFile)
@@ -575,7 +575,7 @@ func (s *StoryboardService) loadEnvironmentDetails(environmentID string, storybo
 	}
 
 	// Fallback to datastore (legacy)
-	datastoreDir := filepath.Join(workspaceRoot, "260125-jump", "datastore")
+	datastoreDir := filepath.Join(workspaceRoot, "260123-jump", "resources/datastore")
 	encodedID := base64.URLEncoding.EncodeToString([]byte(environmentID))
 	envFile := filepath.Join(datastoreDir, encodedID+".jsonld")
 

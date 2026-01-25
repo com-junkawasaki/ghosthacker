@@ -22,7 +22,7 @@ func main() {
 		workspaceRoot = "../../../.."
 	}
 
-	storyboardPath := filepath.Join(workspaceRoot, "260125-jump/storyboard.jsonld")
+	storyboardPath := filepath.Join(workspaceRoot, "260123-jump/resources/storyboard.jsonld")
 	if _, err := os.Stat(storyboardPath); os.IsNotExist(err) {
 		log.Printf("Warning: storyboard.jsonld not found at %s", storyboardPath)
 	}
@@ -34,7 +34,7 @@ func main() {
 	mux.Handle(path, handler)
 
 	// Serve static images
-	imagesDir := filepath.Join(workspaceRoot, "260125-jump", "images")
+	imagesDir := filepath.Join(workspaceRoot, "260123-jump", "resources/images")
 	if _, err := os.Stat(imagesDir); !os.IsNotExist(err) {
 		mux.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir(imagesDir))))
 		log.Printf("Serving images from: %s", imagesDir)

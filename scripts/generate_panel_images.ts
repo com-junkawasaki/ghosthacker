@@ -210,8 +210,8 @@ function panelOutPath(baseDir: string, ep: number, page: number, panel: number) 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
 
-  const storyboardPath = (args["storyboard"] as string) || path.join(process.cwd(), "260125-jump", "storyboard.jsonld");
-  const outDir = (args["out"] as string) || path.join(process.cwd(), "260125-jump", "panel_images");
+  const storyboardPath = (args["storyboard"] as string) || path.join(process.cwd(), "260123-jump", "resources/storyboard.jsonld");
+  const outDir = (args["out"] as string) || path.join(process.cwd(), "260123-jump", "resources/panel_images");
   const size = (args["size"] as string) || "1024x1024";
   const provider = ((args["provider"] as string) || "openai") as Provider;
   const model = (args["model"] as string) || "";

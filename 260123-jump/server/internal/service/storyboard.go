@@ -98,7 +98,7 @@ func (s *StoryboardService) aggregateMaster(filePath string) (map[string]interfa
 				continue
 			}
 
-			fullPath := filepath.Join(workspaceRoot, "260125-jump", sourceFile)
+			fullPath := filepath.Join(workspaceRoot, "260123-jump/resources", sourceFile)
 			data, err := os.ReadFile(fullPath)
 			if err != nil {
 				log.Printf("Warning: failed to read source file %s: %v", fullPath, err)
@@ -436,7 +436,7 @@ func (s *StoryboardService) UpdatePanel(
 		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(filePath))))
 	}
 	epID := strings.TrimPrefix(req.Msg.EpisodeId, "episode:")
-	epPath := filepath.Join(workspaceRoot, "260125-jump", "episodes", epID, "episode.jsonld")
+	epPath := filepath.Join(workspaceRoot, "260123-jump", "resources/episodes", epID, "episode.jsonld")
 	
 	// Find the episode data in the master map to save it individually
 	var targetEpisode map[string]interface{}
