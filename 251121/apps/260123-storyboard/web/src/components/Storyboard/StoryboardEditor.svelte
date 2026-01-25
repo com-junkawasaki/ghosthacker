@@ -223,6 +223,18 @@
 		}
 	}
 
+	function handleApplyPatches(patches: any[]) {
+		console.log('[StoryboardEditor] Applying patches:', patches);
+		// For now, we handle simple panel data updates
+		// In a real implementation, this would be more complex
+		for (const patch of patches) {
+			// Example path: /gh:episodes/0/gh:pages/0/gh:panels/0/dialogue/0/text
+			// This is a placeholder for a real JSON-LD patch application
+			console.log('[StoryboardEditor] Patch logic pending for:', patch.path);
+		}
+		alert(`AI suggested ${patches.length} changes. Patch application logic is being developed.`);
+	}
+
 	// Only load panels when an episode is selected (not empty string)
 	$effect(() => {
 		if (selectedEpisode && selectedEpisode.trim() !== '') {
@@ -344,7 +356,12 @@
 			</main>
 
 			<aside class="right-sidebar">
-				<ChatPanel bind:this={chatPanel} {selectedEpisode} {storyboardPath} />
+				<ChatPanel 
+					bind:this={chatPanel} 
+					{selectedEpisode} 
+					{storyboardPath} 
+					onApplyPatches={handleApplyPatches}
+				/>
 			</aside>
 		</div>
 	{:else if episodes.length === 0 && !loading}

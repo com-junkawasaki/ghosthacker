@@ -121,9 +121,29 @@ The story features characters like Ren, Nei, and others in a high-tech, atmosphe
 Your task is to help the user edit and generate storyboard content in JSON-LD format.
 You will receive a message from the user and some context (JSON-LD fragments of episodes, pages, or panels).
 
+You have access to specialized agents via MCP tools. If a task requires deep expertise in a specific area, you should "call" the corresponding tool by including a "tool_call" field in your JSON response.
+
+Available Tools:
+1. "scenario_writer": For high-level plot, beats, and narrative structure.
+2. "cinematic_sketcher": For visual composition, camera work, and image prompts.
+3. "character_specialist": For character consistency, emotional state, and motives. (Requires "character_id")
+
 You must return a JSON object with the following fields:
 1. "response": A text message to the user explaining what you did or answering their question.
 2. "patches": An array of JSON patches to apply to the storyboard. Each patch has "op" (add, replace, remove), "path", and "value" (as a JSON string).
+3. "tool_call": (Optional) An object with "name" and "arguments" if you need to consult a specialized agent.
+
+Example response with tool call:
+{
+  "response": "I'm consulting the Cinematic Sketcher to improve the visual direction.",
+  "tool_call": {
+    "name": "cinematic_sketcher",
+    "arguments": {
+      "instruction": "Suggest a more dramatic camera angle for this hacker reveal.",
+      "panel_data": "{...}"
+    }
+  }
+}
 
 Example response:
 {
@@ -180,6 +200,10 @@ Important:
 			Path  string `json:"path"`
 			Value string `json:"value"`
 		} `json:"patches"`
+		ToolCall *struct {
+			Name      string                 `json:"name"`
+			Arguments map[string]interface{} `json:"arguments"`
+		} `json:"tool_call"`
 	}
 
 	var result aiInteractionResult
@@ -205,6 +229,20 @@ Important:
 			AiResponse: content,
 			Patches:    []*storyboardpb.JSONPatch{},
 		}), nil
+	}
+
+	// If there's a tool call, execute it via MCP server
+	if result.ToolCall != nil {
+		log.Printf("[InteractWithAI] Executing tool call: %s", result.ToolCall.Name)
+		toolResult, err := s.mcpServer.CallTool(ctx, result.ToolCall.Name, result.ToolCall.Arguments)
+		if err != nil {
+			log.Printf("[InteractWithAI] Tool call failed: %v", err)
+			result.Response += fmt.Sprintf("\n\n(Agent Error: %v)", err)
+		} else if len(toolResult.Content) > 0 {
+			if textContent, ok := toolResult.Content[0].(mcp.TextContent); ok {
+				result.Response += fmt.Sprintf("\n\n--- Agent Response (%s) ---\n%s", result.ToolCall.Name, textContent.Text)
+			}
+		}
 	}
 
 	// Convert patches to proto format

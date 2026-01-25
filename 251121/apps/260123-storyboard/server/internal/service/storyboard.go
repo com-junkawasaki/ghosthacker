@@ -12,6 +12,7 @@ import (
 	"connectrpc.com/connect"
 	"cuelang.org/go/cue"
 	"cuelang.org/go/cue/cuecontext"
+	"storyboard-editor/backend/internal/mcp"
 	"storyboard-editor/backend/internal/schema"
 	"storyboard-editor/backend/proto"
 )
@@ -20,6 +21,7 @@ type StoryboardService struct {
 	storyboardPath string
 	cueCtx         *cue.Context
 	schema         cue.Value
+	mcpServer      *mcp.StoryboardMCPServer
 	
 	mu          sync.RWMutex
 	subscribers map[string]chan *storyboardpb.StreamUpdatesResponse
@@ -31,6 +33,7 @@ func NewStoryboardService(storyboardPath string) *StoryboardService {
 		storyboardPath: storyboardPath,
 		cueCtx:         cueCtx,
 		schema:         schema.GetSchema(),
+		mcpServer:      mcp.NewStoryboardMCPServer(),
 		subscribers:    make(map[string]chan *storyboardpb.StreamUpdatesResponse),
 	}
 }

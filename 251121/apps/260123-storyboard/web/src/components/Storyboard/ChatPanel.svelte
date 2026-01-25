@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { storyboardClient } from '$lib/client/storyboard-client';
 
-	let { selectedEpisode, storyboardPath } = $props<{
+	let { selectedEpisode, storyboardPath, onApplyPatches } = $props<{
 		selectedEpisode: string;
 		storyboardPath: string;
+		onApplyPatches?: (patches: any[]) => void;
 	}>();
 
-	let messages = $state<{ role: 'user' | 'assistant', content: string, context?: any, agent?: string }[]>([]);
+	let messages = $state<{ role: 'user' | 'assistant', content: string, context?: any, agent?: string, patches?: any[] }[]>([]);
 	let inputValue = $state('');
 	let loading = $state(false);
 	let dropContext = $state<any[]>([]);
@@ -57,12 +58,12 @@
 			if (res.success) {
 				messages = [...messages, { 
 					role: 'assistant', 
-					content: res.aiResponse 
+					content: res.aiResponse,
+					patches: res.patches
 				}];
 				
 				if (res.patches && res.patches.length > 0) {
 					console.log('[ChatPanel] AI suggested patches:', res.patches);
-					// TODO: Implement patch application logic
 				}
 			} else {
 				messages = [...messages, { role: 'assistant', content: `AI Error: ${res.message}` }];
@@ -98,6 +99,12 @@
 
 	function removeContext(index: number) {
 		dropContext = dropContext.filter((_, i) => i !== index);
+	}
+
+	function applyPatches(patches: any[]) {
+		if (onApplyPatches) {
+			onApplyPatches(patches);
+		}
 	}
 </script>
 
@@ -162,6 +169,13 @@
 					</div>
 				{/if}
 				<div class="message-content">{msg.content}</div>
+				{#if msg.patches && msg.patches.length > 0}
+					<div class="patch-actions">
+						<button class="apply-btn" onclick={() => applyPatches(msg.patches!)}>
+							Apply {msg.patches.length} Changes
+						</button>
+					</div>
+				{/if}
 			</div>
 		{/each}
 		{#if loading}
@@ -351,6 +365,28 @@
 		line-height: 1;
 	}
 
+	.patch-actions {
+		margin-top: 0.75rem;
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.apply-btn {
+		background: #2ecc71;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		padding: 4px 12px;
+		font-size: 0.75rem;
+		font-weight: bold;
+		cursor: pointer;
+		transition: background 0.2s;
+	}
+
+	.apply-btn:hover {
+		background: #27ae60;
+	}
+
 	.chat-input-area {
 		padding: 1rem;
 		background: #252526;
@@ -380,7 +416,7 @@
 		background: #3c3c3c;
 		color: white;
 		border: 1px solid #555;
-		border-radius: 6px;
+		border-radius: 4px;
 		padding: 0.6rem;
 		font-size: 0.9rem;
 		resize: none;
