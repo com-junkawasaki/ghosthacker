@@ -648,7 +648,7 @@
               "gh:nameReading": "すずき あきら"
             }
           ],
-          "gh:currentImageIndex": 2,
+          "gh:currentImageIndex": 3,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/N9XqqSr8KpAa_v4.png",
           "gh:generatedImages": [
             {
@@ -668,6 +668,12 @@
               "gh:imagePrompt": "スニーカーのアップ。ブランドロゴが光る限定モデル。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Dialogue: Ken: うわ、マジ？それ即完売だったやつじゃん！. Akira: 発売30秒で勝負ついたわ。指の速さがモノを言う. Mei: えー、いくらしたの？. Akira: 定価で2万5千。転売だと5万超えてたからな.",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/N9XqqSr8KpAa_v3.png",
               "gh:model": "google/gemini-3-pro-image-preview"
+            },
+            {
+              "gh:generatedAt": 1769356805,
+              "gh:imagePrompt": "スニーカーのアップ。ブランドロゴが光る限定モデル。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Dialogue: Ken: うわ、マジ？それ即完売だったやつじゃん！. Akira: 発売30秒で勝負ついたわ。指の速さがモノを言う. Mei: えー、いくらしたの？. Akira: 定価で2万5千。転売だと5万超えてたからな.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/N9XqqSr8KpAa_v4.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. スニーカーのアップ。ブランドロゴが光る限定モデル。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Insert. Dialogue: Ken: うわ、マジ？それ即完売だったやつじゃん！. Akira: 発売30秒で勝負ついたわ。指の速さがモノを言う. Mei: えー、いくらしたの？. Akira: 定価で2万5千。転売だと5万超えてたからな.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -1198,7 +1204,16 @@
           ],
           "environment": "env:smartphone-screen",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/mCsug9HFeM5r_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/mCsug9HFeM5r_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356803,
+              "gh:imagePrompt": "サイトのロゴ。大手っぽいデザイン。「安心のカスタマーサポート」の文字。. Shot type: Insert. Dialogue: Yuto: でも大手っぽいし….",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/mCsug9HFeM5r_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. サイトのロゴ。大手っぽいデザイン。「安心のカスタマーサポート」の文字。. Shot type: Insert. Dialogue: Yuto: でも大手っぽいし….. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
@@ -1214,7 +1229,16 @@
           "dialogue": [],
           "environment": "env:smartphone-screen",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/PUQxHR-aQMYt_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/PUQxHR-aQMYt_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356797,
+              "gh:imagePrompt": "5つ星レビューがずらりと並ぶ。「最高！」「すぐ届いた！」「本物でした！」（全て偽）. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/PUQxHR-aQMYt_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 5つ星レビューがずらりと並ぶ。「最高！」「すぐ届いた！」「本物でした！」（全て偽）. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "flat",
@@ -1238,7 +1262,16 @@
           ],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/mwPj4LlGLNLh_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/mwPj4LlGLNLh_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356799,
+              "gh:imagePrompt": "自分を説得するような表情。目がレビューを追っている。. Shot type: Close Up. Dialogue: Yuto: レビューもいいし…大丈夫だよな….",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/mwPj4LlGLNLh_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 自分を説得するような表情。目がレビューを追っている。. Shot type: Close Up. Dialogue: Yuto: レビューもいいし…大丈夫だよな….. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
@@ -1263,7 +1296,16 @@
           ],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/gMwKLYtgOxWH_v1.png",
+          "gh:currentImageIndex": 0,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/gMwKLYtgOxWH_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1769356803,
+              "gh:imagePrompt": "指が画面に触れようとする瞬間。決断の直前。. Shot type: Extreme Close Up. Dialogue: Yuto: （…買おう）.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/gMwKLYtgOxWH_v1.png",
+              "gh:model": "bytedance-seed/seedream-4.5"
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 指が画面に触れようとする瞬間。決断の直前。. Shot type: Extreme Close Up. Dialogue: Yuto: （…買おう）.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shotProperties": {
             "gh:angle": "from below",
