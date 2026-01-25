@@ -22,7 +22,8 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "env:smartphone-screen",
+  "@id": "env:6N7x6gNT3LVOwc1INZVkJ",
   "dct:description": "スマホの画面（通知・設定・チャット等のインサート）。",
-  "dct:title": "Smartphone screen"
+  "dct:title": "Smartphone screen",
+  "gh:slug": "smartphone-screen"
 }

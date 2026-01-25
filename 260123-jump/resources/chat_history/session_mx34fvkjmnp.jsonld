@@ -4,15 +4,16 @@
     "gh": "https://ghosthacker.gftd.ai/ns/",
     "schema": "http://schema.org/"
   },
-  "@id": "chat:mx34fvkjmnp",
+  "@id": "chat:pTrlBgKKuHD78l2zrlJ66",
   "@type": "gh:ChatSession",
   "dct:title": "[AUTO-PILOT START] Goal: 今のストー...",
   "gh:messages": [
     {
-      "role": "user",
       "content": "[AUTO-PILOT START] Goal: 今のストーリーの完成度を評価して、ブラッシュアップ案を提示・適用してください。",
-      "context_json": "[{\"type\":\"episode\",\"id\":\"episode:260123-cschool-privacy\"}]"
+      "context_json": "[{\"type\":\"episode\",\"id\":\"episode:260123-cschool-privacy\"}]",
+      "role": "user"
     }
   ],
+  "gh:slug": "mx34fvkjmnp",
   "schema:dateCreated": 1769330469163
 }

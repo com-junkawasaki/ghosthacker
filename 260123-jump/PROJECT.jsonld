@@ -9,36 +9,39 @@
   "@type": ["gh:Project", "prov:Entity"],
   "dct:title": "Manga Ghost Hacker: Case Study Series (260123-jump)",
   "dct:description": "A manga series designed to teach cybersecurity through case studies, using real-world terminology and frameworks (CISA, CISSP, CMMI).",
-  "gh:status": "Arc-based editing support implemented",
+  "gh:status": "Arc 0-2/0-3 restructured with Takeru and Kaname as main characters",
   "gh:currentSession": {
     "@type": "prov:Activity",
-    "prov:startedAtTime": "2026-01-25T11:53:00Z",
+    "prov:startedAtTime": "2026-01-25T19:00:00Z",
     "gh:goals": [
-      "Define 12-episode case study structure",
-      "Update character profiles with real-world security credentials",
-      "Generate detailed panel-by-panel (cut) storyboard prompts for Runway base generation",
-      "Convert prompts to realistic live-action base (style transfer applied later)",
-      "Consolidate all story assets into a single master storyboard",
-      "Implement ARIA-style aesthetic (clean air, soft light, detailed eyes) for Runway base generation",
-      "Implement Arc-based editing mode in the storyboard editor"
+      "Restructure Arc 0-2 with Takeru as main character",
+      "Restructure Arc 0-3 with Kaname as main character",
+      "Create school/organization profiles for each arc",
+      "Create classmate and supporting character profiles",
+      "Design base incidents and story outlines"
     ],
     "gh:results": [
-      "Ren Numano: Sloth (Efficiency), MIT Dropout, CISSP Associate, CEH",
-      "Kaname: Arrogance (Perfection), Stanford Grad, CISA, PMP, Registered InfoSec Specialist",
-      "Takeru: Short-tempered (Instant Action), Self-taught, OSCP, GXPN",
-      "storyboard.jsonld regenerated to include all 12 episodes with full pages and panels",
-      "character_profiles.jsonld restored and enhanced with detailed ocular (eye) descriptions",
-      ".cursor/rules/runway_manga_generation.mdc updated with ARIA aesthetic",
-      "Added generator script scripts/generate_storyboard_full_aria.py",
-      "Created apps/zen-editor dataset from storyboard.jsonld",
-      "Fixed A2A workflow: Added ApplyEpisodeUpdatesActivity and GeneratePanelImagesActivity",
-      "A2A workflow now properly updates resources/ directories",
-      "Implemented Arc-based editing: added GetArcs and GetArcPanels RPCs to storyboard.proto",
-      "Updated StoryboardService in Go to handle Arc-based data aggregation and retrieval",
-      "Enhanced Svelte frontend with 'By Episode' and 'By Arc' mode switching",
-      "Updated NodeTree component to support dynamic selection IDs for better context dragging"
+      "Arc 0-2 (Takeru): Created TokyoTechHighSchool organization profile",
+      "Arc 0-2 (Takeru): Created characters - RyoKuroda (victim/streamer), ShotaHayashi (friend), YuiTanaka (tech support), DaichiMori (gray character)",
+      "Arc 0-2 (Takeru): Incident - Doxing/online defamation of game streamer Ryo",
+      "Arc 0-2 (Takeru): Theme - '恥じゃない。残すのが一番強い' (Evidence preservation & legal action)",
+      "Arc 0-3 (Kaname): Created SeiranAcademy organization profile (elite private school)",
+      "Arc 0-3 (Kaname): Created characters - SoraAoyama (victim/scholarship student), RikaShirakawa (student council president), KenjiOhara (friend), TakashiNomura (antagonist/recruiter)",
+      "Arc 0-3 (Kaname): Incident - Dark part-time job targeting elite students for information trading",
+      "Arc 0-3 (Kaname): Theme - 'やめたい…でも、怖い' (Escape from exploitation & early consultation)",
+      "Updated Takeru profile with detailed background and relationships",
+      "Updated Kaname profile with detailed background and relationships",
+      "Created story-outline.jsonld for both episodes with 7-act structure",
+      "Updated episode.jsonld metadata for both arcs"
     ]
   },
+  "gh:previousSessions": [
+    {
+      "@type": "prov:Activity",
+      "prov:endedAtTime": "2026-01-25T18:00:00Z",
+      "gh:summary": "Arc-based editing support, A2A workflow fixes, ARIA aesthetic implementation"
+    }
+  ],
   "gh:artifacts": [
     {
       "@id": "gh:artifact/master-storyboard-260123-jump",
@@ -90,6 +93,11 @@
     {
       "gh:name": "Arc-based Editing Support",
       "gh:status": "Completed"
+    },
+    {
+      "gh:name": "Arc 0-2/0-3 Character-Centric Restructuring",
+      "gh:status": "Completed",
+      "gh:description": "Takeru (Arc 0-2) and Kaname (Arc 0-3) as main protagonists with dedicated schools, classmates, and incidents"
     }
   ]
 }

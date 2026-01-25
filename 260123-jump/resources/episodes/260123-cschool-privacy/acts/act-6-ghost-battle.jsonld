@@ -17,14 +17,21 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "act:6-ghost-battle",
-  "@type": ["gh:Act", "prov:Entity"],
+  "@id": "act:OLeLGPD-htJAgC5xmlg1O",
+  "@type": [
+    "gh:Act",
+    "prov:Entity"
+  ],
   "gh:actNumber": 6,
   "gh:actTitle": "Ghost説明＋バトル",
-  "gh:actTitleEn": "Ghost Revelation & Battle",
-  "gh:pageRange": [30, 35],
+  "gh:actTitleEn": "Ghost Revelation \u0026 Battle",
   "gh:emotionalArc": "罵倒 → 驚愕 → 理解 → 戦闘開始",
-  "gh:narrativePurpose": "情報の物理性を示し、Ghostの存在を明かす",
   "gh:keyBeat": "revelation",
-  "gh:pages": []
+  "gh:narrativePurpose": "情報の物理性を示し、Ghostの存在を明かす",
+  "gh:pageRange": [
+    30,
+    35
+  ],
+  "gh:pages": [],
+  "gh:slug": "6-ghost-battle"
 }

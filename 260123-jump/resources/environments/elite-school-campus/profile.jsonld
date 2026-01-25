@@ -22,7 +22,8 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "env:elite-school-campus",
+  "@id": "env:KTeoySdvYb9Aoi754FTMT",
   "dct:description": "都内有名校のキャンパス。洗練された建築、起業家気質の空気。",
-  "dct:title": "Elite school campus"
+  "dct:title": "Elite school campus",
+  "gh:slug": "elite-school-campus"
 }

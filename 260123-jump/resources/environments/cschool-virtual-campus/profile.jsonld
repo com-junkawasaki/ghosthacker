@@ -22,7 +22,8 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "env:cschool-virtual-campus",
+  "@id": "env:aNQ9RS4TOVtjyW6WAUiU5",
   "dct:description": "C高校のバーチャル空間（仮想校舎）。アバター、浮遊UI、授業の出欠や課題が見える。",
-  "dct:title": "C-school virtual campus"
+  "dct:title": "C-school virtual campus",
+  "gh:slug": "cschool-virtual-campus"
 }

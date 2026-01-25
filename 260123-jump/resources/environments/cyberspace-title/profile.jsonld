@@ -22,7 +22,8 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "env:cyberspace-title",
+  "@id": "env:FSVg8-uQQyJ5Y_LOUCLgu",
   "dct:description": "デジタルグリッドと都市片が融合・崩壊・再構築するサイバー空間。縦長タイトルロゴ。",
-  "dct:title": "Cyberspace title page"
+  "dct:title": "Cyberspace title page",
+  "gh:slug": "cyberspace-title"
 }

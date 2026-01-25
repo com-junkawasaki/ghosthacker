@@ -22,7 +22,8 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "env:tokyo-2026-aerial",
+  "@id": "env:NBMhWmj8G6p0lC-gBj9p9",
   "dct:description": "2026年の東京。高層ビル、電子データ、サーバーファーム、ドローン物流。",
-  "dct:title": "Tokyo 2026 cityscape"
+  "dct:title": "Tokyo 2026 cityscape",
+  "gh:slug": "tokyo-2026-aerial"
 }

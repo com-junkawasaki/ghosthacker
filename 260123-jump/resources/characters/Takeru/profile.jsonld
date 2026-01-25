@@ -1,69 +1,64 @@
 {
   "@context": {
-    "schema": "http://schema.org/",
-    "gh": "https://ghosthacker.gftd.ai/ns/",
     "character": "gh:character/",
-    "history": "gh:history/",
     "context": "gh:context/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "history": "gh:history/",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "dct": "http://purl.org/dc/terms/"
+    "schema": "http://schema.org/"
   },
-  "@id": "character:Takeru",
-  "schema:name": "赤羽 猛 (Takeru Akabane)",
-  "schema:role": "Street Hacker / Rival",
-  "schema:age": 19,
-  "gh:arc": "Arc 0-2 (Main) / Arc B (Rival)",
-
+  "@id": "character:_UfYebKH0geeBlMiocW-H",
   "gh:appearance": {
-    "gh:face": "19-year-old Japanese male, muscular build, aggressive and intense expression, piercing amber eyes.",
-    "gh:hair": "Messy black hair with bleached highlights.",
     "gh:build": "Muscular, wearing high-end techwear/streetwear.",
     "gh:eyes": "Piercing amber irises, high contrast iris texture, intense sharp catchlights.",
-    "gh:style": "Photorealistic, gritty street aesthetic, high contrast, 8k.",
-    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 19-year-old Japanese male, aggressive expression, piercing amber eyes with high contrast iris textures, messy black hair with bleached highlights, techwear."
+    "gh:face": "19-year-old Japanese male, muscular build, aggressive and intense expression, piercing amber eyes.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 19-year-old Japanese male, aggressive expression, piercing amber eyes with high contrast iris textures, messy black hair with bleached highlights, techwear.",
+    "gh:hair": "Messy black hair with bleached highlights.",
+    "gh:style": "Photorealistic, gritty street aesthetic, high contrast, 8k."
   },
-
+  "gh:arc": "Arc 0-2 (Main) / Arc B (Rival)",
+  "gh:arc02Role": {
+    "gh:growth": "感情的な報復ではなく、証拠と法的手続きで戦う方法を選ぶ。",
+    "gh:incident": "後輩の配信者・黒田涼がドクシング被害に遭い、相談を受ける。",
+    "gh:position": "主人公",
+    "gh:theme": "『恥じゃない。残すのが一番強い』"
+  },
   "gh:background": {
+    "gh:currentState": "高校は休学中。フリーランスのセキュリティコンサルタントとして活動。HN: aka_chise1",
     "gh:family": "母子家庭。母は看護師で夜勤が多く、幼い頃から一人の時間が長かった。",
-    "gh:school": "都立工科高等学校 3年（休学中）。元eスポーツ部エース。",
     "gh:hackerOrigin": "中学時代、オンラインゲームでチートを使った相手を独学で特定。その経験がハッキングへの入り口に。",
-    "gh:currentState": "高校は休学中。フリーランスのセキュリティコンサルタントとして活動。HN: aka_chise1"
+    "gh:school": "都立工科高等学校 3年（休学中）。元eスポーツ部エース。"
   },
-
   "gh:personality": {
-    "gh:surface": "口が悪く、喧嘩っ早い。「めんどくせぇ」が口癖。",
     "gh:hidden": "弱い者いじめが大嫌い。自分より弱い立場の人間が理不尽に傷つけられることに激昂する。",
     "gh:motivation": "『やられたらやり返す』ではなく『やらせない』。証拠と手続きで潰すのが流儀。",
+    "gh:surface": "口が悪く、喧嘩っ早い。「めんどくせぇ」が口癖。",
     "gh:weakness": "感情的になりやすい。違法スレスレの手段に手を出しそうになることも。"
   },
-
+  "gh:relationships": {
+    "gh:nei": {
+      "gh:dynamic": "Neiの冷静さに時々イラっとするが、分析力は認めている。",
+      "gh:type": "知人"
+    },
+    "gh:ren": {
+      "gh:dynamic": "手法は違えど、目指す場所は同じ。",
+      "gh:history": "オンラインで何度か対峙。互いの実力を認めている。",
+      "gh:type": "ライバル / 同志"
+    }
+  },
   "gh:skills": {
+    "gh:hackerName": "aka_chise1",
+    "gh:reputation": "アンダーグラウンドでは『報復の赤羽』として知られる",
     "gh:technical": [
       "OSINT（公開情報調査）",
       "ネットワーク解析",
       "デジタルフォレンジック",
       "ソーシャルエンジニアリング（対人ハック）"
-    ],
-    "gh:hackerName": "aka_chise1",
-    "gh:reputation": "アンダーグラウンドでは『報復の赤羽』として知られる"
+    ]
   },
-
-  "gh:relationships": {
-    "gh:ren": {
-      "gh:type": "ライバル / 同志",
-      "gh:history": "オンラインで何度か対峙。互いの実力を認めている。",
-      "gh:dynamic": "手法は違えど、目指す場所は同じ。"
-    },
-    "gh:nei": {
-      "gh:type": "知人",
-      "gh:dynamic": "Neiの冷静さに時々イラっとするが、分析力は認めている。"
-    }
-  },
-
-  "gh:arc02Role": {
-    "gh:position": "主人公",
-    "gh:incident": "後輩の配信者・黒田涼がドクシング被害に遭い、相談を受ける。",
-    "gh:growth": "感情的な報復ではなく、証拠と法的手続きで戦う方法を選ぶ。",
-    "gh:theme": "『恥じゃない。残すのが一番強い』"
-  }
+  "gh:slug": "Takeru",
+  "schema:age": 19,
+  "schema:name": "赤羽 猛 (Takeru Akabane)",
+  "schema:role": "Street Hacker / Rival"
 }

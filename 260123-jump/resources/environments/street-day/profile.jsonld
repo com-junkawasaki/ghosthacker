@@ -22,7 +22,8 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "env:street-day",
+  "@id": "env:OW8PV51yapVU84X4txgVE",
   "dct:description": "昼の街。息がしやすい光、再出発の気配。",
-  "dct:title": "Street (daytime)"
+  "dct:title": "Street (daytime)",
+  "gh:slug": "street-day"
 }

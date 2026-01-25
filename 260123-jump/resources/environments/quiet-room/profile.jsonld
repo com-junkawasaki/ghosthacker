@@ -22,7 +22,8 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "env:quiet-room",
+  "@id": "env:ZcOS_Tv8p2pSsJEzhDgVW",
   "dct:description": "落ち着いて説明できる小部屋（支援・相談の場）。",
-  "dct:title": "Quiet room"
+  "dct:title": "Quiet room",
+  "gh:slug": "quiet-room"
 }

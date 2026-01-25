@@ -22,7 +22,8 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "env:intertitle-black",
+  "@id": "env:yfGEwdB-z80tA8h4UdDWF",
   "dct:description": "黒背景のタイトルカード（白文字）。",
-  "dct:title": "Intertitle (black)"
+  "dct:title": "Intertitle (black)",
+  "gh:slug": "intertitle-black"
 }

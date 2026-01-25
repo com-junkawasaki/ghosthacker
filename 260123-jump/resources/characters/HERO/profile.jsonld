@@ -1,5 +1,5 @@
 {
-  "@id": "character:HERO",
+  "@id": "character:xaLtrSnWZVVyL1HzV4p4J",
   "gh:appearance": {
     "gh:build": "Average build, wearing a flashy tactical jacket with many patches.",
     "gh:eyes": "Arrogant insecure eyes, shallow iris detail, bright catchlights from high-rise sun.",
@@ -10,6 +10,7 @@
   },
   "gh:imagePath": "/data/260123-jump/resources/characters/HERO/hf_20260121_195847_0e769f45-ab4b-4a93-afd2-b78049079620.png",
   "gh:organization": "gh:actorTeam/seigi-hero",
+  "gh:slug": "HERO",
   "schema:age": 30,
   "schema:name": "佐藤 ヒロシ (Hiroshi Sato)",
   "schema:role": "Main Antagonist (Arc D)"

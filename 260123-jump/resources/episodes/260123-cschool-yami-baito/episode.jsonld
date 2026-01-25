@@ -24,15 +24,25 @@
   },
   "dct:title": "Arc 0-3: 「やめたい…でも、怖い」",
   "gh:arc": "Arc 0",
-  "gh:episode": 10,
+  "gh:episode": 3,
   "gh:episodeId": "episode:260123-cschool-yami-baito",
-  "gh:episodeIndex": 10,
-  "gh:incidentDescription": "親に内緒で闇バイトに巻き込まれ、口座や携帯番号を売ってしまった学生。Renが相談を受け、適切な支援機関と手順（凍結・再発防止・相談窓口）を示す中、要の学校の生徒が斡旋に関わっていると判明。RenとKanameが協力し、HN: 3pa11er3apiv0t としての彼に出会う。",
+  "gh:episodeIndex": 3,
+  "gh:storyOutline": "story-outline.jsonld",
+  "gh:incidentDescription": "名門・星蘭学院の特待生・青山ソラ（2年）が、経済的理由から『簡単な情報収集バイト』に手を出す。最初は軽い仕事だったが、次第に親の仕事に関わる機密情報を要求されるように。断ろうとすると脅迫される。生徒会副会長のKaname（HN: 3pa11er3apiv0t）がソラの異変に気づき、救出に動く。『一人で抱え込まなくていい。逃げ道は、必ずある。』",
   "gh:industry": "Student life (高校生)",
-  "gh:mainCharacter": "character:Ren",
+  "gh:mainCharacter": "character:Kaname",
+  "gh:mainLocation": "org:SeiranAcademy",
+  "gh:supportingCharacters": [
+    "character:SoraAoyama",
+    "character:RikaShirakawa",
+    "character:KenjiOhara",
+    "character:TakashiNomura",
+    "character:MizukiShinji"
+  ],
   "gh:nistFocus": [
+    "ID.RA (Risk Assessment)",
     "PR.AA (Identity/Access)",
-    "ID.RA (Risk Assessment)"
+    "RS.AN (Response Analysis)"
   ],
   "gh:pages": [
     {

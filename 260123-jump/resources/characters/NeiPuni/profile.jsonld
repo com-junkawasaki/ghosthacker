@@ -1,22 +1,23 @@
 {
   "@context": {
-    "schema": "http://schema.org/",
-    "gh": "https://ghosthacker.gftd.ai/ns/",
     "character": "gh:character/",
-    "history": "gh:history/",
     "context": "gh:context/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "history": "gh:history/",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "dct": "http://purl.org/dc/terms/"
+    "schema": "http://schema.org/"
   },
-  "@id": "character:NeiPuni",
-  "schema:name": "Nei (Puni)",
-  "schema:role": "Meta UI Mascot",
+  "@id": "character:MIw9dVKD94CqVygXm7V-d",
   "gh:appearance": {
-    "gh:face": "Palm-sized cute mascot figure inspired by Nei, simplified round face, tiny nose and mouth, bright expressive eyes.",
-    "gh:hair": "Platinum blonde bob, simplified chunky strands like a toy figure.",
     "gh:build": "Small round 'puni' body, soft vinyl / plush-like texture, wearing a tiny white blouse and black dress motif.",
     "gh:eyes": "Large glowing blue eyes with sparkling catchlights, toy-like iris detail.",
-    "gh:style": "Photorealistic macro product shot, clean studio lighting, 8k, shallow depth of field.",
-    "gh:generationPrompt": "photorealistic, 8k, macro product photo, highly detailed cute soft vinyl mascot figure, palm-sized, round chibi proportions, platinum blonde bob, large glowing blue eyes with sparkling catchlights, tiny white blouse and black dress motif, clean studio lighting, shallow depth of field, pristine background"
-  }
+    "gh:face": "Palm-sized cute mascot figure inspired by Nei, simplified round face, tiny nose and mouth, bright expressive eyes.",
+    "gh:generationPrompt": "photorealistic, 8k, macro product photo, highly detailed cute soft vinyl mascot figure, palm-sized, round chibi proportions, platinum blonde bob, large glowing blue eyes with sparkling catchlights, tiny white blouse and black dress motif, clean studio lighting, shallow depth of field, pristine background",
+    "gh:hair": "Platinum blonde bob, simplified chunky strands like a toy figure.",
+    "gh:style": "Photorealistic macro product shot, clean studio lighting, 8k, shallow depth of field."
+  },
+  "gh:slug": "NeiPuni",
+  "schema:name": "Nei (Puni)",
+  "schema:role": "Meta UI Mascot"
 }

@@ -1,23 +1,72 @@
 {
   "@context": {
-    "schema": "http://schema.org/",
-    "gh": "https://ghosthacker.gftd.ai/ns/",
     "character": "gh:character/",
-    "history": "gh:history/",
     "context": "gh:context/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "history": "gh:history/",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "dct": "http://purl.org/dc/terms/"
+    "schema": "http://schema.org/"
   },
-  "@id": "character:Kaname",
-  "schema:name": "水城 要 (Kaname Mizuki)",
-  "schema:role": "Rival Hacker",
-  "schema:age": 18,
+  "@id": "character:JFCqrbye-y1D4fIjf73zO",
   "gh:appearance": {
-    "gh:face": "18-year-old Japanese male, perfectly sculpted handsome face, arrogant and cold eyes with obsidian-like dark irises.",
-    "gh:hair": "Stylishly set dark brown hair.",
     "gh:build": "Model-like tall and slender, wearing a perfectly tailored white suit.",
     "gh:eyes": "Cold obsidian-like dark irises, sharp mirror-like catchlights, arrogant expression.",
-    "gh:style": "Photorealistic, luxury elite vibe, sharp focus, 8k.",
-    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 18-year-old Japanese male, perfectly sculpted face, arrogant cold eyes with obsidian-like dark irises and sharp catchlights, white suit, luxury aesthetic."
-  }
+    "gh:face": "18-year-old Japanese male, perfectly sculpted handsome face, arrogant and cold eyes with obsidian-like dark irises.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 18-year-old Japanese male, perfectly sculpted face, arrogant cold eyes with obsidian-like dark irises and sharp catchlights, white suit, luxury aesthetic.",
+    "gh:hair": "Stylishly set dark brown hair.",
+    "gh:style": "Photorealistic, luxury elite vibe, sharp focus, 8k."
+  },
+  "gh:arc": "Arc 0-3 (Main) / Arc C (Rival)",
+  "gh:arc03Role": {
+    "gh:growth": "『弱さを見せることは恥ではない』と理解する。早期相談の重要性を伝える。",
+    "gh:incident": "特待生の青山ソラが闇バイトに巻き込まれていることに気づく。",
+    "gh:position": "主人公",
+    "gh:theme": "『やめたい…でも、怖い』という声に応える。"
+  },
+  "gh:background": {
+    "gh:currentState": "表向きは完璧な優等生。裏では叔父の紹介で企業のセキュリティ監査に協力。HN: 3pa11er3apiv0t (Spiraler Pivot)",
+    "gh:family": {
+      "gh:origin": "水城家 - 旧華族の末裔。表向きは没落したが、金融・法曹界に人脈を持つ。",
+      "gh:parents": "両親は事故で他界。叔父の慎司（MizukiShinji）が後見人。",
+      "gh:uncle": "叔父は元官僚。Kanameの才能を見出し、金融業界の案件を紹介。"
+    },
+    "gh:hackerOrigin": "叔父から企業の不正調査の手伝いを依頼されたのがきっかけ。法的に問題のない範囲での調査能力を磨く。",
+    "gh:school": "星蘭学院高等部 3年。生徒会副会長。成績は常にトップ3。"
+  },
+  "gh:personality": {
+    "gh:hidden": "実は正義感が強い。弱者を見捨てられない。だが『感情で動くのは愚かだ』と自分を縛っている。",
+    "gh:motivation": "『正しい手続き』で世界を変える。法と論理で悪を追い詰める。",
+    "gh:surface": "冷静沈着。完璧主義。他人を見下すような態度。",
+    "gh:weakness": "人を信頼することが苦手。孤立しがち。叔父への依存。"
+  },
+  "gh:relationships": {
+    "gh:ren": {
+      "gh:dynamic": "Renの『感覚的なアプローチ』を軽蔑するが、その結果には敬意を抱いている。",
+      "gh:history": "オンラインで対峙したことがある。手法の違いから衝突。",
+      "gh:type": "ライバル / 対照的な存在"
+    },
+    "gh:takeru": {
+      "gh:dynamic": "Takeruの『ストリート』なやり方を野蛮だと思っている。",
+      "gh:type": "対極の存在"
+    },
+    "gh:uncle": {
+      "gh:dynamic": "尊敬しているが、どこか計算高い叔父に違和感も。",
+      "gh:type": "後見人 / メンター"
+    }
+  },
+  "gh:skills": {
+    "gh:hackerName": "3pa11er3apiv0t (Spiraler Pivot)",
+    "gh:reputation": "金融業界では『若き監査人』として知られる",
+    "gh:technical": [
+      "金融システムの分析",
+      "法的証拠の構築",
+      "コーポレートガバナンス",
+      "データ分析・可視化"
+    ]
+  },
+  "gh:slug": "Kaname",
+  "schema:age": 18,
+  "schema:name": "水城 要 (Kaname Mizuki)",
+  "schema:role": "Elite Hacker / Rival"
 }

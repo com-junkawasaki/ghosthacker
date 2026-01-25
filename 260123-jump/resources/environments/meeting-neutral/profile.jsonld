@@ -22,7 +22,8 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "env:meeting-neutral",
+  "@id": "env:jAtjXcAWuErClNXGySbJS",
   "dct:description": "立場の違う人物が落ち着いて話す中立的な場所。",
-  "dct:title": "Neutral meeting place"
+  "dct:title": "Neutral meeting place",
+  "gh:slug": "meeting-neutral"
 }

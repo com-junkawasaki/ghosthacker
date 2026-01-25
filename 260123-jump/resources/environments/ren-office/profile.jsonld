@@ -22,7 +22,8 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "env:ren-office",
+  "@id": "env:NWdURkHIjHCKREZiWYdf9",
   "dct:description": "コンクリート壁と木床の清潔なオフィス（Ren/Neiの拠点）。",
-  "dct:title": "Ren office"
+  "dct:title": "Ren office",
+  "gh:slug": "ren-office"
 }

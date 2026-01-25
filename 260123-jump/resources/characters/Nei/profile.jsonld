@@ -1,23 +1,24 @@
 {
   "@context": {
-    "schema": "http://schema.org/",
-    "gh": "https://ghosthacker.gftd.ai/ns/",
     "character": "gh:character/",
-    "history": "gh:history/",
     "context": "gh:context/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "history": "gh:history/",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "dct": "http://purl.org/dc/terms/"
+    "schema": "http://schema.org/"
   },
-  "@id": "character:Nei",
-  "schema:name": "Nei",
-  "schema:role": "Ghost Hacker Partner",
-  "schema:age": 16,
+  "@id": "character:PUAaepRiPvYp2Ac_csnDZ",
   "gh:appearance": {
-    "gh:face": "16-year-old stunningly beautiful Japanese female, intelligent and mischievous sharp eyes with striking blue irises.",
-    "gh:hair": "Platinum blonde layered bob hair.",
     "gh:build": "Slender, wearing a white long-sleeve blouse and black sleeveless dress.",
     "gh:eyes": "Intelligent striking blue irises, bright crystalline catchlights, sharp perceptive gaze.",
-    "gh:style": "Photorealistic, cinematic soft lighting, 8k.",
-    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, beautiful 16-year-old Japanese female, platinum blonde layered bob, striking blue irises and sharp catchlights, white blouse, black dress."
-  }
+    "gh:face": "16-year-old stunningly beautiful Japanese female, intelligent and mischievous sharp eyes with striking blue irises.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, beautiful 16-year-old Japanese female, platinum blonde layered bob, striking blue irises and sharp catchlights, white blouse, black dress.",
+    "gh:hair": "Platinum blonde layered bob hair.",
+    "gh:style": "Photorealistic, cinematic soft lighting, 8k."
+  },
+  "gh:slug": "Nei",
+  "schema:age": 16,
+  "schema:name": "Nei",
+  "schema:role": "Ghost Hacker Partner"
 }

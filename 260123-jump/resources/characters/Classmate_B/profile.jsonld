@@ -1,23 +1,24 @@
 {
   "@context": {
-    "schema": "http://schema.org/",
-    "gh": "https://ghosthacker.gftd.ai/ns/",
     "character": "gh:character/",
-    "history": "gh:history/",
     "context": "gh:context/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "history": "gh:history/",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "dct": "http://purl.org/dc/terms/"
+    "schema": "http://schema.org/"
   },
-  "@id": "character:Classmate_B",
-  "schema:name": "佐藤 莉子 (Riko Sato)",
-  "schema:role": "Student / Bookworm",
-  "schema:age": 16,
+  "@id": "character:LW08K0WgZ_rUwJntWZ4q0",
   "gh:appearance": {
-    "gh:face": "16-year-old Japanese female student, quiet and thoughtful expression.",
-    "gh:hair": "Black hair in twin braids.",
     "gh:build": "Small and slender build.",
     "gh:eyes": "Quiet thoughtful eyes, soft catchlights.",
-    "gh:style": "Photorealistic, 8k, high-end webtoon aesthetic.",
-    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 16-year-old Japanese high school girl, twin braids, quiet expression, school uniform, holding a book."
-  }
+    "gh:face": "16-year-old Japanese female student, quiet and thoughtful expression.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 16-year-old Japanese high school girl, twin braids, quiet expression, school uniform, holding a book.",
+    "gh:hair": "Black hair in twin braids.",
+    "gh:style": "Photorealistic, 8k, high-end webtoon aesthetic."
+  },
+  "gh:slug": "Classmate_B",
+  "schema:age": 16,
+  "schema:name": "佐藤 莉子 (Riko Sato)",
+  "schema:role": "Student / Bookworm"
 }

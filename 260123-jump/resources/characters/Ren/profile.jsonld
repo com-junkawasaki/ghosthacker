@@ -1,23 +1,24 @@
 {
   "@context": {
-    "schema": "http://schema.org/",
-    "gh": "https://ghosthacker.gftd.ai/ns/",
     "character": "gh:character/",
-    "history": "gh:history/",
     "context": "gh:context/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "history": "gh:history/",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "dct": "http://purl.org/dc/terms/"
+    "schema": "http://schema.org/"
   },
-  "@id": "character:Ren",
-  "schema:name": "沼野 蓮 (Ren Numano)",
-  "schema:role": "Ghost Hacker",
-  "schema:age": 17,
+  "@id": "character:3uK7KwU1i00hzTOOWHYv0",
   "gh:appearance": {
-    "gh:face": "17-year-old stunningly beautiful Japanese male, pale translucent skin, melancholic half-lidded eyes with silver-grey crystalline irises.",
-    "gh:hair": "Messy voluminous stylish raven black hair.",
     "gh:build": "Slender and graceful, wearing an oversized dark charcoal hoodie.",
     "gh:eyes": "Clear silver-grey crystalline iris, sharp sparkling catchlights, deep melancholic expression.",
-    "gh:style": "Photorealistic, high fashion photography, dramatic shadows, 8k.",
-    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, stunningly beautiful 17-year-old Japanese male, pale porcelain skin, messy voluminous raven black hair, melancholic half-lidded eyes with silver-grey crystalline irises and sharp catchlights, oversized dark charcoal hoodie."
-  }
+    "gh:face": "17-year-old stunningly beautiful Japanese male, pale translucent skin, melancholic half-lidded eyes with silver-grey crystalline irises.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, stunningly beautiful 17-year-old Japanese male, pale porcelain skin, messy voluminous raven black hair, melancholic half-lidded eyes with silver-grey crystalline irises and sharp catchlights, oversized dark charcoal hoodie.",
+    "gh:hair": "Messy voluminous stylish raven black hair.",
+    "gh:style": "Photorealistic, high fashion photography, dramatic shadows, 8k."
+  },
+  "gh:slug": "Ren",
+  "schema:age": 17,
+  "schema:name": "沼野 蓮 (Ren Numano)",
+  "schema:role": "Ghost Hacker"
 }

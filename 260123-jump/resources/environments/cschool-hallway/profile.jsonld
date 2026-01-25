@@ -22,7 +22,8 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "env:cschool-hallway",
+  "@id": "env:7Wtrh6_RIXFx6yp4vj6B7",
   "dct:description": "C高校の廊下。人の気配はあるが静か。",
-  "dct:title": "C-school hallway"
+  "dct:title": "C-school hallway",
+  "gh:slug": "cschool-hallway"
 }

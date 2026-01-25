@@ -17,14 +17,21 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "act:4-rescue",
-  "@type": ["gh:Act", "prov:Entity"],
+  "@id": "act:-dFLQU3XboE3zhwn5olr7",
+  "@type": [
+    "gh:Act",
+    "prov:Entity"
+  ],
   "gh:actNumber": 4,
   "gh:actTitle": "救いの手",
   "gh:actTitleEn": "Helping Hand",
-  "gh:pageRange": [20, 21],
   "gh:emotionalArc": "孤立 → 接触 → 希望",
-  "gh:narrativePurpose": "Nei/Renの介入、救済の始まり",
   "gh:keyBeat": "turn",
-  "gh:pages": []
+  "gh:narrativePurpose": "Nei/Renの介入、救済の始まり",
+  "gh:pageRange": [
+    20,
+    21
+  ],
+  "gh:pages": [],
+  "gh:slug": "4-rescue"
 }

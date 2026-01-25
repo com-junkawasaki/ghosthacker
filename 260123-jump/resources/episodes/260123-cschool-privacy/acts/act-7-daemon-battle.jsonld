@@ -17,14 +17,21 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "act:7-daemon-battle",
-  "@type": ["gh:Act", "prov:Entity"],
+  "@id": "act:b4NFhIkZcgF_z6WH9zwTt",
+  "@type": [
+    "gh:Act",
+    "prov:Entity"
+  ],
   "gh:actNumber": 7,
   "gh:actTitle": "Daemonバトル",
   "gh:actTitleEn": "Daemon Battle",
-  "gh:pageRange": [36, 41],
   "gh:emotionalArc": "戦闘 → 葛藤の実体化 → 断絶 → 和解",
-  "gh:narrativePurpose": "内面の呪いを断ち、和解への道を開く",
   "gh:keyBeat": "climax",
-  "gh:pages": []
+  "gh:narrativePurpose": "内面の呪いを断ち、和解への道を開く",
+  "gh:pageRange": [
+    36,
+    41
+  ],
+  "gh:pages": [],
+  "gh:slug": "7-daemon-battle"
 }

@@ -17,14 +17,21 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "act:2-signs",
-  "@type": ["gh:Act", "prov:Entity"],
+  "@id": "act:u30Bj1t60TV-p16fxrX8k",
+  "@type": [
+    "gh:Act",
+    "prov:Entity"
+  ],
   "gh:actNumber": 2,
   "gh:actTitle": "異変の兆候",
   "gh:actTitleEn": "Signs of Trouble",
-  "gh:pageRange": [8, 15],
   "gh:emotionalArc": "期待 → 不安 → 恐怖",
-  "gh:narrativePurpose": "詐欺被害の進行と心理的圧迫を描く",
   "gh:keyBeat": "build",
-  "gh:pages": []
+  "gh:narrativePurpose": "詐欺被害の進行と心理的圧迫を描く",
+  "gh:pageRange": [
+    8,
+    15
+  ],
+  "gh:pages": [],
+  "gh:slug": "2-signs"
 }

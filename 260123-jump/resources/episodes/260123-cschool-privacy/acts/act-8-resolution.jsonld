@@ -17,14 +17,21 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "act:8-resolution",
-  "@type": ["gh:Act", "prov:Entity"],
+  "@id": "act:VEj3Vins59IHwjVjkTUvc",
+  "@type": [
+    "gh:Act",
+    "prov:Entity"
+  ],
   "gh:actNumber": 8,
   "gh:actTitle": "決意",
   "gh:actTitleEn": "Resolution",
-  "gh:pageRange": [42, 45],
   "gh:emotionalArc": "和解 → 真の敵の認識 → 決意",
-  "gh:narrativePurpose": "真の敵を指摘し、次章への布石",
   "gh:keyBeat": "resolution",
-  "gh:pages": []
+  "gh:narrativePurpose": "真の敵を指摘し、次章への布石",
+  "gh:pageRange": [
+    42,
+    45
+  ],
+  "gh:pages": [],
+  "gh:slug": "8-resolution"
 }

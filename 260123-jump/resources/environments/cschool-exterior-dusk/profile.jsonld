@@ -22,7 +22,8 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "env:cschool-exterior-dusk",
+  "@id": "env:xajVRCe97ELJKNtxOjvhO",
   "dct:description": "C高校の外観。夕方の柔らかい光、帰る生徒。",
-  "dct:title": "C-school exterior (dusk)"
+  "dct:title": "C-school exterior (dusk)",
+  "gh:slug": "cschool-exterior-dusk"
 }

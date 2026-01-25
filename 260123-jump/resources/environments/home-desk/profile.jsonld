@@ -22,7 +22,8 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "env:home-desk",
+  "@id": "env:iOY_e64N3q0y13UxigttG",
   "dct:description": "自室の机。スマホ通知、ノート、PC。",
-  "dct:title": "Home desk"
+  "dct:title": "Home desk",
+  "gh:slug": "home-desk"
 }

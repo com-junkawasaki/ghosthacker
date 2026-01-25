@@ -17,14 +17,21 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "act:3-collapse",
-  "@type": ["gh:Act", "prov:Entity"],
+  "@id": "act:piWQ6LKyTQzelk7dh6S_V",
+  "@type": [
+    "gh:Act",
+    "prov:Entity"
+  ],
   "gh:actNumber": 3,
   "gh:actTitle": "崩壊",
   "gh:actTitleEn": "Collapse",
-  "gh:pageRange": [16, 19],
   "gh:emotionalArc": "恐怖 → 絶望 → 孤立",
-  "gh:narrativePurpose": "友人関係の崩壊と社会的孤立を描く",
   "gh:keyBeat": "crisis",
-  "gh:pages": []
+  "gh:narrativePurpose": "友人関係の崩壊と社会的孤立を描く",
+  "gh:pageRange": [
+    16,
+    19
+  ],
+  "gh:pages": [],
+  "gh:slug": "3-collapse"
 }

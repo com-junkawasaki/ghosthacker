@@ -22,7 +22,8 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "@id": "env:cschool-classroom",
+  "@id": "env:5lNoad9f84I2ThgHn3Sl0",
   "dct:description": "通信制高校C高校の教室。個別ブース、静かな授業。",
-  "dct:title": "C-school classroom"
+  "dct:title": "C-school classroom",
+  "gh:slug": "cschool-classroom"
 }

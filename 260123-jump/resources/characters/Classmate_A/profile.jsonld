@@ -1,23 +1,24 @@
 {
   "@context": {
-    "schema": "http://schema.org/",
-    "gh": "https://ghosthacker.gftd.ai/ns/",
     "character": "gh:character/",
-    "history": "gh:history/",
     "context": "gh:context/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "history": "gh:history/",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "dct": "http://purl.org/dc/terms/"
+    "schema": "http://schema.org/"
   },
-  "@id": "character:Classmate_A",
-  "schema:name": "田中 健 (Ken Tanaka)",
-  "schema:role": "Student / Athlete",
-  "schema:age": 16,
+  "@id": "character:mBTP0fosNXeEUH_sR5eyI",
   "gh:appearance": {
-    "gh:face": "16-year-old Japanese male student, athletic and tanned skin, energetic expression.",
-    "gh:hair": "Short cropped black hair.",
     "gh:build": "Muscular and athletic build.",
     "gh:eyes": "Energetic dark eyes, bright catchlights.",
-    "gh:style": "Photorealistic, 8k, high-end webtoon aesthetic.",
-    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 16-year-old Japanese high school boy, athletic build, tanned skin, short cropped black hair, energetic expression, school uniform."
-  }
+    "gh:face": "16-year-old Japanese male student, athletic and tanned skin, energetic expression.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, 16-year-old Japanese high school boy, athletic build, tanned skin, short cropped black hair, energetic expression, school uniform.",
+    "gh:hair": "Short cropped black hair.",
+    "gh:style": "Photorealistic, 8k, high-end webtoon aesthetic."
+  },
+  "gh:slug": "Classmate_A",
+  "schema:age": 16,
+  "schema:name": "田中 健 (Ken Tanaka)",
+  "schema:role": "Student / Athlete"
 }
