@@ -16,6 +16,7 @@ import (
 	"time"
 
 	"connectrpc.com/connect"
+	gonanoid "github.com/matoous/go-nanoid/v2"
 	"storyboard-editor/backend/proto"
 )
 
@@ -70,7 +71,7 @@ func (s *StoryboardService) GeneratePanelImage(
 
 	log.Printf("Generating image with prompt: %s", fullPrompt)
 
-	// Create images directory: 260125-jump/images/episodes/{episode_id}/pages/{page_number}/
+	// Create images directory: 260123-jump/resources/images/episodes/{episode_id}/pages/{page_number}/
 	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
 	if workspaceRoot == "" {
 		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(filePath))))
@@ -80,13 +81,20 @@ func (s *StoryboardService) GeneratePanelImage(
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to create images directory: %w", err))
 	}
 
-	// Generate filename: panel_{panel_number}_{timestamp}.png
-	timestamp := time.Now().Format("20060102_150405")
-	filename := fmt.Sprintf("panel_%d_%s.png", req.Msg.Panel, timestamp)
+	// Get or generate stable panel ID (nanoid-based)
+	panelID, imageVersion, err := s.getOrCreatePanelID(filePath, req.Msg.EpisodeId, req.Msg.PageNumber, req.Msg.Panel)
+	if err != nil {
+		log.Printf("Warning: failed to get panel ID, using fallback: %v", err)
+		panelID = fmt.Sprintf("panel_%d_%d_%d", req.Msg.PageNumber, req.Msg.Panel, time.Now().Unix())
+		imageVersion = 1
+	}
+
+	// Generate filename using stable panel ID and version: {panelID}_v{version}.png
+	filename := fmt.Sprintf("%s_v%d.png", panelID, imageVersion)
 	imagePath := filepath.Join(imagesDir, filename)
 
 	// Return URL path for accessing the image via HTTP
-	// Format: /images/episodes/{episode_id}/pages/{page_number}/panel_{panel}_{timestamp}.png
+	// Format: /images/episodes/{episode_id}/pages/{page_number}/{panelID}_v{version}.png
 	urlPath := fmt.Sprintf("/images/episodes/%s/pages/%d/%s", req.Msg.EpisodeId, req.Msg.PageNumber, filename)
 
 	// Update storyboard JSON-LD with the expected path before actual generation
@@ -415,6 +423,86 @@ func (s *StoryboardService) updatePanelInEpisode(episode map[string]interface{},
 	}
 
 	return false
+}
+
+// getOrCreatePanelID retrieves or creates a stable panel ID (nanoid-based)
+// Returns: panelID, nextImageVersion, error
+func (s *StoryboardService) getOrCreatePanelID(masterFilePath string, episodeID string, pageNumber, panel int32) (string, int, error) {
+	episodeFilePath, err := s.getEpisodeFilePath(masterFilePath, episodeID)
+	if err != nil {
+		return "", 0, fmt.Errorf("failed to find episode file: %w", err)
+	}
+
+	episodeData, err := s.loadEpisodeFile(episodeFilePath)
+	if err != nil {
+		return "", 0, fmt.Errorf("failed to load episode file: %w", err)
+	}
+
+	pages, ok := episodeData["gh:pages"].([]interface{})
+	if !ok {
+		return "", 0, fmt.Errorf("no gh:pages found in episode")
+	}
+
+	for _, pg := range pages {
+		page, ok := pg.(map[string]interface{})
+		if !ok {
+			continue
+		}
+
+		pNum, _ := page["gh:pageNumber"].(float64)
+		if int32(pNum) != pageNumber {
+			continue
+		}
+
+		panels, ok := page["gh:panels"].([]interface{})
+		if !ok {
+			continue
+		}
+
+		for _, p := range panels {
+			pMap, ok := p.(map[string]interface{})
+			if !ok {
+				continue
+			}
+
+			pIdx, _ := pMap["panel"].(float64)
+			if int32(pIdx) != panel {
+				continue
+			}
+
+			// Check if panel already has an @id
+			panelID, hasID := pMap["@id"].(string)
+			if !hasID || panelID == "" {
+				// Generate new nanoid for this panel
+				newID, err := gonanoid.New(12)
+				if err != nil {
+					return "", 0, fmt.Errorf("failed to generate nanoid: %w", err)
+				}
+				panelID = fmt.Sprintf("panel:%s", newID)
+				pMap["@id"] = panelID
+
+				// Save the updated episode file with the new panel ID
+				updatedContent, _ := json.MarshalIndent(episodeData, "", "  ")
+				if err := os.WriteFile(episodeFilePath, updatedContent, fs.FileMode(0644)); err != nil {
+					log.Printf("Warning: failed to save panel ID to episode file: %v", err)
+				} else {
+					log.Printf("Created new panel ID: %s for page %d, panel %d", panelID, pageNumber, panel)
+				}
+			}
+
+			// Calculate next version number based on existing generated images
+			imageVersion := 1
+			if history, ok := pMap["gh:generatedImages"].([]interface{}); ok {
+				imageVersion = len(history) + 1
+			}
+
+			// Return just the ID part without "panel:" prefix for filename
+			cleanID := strings.TrimPrefix(panelID, "panel:")
+			return cleanID, imageVersion, nil
+		}
+	}
+
+	return "", 0, fmt.Errorf("panel not found: page %d, panel %d", pageNumber, panel)
 }
 
 func (s *StoryboardService) callOpenRouterAPI(ctx context.Context, apiKey, prompt string) (string, error) {

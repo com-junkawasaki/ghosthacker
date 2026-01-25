@@ -1579,26 +1579,112 @@
       "gh:pageNumber": 16,
       "gh:act": "act:3-collapse",
       "gh:pageTitle": "学校 - 詰め寄られる",
+      "gh:panelCount": 7,
       "gh:panels": [
         {
           "panel": 1,
           "shot": "Wide Shot",
           "environment": "env:middle-school-classroom",
-          "characters": ["character:Yuto", "character:Classmate_A", "character:Classmate_B"],
-          "visual": "翌日の教室。重い空気。Yutoに友人が詰め寄る。",
+          "characters": ["character:Yuto"],
+          "visual": "翌日。教室入口に立つYuto。重い足取り。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:atmosphere": "重い空気"
+          },
+          "gh:imagePrompt": "Wide Shot. Middle school classroom entrance. Japanese boy standing at door, heavy footsteps. Ominous atmosphere. shot on 35mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": [],
+          "visual": "教室内。クラスメイトたちの視線がYutoに集まる。ざわめきが止まる。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Inside classroom. Classmates' gazes turning toward Yuto. Murmuring stops. Tense silence. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 3,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "何かがおかしいと気づくYuto。不安な表情。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy sensing something is wrong. Anxious expression. shot on 85mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Classmate_A"],
+          "visual": "友人Aが立ち上がり、Yutoに近づく。怒りの表情。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Classmate standing up and approaching Yuto. Angry expression. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 5,
+          "shot": "Medium Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Classmate_A"],
+          "visual": "詰め寄る友人A。",
           "dialogue": [
             {
               "speaker": "Classmate_A",
               "text": "おい、昨日のメッセージなんだよ？",
               "gh:emotion": "angry"
-            },
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Close Up. Classmate confronting Yuto angrily. 'Hey, what was that message last night?' shot on 50mm, f/2, cinematic live-action."
+        },
+        {
+          "panel": 6,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "困惑するYuto。",
+          "dialogue": [
             {
               "speaker": "Yuto",
               "text": "メッセージ…？",
               "gh:emotion": "confused"
             }
           ],
-          "gh:imagePrompt": "Wide Shot. Middle school classroom. Heavy atmosphere. Classmates confronting one boy aggressively. shot on 35mm, f/2.8."
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy confused. 'Message...?' shot on 85mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 7,
+          "shot": "Wide Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto", "character:Classmate_A", "character:Classmate_B", "character:Classmate_C"],
+          "visual": "周囲のクラスメイトも敵意の目でYutoを見ている。包囲される感覚。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "high angle looking down",
+            "gh:atmosphere": "包囲、敵意"
+          },
+          "gh:imagePrompt": "Wide Shot, high angle. Japanese boy surrounded by hostile classmates. Feeling of being cornered. shot on 24mm, f/4, cinematic live-action."
         }
       ]
     },
@@ -1606,13 +1692,14 @@
       "gh:pageNumber": 17,
       "gh:act": "act:3-collapse",
       "gh:pageTitle": "乗っ取り発覚",
+      "gh:panelCount": 8,
       "gh:panels": [
         {
           "panel": 1,
-          "shot": "Close Up",
-          "environment": "env:smartphone-screen",
-          "characters": [],
-          "visual": "友人のスマホ画面。Yutoのアカウントから送られた怪しいDM。「これ見て！最高！」「お前、実はウザいって思ってたwww」",
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Classmate_A"],
+          "visual": "友人Aがスマホをつきつける。",
           "dialogue": [
             {
               "speaker": "Classmate_A",
@@ -1620,14 +1707,57 @@
               "gh:emotion": "accusatory"
             }
           ],
-          "gh:imagePrompt": "Close Up. Smartphone showing DM messages from Yuto's hijacked account. Spam links and insults. Japanese text."
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Classmate thrusting smartphone toward camera/Yuto. Accusatory. shot on 50mm, f/2.8, cinematic live-action."
         },
         {
           "panel": 2,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "スマホ画面。Yutoのアカウントから送られたDM。「これ見て！最高！」と怪しいリンク。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Smartphone screen showing DM from Yuto's account. 'Check this out! Amazing!' with suspicious link. Japanese text."
+        },
+        {
+          "panel": 3,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "別のDM。「お前、実はウザいって思ってたwww」という侮辱メッセージ。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Another DM: 'Actually I always thought you were annoying lol' Insulting message. Japanese text."
+        },
+        {
+          "panel": 4,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "愕然とするYuto。目が見開く。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy's face, devastated. Eyes wide with shock. shot on 85mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 5,
           "shot": "Medium Close Up",
           "environment": "env:middle-school-classroom",
           "characters": ["character:Yuto"],
-          "visual": "愕然とするYuto。",
+          "visual": "必死に否定するYuto。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -1635,14 +1765,18 @@
               "gh:emotion": "desperate"
             }
           ],
-          "gh:imagePrompt": "Medium Close Up. Japanese boy looking devastated, denying sending messages. Desperate expression."
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Close Up. Japanese boy desperately denying. 'I didn't send that!' shot on 50mm, f/1.8, cinematic live-action."
         },
         {
-          "panel": 3,
+          "panel": 6,
           "shot": "Medium Shot",
           "environment": "env:middle-school-classroom",
           "characters": ["character:Classmate_B"],
-          "visual": "別の友人も被害に。",
+          "visual": "別の友人Bも詰め寄る。",
           "dialogue": [
             {
               "speaker": "Classmate_B",
@@ -1650,7 +1784,43 @@
               "gh:emotion": "upset"
             }
           ],
-          "gh:imagePrompt": "Medium Shot. Another classmate looking upset, holding phone."
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Another classmate upset. 'I clicked the link and got sent to a weird site...' shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 7,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Classmate_C"],
+          "visual": "さらに別の友人C。被害の連鎖。",
+          "dialogue": [
+            {
+              "speaker": "Classmate_C",
+              "text": "俺のアカウントもなんかおかしくなった…",
+              "gh:emotion": "worried"
+            }
+          ],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Third classmate looking worried. 'Something's wrong with my account too...' Chain of damage. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 8,
+          "shot": "Wide Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "四方から責められるYuto。孤立していく。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "high angle"
+          },
+          "gh:imagePrompt": "Wide Shot, high angle. Japanese boy being blamed from all sides. Becoming isolated. shot on 24mm, f/4, cinematic live-action."
         }
       ]
     },
@@ -1658,28 +1828,99 @@
       "gh:pageNumber": 18,
       "gh:act": "act:3-collapse",
       "gh:pageTitle": "悪口公開",
+      "gh:panelCount": 7,
       "gh:panels": [
         {
           "panel": 1,
-          "shot": "Close Up",
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Mei"],
+          "visual": "女子生徒（Mei）がスマホを見て、ショックを受けている。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese girl looking at smartphone, shocked expression. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Insert",
           "environment": "env:smartphone-screen",
           "characters": [],
-          "visual": "Yutoの鍵垢にあったはずのプライベートな悪口が公開されている。",
+          "visual": "Yutoの鍵垢だったはずの投稿。友人の悪口が書かれている。「Akira、マジうざい」「Meiって調子乗りすぎ」",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Private posts now public. Complaints about friends: 'Akira is so annoying' 'Mei is too full of herself'. Japanese text."
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Mei"],
+          "visual": "裏切られた表情のMei。",
           "dialogue": [
             {
-              "speaker": "Classmate_C",
+              "speaker": "Mei",
               "text": "なにこれ…お前、裏でこんなこと言ってたの…？",
               "gh:emotion": "betrayed"
             }
           ],
-          "gh:imagePrompt": "Close Up. Smartphone showing private posts made public. Personal complaints about friends now visible. Japanese text."
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Close Up. Japanese girl looking betrayed. 'What is this... you were saying this behind our backs?' shot on 50mm, f/1.8, cinematic live-action."
         },
         {
-          "panel": 2,
+          "panel": 4,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "言葉を失うYuto。反論できない。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy lost for words. Can't defend himself. shot on 85mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 5,
           "shot": "Wide Shot",
           "environment": "env:middle-school-classroom",
           "characters": ["character:Yuto"],
-          "visual": "クラス中から冷たい視線を浴びるYuto。関係が崩壊していく。",
+          "visual": "クラス全体からの冷たい視線。誰も味方がいない。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:atmosphere": "氷のような冷たさ"
+          },
+          "gh:imagePrompt": "Wide Shot. Japanese boy receiving cold stares from entire class. No allies. Icy atmosphere. shot on 24mm, f/4, cinematic live-action."
+        },
+        {
+          "panel": 6,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "崩れ落ちそうになるYuto。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese boy about to collapse. Knees weakening. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 7,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "息ができなくなるYuto。胸を押さえる。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -1688,7 +1929,11 @@
               "gh:emotion": "suffocating"
             }
           ],
-          "gh:imagePrompt": "Wide Shot. Japanese boy isolated in classroom. Cold stares from all around. Crushing atmosphere. shot on 35mm, f/2.8."
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy clutching chest. Can't breathe. Suffocating from social pressure. shot on 85mm, f/1.8, cinematic live-action."
         }
       ]
     },
@@ -1696,22 +1941,66 @@
       "gh:pageNumber": 19,
       "gh:act": "act:3-collapse",
       "gh:pageTitle": "完全ロックアウト",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
           "panel": 1,
-          "shot": "Close Up",
-          "environment": "env:smartphone-screen",
-          "characters": [],
-          "visual": "SNSログイン画面。「パスワードが正しくありません」。パスワードリセット→「このメールアドレスは登録されていません」",
-          "dialogue": [],
-          "gh:imagePrompt": "Close Up. Smartphone showing 'Incorrect password' error. Then 'Email not found' on reset screen. Complete lockout."
-        },
-        {
-          "panel": 2,
           "shot": "Medium Shot",
           "environment": "env:middle-school-classroom",
           "characters": ["character:Yuto"],
-          "visual": "孤立するYuto。誰も近づかない。",
+          "visual": "必死にスマホを操作するYuto。ログインを試みる。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese boy frantically trying to log into phone. Desperate attempt. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "ログイン画面。パスワード入力。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. SNS login screen. Password being typed."
+        },
+        {
+          "panel": 3,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "エラー表示。「パスワードが正しくありません」",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Error message: 'Incorrect password'. Red warning. Japanese text."
+        },
+        {
+          "panel": 4,
+          "shot": "Insert",
+          "environment": "env:smartphone-screen",
+          "characters": [],
+          "visual": "パスワードリセット画面。「このメールアドレスは登録されていません」",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Insert",
+            "gh:angle": "flat"
+          },
+          "gh:imagePrompt": "Insert shot. Password reset attempt. 'This email address is not registered'. Complete lockout. Japanese text."
+        },
+        {
+          "panel": 5,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "絶望するYuto。全てを失った表情。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -1719,7 +2008,25 @@
               "gh:emotion": "despair"
             }
           ],
-          "gh:imagePrompt": "Medium Shot. Japanese boy sitting alone at desk. Complete isolation. Other students avoiding him. Dark atmosphere."
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy's face in complete despair. 'I can't get in... I can't do anything anymore...' shot on 85mm, f/1.8, cinematic live-action."
+        },
+        {
+          "panel": 6,
+          "shot": "Wide Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "教室の隅で一人座るYuto。周囲は彼を避けて通る。完全な孤立。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "high angle",
+            "gh:atmosphere": "孤立、絶望"
+          },
+          "gh:imagePrompt": "Wide Shot, high angle. Japanese boy sitting alone in corner of classroom. Classmates walking around avoiding him. Complete isolation. Dark atmosphere. shot on 24mm, f/4, cinematic live-action."
         }
       ]
     },
@@ -1727,13 +2034,29 @@
       "gh:pageNumber": 20,
       "gh:act": "act:4-rescue",
       "gh:pageTitle": "Neiの声かけ",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
           "panel": 1,
           "shot": "Wide Shot",
           "environment": "env:middle-school-classroom",
           "characters": ["character:Yuto"],
-          "visual": "机に突っ伏すYuto。完全な絶望。",
+          "visual": "放課後の教室。窓からの夕日。机に突っ伏すYuto。一人きり。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Wide Shot",
+            "gh:angle": "eye level",
+            "gh:lighting": "夕暮れの光",
+            "gh:atmosphere": "孤独、静寂"
+          },
+          "gh:imagePrompt": "Wide Shot. After school classroom. Sunset through windows. Japanese boy slumped over desk, alone. Solitude and silence. shot on 24mm, f/4, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:Yuto"],
+          "visual": "机に顔を埋めるYuto。肩が小さく震えている。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -1742,14 +2065,44 @@
               "gh:emotion": "despair"
             }
           ],
-          "gh:imagePrompt": "Wide Shot. Japanese boy slumped over desk. Total despair. Empty classroom around him."
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy with face buried in arms on desk. Shoulders slightly trembling. shot on 85mm, f/1.8, cinematic live-action."
         },
         {
-          "panel": 2,
+          "panel": 3,
           "shot": "Medium Shot",
           "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "教室の入口に立つNei。静かにYutoを見ている。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese girl (Nei) standing at classroom entrance. Quietly observing Yuto. Calm expression. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが静かに歩み寄る。足音が響く。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "low angle"
+          },
+          "gh:imagePrompt": "Medium Shot, low angle. Japanese girl walking quietly toward camera. Footsteps echoing. Approaching. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 5,
+          "shot": "Medium Close Up",
+          "environment": "env:middle-school-classroom",
           "characters": ["character:NeiMiddleSchool", "character:Yuto"],
-          "visual": "Neiが静かに近づく。",
+          "visual": "Yutoの隣に立つNei。優しく声をかける。",
           "dialogue": [
             {
               "speaker": "Nei",
@@ -1757,14 +2110,18 @@
               "gh:emotion": "calm"
             }
           ],
-          "gh:imagePrompt": "Medium Shot. Japanese girl (Nei) calmly approaching distraught boy. Gentle expression. Calm demeanor."
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Close Up. Japanese girl standing next to slumped boy. Gentle voice: 'Are you okay?' shot on 50mm, f/2, cinematic live-action."
         },
         {
-          "panel": 3,
+          "panel": 6,
           "shot": "Close Up",
           "environment": "env:middle-school-classroom",
           "characters": ["character:Yuto"],
-          "visual": "顔を上げるYuto。涙が滲んでいる。",
+          "visual": "顔を上げるYuto。涙が滲んだ目。言葉がこぼれ出る。",
           "dialogue": [
             {
               "speaker": "Yuto",
@@ -1772,7 +2129,11 @@
               "gh:emotion": "tearful"
             }
           ],
-          "gh:imagePrompt": "Close Up. Japanese boy looking up with tears in eyes. Explaining himself. Vulnerable. shot on 85mm, f/1.8."
+          "gh:shotProperties": {
+            "gh:distance": "Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Close Up. Japanese boy looking up with tears in eyes. Words spilling out: 'I didn't do it... but I clicked...' Vulnerable. shot on 85mm, f/1.8, cinematic live-action."
         }
       ]
     },
@@ -1780,13 +2141,53 @@
       "gh:pageNumber": 21,
       "gh:act": "act:4-rescue",
       "gh:pageTitle": "Ren/Nei動き出す",
+      "gh:panelCount": 6,
       "gh:panels": [
         {
           "panel": 1,
           "shot": "Medium Shot",
           "environment": "env:middle-school-classroom",
-          "characters": ["character:NeiMiddleSchool", "character:RenMiddleSchool"],
-          "visual": "Neiが事情を聞き終え、Renの方を向く。",
+          "characters": ["character:NeiMiddleSchool", "character:Yuto"],
+          "visual": "Neiが静かにYutoの話を聞いている。事情を理解した表情。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese girl (Nei) quietly listening to boy's story. Understanding expression. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 2,
+          "shot": "Medium Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが頷き、振り返る。教室の隅にいるRenの方を見る。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Close Up. Japanese girl nodding, turning to look toward corner of classroom. shot on 50mm, f/2, cinematic live-action."
+        },
+        {
+          "panel": 3,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "窓際で机に突っ伏しているRen。半目で二人を見ている。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese boy (Ren) slumped on desk by window. Half-open eyes watching the two. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 4,
+          "shot": "Medium Close Up",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:NeiMiddleSchool"],
+          "visual": "Neiが静かに問いかける。",
           "dialogue": [
             {
               "speaker": "Nei",
@@ -1794,14 +2195,31 @@
               "gh:emotion": "matter-of-fact"
             }
           ],
-          "gh:imagePrompt": "Medium Shot. Japanese girl turning to look at boy (Ren) in background. Calm, businesslike expression."
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Close Up. Japanese girl asking quietly. 'Ghost. What do we do?' Calm, businesslike. shot on 50mm, f/2, cinematic live-action."
         },
         {
-          "panel": 2,
+          "panel": 5,
+          "shot": "Medium Shot",
+          "environment": "env:middle-school-classroom",
+          "characters": ["character:RenMiddleSchool"],
+          "visual": "Renがゆっくり体を起こす。伸びをする。",
+          "dialogue": [],
+          "gh:shotProperties": {
+            "gh:distance": "Medium Shot",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Shot. Japanese boy slowly sitting up. Stretching. shot on 50mm, f/2.8, cinematic live-action."
+        },
+        {
+          "panel": 6,
           "shot": "Medium Close Up",
           "environment": "env:middle-school-classroom",
           "characters": ["character:RenMiddleSchool"],
-          "visual": "Renが伸びをして、面倒くさそうに立ち上がる。",
+          "visual": "面倒くさそうだが、やる気の表情のRen。",
           "dialogue": [
             {
               "speaker": "Ren",
@@ -1809,7 +2227,11 @@
               "gh:emotion": "reluctant"
             }
           ],
-          "gh:imagePrompt": "Medium Close Up. Japanese boy stretching, standing up reluctantly. Lazy but determined expression."
+          "gh:shotProperties": {
+            "gh:distance": "Medium Close Up",
+            "gh:angle": "eye level"
+          },
+          "gh:imagePrompt": "Medium Close Up. Japanese boy looking reluctant but ready. 'Ugh. It's a pain, but... let's do it.' Lazy but determined. shot on 50mm, f/2, cinematic live-action."
         }
       ]
     },

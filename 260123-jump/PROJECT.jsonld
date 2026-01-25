@@ -14,22 +14,26 @@
     "@type": "prov:Activity",
     "prov:startedAtTime": "2026-01-26T00:00:00Z",
     "gh:goals": [
-      "Arc 0-1「パスワードは覚えるな」45ページ最終構成の再設計"
+      "verylonganimalsアバター設定の追加"
     ],
     "gh:results": [
-      "Arc 0-1 episode.jsonld を45ページ構成で再設計完了",
-      "構成: プレタイトル(p0) + 8幕構成(p1-45)",
-      "第一幕(p1-8): タイトルスプレッド + 日常と誘惑",
-      "第二幕(p9-15): 異変の兆候",
-      "第三幕(p16-19): 崩壊",
-      "第四幕(p20-21): 救いの手",
-      "第五幕(p22-29): 対策（4つの対策×2ページ: 漏えいチェック/カード停止/パスワード管理/注意喚起）",
-      "第六幕(p30-35): Ghost説明＋バトル（ランダウアーの原理、NULL AXE召喚）",
-      "第七幕(p36-41): Daemonバトル（/dev/null SLASH!!）",
-      "終幕(p42-45): 決意（真の敵「ワクワク電気」指摘、東京見下ろしエンディング）"
+      "Renのネット上アバターをverylonganimalsのフクロウに設定",
+      "味方キャラ全員にverylonganimalsアバターを割り当て完了",
+      "Ren: フクロウ（洞察力、夜行性）",
+      "Nei: ネコ（クール、知的、Renとペア）",
+      "Chise: キツネ（守護、ストリートスマート、神社関連）",
+      "Kaname: ペンギン（エリート、完璧主義）",
+      "Mei: ウサギ（元気、ムードメーカー）",
+      "settings/verylonganimals-avatars.jsonld 作成（マスター設定ファイル）",
+      "敵側との視覚的コントラスト設計: 味方=可愛い動物 vs 敵=無機質アイコン"
     ]
   },
   "gh:previousSessions": [
+    {
+      "@type": "prov:Activity",
+      "prov:endedAtTime": "2026-01-26T00:30:00Z",
+      "gh:summary": "Arc 0-1「パスワードは覚えるな」45ページ最終構成完成（プレタイトル+8幕構成）"
+    },
     {
       "@type": "prov:Activity",
       "prov:endedAtTime": "2026-01-25T23:00:00Z",
@@ -76,6 +80,13 @@
       "@type": "gh:Artifact",
       "schema:name": "Prop & Furniture Definitions",
       "schema:filePath": "resources/props/"
+    },
+    {
+      "@id": "gh:artifact/verylonganimals-avatars-260123-jump",
+      "@type": "gh:Artifact",
+      "schema:name": "verylonganimals Avatar Settings",
+      "schema:description": "味方キャラクターのオンラインアバター設定（ながーい動物シリーズ）",
+      "schema:filePath": "resources/settings/verylonganimals-avatars.jsonld"
     }
   ],
   "gh:milestones": [
@@ -127,6 +138,11 @@
       "gh:name": "Arc 0-1 Final Structure",
       "gh:status": "Completed",
       "gh:description": "「パスワードは覚えるな」45ページ最終構成。プレタイトル+8幕構成。対策パート4つ×2ページ。Ghost/Daemonバトル。"
+    },
+    {
+      "gh:name": "verylonganimals Avatar System",
+      "gh:status": "Completed",
+      "gh:description": "味方キャラクターのオンラインアバターをverylonganimals（ながーい動物）で統一。Ren=フクロウ, Nei=ネコ, Chise=キツネ, Kaname=ペンギン, Mei=ウサギ。敵側の無機質アイコンとの視覚的コントラストで『人間性』を表現。"
     }
   ]
 }
