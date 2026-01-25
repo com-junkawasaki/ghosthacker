@@ -356,15 +356,20 @@
 		z-index: 20;
 		user-select: none;
 		box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+		writing-mode: vertical-rl;
+		text-orientation: upright;
 	}
 
 	.speaker-name {
 		font-size: 0.65rem;
 		color: #666;
-		margin-bottom: 4px;
+		margin-left: 4px;
+		margin-bottom: 0;
 		font-weight: bold;
-		border-bottom: 1px solid #eee;
-		padding-bottom: 2px;
+		border-left: 1px solid #eee;
+		border-bottom: none;
+		padding-left: 2px;
+		padding-bottom: 0;
 	}
 
 	.dialogue-bubble.active {
