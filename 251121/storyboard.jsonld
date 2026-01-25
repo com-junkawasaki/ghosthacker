@@ -511,7 +511,7 @@
       "gh:episode": 1,
       "gh:episodeId": "episode:260123-cschool-privacy",
       "gh:episodeIndex": 1,
-      "gh:incidentDescription": "休憩時間の羨望が、夜の“格安限定”に繋がる。Yutoは大手SNSのマーケット風の偽ページで決済し、翌日発送の表示を信じてしまう。やがて迷惑連絡と不正請求、そしてYuto名義のDM拡散でクラスの関係が崩壊。責められた痛みが極まった瞬間、NeiがSIP Project Mapで“情報場”を可視化し、Ghost（情報霊）が教室に実体化する。ランダウアーの原理（Information is physics）――情報は物理、消去には熱が出る。RenはNULL AXEで“繋がり”を切り、Yutoの罪悪感が巨大なDeamonになっても、責め言葉（呪い）そのものを /dev/null へ落として鎮める。最後に残るのは、黒幕（アクター＝偽サイト『ワクワク電気』）と、誰でも再現できる手順だ。",
+      "gh:incidentDescription": "休憩時間、Yutoはクラスメイトと楽しそうに話している。Renは気怠そうに壁にもたれ、Neiは本を読んでいる。Akiraが限定ブランドを自慢し、Yutoは羨望の眼差しを向ける。夜、ベッドでスマホをいじるYutoは大手SNSのマーケット風の偽サイト「ワクワク電気」で格安の限定商品を発見。怪しさを感じつつも親のクレジットカードを借りて決済。即座にお礼メールが届き、翌日発送との表示を信じてしまう。3-4日経っても届かず、問い合わせると「発送中です…番号を教えてください」と言われ、個人情報を渡してしまう。迷惑メール・電話が増え、親のカードが止まり多額の不正請求が発覚。決済サイトは消えていた。翌日学校で友人から「昨日のメッセージ何？」と詰め寄られ、Yuto名義のDMで拡散されたリンクをクリックした友人のアカウントが乗っ取られ、プライベートにしていた悪口まで公開される。SNSにアクセスしようとしても入れず、パスワードリセットもできない。ギスギスした空気の中、一人でいるYutoにNeiが「大丈夫？」と声をかける。事情を聞いたNeiは「ghost。どうする？」とRenに問い、Renは「だるいけど…やるかぁ」と応じる。対策を進める中、クラスメイトが「今更やっても意味ない」とYutoを罵倒。心に痛みを感じるYutoを見て、Neiが「ghost、幻肢痛だ」と呟く。Neiが「たおす？」と問い、Renが無言で頷くと、Neiは「SIP Project Map: ON」と謎のデバイスを起動。周囲がスキャンされ、情報場が可視化される。ランダウアーの原理「Information is physics」――情報は物質、消去には熱が出る。無数のGhostが現れ、クラスメイトを攻撃して幻肢痛を引き起こす。RenはNULL AXEでGhostを切り裂き、Yutoの葛藤が巨大なDeamonとなって暴れ出しても、「全部あんたのせいだ」という呪いの言葉を「/dev/null SLASH!!」で断つ。和解の後、Renは本当の悪者を指摘する――「悪いのはアクターだ。偽サイト『ワクワク電気』」。最後、東京の街並みを見下ろすNeiとRen。「いくかぁ」「うん」――「ゴーストをハックする」。",
       "gh:industry": "Student life (高校生)",
       "gh:mainCharacter": "character:Ren",
       "gh:nistFocus": [
@@ -523,7 +523,7 @@
         {
           "gh:pageBeat": {
             "gh:emotionalShift": "ゆるい幸福 → ほんの一瞬の焦り/欲",
-            "gh:hook": "“限定”という言葉が、Yutoの指を動かす",
+            "gh:hook": "「限定」という言葉が、Yutoの指を動かす",
             "gh:tempo": "loose → tiny sting",
             "gh:turn": "日常の軽口の中に、違和感の種（スマホ/通知/欲望）を落とす"
           },
@@ -557,9 +557,9 @@
               ],
               "environment": "env:cschool-classroom",
               "gh:actingDirection": {
-                "gh:blocking": "机を囲む輪。Yutoは中心寄り、Renは少し離れて気怠げ、Neiは本に視線を落としている。",
+                "gh:blocking": "机を囲む輪。Yutoは中心寄り、Renは少し離れて気怠げに壁にもたれ、Neiは窓際で本に視線を落としている。",
                 "gh:eyeLine": "会話→スマホ→また会話（違和感はまだ言語化しない）",
-                "gh:gesture": "Meiは伸び、Yutoは頬を緩めつつ指先だけ落ち着かない。",
+                "gh:gesture": "Meiは伸び、Yutoは頬を緩めつつ指先だけ落ち着かない。Renは欠伸。Neiはページをめくる。",
                 "gh:microBeats": [
                   "笑い声が落ち着く",
                   "スマホが小さく震える/通知が光る（気づくか気づかないかの境界）",
@@ -580,7 +580,7 @@
               },
               "panel": 1,
               "shot": "Wide Shot",
-              "visual": "休憩時間の教室。Yutoが男女混じりのクラスメイトと楽しそうに話している。Renは気怠そうに、Neiは本を読んでいる。"
+              "visual": "休憩時間の教室。Yutoが男女混じりのクラスメイトと楽しそうに話している。Renは気怠そうに壁にもたれ、Neiは本を読んでいる。"
             },
             {
               "characters": [
@@ -588,20 +588,26 @@
               ],
               "dialogue": [
                 {
-                  "gh:delivery": "少し早口。得意げに“限定”を強調して、周りの視線を確かめる。",
+                  "gh:delivery": "少し早口。得意げに「限定」を強調して、周りの視線を確かめる。",
                   "gh:emotion": "pride",
                   "gh:pauseAfterMs": 120,
                   "gh:subtext": "羨望を集めたい／優位に立ちたい",
                   "speaker": "Kurokawa Akira (Aki)",
-                  "text": "見て。これ限定販売なんだぜ！もう手に入らない。"
+                  "text": "見て見て！これ限定販売なんだぜ！もう手に入らない！"
                 },
                 {
-                  "gh:delivery": "笑って言うけど、視線は服→スマホへ。欲しいのに、言い切れない。",
+                  "gh:delivery": "羨ましそうに目を輝かせて見つめる。",
                   "gh:emotion": "envy",
                   "gh:pauseBeforeMs": 180,
-                  "gh:subtext": "『欲しい』が小さく刺さる",
+                  "gh:subtext": "「欲しい」が小さく刺さる",
                   "speaker": "Yuto",
-                  "text": "いいなぁ。"
+                  "text": "いいなぁー……。"
+                },
+                {
+                  "gh:delivery": "興味深そうに近づく。",
+                  "gh:emotion": "curiosity",
+                  "speaker": "Mizuno Saki (Saki-chan)",
+                  "text": "それ、もう売ってないやつ？"
                 }
               ],
               "environment": "env:cschool-classroom",
@@ -629,7 +635,7 @@
               },
               "panel": 2,
               "shot": "Insert Shot",
-              "visual": "Akiraが限定ブランドの服を自慢する。周囲が羨ましがる。"
+              "visual": "Akiraが限定ブランドの若者向けファッションアイテムを自慢する。周囲が羨ましがる。Yutoも「いいなぁ」と目を輝かせる。"
             }
           ]
         },
@@ -3261,6 +3267,677 @@
         },
         {
           "gh:pageNumber": 22,
+          "gh:pageBeat": {
+            "gh:emotionalShift": "対策の達成感 → クラスメイトの罵倒で絶望へ",
+            "gh:hook": "「今更やっても意味ない」という言葉がYutoを打ちのめす",
+            "gh:tempo": "recovery → crash",
+            "gh:turn": "対策をしても人間関係は戻らない現実"
+          },
+          "gh:panels": [
+            {
+              "characters": [
+                "character:Yuto",
+                "character:Ryo"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Tachibana Ryo (Ryo-chi)",
+                  "text": "今更対策してても意味ねーんだよ！"
+                },
+                {
+                  "speaker": "Yuto",
+                  "text": "で、でも…"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ryo confronts Yuto angrily in classroom; Yuto shrinks back. shot on 50mm, f/1.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Medium",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 1,
+              "shot": "Medium Shot",
+              "visual": "Ryoが怒りをぶつける。Yutoは縮こまる。"
+            },
+            {
+              "characters": [
+                "character:Yuto",
+                "character:Mei",
+                "character:Saki"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Sakuraba Mei (Mei-chan)",
+                  "text": "私の写真、勝手に公開されたの、あんたのせいだからね。"
+                },
+                {
+                  "speaker": "Mizuno Saki (Saki-chan)",
+                  "text": "……最低。"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Mei and Saki glare at Yuto with disgust. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Close-up",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 2,
+              "shot": "Close-up",
+              "visual": "MeiとSakiがYutoを非難する。Yutoは言葉が出ない。"
+            },
+            {
+              "characters": [
+                "character:Yuto"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Yuto",
+                  "text": "俺…俺だって…被害者なのに…"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Yuto clutches his chest in pain, overwhelmed by guilt and accusation. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Close-up",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 3,
+              "shot": "Close-up",
+              "visual": "Yutoが胸を押さえる。心臓が痛む。"
+            },
+            {
+              "characters": [
+                "character:Nei"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Nei",
+                  "text": "ghost、幻肢痛だ。"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei observes the scene calmly and murmurs to Ren. shot on 50mm, f/1.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Medium",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 4,
+              "shot": "Medium Shot",
+              "visual": "Neiが静かに呟く。Renを見る。"
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 23,
+          "gh:pageBeat": {
+            "gh:emotionalShift": "絶望 → 驚愕と混乱",
+            "gh:hook": "「SIP Project Map: ON」で現実が変わる",
+            "gh:tempo": "still → explosion",
+            "gh:turn": "情報場の可視化という超常現象の開始"
+          },
+          "gh:panels": [
+            {
+              "characters": [
+                "character:Nei",
+                "character:Ren"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Nei",
+                  "text": "たおす？"
+                },
+                {
+                  "speaker": "Ren",
+                  "text": "（無言で頷く）"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei looks at Ren; Ren nods lazily but decisively. shot on 50mm, f/1.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Medium",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 1,
+              "shot": "Medium Shot",
+              "visual": "NeiがRenを見る。Renは気怠そうに、でも確かに頷く。"
+            },
+            {
+              "characters": [
+                "character:Nei"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Nei",
+                  "text": "SIP Project Map: ON."
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Nei activates a mysterious compact device with a calm expression. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Close-up",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 2,
+              "shot": "Close-up",
+              "visual": "Neiが謎のデバイスを取り出し、起動する。"
+            },
+            {
+              "characters": [],
+              "dialogue": [
+                {
+                  "speaker": "Narration",
+                  "text": "周囲全体がスキャンされて、プロジェクターが動く。"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Scan lines sweep across the classroom; the air shimmers and distorts. shot on 35mm, f/2.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Wide",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 3,
+              "shot": "Wide Shot",
+              "visual": "教室全体にスキャンラインが走る。空気が変わる。"
+            },
+            {
+              "characters": [
+                "character:Ryo",
+                "character:Mei",
+                "character:Saki"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Tachibana Ryo (Ryo-chi)",
+                  "text": "な、なんだなんだ！？"
+                },
+                {
+                  "speaker": "Sakuraba Mei (Mei-chan)",
+                  "text": "お化け！？"
+                },
+                {
+                  "speaker": "Mizuno Saki (Saki-chan)",
+                  "text": "え、うそ…これVRか何か？"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Classmates panic as translucent ghost-like entities materialize around them. shot on 35mm, f/2.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Wide",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 4,
+              "shot": "Wide Shot",
+              "visual": "クラスメイトが驚愕する。情報場が可視化され、無数のGhostが現れる。"
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 24,
+          "gh:pageBeat": {
+            "gh:emotionalShift": "混乱 → 理解の糸口",
+            "gh:hook": "「Information is physics」という核心",
+            "gh:tempo": "chaos → moment of clarity",
+            "gh:turn": "科学的根拠でGhostの存在を説明"
+          },
+          "gh:panels": [
+            {
+              "characters": [
+                "character:Nei"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Nei",
+                  "text": "これは情報場。この場を構成する情報、イメージを質量に転換したもの。"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei explains calmly with translucent ghosts floating behind her. shot on 50mm, f/1.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Medium",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 1,
+              "shot": "Medium Shot",
+              "visual": "Neiが冷静に説明する。背後にGhostが浮遊している。"
+            },
+            {
+              "characters": [
+                "character:Nei"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Nei",
+                  "text": "ランダウアーの定理。"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Insert Shot, ARIA-style. A holographic portrait of Rolf Landauer appears with 'Information is physics' subtitle. shot on 50mm, f/2.0, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Insert",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 2,
+              "shot": "Insert Shot",
+              "visual": "画面にランダウアーの肖像と「Information is physics」の文字が浮かぶ。"
+            },
+            {
+              "characters": [
+                "character:Ryo"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Tachibana Ryo (Ryo-chi)",
+                  "text": "ら、ランダウアー？"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Close-up, frontal, ARIA-style. Ryo's confused face. shot on 85mm prime, f/1.2, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Close-up",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 3,
+              "shot": "Close-up",
+              "visual": "Ryoがポカンとする。"
+            },
+            {
+              "characters": [
+                "character:Nei"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Nei",
+                  "text": "うん。ランダウアー。情報は物質。消去には熱が出る。"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei responds matter-of-factly. shot on 50mm, f/1.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Medium",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 4,
+              "shot": "Medium Shot",
+              "visual": "Neiが端的に返す。"
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 25,
+          "gh:pageBeat": {
+            "gh:emotionalShift": "理解 → 恐怖と痛み",
+            "gh:hook": "Ghostが暴れ出し、幻肢痛が始まる",
+            "gh:tempo": "explanation → action",
+            "gh:turn": "情報の攻撃が物理的な痛みになる"
+          },
+          "gh:panels": [
+            {
+              "characters": [],
+              "dialogue": [
+                {
+                  "speaker": "Narration",
+                  "text": "突然、Ghostが暴れ出す。"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Ghosts turn aggressive, swarming around panicking students. shot on 35mm, f/2.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Wide",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 1,
+              "shot": "Wide Shot",
+              "visual": "Ghostたちが攻撃的に動き始める。教室が阿鼻叫喚になる。"
+            },
+            {
+              "characters": [
+                "character:Ryo"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Tachibana Ryo (Ryo-chi)",
+                  "text": "痛っ！腕が…！"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ryo clutches his arm in pain as a ghost passes through. shot on 50mm, f/1.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Medium",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 2,
+              "shot": "Medium Shot",
+              "visual": "Ghostが腕をかすめて、Ryoが痛みで叫ぶ。"
+            },
+            {
+              "characters": [
+                "character:Nei"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Nei",
+                  "text": "ゴーストは幻肢痛を引き起こす。肉体に損傷はないけれど、痛みを錯覚する。"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei explains phantom pain while students writhe around her. shot on 50mm, f/1.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Medium",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 3,
+              "shot": "Medium Shot",
+              "visual": "Neiが冷静に説明する。"
+            },
+            {
+              "characters": [
+                "character:Kota"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Hiramatsu Kota (Ko-ta)",
+                  "text": "それなんなんだよ！？どこで手に入れたんだよ！？"
+                },
+                {
+                  "speaker": "Nei",
+                  "text": "ネットで買った。"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Kota points at the device; Nei answers proudly. shot on 50mm, f/1.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Medium",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 4,
+              "shot": "Medium Shot",
+              "visual": "Kotaがデバイスを指さして叫ぶ。Neiは自慢げに答える。"
+            },
+            {
+              "characters": [
+                "character:Ryo"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Tachibana Ryo (Ryo-chi)",
+                  "text": "は、早くそれ止めろよ！"
+                },
+                {
+                  "speaker": "Nei",
+                  "text": "これを止めてもゴーストは止まらない。"
+                },
+                {
+                  "speaker": "Nei",
+                  "text": "だって、さっきみんながやっていたことが可視化されただけだから。"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Nei's words silence the class; the ghosts represent their own actions. shot on 35mm, f/2.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Wide",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 5,
+              "shot": "Wide Shot",
+              "visual": "Ryoが叫ぶ。Neiは静かに真実を告げる。クラスメイトは黙る。"
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 26,
+          "gh:pageBeat": {
+            "gh:emotionalShift": "混乱 → カタルシス",
+            "gh:hook": "「ゴーストハックの時間だ」",
+            "gh:tempo": "chaos → decisive action",
+            "gh:turn": "Renが動き出す"
+          },
+          "gh:panels": [
+            {
+              "characters": [
+                "character:Ren"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Ren",
+                  "text": "ゴーストハックの時間だ。"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Ren stands, materializing a translucent data-axe in his hand. shot on 50mm, f/1.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Medium",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 1,
+              "shot": "Medium Shot",
+              "visual": "Renが立ち上がり、NULL AXEを具現化する。"
+            },
+            {
+              "characters": [
+                "character:Ren"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Narration",
+                  "text": "RenはGhostを瞬く間に切り裂く。"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Ren slashes through ghosts with fluid, lazy movements; data particles scatter. shot on 35mm, f/2.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Wide",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 2,
+              "shot": "Wide Shot",
+              "visual": "NULL AXEがGhostを次々と切り裂いていく。"
+            },
+            {
+              "characters": [
+                "character:Ryo",
+                "character:Kota"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Tachibana Ryo (Ryo-chi)",
+                  "text": "れ、Ren？あいつ運動できたのか！？"
+                },
+                {
+                  "speaker": "Hiramatsu Kota (Ko-ta)",
+                  "text": "というか、斧！？どこから！？あぶなくね！？"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Classmates stare in disbelief at Ren's transformation. shot on 50mm, f/1.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Medium",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 3,
+              "shot": "Medium Shot",
+              "visual": "クラスメイトが驚愕する。"
+            },
+            {
+              "characters": [
+                "character:Nei"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Nei",
+                  "text": "あれはNULL AXE。情報を物質化した斧だから大丈夫。"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei explains calmly while watching Ren work. shot on 50mm, f/1.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Medium",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 4,
+              "shot": "Medium Shot",
+              "visual": "Neiが淡々と説明する。"
+            },
+            {
+              "characters": [
+                "character:Ren",
+                "character:Nei"
+              ],
+              "dialogue": [
+                {
+                  "speaker": "Ren",
+                  "text": "Nei、ちょっとでかいの来るかも。隔離して。"
+                },
+                {
+                  "speaker": "Nei",
+                  "text": "安全第一。"
+                }
+              ],
+              "environment": "env:cschool-classroom",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Nei pulls out caution tape and cordons off the area. shot on 50mm, f/1.8, cinematic live-action.",
+              "gh:shotProperties": {
+                "gh:angle": "eye level",
+                "gh:aperture": "f/1.8",
+                "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air",
+                "gh:composition": "clean composition, clear subject separation",
+                "gh:distance": "Medium",
+                "gh:focus": "subject focus, soft background",
+                "gh:lens": "50mm",
+                "gh:lighting": "soft diffused daylight, gentle shadows"
+              },
+              "panel": 5,
+              "shot": "Medium Shot",
+              "visual": "Neiが「安全第一」と書かれたテープを取り出し、周囲を囲う。"
+            }
+          ]
+        },
+        {
+          "gh:pageNumber": 32,
           "gh:panels": [
             {
               "characters": [
@@ -3320,7 +3997,7 @@
           ]
         },
         {
-          "gh:pageNumber": 23,
+          "gh:pageNumber": 33,
           "gh:panels": [
             {
               "characters": [
@@ -3403,7 +4080,7 @@
           ]
         },
         {
-          "gh:pageNumber": 24,
+          "gh:pageNumber": 34,
           "gh:panels": [
             {
               "characters": [
@@ -3487,7 +4164,7 @@
           ]
         },
         {
-          "gh:pageNumber": 25,
+          "gh:pageNumber": 35,
           "gh:panels": [
             {
               "characters": [
@@ -3545,7 +4222,7 @@
           ]
         },
         {
-          "gh:pageNumber": 26,
+          "gh:pageNumber": 36,
           "gh:panels": [
             {
               "characters": [
@@ -3638,7 +4315,7 @@
           ]
         },
         {
-          "gh:pageNumber": 27,
+          "gh:pageNumber": 37,
           "gh:panels": [
             {
               "characters": [
@@ -3761,7 +4438,7 @@
           ]
         },
         {
-          "gh:pageNumber": 28,
+          "gh:pageNumber": 38,
           "gh:panels": [
             {
               "characters": [
@@ -3848,7 +4525,7 @@
           ]
         },
         {
-          "gh:pageNumber": 29,
+          "gh:pageNumber": 39,
           "gh:panels": [
             {
               "characters": [],
@@ -3928,7 +4605,7 @@
           ]
         },
         {
-          "gh:pageNumber": 30,
+          "gh:pageNumber": 40,
           "gh:panels": [
             {
               "characters": [
@@ -4022,7 +4699,7 @@
           ]
         },
         {
-          "gh:pageNumber": 31,
+          "gh:pageNumber": 41,
           "gh:panels": [
             {
               "characters": [
@@ -4138,7 +4815,7 @@
           ]
         },
         {
-          "gh:pageNumber": 32,
+          "gh:pageNumber": 42,
           "gh:panels": [
             {
               "characters": [
@@ -4227,7 +4904,7 @@
           ]
         },
         {
-          "gh:pageNumber": 33,
+          "gh:pageNumber": 43,
           "gh:panels": [
             {
               "characters": [
@@ -4347,7 +5024,7 @@
           ]
         },
         {
-          "gh:pageNumber": 34,
+          "gh:pageNumber": 44,
           "gh:panels": [
             {
               "characters": [
@@ -4433,7 +5110,7 @@
           ]
         },
         {
-          "gh:pageNumber": 35,
+          "gh:pageNumber": 45,
           "gh:panels": [
             {
               "characters": [
@@ -4521,7 +5198,7 @@
           ]
         },
         {
-          "gh:pageNumber": 36,
+          "gh:pageNumber": 46,
           "gh:panels": [
             {
               "characters": [
@@ -4604,7 +5281,7 @@
           ]
         },
         {
-          "gh:pageNumber": 37,
+          "gh:pageNumber": 47,
           "gh:panels": [
             {
               "characters": [
@@ -4662,7 +5339,7 @@
           ]
         },
         {
-          "gh:pageNumber": 38,
+          "gh:pageNumber": 48,
           "gh:panels": [
             {
               "characters": [
@@ -4753,7 +5430,7 @@
           ]
         },
         {
-          "gh:pageNumber": 39,
+          "gh:pageNumber": 49,
           "gh:panels": [
             {
               "characters": [
@@ -4840,7 +5517,7 @@
           ]
         },
         {
-          "gh:pageNumber": 40,
+          "gh:pageNumber": 50,
           "gh:panels": [
             {
               "characters": [
@@ -4925,7 +5602,7 @@
           ]
         },
         {
-          "gh:pageNumber": 41,
+          "gh:pageNumber": 51,
           "gh:panels": [
             {
               "characters": [
@@ -5013,7 +5690,7 @@
           ]
         },
         {
-          "gh:pageNumber": 42,
+          "gh:pageNumber": 52,
           "gh:panels": [
             {
               "characters": [
@@ -5105,7 +5782,7 @@
           ]
         },
         {
-          "gh:pageNumber": 43,
+          "gh:pageNumber": 53,
           "gh:panels": [
             {
               "characters": [
@@ -5228,7 +5905,7 @@
           ]
         },
         {
-          "gh:pageNumber": 44,
+          "gh:pageNumber": 54,
           "gh:panels": [
             {
               "characters": [
@@ -5316,7 +5993,7 @@
             "gh:tempo": "afterglow",
             "gh:turn": "“返さない”という選択で、被害者が主導権を取り戻す"
           },
-          "gh:pageNumber": 45,
+          "gh:pageNumber": 55,
           "gh:panels": [
             {
               "characters": [
@@ -5403,8 +6080,8 @@
           ]
         }
       ],
-      "gh:presentationTagline": "Arc 0 | High School \u0026 Privacy",
-      "gh:realCase": "Credential stuffing / personal data leak → spam calls \u0026 spam email",
+      "gh:presentationTagline": "Arc 0 | High School & Privacy",
+      "gh:realCase": "Credential stuffing / personal data leak → spam calls & spam email",
       "gh:sinContrast": "Careless Reuse (Convenience) vs. Trust (Password Manager + Aliases)",
       "gh:supportingCharacters": [
         "character:Nei"
@@ -6588,7 +7265,7 @@
               "dialogue": [
                 {
                   "speaker": "Ren",
-                  "text": "/\u003e /dev/null chop --force"
+                  "text": "/> /dev/null chop --force"
                 }
               ],
               "environment": "env:kamata-daimon-office",
@@ -7012,7 +7689,7 @@
           ]
         }
       ],
-      "gh:presentationTagline": "Arc A | Construction \u0026 Sloth",
+      "gh:presentationTagline": "Arc A | Construction & Sloth",
       "gh:realCase": "Handa Hospital Ransomware (2021) / Iseto (2024)",
       "gh:sinContrast": "Passive Sloth (Vulnerability Neglect) vs. Active Sloth (Hyper-Efficiency)"
     },
@@ -7084,7 +7761,7 @@
                 }
               ],
               "environment": "env:kamata-daimon-office",
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) stands still, scanning the scene calmly in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. icon: Okamura Cruise \u0026 Atlas workstation / USM Haller (Ren office cutaways). shot on 50mm, f/1.8, cinematic live-action.",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) stands still, scanning the scene calmly in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. icon: Okamura Cruise & Atlas workstation / USM Haller (Ren office cutaways). shot on 50mm, f/1.8, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "eye level",
                 "gh:aperture": "f/1.8",
@@ -8216,7 +8893,7 @@
                 }
               ],
               "environment": "env:kamata-daimon-office",
-              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) stands still, scanning the scene calmly in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. icon: Okamura Cruise \u0026 Atlas workstation / USM Haller (Ren office cutaways). shot on 50mm, f/1.8, cinematic live-action.",
+              "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air. (Ren:1.2) stands still, scanning the scene calmly in outdated Japanese construction office, ringing phones, fluorescent lights, paper documents, server rack corner. icon: Okamura Cruise & Atlas workstation / USM Haller (Ren office cutaways). shot on 50mm, f/1.8, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "eye level",
                 "gh:aperture": "f/1.8",
@@ -8549,7 +9226,7 @@
               "dialogue": [
                 {
                   "speaker": "UI",
-                  "text": "DONE TIMER  00:42:18  /  containment \u003e evidence \u003e access \u003e restore"
+                  "text": "DONE TIMER  00:42:18  /  containment > evidence > access > restore"
                 }
               ],
               "environment": "env:kamata-daimon-office",
@@ -9903,7 +10580,7 @@
               "dialogue": [
                 {
                   "speaker": "UI",
-                  "text": "DONE TIMER 00:03:12 / define \u003e measure \u003e restore"
+                  "text": "DONE TIMER 00:03:12 / define > measure > restore"
                 }
               ],
               "environment": "env:logistics-warehouse",
@@ -10876,7 +11553,7 @@
           ]
         }
       ],
-      "gh:presentationTagline": "Arc B | Manufacturing \u0026 Wrath",
+      "gh:presentationTagline": "Arc B | Manufacturing & Wrath",
       "gh:realCase": "Kojima Press / Toyota Supply Chain (2022)",
       "gh:sinContrast": "Impulsive Wrath (Calculation Failure) vs. Calculated Wrath (Optimization)"
     },
@@ -12180,7 +12857,7 @@
           ]
         }
       ],
-      "gh:presentationTagline": "Arc 0 | Defamation \u0026 Disclosure",
+      "gh:presentationTagline": "Arc 0 | Defamation & Disclosure",
       "gh:realCase": "Online defamation / disclosure request (発信者情報開示請求) → settlement/court",
       "gh:sinContrast": "Fear (Staying silent) vs. Procedure (Knowing what to do)",
       "gh:supportingCharacters": [
@@ -14907,7 +15584,7 @@
           ]
         }
       ],
-      "gh:presentationTagline": "Arc C | Finance \u0026 Pride",
+      "gh:presentationTagline": "Arc C | Finance & Pride",
       "gh:realCase": "SBI Securities Account Fraud (2020)",
       "gh:sinContrast": "Passive Pride (Rule Blindness) vs. Active Pride (Rule Definition)"
     },
@@ -15568,8 +16245,8 @@
           ]
         }
       ],
-      "gh:presentationTagline": "Arc 0 | Yami-baito \u0026 Support",
-      "gh:realCase": "Yami-baito / account \u0026 phone number resale → recovery and reporting",
+      "gh:presentationTagline": "Arc 0 | Yami-baito & Support",
+      "gh:realCase": "Yami-baito / account & phone number resale → recovery and reporting",
       "gh:sinContrast": "Easy Money (Short-term) vs. Support (Long-term)",
       "gh:supportingCharacters": [
         "character:Nei",
@@ -17984,7 +18661,7 @@
           ]
         }
       ],
-      "gh:presentationTagline": "Arc D | Social Scam \u0026 Vainglory",
+      "gh:presentationTagline": "Arc D | Social Scam & Vainglory",
       "gh:realCase": "SNS Investment Scam / Celebrity Impersonation (2024)",
       "gh:sinContrast": "Vainglory (虚飾の正義) vs. Truth (静かなる真実)",
       "gh:supportingCharacters": [
@@ -20039,7 +20716,7 @@
               "characters": [],
               "dialogue": [],
               "environment": "env:cschool-classroom",
-              "gh:runwayPrompt": "ARIA-style: Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -\u003e \"Email not found.\". shot on 35mm, f/2.8, cinematic live-action.",
+              "gh:runwayPrompt": "ARIA-style: Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -> \"Email not found.\". shot on 35mm, f/2.8, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "eye level",
                 "gh:aperture": "f/2.8",
@@ -20052,7 +20729,7 @@
               },
               "panel": 1,
               "shot": "Wide Shot",
-              "visual": "Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -\u003e \"Email not found.\" Beat: Complete lockout."
+              "visual": "Yuto trying to login. \"Incorrect Password.\" \"Reset Password.\" -> \"Email not found.\" Beat: Complete lockout."
             }
           ]
         },

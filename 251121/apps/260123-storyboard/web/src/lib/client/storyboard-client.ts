@@ -171,9 +171,18 @@ export function streamUpdates(
 			for await (const update of stream) {
 				onUpdate(update);
 			}
-		} catch (err) {
-			if (err instanceof Error && err.name === 'AbortError') {
-				console.log('[storyboard-client] streamUpdates: connection closed');
+		} catch (err: any) {
+			// ConnectRPC のキャンセルエラーを判定
+			const isCanceled = err?.code === 1 || // Code.Canceled
+				(err instanceof Error && (
+					err.name === 'AbortError' || 
+					err.message.includes('aborted') || 
+					err.message.includes('canceled') ||
+					err.message.includes('signal is aborted')
+				));
+
+			if (isCanceled) {
+				console.log('[storyboard-client] streamUpdates: connection closed (canceled)');
 				return;
 			}
 			console.error('[storyboard-client] streamUpdates: error', err);

@@ -18,7 +18,39 @@
 	let selectedPage = $state(1);
 	let selectedPanelIndex = $state(1);
 	let selectedPanelData = $state<PanelData | undefined>(undefined);
-	let activeAgent = $state<'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue'>('scenario');
+	let activeAgent = $state<'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue' | undefined>(undefined);
+	
+	// Resizable split view state
+	let storyboardWidthPercent = $state(50);
+	let isResizing = $state(false);
+
+	function startResizing(e: MouseEvent) {
+		isResizing = true;
+		e.preventDefault();
+	}
+
+	function handleMouseMove(e: MouseEvent) {
+		if (!isResizing) return;
+		
+		const container = document.querySelector('.editor-content');
+		if (!container) return;
+		
+		const containerRect = container.getBoundingClientRect();
+		// Adjust for agent sidebar if it's open
+		const sidebar = document.querySelector('.agent-sidebar');
+		const sidebarWidth = sidebar ? sidebar.getBoundingClientRect().width : 0;
+		
+		const relativeX = e.clientX - containerRect.left - sidebarWidth;
+		const totalWidth = containerRect.width - sidebarWidth;
+		
+		const newPercent = (relativeX / totalWidth) * 100;
+		// Constrain between 20% and 80%
+		storyboardWidthPercent = Math.max(20, Math.min(80, newPercent));
+	}
+
+	function stopResizing() {
+		isResizing = false;
+	}
 	
 	const sessionId = Math.random().toString(36).substring(2, 15);
 
@@ -37,36 +69,40 @@
 		if (!selectedEpisode) return;
 
 		console.log('[StoryboardEditor] Effect: setting up stream for', selectedEpisode);
-		const unsubscribe = streamUpdates(
-			storyboardPath,
-			sessionId,
-			(update) => {
-				console.log('[StoryboardEditor] Stream update received:', update);
-				if (update.updateType === 'panel_updated' && update.episodeId === selectedEpisode) {
-					// Update panel in local state
-					panels = panels.map(p => {
-						if (p.pageNumber === update.pageNumber && p.panel === update.panel) {
-							// Use the panel's data directly from the update
-							const newPanel = { ...p };
-							if (update.panelData) {
-								newPanel.data = update.panelData;
+		let unsubscribe: (() => void) | undefined;
+		
+		// Use a small timeout to avoid rapid re-connections during state transitions
+		const timer = setTimeout(() => {
+			unsubscribe = streamUpdates(
+				storyboardPath,
+				sessionId,
+				(update) => {
+					console.log('[StoryboardEditor] Stream update received:', update);
+					if (update.updateType === 'panel_updated' && update.episodeId === selectedEpisode) {
+						// Update panel in local state
+						panels = panels.map(p => {
+							if (p.pageNumber === update.pageNumber && p.panel === update.panel) {
+								// Use the panel's data directly from the update
+								const newPanel = { ...p };
+								if (update.panelData) {
+									newPanel.data = update.panelData;
+								}
+								return newPanel;
 							}
-							return newPanel;
-						}
-						return p;
-					});
+							return p;
+						});
+					}
+				},
+				(err) => {
+					console.error('[StoryboardEditor] Stream error:', err);
 				}
-			},
-			(err) => {
-				console.error('[StoryboardEditor] Stream error:', err);
-				// Retry logic could be added here if needed, 
-				// but $effect will re-run if dependencies change
-			}
-		);
+			);
+		}, 100);
 
 		return () => {
 			console.log('[StoryboardEditor] Effect cleanup: unsubscribing stream');
-			unsubscribe();
+			clearTimeout(timer);
+			if (unsubscribe) unsubscribe();
 		};
 	});
 
@@ -208,6 +244,30 @@
 			{#if episodes.length === 0 && !loading}
 				<span class="debug-info" title="Debug: episodes array is empty">⚠️</span>
 			{/if}
+			
+			<div class="episode-agent-controls">
+				<button 
+					class="agent-btn scenario-btn" 
+					onclick={() => activeAgent = 'scenario'}
+					title="Scenario Writer AI"
+				>
+					Scenario AI
+				</button>
+				<button 
+					class="agent-btn episode-btn" 
+					onclick={() => activeAgent = 'episode'}
+					title="Episode Generator AI"
+				>
+					Episode AI
+				</button>
+				<button 
+					class="agent-btn character-btn" 
+					onclick={() => activeAgent = 'character'}
+					title="Character Refinement AI"
+				>
+					Character AI
+				</button>
+			</div>
 		</div>
 		<div class="episode-info">
 			{#if selectedEpisode && episodes.length > 0}
@@ -226,62 +286,52 @@
 	{#if loading}
 		<div class="loading">Loading...</div>
 	{:else if panels.length > 0}
-		<div class="editor-content">
-			<aside class="agent-sidebar">
-				<div class="agent-tabs">
-					<button 
-						class:active={activeAgent === 'scenario'} 
-						onclick={() => activeAgent = 'scenario'}
-					>Scenario</button>
-					<button 
-						class:active={activeAgent === 'episode'} 
-						onclick={() => activeAgent = 'episode'}
-					>Episode</button>
-					<button 
-						class:active={activeAgent === 'character'} 
-						onclick={() => activeAgent = 'character'}
-					>Character</button>
-					<button 
-						class:active={activeAgent === 'cinematic'} 
-						onclick={() => activeAgent = 'cinematic'}
-					>Cinematic</button>
-					<button 
-						class:active={activeAgent === 'dialogue'} 
-						onclick={() => activeAgent = 'dialogue'}
-					>Dialogue</button>
-				</div>
-				<div class="agent-panel-container">
-					{#if activeAgent === 'scenario'}
-						<ScenarioAgent {selectedEpisode} {storyboardPath} />
-					{:else if activeAgent === 'episode'}
-						<EpisodeAgent {selectedEpisode} {storyboardPath} />
-					{:else if activeAgent === 'character'}
-						<CharacterAgent {selectedEpisode} {storyboardPath} />
-					{:else if activeAgent === 'cinematic'}
-						<CinematicAgent 
-							{selectedEpisode} 
-							{storyboardPath} 
-							pageNumber={selectedPage} 
-							panelIndex={selectedPanelIndex} 
-						/>
-					{:else if activeAgent === 'dialogue'}
-						<DialogueAgent 
-							{selectedEpisode} 
-							{storyboardPath} 
-							pageNumber={selectedPage} 
-							panelIndex={selectedPanelIndex}
-							panelData={selectedPanelData}
-							on:generated={(e) => {
-								if (selectedPanelData) {
-									const newData = { ...selectedPanelData, dialogue: e.detail.dialogue };
-									handlePanelUpdate(selectedPage, selectedPanelIndex, newData);
-								}
-							}}
-						/>
-					{/if}
-				</div>
-			</aside>
-			<div class="storyboard-view">
+		<div 
+			class="editor-content" 
+			class:resizing={isResizing}
+			onmousemove={handleMouseMove}
+			onmouseup={stopResizing}
+			onmouseleave={stopResizing}
+		>
+			{#if activeAgent}
+				<aside class="agent-sidebar">
+					<div class="agent-sidebar-header">
+						<span class="agent-title">{activeAgent.toUpperCase()} AGENT</span>
+						<button class="close-sidebar" onclick={() => activeAgent = undefined}>×</button>
+					</div>
+					<div class="agent-panel-container">
+						{#if activeAgent === 'scenario'}
+							<ScenarioAgent {storyboardPath} />
+						{:else if activeAgent === 'episode'}
+							<EpisodeAgent {selectedEpisode} {storyboardPath} />
+						{:else if activeAgent === 'character'}
+							<CharacterAgent {selectedEpisode} {storyboardPath} />
+						{:else if activeAgent === 'cinematic'}
+							<CinematicAgent 
+								{selectedEpisode} 
+								{storyboardPath} 
+								pageNumber={selectedPage} 
+								panelIndex={selectedPanelIndex} 
+							/>
+						{:else if activeAgent === 'dialogue'}
+							<DialogueAgent 
+								{selectedEpisode} 
+								{storyboardPath} 
+								pageNumber={selectedPage} 
+								panelIndex={selectedPanelIndex}
+								panelData={selectedPanelData}
+								on:generated={(e) => {
+									if (selectedPanelData) {
+										const newData = { ...selectedPanelData, dialogue: e.detail.dialogue };
+										handlePanelUpdate(selectedPage, selectedPanelIndex, newData);
+									}
+								}}
+							/>
+						{/if}
+					</div>
+				</aside>
+			{/if}
+			<div class="storyboard-view" style="width: {storyboardWidthPercent}%">
 				<StoryboardPage
 					{panels}
 					episodeId={selectedEpisode}
@@ -296,9 +346,23 @@
 						selectedPanelIndex = detail.panel;
 						selectedPanelData = detail.data;
 					}}
+					on:agentTrigger={({ detail }) => {
+						activeAgent = detail.agent;
+					}}
 				/>
 			</div>
-			<div class="manga-view">
+
+			<div 
+				class="resizer" 
+				onmousedown={startResizing}
+				role="separator"
+				aria-valuenow={storyboardWidthPercent}
+				aria-valuemin="20"
+				aria-valuemax="80"
+				tabindex="0"
+			></div>
+
+			<div class="manga-view" style="width: {100 - storyboardWidthPercent}%">
 				<MangaEditor
 					{panels}
 					episodeId={selectedEpisode}
@@ -330,6 +394,12 @@
 		display: flex;
 		flex: 1;
 		overflow: hidden;
+		position: relative;
+	}
+
+	.editor-content.resizing {
+		cursor: col-resize;
+		user-select: none;
 	}
 
 	.agent-sidebar {
@@ -338,30 +408,31 @@
 		border-right: 1px solid #ddd;
 		display: flex;
 		flex-direction: column;
+		box-shadow: 2px 0 5px rgba(0,0,0,0.05);
 	}
 
-	.agent-tabs {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+	.agent-sidebar-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.75rem 1rem;
 		background: #eee;
 		border-bottom: 1px solid #ddd;
 	}
 
-	.agent-tabs button {
-		padding: 0.5rem;
-		border: none;
-		background: transparent;
-		cursor: pointer;
-		font-size: 0.8rem;
-		font-weight: 600;
-		color: #666;
-		border-bottom: 2px solid transparent;
+	.agent-title {
+		font-size: 0.75rem;
+		font-weight: 800;
+		color: #555;
+		letter-spacing: 0.05em;
 	}
 
-	.agent-tabs button.active {
-		background: #fff;
-		color: #4a90e2;
-		border-bottom: 2px solid #4a90e2;
+	.close-sidebar {
+		background: none;
+		border: none;
+		font-size: 1.2rem;
+		cursor: pointer;
+		color: #888;
 	}
 
 	.agent-panel-container {
@@ -371,15 +442,36 @@
 	}
 
 	.storyboard-view {
-		flex: 1;
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
 		border-right: 1px solid #ddd;
 	}
 
+	.resizer {
+		width: 8px;
+		background: #eee;
+		cursor: col-resize;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background 0.2s;
+		z-index: 20;
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+	}
+
+	.resizer:hover, .editor-content.resizing .resizer {
+		background: #4a90e2;
+	}
+
+	.resizer::after {
+		content: '⋮';
+		color: #888;
+		font-weight: bold;
+	}
+
 	.manga-view {
-		flex: 1;
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
@@ -411,6 +503,31 @@
 		border-radius: 4px;
 		font-size: 1rem;
 	}
+
+	.episode-agent-controls {
+		display: flex;
+		gap: 0.5rem;
+		margin-left: 1rem;
+	}
+
+	.agent-btn {
+		padding: 0.4rem 0.8rem;
+		border: none;
+		border-radius: 4px;
+		font-size: 0.8rem;
+		font-weight: 600;
+		cursor: pointer;
+		color: white;
+		transition: opacity 0.2s;
+	}
+
+	.agent-btn:hover {
+		opacity: 0.9;
+	}
+
+	.scenario-btn { background: #4a90e2; }
+	.episode-btn { background: #2ecc71; }
+	.character-btn { background: #9b59b6; }
 
 	.debug-info {
 		margin-left: 0.5rem;

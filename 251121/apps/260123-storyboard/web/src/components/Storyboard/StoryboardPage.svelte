@@ -35,6 +35,10 @@
 		});
 	}
 
+	function handleAgentTrigger(agent: string) {
+		dispatch('agentTrigger', { agent });
+	}
+
 	function handleScroll() {
 		if (!container) return;
 
@@ -95,6 +99,7 @@
 								episodeId={episodeId}
 								storyboardPath={storyboardPath}
 								on:update={(e) => handlePanelUpdate(panel.pageNumber, panel.panel, e.detail)}
+								on:agentTrigger={(e) => handleAgentTrigger(e.detail.agent)}
 							/>
 						</div>
 					{/each}

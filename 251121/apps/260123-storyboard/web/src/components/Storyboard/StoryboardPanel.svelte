@@ -3,7 +3,7 @@
 	import type { Panel, Dialogue, GeneratedImage } from '$lib/gen/proto/storyboard_pb';
 	import { PanelDataSchema, DialogueSchema, GeneratedImageSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
-	import { generatePanelDialogue, generatePanelImage } from '$lib/client/storyboard-client';
+	import { generatePanelDialogue, generatePanelImage, storyboardClient } from '$lib/client/storyboard-client';
 
 	export let panel: Panel;
 	export let episodeId: string = '';
@@ -27,6 +27,8 @@
 	let imageError = '';
 	let generatingDialogue = false;
 	let dialogueError = '';
+	let generatingCinematic = false;
+	let cinematicError = '';
 
 	// Computed: current image URL (convert relative path to full URL)
 	$: currentImageUrl = currentImageIndex >= 0 && currentImageIndex < generatedImages.length 
@@ -243,6 +245,27 @@
 		}
 	}
 
+	async function handleGenerateCinematic() {
+		if (generatingCinematic || !episodeId) return;
+		generatingCinematic = true;
+		cinematicError = '';
+		try {
+			const res = await storyboardClient.generateCinematicSketch({
+				filePath: storyboardPath,
+				episodeId: episodeId,
+				pageNumber: panel.pageNumber,
+				panel: panel.panel
+			});
+			if (!res.success) {
+				cinematicError = res.message;
+			}
+		} catch (err) {
+			cinematicError = err instanceof Error ? err.message : String(err);
+		} finally {
+			generatingCinematic = false;
+		}
+	}
+
 	function navigateImage(direction: 'prev' | 'next') {
 		if (generatedImages.length === 0) return;
 
@@ -285,6 +308,20 @@
 	<div class="col-picture">
 		<div class="picture-frame">
 			{#if editing}
+				<div class="cinematic-generation-controls">
+					<button
+						type="button"
+						on:click={handleGenerateCinematic}
+						disabled={generatingCinematic}
+						class="generate-cinematic-btn"
+						title="Generate cinematic sketch and visual prompts"
+					>
+						{generatingCinematic ? '...' : 'Sketch AI'}
+					</button>
+					{#if cinematicError}
+						<div class="cinematic-error">{cinematicError}</div>
+					{/if}
+				</div>
 				<textarea
 					bind:value={visualNote}
 					placeholder="Visual description..."
@@ -414,11 +451,19 @@
 					<div class="dialogue-generation-controls">
 						<button
 							type="button"
+							on:click={() => dispatch('agentTrigger', { agent: 'dialogue' })}
+							class="generate-dialogue-btn"
+							title="Open Dialogue Agent"
+						>
+							Dialogue AI
+						</button>
+						<button
+							type="button"
 							on:click={handleGenerateDialogue}
 							disabled={generatingDialogue}
-							class="generate-dialogue-btn"
+							class="generate-dialogue-btn-legacy"
 						>
-							{generatingDialogue ? 'Generating...' : 'Generate Dialogue'}
+							{generatingDialogue ? 'Generating...' : 'Quick Gen'}
 						</button>
 						{#if dialogueError}
 							<div class="dialogue-error">{dialogueError}</div>
@@ -903,22 +948,73 @@
 	.generate-dialogue-btn {
 		width: 100%;
 		padding: 0.5rem;
-		background: #1976d2;
+		background: #e74c3c;
 		color: white;
 		border: none;
 		border-radius: 4px;
 		cursor: pointer;
 		font-size: 0.85rem;
 		font-weight: 600;
+		margin-bottom: 0.25rem;
 	}
 
-	.generate-dialogue-btn:hover:not(:disabled) {
+	.generate-dialogue-btn:hover {
+		background: #c0392b;
+	}
+
+	.generate-dialogue-btn-legacy {
+		width: 100%;
+		padding: 0.4rem;
+		background: #1976d2;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 0.75rem;
+		font-weight: 600;
+	}
+
+	.generate-dialogue-btn-legacy:hover:not(:disabled) {
 		background: #1565c0;
 	}
 
-	.generate-dialogue-btn:disabled {
+	.generate-dialogue-btn-legacy:disabled {
 		background: #ccc;
 		cursor: not-allowed;
+	}
+
+	.cinematic-generation-controls {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		z-index: 5;
+	}
+
+	.generate-cinematic-btn {
+		padding: 0.25rem 0.5rem;
+		background: #e67e22;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 0.7rem;
+		font-weight: 600;
+	}
+
+	.generate-cinematic-btn:hover:not(:disabled) {
+		background: #d35400;
+	}
+
+	.cinematic-error {
+		position: absolute;
+		top: 100%;
+		right: 0;
+		background: #fee;
+		color: #c00;
+		font-size: 0.6rem;
+		padding: 2px 4px;
+		border-radius: 2px;
+		white-space: nowrap;
 	}
 
 	.dialogue-error {
