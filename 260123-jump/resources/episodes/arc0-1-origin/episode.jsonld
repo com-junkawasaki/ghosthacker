@@ -254,6 +254,13 @@
           "characters": [
             "character:Yuto"
           ],
+          "gh:characterIntro": [
+            {
+              "gh:characterId": "character:Yuto",
+              "gh:name": "藤崎 悠斗",
+              "gh:nameReading": "ふじさき ゆうと"
+            }
+          ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n2-fearful-yuto_v2.png",
@@ -1728,12 +1735,12 @@
       "gh:act": "act:2-signs",
       "gh:pageLayout": {
         "gh:category": "dialogue",
-        "gh:layoutNote": "メッセージのやり取り。スマホ画面とYutoの表情を交互に",
+        "gh:layoutNote": "出品者との巧妙なやり取り。丁寧で親しみやすい詐欺師の対応",
         "gh:templateName": "Dialogue Rhythm"
       },
       "gh:pageNumber": 11,
-      "gh:pageTitle": "出品者に問い合わせ",
-      "gh:panelCount": 5,
+      "gh:pageTitle": "親切な出品者",
+      "gh:panelCount": 8,
       "gh:panels": [
         {
           "characters": [
@@ -1741,14 +1748,14 @@
           ],
           "dialogue": [],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy typing message on smartphone. Serious expression. Bedroom. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy typing message on smartphone. Worried expression. Bedroom evening light. shot on 50mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Medium Shot"
           },
           "panel": 1,
           "shot": "Medium Shot",
-          "visual": "メッセージを打つYuto。真剣な表情。"
+          "visual": "スマホでメッセージを打つYuto。心配そうな表情。"
         },
         {
           "characters": [],
@@ -1756,50 +1763,250 @@
             {
               "gh:via": "message",
               "speaker": "Yuto",
-              "text": "まだ届かないんですが…"
+              "text": "すみません、まだ届かないんですが…"
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Messaging app. Yuto's message: 'It still hasn't arrived...' Sent. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Messaging app. Yuto's polite message: 'Excuse me, it still hasn't arrived...' Sent timestamp shown.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
           },
           "panel": 2,
           "shot": "Insert",
-          "visual": "メッセージ画面。Yutoが問い合わせを送信。"
-        },
-        {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Messaging app showing '...' typing indicator. Waiting for reply. Tension.",
-          "gh:shotProperties": {
-            "gh:angle": "flat",
-            "gh:distance": "Insert"
-          },
-          "panel": 3,
-          "shot": "Insert",
-          "visual": "「…」の入力中表示。返信を待つ緊張感。"
+          "visual": "メッセージ画面。Yutoが丁寧に問い合わせを送信。"
         },
         {
           "characters": [],
           "dialogue": [
             {
               "gh:via": "message",
+              "gh:emotion": "friendly",
               "speaker": "出品者",
-              "text": "配送にトラブルが発生しました。確認のため、電話番号を教えてください。"
+              "text": "お問い合わせありがとうございます！確認させてください(^^)"
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Reply message: 'There's a shipping problem. Please provide your phone number for verification.' Suspicious request. Japanese text.",
+          "gh:imagePrompt": "Single illustration. Insert shot. Reply message with friendly emoticon: 'Thank you for contacting! Let me check (^^)' Overly friendly tone.",
+          "gh:shotProperties": {
+            "gh:angle": "flat",
+            "gh:distance": "Insert"
+          },
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "即座に返信。やけに丁寧で親しみやすい文面。顔文字付き。"
+        },
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "gh:via": "message",
+              "gh:emotion": "apologetic",
+              "speaker": "出品者",
+              "text": "配送元に確認したところ、住所確認が必要みたいです💦 お手数おかけしてすみません！"
+            }
+          ],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Single illustration. Insert shot. Another message: 'I checked with the shipping company and they need address verification. Sorry for the trouble!' Sweat emoji. Very polite.",
           "gh:shotProperties": {
             "gh:angle": "flat",
             "gh:distance": "Insert"
           },
           "panel": 4,
           "shot": "Insert",
-          "visual": "返信が届く。「配送トラブルです。確認のため電話番号を教えてください」"
+          "visual": "続けて返信。「配送元に確認したら住所確認が必要みたいです」申し訳なさそうな絵文字。"
+        },
+        {
+          "characters": [
+            "character:Yuto"
+          ],
+          "dialogue": [
+            {
+              "gh:emotion": "relieved",
+              "speaker": "Yuto（内心）",
+              "text": "ちゃんと対応してくれる人でよかった…"
+            }
+          ],
+          "environment": "env:yuto-bedroom",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy looking relieved at phone. 'Glad they're being responsive...' Slight smile. Guard lowered.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:distance": "Close Up"
+          },
+          "panel": 5,
+          "shot": "Close Up",
+          "visual": "安心した表情のYuto。丁寧な対応に警戒心が緩む。"
+        },
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "gh:via": "message",
+              "gh:emotion": "casual",
+              "speaker": "出品者",
+              "text": "今からSMSで確認番号が届くので、その番号を教えてもらえますか？配送会社への本人確認に使います！"
+            }
+          ],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Single illustration. Insert shot. Critical message: 'An SMS verification code will arrive now. Can you tell me that number? It's for identity verification with the shipping company!' The trap is set.",
+          "gh:shotProperties": {
+            "gh:angle": "flat",
+            "gh:distance": "Insert"
+          },
+          "panel": 6,
+          "shot": "Insert",
+          "visual": "核心のメッセージ。「SMSで確認番号が届くので教えて」配送会社への確認という口実。"
+        },
+        {
+          "characters": [
+            "character:Yuto"
+          ],
+          "dialogue": [],
+          "environment": "env:yuto-bedroom",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy receives SMS notification. Phone vibrates. New message alert. Unsuspecting.",
+          "gh:shotProperties": {
+            "gh:angle": "slight high angle",
+            "gh:distance": "Medium Shot"
+          },
+          "panel": 7,
+          "shot": "Medium Shot",
+          "visual": "YutoのスマホにSMS通知が届く。ブルッと振動。"
+        },
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Single illustration. Insert shot. SMS notification from SNS service. '【重要】認証コード: 847293 ※このコードは絶対に他人に教えないでください' Warning text clearly visible but ignored. Two-factor authentication code.",
+          "gh:shotProperties": {
+            "gh:angle": "flat",
+            "gh:distance": "Insert",
+            "gh:emphasis": "warning text"
+          },
+          "panel": 8,
+          "shot": "Insert",
+          "visual": "SMS画面。「【SNS名】認証コード: 847293 ※このコードは絶対に他人に教えないでください」警告文がはっきり見える。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:2-signs",
+      "gh:pageLayout": {
+        "gh:category": "climax",
+        "gh:layoutNote": "認証コードを渡す決断的瞬間。警告を見逃す心理を丁寧に描写",
+        "gh:templateName": "Revelation Moment"
+      },
+      "gh:pageNumber": 12,
+      "gh:pageTitle": "番号を教える",
+      "gh:panelCount": 7,
+      "gh:panels": [
+        {
+          "characters": [
+            "character:Yuto"
+          ],
+          "dialogue": [
+            {
+              "gh:emotion": "trusting",
+              "speaker": "Yuto（内心）",
+              "text": "配送会社の確認なら…教えても大丈夫だよな"
+            }
+          ],
+          "environment": "env:yuto-bedroom",
+          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy looking at SMS code on phone. Trusting expression. About to make a mistake. shot on 50mm, f/1.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:distance": "Medium Close Up"
+          },
+          "panel": 1,
+          "shot": "Medium Close Up",
+          "visual": "SMSの認証コードを見るYuto。信じきった表情。"
+        },
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Single illustration. Extreme Close Up. SMS warning text '※このコードは絶対に他人に教えないでください' but it's being scrolled past. The warning is visible but not read. Dramatic irony.",
+          "gh:shotProperties": {
+            "gh:angle": "flat",
+            "gh:distance": "Extreme Close Up",
+            "gh:emphasis": "ignored warning"
+          },
+          "panel": 2,
+          "shot": "Extreme Close Up",
+          "visual": "SMS画面の警告文「※このコードは絶対に他人に教えないでください」しかしYutoの指がスワイプして通り過ぎる。"
+        },
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "gh:via": "message",
+              "speaker": "Yuto",
+              "text": "847293 です！"
+            }
+          ],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Single illustration. Insert shot. Message being sent with the verification code '847293'. The fateful message. Japanese text.",
+          "gh:shotProperties": {
+            "gh:angle": "flat",
+            "gh:distance": "Insert"
+          },
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "メッセージ画面。認証コード「847293」を送信。運命の瞬間。"
+        },
+        {
+          "characters": [],
+          "dialogue": [
+            {
+              "gh:via": "message",
+              "gh:emotion": "grateful",
+              "speaker": "出品者",
+              "text": "ありがとうございます！確認できました✨ これで発送手続き進められます！"
+            }
+          ],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Single illustration. Insert shot. Reply: 'Thank you! Confirmed! Now I can proceed with shipping!' Sparkle emoji. Deceptively cheerful. The scammer has what they need.",
+          "gh:shotProperties": {
+            "gh:angle": "flat",
+            "gh:distance": "Insert"
+          },
+          "panel": 4,
+          "shot": "Insert",
+          "visual": "即座に返信。「ありがとうございます！確認できました」キラキラ絵文字。詐欺師は目的を達成。"
+        },
+        {
+          "characters": [
+            "character:Yuto"
+          ],
+          "dialogue": [
+            {
+              "gh:emotion": "relieved",
+              "speaker": "Yuto",
+              "text": "よかった…これで届くはず"
+            }
+          ],
+          "environment": "env:yuto-bedroom",
+          "gh:imagePrompt": "Single illustration. Medium Shot. Japanese boy putting down phone with relieved smile. Unaware of what he's just done. False sense of security. shot on 50mm, f/2.8, cinematic live-action.",
+          "gh:shotProperties": {
+            "gh:angle": "eye level",
+            "gh:distance": "Medium Shot"
+          },
+          "panel": 5,
+          "shot": "Medium Shot",
+          "visual": "安堵してスマホを置くYuto。自分が何をしたか気づいていない。"
+        },
+        {
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone-screen",
+          "gh:imagePrompt": "Single illustration. Insert shot. Time skip. New notification: 'Your password has been changed' from SNS service. Account takeover beginning. Ominous.",
+          "gh:shotProperties": {
+            "gh:angle": "flat",
+            "gh:distance": "Insert",
+            "gh:atmosphere": "不穏"
+          },
+          "panel": 6,
+          "shot": "Insert",
+          "visual": "時間経過。新しい通知「パスワードが変更されました」SNSからの通知。乗っ取りの始まり。"
         },
         {
           "characters": [
@@ -1809,141 +2016,18 @@
             {
               "gh:emotion": "confused",
               "speaker": "Yuto",
-              "text": "電話番号…？"
+              "text": "え…？パスワード変更…？俺、何もしてないのに…"
             }
           ],
           "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy looking confused at phone screen. 'Phone number...?' shot on 85mm, f/1.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:distance": "Close Up"
-          },
-          "panel": 5,
-          "shot": "Close Up",
-          "visual": "メッセージを見て困惑するYuto。"
-        }
-      ]
-    },
-    {
-      "gh:act": "act:2-signs",
-      "gh:pageLayout": {
-        "gh:category": "climax",
-        "gh:layoutNote": "電話番号を渡す決断。中央大パネルで重大な判断の瞬間を強調",
-        "gh:templateName": "Revelation Moment"
-      },
-      "gh:pageNumber": 12,
-      "gh:pageTitle": "番号を渡す",
-      "gh:panelCount": 7,
-      "gh:panels": [
-        {
-          "characters": [
-            "character:Yuto"
-          ],
-          "dialogue": [
-            {
-              "gh:emotion": "uncertain",
-              "speaker": "Yuto",
-              "text": "まあ、配送の確認だし…"
-            }
-          ],
-          "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Medium Close Up. Japanese boy hesitating. Finger hovering over phone screen. Uncertain expression. shot on 50mm, f/1.8, cinematic live-action.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:distance": "Medium Close Up"
-          },
-          "panel": 1,
-          "shot": "Medium Close Up",
-          "visual": "迷うYuto。指が画面の上で止まっている。"
-        },
-        {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Phone number being typed into message field. Japanese text.",
-          "gh:shotProperties": {
-            "gh:angle": "flat",
-            "gh:distance": "Insert"
-          },
-          "panel": 2,
-          "shot": "Insert",
-          "visual": "電話番号を入力している画面。"
-        },
-        {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Send button pressed. 'Message sent' notification.",
-          "gh:shotProperties": {
-            "gh:angle": "flat",
-            "gh:distance": "Insert"
-          },
-          "panel": 3,
-          "shot": "Insert",
-          "visual": "送信ボタンを押す。「送信しました」の表示。"
-        },
-        {
-          "characters": [
-            "character:Yuto"
-          ],
-          "dialogue": [],
-          "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Wide Shot. Time passage. Japanese boy sitting on bed. Window showing it's gotten darker. Time has passed.",
-          "gh:shotProperties": {
-            "gh:angle": "eye level",
-            "gh:atmosphere": "時間経過",
-            "gh:distance": "Wide Shot"
-          },
-          "panel": 4,
-          "shot": "Wide Shot",
-          "visual": "時間経過を示す。Yutoがベッドに座っている。窓の外が暗くなっている。"
-        },
-        {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Smartphone screen flooded with notifications. Spam emails arriving one after another. Notification badges piling up.",
-          "gh:shotProperties": {
-            "gh:angle": "flat",
-            "gh:distance": "Insert"
-          },
-          "panel": 5,
-          "shot": "Insert",
-          "visual": "スマホに大量の通知。迷惑メールが次々と届く。"
-        },
-        {
-          "characters": [],
-          "dialogue": [],
-          "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Single illustration. Insert shot. Incoming call from unknown number. Silent call. Ominous.",
-          "gh:shotProperties": {
-            "gh:angle": "flat",
-            "gh:distance": "Insert"
-          },
-          "panel": 6,
-          "shot": "Insert",
-          "visual": "知らない番号からの着信。無言電話。"
-        },
-        {
-          "characters": [
-            "character:Yuto"
-          ],
-          "dialogue": [
-            {
-              "gh:emotion": "alarmed",
-              "speaker": "Yuto",
-              "text": "え、なにこれ…？メールが止まらない…"
-            }
-          ],
-          "environment": "env:yuto-bedroom",
-          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy looking alarmed at phone. Something is wrong. Fear creeping in. shot on 85mm, f/1.8, cinematic live-action.",
+          "gh:imagePrompt": "Single illustration. Close Up. Japanese boy's face showing confusion turning to worry. 'Password changed? But I didn't do anything...' Reality starting to sink in. shot on 85mm, f/1.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:distance": "Close Up"
           },
           "panel": 7,
           "shot": "Close Up",
-          "visual": "焦るYuto。何かがおかしいと気づき始める。"
+          "visual": "困惑から不安に変わるYutoの表情。何かがおかしいと気づき始める。"
         }
       ]
     },
