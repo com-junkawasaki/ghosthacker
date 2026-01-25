@@ -22,7 +22,7 @@
     "text": "gh:text",
     "visual": "gh:visual"
   },
-  "dct:title": "Arc C-3: 「それは傲慢ですね」",
+  "dct:title": "Arc C-3: 「城を崩す者」",
   "gh:arc": "Arc C",
   "gh:credentials": [
     "CISA",
@@ -43,8 +43,16 @@
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Narration",
+              "text": "東海証券 取締役会議室"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 東海証券の取締役会議室。長いテーブルを囲む取締役たち。緊張感。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 東海証券の取締役会議室。長いテーブルを囲む取締役たち。緊張感。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -56,11 +64,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "visual": "東海証券の取締役会議室。長いテーブルを囲む取締役たち。緊張感。"
         },
         {
-          "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:KurodaMasahiko", "character:Kaname"],
+          "dialogue": [
+            {
+              "speaker": "KurodaMasahiko",
+              "text": "本日は、セキュリティ対策について外部専門家から提案があります。"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. 黒田が立ち上がってKanameを紹介する。複雑な表情。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. 黒田が立ち上がってKanameを紹介する。複雑な表情。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -72,11 +89,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "visual": "黒田が立ち上がってKanameを紹介する。複雑な表情。"
         },
         {
-          "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Kaname"],
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "水木要です。本日は、御社の資産流出事件の根本原因と対策について説明します。"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Close-up, ARIA-style. Kanameが白いスーツで立つ。18歳とは思えない落ち着き。取締役たちの視線を受けて。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. Kanameが白いスーツで立つ。18歳とは思えない落ち着き。取締役たちの視線を受けて。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "frontal",
             "gh:aperture": "f/1.2",
@@ -89,7 +115,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "visual": "Kanameが白いスーツで立つ。18歳とは思えない落ち着き。取締役たちの視線を受けて。"
         }
       ]
     },
@@ -97,8 +124,16 @@
       "gh:pageNumber": 2,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Director A",
+              "text": "…高校生？黒田専務、これは何かの冗談か？"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. 取締役の一人が眉をひそめる。Kanameの若さへの驚き。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. 取締役の一人が眉をひそめる。Kanameの若さへの驚き。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "over-shoulder or top-down insert",
             "gh:aperture": "f/2.0",
@@ -110,11 +145,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "visual": "取締役の一人が眉をひそめる。Kanameの若さへの驚き。"
         },
         {
-          "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Kaname"],
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "年齢は関係ありません。重要なのは事実と対策です。"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Kanameが動じずに答える。資料を配り始める。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. Kanameが動じずに答える。資料を配り始める。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -126,11 +170,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "visual": "Kanameが動じずに答える。資料を配り始める。"
         },
         {
-          "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:GhostCastle"],
+          "dialogue": [
+            {
+              "speaker": "SE",
+              "text": "ゴゴゴ…（会議室の空気が重くなる）"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Close-up, ARIA-style. Ghost「規程の城」が会議室を覆い始める。取締役たちの傲慢が城壁を築く。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. Ghost「規程の城」が会議室を覆い始める。取締役たちの傲慢が城壁を築く。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "frontal",
             "gh:aperture": "f/1.2",
@@ -143,7 +196,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "visual": "Ghost「規程の城」が会議室を覆い始める。取締役たちの傲慢が城壁を築く。"
         }
       ]
     },
@@ -151,8 +205,16 @@
       "gh:pageNumber": 3,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Kaname"],
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "事実1：23億円の被害。847口座が攻撃を受けました。"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. Kanameがプレゼンを始める。スクリーンに被害額が表示される。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. Kanameがプレゼンを始める。スクリーンに被害額が表示される。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -164,11 +226,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "visual": "Kanameがプレゼンを始める。スクリーンに被害額が表示される。"
         },
         {
-          "gh:imagePrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "UI",
+              "text": "¥2.3B / 847 accounts"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. スクリーンに映る被害データ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. スクリーンに映る被害データ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "over-shoulder or top-down insert",
             "gh:aperture": "f/2.0",
@@ -180,11 +251,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "visual": "スクリーンに映る被害データ。"
         },
         {
-          "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Kaname"],
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "事実2：金融庁ガイドラインは『最低限』の基準です。御社はそれしか満たしていませんでした。"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Kanameが核心を突く。取締役たちの表情が変わる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. Kanameが核心を突く。取締役たちの表情が変わる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -196,7 +276,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "visual": "Kanameが核心を突く。取締役たちの表情が変わる。"
         }
       ]
     },
@@ -687,8 +768,16 @@
       "gh:pageNumber": 13,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Action Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Action Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:KurodaMasahiko"],
+          "dialogue": [
+            {
+              "speaker": "KurodaMasahiko",
+              "text": "…私は、間違っていたのか。"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Action Shot, ARIA-style. 黒田が初めて自分の傲慢を認める。城壁に亀裂が入る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Action Shot, ARIA-style. 黒田が初めて自分の傲慢を認める。城壁に亀裂が入る。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "dynamic tracking",
             "gh:aperture": "f/2.0",
@@ -701,11 +790,20 @@
             "gh:movement": "handheld or tracking shot, subtle motion blur"
           },
           "panel": 1,
-          "shot": "Action Shot"
+          "shot": "Action Shot",
+          "visual": "黒田が初めて自分の傲慢を認める。城壁に亀裂が入る。"
         },
         {
-          "gh:imagePrompt": "Full Page Splash, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Full Page Splash, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:GhostCastle", "character:Kaname"],
+          "dialogue": [
+            {
+              "speaker": "SE",
+              "text": "ガラガラ…！（城壁が崩れ始める）"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Full Page Splash, ARIA-style. Ghost「規程の城」が崩壊を始める。Kanameの言葉が城壁を砕く。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Full Page Splash, ARIA-style. Ghost「規程の城」が崩壊を始める。Kanameの言葉が城壁を砕く。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "dynamic angle",
             "gh:aperture": "f/2.8",
@@ -717,7 +815,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Full Page Splash"
+          "shot": "Full Page Splash",
+          "visual": "Ghost「規程の城」が崩壊を始める。Kanameの言葉が城壁を砕く。"
         }
       ]
     },
@@ -725,8 +824,16 @@
       "gh:pageNumber": 14,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Action Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Action Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Kaname"],
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "間違いではありません。…ただ、足りなかっただけです。規程を守ることは正しい。でも、それ以上の考慮が必要だった。"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Action Shot, ARIA-style. Kanameが黒田に手を差し伸べる。敵を倒すのではなく、味方にする。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Action Shot, ARIA-style. Kanameが黒田に手を差し伸べる。敵を倒すのではなく、味方にする。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "dynamic tracking",
             "gh:aperture": "f/2.0",
@@ -739,11 +846,20 @@
             "gh:movement": "handheld or tracking shot, subtle motion blur"
           },
           "panel": 1,
-          "shot": "Action Shot"
+          "shot": "Action Shot",
+          "visual": "Kanameが黒田に手を差し伸べる。敵を倒すのではなく、味方にする。"
         },
         {
-          "gh:imagePrompt": "Full Page Splash, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Full Page Splash, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:GhostCastle"],
+          "dialogue": [
+            {
+              "speaker": "SE",
+              "text": "シュウウウ…（城が光に包まれる）"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Full Page Splash, ARIA-style. Ghost「規程の城」が完全に崩壊。でも瓦礫ではなく、光の粒子になって消えていく。傲慢が昇華される。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Full Page Splash, ARIA-style. Ghost「規程の城」が完全に崩壊。でも瓦礫ではなく、光の粒子になって消えていく。傲慢が昇華される。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "dynamic angle",
             "gh:aperture": "f/2.8",
@@ -755,7 +871,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Full Page Splash"
+          "shot": "Full Page Splash",
+          "visual": "Ghost「規程の城」が完全に崩壊。でも瓦礫ではなく、光の粒子になって消えていく。傲慢が昇華される。"
         }
       ]
     },
@@ -763,8 +880,16 @@
       "gh:pageNumber": 15,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": [],
+          "dialogue": [
+            {
+              "speaker": "Chairman",
+              "text": "対策案を承認する。黒田専務を責任者として、即時実行に移す。"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 取締役会議長が決議を宣言。取締役たちが頷く。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 取締役会議長が決議を宣言。取締役たちが頷く。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -776,11 +901,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "visual": "取締役会議長が決議を宣言。取締役たちが頷く。"
         },
         {
-          "gh:imagePrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:KurodaMasahiko", "character:Kaname"],
+          "dialogue": [
+            {
+              "speaker": "KurodaMasahiko",
+              "text": "…ありがとう。水木くん。"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. 黒田がKanameに頭を下げる。58年の傲慢が、18歳の言葉で崩れた。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. 黒田がKanameに頭を下げる。58年の傲慢が、18歳の言葉で崩れた。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "over-shoulder or top-down insert",
             "gh:aperture": "f/2.0",
@@ -792,11 +926,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "visual": "黒田がKanameに頭を下げる。58年の傲慢が、18歳の言葉で崩れた。"
         },
         {
-          "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Kaname"],
+          "dialogue": [
+            {
+              "speaker": "Kaname",
+              "text": "傲慢を認めることが、最も勇敢なことです。"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Close-up, ARIA-style. Kanameが静かに答える。勝者ではなく、協力者として。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. Kanameが静かに答える。勝者ではなく、協力者として。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "frontal",
             "gh:aperture": "f/1.2",
@@ -809,7 +952,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "visual": "Kanameが静かに答える。勝者ではなく、協力者として。"
         }
       ]
     },
@@ -817,8 +961,20 @@
       "gh:pageNumber": 16,
       "gh:panels": [
         {
-          "gh:imagePrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Kaname", "character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "終わったね。Arc C、傲慢編。"
+            },
+            {
+              "speaker": "Kaname",
+              "text": "傲慢は崩れた。でも、まだ他の罪がある。"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Wide Shot, ARIA-style. 東海証券を出るKanameとRen。夕陽が二人を照らす。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Wide Shot, ARIA-style. 東海証券を出るKanameとRen。夕陽が二人を照らす。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/2.8",
@@ -830,11 +986,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "visual": "東海証券を出るKanameとRen。夕陽が二人を照らす。"
         },
         {
-          "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Kaname"],
+          "dialogue": [
+            {
+              "speaker": "Kaname (Monologue)",
+              "text": "（規程を超える。それが、真の監査だ。）"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Kanameが歩きながら考える。次の戦いへ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. Kanameが歩きながら考える。次の戦いへ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -846,11 +1011,20 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "visual": "Kanameが歩きながら考える。次の戦いへ。"
         },
         {
-          "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "characters": ["character:Kaname"],
+          "dialogue": [
+            {
+              "speaker": "Narration",
+              "text": "Arc C：傲慢編 — 完"
+            }
+          ],
+          "environment": "env:finance-hq",
+          "gh:imagePrompt": "Close-up, ARIA-style. Kanameの目。黒曜石のような瞳。城を崩す者。Arc C 完。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Close-up, ARIA-style. Kanameの目。黒曜石のような瞳。城を崩す者。Arc C 完。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "frontal",
             "gh:aperture": "f/1.2",
@@ -863,7 +1037,8 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "visual": "Kanameの目。黒曜石のような瞳。城を崩す者。Arc C 完。"
         }
       ]
     }

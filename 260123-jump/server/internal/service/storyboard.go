@@ -137,6 +137,66 @@ func (s *StoryboardService) aggregateMaster(filePath string) (map[string]interfa
 	// 4. Resolve Episodes
 	resolveLinks("gh:episodes")
 
+	// 4.5 Resolve Acts within Episodes (gh:actStructure with gh:sourceFile)
+	if episodes, ok := master["gh:episodes"].([]interface{}); ok {
+		for _, ep := range episodes {
+			episode, ok := ep.(map[string]interface{})
+			if !ok {
+				continue
+			}
+
+			// Get episode directory for relative path resolution
+			episodeSourceFile, _ := episode["gh:sourceFile"].(string)
+			episodeDir := filepath.Dir(episodeSourceFile)
+
+			actStructure, ok := episode["gh:actStructure"].([]interface{})
+			if !ok {
+				continue
+			}
+
+			var resolvedActs []interface{}
+			for _, act := range actStructure {
+				actMap, ok := act.(map[string]interface{})
+				if !ok {
+					resolvedActs = append(resolvedActs, act)
+					continue
+				}
+
+				actSourceFile, ok := actMap["gh:sourceFile"].(string)
+				if !ok {
+					resolvedActs = append(resolvedActs, act)
+					continue
+				}
+
+				// Resolve relative to episode directory
+				fullPath := filepath.Join(workspaceRoot, "260123-jump/resources", episodeDir, actSourceFile)
+				log.Printf("aggregateMaster: resolving act %s -> %s", actSourceFile, fullPath)
+
+				data, err := os.ReadFile(fullPath)
+				if err != nil {
+					log.Printf("Warning: failed to read act file %s: %v", fullPath, err)
+					resolvedActs = append(resolvedActs, act)
+					continue
+				}
+
+				var actData map[string]interface{}
+				if err := json.Unmarshal(data, &actData); err != nil {
+					log.Printf("Warning: failed to parse act file %s: %v", fullPath, err)
+					resolvedActs = append(resolvedActs, act)
+					continue
+				}
+
+				// Merge act metadata with resolved pages
+				delete(actData, "@context")
+				for k, v := range actData {
+					actMap[k] = v
+				}
+				resolvedActs = append(resolvedActs, actMap)
+			}
+			episode["gh:actStructure"] = resolvedActs
+		}
+	}
+
 	// 5. Resolve Arcs
 	if arcRef, ok := master["gh:arcs"].(map[string]interface{}); ok {
 		if sourceFile, ok := arcRef["gh:sourceFile"].(string); ok {

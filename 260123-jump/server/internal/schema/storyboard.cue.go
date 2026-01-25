@@ -82,25 +82,71 @@ const StoryboardSchema = `
 
 #Page: {
 	"gh:pageNumber": int
+	"gh:act"?: string
+	"gh:pageBeat"?: {
+		"gh:emotionalShift"?: string
+		"gh:hook"?: string
+		"gh:tempo"?: string
+		"gh:turn"?: string
+		...
+	}
 	"gh:panels": [...#Panel]
 	...
 }
 
+#Countermeasure: {
+	"gh:step": int
+	"gh:title": string
+	"gh:titleEn"?: string
+	"gh:pages": [int, int]
+}
+
+#ActStructure: {
+	"@id": string
+	"gh:actNumber": int
+	"gh:actTitle": string
+	"gh:actTitleEn"?: string
+	"gh:pageRange": [int, int]
+	"gh:emotionalArc"?: string
+	"gh:narrativePurpose"?: string
+	"gh:keyBeat"?: string
+	"gh:sourceFile"?: string
+	"gh:countermeasures"?: [...#Countermeasure]
+	...
+}
+
+#Act: {
+	"@context"?: _
+	"@id": string
+	"@type"?: [...string]
+	"gh:actNumber": int
+	"gh:actTitle": string
+	"gh:actTitleEn"?: string
+	"gh:pageRange": [int, int]
+	"gh:emotionalArc"?: string
+	"gh:narrativePurpose"?: string
+	"gh:keyBeat"?: string
+	"gh:countermeasures"?: [...#Countermeasure]
+	"gh:pages": [...#Page]
+	...
+}
+
 #Episode: {
-	"gh:episode": int
-	"gh:episodeIndex": int
+	"gh:episode"?: int
+	"gh:episodeIndex"?: int
 	"gh:episodeId": string
 	"dct:title": string
-	"gh:presentationTagline": string
+	"gh:presentationTagline"?: string
 	"gh:arc": string
-	"gh:industry": string
-	"gh:mainCharacter": string
-	"gh:supportingCharacters": [...string]
-	"gh:realCase": string
-	"gh:sinContrast": string
-	"gh:nistFocus": [...string]
-	"gh:incidentDescription": string
-	"gh:pages": [...#Page]
+	"gh:industry"?: string
+	"gh:mainCharacter"?: string
+	"gh:supportingCharacters"?: [...string]
+	"gh:realCase"?: string
+	"gh:sinContrast"?: string
+	"gh:nistFocus"?: [...string]
+	"gh:incidentDescription"?: string
+	"gh:actStructure"?: [...#ActStructure]
+	"gh:pages"?: [...#Page]
 	...
 }
 

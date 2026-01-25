@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "act": "gh:act/",
+    "character": "gh:character/",
+    "dct": "http://purl.org/dc/terms/",
+    "dialogue": "gh:dialogue",
+    "env": "gh:environment/",
+    "environment": "gh:environment",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "panel": "gh:panelIndex",
+    "prompt": "gh:runwayPrompt",
+    "properties": "gh:shotProperties",
+    "prov": "http://www.w3.org/ns/prov#",
+    "schema": "http://schema.org/",
+    "shot": "gh:shotType",
+    "speaker": "gh:speaker",
+    "text": "gh:text",
+    "visual": "gh:visual"
+  },
+  "@id": "act:7-daemon-battle",
+  "@type": ["gh:Act", "prov:Entity"],
+  "gh:actNumber": 7,
+  "gh:actTitle": "Daemonバトル",
+  "gh:actTitleEn": "Daemon Battle",
+  "gh:pageRange": [36, 41],
+  "gh:emotionalArc": "戦闘 → 葛藤の実体化 → 断絶 → 和解",
+  "gh:narrativePurpose": "内面の呪いを断ち、和解への道を開く",
+  "gh:keyBeat": "climax",
+  "gh:pages": []
+}

@@ -35,8 +35,105 @@
     "PR.AC (Access Control)",
     "PR.DS (Data Security)"
   ],
+  "gh:actStructure": [
+    {
+      "@id": "act:1-introduction",
+      "gh:actNumber": 1,
+      "gh:actTitle": "日常と誘惑",
+      "gh:actTitleEn": "Daily Life & Temptation",
+      "gh:pageRange": [1, 7],
+      "gh:emotionalArc": "平穏 → 誘惑 → 決断",
+      "gh:narrativePurpose": "読者をYutoに同一化させ、詐欺への導線を描く",
+      "gh:keyBeat": "hook",
+      "gh:sourceFile": "acts/act-1-introduction.jsonld"
+    },
+    {
+      "@id": "act:2-signs",
+      "gh:actNumber": 2,
+      "gh:actTitle": "異変の兆候",
+      "gh:actTitleEn": "Signs of Trouble",
+      "gh:pageRange": [8, 15],
+      "gh:emotionalArc": "期待 → 不安 → 恐怖",
+      "gh:narrativePurpose": "詐欺被害の進行と心理的圧迫を描く",
+      "gh:keyBeat": "build",
+      "gh:sourceFile": "acts/act-2-signs.jsonld"
+    },
+    {
+      "@id": "act:3-collapse",
+      "gh:actNumber": 3,
+      "gh:actTitle": "崩壊",
+      "gh:actTitleEn": "Collapse",
+      "gh:pageRange": [16, 19],
+      "gh:emotionalArc": "恐怖 → 絶望 → 孤立",
+      "gh:narrativePurpose": "友人関係の崩壊と社会的孤立を描く",
+      "gh:keyBeat": "crisis",
+      "gh:sourceFile": "acts/act-3-collapse.jsonld"
+    },
+    {
+      "@id": "act:4-rescue",
+      "gh:actNumber": 4,
+      "gh:actTitle": "救いの手",
+      "gh:actTitleEn": "Helping Hand",
+      "gh:pageRange": [20, 21],
+      "gh:emotionalArc": "孤立 → 接触 → 希望",
+      "gh:narrativePurpose": "Nei/Renの介入、救済の始まり",
+      "gh:keyBeat": "turn",
+      "gh:sourceFile": "acts/act-4-rescue.jsonld"
+    },
+    {
+      "@id": "act:5-countermeasures",
+      "gh:actNumber": 5,
+      "gh:actTitle": "対策",
+      "gh:actTitleEn": "Countermeasures",
+      "gh:pageRange": [22, 29],
+      "gh:emotionalArc": "混乱 → 理解 → 達成感",
+      "gh:narrativePurpose": "具体的なセキュリティ対策を読者に伝える",
+      "gh:keyBeat": "education",
+      "gh:sourceFile": "acts/act-5-countermeasures.jsonld",
+      "gh:countermeasures": [
+        {"gh:step": 1, "gh:title": "漏えいチェック", "gh:titleEn": "Breach Check", "gh:pages": [22, 23]},
+        {"gh:step": 2, "gh:title": "カード停止", "gh:titleEn": "Card Suspension", "gh:pages": [24, 25]},
+        {"gh:step": 3, "gh:title": "パスワード管理", "gh:titleEn": "Password Management", "gh:pages": [26, 27]},
+        {"gh:step": 4, "gh:title": "注意喚起", "gh:titleEn": "Warning Friends", "gh:pages": [28, 29]}
+      ]
+    },
+    {
+      "@id": "act:6-ghost-battle",
+      "gh:actNumber": 6,
+      "gh:actTitle": "Ghost説明＋バトル",
+      "gh:actTitleEn": "Ghost Revelation & Battle",
+      "gh:pageRange": [30, 35],
+      "gh:emotionalArc": "罵倒 → 驚愕 → 理解 → 戦闘開始",
+      "gh:narrativePurpose": "情報の物理性を示し、Ghostの存在を明かす",
+      "gh:keyBeat": "revelation",
+      "gh:sourceFile": "acts/act-6-ghost-battle.jsonld"
+    },
+    {
+      "@id": "act:7-daemon-battle",
+      "gh:actNumber": 7,
+      "gh:actTitle": "Daemonバトル",
+      "gh:actTitleEn": "Daemon Battle",
+      "gh:pageRange": [36, 41],
+      "gh:emotionalArc": "戦闘 → 葛藤の実体化 → 断絶 → 和解",
+      "gh:narrativePurpose": "内面の呪いを断ち、和解への道を開く",
+      "gh:keyBeat": "climax",
+      "gh:sourceFile": "acts/act-7-daemon-battle.jsonld"
+    },
+    {
+      "@id": "act:8-resolution",
+      "gh:actNumber": 8,
+      "gh:actTitle": "決意",
+      "gh:actTitleEn": "Resolution",
+      "gh:pageRange": [42, 45],
+      "gh:emotionalArc": "和解 → 真の敵の認識 → 決意",
+      "gh:narrativePurpose": "真の敵を指摘し、次章への布石",
+      "gh:keyBeat": "resolution",
+      "gh:sourceFile": "acts/act-8-resolution.jsonld"
+    }
+  ],
   "gh:pages": [
     {
+      "gh:act": "act:1-introduction",
       "gh:pageBeat": {
         "gh:emotionalShift": "ゆるい幸福 → ほんの一瞬の焦り/欲",
         "gh:hook": "「限定」という言葉が、Yutoの指を動かす",
