@@ -291,13 +291,19 @@
           "dialogue": [],
           "environment": "env:smartphone-screen",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n3-angry-notifications_v2.png",
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n3-angry-notifications_v2.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769353373,
               "gh:imagePrompt": "スマホ画面のアップ。大量の通知バッジ。SNSのDM通知「許さない」「なんで俺まで」「最低」の文字が見える。赤い通知アイコンが不吉に光る。. Shot type: Insert",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n3-angry-notifications_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            },
+            {
+              "gh:generatedAt": 1769354200,
+              "gh:imagePrompt": "スマホ画面のアップ。大量の通知バッジ。SNSのDM通知「許さない」「なんで俺まで」「最低」の文字が見える。赤い通知アイコンが不吉に光る。. Shot type: Insert",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n3-angry-notifications_v2.png",
               "gh:model": "google/gemini-3-pro-image-preview"
             }
           ],
@@ -325,13 +331,19 @@
           ],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n4-terror-eyes_v2.png",
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n4-terror-eyes_v2.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769353391,
               "gh:imagePrompt": "Yutoの目だけのアップ。通知音に怯え、瞳孔が開いている。額に冷や汗。恐怖に支配された目。. Shot type: Extreme Close Up. Dialogue: Yuto: （また…通知…）.",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n4-terror-eyes_v1.png",
+              "gh:model": "google/gemini-3-pro-image-preview"
+            },
+            {
+              "gh:generatedAt": 1769354221,
+              "gh:imagePrompt": "Yutoの目だけのアップ。通知音に怯え、瞳孔が開いている。額に冷や汗。恐怖に支配された目。. Shot type: Extreme Close Up. Dialogue: Yuto: （また…通知…）.",
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n4-terror-eyes_v2.png",
               "gh:model": "google/gemini-3-pro-image-preview"
             }
           ],

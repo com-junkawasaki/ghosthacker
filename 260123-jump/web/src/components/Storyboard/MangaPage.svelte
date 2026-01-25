@@ -28,15 +28,11 @@
 	// Generate fallback layout based on panel count if no stored layout
 	let pageLayout = $derived(storedLayout?.panels?.length > 0 ? storedLayout : generateDefaultLayout(sortedPanels.length));
 	
-	// Gap between panels (in percentage)
-	const PANEL_GAP = 1;
-
 	/**
 	 * Generate Jump manga-style default layout based on panel count
 	 * All layouts include small gaps between panels for authentic manga look
 	 */
 	function generateDefaultLayout(panelCount: number): { panels: PanelLayoutInfo[] } {
-		const g = PANEL_GAP; // shorthand for gap
 		const layouts: Record<number, PanelLayoutInfo[]> = {
 			1: [{ x: 0, y: 0, width: 100, height: 100 }],
 			2: [
