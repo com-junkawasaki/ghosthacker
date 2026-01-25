@@ -160,7 +160,8 @@ func (s *StoryboardService) finalUpdateStoryboard(filePath, episodeID string, pa
 		p["generatedImageUrl"] = genImg.ImageUrl
 		
 		// Add to history
-		history, _ := p["gh:generatedImages"].([]interface{})
+		historyRaw, _ := p["gh:generatedImages"]
+		history, _ := historyRaw.([]interface{})
 		newImg := map[string]interface{}{
 			"gh:imageUrl":    genImg.ImageUrl,
 			"gh:imagePrompt": genImg.ImagePrompt,
@@ -186,17 +187,18 @@ func (s *StoryboardService) finalUpdateStoryboard(filePath, episodeID string, pa
 		sort.Slice(history, func(i, j int) bool {
 			m1, _ := history[i].(map[string]interface{})
 			m2, _ := history[j].(map[string]interface{})
-			t1, _ := m1["gh:generatedAt"].(float64)
-			t2, _ := m2["gh:generatedAt"].(float64)
-			if t1 == 0 {
-				t1_int, _ := m1["gh:generatedAt"].(int64)
-				t1 = float64(t1_int)
+			
+			getTimestamp := func(m map[string]interface{}) float64 {
+				if val, ok := m["gh:generatedAt"].(float64); ok {
+					return val
+				}
+				if val, ok := m["gh:generatedAt"].(int64); ok {
+					return float64(val)
+				}
+				return 0
 			}
-			if t2 == 0 {
-				t2_int, _ := m2["gh:generatedAt"].(int64)
-				t2 = float64(t2_int)
-			}
-			return t1 < t2
+			
+			return getTimestamp(m1) < getTimestamp(m2)
 		})
 		
 		p["gh:generatedImages"] = history

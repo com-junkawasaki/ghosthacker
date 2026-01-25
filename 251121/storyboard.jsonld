@@ -826,9 +826,9 @@
                 }
               ],
               "environment": "env:cschool-classroom",
-              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_4_20260125_054337.png",
-              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_4_20260125_054337.png",
-              "gh:imagePrompt": "少し離れたブースでRenは気怠そうに、Neiは本を読んでいる。手前では盛り上がる輪。. Characters: 沼野 蓮 (Ren Numano), Nei. Shot type: Wide Shot. Dialogue: Kurokawa Akira (Aki): これ、限定販売なんだぜ。もう手に入らない。.",
+              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_4_20260125_055708.png",
+              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/3/panel_4_20260125_055708.png",
+              "gh:imagePrompt": "Professional cinematic storyboard sketch, Mai Yoneyama illustrator style, High-End Webtoon Aesthetic, Fine Line Art with Screen Tones, Modern Bishonen Manga Style. 少し離れたブースでRenは気怠そうに、Neiは本を読んでいる。手前では盛り上がる輪。. Characters: 沼野 蓮 (Ren Numano), Nei. Shot type: Wide Shot. Dialogue: Kurokawa Akira (Aki): これ、限定販売なんだぜ。もう手に入らない。.. High contrast monochrome, sharp focus on expressive eyes, intricate iris detail, consistent facial features, slender male youth, atmospheric lighting, cinematic composition, 85mm lens.",
               "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. In the same classroom, Ren lounges lazily at a booth while Nei reads quietly; in the foreground, Yuto's group reacts to a boast. shot on 35mm, f/2.8, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "eye level",
@@ -1009,6 +1009,9 @@
                 }
               ],
               "environment": "env:smartphone-screen",
+              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/4/panel_5_20260125_055501.png",
+              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/4/panel_5_20260125_055501.png",
+              "gh:imagePrompt": "Professional cinematic storyboard sketch, Mai Yoneyama illustrator style, High-End Webtoon Aesthetic, Fine Line Art with Screen Tones, Modern Bishonen Manga Style. 即座に来るお礼メール。『翌日発送』っぽいアイコン。『高評価を』の圧もある。. Shot type: Insert Shot. Dialogue: Yuto: よっしゃ…明日だ。明日届く！.. High contrast monochrome, sharp focus on expressive eyes, intricate iris detail, consistent facial features, slender male youth, atmospheric lighting, cinematic composition, 85mm lens.",
               "gh:runwayPrompt": "Insert Shot, top-down, ARIA-style. Instant confirmation email/notification on phone: a thank-you icon, a 'ship tomorrow' truck icon, and a star rating prompt (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "top-down insert",
@@ -1043,9 +1046,9 @@
                 }
               ],
               "environment": "env:cschool-classroom",
-              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/5/panel_1_20260125_054412.png",
-              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/5/panel_1_20260125_054412.png",
-              "gh:imagePrompt": "翌日。休憩時間。いつも通りの教室、いつも通りの雑談。. Shot type: Wide Shot. Dialogue: Kurokawa Akira (Aki): マジで、手に入らないからな？.",
+              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/5/panel_1_20260125_055451.png",
+              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/5/panel_1_20260125_055451.png",
+              "gh:imagePrompt": "Professional cinematic storyboard sketch, Mai Yoneyama illustrator style, High-End Webtoon Aesthetic, Fine Line Art with Screen Tones, Modern Bishonen Manga Style. 翌日。休憩時間。いつも通りの教室、いつも通りの雑談。. Shot type: Wide Shot. Dialogue: Kurokawa Akira (Aki): マジで、手に入らないからな？.. High contrast monochrome, sharp focus on expressive eyes, intricate iris detail, consistent facial features, slender male youth, atmospheric lighting, cinematic composition, 85mm lens.",
               "gh:runwayPrompt": "Wide Shot, eye level, ARIA-style. Classroom break time again: students chat casually; Yuto listens with a secret smile. shot on 35mm, f/2.8, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "eye level",
@@ -1560,6 +1563,9 @@
                 }
               ],
               "environment": "env:smartphone-screen",
+              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/9/panel_2_20260125_055541.png",
+              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/9/panel_2_20260125_055541.png",
+              "gh:imagePrompt": "Professional cinematic storyboard sketch, Mai Yoneyama illustrator style, High-End Webtoon Aesthetic, Fine Line Art with Screen Tones, Modern Bishonen Manga Style. パスワードのリセットも、初期化も、できない。. Shot type: Insert Shot. Dialogue: Yuto: ……リセット…できない？.. High contrast monochrome, sharp focus on expressive eyes, intricate iris detail, consistent facial features, slender male youth, atmospheric lighting, cinematic composition, 85mm lens.",
               "gh:runwayPrompt": "Insert Shot, top-down, ARIA-style. Password reset flow fails: warning icon and disabled button state (no readable text). shot on 50mm, f/2.0, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "top-down insert",
@@ -1586,6 +1592,9 @@
                 }
               ],
               "environment": "env:home-desk",
+              "generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/9/panel_3_20260125_055539.png",
+              "gh:generatedImageUrl": "/images/episodes/episode:260123-cschool-privacy/pages/9/panel_3_20260125_055539.png",
+              "gh:imagePrompt": "Professional cinematic storyboard sketch, Mai Yoneyama illustrator style, High-End Webtoon Aesthetic, Fine Line Art with Screen Tones, Modern Bishonen Manga Style. 運営会社にメールする。でも返事は来ない。. Shot type: Medium Shot. Dialogue: Yuto: お願いします…戻してください….. High contrast monochrome, sharp focus on expressive eyes, intricate iris detail, consistent facial features, slender male youth, atmospheric lighting, cinematic composition, 85mm lens.",
               "gh:runwayPrompt": "Medium Shot, eye level, ARIA-style. Night at a desk: Yuto types a support email on a laptop, exhausted; phone sits beside it, face down. shot on 50mm, f/1.8, cinematic live-action.",
               "gh:shotProperties": {
                 "gh:angle": "eye level",
