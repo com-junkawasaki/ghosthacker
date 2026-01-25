@@ -258,8 +258,28 @@ Context Strategy: Provide recent dialogue history and character sentence traits.
 	}
 
 	// Convert patches to proto format
-	protoPatches := make([]*storyboardpb.JSONPatch, len(result.Patches))
-	for i, p := range result.Patches {
+	filteredPatches, violations := FilterPatchesByScope(req.Msg.AgentMode, result.Patches)
+	if len(violations) > 0 {
+		log.Printf("[InteractWithAI] Blocked unauthorized patches from %s: %v", req.Msg.AgentMode, violations)
+		result.Response += fmt.Sprintf("\n\n(Note: Some unauthorized changes to %s were blocked for safety.)", strings.Join(violations, ", "))
+	}
+
+	// Post-process validation (Simplified)
+	// In a real implementation, we would apply patches to a temporary copy of the storyboard
+	// and run ValidateEpisodeStructure. For now, we'll validate the intent.
+	if req.Msg.AgentMode == "dialogue" || req.Msg.AgentMode == "character" {
+		for _, p := range filteredPatches {
+			if strings.Contains(p.Path, "dialogue") {
+				// Lightweight check for dialogue length
+				if len(p.Value) > 500 { // Rough byte count check
+					result.Response += "\n\n(Warning: The generated dialogue seems exceptionally long. Consider shortening it for better pacing.)"
+				}
+			}
+		}
+	}
+
+	protoPatches := make([]*storyboardpb.JSONPatch, len(filteredPatches))
+	for i, p := range filteredPatches {
 		protoPatches[i] = &storyboardpb.JSONPatch{
 			Op:    p.Op,
 			Path:  p.Path,

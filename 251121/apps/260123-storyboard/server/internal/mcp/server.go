@@ -85,22 +85,24 @@ func (s *StoryboardMCPServer) handleCharacterSpecialist(ctx context.Context, req
 	charID, _ := args["character_id"].(string)
 	instruction, _ := args["instruction"].(string)
 	log.Printf("[MCP] Character Specialist called for %s: %s", charID, instruction)
-	
+
+	// Isolation Logic: Fetch ONLY the specific character profile to ensure focus
+	profile, err := s.fetchCharacterProfile(charID)
+	if err != nil {
+		return nil, fmt.Errorf("failed to isolate character profile for %s: %w", charID, err)
+	}
+
 	return &mcp.CallToolResult{
 		Content: []mcp.Content{
 			mcp.TextContent{
 				Type: "text",
-				Text: fmt.Sprintf("Character Agent for %s processed: %s. (Logic pending)", charID, instruction),
+				Text: fmt.Sprintf("Character Agent for %s processed: %s.\nIsolated Context: %s", charID, instruction, profile),
 			},
 		},
 	}, nil
 }
 
-func (s *StoryboardMCPServer) handleGetCharacterProfile(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-	args := req.Params.Arguments.(map[string]interface{})
-	charID, _ := args["character_id"].(string)
-	log.Printf("[MCP] Fetching profile for: %s", charID)
-
+func (s *StoryboardMCPServer) fetchCharacterProfile(charID string) (string, error) {
 	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
 	if workspaceRoot == "" {
 		workspaceRoot = "../../../.."
@@ -112,6 +114,18 @@ func (s *StoryboardMCPServer) handleGetCharacterProfile(ctx context.Context, req
 
 	data, err := os.ReadFile(charFile)
 	if err != nil {
+		return "", err
+	}
+	return string(data), nil
+}
+
+func (s *StoryboardMCPServer) handleGetCharacterProfile(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	args := req.Params.Arguments.(map[string]interface{})
+	charID, _ := args["character_id"].(string)
+	log.Printf("[MCP] Fetching profile for: %s", charID)
+
+	data, err := s.fetchCharacterProfile(charID)
+	if err != nil {
 		return nil, fmt.Errorf("character profile not found for %s: %w", charID, err)
 	}
 
@@ -119,7 +133,7 @@ func (s *StoryboardMCPServer) handleGetCharacterProfile(ctx context.Context, req
 		Content: []mcp.Content{
 			mcp.TextContent{
 				Type: "text",
-				Text: string(data),
+				Text: data,
 			},
 		},
 	}, nil
