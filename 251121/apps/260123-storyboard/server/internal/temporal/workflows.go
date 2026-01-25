@@ -97,6 +97,14 @@ func AutonomousGenerationWorkflow(ctx workflow.Context, params AutonomousGenerat
 	}
 	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "cinematic", Content: finalResult})
 
+	// 5. Vision Agent: Multimodal Feedback (Concept)
+	var visionFeedback string
+	// In a real loop, we'd pass the generated image URL here
+	err = workflow.ExecuteActivity(ctx, VisionAnalysisActivity, "placeholder_image_url").Get(ctx, &visionFeedback)
+	if err == nil {
+		workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "vision", Content: visionFeedback})
+	}
+
 	return AutonomousGenerationResult{
 		Success: true,
 		Message: "Autonomous generation completed successfully",

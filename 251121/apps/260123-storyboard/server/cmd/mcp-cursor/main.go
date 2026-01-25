@@ -23,9 +23,9 @@ func main() {
 		mcp.WithDescription("Identify panels that are missing cinematic sketches in the storyboard."),
 	), handleIdentifyMissingSketches)
 
-	s.AddTool(mcp.NewTool("generate_aria_prompt",
-		mcp.WithDescription("Generate a cinematic prompt based on ARIA Cinematic Base for a specific panel."),
-	), handleGenerateAriaPrompt)
+	s.AddTool(mcp.NewTool("generate_all_missing_aria_prompts",
+		mcp.WithDescription("Generate ARIA Cinematic Base prompts for all panels missing sketches in the storyboard."),
+	), handleGenerateAllMissingAriaPrompts)
 
 	// Run as stdio server
 	if err := server.ServeStdio(s); err != nil {
@@ -86,12 +86,7 @@ func handleIdentifyMissingSketches(ctx context.Context, req mcp.CallToolRequest)
 	}, nil
 }
 
-func handleGenerateAriaPrompt(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-	args := req.Params.Arguments.(map[string]interface{})
-	epID, _ := args["episode_id"].(string)
-	pageNum, _ := args["page_number"].(float64)
-	panelIdx, _ := args["panel"].(float64)
-
+func handleGenerateAllMissingAriaPrompts(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
 	if workspaceRoot == "" {
 		workspaceRoot = "../../../.."
@@ -108,47 +103,45 @@ func handleGenerateAriaPrompt(ctx context.Context, req mcp.CallToolRequest) (*mc
 		return nil, fmt.Errorf("failed to parse storyboard: %w", err)
 	}
 
-	episodes := storyboard["gh:episodes"].([]interface{})
-	var targetPanel map[string]interface{}
+	episodes, ok := storyboard["gh:episodes"].([]interface{})
+	if !ok {
+		return &mcp.CallToolResult{Content: []mcp.Content{mcp.TextContent{Type: "text", Text: "No episodes found."}}}, nil
+	}
+
+	count := 0
 	for _, e := range episodes {
 		episode := e.(map[string]interface{})
-		if episode["gh:episodeId"].(string) != epID {
-			continue
-		}
 		pages := episode["gh:pages"].([]interface{})
 		for _, pg := range pages {
 			page := pg.(map[string]interface{})
-			if int(page["gh:pageNumber"].(float64)) != int(pageNum) {
-				continue
-			}
 			panels := page["gh:panels"].([]interface{})
 			for _, p := range panels {
 				panel := p.(map[string]interface{})
-				if int(panel["panel"].(float64)) == int(panelIdx) {
-					targetPanel = panel
-					break
+				
+				_, hasImage := panel["gh:generatedImageUrl"]
+				_, hasPrompt := panel["gh:imagePrompt"]
+				
+				if !hasImage && !hasPrompt {
+					visual, _ := panel["visual"].(string)
+					shot, _ := panel["shot"].(string)
+					
+					// ARIA Cinematic Base Template
+					prompt := fmt.Sprintf("%s, ARIA-style. %s. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.", shot, visual)
+					
+					panel["gh:runwayPrompt"] = prompt
+					panel["gh:imagePrompt"] = prompt
+					count++
 				}
 			}
 		}
 	}
 
-	if targetPanel == nil {
-		return nil, fmt.Errorf("panel not found")
+	if count > 0 {
+		updatedData, _ := json.MarshalIndent(storyboard, "", "  ")
+		os.WriteFile(storyboardPath, updatedData, 0644)
 	}
 
-	visual, _ := targetPanel["visual"].(string)
-	shot, _ := targetPanel["shot"].(string)
-	
-	// ARIA Cinematic Base Template
-	prompt := fmt.Sprintf("%s, ARIA-style. %s. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.", shot, visual)
-	
-	targetPanel["gh:runwayPrompt"] = prompt
-	targetPanel["gh:imagePrompt"] = prompt
-
-	updatedData, _ := json.MarshalIndent(storyboard, "", "  ")
-	os.WriteFile(storyboardPath, updatedData, 0644)
-
 	return &mcp.CallToolResult{
-		Content: []mcp.Content{mcp.TextContent{Type: "text", Text: fmt.Sprintf("Generated and saved prompt for %s P%d P%d: %s", epID, int(pageNum), int(panelIdx), prompt)}},
+		Content: []mcp.Content{mcp.TextContent{Type: "text", Text: fmt.Sprintf("Successfully generated and saved %d missing prompts using ARIA Cinematic Base.", count)}},
 	}, nil
 }

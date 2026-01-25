@@ -55,8 +55,18 @@
 	function handleDialogueBufferUpdate(index: number, field: string, value: any) {
 		if (!editBuffer?.dialogue) return;
 		const newDialogues = [...editBuffer.dialogue];
+		const currentDialogue = newDialogues[index];
+		if (!currentDialogue) return;
+
 		newDialogues[index] = create(DialogueSchema, {
-			...newDialogues[index],
+			speaker: currentDialogue.speaker,
+			text: currentDialogue.text,
+			delivery: currentDialogue.delivery,
+			subtext: currentDialogue.subtext,
+			emotion: currentDialogue.emotion,
+			pauseBeforeMs: currentDialogue.pauseBeforeMs,
+			pauseAfterMs: currentDialogue.pauseAfterMs,
+			mangaLayout: currentDialogue.mangaLayout,
 			[field]: value
 		});
 		editBuffer.dialogue = newDialogues;

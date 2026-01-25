@@ -49,7 +49,10 @@
 				
 				// Load the most recent session if messages are empty
 				if (sessions.length > 0 && messages.length === 0) {
-					loadSession(sessions[0].id);
+					const firstSession = sessions[0];
+					if (firstSession) {
+						loadSession(firstSession.id);
+					}
 				}
 			}
 		} catch (err) {
@@ -86,6 +89,22 @@
 	let currentAgentMode = $state<'general' | 'scenario' | 'episode' | 'character' | 'cinematic' | 'dialogue' | 'a2a'>('general');
 	let isAutoPilot = $state(false);
 	let activeWorkflowId = $state<string | null>(null);
+	let metrics = $state<any | null>(null);
+
+	async function runAnalysis() {
+		if (!selectedEpisode) return;
+		try {
+			const res = await storyboardClient.analyzeStructure({
+				filePath: storyboardPath,
+				episodeId: selectedEpisode
+			});
+			if (res.success) {
+				metrics = res.metrics;
+			}
+		} catch (err) {
+			console.error('Failed to run analysis:', err);
+		}
+	}
 
 	// Initialize with first session
 	$effect(() => {
@@ -103,9 +122,9 @@
 	// Sync current messages with sessions
 	$effect(() => {
 		const session = sessions.find(s => s.id === currentSessionId);
-		if (session) {
+		if (session && messages.length > 0) {
 			session.messages = messages;
-			if (messages.length > 0 && (session.title === 'New Conversation' || session.title === '')) {
+			if (session.title === 'New Conversation' || session.title === '') {
 				session.title = messages[0].content.substring(0, 30) + (messages[0].content.length > 30 ? '...' : '');
 				saveCurrentSession();
 			}
@@ -394,7 +413,31 @@
 			<button class="quick-action-btn" onclick={() => triggerA2APattern('polish')} disabled={isAutoPilot}>✨ Story Polish</button>
 			<button class="quick-action-btn" onclick={() => triggerA2APattern('consistency')} disabled={isAutoPilot}>🔍 Check Consistency</button>
 			<button class="quick-action-btn" onclick={() => triggerA2APattern('visuals')} disabled={isAutoPilot}>🎨 Gen Visuals</button>
+			<button class="quick-action-btn metrics-btn" onclick={runAnalysis} disabled={isAutoPilot}>📊 Metrics</button>
 		</div>
+		{#if metrics}
+			<div class="metrics-dashboard">
+				<div class="metric-item">
+					<span class="m-label">Reading Units:</span>
+					<span class="m-value" class:warn={metrics.readingUnits < 600 || metrics.readingUnits > 1500}>{metrics.readingUnits}</span>
+				</div>
+				<div class="metric-item">
+					<span class="m-label">Dialogue Ratio:</span>
+					<span class="m-value">{Math.round(metrics.dialogueRatio * 100)}%</span>
+				</div>
+				<div class="metric-item">
+					<span class="m-label">Beats:</span>
+					<span class="m-value">{metrics.beatCount}</span>
+				</div>
+				{#if metrics.validationErrors?.length > 0}
+					<div class="validation-errors">
+						{#each metrics.validationErrors as err}
+							<div class="v-err">⚠️ {err}</div>
+						{/each}
+					</div>
+				{/if}
+			</div>
+		{/if}
 		<div class="agent-mode-selector">
 			<button 
 				class="mode-btn general" 
@@ -687,6 +730,39 @@
 	.quick-action-btn:disabled {
 		opacity: 0.5;
 		cursor: not-allowed;
+	}
+
+	.metrics-dashboard {
+		margin-top: 0.5rem;
+		padding: 0.5rem;
+		background: #2d2d2d;
+		border-radius: 4px;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		border: 1px solid #444;
+	}
+
+	.metric-item {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.65rem;
+	}
+
+	.m-label { color: #888; }
+	.m-value { color: #2ecc71; font-weight: bold; }
+	.m-value.warn { color: #e74c3c; }
+
+	.validation-errors {
+		margin-top: 0.25rem;
+		padding-top: 0.25rem;
+		border-top: 1px solid #444;
+	}
+
+	.v-err {
+		color: #f1c40f;
+		font-size: 0.6rem;
+		margin-bottom: 2px;
 	}
 
 	@keyframes pulse {

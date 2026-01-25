@@ -836,6 +836,43 @@ func (s *StoryboardService) InternalBroadcastChatMessage(
 	}), nil
 }
 
+// AnalyzeStructure analyzes the structure of an episode
+func (s *StoryboardService) AnalyzeStructure(
+	ctx context.Context,
+	req *connect.Request[storyboardpb.AnalyzeStructureRequest],
+) (*connect.Response[storyboardpb.AnalyzeStructureResponse], error) {
+	filePath := req.Msg.FilePath
+	if filePath == "" {
+		filePath = s.storyboardPath
+	}
+
+	storyboard, err := s.validateAndLoad(filePath)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("invalid storyboard: %w", err))
+	}
+
+	episode := findEpisode(storyboard, req.Msg.EpisodeId)
+	if episode == nil {
+		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("episode not found"))
+	}
+
+	validation := ValidateEpisodeStructure(episode)
+
+	metrics := &storyboardpb.StructuralMetrics{
+		ReadingUnits:     int32(validation.Metrics["readingUnits"].(int)),
+		DialogueRatio:    float32(validation.Metrics["dialogueRatio"].(float64)),
+		BeatCount:        int32(len(episode["gh:beats"].([]interface{}))),
+		PanelCount:       int32(countTotalPanels(episode)),
+		ValidationErrors: validation.Errors,
+	}
+
+	return connect.NewResponse(&storyboardpb.AnalyzeStructureResponse{
+		Success: true,
+		Message: "Analysis complete",
+		Metrics: metrics,
+	}), nil
+}
+
 func (s *StoryboardService) extractMetadata(storyboard map[string]interface{}) *storyboardpb.StoryboardMetadata {
 	metadata := &storyboardpb.StoryboardMetadata{}
 

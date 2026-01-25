@@ -262,15 +262,31 @@ Your response MUST include a "context_scope" if you are narrowing down the focus
 	}
 
 	// If there's a tool call, execute it via MCP server
-	if result.ToolCall != nil {
-		log.Printf("[InteractWithAI] Executing tool call: %s", result.ToolCall.Name)
-		toolResult, err := s.mcpServer.CallTool(ctx, result.ToolCall.Name, result.ToolCall.Arguments)
-		if err != nil {
-			log.Printf("[InteractWithAI] Tool call failed: %v", err)
-			result.Response += fmt.Sprintf("\n\n(Agent Error: %v)", err)
-		} else if len(toolResult.Content) > 0 {
-			if textContent, ok := toolResult.Content[0].(mcp.TextContent); ok {
-				result.Response += fmt.Sprintf("\n\n--- Agent Response (%s) ---\n%s", result.ToolCall.Name, textContent.Text)
+	if (result.ToolCall != nil || req.Msg.AgentMode == "a2a") {
+		// Auto-call lore keeper for A2A or if specifically requested
+		toolName := ""
+		if result.ToolCall != nil {
+			toolName = result.ToolCall.Name
+		} else if req.Msg.AgentMode == "a2a" && len(req.Msg.Context) > 0 {
+			// Example: auto-fetch lore if context is provided in A2A
+			toolName = "query_lore"
+		}
+
+		if toolName != "" {
+			log.Printf("[InteractWithAI] Executing tool call: %s", toolName)
+			args := make(map[string]interface{})
+			if result.ToolCall != nil {
+				args = result.ToolCall.Arguments
+			}
+			
+			toolResult, err := s.mcpServer.CallTool(ctx, toolName, args)
+			if err != nil {
+				log.Printf("[InteractWithAI] Tool call failed: %v", err)
+				result.Response += fmt.Sprintf("\n\n(Agent Error: %v)", err)
+			} else if len(toolResult.Content) > 0 {
+				if textContent, ok := toolResult.Content[0].(mcp.TextContent); ok {
+					result.Response += fmt.Sprintf("\n\n--- Agent Response (%s) ---\n%s", toolName, textContent.Text)
+				}
 			}
 		}
 	}
