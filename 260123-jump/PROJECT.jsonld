@@ -9,10 +9,10 @@
   "@type": ["gh:Project", "prov:Entity"],
   "dct:title": "Manga Ghost Hacker: Case Study Series (260123-jump)",
   "dct:description": "A manga series designed to teach cybersecurity through case studies, using real-world terminology and frameworks (CISA, CISSP, CMMI).",
-  "gh:status": "Planning / Master Storyboard (ARIA Cinematic Base - FULL 12 Episodes) Completed",
+  "gh:status": "Planning / Master Storyboard (ARIA Cinematic Base - FULL 12 Episodes) Completed / A2A Workflow Resource Updates Fixed",
   "gh:currentSession": {
     "@type": "prov:Activity",
-    "prov:startedAtTime": "2026-01-23T00:00:00Z",
+    "prov:startedAtTime": "2026-01-25T11:53:00Z",
     "gh:goals": [
       "Define 12-episode case study structure",
       "Update character profiles with real-world security credentials",
@@ -31,7 +31,11 @@
       ".cursor/rules/runway_manga_generation.mdc updated with ARIA aesthetic and Ocular Detail rules",
       "Added generator script scripts/generate_storyboard_full_aria.py to reproducibly rebuild the full storyboard",
       "Created apps/zen-editor dataset from storyboard.jsonld with 562 scenes",
-      "Generated sample cut images (scene_1.png, scene_2.png, scene_3.png) using DALL-E 3 and updated zen-editor datastore"
+      "Generated sample cut images (scene_1.png, scene_2.png, scene_3.png) using DALL-E 3 and updated zen-editor datastore",
+      "Fixed A2A workflow: Added ApplyEpisodeUpdatesActivity and GeneratePanelImagesActivity to persist agent outputs to JSON-LD files and generate images",
+      "Updated EpisodeAgentActivity and CinematicAgentActivity to output structured JSON for parsing",
+      "Modified AutonomousGenerationWorkflow to call update activities after Episode Agent and Cinematic Agent",
+      "A2A workflow now properly updates resources/episodes/, resources/characters/, and resources/images/ directories"
     ]
   },
   "gh:artifacts": [

@@ -161,12 +161,49 @@ func ScenarioAgentActivity(ctx context.Context, params AutonomousGenerationParam
 }
 
 // EpisodeAgentActivity handles detailed content generation in A2A
-func EpisodeAgentActivity(ctx context.Context, scenarioOutput string) (string, error) {
+func EpisodeAgentActivity(ctx context.Context, input episodeDraft) (string, error) {
 	logger := activity.GetLogger(ctx)
-	logger.Info("Episode Agent working", "input", scenarioOutput)
+	logger.Info("Episode Agent working", "input", input.Content)
 
-	systemPrompt := "You are a professional Episode Generator. Create detailed scenes and dialogue based on the scenario plan. Return a structured scene description."
-	userPrompt := fmt.Sprintf("Scenario Plan: %s", scenarioOutput)
+	// Build context string from InitialContext
+	contextStr := ""
+	if len(input.Params.InitialContext) > 0 {
+		contextBytes, _ := json.MarshalIndent(input.Params.InitialContext, "", "  ")
+		contextStr = fmt.Sprintf("\n\nCurrent Storyboard Context:\n%s", string(contextBytes))
+	}
+
+	systemPrompt := `You are a professional Episode Generator for Ghost Hacker. Create detailed scenes and dialogue based on the scenario plan.
+
+IMPORTANT: You must return your response in JSON format with the following structure:
+{
+  "panels": [
+    {
+      "episode_id": "episode:260123-cschool-privacy",
+      "page_number": 1,
+      "panel": 1,
+      "updates": {
+        "dialogue": [
+          {
+            "speaker": "Character Name",
+            "text": "Dialogue text",
+            "delivery": "How to say it",
+            "subtext": "What they really mean",
+            "emotion": "emotion_label"
+          }
+        ],
+        "characters": ["character:Ren"],
+        "environment": "env:cschool-classroom",
+        "visual_note": "Visual description",
+        "shot": "Shot type",
+        "image_prompt": "Detailed image generation prompt"
+      }
+    }
+  ],
+  "summary": "Brief summary of what was generated"
+}
+
+Return ONLY valid JSON, no markdown formatting. Use the episode_id, page_number, and panel from the context provided.`
+	userPrompt := fmt.Sprintf("Scenario Plan: %s%s", input.Content, contextStr)
 
 	return callOpenRouter(ctx, "episode", "anthropic/claude-sonnet-4.5", systemPrompt, userPrompt)
 }
@@ -216,12 +253,40 @@ func GhostAgentActivity(ctx context.Context, input string) (string, error) {
 }
 
 // CinematicAgentActivity handles visual direction in A2A
-func CinematicAgentActivity(ctx context.Context, episodeOutput string) (string, error) {
+func CinematicAgentActivity(ctx context.Context, input episodeDraft) (string, error) {
 	logger := activity.GetLogger(ctx)
-	logger.Info("Cinematic Agent working", "input", episodeOutput)
+	logger.Info("Cinematic Agent working", "input", input.Content)
 
-	systemPrompt := "You are a Cinematic Sketcher. Provide visual composition, camera work, and image prompts for each panel based on the episode content."
-	userPrompt := fmt.Sprintf("Episode Content: %s", episodeOutput)
+	// Build context string from InitialContext
+	contextStr := ""
+	if len(input.Params.InitialContext) > 0 {
+		contextBytes, _ := json.MarshalIndent(input.Params.InitialContext, "", "  ")
+		contextStr = fmt.Sprintf("\n\nCurrent Storyboard Context:\n%s", string(contextBytes))
+	}
+
+	systemPrompt := `You are a Cinematic Sketcher for Ghost Hacker. Provide visual composition, camera work, and image prompts for each panel.
+
+IMPORTANT: You must return your response in JSON format with the following structure:
+{
+  "panels": [
+    {
+      "episode_id": "episode:260123-cschool-privacy",
+      "page_number": 1,
+      "panel": 1,
+      "updates": {
+        "shot": "Shot type (e.g., Close-up, Wide Shot, Insert Shot)",
+        "camera_direction": "Camera movement instructions",
+        "image_prompt": "Detailed ARIA-style image generation prompt",
+        "runway_prompt": "Runway base prompt for live-action generation",
+        "visual_note": "Visual description"
+      }
+    }
+  ],
+  "summary": "Brief summary of visual direction"
+}
+
+Return ONLY valid JSON, no markdown formatting. Use the episode_id, page_number, and panel from the context provided.`
+	userPrompt := fmt.Sprintf("Episode Content: %s%s", input.Content, contextStr)
 
 	return callOpenRouter(ctx, "cinematic", "openai/gpt-4o", systemPrompt, userPrompt)
 }
@@ -302,4 +367,259 @@ func BroadcastAgentMessageActivity(ctx context.Context, params BroadcastParams) 
 	}))
 
 	return err
+}
+
+// ApplyEpisodeUpdatesActivity parses episode agent output and updates storyboard JSON-LD files
+func ApplyEpisodeUpdatesActivity(ctx context.Context, params ApplyUpdatesParams) (ApplyUpdatesResult, error) {
+	logger := activity.GetLogger(ctx)
+	logger.Info("Applying episode updates", "episode_id", params.EpisodeID)
+
+	serverURL := os.Getenv("SERVER_URL")
+	if serverURL == "" {
+		serverURL = "http://server:8081"
+	}
+
+	client := storyboardpbconnect.NewStoryboardServiceClient(
+		http.DefaultClient,
+		serverURL,
+	)
+
+	// Parse agent output as JSON
+	var agentOutput struct {
+		Panels  []struct {
+			EpisodeID  string `json:"episode_id"`
+			PageNumber int32  `json:"page_number"`
+			Panel      int32  `json:"panel"`
+			Updates    map[string]interface{} `json:"updates"`
+		} `json:"panels"`
+		Summary string `json:"summary"`
+	}
+
+	// Try to extract JSON from the output (may contain markdown)
+	jsonStart := strings.Index(params.AgentOutput, "{")
+	jsonEnd := strings.LastIndex(params.AgentOutput, "}")
+	if jsonStart == -1 || jsonEnd == -1 || jsonEnd <= jsonStart {
+		return ApplyUpdatesResult{
+			Success: false,
+			Message: "No valid JSON found in agent output",
+		}, fmt.Errorf("no valid JSON found")
+	}
+
+	jsonStr := params.AgentOutput[jsonStart : jsonEnd+1]
+	if err := json.Unmarshal([]byte(jsonStr), &agentOutput); err != nil {
+		logger.Error("Failed to parse agent output", "error", err, "output", params.AgentOutput)
+		return ApplyUpdatesResult{
+			Success: false,
+			Message: fmt.Sprintf("Failed to parse JSON: %v", err),
+		}, err
+	}
+
+	updatedCount := 0
+	for _, panelUpdate := range agentOutput.Panels {
+		// Convert updates map to PanelData
+		panelData := &storyboardpb.PanelData{}
+
+		if chars, ok := panelUpdate.Updates["characters"].([]interface{}); ok {
+			panelData.Characters = make([]string, len(chars))
+			for i, ch := range chars {
+				if str, ok := ch.(string); ok {
+					panelData.Characters[i] = str
+				}
+			}
+		}
+
+		if dialogue, ok := panelUpdate.Updates["dialogue"].([]interface{}); ok {
+			panelData.Dialogue = make([]*storyboardpb.Dialogue, 0, len(dialogue))
+			for _, d := range dialogue {
+				if dMap, ok := d.(map[string]interface{}); ok {
+					dlg := &storyboardpb.Dialogue{}
+					if speaker, ok := dMap["speaker"].(string); ok {
+						dlg.Speaker = speaker
+					}
+					if text, ok := dMap["text"].(string); ok {
+						dlg.Text = text
+					}
+					if delivery, ok := dMap["delivery"].(string); ok {
+						dlg.Delivery = delivery
+					}
+					if subtext, ok := dMap["subtext"].(string); ok {
+						dlg.Subtext = subtext
+					}
+					if emotion, ok := dMap["emotion"].(string); ok {
+						dlg.Emotion = emotion
+					}
+					panelData.Dialogue = append(panelData.Dialogue, dlg)
+				}
+			}
+		}
+
+		if env, ok := panelUpdate.Updates["environment"].(string); ok {
+			panelData.Environment = env
+		}
+
+		if visualNote, ok := panelUpdate.Updates["visual_note"].(string); ok {
+			panelData.VisualNote = visualNote
+		}
+
+		if shot, ok := panelUpdate.Updates["shot"].(string); ok {
+			panelData.Shot = shot
+		}
+
+		if imagePrompt, ok := panelUpdate.Updates["image_prompt"].(string); ok {
+			panelData.ImagePrompt = imagePrompt
+		}
+
+		if runwayPrompt, ok := panelUpdate.Updates["runway_prompt"].(string); ok {
+			panelData.RunwayPrompt = runwayPrompt
+		}
+
+		if cameraDirection, ok := panelUpdate.Updates["camera_direction"].(string); ok {
+			panelData.CameraDirection = cameraDirection
+		}
+
+		// Call UpdatePanel
+		episodeID := panelUpdate.EpisodeID
+		if episodeID == "" {
+			episodeID = params.EpisodeID
+		}
+
+		_, err := client.UpdatePanel(ctx, connect.NewRequest(&storyboardpb.UpdatePanelRequest{
+			FilePath:   params.FilePath,
+			EpisodeId:  episodeID,
+			PageNumber: panelUpdate.PageNumber,
+			Panel:      panelUpdate.Panel,
+			PanelData:  panelData,
+			SessionId:  params.SessionID,
+		}))
+
+		if err != nil {
+			logger.Error("Failed to update panel", "error", err, "episode", episodeID, "page", panelUpdate.PageNumber, "panel", panelUpdate.Panel)
+			continue
+		}
+
+		updatedCount++
+		logger.Info("Updated panel", "episode", episodeID, "page", panelUpdate.PageNumber, "panel", panelUpdate.Panel)
+	}
+
+	return ApplyUpdatesResult{
+		Success: true,
+		Message: fmt.Sprintf("Updated %d panels", updatedCount),
+		UpdatedCount: updatedCount,
+	}, nil
+}
+
+// GeneratePanelImagesActivity generates images for panels based on cinematic agent output
+func GeneratePanelImagesActivity(ctx context.Context, params GenerateImagesParams) (GenerateImagesResult, error) {
+	logger := activity.GetLogger(ctx)
+	logger.Info("Generating panel images", "episode_id", params.EpisodeID)
+
+	serverURL := os.Getenv("SERVER_URL")
+	if serverURL == "" {
+		serverURL = "http://server:8081"
+	}
+
+	client := storyboardpbconnect.NewStoryboardServiceClient(
+		http.DefaultClient,
+		serverURL,
+	)
+
+	// Parse agent output to find panels with image prompts
+	var agentOutput struct {
+		Panels []struct {
+			EpisodeID  string `json:"episode_id"`
+			PageNumber int32  `json:"page_number"`
+			Panel      int32  `json:"panel"`
+			Updates    struct {
+				ImagePrompt string `json:"image_prompt"`
+			} `json:"updates"`
+		} `json:"panels"`
+	}
+
+	jsonStart := strings.Index(params.CinematicOutput, "{")
+	jsonEnd := strings.LastIndex(params.CinematicOutput, "}")
+	if jsonStart == -1 || jsonEnd == -1 || jsonEnd <= jsonStart {
+		return GenerateImagesResult{
+			Success: false,
+			Message: "No valid JSON found in cinematic output",
+		}, fmt.Errorf("no valid JSON found")
+	}
+
+	jsonStr := params.CinematicOutput[jsonStart : jsonEnd+1]
+	if err := json.Unmarshal([]byte(jsonStr), &agentOutput); err != nil {
+		logger.Error("Failed to parse cinematic output", "error", err)
+		return GenerateImagesResult{
+			Success: false,
+			Message: fmt.Sprintf("Failed to parse JSON: %v", err),
+		}, err
+	}
+
+	generatedCount := 0
+	for _, panel := range agentOutput.Panels {
+		if panel.Updates.ImagePrompt == "" {
+			continue
+		}
+
+		// Load current panel data
+		episodeID := panel.EpisodeID
+		if episodeID == "" {
+			episodeID = params.EpisodeID
+		}
+
+		// Create panel data with image prompt
+		panelData := &storyboardpb.PanelData{
+			ImagePrompt: panel.Updates.ImagePrompt,
+		}
+
+		// Generate image
+		_, err := client.GeneratePanelImage(ctx, connect.NewRequest(&storyboardpb.GeneratePanelImageRequest{
+			FilePath:   params.FilePath,
+			EpisodeId:  episodeID,
+			PageNumber: panel.PageNumber,
+			Panel:      panel.Panel,
+			PanelData:  panelData,
+		}))
+
+		if err != nil {
+			logger.Error("Failed to generate image", "error", err, "episode", episodeID, "page", panel.PageNumber, "panel", panel.Panel)
+			continue
+		}
+
+		generatedCount++
+		logger.Info("Generated image", "episode", episodeID, "page", panel.PageNumber, "panel", panel.Panel)
+	}
+
+	return GenerateImagesResult{
+		Success: true,
+		Message: fmt.Sprintf("Generated %d images", generatedCount),
+		GeneratedCount: generatedCount,
+	}, nil
+}
+
+// ApplyUpdatesParams contains parameters for applying agent updates
+type ApplyUpdatesParams struct {
+	FilePath    string
+	EpisodeID   string
+	AgentOutput string
+	SessionID   string
+}
+
+// ApplyUpdatesResult contains the result of applying updates
+type ApplyUpdatesResult struct {
+	Success      bool
+	Message      string
+	UpdatedCount int
+}
+
+// GenerateImagesParams contains parameters for generating images
+type GenerateImagesParams struct {
+	FilePath       string
+	EpisodeID      string
+	CinematicOutput string
+}
+
+// GenerateImagesResult contains the result of image generation
+type GenerateImagesResult struct {
+	Success        bool
+	Message        string
+	GeneratedCount int
 }

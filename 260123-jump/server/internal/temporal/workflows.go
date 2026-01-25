@@ -1,6 +1,7 @@
 package temporal
 
 import (
+	"fmt"
 	"go.temporal.io/sdk/workflow"
 )
 
@@ -73,12 +74,28 @@ func AutonomousGenerationWorkflow(ctx workflow.Context, params AutonomousGenerat
 	// 2. Episode Agent: Generate detailed content
 	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "episode", Role: "system", Content: "✍️ Episode Agent is drafting detailed scenes and dialogue..."})
 	var episodeOutput string
-	err = workflow.ExecuteActivity(ctx, EpisodeAgentActivity, scenarioOutput).Get(ctx, &episodeOutput)
+	err = workflow.ExecuteActivity(ctx, EpisodeAgentActivity, episodeDraft{Content: scenarioOutput, Params: params}).Get(ctx, &episodeOutput)
 	if err != nil {
 		workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "episode", Role: "error", Content: "Episode Agent failed: " + err.Error()})
 		return AutonomousGenerationResult{Success: false, Message: "Episode Agent failed: " + err.Error()}, err
 	}
 	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "episode", Role: "assistant", Content: "✅ Scene draft generated."})
+
+	// 2.5 Apply Episode Updates: Update JSON-LD files with episode agent output
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "general", Role: "system", Content: "💾 Applying episode updates to storyboard files..."})
+	var applyResult ApplyUpdatesResult
+	err = workflow.ExecuteActivity(ctx, ApplyEpisodeUpdatesActivity, ApplyUpdatesParams{
+		FilePath:    params.FilePath,
+		EpisodeID:   params.EpisodeID,
+		AgentOutput: episodeOutput,
+		SessionID:   params.SessionID,
+	}).Get(ctx, &applyResult)
+	if err != nil {
+		workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "general", Role: "error", Content: "Failed to apply episode updates: " + err.Error()})
+		// Don't fail the workflow, just log the error
+	} else {
+		workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "general", Role: "system", Content: fmt.Sprintf("✅ Updated %d panels in storyboard files", applyResult.UpdatedCount)})
+	}
 
 	// 3. Character Agent: Verify and Refine
 	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "character", Role: "system", Content: "🎭 Character Specialist is reviewing character voices..."})
@@ -103,12 +120,42 @@ func AutonomousGenerationWorkflow(ctx workflow.Context, params AutonomousGenerat
 	// 4. Cinematic Agent: Finalize visual direction
 	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "cinematic", Role: "system", Content: "🎥 Cinematic Sketcher is designing visual composition..."})
 	var finalResult string
-	err = workflow.ExecuteActivity(ctx, CinematicAgentActivity, episodeOutput).Get(ctx, &finalResult)
+	err = workflow.ExecuteActivity(ctx, CinematicAgentActivity, episodeDraft{Content: episodeOutput, Params: params}).Get(ctx, &finalResult)
 	if err != nil {
 		workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "cinematic", Role: "error", Content: "Cinematic Agent failed: " + err.Error()})
 		return AutonomousGenerationResult{Success: false, Message: "Cinematic Agent failed: " + err.Error()}, err
 	}
 	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "cinematic", Role: "assistant", Content: "✅ Visual direction finalized."})
+
+	// 4.5 Apply Cinematic Updates: Update panels with visual direction
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "general", Role: "system", Content: "💾 Applying visual direction updates..."})
+	var cinematicApplyResult ApplyUpdatesResult
+	err = workflow.ExecuteActivity(ctx, ApplyEpisodeUpdatesActivity, ApplyUpdatesParams{
+		FilePath:    params.FilePath,
+		EpisodeID:   params.EpisodeID,
+		AgentOutput: finalResult,
+		SessionID:   params.SessionID,
+	}).Get(ctx, &cinematicApplyResult)
+	if err != nil {
+		workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "general", Role: "error", Content: "Failed to apply cinematic updates: " + err.Error()})
+	} else {
+		workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "general", Role: "system", Content: fmt.Sprintf("✅ Updated %d panels with visual direction", cinematicApplyResult.UpdatedCount)})
+	}
+
+	// 4.6 Generate Panel Images: Generate images for panels
+	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "general", Role: "system", Content: "🖼️ Generating panel images..."})
+	var imageResult GenerateImagesResult
+	err = workflow.ExecuteActivity(ctx, GeneratePanelImagesActivity, GenerateImagesParams{
+		FilePath:       params.FilePath,
+		EpisodeID:      params.EpisodeID,
+		CinematicOutput: finalResult,
+	}).Get(ctx, &imageResult)
+	if err != nil {
+		workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "general", Role: "error", Content: "Failed to generate images: " + err.Error()})
+		// Don't fail the workflow, image generation is optional
+	} else {
+		workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "general", Role: "system", Content: fmt.Sprintf("✅ Generated %d panel images", imageResult.GeneratedCount)})
+	}
 
 	// 4.1 Environment Agent: Refine location details
 	workflow.ExecuteActivity(ctx, BroadcastAgentMessageActivity, BroadcastParams{AgentMode: "environment", Role: "system", Content: "🏙️ Environment Specialist is refining location details..."})

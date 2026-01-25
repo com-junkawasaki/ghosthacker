@@ -394,7 +394,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "くそー……俺も欲しいなー。"
+              "text": "くそー…俺も欲しいわー"
             }
           ],
           "environment": "env:home-desk",
@@ -430,7 +430,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……え、安っ。時間限定？"
+              "text": "…え、安っ！時間限定なん？"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -472,7 +472,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……ちょい怪しいけど…大手のSNSだし…"
+              "text": "…ちょい怪しいけど…大手のSNSやし…"
             }
           ],
           "environment": "env:home-desk",
@@ -509,7 +509,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……親のカード、ちょっとだけ…借りる。"
+              "text": "…親のカード、ちょっとだけ…借りるわ"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -546,7 +546,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "よっしゃ…明日だ。明日届く！"
+              "text": "よっしゃ…明日や！明日届く！"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -612,7 +612,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "（届いたら…言お。いや、届く前に言う？）"
+              "text": "（届いたら…言おか。いや、届く前に言う？）"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -640,7 +640,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "（来た…？）"
+              "text": "（来たんか…？）"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -699,7 +699,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……まだ？"
+              "text": "…まだなん？"
             }
           ],
           "environment": "env:home-desk",
@@ -753,7 +753,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "これです。お願いします。"
+              "text": "これや。お願いします"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -780,7 +780,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……なんか、変なの増えてない？"
+              "text": "…なんか、変なの増えてへん？"
             }
           ],
           "environment": "env:home-desk",
@@ -816,7 +816,7 @@
             },
             {
               "speaker": "Yuto",
-              "text": "いや、知らないけど。"
+              "text": "いや、知らんけど"
             }
           ],
           "environment": "env:home-desk",
@@ -847,7 +847,7 @@
             },
             {
               "speaker": "Yuto",
-              "text": "え…俺、そんな…"
+              "text": "え…俺、そんなん…"
             }
           ],
           "environment": "env:home-desk",
@@ -902,7 +902,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……やばい。"
+              "text": "…やばい"
             }
           ],
           "environment": "env:home-desk",
@@ -991,7 +991,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "え…俺、送ってない…"
+              "text": "え…俺、送ってへん…"
             },
             {
               "speaker": "Tachibana Ryo (Ryo-chi)",
@@ -1097,7 +1097,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "なんで…入れない！"
+              "text": "なんで…入れへんねん！"
             }
           ],
           "environment": "env:sns-timeline",
@@ -1124,7 +1124,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……リセット…できない？"
+              "text": "…リセット…できへんの？"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -1153,7 +1153,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "お願いします…戻してください…"
+              "text": "お願いします…戻してくれへんか…"
             }
           ],
           "environment": "env:home-desk",
@@ -1245,7 +1245,7 @@
             },
             {
               "speaker": "Yuto",
-              "text": "ねい…さん……。"
+              "text": "ねい…さん…"
             }
           ],
           "environment": "env:cschool-hallway",
@@ -1305,7 +1305,7 @@
             },
             {
               "speaker": "Ren",
-              "text": "だるいけど……やるかぁ。"
+              "text": "だるいけど…まあやるか"
             }
           ],
           "environment": "env:cschool-hallway",
@@ -1338,7 +1338,7 @@
             },
             {
               "speaker": "Yuto",
-              "text": "大手SNSの…マーケット。限定のやつが格安で…"
+              "text": "大手SNSの…マーケットや。限定のやつが格安で…"
             }
           ],
           "environment": "env:cschool-hallway",
@@ -1367,7 +1367,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "見える化する。漏れたかどうか。"
+              "text": "見える化するわ。漏れたかどうかチェックや"
             }
           ],
           "environment": "env:cschool-hallway",
@@ -1394,7 +1394,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……押すよ？"
+              "text": "…押すで？"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -1426,7 +1426,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "……当たり。"
+              "text": "…当たりやな"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -1453,7 +1453,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……マジで、漏れてたんだ。"
+              "text": "…マジか、漏れてたんか…"
             }
           ],
           "environment": "env:cschool-hallway",
@@ -1481,7 +1481,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "複数ってことは、同じ鍵が刺さる場所が多い。"
+              "text": "複数ってことは、同じ鍵が刺さる場所が多いんやな"
             }
           ],
           "environment": "env:cschool-hallway",
@@ -1509,7 +1509,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "じゃあ…今も入られてる？"
+              "text": "じゃあ…今も入られてるん？"
             }
           ],
           "environment": "env:cschool-hallway",
@@ -1572,7 +1572,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "よくある。だから対処がある。"
+              "text": "よくある話や。だから対処があるんや"
             }
           ],
           "environment": "env:cschool-hallway",
@@ -1626,7 +1626,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……俺、終わってる。"
+              "text": "…俺、終わってるわ…"
             }
           ],
           "environment": "env:cschool-hallway",
@@ -1656,7 +1656,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "終わりじゃない。鍵を分ける。"
+              "text": "終わりちゃうで。鍵を分けるんや"
             },
             {
               "speaker": "Nei",
@@ -1687,7 +1687,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "パスワード…同じの、ずっと。…どうすればいい？"
+              "text": "パスワード…同じの、ずっと使ってた…どうすればええん？"
             }
           ],
           "environment": "env:cschool-hallway",
@@ -1720,7 +1720,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "え…今…？"
+              "text": "え…今から…？"
             }
           ],
           "environment": "env:quiet-room",
@@ -1749,7 +1749,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "まずメール。ここ落ちたら全部終わる。"
+              "text": "まずメールや。ここ落ちたら全部終わるで"
             }
           ],
           "environment": "env:quiet-room",
@@ -1776,7 +1776,7 @@
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "メールから。ここ守れば呼吸できる。"
+              "text": "メールからやで。ここ守れば呼吸できるわ"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -1803,7 +1803,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……来てる。"
+              "text": "…来てる"
             }
           ],
           "environment": "env:quiet-room",
@@ -1832,7 +1832,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "今も試されてる。急ぐ。"
+              "text": "今も試されてるで。急ぐで"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -1866,7 +1866,7 @@
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "覚えるのをやめよ。作って預ける。"
+              "text": "覚えるのをやめよ。作って預けるんや"
             }
           ],
           "environment": "env:quiet-room",
@@ -1894,11 +1894,11 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "でも…箱って、怖くない？"
+              "text": "でも…箱って、怖くないん？"
             },
             {
               "speaker": "Ren",
-              "text": "怖いのは記憶。箱は手順で守れる。"
+              "text": "怖いのは記憶や。箱は手順で守れるで"
             }
           ],
           "environment": "env:quiet-room",
@@ -1925,7 +1925,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "いけるならパスキー。パスワードより強い。"
+              "text": "いけるならパスキーや。パスワードより強いで"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -1952,7 +1952,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "こんなの…覚えなくていいの？"
+              "text": "こんなん…覚えなくていいん？"
             }
           ],
           "environment": "env:quiet-room",
@@ -1980,7 +1980,7 @@
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "覚えなくていい。作って、預ける。"
+              "text": "覚えなくていいで。作って、預けるんや"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -2013,11 +2013,11 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "二段階って…なに？"
+              "text": "二段階って…なんや？"
             },
             {
               "speaker": "Ren",
-              "text": "鍵を二つにする。片方漏れても入れない。"
+              "text": "鍵を二つにするんや。片方漏れても入れへんで"
             }
           ],
           "environment": "env:quiet-room",
@@ -2044,7 +2044,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "これ…今すぐできるんだ。"
+              "text": "これ…今すぐできるんやな"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -2071,7 +2071,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "バックアップも。詰んだ時の脱出口。"
+              "text": "バックアップもやで。詰んだ時の脱出口や"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -2099,7 +2099,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "手順なら…できる。"
+              "text": "手順なら…できるわ"
             }
           ],
           "environment": "env:quiet-room",
@@ -2126,7 +2126,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "二段階。バックアップコードも確保。…次はメールだ。"
+              "text": "二段階や。バックアップコードも確保やで。…次はメールや"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -2160,7 +2160,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "メールは家の鍵。転送が刺さってたら全部抜かれる。"
+              "text": "メールは家の鍵や。転送が刺さってたら全部抜かれるで"
             }
           ],
           "environment": "env:quiet-room",
@@ -2187,7 +2187,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "復旧先も確認。ここ取られると取り返せない。"
+              "text": "復旧先も確認やで。ここ取られると取り返せへんで"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -2214,7 +2214,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "これ。ここから抜かれてた可能性が高い。"
+              "text": "これや。ここから抜かれてた可能性が高いで"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -2269,7 +2269,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "ここ。心当たりないなら、切る。"
+              "text": "ここや。心当たりないなら、切るで"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -2296,7 +2296,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "転送ルールがあると、取り返せない。消す。"
+              "text": "転送ルールがあると、取り返せへんで。消すで"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -2330,11 +2330,11 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "電話…怖い。"
+              "text": "電話…怖いわ…"
             },
             {
               "speaker": "Ren",
-              "text": "入口を塞ぐ。"
+              "text": "入口を塞ぐで"
             },
             {
               "speaker": "Nei",
@@ -2365,7 +2365,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "報告…していいんだ。"
+              "text": "報告…していいんか…"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -2392,7 +2392,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "出ない。鳴らさない。近づけない。"
+              "text": "出ない。鳴らさない。近づけへんで"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -2419,7 +2419,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……もう、怖がるのやめる。"
+              "text": "…もう、怖がるのやめるわ"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -2472,7 +2472,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "出ない設定にする。恐怖の入口を塞ぐ。"
+              "text": "出ない設定にするで。恐怖の入口を塞ぐんや"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -2504,7 +2504,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……やる。"
+              "text": "…やるわ"
             }
           ],
           "environment": "env:quiet-room",
@@ -2560,11 +2560,11 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "パスワードは覚えるな。信用できる箱に任せろ。"
+              "text": "パスワードは覚えるな。信用できる箱に任せろ"
             },
             {
               "speaker": "Yuto",
-              "text": "…信用、できるかな。"
+              "text": "…信用、できるかな…"
             }
           ],
           "environment": "env:quiet-room",
@@ -2598,11 +2598,11 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "メールって…分けられるの？"
+              "text": "メールって…分けられるん？"
             },
             {
               "speaker": "Nei",
-              "text": "分けられる。分ければ、漏れても被害が小さくなる。"
+              "text": "分けられるで。分ければ、漏れても被害が小さくなるんや"
             }
           ],
           "environment": "env:quiet-room",
@@ -2630,11 +2630,11 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "どのメアドが漏れたの…？"
+              "text": "どのメアドが漏れたん…？"
             },
             {
               "speaker": "Ren",
-              "text": "漏れた前提で貼り替える。サイトごとに。"
+              "text": "漏れた前提で貼り替えるで。サイトごとにや"
             }
           ],
           "environment": "env:quiet-room",
@@ -2693,7 +2693,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "順番を決める。慌てるほど漏れる。"
+              "text": "順番を決めるで。慌てるほど漏れるんや"
             }
           ],
           "environment": "env:quiet-room",
@@ -2721,11 +2721,11 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "多すぎ…無理…"
+              "text": "多すぎ…無理やわ…"
             },
             {
               "speaker": "Nei",
-              "text": "一個ずつ。最初だけ一緒に。"
+              "text": "一個ずつやで。最初だけ一緒にするんや"
             }
           ],
           "environment": "env:quiet-room",
@@ -2788,11 +2788,11 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "これ…全部、やるの？"
+              "text": "これ…全部、やるん？"
             },
             {
               "speaker": "Ren",
-              "text": "全部。やるほど静かになる。"
+              "text": "全部やで。やるほど静かになるんや"
             }
           ],
           "environment": "env:quiet-room",
@@ -2848,7 +2848,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "（チェック）分離、分離、分離。"
+              "text": "（チェック）分離、分離、分離やで"
             }
           ],
           "environment": "env:quiet-room",
@@ -2951,7 +2951,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "俺…俺だって…被害者なのに…"
+              "text": "俺…俺だって…被害者やのに…"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -2978,7 +2978,7 @@
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "ghost、幻肢痛だ。"
+              "text": "ghost、幻肢痛やで"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -3148,7 +3148,7 @@
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "これは情報場。この場を構成する情報、イメージを質量に転換したもの。"
+              "text": "これは情報場やで。この場を構成する情報、イメージを質量に転換したもんや"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -3175,7 +3175,7 @@
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "ランダウアーの定理。"
+              "text": "ランダウアーの定理やで"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -3229,7 +3229,7 @@
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "うん。ランダウアー。情報は物質。消去には熱が出る。"
+              "text": "うん。ランダウアーやで。情報は物質や。消去には熱が出るんや"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -3319,7 +3319,7 @@
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "ゴーストは幻肢痛を引き起こす。肉体に損傷はないけれど、痛みを錯覚する。"
+              "text": "ゴーストは幻肢痛を引き起こすで。肉体に損傷はないけど、痛みを錯覚するんや"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -3350,7 +3350,7 @@
             },
             {
               "speaker": "Nei",
-              "text": "ネットで買った。"
+              "text": "ネットで買ったで"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -3381,11 +3381,11 @@
             },
             {
               "speaker": "Nei",
-              "text": "これを止めてもゴーストは止まらない。"
+              "text": "これを止めてもゴーストは止まらへんで"
             },
             {
               "speaker": "Nei",
-              "text": "だって、さっきみんながやっていたことが可視化されただけだから。"
+              "text": "だって、さっきみんながやっていたことが可視化されただけやからな"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -3423,7 +3423,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "ゴーストハックの時間だ。"
+              "text": "ゴーストハックの時間やで"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -3509,7 +3509,7 @@
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "あれはNULL AXE。情報を物質化した斧だから大丈夫。"
+              "text": "あれはNULL AXEやで。情報を物質化した斧やから大丈夫や"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -3537,11 +3537,11 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "Nei、ちょっとでかいの来るかも。隔離して。"
+              "text": "Nei、ちょっとでかいの来るかも。隔離してくれ"
             },
             {
               "speaker": "Nei",
-              "text": "安全第一。"
+              "text": "安全第一やで"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -3631,7 +3631,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "Deamonか。ちょっとメモリ食うなぁ。"
+              "text": "Deamonか。ちょっとメモリ食うなぁ"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -3721,7 +3721,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "そうだな。やったものは元に戻せない。"
+              "text": "そうやな。やったもんは元に戻せへんで"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -3748,11 +3748,11 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "だがな、俺が切るのは「常識（呪い）」という情報（言葉）だ。"
+              "text": "だがな、俺が切るのは「常識（呪い）」という情報（言葉）やで"
             },
             {
               "speaker": "Ren",
-              "text": "きっかけをつくったのはお前だが、悪口を書いたのはお前じゃない。"
+              "text": "きっかけをつくったのはお前やけど、悪口を書いたのはお前ちゃうで"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -3869,11 +3869,11 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "うん。悪かった。確かに俺の不注意でみんなに迷惑をかけた。"
+              "text": "うん。悪かった。確かに俺の不注意でみんなに迷惑をかけたわ"
             },
             {
               "speaker": "Yuto",
-              "text": "でも……「悪口」を書いたのは俺じゃないよな。"
+              "text": "でも…「悪口」を書いたのは俺ちゃうよな"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -4029,7 +4029,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "違うな。悪いのはMeiじゃない。"
+              "text": "違うな。悪いのはMeiちゃうで"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -4057,7 +4057,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "きっかけを作ったのは、自慢をしたAkiraだが…"
+              "text": "きっかけを作ったのは、自慢をしたAkiraやけど…"
             },
             {
               "speaker": "Narration",
@@ -4088,15 +4088,15 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "悪いのは「アクター」だ。偽ページ「ワクワク電気」。"
+              "text": "悪いのは「アクター」やで。偽ページ「ワクワク電気」や"
             },
             {
               "speaker": "Ren",
-              "text": "俺はな、怠惰が美徳なんだよ。だから、こんな面倒を生み出す奴らが嫌いだ。"
+              "text": "俺はな、怠惰が美徳なんや。だから、こんな面倒を生み出す奴らが嫌いやで"
             },
             {
               "speaker": "Ren",
-              "text": "だから、こっちもゴーストで戦う。"
+              "text": "だから、こっちもゴーストで戦うで"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -4139,7 +4139,7 @@
             },
             {
               "speaker": "Ren",
-              "text": "いや、つかれた…今日は帰って寝る…"
+              "text": "いや、つかれた…今日は帰って寝るわ…"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -4167,11 +4167,11 @@
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "Ren、掃除してから。"
+              "text": "Ren、掃除してからやで"
             },
             {
               "speaker": "Ren",
-              "text": "げっ。"
+              "text": "げっ"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -4203,7 +4203,7 @@
             },
             {
               "speaker": "Nei",
-              "text": "ネットで買ったけど、もうサイトが見つからない。"
+              "text": "ネットで買ったけど、もうサイトが見つからへんで"
             }
           ],
           "environment": "env:cschool-classroom",
@@ -4259,11 +4259,11 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "いくかぁ。"
+              "text": "いくか"
             },
             {
               "speaker": "Nei",
-              "text": "うん。"
+              "text": "うん"
             }
           ],
           "environment": "env:tokyo-2026-aerial",
@@ -4352,7 +4352,7 @@
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "言えた時点で勝ち。恥じゃないよ。"
+              "text": "言えた時点で勝ちやで。恥ちゃうで"
             }
           ],
           "environment": "env:quiet-room",
@@ -4385,7 +4385,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……来る、よな。"
+              "text": "…来る、よな"
             }
           ],
           "environment": "env:home-desk",
@@ -4412,7 +4412,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……静かすぎる。"
+              "text": "…静かすぎる"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -4439,7 +4439,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "家に帰っても…鳴らない。"
+              "text": "家に帰っても…鳴らへん"
             }
           ],
           "environment": "env:home-desk",
@@ -4471,7 +4471,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……来た。"
+              "text": "…来た"
             }
           ],
           "environment": "env:home-desk",
@@ -4499,7 +4499,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……鳴ってない？"
+              "text": "…鳴ってへん？"
             }
           ],
           "environment": "env:home-desk",
@@ -4526,7 +4526,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "…止まった。…これで、終わり？"
+              "text": "…止まった。…これで、終わりなん？"
             }
           ],
           "environment": "env:smartphone-screen",
@@ -4558,7 +4558,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "……生き返った。"
+              "text": "…生き返ったわ"
             }
           ],
           "environment": "env:cschool-hallway",
@@ -4586,7 +4586,7 @@
           "dialogue": [
             {
               "speaker": "Yuto",
-              "text": "ありがとう。…助かった。…でも、他の人も同じ目に遭う？"
+              "text": "ありがとう。…助かった。…でも、他の人も同じ目に遭うん？"
             }
           ],
           "environment": "env:cschool-hallway",
@@ -4619,11 +4619,11 @@
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "書くの？匿名で？"
+              "text": "書くん？匿名で？"
             },
             {
               "speaker": "Ren",
-              "text": "匿名だから届く。"
+              "text": "匿名やから届くで"
             }
           ],
           "environment": "env:ren-office",
@@ -4650,7 +4650,7 @@
           "dialogue": [
             {
               "speaker": "Ren",
-              "text": "あー…順番だけ書く。まず止める。次、分ける。最後、入口ふさぐ。"
+              "text": "あー…順番だけ書くで。まず止める。次、分ける。最後、入口ふさぐ"
             }
           ],
           "environment": "env:news-hacker-board",
@@ -4682,7 +4682,7 @@
             },
             {
               "speaker": "Ren",
-              "text": "来る。速い人がいる。"
+              "text": "来るで。速い人がおるんや"
             }
           ],
           "environment": "env:news-hacker-board",
@@ -4808,7 +4808,7 @@
             },
             {
               "speaker": "Ren",
-              "text": "知らない。HNだけ。"
+              "text": "知らん。HNだけや"
             }
           ],
           "environment": "env:ren-office",
@@ -4841,11 +4841,11 @@
           "dialogue": [
             {
               "speaker": "Nei",
-              "text": "aka_chise1…3pa…知り合い？"
+              "text": "aka_chise1…3pa…知り合いなん？"
             },
             {
               "speaker": "Ren",
-              "text": "HNだけ。顔も名前も知らない。"
+              "text": "HNだけや。顔も名前も知らんで"
             }
           ],
           "environment": "env:ren-office",
