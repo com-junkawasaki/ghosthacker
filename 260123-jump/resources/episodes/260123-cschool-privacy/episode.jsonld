@@ -1366,13 +1366,21 @@
           ],
           "dialogue": [
             {
-              "speaker": "Ren",
-              "text": "見える化する。漏れたかどうかチェックだ"
+              "speaker": "Nei",
+              "text": "いまは“見える化”。責める前に、状況を見よう。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "このメールが、過去にどこかで流れたことがあるか確認する。結果が出たら、“危ない場所”が地図みたいに見える。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "赤い印が出たら、次は“鍵の交換”。順番は、メール→SNS→買い物。慌てず、止めていく。"
             }
           ],
           "environment": "env:cschool-hallway",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. Renがスマホを出して短く頷く。「確認する」。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. Renがスマホを出して短く頷く。「確認する」。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Neiがスマホを示しながら落ち着いた口調で説明する。半透明のAR風オーバーレイで、鍵アイコンと赤い警告点が“地図”のように浮かぶ。Renは横で黙って見守る。luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. Nei explains calmly while showing a smartphone. A translucent AR-style overlay shows lock icons and a few red warning dots like a map. Ren watches quietly beside them. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -1385,7 +1393,7 @@
           },
           "panel": 6,
           "shot": "Medium Shot",
-          "visual": "Renがスマホを出して短く頷く。「確認する」。"
+          "visual": "Neiがスマホを示しながら“見える化”を説明する。鍵アイコンと赤い警告点がAR風に浮かぶ。Renは横で見守る。"
         },
         {
           "characters": [
@@ -1421,17 +1429,21 @@
       "gh:panels": [
         {
           "characters": [
-            "character:Ren"
+            "character:Nei"
           ],
           "dialogue": [
             {
-              "speaker": "Ren",
-              "text": "…当たりだな"
+              "speaker": "Nei",
+              "text": "結果、出た。……ここに“足あと”がある。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "大事なのは『犯人探し』じゃない。いまこの瞬間に、被害を止める順番を決める。"
             }
           ],
           "environment": "env:smartphone-screen",
-          "gh:imagePrompt": "Insert Shot, ARIA-style. 漏えい結果の一覧。日付がいくつも並ぶ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Insert Shot, ARIA-style. 漏えい結果の一覧。日付がいくつも並ぶ。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Insert Shot, ARIA-style. 漏えい結果の一覧。日付がいくつも並び、いくつかが赤い警告マークで強調されている（読める文字は不要）。luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Insert Shot, ARIA-style. A leak-check result list with multiple dates; a few entries are highlighted with red warning icons (no readable text). luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "over-shoulder or top-down insert",
             "gh:aperture": "f/2.0",
@@ -1444,7 +1456,7 @@
           },
           "panel": 1,
           "shot": "Insert Shot",
-          "visual": "漏えい結果の一覧。日付がいくつも並ぶ。"
+          "visual": "漏えい結果の一覧。日付がいくつも並び、赤い警告マークが点在する。"
         },
         {
           "characters": [
@@ -1480,13 +1492,17 @@
           ],
           "dialogue": [
             {
-              "speaker": "Ren",
-              "text": "複数ってことは、同じ鍵が刺さる場所が多いんだな"
+              "speaker": "Nei",
+              "text": "複数ってことは、同じ“鍵”がいろんな扉に使われてた可能性が高い。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "だから“鍵の交換”は、扉の多い順に。まずメール。次にSNS。最後に買い物。"
             }
           ],
           "environment": "env:cschool-hallway",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. Renが一覧を指でなぞる。Neiが短く頷く。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. Renが一覧を指でなぞる。Neiが短く頷く。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Neiが一覧を指でなぞって順番を示す。Renは横で頷く。luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. Nei traces the list and indicates an order. Ren nods beside. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -1499,7 +1515,7 @@
           },
           "panel": 3,
           "shot": "Medium Shot",
-          "visual": "Renが一覧を指でなぞる。Neiが短く頷く。"
+          "visual": "Neiが一覧を指でなぞって順番を示す。Renは横で頷く。"
         },
         {
           "characters": [
@@ -1571,13 +1587,17 @@
           ],
           "dialogue": [
             {
-              "speaker": "Ren",
-              "text": "よくある話だ。だから対処があるんだ"
+              "speaker": "Nei",
+              "text": "よくある。だから、対処の手順がある。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "“やらかし”じゃない。“事故”。落ち着いて、順番に止めよう。"
             }
           ],
           "environment": "env:cschool-hallway",
-          "gh:imagePrompt": "Medium Shot, ARIA-style. Renは責めない声で言う。Neiも首を振る。Yutoが謝りかけて止まる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
-          "gh:runwayPrompt": "Medium Shot, ARIA-style. Renは責めない声で言う。Neiも首を振る。Yutoが謝りかけて止まる。. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:imagePrompt": "Medium Shot, ARIA-style. Neiが責めない声で手順の存在を伝える。Renは横で静かに肯定し、Yutoは謝りかけて言葉を飲み込む。luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
+          "gh:runwayPrompt": "Medium Shot, ARIA-style. Nei reassures them and says there is a process. Ren quietly supports beside her; Yuto almost apologizes but stops. luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
           "gh:shotProperties": {
             "gh:angle": "eye level",
             "gh:aperture": "f/1.8",
@@ -1590,7 +1610,7 @@
           },
           "panel": 1,
           "shot": "Medium Shot",
-          "visual": "Renは責めない声で言う。Neiも首を振る。Yutoが謝りかけて止まる。"
+          "visual": "Neiが責めない声で手順の存在を伝える。Renは横で静かに肯定し、Yutoは謝りかけて止まる。"
         },
         {
           "characters": [
@@ -1598,8 +1618,12 @@
           ],
           "dialogue": [
             {
-              "speaker": "Ren",
-              "text": "使い回しは“連鎖”。一個漏れたら全部危ない。"
+              "speaker": "Nei",
+              "text": "使い回しは“連鎖”。ひとつ漏れたら、同じ鍵の扉がぜんぶ危ない。"
+            },
+            {
+              "speaker": "Nei",
+              "text": "だから、鍵を“分ける”。それで連鎖を切る。"
             }
           ],
           "environment": "env:smartphone-screen",

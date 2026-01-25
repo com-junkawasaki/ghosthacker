@@ -50,6 +50,11 @@
       "@id": "family:Mizuki",
       "gh:sourceFile": "organizations/MizukiFamily/profile.jsonld",
       "gh:arc": "Arc C"
+    },
+    {
+      "@id": "gh:org/Cschool",
+      "gh:sourceFile": "organizations/Cschool/profile.jsonld",
+      "gh:arc": "Arc 0"
     }
   ],
 
