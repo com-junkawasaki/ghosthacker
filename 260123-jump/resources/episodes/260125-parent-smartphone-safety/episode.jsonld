@@ -69,6 +69,2044 @@
       "gh:description": "技術的なポイントや注意点を補足。「なぜ」その設定が必要かを説明。"
     }
   ],
+  "gh:pages": [
+    {
+      "gh:act": "act:1-parents-anxiety",
+      "gh:pageNumber": 1,
+      "gh:pageTitle": "親の不安 - 美咲の相談",
+      "gh:pageLayout": {
+        "gh:category": "establishing",
+        "gh:layoutNote": "事件後の美咲の心情と、Neiへの相談シーン",
+        "gh:templateName": "Character Introduction"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p1n1-misaki-worried",
+          "characters": ["character:Misaki"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "Yutoのこと…やっぱり心配で…",
+              "gh:emotion": "worried"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "リビングルームで携帯を見つめる美咲。心配そうな表情。窓から午後の光。"
+        },
+        {
+          "@id": "panel:pss-p1n2-news-on-tv",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:tv-screen",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "テレビ画面。「SNSトラブルで中学生が被害」のニュースが映っている。"
+        },
+        {
+          "@id": "panel:pss-p1n3-misaki-thinking",
+          "characters": ["character:Misaki"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "（スマホの設定…何をすればいいのかわからない…）",
+              "gh:emotion": "anxious",
+              "gh:isThought": true
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 3,
+          "shot": "Close Up",
+          "visual": "美咲の顔のアップ。不安と焦りの表情。"
+        },
+        {
+          "@id": "panel:pss-p1n4-smartphone",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:smartphone",
+          "panel": 4,
+          "shot": "Insert",
+          "visual": "美咲のスマートフォン。連絡先リストに「Nei」の名前が表示されている。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:1-parents-anxiety",
+      "gh:pageNumber": 2,
+      "gh:pageTitle": "親の不安 - Neiへの連絡",
+      "gh:pageLayout": {
+        "gh:category": "dialogue",
+        "gh:layoutNote": "美咲がNeiに連絡するシーン",
+        "gh:templateName": "Conversation Flow"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p2n1-video-call",
+          "characters": ["character:Misaki", "character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "Neiさん、相談があるんですけど…",
+              "gh:emotion": "hesitant"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 1,
+          "shot": "Two Shot",
+          "visual": "ビデオ通話画面。左に美咲、右にNeiが映っている。"
+        },
+        {
+          "@id": "panel:pss-p2n2-nei-listening",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "はい、なんでしょう？",
+              "gh:emotion": "attentive"
+            }
+          ],
+          "environment": "env:nei-room",
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "Neiが画面越しに優しく微笑んでいる。背景は整理されたデスク。"
+        },
+        {
+          "@id": "panel:pss-p2n3-misaki-explaining",
+          "characters": ["character:Misaki"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "Yutoの事件のあと…子供のスマホをどう設定すればいいか、わからなくて…",
+              "gh:emotion": "worried"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 3,
+          "shot": "Close Up",
+          "visual": "美咲が困った表情で説明している。"
+        },
+        {
+          "@id": "panel:pss-p2n4-nei-understanding",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "わかりました。一緒に確認していきましょう！",
+              "gh:emotion": "encouraging"
+            }
+          ],
+          "environment": "env:nei-room",
+          "panel": 4,
+          "shot": "Medium Close Up",
+          "visual": "Neiが笑顔で応える。背景にはパソコンのディスプレイ。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:1-parents-anxiety",
+      "gh:pageNumber": 3,
+      "gh:pageTitle": "親の不安 - Yutoも参加",
+      "gh:pageLayout": {
+        "gh:category": "dialogue",
+        "gh:layoutNote": "YutoとRenも加わり、4人での相談が始まる",
+        "gh:templateName": "Group Scene"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p3n1-yuto-enters",
+          "characters": ["character:Yuto", "character:Misaki"],
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "…僕も聞きたい",
+              "gh:emotion": "determined"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Yutoがリビングに入ってくる。美咲が振り返る。"
+        },
+        {
+          "@id": "panel:pss-p3n2-misaki-surprised",
+          "characters": ["character:Misaki"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "Yuto…",
+              "gh:emotion": "surprised"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 2,
+          "shot": "Close Up",
+          "visual": "美咲の驚いた表情。"
+        },
+        {
+          "@id": "panel:pss-p3n3-ren-joins",
+          "characters": ["character:Ren", "character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "俺も手伝うよ。技術的なところは任せて",
+              "gh:emotion": "confident"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 3,
+          "shot": "Two Shot",
+          "visual": "画面にRenも加わる。Neiの隣に座っている。"
+        },
+        {
+          "@id": "panel:pss-p3n4-group-ready",
+          "characters": ["character:Misaki", "character:Yuto", "character:Nei", "character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "じゃあ、みんなで一緒に学んでいきましょう！",
+              "gh:emotion": "cheerful"
+            }
+          ],
+          "environment": "env:video-call-group",
+          "panel": 4,
+          "shot": "Wide Shot",
+          "visual": "4人が画面越しに揃った様子。協力的な雰囲気。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:1-parents-anxiety",
+      "gh:pageNumber": 4,
+      "gh:pageTitle": "親の不安 - 決意",
+      "gh:pageLayout": {
+        "gh:category": "transition",
+        "gh:layoutNote": "4人で学ぶ決意を固める",
+        "gh:templateName": "Emotional Beat"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p4n1-yuto-apology",
+          "characters": ["character:Yuto"],
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "あの時…僕がちゃんとわかってれば…",
+              "gh:emotion": "regretful"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 1,
+          "shot": "Close Up",
+          "visual": "Yutoが俯いている。反省の表情。"
+        },
+        {
+          "@id": "panel:pss-p4n2-misaki-comfort",
+          "characters": ["character:Misaki", "character:Yuto"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "これからは一緒に学ぼう、ね？",
+              "gh:emotion": "gentle"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 2,
+          "shot": "Two Shot",
+          "visual": "美咲がYutoの肩に手を置いて励ます。"
+        },
+        {
+          "@id": "panel:pss-p4n3-nei-intro",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "では始めましょう。まずは『設定の3本柱』から！",
+              "gh:emotion": "excited"
+            }
+          ],
+          "environment": "env:nei-room",
+          "panel": 3,
+          "shot": "Medium Shot",
+          "visual": "Neiが画面に資料を映す準備をしている。"
+        },
+        {
+          "@id": "panel:pss-p4n4-chapter-title",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:title-card",
+          "panel": 4,
+          "shot": "Insert",
+          "visual": "章タイトル：「第1章：設定の3本柱」の文字が表示される。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:2-three-pillars",
+      "gh:pageNumber": 5,
+      "gh:pageTitle": "設定の3本柱 - 全体像",
+      "gh:pageLayout": {
+        "gh:category": "education",
+        "gh:layoutNote": "3つの柱を図解で説明",
+        "gh:templateName": "Infographic"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p5n1-nei-explains",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "スマホの安全設定には、大きく3つの柱があります",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Neiが画面共有でプレゼンテーションを見せている。"
+        },
+        {
+          "@id": "panel:pss-p5n2-pillar-diagram",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:diagram",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "3本の柱の図解。①コンテンツ制限 ②時間管理 ③課金制御"
+        },
+        {
+          "@id": "panel:pss-p5n3-pillar1",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "①コンテンツ制限：何を見せるか、見せないか",
+              "gh:emotion": "explaining"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "コンテンツ制限のアイコン（フィルターマーク）が強調表示。"
+        },
+        {
+          "@id": "panel:pss-p5n4-pillar2-3",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "②時間管理：いつ、どれくらい使うか\n③課金制御：お金の使い方を管理",
+              "gh:emotion": "explaining"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 4,
+          "shot": "Insert",
+          "visual": "時計のアイコンと財布のアイコンが表示されている図解。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:2-three-pillars",
+      "gh:pageNumber": 6,
+      "gh:pageTitle": "設定の3本柱 - 理解",
+      "gh:pageLayout": {
+        "gh:category": "dialogue",
+        "gh:layoutNote": "美咲とYutoが理解し、次のステップへ",
+        "gh:templateName": "Reaction"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p6n1-misaki-understanding",
+          "characters": ["character:Misaki"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "なるほど…3つに分けて考えればいいんですね",
+              "gh:emotion": "understanding"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 1,
+          "shot": "Close Up",
+          "visual": "美咲が納得した表情でメモを取っている。"
+        },
+        {
+          "@id": "panel:pss-p6n2-ren-adds",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "全部一度にやろうとすると大変だから、一つずつ確実に",
+              "gh:emotion": "advising"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "Renが画面越しにアドバイスしている。"
+        },
+        {
+          "@id": "panel:pss-p6n3-yuto-question",
+          "characters": ["character:Yuto"],
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "まずはどこから始めればいい？",
+              "gh:emotion": "curious"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 3,
+          "shot": "Medium Shot",
+          "visual": "Yutoが興味深そうに画面を見ている。"
+        },
+        {
+          "@id": "panel:pss-p6n4-nei-youtube",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "まずは一番使うであろうYouTubeから！",
+              "gh:emotion": "cheerful"
+            }
+          ],
+          "environment": "env:nei-room",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "NeiがYouTubeのロゴを表示した画面を見せている。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:3-youtube-settings",
+      "gh:pageNumber": 7,
+      "gh:pageTitle": "YouTube設定 - 制限付きモード",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "YouTube制限付きモードの設定手順",
+        "gh:templateName": "Step by Step"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p7n1-youtube-intro",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "まずは『制限付きモード』を設定しましょう",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "NeiがYouTubeアプリの画面を見せている。"
+        },
+        {
+          "@id": "panel:pss-p7n2-step1-2",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:youtube-app",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "YouTubeアプリのスクリーンショット。①右上のプロフィールアイコン ②「設定」をタップ"
+        },
+        {
+          "@id": "panel:pss-p7n3-step3-4",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:youtube-settings",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "YouTube設定画面。③「全般」をタップ ④「制限付きモード」のトグルが表示"
+        },
+        {
+          "@id": "panel:pss-p7n4-step5",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "これで成人向けコンテンツの多くがフィルタリングされる",
+              "gh:emotion": "explaining"
+            }
+          ],
+          "environment": "env:youtube-settings",
+          "panel": 4,
+          "shot": "Insert",
+          "visual": "「制限付きモード」がオンになった状態の画面。チェックマーク付き。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:3-youtube-settings",
+      "gh:pageNumber": 8,
+      "gh:pageTitle": "YouTube設定 - YouTube Kids",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "YouTube Kidsアプリの紹介",
+        "gh:templateName": "App Introduction"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p8n1-kids-intro",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "13歳未満のお子さんには『YouTube Kids』がおすすめ",
+              "gh:emotion": "recommending"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "NeiがYouTube Kidsのアイコンを見せている。"
+        },
+        {
+          "@id": "panel:pss-p8n2-kids-features",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:youtube-kids",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "YouTube Kidsの特徴図解：年齢別コンテンツ、タイマー機能、検索制限"
+        },
+        {
+          "@id": "panel:pss-p8n3-misaki-question",
+          "characters": ["character:Misaki"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "普通のYouTubeとは別のアプリなんですか？",
+              "gh:emotion": "curious"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 3,
+          "shot": "Close Up",
+          "visual": "美咲が質問している表情。"
+        },
+        {
+          "@id": "panel:pss-p8n4-ren-explains",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "そう。子供向けに特化していて、より安全なコンテンツだけが表示される",
+              "gh:emotion": "explaining"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Renが説明している。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:3-youtube-settings",
+      "gh:pageNumber": 9,
+      "gh:pageTitle": "YouTube設定 - YouTube Kidsセットアップ",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "YouTube Kidsの設定手順",
+        "gh:templateName": "Step by Step"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p9n1-setup-steps",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:app-store",
+          "panel": 1,
+          "shot": "Insert",
+          "visual": "App Store/Google Playの画面。YouTube Kidsのダウンロード画面。"
+        },
+        {
+          "@id": "panel:pss-p9n2-profile-setup",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:youtube-kids-setup",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "YouTube Kidsの初期設定画面。子供のプロフィール作成ステップ。"
+        },
+        {
+          "@id": "panel:pss-p9n3-age-selection",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:youtube-kids-setup",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "年齢選択画面。「未就学児」「小学1-2年」「小学3-6年」の選択肢。"
+        },
+        {
+          "@id": "panel:pss-p9n4-yuto-comment",
+          "characters": ["character:Yuto"],
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "弟がいる友達にも教えてあげよう",
+              "gh:emotion": "helpful"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Yutoが前向きな表情で言っている。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:3-youtube-settings",
+      "gh:pageNumber": 10,
+      "gh:pageTitle": "YouTube設定 - ファミリーリンク連携",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "Googleファミリーリンクとの連携",
+        "gh:templateName": "Integration Guide"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p10n1-family-link-intro",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "YouTubeはGoogleファミリーリンクと連携できる",
+              "gh:emotion": "explaining"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Renがファミリーリンクのアイコンを見せている。"
+        },
+        {
+          "@id": "panel:pss-p10n2-benefits",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:diagram",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "ファミリーリンク連携のメリット図解：視聴履歴確認、時間制限、チャンネルブロック"
+        },
+        {
+          "@id": "panel:pss-p10n3-nei-note",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "次はiOSの設定について説明しますね！",
+              "gh:emotion": "transitioning"
+            }
+          ],
+          "environment": "env:nei-room",
+          "panel": 3,
+          "shot": "Medium Shot",
+          "visual": "NeiがiPhoneのアイコンを見せている。"
+        },
+        {
+          "@id": "panel:pss-p10n4-chapter-title",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:title-card",
+          "panel": 4,
+          "shot": "Insert",
+          "visual": "章タイトル：「第3章：iOS設定」の文字。Appleロゴ付き。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:4-ios-settings",
+      "gh:pageNumber": 11,
+      "gh:pageTitle": "iOS設定 - スクリーンタイム概要",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "iOSスクリーンタイム機能の紹介",
+        "gh:templateName": "Feature Overview"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p11n1-screentime-intro",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "iPhoneやiPadには『スクリーンタイム』という強力な機能があります",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "NeiがiPhoneの設定画面を見せている。"
+        },
+        {
+          "@id": "panel:pss-p11n2-settings-path",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:ios-settings",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "iPhoneの設定アプリ画面。「設定」→「スクリーンタイム」のパスが矢印で示されている。"
+        },
+        {
+          "@id": "panel:pss-p11n3-features-list",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:ios-screentime",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "スクリーンタイムの機能一覧：休止時間、App使用時間の制限、コンテンツとプライバシーの制限、常に許可"
+        },
+        {
+          "@id": "panel:pss-p11n4-misaki-impressed",
+          "characters": ["character:Misaki"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "こんな機能があったんですね…知らなかった",
+              "gh:emotion": "impressed"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 4,
+          "shot": "Close Up",
+          "visual": "美咲が感心した表情。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:4-ios-settings",
+      "gh:pageNumber": 12,
+      "gh:pageTitle": "iOS設定 - 休止時間",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "休止時間の設定方法",
+        "gh:templateName": "Step by Step"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p12n1-downtime-intro",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "『休止時間』はスマホを使えない時間帯を設定できます",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Neiが休止時間の設定画面を見せている。"
+        },
+        {
+          "@id": "panel:pss-p12n2-downtime-setup",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:ios-downtime",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "休止時間設定画面。開始21:00、終了7:00の設定例。"
+        },
+        {
+          "@id": "panel:pss-p12n3-ren-tip",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "就寝1時間前から設定するのがおすすめ。ブルーライトの影響も減らせる",
+              "gh:emotion": "advising"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 3,
+          "shot": "Medium Shot",
+          "visual": "Renがアドバイスしている。"
+        },
+        {
+          "@id": "panel:pss-p12n4-block-toggle",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:ios-downtime",
+          "panel": 4,
+          "shot": "Insert",
+          "visual": "「休止時間中にブロック」のトグルがオンになっている画面。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:4-ios-settings",
+      "gh:pageNumber": 13,
+      "gh:pageTitle": "iOS設定 - App使用時間の制限",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "アプリ使用時間制限の設定",
+        "gh:templateName": "Step by Step"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p13n1-app-limits-intro",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "『App使用時間の制限』でSNSやゲームの時間を制限できます",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Neiが設定画面を見せている。"
+        },
+        {
+          "@id": "panel:pss-p13n2-category-selection",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:ios-app-limits",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "カテゴリ選択画面。「SNS」「ゲーム」「エンターテインメント」などが表示。"
+        },
+        {
+          "@id": "panel:pss-p13n3-time-setting",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:ios-app-limits",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "使用時間設定画面。「1時間」が選択されている。"
+        },
+        {
+          "@id": "panel:pss-p13n4-yuto-comment",
+          "characters": ["character:Yuto"],
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "SNSは1-2時間くらいがいいのかな",
+              "gh:emotion": "thoughtful"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Yutoが考えながら言っている。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:4-ios-settings",
+      "gh:pageNumber": 14,
+      "gh:pageTitle": "iOS設定 - コンテンツ制限",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "コンテンツとプライバシーの制限設定",
+        "gh:templateName": "Step by Step"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p14n1-content-intro",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "『コンテンツとプライバシーの制限』で年齢制限を設定できます",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Neiがコンテンツ制限の画面を見せている。"
+        },
+        {
+          "@id": "panel:pss-p14n2-app-rating",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:ios-content-restrictions",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "App年齢レーティング画面。「12+」が選択されている。"
+        },
+        {
+          "@id": "panel:pss-p14n3-web-content",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:ios-content-restrictions",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "Webコンテンツ制限画面。「成人向けWebサイトを制限」が選択されている。"
+        },
+        {
+          "@id": "panel:pss-p14n4-ren-explains",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "App内課金も「許可しない」に設定できる。これ重要",
+              "gh:emotion": "emphasizing"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Renが重要ポイントを強調している。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:4-ios-settings",
+      "gh:pageNumber": 15,
+      "gh:pageTitle": "iOS設定 - ファミリー共有",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "ファミリー共有とAsk to Buy",
+        "gh:templateName": "Feature Guide"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p15n1-family-sharing-intro",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "『ファミリー共有』で家族のApple IDをまとめて管理できます",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Neiがファミリー共有の画面を見せている。"
+        },
+        {
+          "@id": "panel:pss-p15n2-ask-to-buy",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:ios-family-sharing",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "「承認と購入のリクエスト」（Ask to Buy）の設定画面。トグルがオン。"
+        },
+        {
+          "@id": "panel:pss-p15n3-notification-example",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:ios-notification",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "親のiPhoneに届く承認リクエスト通知の例。「Yutoがアプリを購入したいです」"
+        },
+        {
+          "@id": "panel:pss-p15n4-misaki-relieved",
+          "characters": ["character:Misaki"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "これなら勝手にアプリを入れられない…安心です",
+              "gh:emotion": "relieved"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 4,
+          "shot": "Close Up",
+          "visual": "美咲がホッとした表情。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:4-ios-settings",
+      "gh:pageNumber": 16,
+      "gh:pageTitle": "iOS設定 - パスコード設定",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "スクリーンタイム・パスコードの重要性",
+        "gh:templateName": "Security Guide"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p16n1-passcode-intro",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "最後に『スクリーンタイム・パスコード』を必ず設定して",
+              "gh:emotion": "serious"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Renが真剣な表情で説明している。"
+        },
+        {
+          "@id": "panel:pss-p16n2-passcode-setup",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:ios-passcode",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "パスコード設定画面。4桁の入力欄。"
+        },
+        {
+          "@id": "panel:pss-p16n3-warning",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "誕生日とか推測しやすい番号はNG。子供には絶対に教えないこと",
+              "gh:emotion": "warning"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 3,
+          "shot": "Close Up",
+          "visual": "Renが注意を促している表情。"
+        },
+        {
+          "@id": "panel:pss-p16n4-transition",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "次はAndroidの設定について説明しますね！",
+              "gh:emotion": "transitioning"
+            }
+          ],
+          "environment": "env:nei-room",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "NeiがAndroidロゴを見せている。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:5-android-settings",
+      "gh:pageNumber": 17,
+      "gh:pageTitle": "Android設定 - ファミリーリンク概要",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "Googleファミリーリンクの紹介",
+        "gh:templateName": "Feature Overview"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p17n1-familylink-intro",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "Androidでは『Googleファミリーリンク』が中心になる",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Renがファミリーリンクのアイコンを見せている。"
+        },
+        {
+          "@id": "panel:pss-p17n2-app-download",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:play-store",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "Google Playストア。「Google ファミリーリンク（保護者向け）」のダウンロード画面。"
+        },
+        {
+          "@id": "panel:pss-p17n3-two-apps",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:diagram",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "2つのアプリの図解。親用アプリ（保護者向け）と子供用アプリ（お子様向け）。"
+        },
+        {
+          "@id": "panel:pss-p17n4-nei-explains",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "13歳未満のお子さんを包括的に管理できるアプリです",
+              "gh:emotion": "explaining"
+            }
+          ],
+          "environment": "env:nei-room",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Neiが補足説明している。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:5-android-settings",
+      "gh:pageNumber": 18,
+      "gh:pageTitle": "Android設定 - ファミリーリンクセットアップ",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "ファミリーリンクの初期設定",
+        "gh:templateName": "Step by Step"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p18n1-setup-steps",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:family-link-setup",
+          "panel": 1,
+          "shot": "Insert",
+          "visual": "セットアップ手順の図解。①親の端末にインストール ②子供の端末にインストール"
+        },
+        {
+          "@id": "panel:pss-p18n2-account-setup",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:family-link-setup",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "③親のGoogleアカウントでログイン ④子供用アカウント作成"
+        },
+        {
+          "@id": "panel:pss-p18n3-pairing",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:family-link-setup",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "⑤子供の端末とペアリング。QRコードスキャンの画面。"
+        },
+        {
+          "@id": "panel:pss-p18n4-ren-note",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "ペアリングが完了したら、親のスマホから管理できるようになる",
+              "gh:emotion": "explaining"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Renが説明している。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:5-android-settings",
+      "gh:pageNumber": 19,
+      "gh:pageTitle": "Android設定 - アプリと時間管理",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "アプリ管理と利用時間制限",
+        "gh:templateName": "Feature Guide"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p19n1-app-management",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "アプリの管理では、新しいアプリのインストールを承認制にできます",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Neiがアプリ管理画面を見せている。"
+        },
+        {
+          "@id": "panel:pss-p19n2-approval-screen",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:family-link-app",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "アプリインストール承認画面。「TikTokをインストールしますか？」という親への通知。"
+        },
+        {
+          "@id": "panel:pss-p19n3-time-limit",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:family-link-time",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "利用時間の上限設定画面。「1日の利用時間の上限：2時間」"
+        },
+        {
+          "@id": "panel:pss-p19n4-yuto-comment",
+          "characters": ["character:Yuto"],
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "平日2時間、休日は3時間くらいが現実的かも",
+              "gh:emotion": "suggesting"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Yutoが提案している。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:5-android-settings",
+      "gh:pageNumber": 20,
+      "gh:pageTitle": "Android設定 - Google Play制限",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "Google Playストアの保護者設定",
+        "gh:templateName": "Step by Step"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p20n1-playstore-settings",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "Google Playストアにも独自の保護者設定がある",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "RenがPlayストアの設定画面を見せている。"
+        },
+        {
+          "@id": "panel:pss-p20n2-parental-controls",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:play-store-settings",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "「保護者による使用制限」設定画面。トグルがオン。"
+        },
+        {
+          "@id": "panel:pss-p20n3-content-rating",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:play-store-settings",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "コンテンツレーティング設定。「アプリ・ゲーム：12歳以上」が選択。"
+        },
+        {
+          "@id": "panel:pss-p20n4-purchase-auth",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:play-store-settings",
+          "panel": 4,
+          "shot": "Insert",
+          "visual": "「購入時には認証を必要とする：すべての購入」が選択された画面。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:5-android-settings",
+      "gh:pageNumber": 21,
+      "gh:pageTitle": "Android設定 - セーフサーチ",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "Chromeのセーフサーチ設定",
+        "gh:templateName": "Security Guide"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p21n1-safesearch-intro",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "Google検索の『セーフサーチ』も設定しましょう",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "NeiがChrome設定を見せている。"
+        },
+        {
+          "@id": "panel:pss-p21n2-chrome-settings",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:family-link-chrome",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "ファミリーリンクのChrome管理画面。「サイトの管理」が表示。"
+        },
+        {
+          "@id": "panel:pss-p21n3-filter-options",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:family-link-chrome",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "フィルタオプション。「露骨なサイトをブロックする」が選択されている。"
+        },
+        {
+          "@id": "panel:pss-p21n4-ren-warning",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "セーフサーチは完璧じゃない。定期的な確認と会話が重要",
+              "gh:emotion": "warning"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 4,
+          "shot": "Close Up",
+          "visual": "Renが真剣な表情で注意を促している。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:5-android-settings",
+      "gh:pageNumber": 22,
+      "gh:pageTitle": "Android設定 - Digital Wellbeing",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "Digital Wellbeing機能の紹介",
+        "gh:templateName": "Feature Overview"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p22n1-wellbeing-intro",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "Android標準の『Digital Wellbeing』も使えるよ",
+              "gh:emotion": "explaining"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "RenがDigital Wellbeingの画面を見せている。"
+        },
+        {
+          "@id": "panel:pss-p22n2-features",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:digital-wellbeing",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "Digital Wellbeingの機能一覧：アプリタイマー、おやすみ時間モード、集中モード"
+        },
+        {
+          "@id": "panel:pss-p22n3-misaki-summary",
+          "characters": ["character:Misaki"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "iOSもAndroidも、似たような機能があるんですね",
+              "gh:emotion": "understanding"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 3,
+          "shot": "Close Up",
+          "visual": "美咲が理解した表情。"
+        },
+        {
+          "@id": "panel:pss-p22n4-transition",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "次はSNSの設定について説明します！",
+              "gh:emotion": "transitioning"
+            }
+          ],
+          "environment": "env:nei-room",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "NeiがSNSアイコン（Instagram、TikTok、LINE）を見せている。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:6-sns-settings",
+      "gh:pageNumber": 23,
+      "gh:pageTitle": "SNS設定 - Instagram",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "Instagramのプライバシー設定",
+        "gh:templateName": "App Settings"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p23n1-instagram-intro",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "Instagramは13歳以上が対象。まずアカウントを非公開に",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "NeiがInstagramの設定画面を見せている。"
+        },
+        {
+          "@id": "panel:pss-p23n2-private-account",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:instagram-settings",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "Instagramの「非公開アカウント」設定画面。トグルがオン。"
+        },
+        {
+          "@id": "panel:pss-p23n3-message-controls",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:instagram-settings",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "メッセージ制限設定。「フォロー中の人のみ」が選択されている。"
+        },
+        {
+          "@id": "panel:pss-p23n4-supervision",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "Instagramには『監督機能』もある。親が利用時間を確認できる",
+              "gh:emotion": "explaining"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Renが監督機能について説明している。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:6-sns-settings",
+      "gh:pageNumber": 24,
+      "gh:pageTitle": "SNS設定 - TikTok",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "TikTokのファミリーペアリング",
+        "gh:templateName": "App Settings"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p24n1-tiktok-intro",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "TikTokは『ファミリーペアリング』で親子アカウントを連携できます",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "NeiがTikTokの設定を見せている。"
+        },
+        {
+          "@id": "panel:pss-p24n2-pairing-qr",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:tiktok-settings",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "ファミリーペアリングのQRコード画面。親の端末に表示。"
+        },
+        {
+          "@id": "panel:pss-p24n3-features",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:tiktok-settings",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "ファミリーペアリングの機能：視聴時間制限、制限付きモード、DM制限"
+        },
+        {
+          "@id": "panel:pss-p24n4-yuto-comment",
+          "characters": ["character:Yuto"],
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "TikTokは時間が溶けるから…制限あった方がいいかも",
+              "gh:emotion": "self-aware"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Yutoが苦笑いしながら言っている。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:6-sns-settings",
+      "gh:pageNumber": 25,
+      "gh:pageTitle": "SNS設定 - LINE",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "LINEのプライバシー設定",
+        "gh:templateName": "App Settings"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p25n1-line-intro",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "LINEは知らない人からの連絡を防ぐ設定が重要です",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "NeiがLINEの設定画面を見せている。"
+        },
+        {
+          "@id": "panel:pss-p25n2-id-search-off",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:line-settings",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "LINE設定。「IDによる友だち追加を許可」がオフ。"
+        },
+        {
+          "@id": "panel:pss-p25n3-message-block",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:line-settings",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "「メッセージ受信拒否」がオン。「友だち以外からのメッセージをブロック」"
+        },
+        {
+          "@id": "panel:pss-p25n4-ren-emphasis",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "友だち自動追加もオフに。電話番号からの追加を防げる",
+              "gh:emotion": "emphasizing"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 4,
+          "shot": "Close Up",
+          "visual": "Renが重要ポイントを強調している。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:6-sns-settings",
+      "gh:pageNumber": 26,
+      "gh:pageTitle": "SNS設定 - 共通ポイント",
+      "gh:pageLayout": {
+        "gh:category": "summary",
+        "gh:layoutNote": "SNS設定の共通ポイントまとめ",
+        "gh:templateName": "Checklist"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p26n1-common-points",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "どのSNSでも共通する設定ポイントをまとめますね",
+              "gh:emotion": "summarizing"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Neiがチェックリストを表示している。"
+        },
+        {
+          "@id": "panel:pss-p26n2-checklist",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:checklist",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "チェックリスト：□非公開アカウント □メッセージ制限 □位置情報オフ □ペアレンタルコントロール"
+        },
+        {
+          "@id": "panel:pss-p26n3-misaki-noting",
+          "characters": ["character:Misaki"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "メモしておきます…あとで確認しながら設定しますね",
+              "gh:emotion": "diligent"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 3,
+          "shot": "Medium Shot",
+          "visual": "美咲がメモを取っている。"
+        },
+        {
+          "@id": "panel:pss-p26n4-transition",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "次は課金・購入の管理について！",
+              "gh:emotion": "transitioning"
+            }
+          ],
+          "environment": "env:nei-room",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Neiがクレジットカードのアイコンを見せている。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:7-purchase-settings",
+      "gh:pageNumber": 27,
+      "gh:pageTitle": "課金管理 - 概要",
+      "gh:pageLayout": {
+        "gh:category": "education",
+        "gh:layoutNote": "課金トラブルの事例と対策の重要性",
+        "gh:templateName": "Problem Introduction"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p27n1-purchase-intro",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "ゲームの課金トラブルは本当に多い。数十万円の請求が来るケースも",
+              "gh:emotion": "serious"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Renが課金被害の統計を見せている。"
+        },
+        {
+          "@id": "panel:pss-p27n2-news-example",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:news-article",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "ニュース記事のイメージ：「子供がゲームで100万円課金」の見出し"
+        },
+        {
+          "@id": "panel:pss-p27n3-misaki-worried",
+          "characters": ["character:Misaki"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "そんなことが…怖いですね",
+              "gh:emotion": "worried"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 3,
+          "shot": "Close Up",
+          "visual": "美咲が心配そうな表情。"
+        },
+        {
+          "@id": "panel:pss-p27n4-nei-reassure",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "でも設定すれば防げます。一緒に見ていきましょう",
+              "gh:emotion": "reassuring"
+            }
+          ],
+          "environment": "env:nei-room",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Neiが安心させるように話している。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:7-purchase-settings",
+      "gh:pageNumber": 28,
+      "gh:pageTitle": "課金管理 - iOS設定",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "iOSでの課金制限設定",
+        "gh:templateName": "Step by Step"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p28n1-ios-purchase",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "iOSでは『Ask to Buy』と『App内課金の無効化』が有効です",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "NeiがiOS設定画面を見せている。"
+        },
+        {
+          "@id": "panel:pss-p28n2-ask-to-buy",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:ios-purchase",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "Ask to Buyの仕組み図解：子供がリクエスト→親に通知→承認/拒否"
+        },
+        {
+          "@id": "panel:pss-p28n3-disable-iap",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:ios-restrictions",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "App内課金設定。「App内課金：許可しない」が選択されている画面。"
+        },
+        {
+          "@id": "panel:pss-p28n4-password-always",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "購入時のパスワード要求は『常に』に設定しておくこと",
+              "gh:emotion": "advising"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Renがアドバイスしている。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:7-purchase-settings",
+      "gh:pageNumber": 29,
+      "gh:pageTitle": "課金管理 - Android設定",
+      "gh:pageLayout": {
+        "gh:category": "tutorial",
+        "gh:layoutNote": "Androidでの課金制限設定",
+        "gh:templateName": "Step by Step"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p29n1-android-purchase",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "AndroidはGoogle Playの認証設定とファミリーリンクを併用",
+              "gh:emotion": "teaching"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "RenがAndroid設定を見せている。"
+        },
+        {
+          "@id": "panel:pss-p29n2-auth-setting",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:play-store-auth",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "Google Play認証設定。「すべての購入で認証が必要」が選択されている。"
+        },
+        {
+          "@id": "panel:pss-p29n3-budget",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:play-store-budget",
+          "panel": 3,
+          "shot": "Insert",
+          "visual": "予算設定画面。月額の予算が設定されている例。"
+        },
+        {
+          "@id": "panel:pss-p29n4-yuto-idea",
+          "characters": ["character:Yuto"],
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "プリペイドカード方式なら、上限が明確でいいかも",
+              "gh:emotion": "suggesting"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Yutoがアイデアを出している。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:7-purchase-settings",
+      "gh:pageNumber": 30,
+      "gh:pageTitle": "課金管理 - ベストプラクティス",
+      "gh:pageLayout": {
+        "gh:category": "summary",
+        "gh:layoutNote": "課金管理のベストプラクティス",
+        "gh:templateName": "Tips Summary"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p30n1-tips-intro",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "課金管理のコツをまとめますね",
+              "gh:emotion": "summarizing"
+            }
+          ],
+          "environment": "env:presentation",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Neiがまとめスライドを見せている。"
+        },
+        {
+          "@id": "panel:pss-p30n2-tips-list",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:tips",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "Tips一覧：①クレジットカード情報は保存しない ②プリペイドカード方式 ③定期的に履歴確認 ④ゲーム内設定も確認"
+        },
+        {
+          "@id": "panel:pss-p30n3-misaki-understanding",
+          "characters": ["character:Misaki"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "「今月はここまで」って境界を作るのが大切なんですね",
+              "gh:emotion": "understanding"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 3,
+          "shot": "Close Up",
+          "visual": "美咲が納得した表情。"
+        },
+        {
+          "@id": "panel:pss-p30n4-transition",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "最後に…一番大切なことをお伝えします",
+              "gh:emotion": "serious"
+            }
+          ],
+          "environment": "env:nei-room",
+          "panel": 4,
+          "shot": "Close Up",
+          "visual": "Neiが真剣な表情になる。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:8-dialogue-importance",
+      "gh:pageNumber": 31,
+      "gh:pageTitle": "対話の重要性 - 設定だけでは守れない",
+      "gh:pageLayout": {
+        "gh:category": "emotional",
+        "gh:layoutNote": "技術的設定の限界と対話の重要性",
+        "gh:templateName": "Message Delivery"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p31n1-nei-message",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "設定は『鍵』のようなもの。家に鍵をかけるのは大切だけど…",
+              "gh:emotion": "thoughtful"
+            }
+          ],
+          "environment": "env:nei-room",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Neiが優しく、でも真剣に話している。"
+        },
+        {
+          "@id": "panel:pss-p31n2-key-metaphor",
+          "characters": [],
+          "dialogue": [],
+          "environment": "env:metaphor",
+          "panel": 2,
+          "shot": "Insert",
+          "visual": "鍵と家の比喩イラスト。鍵だけでは家族を守れないことを示す。"
+        },
+        {
+          "@id": "panel:pss-p31n3-ren-message",
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Ren",
+              "text": "大事なのは、なぜその設定が必要か、一緒に考えること。監視じゃなくて、信頼の上に立った約束",
+              "gh:emotion": "sincere"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 3,
+          "shot": "Close Up",
+          "visual": "Renが真剣に話している。"
+        },
+        {
+          "@id": "panel:pss-p31n4-nei-growth",
+          "characters": ["character:Nei"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "子供は成長する。設定も、関係も、アップデートが必要。定期的に話し合ってね",
+              "gh:emotion": "gentle"
+            }
+          ],
+          "environment": "env:nei-room",
+          "panel": 4,
+          "shot": "Medium Shot",
+          "visual": "Neiが温かい笑顔で締めくくる。"
+        }
+      ]
+    },
+    {
+      "gh:act": "act:8-dialogue-importance",
+      "gh:pageNumber": 32,
+      "gh:pageTitle": "対話の重要性 - 新たな始まり",
+      "gh:pageLayout": {
+        "gh:category": "resolution",
+        "gh:layoutNote": "美咲とYutoの和解と決意",
+        "gh:templateName": "Emotional Climax"
+      },
+      "gh:panelCount": 4,
+      "gh:panels": [
+        {
+          "@id": "panel:pss-p32n1-misaki-realization",
+          "characters": ["character:Misaki"],
+          "dialogue": [
+            {
+              "speaker": "Misaki",
+              "text": "設定のことばかり考えてたけど…一番大切なのは、Yutoと話すことなんですね",
+              "gh:emotion": "realization"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 1,
+          "shot": "Close Up",
+          "visual": "美咲が気づきを得た表情。目に涙が浮かんでいる。"
+        },
+        {
+          "@id": "panel:pss-p32n2-yuto-response",
+          "characters": ["character:Yuto"],
+          "dialogue": [
+            {
+              "speaker": "Yuto",
+              "text": "…僕も、もっと早く相談すればよかった。これからは、ちゃんと話すよ",
+              "gh:emotion": "sincere"
+            }
+          ],
+          "environment": "env:misaki-living-room",
+          "panel": 2,
+          "shot": "Close Up",
+          "visual": "Yutoが真剣な表情で母親を見ている。"
+        },
+        {
+          "@id": "panel:pss-p32n3-mother-son",
+          "characters": ["character:Misaki", "character:Yuto"],
+          "dialogue": [],
+          "environment": "env:misaki-living-room",
+          "panel": 3,
+          "shot": "Two Shot",
+          "visual": "美咲とYutoが向き合い、微笑み合っている。窓から夕日が差し込む。"
+        },
+        {
+          "@id": "panel:pss-p32n4-nei-ren-farewell",
+          "characters": ["character:Nei", "character:Ren"],
+          "dialogue": [
+            {
+              "speaker": "Nei",
+              "text": "困ったことがあったら、いつでも相談してくださいね！",
+              "gh:emotion": "warm"
+            },
+            {
+              "speaker": "Ren",
+              "text": "俺たちはいつでもここにいるから",
+              "gh:emotion": "supportive"
+            }
+          ],
+          "environment": "env:video-call",
+          "panel": 4,
+          "shot": "Two Shot",
+          "visual": "NeiとRenが笑顔で手を振っている。画面越しに見守る二人。「第1章 完」の文字。"
+        }
+      ]
+    }
+  ],
   "gh:actStructure": [
     {
       "@id": "act:1-parents-anxiety",
