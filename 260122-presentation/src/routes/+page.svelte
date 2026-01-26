@@ -58,11 +58,30 @@
     return { ...n, x, y, z, scale: n.scale ?? 1, fx: n.fixed ? x : null, fy: n.fixed ? y : null };
   });
 
-  const initialEdgeNodes: ClientNode[] = (data.board.links ?? []).map((l: any, i: number) => ({
-    id: `edge-${i}`, nodeType: 'edge', name: l.label, color: l.color, sourceId: l.source, targetId: l.target, x: 0, y: 0, scale: 0.8,
-    z: ensureNumbers(l.z, defaultZFor('edge')),
-    fixed: !!l.fixed, fx: l.fixed ? (l.x || 0) : null, fy: l.fixed ? (l.y || 0) : null
-  }));
+  const initialEdgeNodes: ClientNode[] = (data.board.links ?? []).map((l: any, i: number) => {
+    const sourceNode = initialBaseNodes.find((n) => n.id === l.source);
+    const targetNode = initialBaseNodes.find((n) => n.id === l.target);
+    const midX = (ensureNumbers(sourceNode?.x, 0) + ensureNumbers(targetNode?.x, 0)) / 2;
+    const midY = (ensureNumbers(sourceNode?.y, 0) + ensureNumbers(targetNode?.y, 0)) / 2;
+    const x = ensureNumbers(l.x, midX);
+    const y = ensureNumbers(l.y, midY);
+    const fixed = !!l.fixed;
+    return {
+      id: `edge-${i}`,
+      nodeType: 'edge',
+      name: l.label,
+      color: l.color,
+      sourceId: l.source,
+      targetId: l.target,
+      x,
+      y,
+      scale: 0.8,
+      z: ensureNumbers(l.z, defaultZFor('edge')),
+      fixed,
+      fx: fixed ? x : null,
+      fy: fixed ? y : null
+    };
+  });
 
   const initialLinks: any[] = [];
   (data.board.links ?? []).forEach((l: any, i: number) => {
