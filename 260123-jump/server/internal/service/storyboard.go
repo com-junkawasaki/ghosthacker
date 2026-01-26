@@ -1916,6 +1916,7 @@ func drawPanelBorder(canvas *goimage.RGBA, x, y, w, h int) {
 }
 
 // drawDialogues draws dialogue bubbles on a panel using proper font rendering
+// Japanese manga style: vertical text, right-to-left reading, bubbles positioned at top-right then top-left
 func drawDialogues(canvas *goimage.RGBA, dialogues []*storyboardpb.Dialogue, panelX, panelY, panelW, panelH int) {
 	if len(dialogues) == 0 {
 		return
@@ -1924,17 +1925,22 @@ func drawDialogues(canvas *goimage.RGBA, dialogues []*storyboardpb.Dialogue, pan
 	// Create a gg context from the canvas for text rendering
 	dc := gg.NewContextForRGBA(canvas)
 	
-	// Try to load Japanese font - LARGER SIZE
+	// Try to load Japanese font
 	fontPath := getFontPath()
-	fontSize := 24.0
+	fontSize := 28.0
+	fontLoaded := false
 	if fontPath != "" {
 		if err := dc.LoadFontFace(fontPath, fontSize); err != nil {
 			log.Printf("Warning: could not load font %s: %v", fontPath, err)
+		} else {
+			fontLoaded = true
+			log.Printf("Font loaded successfully: %s", fontPath)
 		}
 	}
 	
-	// Calculate bubble positions - spread them across the panel
-	bubbleMargin := 20
+	// Bubble settings
+	bubbleMargin := 15  // Margin from panel edges
+	bubbleGap := 10     // Gap between bubbles
 	
 	for i, d := range dialogues {
 		if d == nil || d.Text == "" {
@@ -1944,110 +1950,134 @@ func drawDialogues(canvas *goimage.RGBA, dialogues []*storyboardpb.Dialogue, pan
 		text := d.Text
 		speaker := d.Speaker
 		
-		// Truncate long text
-		maxChars := 20
+		// Truncate long text for vertical display
+		maxChars := 25
 		runes := []rune(text)
 		if len(runes) > maxChars {
 			text = string(runes[:maxChars]) + "…"
 			runes = []rune(text)
 		}
 		
-		// Calculate bubble size for vertical text - LARGER
-		charSize := int(fontSize) + 4
-		bubbleWidth := charSize + 36
-		bubbleHeight := len(runes)*charSize + 50
+		// Calculate bubble size for vertical text
+		charHeight := int(fontSize) + 2  // Character height with small spacing
+		bubbleWidth := int(fontSize) + 30  // Width for one column of vertical text
+		bubbleHeight := len(runes)*charHeight + 40  // Height for all characters plus padding
 		
-		// Add speaker name height if present
+		// Add header space for speaker name
+		headerHeight := 0
 		if speaker != "" {
-			bubbleHeight += 30
+			headerHeight = 25
+			bubbleHeight += headerHeight
 		}
 		
-		// Position bubble - default position or use manga layout if available
+		// Limit minimum and maximum bubble size
+		if bubbleHeight < 80 {
+			bubbleHeight = 80
+		}
+		if bubbleHeight > panelH - 2*bubbleMargin {
+			bubbleHeight = panelH - 2*bubbleMargin
+		}
+		
+		// Position bubble within panel bounds
+		// Japanese manga style: start from top-right, move left for additional dialogues
 		var bubbleX, bubbleY int
+		
 		if d.MangaLayout != nil && (d.MangaLayout.X > 0 || d.MangaLayout.Y > 0) {
-			// Use stored position (percentage)
-			bubbleX = panelX + int(float64(panelW)*float64(d.MangaLayout.X)/100) - bubbleWidth/2
-			bubbleY = panelY + int(float64(panelH)*float64(d.MangaLayout.Y)/100)
+			// Use stored position (percentage based, relative to panel)
+			bubbleX = panelX + int(float64(panelW)*float64(d.MangaLayout.X)/100.0) - bubbleWidth/2
+			bubbleY = panelY + int(float64(panelH)*float64(d.MangaLayout.Y)/100.0)
 		} else {
-			// Default position: top-right area for Japanese manga, staggered horizontally
-			bubbleX = panelX + panelW - bubbleMargin - bubbleWidth - (i * (bubbleWidth + 15))
-			bubbleY = panelY + bubbleMargin + 25
+			// Default position: top area, starting from right side moving left
+			// First dialogue at top-right, subsequent ones move left
+			bubbleX = panelX + panelW - bubbleMargin - bubbleWidth - (i * (bubbleWidth + bubbleGap))
+			bubbleY = panelY + bubbleMargin
 		}
 		
-		// Ensure bubble fits within panel
-		if bubbleX + bubbleWidth > panelX + panelW - bubbleMargin {
-			bubbleX = panelX + panelW - bubbleWidth - bubbleMargin
-		}
-		if bubbleY + bubbleHeight > panelY + panelH - bubbleMargin {
-			bubbleY = panelY + panelH - bubbleHeight - bubbleMargin
-		}
+		// Clamp bubble position to stay within panel
 		if bubbleX < panelX + bubbleMargin {
 			bubbleX = panelX + bubbleMargin
+		}
+		if bubbleX + bubbleWidth > panelX + panelW - bubbleMargin {
+			bubbleX = panelX + panelW - bubbleWidth - bubbleMargin
 		}
 		if bubbleY < panelY + bubbleMargin {
 			bubbleY = panelY + bubbleMargin
 		}
+		if bubbleY + bubbleHeight > panelY + panelH - bubbleMargin {
+			bubbleY = panelY + panelH - bubbleHeight - bubbleMargin
+		}
 		
-		// Draw white bubble background with rounded corners
-		dc.SetRGBA(1, 1, 1, 0.95)
-		dc.DrawRoundedRectangle(float64(bubbleX), float64(bubbleY), float64(bubbleWidth), float64(bubbleHeight), 8)
+		// Draw speech bubble with white background and rounded corners
+		dc.SetRGBA(1, 1, 1, 0.92)
+		dc.DrawRoundedRectangle(float64(bubbleX), float64(bubbleY), float64(bubbleWidth), float64(bubbleHeight), 10)
 		dc.Fill()
 		
 		// Draw bubble border
 		dc.SetRGB(0, 0, 0)
-		dc.SetLineWidth(2)
-		dc.DrawRoundedRectangle(float64(bubbleX), float64(bubbleY), float64(bubbleWidth), float64(bubbleHeight), 8)
+		dc.SetLineWidth(2.5)
+		dc.DrawRoundedRectangle(float64(bubbleX), float64(bubbleY), float64(bubbleWidth), float64(bubbleHeight), 10)
 		dc.Stroke()
 		
-		// Draw speaker name if present (text at top)
-		textX := float64(bubbleX + bubbleWidth/2)
-		textY := float64(bubbleY + 25)
+		// Text positioning - center X, start from top
+		textCenterX := float64(bubbleX + bubbleWidth/2)
+		textStartY := float64(bubbleY + 20)
 		
-		if speaker != "" {
-			// Draw speaker name horizontally at the top
-			dc.SetRGB(0.3, 0.3, 0.3)
-			if fontPath != "" {
-				dc.LoadFontFace(fontPath, 16)
-			}
+		// Draw speaker name if present (smaller, at top of bubble)
+		if speaker != "" && fontLoaded {
+			dc.SetRGB(0.2, 0.2, 0.2)
+			dc.LoadFontFace(fontPath, 14)
+			
 			// Truncate speaker name
-			if len([]rune(speaker)) > 6 {
-				speaker = string([]rune(speaker)[:6])
+			speakerRunes := []rune(speaker)
+			if len(speakerRunes) > 8 {
+				speaker = string(speakerRunes[:8])
 			}
-			dc.DrawStringAnchored(speaker, textX, textY, 0.5, 0.5)
-			textY += 28
-			// Reset font size
-			if fontPath != "" {
-				dc.LoadFontFace(fontPath, fontSize)
-			}
+			dc.DrawStringAnchored(speaker, textCenterX, textStartY, 0.5, 0.5)
+			textStartY += float64(headerHeight)
+			
+			// Reset to main font size
+			dc.LoadFontFace(fontPath, fontSize)
 		}
 		
-		// Draw vertical text (Japanese manga style)
+		// Draw vertical Japanese text (each character stacked vertically)
 		dc.SetRGB(0, 0, 0)
-		for j, r := range runes {
-			charY := textY + float64(j)*float64(charSize)
-			if charY > float64(bubbleY+bubbleHeight-15) {
-				break
+		if fontLoaded {
+			for j, r := range runes {
+				charY := textStartY + float64(j)*float64(charHeight)
+				// Stop if we'd overflow the bubble
+				if charY > float64(bubbleY+bubbleHeight-20) {
+					break
+				}
+				dc.DrawStringAnchored(string(r), textCenterX, charY, 0.5, 0.5)
 			}
-			dc.DrawStringAnchored(string(r), textX, charY, 0.5, 0.5)
+		} else {
+			// Fallback: draw placeholder if font not loaded
+			dc.SetRGB(0.5, 0.5, 0.5)
+			dc.DrawStringAnchored("[text]", textCenterX, textStartY, 0.5, 0.5)
 		}
 	}
 }
 
 // getFontPath returns the path to the Japanese font file
 func getFontPath() string {
-	// Try multiple possible font locations
+	// Try multiple possible font locations - prefer IPA Gothic for Japanese
 	fontPaths := []string{
-		"/app/fonts/NotoSansJP-Regular.ttf",  // Docker container path
+		"/app/fonts/ipaexg.ttf",              // Docker container path (IPA Gothic)
+		"fonts/ipaexg.ttf",                    // Relative path
+		"/workspace/260123-jump/server/fonts/ipaexg.ttf", // Full workspace path
+		"/app/fonts/NotoSansJP-Regular.ttf",  // Docker container path (fallback)
 		"fonts/NotoSansJP-Regular.ttf",        // Relative path
 		"/workspace/260123-jump/server/fonts/NotoSansJP-Regular.ttf", // Full workspace path
 	}
 	
 	for _, p := range fontPaths {
 		if _, err := os.Stat(p); err == nil {
+			log.Printf("Using font: %s", p)
 			return p
 		}
 	}
 	
+	log.Printf("Warning: No Japanese font found")
 	return ""
 }
 
