@@ -70,8 +70,8 @@
       "image": "/images/characters/ren/main.png",
       "color": "#0071e3",
       "description": "通信制高校C高校に通う効率厨の天才。ネット掲示板 News Hacker の常連（hn: null_pencil_axe）。情報の『怠惰』をハックする。",
-      "x": -1937,
-      "y": -2643,
+      "x": -1918,
+      "y": -2680,
       "fixed": false,
       "scale": 1.6949999999999998,
       "z": 20
@@ -89,10 +89,10 @@
       "image": "/images/characters/nei/main.png",
       "color": "#34c759",
       "description": "蓮の同級生で相棒。観察眼と段取りで“現場の詰み”をほどく女子高生。",
-      "x": -2391,
-      "y": -2258,
+      "x": -2405,
+      "y": -2414,
       "fixed": false,
-      "scale": 1.5300000000000051,
+      "scale": 1.580000000000008,
       "z": 20
     },
     {
@@ -106,8 +106,8 @@
       "image": "/images/characters/shouta/main.png",
       "color": "#ff3b30",
       "description": "巨大企業の後継者。レガシーと組織の歪みで追い詰められる。",
-      "x": -1032,
-      "y": -2279,
+      "x": -1394,
+      "y": -2201,
       "fixed": false,
       "scale": 1.3450000000000013,
       "z": 20
@@ -126,8 +126,8 @@
       "image": "/images/characters/chise/main.png",
       "color": "#ff9500",
       "description": "短気な天才。元C高校だが大検を取得してあまり顔を出さない。News Hacker の常連（hn: aka_chise1）。力押しで突破するタイプのライバル。",
-      "x": -1679,
-      "y": -1973,
+      "x": -1884,
+      "y": -2007,
       "fixed": false,
       "scale": 1.5900000000000067,
       "z": 20
@@ -146,8 +146,8 @@
       "image": "/images/characters/kaname/main.png",
       "color": "#af52de",
       "description": "都内有数の有名校で学生起業するエリート。News Hacker の常連（hn: 3pa11er3apiv0t）。『金融庁ルールに沿っているから大丈夫』という傲慢を嫌い、国内規制だけでなく国際規制（例: AML/CFT等）まで含めた“新・絶対ルール”を定義して押し通す。",
-      "x": -2125,
-      "y": -1678,
+      "x": -2307,
+      "y": -1728,
       "fixed": false,
       "scale": 1.6349999999999976,
       "z": 20
@@ -173,8 +173,8 @@
       "image": "/images/tmp/2024-06-20_22h48_38.png",
       "color": "#ff3b30",
       "description": "大規模ランサムウェア攻撃による事業停止。管理の『怠惰』の象徴。",
-      "x": -1385,
-      "y": -2569,
+      "x": -1401,
+      "y": -2700,
       "fixed": false,
       "scale": 1.6200000000000032,
       "z": 20
@@ -186,8 +186,8 @@
       "image": "/images/tmp/202203011648305.jpg",
       "color": "#ff9500",
       "description": "サプライチェーン攻撃によるトヨタ全ライン停止。運用の『短気』の象徴。",
-      "x": -1364,
-      "y": -1973,
+      "x": -1470,
+      "y": -2001,
       "fixed": false,
       "scale": 1.2299999999999944,
       "z": 20
@@ -199,8 +199,8 @@
       "image": "/images/tmp/OIP (3).webp",
       "color": "#af52de",
       "description": "SBI証券の口座侵害（2020）。『金融庁ガイドラインの項目を満たしているから大丈夫』という傲慢が穴を広げた。ログインだけの対策で満足し、重要操作（受取口座の追加/変更・出金）への強制MFA、異常検知のステップアップ、変更の冷却期間、ログの相関と24/7監視、委託先も含む統制テストが弱かった。国内規制の最低ラインだけでなく国際的な統制要求（例: AML/CFT系の不正取引監視）まで含めた設計の必要性を示す象徴。",
-      "x": -1384,
-      "y": -1450,
+      "x": -1380,
+      "y": -1448,
       "fixed": false,
       "scale": 1.2199999999999966,
       "z": 20
@@ -260,10 +260,10 @@
       "name": "Ransomware",
       "color": "#ff2d55",
       "description": "身代金要求型ウイルス。",
-      "x": -874,
-      "y": -2667,
+      "x": -1215,
+      "y": -2768,
       "fixed": false,
-      "scale": 2.055,
+      "scale": 1.1400000000000028,
       "z": 20
     },
     {
@@ -272,10 +272,10 @@
       "name": "BEC (ビジネスメール詐欺)",
       "color": "#ff9500",
       "description": "巧妙な偽装メール。",
-      "x": -823,
-      "y": -1779,
+      "x": -1126,
+      "y": -2132,
       "fixed": false,
-      "scale": 2.065,
+      "scale": 1.4550000000000014,
       "z": 20
     },
     {
@@ -332,10 +332,10 @@
       "name": "Ep.1 晒された連絡先",
       "description": "Arc 0 | High School & Privacy",
       "color": "#34c759",
-      "x": -890,
-      "y": -2972,
+      "x": -1013,
+      "y": -2962,
       "fixed": false,
-      "scale": 1.63,
+      "scale": 1.2350000000000012,
       "z": 20
     },
     {
@@ -344,10 +344,10 @@
       "name": "Ep.2 牙を剥く内部の影",
       "description": "Arc A | Construction & Sloth",
       "color": "#ff3b30",
-      "x": -603,
-      "y": -2671,
+      "x": -1024,
+      "y": -2749,
       "fixed": false,
-      "scale": 1.72,
+      "scale": 1.0850000000000009,
       "z": 20
     },
     {
@@ -356,10 +356,10 @@
       "name": "Ep.3 許しの毒",
       "description": "Arc A | CISSP Methodology",
       "color": "#ff3b30",
-      "x": -617,
-      "y": -2446,
+      "x": -1014,
+      "y": -2619,
       "fixed": false,
-      "scale": 1.6649999999999991,
+      "scale": 1.1300000000000012,
       "z": 20
     },
     {
@@ -368,10 +368,10 @@
       "name": "Ep.4 善意の呪い",
       "description": "Arc A | Corporate Culture",
       "color": "#ff3b30",
-      "x": -632,
-      "y": -2246,
+      "x": -1031,
+      "y": -2484,
       "fixed": false,
-      "scale": 1.435,
+      "scale": 1.0999999999999994,
       "z": 20
     },
     {
@@ -380,10 +380,10 @@
       "name": "Ep.5 終わらぬ時計",
       "description": "Arc B | Manufacturing & Wrath",
       "color": "#ff9500",
-      "x": -625,
-      "y": -1778,
+      "x": -1052,
+      "y": -2020,
       "fixed": false,
-      "scale": 1.37,
+      "scale": 0.8150000000000002,
       "z": 20
     },
     {
@@ -392,10 +392,10 @@
       "name": "Ep.6 名前のない加害者",
       "description": "Arc 0 | Defamation & Disclosure",
       "color": "#34c759",
-      "x": -635,
-      "y": -2029,
+      "x": -1024,
+      "y": -2322,
       "fixed": false,
-      "scale": 1.33,
+      "scale": 1.0899999999999992,
       "z": 20
     },
     {
@@ -404,10 +404,10 @@
       "name": "Ep.7 Doneがない地獄",
       "description": "Arc B | Design Failure",
       "color": "#ff9500",
-      "x": -617,
-      "y": -1627,
+      "x": -1065,
+      "y": -1928,
       "fixed": false,
-      "scale": 1.42,
+      "scale": 0.7850000000000007,
       "z": 20
     },
     {
@@ -416,10 +416,10 @@
       "name": "Ep.8 終端刻印",
       "description": "Arc B | Salvation",
       "color": "#ff9500",
-      "x": -605,
-      "y": -1447,
+      "x": -1051,
+      "y": -1820,
       "fixed": false,
-      "scale": 1.415,
+      "scale": 0.71,
       "z": 20
     },
     {
@@ -428,10 +428,10 @@
       "name": "Ep.9 空の要塞の崩壊",
       "description": "Arc C | Finance & Pride",
       "color": "#af52de",
-      "x": -864,
-      "y": -1090,
+      "x": -1109,
+      "y": -1556,
       "fixed": false,
-      "scale": 1.875,
+      "scale": 1.0300000000000007,
       "z": 20
     },
     {
@@ -440,10 +440,10 @@
       "name": "Ep.10 代償のSIM",
       "description": "Arc 0 | Yami-baito & Support",
       "color": "#34c759",
-      "x": -614,
-      "y": -1249,
+      "x": -1062,
+      "y": -1709,
       "fixed": false,
-      "scale": 1.3599999999999979,
+      "scale": 0.9149999999999987,
       "z": 20
     },
     {
@@ -452,8 +452,8 @@
       "name": "Ep.11 消えた資産の足跡",
       "description": "Arc C | Audit Attack",
       "color": "#af52de",
-      "x": -588,
-      "y": -1001,
+      "x": -966,
+      "y": -1436,
       "fixed": false,
       "scale": 1.2399999999999998,
       "z": 20
@@ -464,10 +464,10 @@
       "name": "Ep.12 それは傲慢ですね",
       "description": "Arc C | Rule Killing",
       "color": "#af52de",
-      "x": -586,
-      "y": -811,
+      "x": -1024,
+      "y": -1307,
       "fixed": false,
-      "scale": 1.3399999999999985,
+      "scale": 0.8749999999999984,
       "z": 20
     },
     {
@@ -533,10 +533,10 @@
       "nodeType": "concept",
       "name": "短気\nshort-tempered",
       "color": "#ff9500",
-      "x": -1477,
-      "y": -1836,
+      "x": -1744,
+      "y": -1862,
       "fixed": false,
-      "scale": 0.8050000000000029,
+      "scale": 0.5050000000000027,
       "z": 20
     }
   ],
