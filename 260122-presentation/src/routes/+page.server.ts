@@ -33,7 +33,7 @@ export const actions: Actions = {
 			
 			// 1. ノードの保存
 			for (const node of layout.nodes) {
-				await saveNode(node.id, node.x, node.y, !!node.fixed, node.scale || 1, node.name, node.nodeType);
+				await saveNode(node.id, node.x, node.y, !!node.fixed, node.scale || 1, node.z, node.name, node.nodeType);
 			}
 
 			// 2. リンクの同期

@@ -34,7 +34,16 @@ export async function getBoard() {
 	};
 }
 
-export async function saveNode(id: string, x: number, y: number, fixed: boolean, scale: number, name?: string, nodeType?: string) {
+export async function saveNode(
+	id: string,
+	x: number,
+	y: number,
+	fixed: boolean,
+	scale: number,
+	z?: number,
+	name?: string,
+	nodeType?: string
+) {
 	const data = await readData();
 	const fullId = id.startsWith('gh:node/') ? id : `gh:node/${id}`;
 	
@@ -46,6 +55,7 @@ export async function saveNode(id: string, x: number, y: number, fixed: boolean,
 			y,
 			fixed,
 			scale,
+			...(typeof z === 'number' ? { z } : {}),
 			...(name !== undefined ? { name } : {})
 		};
 	} else {
@@ -55,6 +65,7 @@ export async function saveNode(id: string, x: number, y: number, fixed: boolean,
 			y,
 			fixed,
 			scale,
+			...(typeof z === 'number' ? { z } : {}),
 			name: name || '',
 			nodeType: nodeType || 'text'
 		});
@@ -62,7 +73,9 @@ export async function saveNode(id: string, x: number, y: number, fixed: boolean,
 	await writeData(data);
 }
 
-export async function syncLinks(links: {source: string, target: string, label?: string, color?: string, x?: number, y?: number, fixed?: boolean}[]) {
+export async function syncLinks(
+	links: { source: string; target: string; label?: string; color?: string; x?: number; y?: number; z?: number; fixed?: boolean }[]
+) {
 	const data = await readData();
 	
 	data.links = links.map(link => ({
@@ -72,6 +85,7 @@ export async function syncLinks(links: {source: string, target: string, label?: 
 		color: link.color || '#999',
 		x: link.x || 0,
 		y: link.y || 0,
+		z: typeof link.z === 'number' ? link.z : 0,
 		fixed: !!link.fixed
 	}));
 

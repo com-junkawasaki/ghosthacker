@@ -16,6 +16,7 @@
     x: number;
     y: number;
     scale?: number;
+    z?: number;
     fixed?: boolean;
     fx?: number | null;
     fy?: number | null;
@@ -42,15 +43,24 @@
     return typeof n === 'number' && Number.isFinite(n) ? n : fallback;
   }
 
+  function defaultZFor(nodeType: ClientNode['nodeType']) {
+    // Larger z renders in front
+    if (nodeType === 'edge') return 5;
+    if (nodeType === 'text') return 15;
+    return 20;
+  }
+
   // --- Initial Data ---
   const initialBaseNodes: ClientNode[] = (data.board.nodes ?? []).map((n: any) => {
     const x = ensureNumbers(n.x, 0);
     const y = ensureNumbers(n.y, 0);
-    return { ...n, x, y, scale: n.scale ?? 1, fx: n.fixed ? x : null, fy: n.fixed ? y : null };
+    const z = ensureNumbers(n.z, defaultZFor(n.nodeType));
+    return { ...n, x, y, z, scale: n.scale ?? 1, fx: n.fixed ? x : null, fy: n.fixed ? y : null };
   });
 
   const initialEdgeNodes: ClientNode[] = (data.board.links ?? []).map((l: any, i: number) => ({
     id: `edge-${i}`, nodeType: 'edge', name: l.label, color: l.color, sourceId: l.source, targetId: l.target, x: 0, y: 0, scale: 0.8,
+    z: ensureNumbers(l.z, defaultZFor('edge')),
     fixed: !!l.fixed, fx: l.fixed ? (l.x || 0) : null, fy: l.fixed ? (l.y || 0) : null
   }));
 
@@ -80,6 +90,60 @@
   let showEditor = $state(false);
   let jsonDraft = $state('');
 
+  let contextMenu = $state<{ open: boolean; x: number; y: number; nodeId: string | null }>({
+    open: false,
+    x: 0,
+    y: 0,
+    nodeId: null
+  });
+
+  function closeContextMenu() {
+    contextMenu.open = false;
+    contextMenu.nodeId = null;
+  }
+
+  function openContextMenu(e: MouseEvent, node: ClientNode) {
+    e.preventDefault();
+    e.stopPropagation();
+    contextMenu.open = true;
+    contextMenu.x = e.clientX;
+    contextMenu.y = e.clientY;
+    contextMenu.nodeId = node.id;
+  }
+
+  function nodeById(id: string | null) {
+    if (!id) return null;
+    return simulationNodes.find((n) => n.id === id) ?? null;
+  }
+
+  function getZRange() {
+    let min = Number.POSITIVE_INFINITY;
+    let max = Number.NEGATIVE_INFINITY;
+    for (const n of simulationNodes) {
+      const z = ensureNumbers(n.z, defaultZFor(n.nodeType));
+      if (z < min) min = z;
+      if (z > max) max = z;
+    }
+    if (!Number.isFinite(min)) min = 0;
+    if (!Number.isFinite(max)) max = 0;
+    return { min, max };
+  }
+
+  function bumpZ(node: ClientNode, mode: 'front' | 'back' | 'forward' | 'backward') {
+    const current = ensureNumbers(node.z, defaultZFor(node.nodeType));
+    const { min, max } = getZRange();
+    if (mode === 'front') node.z = max + 1;
+    if (mode === 'back') node.z = min - 1;
+    if (mode === 'forward') node.z = current + 1;
+    if (mode === 'backward') node.z = current - 1;
+    simulationNodes = [...simulationNodes];
+    closeContextMenu();
+    setTimeout(() => {
+      const form = document.querySelector('form');
+      if (form) form.requestSubmit();
+    }, 0);
+  }
+
   function asNode(v: any, nodes: ClientNode[]): ClientNode | undefined {
     if (!v) return undefined;
     if (typeof v === 'object' && v.id) {
@@ -96,7 +160,7 @@
     const nodes = simulationNodes.filter(n => n.nodeType !== 'edge').map((n) => ({
       id: n.id, nodeType: n.nodeType, name: n.name, description: n.description, image: n.image,
       role: n.role, credentials: n.credentials ?? [], color: n.color,
-      x: Math.round(n.x), y: Math.round(n.y), scale: n.scale ?? 1, fixed: n.fx != null
+      x: Math.round(n.x), y: Math.round(n.y), scale: n.scale ?? 1, z: ensureNumbers(n.z, defaultZFor(n.nodeType)), fixed: n.fx != null
     }));
 
     // Reconstruct original links from simulation links (A -> EdgeNode -> B)
@@ -110,6 +174,7 @@
           color: en.color,
           x: Math.round(en.x),
           y: Math.round(en.y),
+          z: ensureNumbers(en.z, defaultZFor('edge')),
           fixed: en.fx != null
         });
       }
@@ -138,12 +203,21 @@
         simulationLinks = [...simulationLinks];
       });
 
-    return () => simulation?.stop();
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeContextMenu();
+    };
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      simulation?.stop();
+    };
   });
 
   function handlePointerDown(e: PointerEvent) {
     if (e.button !== 0) return;
     const target = e.target as HTMLElement;
+    if (contextMenu.open) closeContextMenu();
     const resizeHandle = target.closest('.resize-handle');
     const connectHandle = target.closest('.connect-handle');
     const card = target.closest('.node-card');
@@ -319,7 +393,14 @@
   }
 </script>
 
-<div class="viewport" onpointerdown={handlePointerDown} onpointermove={handlePointerMove} onpointerup={handlePointerUp} onwheel={handleWheel}>
+<div
+  class="viewport"
+  role="application"
+  onpointerdown={handlePointerDown}
+  onpointermove={handlePointerMove}
+  onpointerup={handlePointerUp}
+  onwheel={handleWheel}
+>
   <div class="hud">
     <div class="glitch-container">
       <div class="glitch-logo" data-text="GHOST">GHOST</div>
@@ -370,8 +451,11 @@
         <div
           class="node-card {node.nodeType}-card"
           class:fixed={node.fx != null}
-          style="left: {node.x}px; top: {node.y}px; --accent: {node.color}; transform: translate(-50%, -50%) scale({node.scale ?? 1});"
+          style="left: {node.x}px; top: {node.y}px; --accent: {node.color}; transform: translate(-50%, -50%) scale({node.scale ?? 1}); z-index: {ensureNumbers(node.z, defaultZFor(node.nodeType))};"
           data-id={node.id}
+          oncontextmenu={(e) => openContextMenu(e, node)}
+          role="group"
+          aria-label={node.name ?? node.id}
         >
           {#if node.nodeType !== 'edge'}
             <div class="resize-handle"></div>
@@ -380,7 +464,7 @@
             </button>
             <button
               class="connect-handle"
-              onpointerdown={(e) => {
+              onpointerdown={() => {
                 // Handled by handlePointerDown
               }}
               title="Connect"
@@ -475,6 +559,18 @@
     </div>
   </div>
 
+  {#if contextMenu.open}
+    {@const targetNode = nodeById(contextMenu.nodeId)}
+    <button class="context-backdrop" type="button" aria-label="Close menu" onclick={closeContextMenu}></button>
+    <div class="context-menu" style="left: {contextMenu.x}px; top: {contextMenu.y}px;" role="menu" aria-label="Node z-order">
+      <div class="context-title">Z-index</div>
+      <button type="button" class="context-item" disabled={!targetNode} onclick={() => targetNode && bumpZ(targetNode, 'front')}>前面へ</button>
+      <button type="button" class="context-item" disabled={!targetNode} onclick={() => targetNode && bumpZ(targetNode, 'forward')}>一段前へ</button>
+      <button type="button" class="context-item" disabled={!targetNode} onclick={() => targetNode && bumpZ(targetNode, 'backward')}>一段後ろへ</button>
+      <button type="button" class="context-item" disabled={!targetNode} onclick={() => targetNode && bumpZ(targetNode, 'back')}>背面へ</button>
+    </div>
+  {/if}
+
   <div class="controls">
     <form method="POST" action="?/save" use:enhance>
       <input type="hidden" name="layout" value={layoutToSave} />
@@ -564,4 +660,11 @@
   textarea { flex: 1; width: 100%; border: none; padding: 14px; font-family: monospace; font-size: 12px; outline: none; resize: none; }
   .modal-actions { display: flex; gap: 10px; justify-content: flex-end; padding: 12px 14px; border-top: 1px solid #eee; }
   .help-hint { position: fixed; bottom: 20px; left: 20px; font-size: 12px; color: #999; font-weight: 700; background: rgba(255,255,255,0.8); padding: 5px 10px; border-radius: 4px; }
+
+  .context-backdrop { position: fixed; inset: 0; background: transparent; z-index: 60; border: none; width: 100%; height: 100%; }
+  .context-menu { position: fixed; z-index: 61; background: rgba(255,255,255,0.98); border: 1px solid #ddd; border-radius: 10px; min-width: 180px; padding: 6px; box-shadow: 0 18px 50px rgba(0,0,0,0.18); transform: translate(6px, 6px); }
+  .context-title { font-size: 11px; font-weight: 900; color: #666; padding: 6px 8px; }
+  .context-item { width: 100%; text-align: left; border: none; background: transparent; padding: 8px 10px; border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 12px; color: #111; }
+  .context-item:hover { background: #f4f4f4; }
+  .context-item:disabled { color: #bbb; cursor: not-allowed; }
 </style>

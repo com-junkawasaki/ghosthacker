@@ -1968,52 +1968,35 @@ func drawVisualNote(canvas *goimage.RGBA, visualNote string, shot string, panelX
 	padding := 10  // Padding on each side
 	textAreaWidth := panelW - 2*padding
 	
-	// Start with a reasonable font size and reduce if needed to fit all text
+	// Fixed font size
 	fontSize := 20.0
-	minFontSize := 10.0
 	
-	var lines []string
-	var lineHeight float64
-	var barHeight float64
-	
-	// Try to fit all text, reducing font size if necessary
-	for fontSize >= minFontSize {
-		if err := dc.LoadFontFace(fontPath, fontSize); err != nil {
-			log.Printf("Warning: could not load font for visual note: %v", err)
-			return
-		}
-		
-		lineHeight = fontSize + 4
-		
-		// Calculate characters per line based on font size
-		// Japanese characters are roughly square, so width ≈ fontSize
-		charsPerLine := int(float64(textAreaWidth) / (fontSize * 0.55))
-		if charsPerLine < 4 {
-			charsPerLine = 4
-		}
-		
-		// Wrap text into lines
-		lines = []string{}
-		for i := 0; i < len(runes); i += charsPerLine {
-			end := i + charsPerLine
-			if end > len(runes) {
-				end = len(runes)
-			}
-			lines = append(lines, string(runes[i:end]))
-		}
-		
-		// Calculate required bar height
-		barHeight = float64(len(lines))*lineHeight + 12  // Small padding
-		
-		// Check if it fits within panel (max 60% of panel height for visual note)
-		maxBarHeight := float64(panelH) * 0.6
-		if barHeight <= maxBarHeight {
-			break  // Text fits with current font size
-		}
-		
-		// Reduce font size and try again
-		fontSize -= 2.0
+	if err := dc.LoadFontFace(fontPath, fontSize); err != nil {
+		log.Printf("Warning: could not load font for visual note: %v", err)
+		return
 	}
+	
+	lineHeight := fontSize + 4
+	
+	// Calculate characters per line based on font size
+	// Japanese characters are roughly square, so width ≈ fontSize
+	charsPerLine := int(float64(textAreaWidth) / (fontSize * 0.55))
+	if charsPerLine < 4 {
+		charsPerLine = 4
+	}
+	
+	// Wrap text into lines
+	var lines []string
+	for i := 0; i < len(runes); i += charsPerLine {
+		end := i + charsPerLine
+		if end > len(runes) {
+			end = len(runes)
+		}
+		lines = append(lines, string(runes[i:end]))
+	}
+	
+	// Calculate required bar height
+	barHeight := float64(len(lines))*lineHeight + 12  // Small padding
 	
 	// Final clamp to ensure we never exceed panel
 	if barHeight > float64(panelH) {

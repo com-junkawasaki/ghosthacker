@@ -12,6 +12,7 @@
     "nodeType": "gh:nodeType",
     "x": "gh:x",
     "y": "gh:y",
+    "z": "gh:z",
     "fixed": "gh:fixed",
     "color": "gh:color",
     "source": "gh:source",
