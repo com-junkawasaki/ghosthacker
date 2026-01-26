@@ -1781,6 +1781,11 @@ func (s *StoryboardService) createMangaPageImage(panels []*storyboardpb.Panel, w
 				// Draw panel image with proper scaling and positioning (using imgX, imgY, imgScale from layout)
 				drawPanelImage(canvas, panelImg, destX, destY, destW, destH, imgX, imgY, imgScale)
 				
+				// Draw visual note at bottom (gray background, white text)
+				if p.Data != nil && p.Data.VisualNote != "" {
+					drawVisualNote(canvas, p.Data.VisualNote, p.Data.Shot, destX, destY, destW, destH)
+				}
+				
 				// Draw panel border
 				drawPanelBorder(canvas, destX, destY, destW, destH)
 				
@@ -1940,7 +1945,6 @@ func drawDialogues(canvas *goimage.RGBA, dialogues []*storyboardpb.Dialogue, pan
 	
 	// Bubble settings
 	bubbleMargin := 15  // Margin from panel edges
-	bubbleGap := 10     // Gap between bubbles
 	
 	for i, d := range dialogues {
 		if d == nil || d.Text == "" {
@@ -1949,37 +1953,71 @@ func drawDialogues(canvas *goimage.RGBA, dialogues []*storyboardpb.Dialogue, pan
 		
 		text := d.Text
 		speaker := d.Speaker
-		
-		// Truncate long text for vertical display
-		maxChars := 25
 		runes := []rune(text)
-		if len(runes) > maxChars {
-			text = string(runes[:maxChars]) + "…"
-			runes = []rune(text)
+		
+		// Calculate bubble size based on text length
+		// Japanese manga uses vertical columns, reading right-to-left
+		charHeight := int(fontSize) + 4  // Character height with spacing
+		colWidth := int(fontSize) + 8    // Width per column
+		
+		// Calculate max characters per column based on available panel height
+		maxPanelHeight := panelH - 2*bubbleMargin - 60  // Leave room for padding and speaker
+		maxCharsPerCol := maxPanelHeight / charHeight
+		if maxCharsPerCol < 5 {
+			maxCharsPerCol = 5
+		}
+		if maxCharsPerCol > 15 {
+			maxCharsPerCol = 15  // Limit column length for readability
 		}
 		
-		// Calculate bubble size for vertical text
-		charHeight := int(fontSize) + 2  // Character height with small spacing
-		bubbleWidth := int(fontSize) + 30  // Width for one column of vertical text
-		bubbleHeight := len(runes)*charHeight + 40  // Height for all characters plus padding
+		// Calculate number of columns needed
+		numCols := (len(runes) + maxCharsPerCol - 1) / maxCharsPerCol
+		if numCols < 1 {
+			numCols = 1
+		}
+		if numCols > 4 {
+			numCols = 4  // Max 4 columns
+			// Truncate text if too long
+			maxTotal := maxCharsPerCol * 4
+			if len(runes) > maxTotal {
+				runes = append([]rune(text[:maxTotal-1]), '…')
+				text = string(runes)
+			}
+		}
+		
+		// Calculate actual chars per column for this text
+		charsPerCol := (len(runes) + numCols - 1) / numCols
+		
+		// Calculate bubble dimensions
+		bubbleWidth := numCols*colWidth + 30  // Width based on columns
+		bubbleHeight := charsPerCol*charHeight + 50  // Height based on chars per column
 		
 		// Add header space for speaker name
 		headerHeight := 0
 		if speaker != "" {
-			headerHeight = 25
+			headerHeight = 28
 			bubbleHeight += headerHeight
 		}
 		
-		// Limit minimum and maximum bubble size
+		// Ensure minimum size
+		if bubbleWidth < 60 {
+			bubbleWidth = 60
+		}
 		if bubbleHeight < 80 {
 			bubbleHeight = 80
 		}
+		
+		// Clamp to panel bounds
 		if bubbleHeight > panelH - 2*bubbleMargin {
 			bubbleHeight = panelH - 2*bubbleMargin
 		}
+		if bubbleWidth > panelW/2 - bubbleMargin {
+			bubbleWidth = panelW/2 - bubbleMargin
+		}
 		
 		// Position bubble within panel bounds
-		// Japanese manga style: start from top-right, move left for additional dialogues
+		// Japanese manga style: 1st dialogue at top-RIGHT, 2nd at top-LEFT
+		// Reading order: RIGHT to LEFT (read right bubble first, then left)
 		var bubbleX, bubbleY int
 		
 		if d.MangaLayout != nil && (d.MangaLayout.X > 0 || d.MangaLayout.Y > 0) {
@@ -1987,10 +2025,25 @@ func drawDialogues(canvas *goimage.RGBA, dialogues []*storyboardpb.Dialogue, pan
 			bubbleX = panelX + int(float64(panelW)*float64(d.MangaLayout.X)/100.0) - bubbleWidth/2
 			bubbleY = panelY + int(float64(panelH)*float64(d.MangaLayout.Y)/100.0)
 		} else {
-			// Default position: top area, starting from right side moving left
-			// First dialogue at top-right, subsequent ones move left
-			bubbleX = panelX + panelW - bubbleMargin - bubbleWidth - (i * (bubbleWidth + bubbleGap))
+			// Default position based on dialogue index
+			// 1st dialogue (i=0): top-RIGHT corner
+			// 2nd dialogue (i=1): top-LEFT corner  
+			// Additional dialogues: spread across top
 			bubbleY = panelY + bubbleMargin
+			
+			if i == 0 {
+				// First dialogue: top-RIGHT
+				bubbleX = panelX + panelW - bubbleMargin - bubbleWidth
+			} else if i == 1 {
+				// Second dialogue: top-LEFT
+				bubbleX = panelX + bubbleMargin
+			} else {
+				// Additional dialogues: spread between right and left
+				availableWidth := panelW - 2*bubbleMargin - 2*bubbleWidth
+				spacing := availableWidth / (len(dialogues) - 1)
+				// Position from right to left
+				bubbleX = panelX + panelW - bubbleMargin - bubbleWidth - (i * spacing)
+			}
 		}
 		
 		// Clamp bubble position to stay within panel
@@ -2018,9 +2071,8 @@ func drawDialogues(canvas *goimage.RGBA, dialogues []*storyboardpb.Dialogue, pan
 		dc.DrawRoundedRectangle(float64(bubbleX), float64(bubbleY), float64(bubbleWidth), float64(bubbleHeight), 10)
 		dc.Stroke()
 		
-		// Text positioning - center X, start from top
-		textCenterX := float64(bubbleX + bubbleWidth/2)
-		textStartY := float64(bubbleY + 20)
+		// Text positioning
+		textStartY := float64(bubbleY + 25)
 		
 		// Draw speaker name if present (smaller, at top of bubble)
 		if speaker != "" && fontLoaded {
@@ -2029,45 +2081,52 @@ func drawDialogues(canvas *goimage.RGBA, dialogues []*storyboardpb.Dialogue, pan
 			
 			// Truncate speaker name
 			speakerRunes := []rune(speaker)
-			if len(speakerRunes) > 8 {
-				speaker = string(speakerRunes[:8])
+			if len(speakerRunes) > 10 {
+				speaker = string(speakerRunes[:10])
 			}
-			dc.DrawStringAnchored(speaker, textCenterX, textStartY, 0.5, 0.5)
+			// Center speaker name at top
+			dc.DrawStringAnchored(speaker, float64(bubbleX+bubbleWidth/2), textStartY, 0.5, 0.5)
 			textStartY += float64(headerHeight)
 			
 			// Reset to main font size
 			dc.LoadFontFace(fontPath, fontSize)
 		}
 		
-		// Draw vertical Japanese text (each character stacked vertically)
+		// Draw vertical Japanese text in columns (right-to-left for Japanese reading)
 		dc.SetRGB(0, 0, 0)
 		if fontLoaded {
-			for j, r := range runes {
-				charY := textStartY + float64(j)*float64(charHeight)
-				// Stop if we'd overflow the bubble
-				if charY > float64(bubbleY+bubbleHeight-20) {
-					break
+			// Calculate column positions (right-to-left)
+			charIdx := 0
+			for col := 0; col < numCols && charIdx < len(runes); col++ {
+				// Column X position: rightmost column first (right-to-left reading)
+				colX := float64(bubbleX + bubbleWidth - 15 - (col+1)*colWidth + colWidth/2)
+				
+				// Draw characters in this column (top to bottom)
+				for row := 0; row < charsPerCol && charIdx < len(runes); row++ {
+					charY := textStartY + float64(row)*float64(charHeight)
+					// Stop if we'd overflow the bubble
+					if charY > float64(bubbleY+bubbleHeight-15) {
+						break
+					}
+					dc.DrawStringAnchored(string(runes[charIdx]), colX, charY, 0.5, 0.5)
+					charIdx++
 				}
-				dc.DrawStringAnchored(string(r), textCenterX, charY, 0.5, 0.5)
 			}
 		} else {
 			// Fallback: draw placeholder if font not loaded
 			dc.SetRGB(0.5, 0.5, 0.5)
-			dc.DrawStringAnchored("[text]", textCenterX, textStartY, 0.5, 0.5)
+			dc.DrawStringAnchored("[text]", float64(bubbleX+bubbleWidth/2), textStartY, 0.5, 0.5)
 		}
 	}
 }
 
 // getFontPath returns the path to the Japanese font file
 func getFontPath() string {
-	// Try multiple possible font locations - prefer IPA Gothic for Japanese
+	// Try multiple possible font locations - prefer M+ font (best freetype compatibility)
 	fontPaths := []string{
-		"/app/fonts/ipaexg.ttf",              // Docker container path (IPA Gothic)
-		"fonts/ipaexg.ttf",                    // Relative path
-		"/workspace/260123-jump/server/fonts/ipaexg.ttf", // Full workspace path
-		"/app/fonts/NotoSansJP-Regular.ttf",  // Docker container path (fallback)
-		"fonts/NotoSansJP-Regular.ttf",        // Relative path
-		"/workspace/260123-jump/server/fonts/NotoSansJP-Regular.ttf", // Full workspace path
+		"/app/fonts/mplus1p-regular.ttf",     // Docker container path (M+ font - best compatibility)
+		"fonts/mplus1p-regular.ttf",           // Relative path
+		"/workspace/260123-jump/server/fonts/mplus1p-regular.ttf", // Full workspace path
 	}
 	
 	for _, p := range fontPaths {
