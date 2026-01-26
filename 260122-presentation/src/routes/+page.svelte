@@ -426,6 +426,7 @@
       <div class="glitch-logo" data-text="HACKER">HACKER</div>
     </div>
     <div class="subtitle">STRATEGIC MASTER PLAN</div>
+    <div class="version">Version 2026-01-26</div>
   </div>
 
   <div class="canvas" style="transform: translate({transform.x}px, {transform.y}px) scale({transform.k})">
@@ -669,6 +670,7 @@
   .glitch-logo::before { left: 4px; text-shadow: -3px 0 #ff00ff; color: transparent; opacity: 0.7; }
   .glitch-logo::after { left: -4px; text-shadow: 3px 0 #00ffff; color: transparent; opacity: 0.7; }
   .subtitle { font-size: 18px; color: #999; font-weight: 700; margin-top: 10px; letter-spacing: 5px; }
+  .version { font-size: 12px; color: #bbb; font-weight: 800; margin-top: 6px; letter-spacing: 2px; }
   .controls { position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 20; }
   .controls button, .btn { background: #fff; border: 1px solid #ddd; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; color: #333; text-decoration: none; }
   .controls button:hover, .btn:hover { border-color: #111; }
