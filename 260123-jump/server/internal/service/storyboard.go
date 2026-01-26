@@ -1385,6 +1385,31 @@ func (s *StoryboardService) ExportPdf(
 
 	m := maroto.New(cfg)
 
+	// Cover Page - Master Plan Image
+	coverImagePath := filepath.Join(workspaceRoot, "260123-jump", "resources", "logo", "ghosthacker-master-plan.jpeg")
+	if _, err := os.Stat(coverImagePath); err == nil {
+		// Load and add cover image
+		coverImgBytes, err := os.ReadFile(coverImagePath)
+		if err == nil {
+			m.AddRows(
+				row.New(240).Add(
+					col.New(12).Add(
+						image.NewFromBytes(coverImgBytes, extension.Jpeg, props.Rect{
+							Center:  true,
+							Percent: 100,
+						}),
+					),
+				),
+			)
+			// Add new page after cover
+			m.AddRow(1)
+		} else {
+			log.Printf("Warning: could not read cover image: %v", err)
+		}
+	} else {
+		log.Printf("Warning: cover image not found at %s", coverImagePath)
+	}
+
 	// Title Page
 	m.AddRows(
 		row.New(25).Add(
@@ -1917,6 +1942,82 @@ func drawPanelBorder(canvas *goimage.RGBA, x, y, w, h int) {
 		for py := y; py < y+h; py++ {
 			canvas.Set(x+w-1-i, py, black)
 		}
+	}
+}
+
+// drawVisualNote draws scene description at the bottom of a panel
+// Gray semi-transparent background with white text
+func drawVisualNote(canvas *goimage.RGBA, visualNote string, shot string, panelX, panelY, panelW, panelH int) {
+	if visualNote == "" {
+		return
+	}
+	
+	// Create gg context for text rendering
+	dc := gg.NewContextForRGBA(canvas)
+	
+	// Load font - larger size for readability
+	fontPath := getFontPath()
+	fontSize := 28.0
+	if fontPath != "" {
+		if err := dc.LoadFontFace(fontPath, fontSize); err != nil {
+			log.Printf("Warning: could not load font for visual note: %v", err)
+			return
+		}
+	} else {
+		return // Can't draw without font
+	}
+	
+	// Combine shot type with visual note if present
+	text := visualNote
+	if shot != "" {
+		text = shot + " - " + visualNote
+	}
+	
+	// Calculate text dimensions and wrapping
+	maxWidth := float64(panelW - 20)  // Padding on sides
+	lines := dc.WordWrap(text, maxWidth)
+	
+	// If WordWrap doesn't work well for Japanese, manually wrap
+	if len(lines) == 1 && len([]rune(text)) > 30 {
+		// Manual wrapping for Japanese text
+		runes := []rune(text)
+		charsPerLine := int(maxWidth / fontSize)
+		if charsPerLine < 10 {
+			charsPerLine = 10
+		}
+		lines = []string{}
+		for i := 0; i < len(runes); i += charsPerLine {
+			end := i + charsPerLine
+			if end > len(runes) {
+				end = len(runes)
+			}
+			lines = append(lines, string(runes[i:end]))
+		}
+	}
+	
+	// Limit to max 3 lines
+	if len(lines) > 3 {
+		lines = lines[:3]
+		lines[2] = lines[2] + "…"
+	}
+	
+	// Calculate bar height based on number of lines
+	lineHeight := fontSize + 8
+	barHeight := float64(len(lines))*lineHeight + 20  // Padding top and bottom
+	
+	// Draw semi-transparent gray background at bottom of panel
+	barY := float64(panelY + panelH) - barHeight
+	dc.SetRGBA(0.2, 0.2, 0.2, 0.85)  // Dark gray, 85% opacity
+	dc.DrawRectangle(float64(panelX), barY, float64(panelW), barHeight)
+	dc.Fill()
+	
+	// Draw white text
+	dc.SetRGB(1, 1, 1)  // White
+	textY := barY + 10  // Starting Y position with top padding
+	
+	for _, line := range lines {
+		dc.DrawString(line, float64(panelX+12), textY+fontSize)
+		textY += lineHeight
 	}
 }
 
