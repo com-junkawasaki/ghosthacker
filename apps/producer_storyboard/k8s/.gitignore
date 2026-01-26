@@ -1,0 +1,10 @@
+# Helm dependencies
+helm/*/charts/
+helm/*/Chart.lock
+
+# Secrets
+secrets-values.yaml
+*.secret.yaml
+
+# Temporary files
+/tmp/

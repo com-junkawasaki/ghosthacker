@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package manga.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/manga/v1;mangav1";
+
+// GeneratePanelImageRequest represents a request to generate an image for a panel
+message GeneratePanelImageRequest {
+  string manga_project_id = 1;
+  optional string panel_id = 2;
+  string prompt = 3;
+  optional string model = 4; // "fal-ai/flux-pro", "deepinfra/...", etc.
+  optional string size = 5; // "1024x1024", etc.
+  optional int32 num_images = 6; // Number of images to generate
+}
+
+message GeneratePanelImageResponse {
+  repeated GeneratedImage images = 1;
+}
+
+message GeneratedImage {
+  string id = 1;
+  bytes image_data = 2; // Image bytes (bytea)
+  string image_base64 = 3; // Base64-encoded for frontend
+  string format = 4; // "png", "jpeg", etc.
+  int32 width = 5;
+  int32 height = 6;
+  string created_at = 7;
+}
+
+// GenerateStoryRequest represents a request to generate manga story/script
+message GenerateStoryRequest {
+  string manga_project_id = 1;
+  optional string page_id = 2;
+  string prompt = 3;
+  optional int32 num_panels = 4;
+}
+
+message GenerateStoryResponse {
+  string story_text = 1;
+  repeated string panel_prompts = 2; // Prompts for each panel
+}

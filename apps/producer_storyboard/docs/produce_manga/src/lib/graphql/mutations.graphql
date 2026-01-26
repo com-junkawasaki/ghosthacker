@@ -1,0 +1,48 @@
+mutation CreateMangaProject($input: CreateMangaProjectInput!) {
+  createMangaProject(input: $input) {
+    id
+    title
+    description
+    createdAt
+    updatedAt
+  }
+}
+
+mutation UpdateMangaPage($id: ID!, $input: UpdateMangaPageInput!) {
+  updateMangaPage(id: $id, input: $input) {
+    id
+    pageId
+    konvaStageJson
+    updatedAt
+  }
+}
+
+mutation GeneratePanelImages($input: GeneratePanelImagesInput!) {
+  generatePanelImages(input: $input) {
+    images {
+      id
+      imageUrl
+      imageBase64
+      imageData
+      provider
+      model
+      createdAt
+    }
+  }
+}
+
+mutation GenerateStory($input: GenerateStoryInput!) {
+  generateStory(input: $input) {
+    script {
+      id
+      title
+      pageCount
+    }
+    pages {
+      id
+      pageId
+      pageNumber
+    }
+  }
+}
+

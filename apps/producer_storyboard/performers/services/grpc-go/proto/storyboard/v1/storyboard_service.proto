@@ -1,0 +1,262 @@
+syntax = "proto3";
+
+package storyboard.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1;storyboardv1";
+
+import "storyboard/v1/project.proto";
+import "storyboard/v1/storyboard.proto";
+import "storyboard/v1/scene.proto";
+import "storyboard/v1/character.proto";
+import "storyboard/v1/dialogue.proto";
+import "storyboard/v1/composer.proto";
+import "storyboard/v1/scenario.proto";
+import "storyboard/v1/asset.proto";
+import "storyboard/v1/location.proto";
+import "storyboard/v1/tag.proto";
+import "storyboard/v1/voice_preset.proto";
+import "storyboard/v1/video.proto";
+import "storyboard/v1/organization.proto";
+import "storyboard/v1/workflow.proto";
+import "storyboard/v1/prop.proto";
+import "storyboard/v1/world_setting.proto";
+import "storyboard/v1/sponsor.proto";
+
+// StoryboardService provides all storyboard-related operations
+service StoryboardService {
+  // Project operations
+  rpc ListProjects(ListProjectsRequest) returns (ListProjectsResponse);
+  rpc GetProject(GetProjectRequest) returns (Project);
+  rpc CreateProject(CreateProjectRequest) returns (Project);
+  rpc UpdateProject(UpdateProjectRequest) returns (Project);
+  rpc DeleteProject(DeleteProjectRequest) returns (DeleteProjectResponse);
+  
+  // Storyboard operations
+  rpc ListStoryboards(ListStoryboardsRequest) returns (ListStoryboardsResponse);
+  rpc GetStoryboard(GetStoryboardRequest) returns (Storyboard);
+  rpc CreateStoryboard(CreateStoryboardRequest) returns (Storyboard);
+  rpc UpdateStoryboard(UpdateStoryboardRequest) returns (Storyboard);
+  rpc DeleteStoryboard(DeleteStoryboardRequest) returns (DeleteStoryboardResponse);
+  
+  // Scene operations
+  rpc ListScenes(ListScenesRequest) returns (ListScenesResponse);
+  rpc GetScene(GetSceneRequest) returns (Scene);
+  rpc CreateScene(CreateSceneRequest) returns (Scene);
+  rpc UpdateScene(UpdateSceneRequest) returns (Scene);
+  rpc DeleteScene(DeleteSceneRequest) returns (DeleteSceneResponse);
+  
+  // Generated Image operations
+  rpc ListGeneratedImages(ListGeneratedImagesRequest) returns (ListGeneratedImagesResponse);
+  rpc GetImageData(GetImageDataRequest) returns (GetImageDataResponse);
+  rpc GenerateImage(GenerateImageRequest) returns (GenerateImageResponse);
+  
+  // Character Image Generation operations (Higgsfield Soul ID)
+  rpc GenerateCharacterImage(GenerateCharacterImageRequest) returns (GenerateCharacterImageResponse);
+  
+  // Character operations
+  rpc ListCharacters(ListCharactersRequest) returns (ListCharactersResponse);
+  rpc GetCharacter(GetCharacterRequest) returns (Character);
+  rpc CreateCharacter(CreateCharacterRequest) returns (Character);
+  rpc UpdateCharacter(UpdateCharacterRequest) returns (Character);
+  rpc DeleteCharacter(DeleteCharacterRequest) returns (DeleteCharacterResponse);
+  
+  // Character Asset operations
+  rpc ListCharacterAssets(ListCharacterAssetsRequest) returns (ListCharacterAssetsResponse);
+  rpc GetCharacterAssetData(GetCharacterAssetDataRequest) returns (GetCharacterAssetDataResponse);
+  
+  // Character Image operations (multi-angle)
+  rpc ListCharacterImages(ListCharacterImagesRequest) returns (ListCharacterImagesResponse);
+  rpc GetCharacterImage(GetCharacterImageRequest) returns (CharacterImage);
+  rpc GetCharacterImageData(GetCharacterImageDataRequest) returns (GetCharacterImageDataResponse);
+  rpc UploadCharacterImage(UploadCharacterImageRequest) returns (UploadCharacterImageResponse);
+  rpc DeleteCharacterImage(DeleteCharacterImageRequest) returns (DeleteCharacterImageResponse);
+  
+  // Character 3D Model operations
+  rpc ListCharacter3DModels(ListCharacter3DModelsRequest) returns (ListCharacter3DModelsResponse);
+  rpc GetCharacter3DModel(GetCharacter3DModelRequest) returns (Character3DModel);
+  rpc GetCharacter3DModelData(GetCharacter3DModelDataRequest) returns (GetCharacter3DModelDataResponse);
+  rpc UploadCharacter3DModel(UploadCharacter3DModelRequest) returns (UploadCharacter3DModelResponse);
+  rpc DeleteCharacter3DModel(DeleteCharacter3DModelRequest) returns (DeleteCharacter3DModelResponse);
+  
+  // Hume Voice operations
+  rpc ListHumeVoices(ListHumeVoicesRequest) returns (ListHumeVoicesResponse);
+  
+  // Dialogue operations
+  rpc ListDialogues(ListDialoguesRequest) returns (ListDialoguesResponse);
+  rpc GetDialogue(GetDialogueRequest) returns (Dialogue);
+  rpc CreateDialogue(CreateDialogueRequest) returns (Dialogue);
+  rpc UpdateDialogue(UpdateDialogueRequest) returns (Dialogue);
+  rpc DeleteDialogue(DeleteDialogueRequest) returns (DeleteDialogueResponse);
+  rpc GetDialogueAudioData(GetDialogueAudioDataRequest) returns (GetDialogueAudioDataResponse);
+  rpc GenerateDialogueAudio(GenerateDialogueAudioRequest) returns (GenerateDialogueAudioResponse);
+  
+  // Composer operations
+  rpc ListComposers(ListComposersRequest) returns (ListComposersResponse);
+  rpc GetComposer(GetComposerRequest) returns (Composer);
+  rpc CreateComposer(CreateComposerRequest) returns (Composer);
+  rpc UpdateComposer(UpdateComposerRequest) returns (Composer);
+  rpc DeleteComposer(DeleteComposerRequest) returns (DeleteComposerResponse);
+  
+  // Audio Track operations
+  rpc ListAudioTracks(ListAudioTracksRequest) returns (ListAudioTracksResponse);
+  rpc CreateAudioTrack(CreateAudioTrackRequest) returns (AudioTrack);
+  
+  // Audio Clip operations
+  rpc ListAudioClips(ListAudioClipsRequest) returns (ListAudioClipsResponse);
+  rpc CreateAudioClip(CreateAudioClipRequest) returns (AudioClip);
+  
+  // Suno Music operations
+  rpc ListSunoMusic(ListSunoMusicRequest) returns (ListSunoMusicResponse);
+  rpc GenerateSunoMusic(GenerateSunoMusicRequest) returns (GenerateSunoMusicResponse);
+  
+  // Scenario operations
+  rpc ListScenarios(ListScenariosRequest) returns (ListScenariosResponse);
+  rpc GetScenario(GetScenarioRequest) returns (Scenario);
+  rpc CreateScenario(CreateScenarioRequest) returns (Scenario);
+  rpc UpdateScenario(UpdateScenarioRequest) returns (Scenario);
+  rpc DeleteScenario(DeleteScenarioRequest) returns (DeleteScenarioResponse);
+  rpc ReorderParts(ReorderPartsRequest) returns (ReorderPartsResponse);
+  rpc ReorderScenePlans(ReorderScenePlansRequest) returns (ReorderScenePlansResponse);
+  
+  // Project Asset operations
+  rpc ListProjectAssets(ListProjectAssetsRequest) returns (ListProjectAssetsResponse);
+  rpc GetProjectAsset(GetProjectAssetRequest) returns (ProjectAsset);
+  rpc GetProjectAssetData(GetProjectAssetDataRequest) returns (GetProjectAssetDataResponse);
+  rpc CreateProjectAsset(CreateProjectAssetRequest) returns (ProjectAsset);
+  rpc UpdateProjectAsset(UpdateProjectAssetRequest) returns (ProjectAsset);
+  rpc DeleteProjectAsset(DeleteProjectAssetRequest) returns (DeleteProjectAssetResponse);
+  
+  // Location operations
+  rpc ListLocations(ListLocationsRequest) returns (ListLocationsResponse);
+  rpc GetLocation(GetLocationRequest) returns (Location);
+  rpc CreateLocation(CreateLocationRequest) returns (Location);
+  rpc UpdateLocation(UpdateLocationRequest) returns (Location);
+  rpc DeleteLocation(DeleteLocationRequest) returns (DeleteLocationResponse);
+  
+  // Location Image operations (multi-angle)
+  rpc ListLocationImages(ListLocationImagesRequest) returns (ListLocationImagesResponse);
+  rpc GetLocationImage(GetLocationImageRequest) returns (LocationImage);
+  rpc GetLocationImageData(GetLocationImageDataRequest) returns (GetLocationImageDataResponse);
+  rpc UploadLocationImage(UploadLocationImageRequest) returns (UploadLocationImageResponse);
+  rpc DeleteLocationImage(DeleteLocationImageRequest) returns (DeleteLocationImageResponse);
+  
+  // Location 3D Model operations
+  rpc ListLocation3DModels(ListLocation3DModelsRequest) returns (ListLocation3DModelsResponse);
+  rpc GetLocation3DModel(GetLocation3DModelRequest) returns (Location3DModel);
+  rpc GetLocation3DModelData(GetLocation3DModelDataRequest) returns (GetLocation3DModelDataResponse);
+  rpc UploadLocation3DModel(UploadLocation3DModelRequest) returns (UploadLocation3DModelResponse);
+  rpc DeleteLocation3DModel(DeleteLocation3DModelRequest) returns (DeleteLocation3DModelResponse);
+  
+  // Tag operations
+  rpc ListTags(ListTagsRequest) returns (ListTagsResponse);
+  rpc GetTag(GetTagRequest) returns (Tag);
+  rpc CreateTag(CreateTagRequest) returns (Tag);
+  rpc UpdateTag(UpdateTagRequest) returns (Tag);
+  rpc DeleteTag(DeleteTagRequest) returns (DeleteTagResponse);
+  rpc ListResourceTags(ListResourceTagsRequest) returns (ListResourceTagsResponse);
+  rpc AddResourceTag(AddResourceTagRequest) returns (ResourceTag);
+  rpc RemoveResourceTag(RemoveResourceTagRequest) returns (RemoveResourceTagResponse);
+  
+  // Voice Preset operations
+  rpc ListVoicePresets(ListVoicePresetsRequest) returns (ListVoicePresetsResponse);
+  rpc GetVoicePreset(GetVoicePresetRequest) returns (VoicePreset);
+  rpc CreateVoicePreset(CreateVoicePresetRequest) returns (VoicePreset);
+  rpc UpdateVoicePreset(UpdateVoicePresetRequest) returns (VoicePreset);
+  rpc DeleteVoicePreset(DeleteVoicePresetRequest) returns (DeleteVoicePresetResponse);
+  
+  // Video Generation operations
+  rpc GenerateVideo(GenerateVideoRequest) returns (GenerateVideoResponse);
+  rpc GetVideoTaskStatus(GetVideoTaskStatusRequest) returns (GetVideoTaskStatusResponse);
+  rpc ListGeneratedVideos(ListGeneratedVideosRequest) returns (ListGeneratedVideosResponse);
+  rpc GetGeneratedVideo(GetGeneratedVideoRequest) returns (GeneratedVideo);
+  rpc DeleteGeneratedVideo(DeleteGeneratedVideoRequest) returns (DeleteGeneratedVideoResponse);
+  
+  // Organization operations
+  rpc ListDepartments(ListDepartmentsRequest) returns (ListDepartmentsResponse);
+  rpc ListRoles(ListRolesRequest) returns (ListRolesResponse);
+  rpc GetProjectOrganization(GetProjectOrganizationRequest) returns (ProjectOrganization);
+  rpc ListTeamMembers(ListTeamMembersRequest) returns (ListTeamMembersResponse);
+  rpc SyncClerkMembers(SyncClerkMembersRequest) returns (SyncClerkMembersResponse);
+  rpc AssignTeamMember(AssignTeamMemberRequest) returns (ProjectTeamAssignment);
+  rpc UnassignTeamMember(UnassignTeamMemberRequest) returns (UnassignTeamMemberResponse);
+  rpc ListProjectAssignments(ListProjectAssignmentsRequest) returns (ListProjectAssignmentsResponse);
+  
+  // Permission operations
+  rpc CheckPermission(CheckPermissionRequest) returns (CheckPermissionResponse);
+  rpc GetUserPermissions(GetUserPermissionsRequest) returns (GetUserPermissionsResponse);
+  
+  // Approval Workflow operations
+  rpc StartApprovalWorkflow(StartApprovalWorkflowRequest) returns (StartApprovalWorkflowResponse);
+  rpc SubmitApprovalAction(SubmitApprovalActionRequest) returns (ApprovalRequest);
+  rpc ListApprovalRequests(ListApprovalRequestsRequest) returns (ListApprovalRequestsResponse);
+  rpc GetApprovalRequest(GetApprovalRequestRequest) returns (ApprovalRequest);
+  rpc ListApprovalActions(ListApprovalActionsRequest) returns (ListApprovalActionsResponse);
+  
+  // Production Workflow operations
+  rpc StartProductionWorkflow(StartProductionWorkflowRequest) returns (StartProductionWorkflowResponse);
+  rpc GetEpisodeProduction(GetEpisodeProductionRequest) returns (EpisodeProduction);
+  rpc ListEpisodeProductions(ListEpisodeProductionsRequest) returns (ListEpisodeProductionsResponse);
+  rpc UpdateProductionStatus(UpdateProductionStatusRequest) returns (EpisodeProduction);
+  
+  // Task Workflow operations
+  rpc StartTaskWorkflow(StartTaskWorkflowRequest) returns (StartTaskWorkflowResponse);
+  rpc AssignTask(AssignTaskRequest) returns (Task);
+  rpc UpdateTaskStatus(UpdateTaskStatusRequest) returns (Task);
+  rpc ListTasks(ListTasksRequest) returns (ListTasksResponse);
+  rpc GetTask(GetTaskRequest) returns (Task);
+  
+  // Prop operations
+  rpc ListProps(ListPropsRequest) returns (ListPropsResponse);
+  rpc GetProp(GetPropRequest) returns (Prop);
+  rpc CreateProp(CreatePropRequest) returns (Prop);
+  rpc UpdateProp(UpdatePropRequest) returns (Prop);
+  rpc DeleteProp(DeletePropRequest) returns (DeletePropResponse);
+  
+  // Prop Image operations (multi-angle)
+  rpc ListPropImages(ListPropImagesRequest) returns (ListPropImagesResponse);
+  rpc GetPropImage(GetPropImageRequest) returns (PropImage);
+  rpc GetPropImageData(GetPropImageDataRequest) returns (GetPropImageDataResponse);
+  rpc UploadPropImage(UploadPropImageRequest) returns (UploadPropImageResponse);
+  rpc DeletePropImage(DeletePropImageRequest) returns (DeletePropImageResponse);
+  
+  // Prop 3D Model operations
+  rpc ListProp3DModels(ListProp3DModelsRequest) returns (ListProp3DModelsResponse);
+  rpc GetProp3DModel(GetProp3DModelRequest) returns (Prop3DModel);
+  rpc GetProp3DModelData(GetProp3DModelDataRequest) returns (GetProp3DModelDataResponse);
+  rpc UploadProp3DModel(UploadProp3DModelRequest) returns (UploadProp3DModelResponse);
+  rpc DeleteProp3DModel(DeleteProp3DModelRequest) returns (DeleteProp3DModelResponse);
+  
+  // World Setting operations
+  rpc ListWorldSettings(ListWorldSettingsRequest) returns (ListWorldSettingsResponse);
+  rpc GetWorldSetting(GetWorldSettingRequest) returns (WorldSetting);
+  rpc CreateWorldSetting(CreateWorldSettingRequest) returns (WorldSetting);
+  rpc UpdateWorldSetting(UpdateWorldSettingRequest) returns (WorldSetting);
+  rpc DeleteWorldSetting(DeleteWorldSettingRequest) returns (DeleteWorldSettingResponse);
+  
+  // Sponsor operations
+  rpc ListSponsors(ListSponsorsRequest) returns (ListSponsorsResponse);
+  rpc GetSponsor(GetSponsorRequest) returns (GetSponsorResponse);
+  rpc CreateSponsor(CreateSponsorRequest) returns (CreateSponsorResponse);
+  rpc UpdateSponsor(UpdateSponsorRequest) returns (UpdateSponsorResponse);
+  rpc DeleteSponsor(DeleteSponsorRequest) returns (DeleteSponsorResponse);
+  rpc SearchSponsors(SearchSponsorsRequest) returns (SearchSponsorsResponse);
+  
+  // Sponsor Contact operations
+  rpc ListSponsorContacts(ListSponsorContactsRequest) returns (ListSponsorContactsResponse);
+  rpc CreateSponsorContact(CreateSponsorContactRequest) returns (CreateSponsorContactResponse);
+  rpc UpdateSponsorContact(UpdateSponsorContactRequest) returns (UpdateSponsorContactResponse);
+  rpc DeleteSponsorContact(DeleteSponsorContactRequest) returns (DeleteSponsorContactResponse);
+  
+  // Sponsor History operations
+  rpc ListSponsorHistory(ListSponsorHistoryRequest) returns (ListSponsorHistoryResponse);
+  rpc CreateSponsorHistory(CreateSponsorHistoryRequest) returns (CreateSponsorHistoryResponse);
+  rpc ContactSponsor(ContactSponsorRequest) returns (ContactSponsorResponse);
+  rpc UpdateSponsorStatus(UpdateSponsorStatusRequest) returns (UpdateSponsorStatusResponse);
+  
+  // Sponsor Post operations
+  rpc ListSponsorPosts(ListSponsorPostsRequest) returns (ListSponsorPostsResponse);
+  rpc CreateSponsorPost(CreateSponsorPostRequest) returns (CreateSponsorPostResponse);
+  rpc UpdateSponsorPost(UpdateSponsorPostRequest) returns (UpdateSponsorPostResponse);
+  rpc DeleteSponsorPost(DeleteSponsorPostRequest) returns (DeleteSponsorPostResponse);
+}
+

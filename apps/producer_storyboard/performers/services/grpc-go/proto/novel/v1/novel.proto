@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package novel.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/novel/v1;novelv1";
+
+// NovelProject represents a novel project
+message NovelProject {
+  string id = 1;
+  string project_id = 2;
+  string title = 3;
+  optional string description = 4;
+  string language = 5;
+  string created_at = 6;
+  string updated_at = 7;
+}
+
+message ListNovelProjectsRequest {
+  string project_id = 1;
+}
+
+message ListNovelProjectsResponse {
+  repeated NovelProject projects = 1;
+}
+
+message GetNovelProjectRequest {
+  string id = 1;
+}
+
+message CreateNovelProjectRequest {
+  string project_id = 1;
+  string title = 2;
+  optional string description = 3;
+  optional string language = 4;
+}
+
+message UpdateNovelProjectRequest {
+  string id = 1;
+  optional string title = 2;
+  optional string description = 3;
+  optional string language = 4;
+}
+
+message DeleteNovelProjectRequest {
+  string id = 1;
+}
+
+message DeleteNovelProjectResponse {
+  bool success = 1;
+}

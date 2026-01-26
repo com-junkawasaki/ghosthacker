@@ -1,0 +1,36 @@
+{
+  "@context": {
+    "character": "gh:character/",
+    "context": "gh:context/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "history": "gh:history/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "http://schema.org/"
+  },
+  "@id": "character:PUAaepRiPvYp2Ac_csnDZ",
+  "gh:appearance": {
+    "gh:build": "Slender, wearing a white long-sleeve blouse and black sleeveless dress.",
+    "gh:eyes": "Intelligent striking blue irises, bright crystalline catchlights, sharp perceptive gaze.",
+    "gh:face": "16-year-old stunningly beautiful Japanese female, intelligent and mischievous sharp eyes with striking blue irises.",
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, beautiful 16-year-old Japanese female, platinum blonde layered bob, striking blue irises and sharp catchlights, white blouse, black dress.",
+    "gh:hair": "Platinum blonde layered bob hair.",
+    "gh:style": "Photorealistic, cinematic soft lighting, 8k."
+  },
+  "gh:slug": "Nei",
+  "schema:age": 16,
+  "schema:name": "Nei",
+  "schema:role": "Ghost Hacker Partner",
+
+  "gh:onlinePresence": {
+    "gh:avatar": {
+      "gh:type": "verylonganimals",
+      "gh:animal": "ネコ (Cat)",
+      "gh:description": "verylonganimalsのながーいネコ。クールでミステリアス、でも実は仲間想い。Neiの知的で独立心の強い性格を反映。",
+      "gh:color": "プラチナシルバー / 青い目",
+      "gh:usage": "Renとのペアアバターとして活動時に使用",
+      "gh:reason": "ネコ＝独立心と知性の象徴。フクロウとネコ＝夜の賢者コンビ。"
+    },
+    "gh:handleVariations": ["Nei", "Silver_Cat", "ながねこ"]
+  }
+}

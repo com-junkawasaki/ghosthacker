@@ -1,0 +1,36 @@
+# Dependencies
+node_modules
+.next
+target
+
+# Build outputs
+dist
+build
+*.log
+
+# Environment files
+.env
+.env.local
+.envrc
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage
+.nyc_output
+
+# Misc
+*.md
+!README.md

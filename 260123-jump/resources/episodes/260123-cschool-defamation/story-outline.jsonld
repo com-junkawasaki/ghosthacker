@@ -1,0 +1,229 @@
+{
+  "@context": {
+    "character": "gh:character/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "story:YrbPwKlZToL8EirNZ2tMi",
+  "dct:title": "Arc 0-2: 「恥じゃない。残すのが一番強い」",
+  "gh:actStructure": [
+    {
+      "@id": "act:1-daily-life",
+      "gh:actNumber": 1,
+      "gh:actTitle": "日常と異変",
+      "gh:actTitleEn": "Normal Life \u0026 Signs of Trouble",
+      "gh:emotionalArc": "楽しい配信生活 → 不穏なコメント → 恐怖の始まり",
+      "gh:keyScenes": [
+        "Ryoの楽しい配信シーン（視聴者との交流）",
+        "匿名掲示板に住所らしき情報が書き込まれる",
+        "SNSに誹謗中傷が溢れ始める"
+      ],
+      "gh:narrativePurpose": "Ryoの配信者としての日常と、突然の攻撃開始を描く",
+      "gh:pageRange": [
+        1,
+        6
+      ]
+    },
+    {
+      "@id": "act:2-escalation",
+      "gh:actNumber": 2,
+      "gh:actTitle": "エスカレーション",
+      "gh:actTitleEn": "Escalation",
+      "gh:emotionalArc": "不安 → 恐怖 → 絶望",
+      "gh:keyScenes": [
+        "自宅にピザの大量注文（イタズラ）",
+        "学校に「犯罪予告」を装った通報",
+        "登校できなくなるRyo",
+        "Shotaが異変に気づく"
+      ],
+      "gh:narrativePurpose": "被害の深刻化と、Ryoの心理的追い詰められを描く",
+      "gh:pageRange": [
+        7,
+        12
+      ]
+    },
+    {
+      "@id": "act:3-encounter",
+      "gh:actNumber": 3,
+      "gh:actTitle": "出会い",
+      "gh:actTitleEn": "Encounter",
+      "gh:emotionalArc": "孤立 → 接触 → 微かな希望",
+      "gh:keyScenes": [
+        "ShotaがRyoをChiseに紹介",
+        "Chiseが状況をヒアリング",
+        "「消すな。残せ。それが一番強い武器になる」",
+        "証拠保全の重要性を説明"
+      ],
+      "gh:narrativePurpose": "ChiseがRyoと出会い、状況を把握する",
+      "gh:pageRange": [
+        13,
+        18
+      ]
+    },
+    {
+      "@id": "act:4-countermeasures",
+      "gh:actNumber": 4,
+      "gh:actTitle": "対策実行",
+      "gh:actTitleEn": "Countermeasures",
+      "gh:countermeasures": [
+        {
+          "gh:description": "スクショ、URL、日時を記録。魚拓サービスの活用。",
+          "gh:pages": [
+            19,
+            21
+          ],
+          "gh:step": 1,
+          "gh:title": "証拠の保全"
+        },
+        {
+          "gh:description": "各SNS・掲示板の通報機能を使う。削除依頼の出し方。",
+          "gh:pages": [
+            22,
+            23
+          ],
+          "gh:step": 2,
+          "gh:title": "プラットフォームへの報告"
+        },
+        {
+          "gh:description": "サイバー犯罪相談窓口、法務局、弁護士への相談。",
+          "gh:pages": [
+            24,
+            25
+          ],
+          "gh:step": 3,
+          "gh:title": "相談窓口への連絡"
+        },
+        {
+          "gh:description": "法的手続きの流れを説明。時間と費用の目安。",
+          "gh:pages": [
+            26,
+            28
+          ],
+          "gh:step": 4,
+          "gh:title": "発信者情報開示請求"
+        }
+      ],
+      "gh:emotionalArc": "混乱 → 理解 → 行動 → 達成感",
+      "gh:narrativePurpose": "具体的な対処法を読者に伝える教育パート",
+      "gh:pageRange": [
+        19,
+        28
+      ]
+    },
+    {
+      "@id": "act:5-investigation",
+      "gh:actNumber": 5,
+      "gh:actTitle": "追跡",
+      "gh:actTitleEn": "Investigation",
+      "gh:emotionalArc": "調査開始 → 糸口発見 → 真相に迫る",
+      "gh:keyScenes": [
+        "YuiTanakaとの協力でログ解析",
+        "Daichiから裏情報を得る（葛藤）",
+        "犯人グループの足跡を発見",
+        "元配信仲間の嫉妬が動機と判明"
+      ],
+      "gh:narrativePurpose": "Chiseのスキルを見せながら、犯人特定への道筋を描く",
+      "gh:pageRange": [
+        29,
+        35
+      ]
+    },
+    {
+      "@id": "act:6-confrontation",
+      "gh:actNumber": 6,
+      "gh:actTitle": "対決",
+      "gh:actTitleEn": "Confrontation",
+      "gh:emotionalArc": "緊張 → 暴露 → 決着",
+      "gh:keyScenes": [
+        "証拠を揃えて警察へ",
+        "開示請求が通り、犯人が特定される",
+        "Chiseの言葉「やられたらやり返すんじゃない。正しく終わらせるんだ」"
+      ],
+      "gh:narrativePurpose": "犯人との対峙と、法的解決への道",
+      "gh:pageRange": [
+        36,
+        40
+      ]
+    },
+    {
+      "@id": "act:7-resolution",
+      "gh:actNumber": 7,
+      "gh:actTitle": "再起",
+      "gh:actTitleEn": "Resolution",
+      "gh:emotionalArc": "和解 → 再出発 → 希望",
+      "gh:keyScenes": [
+        "Ryoが配信を再開",
+        "視聴者からの応援メッセージ",
+        "「恥じゃない。声を上げることが一番強い」",
+        "Chiseがどこかへ歩き出す（次のArcへの伏線）"
+      ],
+      "gh:narrativePurpose": "被害からの回復と、Chiseの成長",
+      "gh:pageRange": [
+        41,
+        45
+      ]
+    }
+  ],
+  "gh:arc": "Arc 0",
+  "gh:castOfCharacters": [
+    {
+      "@id": "character:Chise",
+      "gh:description": "都立工科高校の3年生（休学中）。元eスポーツ部エース。赤羽八幡神社の宮司の孫娘。HN: aka_chise1。",
+      "gh:role": "主人公 / 問題解決者"
+    },
+    {
+      "@id": "character:RyoKuroda",
+      "gh:description": "2年生の人気ゲーム配信者。登録者5万人。明るく人懐っこいが繊細。",
+      "gh:role": "被害者"
+    },
+    {
+      "@id": "character:ShotaHayashi",
+      "gh:description": "3年生。実家はラーメン屋。RyoをChiseに紹介する。",
+      "gh:role": "Chiseの親友 / 橋渡し役"
+    },
+    {
+      "@id": "character:YuiTanaka",
+      "gh:description": "3年生（情報科首席）。証拠保全の技術的サポートを担当。",
+      "gh:role": "技術サポート"
+    },
+    {
+      "@id": "character:DaichiMori",
+      "gh:description": "Chiseの元友人。裏社会の情報を持つ。",
+      "gh:role": "情報提供者（グレー）"
+    }
+  ],
+  "gh:educationalContent": {
+    "gh:keyTakeaways": [
+      "削除する前にスクショ・URLを保存する",
+      "日時とともに時系列で記録する",
+      "サイバー犯罪相談窓口（#9110）に連絡",
+      "発信者情報開示請求という法的手段がある",
+      "被害者は悪くない。声を上げることは恥ずかしいことじゃない"
+    ],
+    "gh:mainMessage": "ネット上の誹謗中傷は犯罪。一人で抱え込まず、証拠を残して専門家に相談することが大切。",
+    "gh:resources": [
+      "警察庁サイバー犯罪相談窓口",
+      "法務局「インターネット上の人権侵害」相談",
+      "一般社団法人セーファーインターネット協会",
+      "弁護士会の法律相談"
+    ]
+  },
+  "gh:episodeIndex": 2,
+  "gh:incidentSummary": {
+    "gh:description": "人気ゲーム配信者の黒田涼（2年生）が、配信中の背景から住所を特定され、匿名掲示板で個人情報を晒される。誹謗中傷が拡散し、学校や自宅に嫌がらせが届くようになる。",
+    "gh:nistFocus": [
+      "PR.AA (Identity Management)",
+      "DE.CM (Continuous Monitoring)",
+      "RS.CO (Response Communications)"
+    ],
+    "gh:type": "オンライン誹謗中傷・ドクシング（個人情報特定・公開）",
+    "gh:victim": "character:RyoKuroda"
+  },
+  "gh:mainCharacter": "character:Chise",
+  "gh:mainLocation": "org:TokyoTechHighSchool",
+  "gh:slug": "arc-0-2-chise",
+  "gh:subtitle": "Chise's Story - Doxing \u0026 Online Defamation",
+  "gh:tagline": "消すな。残せ。それが一番強い武器になる。",
+  "gh:theme": "ネット上の誹謗中傷・ドクシングに対する正しい対処法"
+}

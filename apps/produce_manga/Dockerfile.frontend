@@ -1,0 +1,48 @@
+# Next.js Frontend Dockerfile
+# Development stage
+FROM node:20-slim as development
+
+WORKDIR /app
+
+# Install pnpm
+RUN npm install -g pnpm
+
+# Copy package files first for better layer caching
+COPY package.json pnpm-lock.yaml* ./
+
+# Install dependencies (use --frozen-lockfile if lockfile exists, otherwise install normally)
+RUN if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; else pnpm install; fi
+
+# Copy source code (only necessary files, .dockerignore handles exclusions)
+COPY . .
+
+EXPOSE 3000
+
+# Development command (hot reload)
+CMD ["pnpm", "dev"]
+
+# Production stage
+FROM node:20-slim as production
+
+WORKDIR /app
+
+# Install pnpm
+RUN npm install -g pnpm
+
+# Copy package files
+COPY package.json pnpm-lock.yaml* ./
+
+# Install dependencies (use --frozen-lockfile if lockfile exists, otherwise install normally)
+RUN if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile --prod=false; else pnpm install --prod=false; fi
+
+# Copy source code
+COPY . .
+
+# Build the application
+RUN pnpm build
+
+EXPOSE 3000
+
+# Production command
+CMD ["pnpm", "start"]
+

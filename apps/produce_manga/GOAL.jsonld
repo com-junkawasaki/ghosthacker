@@ -1,0 +1,125 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://gftd.ai/ontology/manga-editor#",
+    "id": "@id",
+    "type": "@type",
+    "cpm": "https://example.org/cpm#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct": "http://purl.org/dc/terms/",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "createdAt": {"@id": "dct:created", "@type": "xsd:dateTime"},
+    "updatedAt": {"@id": "dct:modified", "@type": "xsd:dateTime"},
+    
+    "goal": {"@id": "cpm:goal", "@type": "@id"},
+    "objective": {"@id": "cpm:objective", "@container": "@set"},
+    "successCriteria": {"@id": "cpm:successCriteria", "@container": "@set"},
+    "targetUser": {"@id": "cpm:targetUser", "@type": "@id"}
+  },
+  
+  "id": "https://gftd.ai/goal/manga-editor-wellbecoming",
+  "type": "cpm:Goal",
+  "name": "Enable users to create manga with AI assistance",
+  "description": "Users achieve well-becoming through intuitive manga creation experience with AI-powered image generation and story generation. The tool enables seamless creation of manga pages with panel layout, AI-generated images (stored as bytea in PostgreSQL), speech bubbles, and export functionality. Konva.js components use dynamic imports for SSR compatibility.",
+  "createdAt": "2025-01-29T00:00:00Z",
+  "updatedAt": "2025-01-29T13:00:00Z",
+  
+  "targetUser": {
+    "@id": "https://gftd.ai/user/manga-creator",
+    "type": "cpm:PersonType",
+    "name": "Manga Creator",
+    "description": "User creating manga with AI assistance"
+  },
+  
+  "objective": [
+    {
+      "id": "https://gftd.ai/objective/intuitive-manga-editing",
+      "name": "Intuitive Manga Editing",
+      "description": "Provide intuitive editing experience for manga pages using Konva.js canvas"
+    },
+    {
+      "id": "https://gftd.ai/objective/ai-image-generation",
+      "name": "AI-Powered Image Generation",
+      "description": "Integrate fal.ai and DeepInfra for AI image generation with model selection. Images are stored as bytea in PostgreSQL and returned as Base64-encoded data."
+    },
+    {
+      "id": "https://gftd.ai/objective/project-management",
+      "name": "Project Management",
+      "description": "Enable users to create and manage manga projects with intuitive project listing and creation interface"
+    },
+    {
+      "id": "https://gftd.ai/objective/ssr-compatibility",
+      "name": "SSR Compatibility",
+      "description": "Ensure Konva.js components work correctly with Next.js SSR by using dynamic imports for all react-konva components"
+    },
+    {
+      "id": "https://gftd.ai/objective/story-generation",
+      "name": "Story Generation",
+      "description": "Enable AI-powered story generation from prompts"
+    },
+    {
+      "id": "https://gftd.ai/objective/manga-export",
+      "name": "Manga Export",
+      "description": "Export manga pages to PNG/JPEG/PDF formats"
+    },
+    {
+      "id": "https://gftd.ai/objective/editing-tools",
+      "name": "Comprehensive Editing Tools",
+      "description": "Provide comprehensive editing tools including selection, pen, eraser, shapes (rect/circle), text, and undo/redo functionality"
+    },
+    {
+      "id": "https://gftd.ai/objective/speech-bubble-system",
+      "name": "Speech Bubble System",
+      "description": "Enable intuitive speech bubble management with different shapes (speech/thought/shout), text editing, and positioning"
+    }
+  ],
+  
+  "successCriteria": [
+    {
+      "id": "https://gftd.ai/criteria/editing-performance",
+      "name": "Editing Performance",
+      "description": "Smooth editing experience with <100ms response time for canvas operations"
+    },
+    {
+      "id": "https://gftd.ai/criteria/image-generation-quality",
+      "name": "Image Generation Quality",
+      "description": "AI-generated images meet user expectations for quality and relevance"
+    },
+    {
+      "id": "https://gftd.ai/criteria/export-quality",
+      "name": "Export Quality",
+      "description": "Exported images maintain high quality and resolution"
+    },
+    {
+      "id": "https://gftd.ai/criteria/editing-tools-usability",
+      "name": "Editing Tools Usability",
+      "description": "All editing tools (selection, pen, eraser, shapes, text) are intuitive and responsive with proper undo/redo support"
+    },
+    {
+      "id": "https://gftd.ai/criteria/speech-bubble-functionality",
+      "name": "Speech Bubble Functionality",
+      "description": "Speech bubbles can be added, edited, deleted, and positioned with different shapes and styles"
+    },
+    {
+      "id": "https://gftd.ai/criteria/project-creation",
+      "name": "Project Creation",
+      "description": "Users can create new manga projects with title and description, and navigate to the editor seamlessly"
+    },
+    {
+      "id": "https://gftd.ai/criteria/image-storage",
+      "name": "Image Storage",
+      "description": "Generated images are stored as bytea in PostgreSQL and efficiently retrieved as Base64-encoded data"
+    },
+    {
+      "id": "https://gftd.ai/criteria/ssr-compatibility",
+      "name": "SSR Compatibility",
+      "description": "All Konva.js components work correctly with Next.js SSR without canvas module errors"
+    }
+  ]
+}
+

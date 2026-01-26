@@ -1,0 +1,734 @@
+{
+  "@context": {
+    "arc": "gh:arc/",
+    "character": "gh:character/",
+    "characters": "gh:characters",
+    "dct": "http://purl.org/dc/terms/",
+    "dialogue": "gh:dialogue",
+    "env": "gh:environment/",
+    "environment": "gh:environment",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "panel": "gh:panelIndex",
+    "schema": "http://schema.org/",
+    "shot": "gh:shotType",
+    "speaker": "gh:speaker",
+    "text": "gh:text",
+    "visual": "gh:visual"
+  },
+  "dct:title": "Arc A-2: 「あんたが怠惰だ」",
+  "gh:arc": "Arc A",
+  "gh:episode": 3,
+  "gh:episodeId": "episode:260125-jump-arcA-2",
+  "gh:episodeIndex": 3,
+  "gh:industry": "Construction (建設)",
+  "gh:mainCharacter": "character:Ren",
+  "gh:pages": [
+    {
+      "gh:pageNumber": 1,
+      "gh:panels": [
+        {
+          "characters": ["character:President", "character:Ren"],
+          "dialogue": [
+            {"speaker": "President", "text": "…何だと…？"},
+            {"speaker": "President", "text": "今、なんと言った…？"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Close-up",
+          "visual": "社長の顔。怒りで顔が紅潮。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "聞こえなかった？"},
+            {"speaker": "Ren", "text": "社長。あんたが一番、怠惰だって言ったんだ。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "Ren。一歩も引かない。"
+        },
+        {
+          "characters": ["character:President"],
+          "dialogue": [
+            {"speaker": "President", "text": "この…！！どこの馬の骨とも知れんガキが…！！"},
+            {"speaker": "President", "text": "60年この会社を守ってきた俺に向かって…！！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Medium Shot",
+          "visual": "社長が激昂。拳を握る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 2,
+      "gh:panels": [
+        {
+          "characters": ["character:Shouta", "character:President"],
+          "dialogue": [
+            {"speaker": "Shouta", "text": "親父！落ち着いて！"},
+            {"speaker": "President", "text": "黙れ翔太！！こんな奴を呼んだのはお前か！！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Two Shot",
+          "visual": "翔太が止めようとする。社長は激怒。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "怒るのは勝手だけど。"},
+            {"speaker": "Ren", "text": "その前に、見せたいものがある。"},
+            {"speaker": "Ren", "text": "この会社の『本当の闇』を。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "Renがノートパソコンを操作。"
+        },
+        {
+          "characters": ["character:Matsuda"],
+          "dialogue": [
+            {"speaker": "Matsuda (Monologue)", "text": "（…まさか…！？）"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "松田の顔が一瞬こわばる。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 3,
+      "gh:panels": [
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "復旧作業中に、面白いもの見つけた。"},
+            {"speaker": "Ren", "text": "経理システムのログ。過去5年分。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Insert Shot",
+          "visual": "画面に経理データ。"
+        },
+        {
+          "characters": ["character:Ren", "character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "安本さん。あんた、会社の金には手をつけてないよね？"},
+            {"speaker": "Yasumoto", "text": "え…？当たり前だ！俺はそんなこと…！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Two Shot",
+          "visual": "安本が困惑。Renは別の人物を見ている。"
+        },
+        {
+          "characters": ["character:Ren", "character:Matsuda"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "だよね。安本さんは金には手を出してない。"},
+            {"speaker": "Ren", "text": "…でも、誰かは出してる。"},
+            {"speaker": "Ren", "text": "松田さん。経理部長のあなただ。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Two Shot",
+          "visual": "Renが松田を指差す。全員の視線が集中。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 4,
+      "gh:panels": [
+        {
+          "characters": ["character:Matsuda"],
+          "dialogue": [
+            {"speaker": "Matsuda", "text": "な…！何を言ってるの！？"},
+            {"speaker": "Matsuda", "text": "私がそんなことするわけないでしょ！！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Close-up",
+          "visual": "松田が声を荒げる。目が泳いでいる。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "過去5年間で、約2000万円。"},
+            {"speaker": "Ren", "text": "架空の経費精算、存在しない取引先への支払い。"},
+            {"speaker": "Ren", "text": "全部、あんたの操作履歴が残ってる。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Insert Shot",
+          "visual": "画面に不正送金の履歴が次々表示。"
+        },
+        {
+          "characters": ["character:President", "character:Shouta", "character:Sato"],
+          "dialogue": [
+            {"speaker": "President", "text": "松田…！お前…！！"},
+            {"speaker": "Shouta", "text": "2000万…！？"},
+            {"speaker": "Sato", "text": "うそだろ…"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Wide Shot",
+          "visual": "オフィス中が騒然。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 5,
+      "gh:panels": [
+        {
+          "characters": ["character:Matsuda"],
+          "dialogue": [
+            {"speaker": "Matsuda", "text": "…………っ"},
+            {"speaker": "Matsuda", "text": "…………"},
+            {"speaker": "Matsuda", "text": "…そうよ。私がやったわ。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Close-up",
+          "visual": "松田が観念する。逃げ場がない。"
+        },
+        {
+          "characters": ["character:Matsuda"],
+          "dialogue": [
+            {"speaker": "Matsuda", "text": "20年もこの会社で働いて…給料はろくに上がらない！"},
+            {"speaker": "Matsuda", "text": "残業代も出ない！ボーナスはカット！"},
+            {"speaker": "Matsuda", "text": "でも『家族だから』で我慢しろって…バカにしてるわ！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "松田の顔に怒りと自暴自棄。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren (Monologue)", "text": "（…また、来る）"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "POV Shot",
+          "visual": "Renの視界。松田の背後に黒い靄が立ち上る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 6,
+      "gh:panels": [
+        {
+          "characters": ["character:GhostMatsuda"],
+          "dialogue": [
+            {"speaker": "GhostMatsuda", "text": "誰モ…私ヲ…見テクレナカッタ…"},
+            {"speaker": "GhostMatsuda", "text": "ダカラ…私モ…奪ッテヤル…！！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "松田からGhost分離。札束と帳簿が絡まった異形。巨大化。"
+        },
+        {
+          "characters": ["character:Shouta", "character:Sato"],
+          "dialogue": [
+            {"speaker": "Shouta", "text": "また…！！"},
+            {"speaker": "Sato", "text": "二体目かよ…！！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Two Shot",
+          "visual": "社員たちがパニック。"
+        },
+        {
+          "characters": ["character:Ren", "character:Nei"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "Nei、SIP出力最大。"},
+            {"speaker": "Nei", "text": "了解。120%、いけます。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Two Shot",
+          "visual": "RenとNei。Renの手にデジタルの斧が形成。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 7,
+      "gh:panels": [
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "あんたの怒りはわかる。報われなかった、認められなかった。"},
+            {"speaker": "Ren", "text": "でもさ。"},
+            {"speaker": "Ren", "text": "金を盗んだ時点で、あんたは『被害者』じゃなくなった。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "RenがGhostに向かって歩む。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "不満があるなら、声を上げればよかった。辞めればよかった。"},
+            {"speaker": "Ren", "text": "でも、盗むのは違う。"},
+            {"speaker": "Ren", "text": "…それは、ただの犯罪だ。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "Renの目。冷たく、鋭い。"
+        },
+        {
+          "characters": ["character:Ren", "character:GhostMatsuda"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "終わりだ。"},
+            {"speaker": "SE", "text": "SLASH！！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Full Page Splash",
+          "visual": "大ゴマ。一閃。Ghostが両断。札束が紙吹雪のように散る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "characters": ["character:GhostMatsuda"],
+          "dialogue": [
+            {"speaker": "GhostMatsuda", "text": "ア…ア…"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Ghost霧散。"
+        },
+        {
+          "characters": ["character:Matsuda"],
+          "dialogue": [
+            {"speaker": "Matsuda", "text": "…………"},
+            {"speaker": "Matsuda", "text": "…私…どうなるの…"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "松田が崩れ落ちる。虚ろな目。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "横領は犯罪だ。温情でどうにかなる額じゃない。"},
+            {"speaker": "Ren", "text": "…社長。警察呼んで。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Two Shot",
+          "visual": "Renが社長を見る。社長は苦渋の表情。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "characters": ["character:President"],
+          "dialogue": [
+            {"speaker": "President", "text": "…………"},
+            {"speaker": "President", "text": "…わかった。翔太、110番を。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Close-up",
+          "visual": "社長が重い決断を下す。"
+        },
+        {
+          "characters": ["character:Matsuda"],
+          "dialogue": [
+            {"speaker": "Matsuda", "text": "社長…！待って…！20年ですよ…！"},
+            {"speaker": "Matsuda", "text": "私、この会社のために…！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "松田が縋りつこうとする。"
+        },
+        {
+          "characters": ["character:President", "character:Matsuda"],
+          "dialogue": [
+            {"speaker": "President", "text": "…松田。俺も悪かった。お前の苦しみに気づけなかった。"},
+            {"speaker": "President", "text": "でも…2000万は、『家族』で済ませられる額じゃない。"},
+            {"speaker": "President", "text": "…すまん。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Two Shot",
+          "visual": "社長が目を伏せる。松田は絶望の表情。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "characters": ["character:Ren", "character:President"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "社長。一つ聞いていい？"},
+            {"speaker": "President", "text": "…なんだ。"},
+            {"speaker": "Ren", "text": "松田さんの横領、なんで5年も気づかなかったと思う？"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Two Shot",
+          "visual": "Renが社長に問いかける。"
+        },
+        {
+          "characters": ["character:President"],
+          "dialogue": [
+            {"speaker": "President", "text": "…………"},
+            {"speaker": "President", "text": "…わからん。信用してたから…"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "社長が言葉に詰まる。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "違う。『チェックしてなかった』からだ。"},
+            {"speaker": "Ren", "text": "この会社、アクセス権限がめちゃくちゃだ。"},
+            {"speaker": "Ren", "text": "誰が何を見れて、何を変えられるか、全く管理されてない。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Medium Shot",
+          "visual": "Renが説明。社長の顔が青ざめる。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 11,
+      "gh:panels": [
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "本来なら、経理データは経理だけ。システムはIT担当だけ。"},
+            {"speaker": "Ren", "text": "それが『最小権限の原則』。"},
+            {"speaker": "Ren", "text": "でもこの会社は、『便利だから』で全員フルアクセス。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Ren説明続ける。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "だから松田さんは5年も不正ができた。"},
+            {"speaker": "Ren", "text": "安本さんは一人で全システムを見なきゃいけなかった。"},
+            {"speaker": "Ren", "text": "組織図に基づいた権限設計が、まるでなかった。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "Renの鋭い目。"
+        },
+        {
+          "characters": ["character:Ren", "character:President"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "社長。これ、誰の責任だと思う？"},
+            {"speaker": "President", "text": "…………俺、だな…"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Two Shot",
+          "visual": "社長が俯く。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 12,
+      "gh:panels": [
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "システムの設計は、経営の責任だ。"},
+            {"speaker": "Ren", "text": "誰に何を任せるか。どこまで権限を与えるか。"},
+            {"speaker": "Ren", "text": "それを決めるのは、トップの仕事。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Medium Shot",
+          "visual": "Renが社長を見据える。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "あんたはそれを全部、現場に丸投げした。"},
+            {"speaker": "Ren", "text": "『動いてるから大丈夫』『安本に任せとけ』『松田に任せとけ』。"},
+            {"speaker": "Ren", "text": "…だから俺は言った。あんたが一番『怠惰』だって。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "Renの目。怒りというより、諭すような色。"
+        },
+        {
+          "characters": ["character:President"],
+          "dialogue": [
+            {"speaker": "President", "text": "…………"},
+            {"speaker": "President", "text": "…その通りだ。俺は…逃げてた。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "社長の目に涙が浮かぶ。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 13,
+      "gh:panels": [
+        {
+          "characters": ["character:President", "character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "President", "text": "安本…すまなかった。"},
+            {"speaker": "President", "text": "お前の苦しみに、俺は気づいてやれなかった。"},
+            {"speaker": "Yasumoto", "text": "社長…"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Two Shot",
+          "visual": "社長が安本の前で頭を下げる。"
+        },
+        {
+          "characters": ["character:President"],
+          "dialogue": [
+            {"speaker": "President", "text": "30年、一人で全部背負わせてた。"},
+            {"speaker": "President", "text": "予算もつけない、人もつけない、評価もしない。"},
+            {"speaker": "President", "text": "それで『動いてるから大丈夫』なんて…お前を殺すところだった。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "社長が涙を流す。"
+        },
+        {
+          "characters": ["character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "社長…俺も…俺もすみませんでした…"},
+            {"speaker": "Yasumoto", "text": "会社を壊そうとして…皆に迷惑かけて…"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "安本も涙。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 14,
+      "gh:panels": [
+        {
+          "characters": ["character:President", "character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "President", "text": "安本。お前のやったことは許されることじゃない。"},
+            {"speaker": "President", "text": "でも…お前を追い詰めたのは俺だ。"},
+            {"speaker": "President", "text": "だから、一緒にやり直そう。この会社を、ちゃんと作り直そう。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Two Shot",
+          "visual": "社長が安本の手を取る。"
+        },
+        {
+          "characters": ["character:Yasumoto"],
+          "dialogue": [
+            {"speaker": "Yasumoto", "text": "…社長…！"},
+            {"speaker": "Yasumoto", "text": "俺…俺、頑張ります…！今度こそ…！"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "安本が涙ながらに頷く。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren (Monologue)", "text": "（安本さんは、まだ取り返しがつく）"},
+            {"speaker": "Ren (Monologue)", "text": "（でも松田さんは…犯罪者になってしまった）"},
+            {"speaker": "Ren (Monologue)", "text": "（同じ『見てもらえなかった苦しみ』なのに、この差は何だ…）"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "Renが窓の外を見つめる。複雑な表情。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 15,
+      "gh:panels": [
+        {
+          "characters": [],
+          "dialogue": [
+            {"speaker": "SE", "text": "ウーウーウー..."},
+            {"speaker": "Narration", "text": "パトカーのサイレンが近づいてくる。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Wide Shot",
+          "visual": "オフィスの外からパトカーのライト。"
+        },
+        {
+          "characters": ["character:Matsuda"],
+          "dialogue": [
+            {"speaker": "Matsuda", "text": "…………"},
+            {"speaker": "Matsuda", "text": "…20年、か。結局、何だったんだろう…"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "松田が虚ろな目で呟く。"
+        },
+        {
+          "characters": [],
+          "dialogue": [
+            {"speaker": "Police", "text": "松田容疑者、業務上横領の容疑で…"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Medium Shot",
+          "visual": "警官が松田に手錠をかける。社員たちが見守る。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 16,
+      "gh:panels": [
+        {
+          "characters": ["character:President", "character:Shouta"],
+          "dialogue": [
+            {"speaker": "President", "text": "翔太。"},
+            {"speaker": "Shouta", "text": "…何、親父。"},
+            {"speaker": "President", "text": "お前に任せる。この会社の『仕組み』作り。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Two Shot",
+          "visual": "社長が翔太を真っ直ぐ見る。"
+        },
+        {
+          "characters": ["character:President"],
+          "dialogue": [
+            {"speaker": "President", "text": "俺はもう、『動いてるから大丈夫』とは言わない。"},
+            {"speaker": "President", "text": "ちゃんと見る。ちゃんと考える。"},
+            {"speaker": "President", "text": "…それが、松田や安本への、俺なりの責任の取り方だ。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "社長の決意に満ちた表情。"
+        },
+        {
+          "characters": ["character:Shouta"],
+          "dialogue": [
+            {"speaker": "Shouta", "text": "…わかった。任された。"},
+            {"speaker": "Shouta", "text": "俺、この会社を変える。二度とこんなことが起きないように。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "翔太の目に決意の光。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 17,
+      "gh:panels": [
+        {
+          "characters": ["character:Shouta", "character:Ren"],
+          "dialogue": [
+            {"speaker": "Shouta", "text": "Renさん。"},
+            {"speaker": "Ren", "text": "ん？"},
+            {"speaker": "Shouta", "text": "…ありがとうございました。本当に。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Two Shot",
+          "visual": "翔太がRenに頭を下げる。"
+        },
+        {
+          "characters": ["character:Shouta"],
+          "dialogue": [
+            {"speaker": "Shouta", "text": "俺…システムを変えることばかり考えてた。"},
+            {"speaker": "Shouta", "text": "でも、人を見てなかった。安本さんも、松田さんも…"},
+            {"speaker": "Shouta", "text": "苦しんでるのに、気づけなかった。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Close-up",
+          "visual": "翔太の真剣な表情。"
+        },
+        {
+          "characters": ["character:Ren"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "気づけたじゃん、今。"},
+            {"speaker": "Ren", "text": "…遅くはない。これからだよ。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 3,
+          "shot": "Close-up",
+          "visual": "Renが珍しく穏やかな表情。"
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 18,
+      "gh:panels": [
+        {
+          "characters": ["character:Ren", "character:Nei"],
+          "dialogue": [
+            {"speaker": "Ren", "text": "じゃ、俺らは帰る。"},
+            {"speaker": "Nei", "text": "お疲れ様でした。"},
+            {"speaker": "Ren", "text": "…だりー。今日はよく働いた。寝る。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 1,
+          "shot": "Two Shot",
+          "visual": "RenとNeiが出口に向かう。"
+        },
+        {
+          "characters": ["character:Shouta", "character:Ren"],
+          "dialogue": [
+            {"speaker": "Shouta", "text": "Renさん！また何かあったら…！"},
+            {"speaker": "Ren", "text": "ないといいね。"},
+            {"speaker": "Ren", "text": "…『仕組み』作れば、Ghostは生まれにくくなる。頑張れ。"}
+          ],
+          "environment": "env:kamata-daimon-office",
+          "panel": 2,
+          "shot": "Medium Shot",
+          "visual": "Renが背中で手を振る。"
+        },
+        {
+          "characters": [],
+          "dialogue": [
+            {"speaker": "Narration", "text": "Arc A-2「あんたが怠惰だ」――End"},
+            {"speaker": "Narration", "text": "Next: Arc A-3「仕組みで守れ」"}
+          ],
+          "environment": "env:intertitle-black",
+          "panel": 3,
+          "shot": "Insert Shot",
+          "visual": "黒背景にタイトル。"
+        }
+      ]
+    }
+  ],
+  "gh:presentationTagline": "Arc A | Justice and Mercy",
+  "gh:sinContrast": "Where is the line between victim and criminal?"
+}

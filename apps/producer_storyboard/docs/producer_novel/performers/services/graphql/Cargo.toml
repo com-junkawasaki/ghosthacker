@@ -1,0 +1,39 @@
+[package]
+name = "epub-editor-graphql"
+version = "0.1.0"
+edition = "2021"
+default-run = "epub-editor-graphql"
+
+[lib]
+name = "epub_editor_graphql"
+path = "src/lib.rs"
+
+[[bin]]
+name = "epub-editor-graphql"
+path = "src/main.rs"
+
+[[bin]]
+name = "import_jsonld"
+path = "src/bin/import_jsonld.rs"
+
+[dependencies]
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "fs"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+async-graphql = "7"
+async-graphql-poem = "7"
+poem = "3"
+sqlx = { version = "0.8", features = ["runtime-tokio-rustls", "postgres", "uuid", "chrono", "migrate"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+zip = "0.6"
+anyhow = "1"
+thiserror = "1"
+reqwest = { version = "0.12", features = ["json"] }
+regex = "1"
+walkdir = "2"
+
+[dev-dependencies]
+tokio-test = "0.4"
+sqlx = { version = "0.8", features = ["runtime-tokio-rustls", "postgres", "migrate"] }
+

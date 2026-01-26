@@ -1,9 +1,0 @@
-target/
-Cargo.lock
-.env
-*.pem
-.git
-.gitignore
-README.md
-DESIGN.md
-

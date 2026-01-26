@@ -1,0 +1,137 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://gftd.ai/ontology/epub-editor#",
+    "id": "@id",
+    "type": "@type",
+    "cpm": "https://example.org/cpm#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct": "http://purl.org/dc/terms/",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "createdAt": {"@id": "dct:created", "@type": "xsd:dateTime"},
+    
+    "capability": {"@id": "cpm:Capability", "@container": "@set"},
+    "hasActivity": {"@id": "cpm:hasActivity", "@type": "@id", "@container": "@set"},
+    "realizedBy": {"@id": "cpm:realizedBy", "@type": "@id", "@container": "@set"}
+  },
+  
+  "@graph": [
+    {
+      "id": "https://gftd.ai/capability/epub-editing",
+      "type": "cpm:Capability",
+      "name": "EPUB Editing",
+      "description": "Capability to create, read, update, and delete EPUB book content including text, chapters, metadata, and media",
+      "createdAt": "2025-01-27T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/edit-epub-content"},
+        {"@id": "https://gftd.ai/activity/manage-chapters"},
+        {"@id": "https://gftd.ai/activity/manage-metadata"},
+        {"@id": "https://gftd.ai/activity/manage-media"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/ai-generation",
+      "type": "cpm:Capability",
+      "name": "AI Generation",
+      "description": "Capability to generate, summarize, proofread, and translate text using AI models",
+      "createdAt": "2025-01-27T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/generate-text"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/epub-export",
+      "type": "cpm:Capability",
+      "name": "EPUB Export",
+      "description": "Capability to export EPUB book structure and content to standard EPUB 3.0 file format",
+      "createdAt": "2025-01-27T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/export-epub"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/emotion-analysis",
+      "type": "cpm:Capability",
+      "name": "Emotion Analysis",
+      "description": "Capability to analyze emotions in text content using Hume AI API. Provides paragraph-level emotion profiles with emotion vectors (joy, sadness, fear, anger, surprise, trust, anticipation, disgust, relief, hope). Results are integrated into Tiptap editor as paragraph node attributes and can be visualized via mask functionality with color-coded emotion types.",
+      "createdAt": "2025-01-27T12:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/analyze-emotions"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/epub-import-export",
+      "type": "cpm:Capability",
+      "name": "EPUB Import/Export",
+      "description": "Capability to export and import EPUB content in Tiptap JSON format. Export preserves EPUB structure, chapters, JSON-LD nodes, mask information, and emotion analysis data. Import restores EPUB content with validation and error handling. Supports full EPUB backup and restore functionality.",
+      "createdAt": "2025-01-27T17:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/export-epub-content"},
+        {"@id": "https://gftd.ai/activity/import-epub-content"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/jsonld-data-management",
+      "type": "cpm:Capability",
+      "name": "JSON-LD Data Management",
+      "description": "Capability to bulk import JSON-LD semantic story data from JSON-LD files into PostgreSQL database. Supports importing Character, Ghost, Location, Organization, Company, Technology, Episode, Scene, Arc, Motif, Season, Timeline, Event, SourceRef, Occupation, and Setting nodes. Handles @graph arrays and uses upsert operations.",
+      "createdAt": "2025-11-17T08:40:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/import-jsonld-nodes"},
+        {"@id": "https://gftd.ai/activity/manage-jsonld-nodes"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/markdown-processing",
+      "type": "cpm:Capability",
+      "name": "Markdown Processing",
+      "description": "Capability to concatenate Markdown episode files into combined files. Processes episode directories (ep01-ep12), combines parts in order, and generates combined files per episode and all-episodes master files. Supports both Japanese and English versions.",
+      "createdAt": "2025-11-17T08:40:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/concatenate-markdown-files"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/image-generation",
+      "type": "cpm:Capability",
+      "name": "Image Generation",
+      "description": "Capability to generate images using AI (OpenAI DALL-E or Higgsfield) based on editor context. Automatically extracts selected nodes, masked nodes, and mask information from TipTap editor to create image prompts. Supports multiple image sizes, styles, and quality options. Generated images are inserted into editor as Base64 data URIs.",
+      "createdAt": "2025-11-17T12:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/generate-image"},
+        {"@id": "https://gftd.ai/activity/extract-editor-context"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/editor"}
+      ]
+    }
+  ]
+}
+

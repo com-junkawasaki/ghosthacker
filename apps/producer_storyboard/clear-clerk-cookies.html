@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>Clear Clerk Cookies</title></head>
+<body>
+<h1>Clear Clerk Cookies</h1>
+<button onclick="clearCookies()">Clear All Clerk Cookies</button>
+<div id="result"></div>
+<script>
+function clearCookies() {
+  const cookies = document.cookie.split(';');
+  let cleared = 0;
+  cookies.forEach(cookie => {
+    const name = cookie.split('=')[0].trim();
+    if (name.includes('clerk') || name.includes('__session') || name.includes('__client')) {
+      document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      cleared++;
+      console.log('Cleared:', name);
+    }
+  });
+  document.getElementById('result').innerHTML = 'Cleared ' + cleared + ' cookies. Please reload the page.';
+}
+</script>
+</body>
+</html>

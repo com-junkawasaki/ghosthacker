@@ -1,0 +1,2473 @@
+<script lang="ts">
+	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+	import CharacterManager from '$lib/components/storyboard/CharacterManager.svelte';
+	import DialogueEditor from '$lib/components/storyboard/DialogueEditor.svelte';
+	import ProjectSidebar from '$lib/components/storyboard/ProjectSidebar.svelte';
+	import OrganizationSwitcher from '$lib/components/clerk/OrganizationSwitcher.svelte';
+	import UserAccountMenu from '$lib/components/clerk/UserAccountMenu.svelte';
+
+	type Scene = {
+		id: string;
+		sceneNumber: number;
+		textDescription: string | null;
+		startTimeSeconds: number | null;
+		durationSeconds: number | null;
+		mediaUrl: string | null;
+		// Include generated images for preview
+		generatedImages?: GeneratedImage[];
+	};
+
+	type GeneratedImage = {
+		id: string;
+		sceneId: string;
+		imageType: string | null;
+		imageFormat: string | null;
+		createdAt: string;
+	};
+
+	type Character = {
+		id: string;
+		projectId: string;
+		name: string;
+		description: string | null;
+	};
+
+	type Dialogue = {
+		id: string;
+		sceneId: string;
+		characterId: string;
+		language: string;
+		text: string;
+		humeVoiceId: string | null;
+		audioUrl: string | null;
+		emotionName?: string | null;
+		emotionX?: number | null;
+		emotionY?: number | null;
+	};
+
+	const { lang, orgId, projectId: projectIdParam, storyboardId: storyboardIdParam } = $page.params;
+	const projectId: string = projectIdParam || '';
+	const urlStoryboardId: string | undefined = storyboardIdParam;
+
+	function buildPath(storyboardId?: string): string {
+		if (storyboardId) {
+			return `/${lang}/orgs/${orgId}/project/${projectId}/${storyboardId}/editor`;
+		}
+		return `/${lang}/orgs/${orgId}/project/${projectId}/new/editor`;
+	}
+	
+	// Handle "new" placeholder for when no storyboard exists yet
+	const isNewPlaceholder = $derived(urlStoryboardId === 'new');
+	
+	// React to URL parameter changes
+	$effect(() => {
+		if (!browser || !projectId) return;
+		
+		console.log('[Editor] URL storyboardId changed:', urlStoryboardId, 'current storyboardId:', storyboardId);
+		
+		// If URL storyboardId changes and is valid, load scenes for it
+		if (urlStoryboardId && urlStoryboardId !== 'new' && urlStoryboardId !== storyboardId) {
+			// Check if this storyboardId exists in our loaded storyboards
+			const storyboardExists = storyboards.find(sb => sb.id === urlStoryboardId);
+			if (storyboardExists) {
+				console.log('[Editor] URL storyboardId exists in loaded storyboards, loading scenes');
+				storyboardId = urlStoryboardId;
+				loadScenes(urlStoryboardId).catch(err => {
+					console.error('[Editor] Error loading scenes from URL change:', err);
+				});
+			} else if (storyboards.length > 0) {
+				console.log('[Editor] URL storyboardId not found in loaded storyboards, storyboards:', storyboards.map(sb => sb.id));
+			}
+		}
+	});
+	
+
+	// State management with $state for reactive updates
+	let scenes = $state<Scene[]>([]);
+	let storyboards = $state<Array<{ id: string; title: string; projectId: string }>>([]);
+	let storyboardId = $state<string | null>(null);
+	let loading = $state(true);
+	let error = $state<string | null>(null);
+	let showCreateStoryboardDialog = $state(false);
+	let newStoryboardTitle = $state('');
+
+	let generating = $state(false);
+	// Track which scene and image type is being generated
+	let generatingSceneId = $state<string | null>(null);
+	let generatingImageType = $state<'start' | 'end' | 'upload' | null>(null);
+	let draggedSceneId = $state<string | null>(null);
+	let dragOverIndex = $state<number | null>(null);
+	let hoveredInsertIndex = $state<number | null>(null);
+
+	let selectedSceneId = $state<string | null>(null);
+	
+	// Store generated images by scene ID
+	let sceneImages = $state<Record<string, GeneratedImage[]>>({});
+	
+	// Characters and dialogues
+	let characters = $state<Character[]>([]);
+	let sceneDialogues = $state<Record<string, Dialogue[]>>({});
+	let showCharacterManager = $state(false);
+	
+	// Initialize selected scene
+	$effect(() => {
+		if (!selectedSceneId && scenes.length > 0 && scenes[0]) {
+			selectedSceneId = scenes[0].id;
+		}
+	});
+
+	// Calculate total duration from scenes
+	const totalDuration = $derived.by(() => {
+		return scenes.reduce((sum, scene) => sum + (scene.durationSeconds || 0), 0) || 5;
+	});
+
+	// Load characters
+	async function loadCharacters() {
+		if (!browser || !projectId) return;
+
+		try {
+			const headers: HeadersInit = {};
+			if (orgId) {
+				headers['X-Org-Id'] = orgId;
+			}
+			const response = await fetch(`/api/characters?projectId=${projectId}`, {
+				headers,
+			});
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load characters: ${response.statusText}`);
+			}
+			
+			const data = await response.json();
+			console.log('[Editor] Loaded characters:', data);
+			if (data?.characters) {
+				characters = data.characters as Character[];
+				console.log('[Editor] Characters set:', characters.length, 'characters');
+			} else {
+				console.warn('[Editor] No characters in response:', data);
+			}
+		} catch (err) {
+			console.error('[Editor] Error loading characters:', err);
+		}
+	}
+
+	// Load dialogues for a scene
+	async function loadDialogues(sceneId: string) {
+		if (!browser) return;
+
+		try {
+			const response = await fetch(`/api/dialogues?sceneId=${sceneId}`, {
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load dialogues: ${response.statusText}`);
+			}
+			
+			const data = await response.json();
+			if (data?.dialogues) {
+				sceneDialogues[sceneId] = data.dialogues as Dialogue[];
+			}
+		} catch (err) {
+			console.error('[Editor] Error loading dialogues:', err);
+		}
+	}
+
+	// Create a new storyboard
+	async function createStoryboard() {
+		if (!projectId || !browser) {
+			alert('Cannot create storyboard: project ID is required');
+			return;
+		}
+
+		if (!newStoryboardTitle.trim()) {
+			alert('Please enter a storyboard title');
+			return;
+		}
+
+		try {
+			loading = true;
+			error = null;
+
+			const response = await fetch('/api/storyboards', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
+					projectId,
+					title: newStoryboardTitle.trim(),
+					aspectRatio: '16:9',
+					resolution: '1920x1080',
+				}),
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to create storyboard');
+			}
+
+			const result = await response.json();
+
+			if (result?.id) {
+				// Reload data to get the new storyboard
+				await loadData();
+				// Select the newly created storyboard and update URL
+				const newStoryboardId = result.id;
+				storyboardId = newStoryboardId;
+				// Update URL to include the new storyboardId
+				if (browser && projectId) {
+					await goto(buildPath(newStoryboardId), { replaceState: true });
+				}
+				await loadScenes(newStoryboardId);
+				showCreateStoryboardDialog = false;
+				newStoryboardTitle = '';
+			} else {
+				throw new Error('Failed to create storyboard: No data returned');
+			}
+		} catch (err) {
+			console.error('[Editor] Error creating storyboard:', err);
+			error = err instanceof Error ? err.message : 'Failed to create storyboard';
+			loading = false;
+		}
+	}
+
+	// Handle storyboard selection change
+	async function handleStoryboardChange(selectedId: string) {
+		if (selectedId === storyboardId) {
+			console.log('[Editor] Storyboard already selected:', selectedId);
+			return;
+		}
+		
+		console.log('[Editor] Changing storyboard from', storyboardId, 'to', selectedId);
+		
+		// Update URL first - this will trigger a reactive update
+		if (selectedId && projectId) {
+			const newUrl = buildPath(selectedId);
+			console.log('[Editor] Navigating to:', newUrl);
+			await goto(newUrl, { replaceState: true });
+			
+			// Update state immediately for better UX
+			storyboardId = selectedId;
+			scenes = [];
+			selectedSceneId = null;
+			sceneDialogues = {};
+			sceneImages = {};
+			
+			if (selectedId) {
+				console.log('[Editor] Loading scenes for storyboard:', selectedId);
+				await loadScenes(selectedId);
+			}
+		} else {
+			console.warn('[Editor] Cannot change storyboard: missing selectedId or projectId', { selectedId, projectId });
+		}
+	}
+
+	// Load storyboards and scenes
+	async function loadData() {
+		if (!projectId || !browser) {
+			if (!browser) {
+				error = 'This page requires browser environment';
+			} else {
+				error = 'Project ID is required';
+			}
+			loading = false;
+			return;
+		}
+
+		try {
+			loading = true;
+			error = null;
+
+			// Load storyboards for the project
+			const response = await fetch(`/api/storyboards?projectId=${projectId}`, {
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load storyboards: ${response.statusText}`);
+			}
+
+			const data = await response.json();
+			const loadedStoryboards = data?.storyboards || [];
+			storyboards = loadedStoryboards.map((sb: any) => ({
+				id: sb.id,
+				title: sb.title || 'Untitled Storyboard',
+				projectId: sb.projectId,
+			}));
+			
+			if (storyboards.length === 0) {
+				loading = false;
+				// Don't set error, show create storyboard button instead
+				return;
+			}
+
+			// Use URL storyboardId if available, otherwise use the first storyboard
+			let targetStoryboardId: string | null = null;
+			
+			// If URL has "new" placeholder, don't set a storyboardId (will show empty state)
+			if (isNewPlaceholder) {
+				storyboardId = null;
+				loading = false;
+				return;
+			}
+			
+			if (urlStoryboardId && storyboards.find(sb => sb.id === urlStoryboardId)) {
+				// URL storyboardId is valid
+				targetStoryboardId = urlStoryboardId;
+			} else if (storyboardId && storyboards.find(sb => sb.id === storyboardId)) {
+				// Current storyboardId is valid
+				targetStoryboardId = storyboardId;
+			} else {
+				// Use first storyboard and update URL
+				const firstStoryboard = storyboards[0];
+				if (firstStoryboard) {
+					targetStoryboardId = firstStoryboard.id;
+					// Update URL to include storyboardId
+					if (browser && projectId) {
+						await goto(buildPath(targetStoryboardId), { replaceState: true });
+					}
+				}
+			}
+
+			if (targetStoryboardId) {
+				storyboardId = targetStoryboardId;
+				await loadScenes(targetStoryboardId);
+				await loadCharacters();
+			} else {
+				loading = false;
+			}
+		} catch (err) {
+			console.error('[Editor] Error loading data:', err);
+			error = err instanceof Error ? err.message : 'Failed to load data';
+			loading = false;
+		}
+	}
+
+	// Load scenes for a storyboard
+	async function loadScenes(sbId: string) {
+		if (!browser) {
+			return;
+		}
+
+		try {
+			const response = await fetch(`/api/scenes?storyboardId=${sbId}`, {
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
+			
+			if (!response.ok) {
+				throw new Error(`Failed to load scenes: ${response.statusText}`);
+			}
+
+			const data = await response.json();
+			const loadedScenes = data?.scenes || [];
+			
+			// Convert API scenes to local Scene type
+			scenes = loadedScenes.map((s: any) => ({
+				id: s.id,
+				sceneNumber: s.sceneNumber,
+				textDescription: s.textDescription || '',
+				startTimeSeconds: s.startTimeSeconds || 0,
+				durationSeconds: s.durationSeconds || 2.0,
+				mediaUrl: s.mediaUrl || null,
+			}));
+
+			if (scenes.length > 0 && !selectedSceneId) {
+				selectedSceneId = scenes[0].id;
+			}
+
+			// Load images for all scenes (don't await to avoid blocking)
+			Promise.all(loadedScenes.map((s: any) => loadSceneImages(s.id))).catch(err => {
+				console.error('[Editor] Error loading scene images:', err);
+			});
+
+			loading = false;
+		} catch (err) {
+			console.error('[Editor] Error loading scenes:', err);
+			error = err instanceof Error ? err.message : 'Failed to load scenes';
+			loading = false;
+		}
+	}
+
+	// Recalculate scene numbers and timestamps
+	function recalculateScenes() {
+		let currentTime = 0;
+		const updatedScenes = scenes.map((scene, index) => {
+			const updated = {
+				...scene,
+				sceneNumber: index + 1,
+				startTimeSeconds: currentTime,
+			};
+			currentTime += scene.durationSeconds || 0;
+			return updated;
+		});
+		scenes = updatedScenes;
+	}
+
+	// Add scene at specific index
+	async function addScene(index: number, retryCount = 0) {
+		if (!storyboardId || !browser) {
+			if (!browser) return;
+			alert('Storyboard ID is required');
+			return;
+		}
+
+		const defaultDuration = 2.0;
+		const startTime = scenes.slice(0, index).reduce((sum, s) => sum + (s.durationSeconds || 0), 0);
+		
+		// Calculate scene number: insert at index means the new scene will be at position index + 1
+		const sceneNumber = index + 1;
+
+		try {
+			const response = await fetch('/api/scenes', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
+					storyboardId,
+					sceneNumber: sceneNumber,
+					textDescription: '',
+					durationSeconds: defaultDuration,
+					startTimeSeconds: startTime,
+				}),
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				const errorMessage = errorData.error || 'Failed to create scene';
+				
+				// Check if it's a unique constraint violation
+				if (errorMessage.includes('duplicate key') || errorMessage.includes('unique constraint')) {
+					// Reload scenes first to get the latest state
+					await loadScenes(storyboardId);
+					
+					// Retry with updated scene list (max 2 retries)
+					if (retryCount < 2) {
+						console.log(`[Editor] Retrying scene creation after constraint violation (attempt ${retryCount + 1})`);
+						return addScene(index, retryCount + 1);
+					} else {
+						throw new Error('Failed to create scene after multiple retries. Please try again.');
+					}
+				}
+				
+				throw new Error(errorMessage);
+			}
+
+			const result = await response.json();
+
+			if (result?.id) {
+				// Reload scenes to get the updated list
+				await loadScenes(storyboardId);
+				selectedSceneId = result.id;
+			}
+		} catch (err) {
+			console.error('[Editor] Error creating scene:', err);
+			const errorMessage = err instanceof Error ? err.message : 'Failed to create scene';
+			
+			// Check if it's a unique constraint violation
+			if (errorMessage.includes('duplicate key') || errorMessage.includes('unique constraint')) {
+				// Reload scenes and retry once
+				if (retryCount < 1) {
+					console.log('[Editor] Retrying scene creation after constraint violation');
+					await loadScenes(storyboardId);
+					return addScene(index, retryCount + 1);
+				}
+			}
+			
+			alert(errorMessage);
+		}
+	}
+
+	// Delete scene
+	async function deleteScene(sceneId: string) {
+		if (!browser) {
+			return;
+		}
+
+		if (!confirm('Are you sure you want to delete this scene?')) {
+			return;
+		}
+
+		try {
+			const response = await fetch(`/api/scenes/${sceneId}`, {
+				method: 'DELETE',
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to delete scene');
+			}
+
+			// Reload scenes to get the updated list
+			if (storyboardId) {
+				await loadScenes(storyboardId);
+			}
+			if (selectedSceneId === sceneId) {
+				selectedSceneId = scenes[0]?.id || null;
+			}
+		} catch (err) {
+			console.error('[Editor] Error deleting scene:', err);
+			alert(err instanceof Error ? err.message : 'Failed to delete scene');
+		}
+	}
+
+	// Move scene from one index to another
+	async function moveScene(fromIndex: number, toIndex: number) {
+		if (fromIndex === toIndex || !storyboardId || !browser) return;
+
+		const currentScenes = [...scenes];
+		const [moved] = currentScenes.splice(fromIndex, 1);
+		if (!moved) return;
+
+		currentScenes.splice(toIndex, 0, moved);
+		
+		// Update scene numbers locally for immediate UI update
+		let currentTime = 0;
+		const updatedScenes = currentScenes.map((scene, index) => {
+			const updated = {
+				...scene,
+				sceneNumber: index + 1,
+				startTimeSeconds: currentTime,
+			};
+			currentTime += scene.durationSeconds || 0;
+			return updated;
+		});
+		
+		// Optimistically update UI
+		scenes = updatedScenes;
+		
+		// Update scene numbers
+		const sceneIds = currentScenes.map((s) => s.id);
+
+		try {
+			const response = await fetch('/api/scenes/reorder', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
+					storyboardId,
+					sceneIds,
+				}),
+			});
+
+			if (!response.ok) {
+				// Revert on error
+				await loadScenes(storyboardId);
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to reorder scenes');
+			}
+
+			const result = await response.json();
+
+			if (result?.scenes && result.scenes.length > 0) {
+				// Update with server response to ensure consistency
+				const serverScenes: Scene[] = result.scenes.map((s: any) => ({
+					id: s.id,
+					sceneNumber: s.sceneNumber,
+					textDescription: s.textDescription || '',
+					startTimeSeconds: s.startTimeSeconds || 0,
+					durationSeconds: s.durationSeconds || 0,
+					mediaUrl: s.mediaUrl || null,
+				}));
+				
+				// Recalculate timestamps
+				let time = 0;
+				const finalScenes: Scene[] = serverScenes.map((scene) => {
+					const updated: Scene = {
+						...scene,
+						startTimeSeconds: time,
+					};
+					time += scene.durationSeconds || 0;
+					return updated;
+				});
+				
+				scenes = finalScenes;
+			} else {
+				// Fallback: reload from server
+				await loadScenes(storyboardId);
+			}
+		} catch (err) {
+			console.error('[Editor] Error reordering scenes:', err);
+			// Revert on error
+			await loadScenes(storyboardId);
+			alert(err instanceof Error ? err.message : 'Failed to reorder scenes');
+		}
+	}
+
+	// Update scene
+	async function updateScene(sceneId: string, updates: Partial<Scene>) {
+		if (!browser) {
+			return;
+		}
+
+		try {
+			const response = await fetch(`/api/scenes/${sceneId}`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
+					textDescription: updates.textDescription !== undefined ? updates.textDescription : undefined,
+					durationSeconds: updates.durationSeconds !== undefined ? updates.durationSeconds : undefined,
+					startTimeSeconds: updates.startTimeSeconds !== undefined ? updates.startTimeSeconds : undefined,
+				}),
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to update scene');
+			}
+
+			if (storyboardId) {
+				// Reload scenes to get the updated list
+				await loadScenes(storyboardId);
+			}
+		} catch (err) {
+			console.error('[Editor] Error updating scene:', err);
+			alert(err instanceof Error ? err.message : 'Failed to update scene');
+		}
+	}
+
+	function handleSceneSelect(sceneId: string) {
+		selectedSceneId = sceneId;
+		if (sceneId && !sceneDialogues[sceneId]) {
+			loadDialogues(sceneId);
+		}
+	}
+
+	// Load generated images for a scene
+	async function loadSceneImages(sceneId: string) {
+		if (!browser) {
+			return;
+		}
+
+		try {
+			const response = await fetch(`/api/scenes/${sceneId}/images`, {
+				headers: {
+					'X-Org-Id': orgId,
+				},
+			});
+			
+			if (!response.ok) {
+				console.error('[Editor] Error loading images:', response.statusText);
+				return;
+			}
+
+			const data = await response.json();
+			const images = data?.images || [];
+			sceneImages = {
+				...sceneImages,
+				[sceneId]: images.map((img: any) => ({
+					id: img.id,
+					sceneId: img.sceneId,
+					imageType: img.imageType || null,
+					imageFormat: img.imageFormat || null,
+					createdAt: img.createdAt || '',
+				})),
+			};
+		} catch (err) {
+			console.error('[Editor] Error loading scene images:', err);
+		}
+	}
+
+	// Get image URL for display
+	function getImageUrl(imageId: string): string {
+		return `/api/images/${imageId}`;
+	}
+
+	// Get images for a scene by type
+	function getSceneImagesByType(sceneId: string, imageType: 'start' | 'end'): GeneratedImage | null {
+		const images = sceneImages[sceneId] || [];
+		return images.find(img => img.imageType === imageType) || null;
+	}
+
+	// Generate image for a scene
+	async function generateSceneImage(sceneId: string, imageType: 'start' | 'end') {
+		if (!browser) {
+			return;
+		}
+
+		try {
+			generating = true;
+			generatingSceneId = sceneId;
+			generatingImageType = imageType;
+			
+			const response = await fetch(`/api/scenes/${sceneId}/generate-image`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
+					imageType,
+				}),
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to generate image');
+			}
+
+			// Reload images for this scene
+			await loadSceneImages(sceneId);
+		} catch (err) {
+			console.error('[Editor] Error generating image:', err);
+			alert(err instanceof Error ? err.message : 'Failed to generate image');
+		} finally {
+			generating = false;
+			generatingSceneId = null;
+			generatingImageType = null;
+		}
+	}
+
+	// Upload image for a scene
+	async function uploadSceneImage(sceneId: string, file: File, imageType: string = 'uploaded') {
+		if (!browser) {
+			return;
+		}
+
+		try {
+			generating = true;
+			generatingSceneId = sceneId;
+			generatingImageType = 'upload';
+			
+			// Validate file type
+			if (!file.type.startsWith('image/')) {
+				throw new Error('File must be an image');
+			}
+
+			// Read file as base64
+			const reader = new FileReader();
+			const base64Promise = new Promise<string>((resolve, reject) => {
+				reader.onload = () => {
+					const result = reader.result as string;
+					// Remove data URL prefix if present
+					const base64 = result.includes(',') ? result.split(',')[1] : result;
+					resolve(base64);
+				};
+				reader.onerror = reject;
+				reader.readAsDataURL(file);
+			});
+
+			const imageData = await base64Promise;
+			
+			// Determine image format from file type
+			const imageFormat = file.type.split('/')[1] || 'png';
+			
+			const response = await fetch(`/api/scenes/${sceneId}/upload-image`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
+					imageData,
+					imageType,
+					imageFormat,
+				}),
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to upload image');
+			}
+
+			// Reload images for this scene
+			await loadSceneImages(sceneId);
+		} catch (err) {
+			console.error('[Editor] Error uploading image:', err);
+			alert(err instanceof Error ? err.message : 'Failed to upload image');
+		} finally {
+			generating = false;
+			generatingSceneId = null;
+			generatingImageType = null;
+		}
+	}
+
+	// Handle drag and drop for image upload
+	let dragOverSceneId = $state<string | null>(null);
+
+	function handleImageDragOver(e: DragEvent, sceneId: string) {
+		e.preventDefault();
+		e.stopPropagation();
+		if (e.dataTransfer) {
+			e.dataTransfer.dropEffect = 'copy';
+		}
+		dragOverSceneId = sceneId;
+	}
+
+	function handleImageDragLeave(e: DragEvent) {
+		e.preventDefault();
+		e.stopPropagation();
+		dragOverSceneId = null;
+	}
+
+	async function handleImageDrop(e: DragEvent, sceneId: string) {
+		e.preventDefault();
+		e.stopPropagation();
+		dragOverSceneId = null;
+
+		if (!e.dataTransfer?.files || e.dataTransfer.files.length === 0) {
+			return;
+		}
+
+		const file = e.dataTransfer.files[0];
+		if (file && file.type.startsWith('image/')) {
+			await uploadSceneImage(sceneId, file);
+		} else {
+			alert('Please drop an image file');
+		}
+	}
+
+	// Handle file input change
+	function handleFileInputChange(e: Event, sceneId: string) {
+		const target = e.target as HTMLInputElement;
+		if (target.files && target.files.length > 0) {
+			const file = target.files[0];
+			if (file) {
+				uploadSceneImage(sceneId, file);
+				// Reset input
+				target.value = '';
+			}
+		}
+	}
+
+	// Update scene duration
+	async function updateSceneDuration(sceneId: string, newDuration: number) {
+		if (!browser) {
+			return;
+		}
+
+		const scene = scenes.find(s => s.id === sceneId);
+		if (!scene) return;
+
+		// Optimistically update UI
+		const sceneIndex = scenes.findIndex(s => s.id === sceneId);
+		if (sceneIndex >= 0) {
+			const updatedScenes = [...scenes];
+			updatedScenes[sceneIndex] = {
+				...updatedScenes[sceneIndex]!,
+				durationSeconds: newDuration,
+			};
+			// Recalculate start times
+			let currentTime = 0;
+			const recalculatedScenes = updatedScenes.map((s) => {
+				const updated = {
+					...s,
+					startTimeSeconds: currentTime,
+				};
+				currentTime += s.durationSeconds || 0;
+				return updated;
+			});
+			scenes = recalculatedScenes;
+		}
+
+		try {
+			const response = await fetch(`/api/scenes/${sceneId}`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-Org-Id': orgId,
+				},
+				body: JSON.stringify({
+					durationSeconds: newDuration,
+				}),
+			});
+
+			if (!response.ok) {
+				// Revert on error
+				if (storyboardId) {
+					await loadScenes(storyboardId);
+				}
+				const errorData = await response.json().catch(() => ({ error: response.statusText }));
+				throw new Error(errorData.error || 'Failed to update scene duration');
+			}
+
+			if (storyboardId) {
+				// Reload scenes to get the updated list
+				await loadScenes(storyboardId);
+			}
+		} catch (err) {
+			console.error('[Editor] Error updating scene duration:', err);
+			alert(err instanceof Error ? err.message : 'Failed to update scene duration');
+		}
+	}
+
+	function handleGenerateVideo() {
+		generating = true;
+		// Simulate generation
+		setTimeout(() => {
+			generating = false;
+			alert('Video generation started!');
+		}, 1000);
+	}
+
+	function formatTime(seconds: number | null): string {
+		if (seconds === null) return '00';
+		const mins = Math.floor(seconds / 60);
+		const secs = (seconds % 60).toFixed(2);
+		if (mins === 0) {
+			return secs.padStart(5, '0');
+		}
+		return `${mins.toString().padStart(2, '0')}.${secs}`;
+	}
+
+	// Drag and Drop handlers
+	function handleDragStart(e: DragEvent, sceneId: string, index: number) {
+		if (e.dataTransfer) {
+			e.dataTransfer.effectAllowed = 'move';
+			e.dataTransfer.setData('text/plain', JSON.stringify({ sceneId, index }));
+			draggedSceneId = sceneId;
+		}
+	}
+
+	function handleDragOver(e: DragEvent, index: number) {
+		e.preventDefault();
+		e.stopPropagation();
+		if (e.dataTransfer) {
+			e.dataTransfer.dropEffect = 'move';
+		}
+		dragOverIndex = index;
+	}
+
+	function handleDragLeave(e: DragEvent) {
+		// Only clear if we're actually leaving the element
+		const rect = (e.currentTarget as HTMLElement)?.getBoundingClientRect();
+		if (rect) {
+			const x = e.clientX;
+			const y = e.clientY;
+			if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+				dragOverIndex = null;
+			}
+		}
+	}
+
+	function handleDrop(e: DragEvent, dropIndex: number) {
+		e.preventDefault();
+		e.stopPropagation();
+		dragOverIndex = null;
+		
+		if (e.dataTransfer) {
+			const data = e.dataTransfer.getData('text/plain');
+			if (data) {
+				try {
+					const { index: dragIndex } = JSON.parse(data);
+					if (dragIndex !== undefined && dragIndex !== dropIndex) {
+						moveScene(dragIndex, dropIndex);
+					}
+				} catch (err) {
+					console.error('Failed to parse drag data:', err);
+				}
+			}
+		}
+		draggedSceneId = null;
+	}
+
+	function handleDragEnd() {
+		draggedSceneId = null;
+		dragOverIndex = null;
+	}
+
+	// Keyboard shortcuts
+	onMount(async () => {
+		if (!browser) return;
+		
+		// Load initial data
+		await loadData();
+		// Ensure characters are loaded
+		await loadCharacters();
+		
+		const handleKeyDown = (e: KeyboardEvent) => {
+			// Prevent shortcuts when typing in inputs
+			if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+				return;
+			}
+
+			if ((e.key === 'Delete' || e.key === 'Backspace') && selectedSceneId) {
+				e.preventDefault();
+				deleteScene(selectedSceneId);
+			} else if ((e.key === '+' || e.key === '=') && !e.shiftKey) {
+				e.preventDefault();
+				const selectedIndex = scenes.findIndex(s => s.id === selectedSceneId);
+				const insertIndex = selectedIndex >= 0 ? selectedIndex + 1 : scenes.length;
+				addScene(insertIndex);
+			} else if (e.key === 'ArrowLeft' && selectedSceneId) {
+				e.preventDefault();
+				const selectedIndex = scenes.findIndex(s => s.id === selectedSceneId);
+				if (selectedIndex > 0) {
+					const sceneToMove = scenes[selectedIndex];
+					if (sceneToMove) {
+						moveScene(selectedIndex, selectedIndex - 1);
+						// After move, the scene is now at selectedIndex - 1
+						selectedSceneId = sceneToMove.id;
+					}
+				}
+			} else if (e.key === 'ArrowRight' && selectedSceneId) {
+				e.preventDefault();
+				const selectedIndex = scenes.findIndex(s => s.id === selectedSceneId);
+				if (selectedIndex < scenes.length - 1) {
+					const sceneToMove = scenes[selectedIndex];
+					if (sceneToMove) {
+						moveScene(selectedIndex, selectedIndex + 1);
+						// After move, the scene is now at selectedIndex + 1
+						selectedSceneId = sceneToMove.id;
+					}
+				}
+			}
+		};
+
+		window.addEventListener('keydown', handleKeyDown);
+		return () => {
+			window.removeEventListener('keydown', handleKeyDown);
+		};
+	});
+</script>
+
+<div class="storyboard-editor">
+	<!-- Sidebar -->
+	<ProjectSidebar projectId={projectId} />
+	
+	<!-- Main Content Area -->
+	<div class="main-content">
+	<!-- Header Bar -->
+	<header class="header-bar">
+		<div class="header-left">
+			<h1 class="title">Storyboard</h1>
+			{#if storyboards.length > 0}
+				<div class="storyboard-selector">
+					<select
+						value={storyboardId || ''}
+						onchange={(e) => {
+							const selectedId = (e.target as HTMLSelectElement).value;
+							if (selectedId) {
+								handleStoryboardChange(selectedId);
+							}
+						}}
+						class="storyboard-select"
+						aria-label="Select storyboard"
+					>
+						{#each storyboards as sb}
+							<option value={sb.id}>{sb.title}</option>
+						{/each}
+					</select>
+					<button
+						class="add-storyboard-button"
+						onclick={() => {
+							showCreateStoryboardDialog = true;
+						}}
+						aria-label="Create new storyboard"
+						title="Create new storyboard"
+					>
+						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+							<path d="M8 3V13M3 8H13" stroke-width="1.5" stroke-linecap="round"/>
+						</svg>
+					</button>
+				</div>
+			{/if}
+		</div>
+		<div class="header-center">
+		</div>
+		<div class="header-right">
+			<button class="icon-button" aria-label="Undo">
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+					<path d="M3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M7 7L3 10L7 13" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</button>
+			<button class="icon-button" aria-label="Redo">
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+					<path d="M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M13 7L17 10L13 13" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</button>
+			<button class="icon-button" aria-label="Help">
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+					<circle cx="10" cy="10" r="7" stroke-width="1.5"/>
+					<path d="M10 7V10M10 13H10.01" stroke-width="1.5" stroke-linecap="round"/>
+				</svg>
+			</button>
+			<button class="icon-button" aria-label="Notifications">
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+					<path d="M10 3C7.23858 3 5 5.23858 5 8C5 11.5 4 13 4 13H16C16 13 15 11.5 15 8C15 5.23858 12.7614 3 10 3Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M8 13C8 14.1046 8.89543 15 10 15C11.1046 15 12 14.1046 12 13" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</button>
+			<div class="header-clerk-controls">
+				<OrganizationSwitcher />
+				<UserAccountMenu />
+			</div>
+		</div>
+	</header>
+
+	<!-- Loading State -->
+	{#if loading}
+		<div class="loading-container">
+			<p>Loading storyboard...</p>
+		</div>
+	<!-- Error State -->
+	{:else if error}
+		<div class="error-container">
+			<p class="error-message">{error}</p>
+			<button onclick={loadData} class="retry-button">Retry</button>
+		</div>
+	<!-- No Storyboard State -->
+	{:else if !storyboardId}
+		<div class="empty-state-container">
+			<div class="empty-state">
+				<svg width="64" height="64" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5">
+					<path d="M2 4C2 3.44772 2.44772 3 3 3H17C17.5523 3 18 3.44772 18 4V16C18 16.5523 17.5523 17 17 17H3C2.44772 17 2 16.5523 2 16V4Z"/>
+					<path d="M7 3V17M13 3V17"/>
+				</svg>
+				<h2>No Storyboard Found</h2>
+				<p>Create a new storyboard to get started with your project.</p>
+				<button 
+					onclick={() => {
+						showCreateStoryboardDialog = true;
+					}} 
+					class="create-storyboard-button" 
+					disabled={loading}
+				>
+					{loading ? 'Creating...' : 'Create Storyboard'}
+				</button>
+			</div>
+		</div>
+	<!-- Main Content: Scene Panels -->
+	{:else}
+	<main class="scene-panels-container">
+		<div class="scene-panels-wrapper">
+			{#each scenes as scene, index}
+			<!-- Insert button before scene (shown on hover) -->
+			<div
+				class="insert-button-container"
+				class:hovered={hoveredInsertIndex === index}
+				class:drag-over={dragOverIndex === index}
+				onmouseenter={() => hoveredInsertIndex = index}
+				onmouseleave={() => hoveredInsertIndex = null}
+				role="button"
+				tabindex="0"
+				ondragover={(e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					if (e.dataTransfer) {
+						e.dataTransfer.dropEffect = 'move';
+					}
+					dragOverIndex = index;
+				}}
+				ondragleave={(e) => {
+					const rect = (e.currentTarget as HTMLElement)?.getBoundingClientRect();
+					if (rect) {
+						const x = e.clientX;
+						const y = e.clientY;
+						if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+							if (dragOverIndex === index) {
+								dragOverIndex = null;
+							}
+						}
+					}
+				}}
+				ondrop={(e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					dragOverIndex = null;
+					if (e.dataTransfer) {
+						const data = e.dataTransfer.getData('text/plain');
+						if (data) {
+							try {
+								const { index: dragIndex } = JSON.parse(data);
+								if (dragIndex !== undefined && dragIndex !== index) {
+									moveScene(dragIndex, index);
+								}
+							} catch (err) {
+								console.error('Failed to parse drag data:', err);
+							}
+						}
+					}
+					draggedSceneId = null;
+				}}
+			>
+					<button
+						class="insert-button"
+						onclick={() => addScene(index)}
+						aria-label="Insert scene before"
+						title="Insert scene before"
+					>
+						<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+							<path d="M10 4V16M4 10H16" stroke-width="2" stroke-linecap="round"/>
+						</svg>
+					</button>
+				</div>
+
+				<!-- Scene Panel -->
+				<div
+					class="scene-panel"
+					class:selected={selectedSceneId === scene.id}
+					class:dragging={draggedSceneId === scene.id}
+					class:drag-over={dragOverIndex === index}
+					draggable="true"
+					ondragstart={(e) => handleDragStart(e, scene.id, index)}
+					ondragover={(e) => handleDragOver(e, index)}
+					ondragleave={handleDragLeave}
+					ondrop={(e) => handleDrop(e, index)}
+					ondragend={handleDragEnd}
+					onclick={() => handleSceneSelect(scene.id)}
+					role="button"
+					tabindex="0"
+					onkeydown={(e) => {
+						if (e.key === 'Enter' || e.key === ' ') {
+							e.preventDefault();
+							handleSceneSelect(scene.id);
+						}
+					}}
+				>
+				<!-- Scene Content Area (Dark) -->
+				<div 
+					class="scene-content"
+					class:drag-over={dragOverSceneId === scene.id}
+					ondragover={(e) => handleImageDragOver(e, scene.id)}
+					ondragleave={handleImageDragLeave}
+					ondrop={(e) => handleImageDrop(e, scene.id)}
+					role="region"
+					aria-label="Scene content area"
+				>
+					<!-- Loading Overlay for Image Generation -->
+					{#if generatingSceneId === scene.id && generatingImageType}
+						<div class="generating-overlay">
+							<div class="generating-spinner">
+								<svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+									<circle cx="16" cy="16" r="14" stroke-width="2" stroke-opacity="0.3"/>
+									<circle cx="16" cy="16" r="14" stroke-width="2" stroke-dasharray="44" stroke-dashoffset="22" stroke-linecap="round">
+										<animate attributeName="stroke-dashoffset" values="44;0;44" dur="1.5s" repeatCount="indefinite"/>
+									</circle>
+								</svg>
+							</div>
+							<p class="generating-text">
+								{#if generatingImageType === 'start'}
+									開始画像を生成中...
+								{:else if generatingImageType === 'end'}
+									終了画像を生成中...
+								{:else if generatingImageType === 'upload'}
+									画像をアップロード中...
+								{/if}
+							</p>
+						</div>
+					{/if}
+					
+					<!-- Generated Images -->
+					{#if sceneImages[scene.id]}
+						{@const images = sceneImages[scene.id] || []}
+						{@const startImage = images.find(img => img.imageType === 'start') || null}
+						{@const endImage = images.find(img => img.imageType === 'end') || null}
+						{@const uploadedImages = images.filter(img => img.imageType === 'uploaded' || (!img.imageType && img.imageType !== 'start' && img.imageType !== 'end'))}
+						<div class="scene-images">
+							{#if startImage}
+								<div class="scene-image-container">
+									<img
+										src={getImageUrl(startImage.id)}
+										alt="Start image"
+										class="scene-image"
+										loading="lazy"
+									/>
+									<span class="image-label">Start</span>
+								</div>
+							{/if}
+							
+							{#if endImage}
+								<div class="scene-image-container">
+									<img
+										src={getImageUrl(endImage.id)}
+										alt="End image"
+										class="scene-image"
+										loading="lazy"
+									/>
+									<span class="image-label">End</span>
+								</div>
+							{/if}
+							
+							{#each uploadedImages as uploadedImage}
+								<div class="scene-image-container">
+									<img
+										src={getImageUrl(uploadedImage.id)}
+										alt="Uploaded image"
+										class="scene-image"
+										loading="lazy"
+									/>
+									<span class="image-label">Uploaded</span>
+								</div>
+							{/each}
+						</div>
+					{:else}
+						<!-- Drop zone hint when no images -->
+						<div class="drop-zone-hint">
+							<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+								<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+								<polyline points="17 8 12 3 7 8"/>
+								<line x1="12" y1="3" x2="12" y2="15"/>
+							</svg>
+							<p>Drop image here or click to upload</p>
+						</div>
+					{/if}
+						
+						<div class="scene-description">{scene.textDescription || 'Click to edit description'}</div>
+						
+					<!-- Dialogue Editor -->
+					{#if selectedSceneId === scene.id && scene?.id}
+						{@const currentSceneId = scene.id}
+						{#if currentSceneId}
+							<DialogueEditor
+								sceneId={currentSceneId}
+								characters={characters}
+								dialogues={sceneDialogues[currentSceneId] || []}
+								onDialogueChange={() => {
+									if (currentSceneId) {
+										loadDialogues(currentSceneId);
+									}
+								}}
+							/>
+						{/if}
+					{/if}
+					</div>
+					
+					<!-- Scene Controls -->
+					<div class="scene-controls">
+						<span class="timestamp">{formatTime(scene.startTimeSeconds)}</span>
+						
+						<!-- Duration Slider -->
+						<div class="duration-control" onclick={(e) => e.stopPropagation()}>
+							<label for="duration-{scene.id}" class="duration-label">Duration: {scene.durationSeconds?.toFixed(1)}s</label>
+							<input
+								id="duration-{scene.id}"
+								type="range"
+								min="0.5"
+								max="10"
+								step="0.1"
+								value={scene.durationSeconds || 2.0}
+								oninput={(e) => {
+									const value = parseFloat((e.target as HTMLInputElement).value);
+									updateSceneDuration(scene.id, value);
+								}}
+								class="duration-slider"
+								aria-label="Scene duration"
+							/>
+						</div>
+						
+						<!-- Image Generation Buttons -->
+						<div class="image-generation-controls" onclick={(e) => e.stopPropagation()} role="group" aria-label="Image generation controls">
+							<button
+								class="image-gen-button"
+								class:generating={generatingSceneId === scene.id && generatingImageType === 'start'}
+								onclick={() => generateSceneImage(scene.id, 'start')}
+								disabled={generating}
+								aria-label="Generate start image"
+								title="Generate start image"
+							>
+								{#if generatingSceneId === scene.id && generatingImageType === 'start'}
+									<svg class="spinner" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+										<circle cx="7" cy="7" r="6" stroke-width="1.5" stroke-opacity="0.3"/>
+										<circle cx="7" cy="7" r="6" stroke-width="1.5" stroke-dasharray="19" stroke-dashoffset="9.5" stroke-linecap="round">
+											<animate attributeName="stroke-dashoffset" values="19;0;19" dur="1s" repeatCount="indefinite"/>
+										</circle>
+									</svg>
+									Generating...
+								{:else}
+									<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+										<path d="M7 2V12M2 7H12" stroke-width="1.5" stroke-linecap="round"/>
+									</svg>
+									Start
+								{/if}
+							</button>
+							<button
+								class="image-gen-button"
+								class:generating={generatingSceneId === scene.id && generatingImageType === 'end'}
+								onclick={() => generateSceneImage(scene.id, 'end')}
+								disabled={generating}
+								aria-label="Generate end image"
+								title="Generate end image"
+							>
+								{#if generatingSceneId === scene.id && generatingImageType === 'end'}
+									<svg class="spinner" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+										<circle cx="7" cy="7" r="6" stroke-width="1.5" stroke-opacity="0.3"/>
+										<circle cx="7" cy="7" r="6" stroke-width="1.5" stroke-dasharray="19" stroke-dashoffset="9.5" stroke-linecap="round">
+											<animate attributeName="stroke-dashoffset" values="19;0;19" dur="1s" repeatCount="indefinite"/>
+										</circle>
+									</svg>
+									Generating...
+								{:else}
+									<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+										<path d="M7 2V12M2 7H12" stroke-width="1.5" stroke-linecap="round"/>
+									</svg>
+									End
+								{/if}
+							</button>
+							<label 
+								class="image-gen-button" 
+								class:generating={generatingSceneId === scene.id && generatingImageType === 'upload'}
+								tabindex="0" 
+								title="Upload image"
+							>
+								<input
+									type="file"
+									accept="image/*"
+									style="display: none;"
+									disabled={generating}
+									onchange={(e) => handleFileInputChange(e, scene.id)}
+									onkeydown={(e) => {
+										if (e.key === 'Enter' || e.key === ' ') {
+											e.preventDefault();
+											(e.target as HTMLElement).click();
+										}
+									}}
+								/>
+								{#if generatingSceneId === scene.id && generatingImageType === 'upload'}
+									<svg class="spinner" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+										<circle cx="7" cy="7" r="6" stroke-width="1.5" stroke-opacity="0.3"/>
+										<circle cx="7" cy="7" r="6" stroke-width="1.5" stroke-dasharray="19" stroke-dashoffset="9.5" stroke-linecap="round">
+											<animate attributeName="stroke-dashoffset" values="19;0;19" dur="1s" repeatCount="indefinite"/>
+										</circle>
+									</svg>
+									Uploading...
+								{:else}
+									<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+										<path d="M7 2V12M2 7H12" stroke-width="1.5" stroke-linecap="round"/>
+									</svg>
+									Upload
+								{/if}
+							</label>
+						</div>
+						
+						<div class="scene-actions">
+							<button class="action-button" onclick={(e) => { e.stopPropagation(); }} aria-label="Edit scene">
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+									<path d="M11 2L14 5L5 14H2V11L11 2Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+							</button>
+							<button class="action-button" onclick={(e) => { e.stopPropagation(); deleteScene(scene.id); }} aria-label="Delete scene">
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+									<path d="M3 4H13M5 4V3C5 2.44772 5.44772 2 6 2H10C10.5523 2 11 2.44772 11 3V4M13 4V13C13 13.5523 12.5523 14 12 14H4C3.44772 14 3 13.5523 3 13V4H13Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+							</button>
+						</div>
+					</div>
+				</div>
+			{/each}
+
+			<!-- Add button at the end -->
+			<div class="add-scene-end">
+				<button
+					class="add-scene-button"
+					onclick={() => addScene(scenes.length)}
+					aria-label="Add scene at end"
+					title="Add scene at end"
+				>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+						<path d="M12 5V19M5 12H19" stroke-width="2" stroke-linecap="round"/>
+					</svg>
+					<span>Add Scene</span>
+				</button>
+			</div>
+		</div>
+	</main>
+	{/if}
+
+	<!-- Timeline -->
+	{#if !loading && !error}
+	<div class="timeline-container">
+		<div class="timeline">
+			<!-- Time Markers -->
+			<div class="time-markers">
+				{#each Array(Math.ceil(totalDuration) + 1) as _, i}
+					<div class="time-marker" style="left: {(i / totalDuration) * 100}%">
+						<span class="time-label">{i.toString().padStart(2, '0')}</span>
+					</div>
+				{/each}
+			</div>
+
+			<!-- Scene Blocks -->
+			<div class="scene-blocks">
+				{#each scenes as scene, index}
+					{@const startPercent = ((scene.startTimeSeconds || 0) / totalDuration) * 100}
+					{@const widthPercent = ((scene.durationSeconds || 0) / totalDuration) * 100}
+					<div
+						class="scene-block"
+						class:selected={selectedSceneId === scene.id}
+						class:dragging={draggedSceneId === scene.id}
+						draggable="true"
+						ondragstart={(e) => handleDragStart(e, scene.id, index)}
+						ondragover={(e) => handleDragOver(e, index)}
+						ondragleave={handleDragLeave}
+						ondrop={(e) => handleDrop(e, index)}
+						ondragend={handleDragEnd}
+						style="left: {startPercent}%; width: {widthPercent}%"
+						onclick={() => handleSceneSelect(scene.id)}
+						role="button"
+						tabindex="0"
+						onkeydown={(e) => {
+							if (e.key === 'Enter' || e.key === ' ') {
+								e.preventDefault();
+								handleSceneSelect(scene.id);
+							}
+						}}
+					>
+						<span class="scene-block-number">{scene.sceneNumber}</span>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</div>
+
+	<!-- Character Manager -->
+	<CharacterManager projectId={projectId} bind:open={showCharacterManager} modal={true} />
+
+	<!-- Create Storyboard Dialog -->
+	{#if showCreateStoryboardDialog}
+		<div class="dialog-overlay" onclick={() => {
+			if (!loading) {
+				showCreateStoryboardDialog = false;
+				newStoryboardTitle = '';
+			}
+		}}>
+			<div class="dialog" onclick={(e) => e.stopPropagation()}>
+				<h2>Create New Storyboard</h2>
+				<div class="dialog-content">
+					<label for="storyboard-title">Title</label>
+					<input
+						id="storyboard-title"
+						type="text"
+						bind:value={newStoryboardTitle}
+						placeholder="Enter storyboard title"
+						disabled={loading}
+						onkeydown={(e) => {
+							if (e.key === 'Enter' && !loading && newStoryboardTitle.trim()) {
+								createStoryboard();
+							}
+						}}
+					/>
+				</div>
+				<div class="dialog-actions">
+					<button
+						class="dialog-button cancel"
+						onclick={() => {
+							showCreateStoryboardDialog = false;
+							newStoryboardTitle = '';
+						}}
+						disabled={loading}
+					>
+						Cancel
+					</button>
+					<button
+						class="dialog-button primary"
+						onclick={createStoryboard}
+						disabled={loading || !newStoryboardTitle.trim()}
+					>
+						{loading ? 'Creating...' : 'Create'}
+					</button>
+				</div>
+			</div>
+		</div>
+	{/if}
+
+	<!-- Bottom Toolbar -->
+	<div class="toolbar">
+		<!-- Character Manager Button -->
+		<button
+			class="toolbar-button"
+			onclick={() => showCharacterManager = true}
+			aria-label="Manage characters"
+			title="Manage characters"
+		>
+			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+				<path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" stroke-width="1.5"/>
+				<path d="M10 12C5.58172 12 2 15.5817 2 20H18C18 15.5817 14.4183 12 10 12Z" stroke-width="1.5"/>
+			</svg>
+			<span>Characters</span>
+		</button>
+		
+		<button class="toolbar-button" aria-label="Aspect Ratio">
+			16:9
+		</button>
+		<button class="toolbar-button" aria-label="Resolution">
+			480p
+		</button>
+		<button class="toolbar-button" aria-label="Segment Duration">
+			{Math.max(...scenes.map(s => s.durationSeconds || 0)).toFixed(0)}s
+		</button>
+		<button class="toolbar-button" aria-label="Video Track">
+			1v
+		</button>
+		<button class="toolbar-button" aria-label="Filter">
+			None
+		</button>
+		<button
+			class="toolbar-button add-scene-toolbar-button"
+			onclick={() => addScene(scenes.length)}
+			aria-label="Add scene"
+		>
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+				<path d="M8 3V13M3 8H13" stroke-width="1.5" stroke-linecap="round"/>
+			</svg>
+			Add Scene
+		</button>
+		<button class="toolbar-button help-button" aria-label="Help">
+			Help
+		</button>
+		<button
+			class="toolbar-button create-button"
+			onclick={handleGenerateVideo}
+			disabled={generating}
+			aria-label="Create video"
+		>
+			Create
+		</button>
+	</div>
+	{/if}
+	</div>
+</div>
+
+<style>
+	.storyboard-editor {
+		display: flex;
+		flex-direction: row;
+		height: 100vh;
+		background-color: #1a1a1a;
+		color: #ffffff;
+		overflow: hidden;
+	}
+
+	.main-content {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		overflow: hidden;
+	}
+
+	/* Header Bar */
+	.header-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 1rem 2rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		background-color: #1a1a1a;
+	}
+
+	.header-left {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	.storyboard-selector {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.storyboard-select {
+		padding: 0.5rem 1rem;
+		background-color: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 6px;
+		color: #ffffff;
+		font-size: 0.875rem;
+		cursor: pointer;
+		min-width: 200px;
+		transition: background-color 0.2s, border-color 0.2s;
+	}
+
+	.storyboard-select:hover {
+		background-color: rgba(255, 255, 255, 0.15);
+		border-color: rgba(255, 255, 255, 0.3);
+	}
+
+	.storyboard-select:focus {
+		outline: none;
+		border-color: #3b82f6;
+		background-color: rgba(255, 255, 255, 0.15);
+	}
+
+	.add-storyboard-button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		padding: 0;
+		background-color: rgba(59, 130, 246, 0.1);
+		border: 1px solid rgba(59, 130, 246, 0.3);
+		border-radius: 6px;
+		color: #3b82f6;
+		cursor: pointer;
+		transition: background-color 0.2s, border-color 0.2s;
+	}
+
+	.add-storyboard-button:hover {
+		background-color: rgba(59, 130, 246, 0.2);
+		border-color: rgba(59, 130, 246, 0.5);
+	}
+
+	.add-storyboard-button:active {
+		background-color: rgba(59, 130, 246, 0.3);
+	}
+
+	/* Empty State */
+	.empty-state-container {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+	}
+
+	.empty-state {
+		text-align: center;
+		color: rgba(255, 255, 255, 0.7);
+		max-width: 400px;
+	}
+
+	.empty-state svg {
+		margin-bottom: 1.5rem;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.empty-state h2 {
+		font-size: 1.5rem;
+		font-weight: 500;
+		margin: 0 0 0.5rem 0;
+		color: #ffffff;
+	}
+
+	.empty-state p {
+		font-size: 0.875rem;
+		margin: 0 0 2rem 0;
+		color: rgba(255, 255, 255, 0.6);
+	}
+
+	.create-storyboard-button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1.5rem;
+		background-color: #3b82f6;
+		color: #ffffff;
+		border: none;
+		border-radius: 6px;
+		font-size: 0.875rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+
+	.create-storyboard-button:hover:not(:disabled) {
+		background-color: #2563eb;
+	}
+
+	.create-storyboard-button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	/* Loading and Error States */
+	.loading-container,
+	.error-container {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+	}
+
+	.error-message {
+		color: #ef4444;
+		margin-bottom: 1rem;
+		font-size: 0.875rem;
+	}
+
+	.retry-button {
+		padding: 0.5rem 1rem;
+		background-color: rgba(255, 255, 255, 0.1);
+		color: #ffffff;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 0.875rem;
+		transition: background-color 0.2s;
+	}
+
+	.retry-button:hover {
+		background-color: rgba(255, 255, 255, 0.15);
+	}
+
+	/* Dialog Styles */
+	.dialog-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.7);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 1000;
+		backdrop-filter: blur(4px);
+	}
+
+	.dialog {
+		background-color: #2a2a2a;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 8px;
+		padding: 1.5rem;
+		min-width: 400px;
+		max-width: 90vw;
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+	}
+
+	.dialog h2 {
+		margin: 0 0 1.5rem 0;
+		font-size: 1.25rem;
+		font-weight: 500;
+		color: #ffffff;
+	}
+
+	.dialog-content {
+		margin-bottom: 1.5rem;
+	}
+
+	.dialog-content label {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-size: 0.875rem;
+		color: rgba(255, 255, 255, 0.8);
+		font-weight: 500;
+	}
+
+	.dialog-content input {
+		width: 100%;
+		padding: 0.75rem;
+		background-color: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 6px;
+		color: #ffffff;
+		font-size: 0.875rem;
+		transition: background-color 0.2s, border-color 0.2s;
+		box-sizing: border-box;
+	}
+
+	.dialog-content input:focus {
+		outline: none;
+		border-color: #3b82f6;
+		background-color: rgba(255, 255, 255, 0.15);
+	}
+
+	.dialog-content input:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	.dialog-content input::placeholder {
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	.dialog-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 0.75rem;
+	}
+
+	.dialog-button {
+		padding: 0.5rem 1rem;
+		border-radius: 6px;
+		font-size: 0.875rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: background-color 0.2s, border-color 0.2s;
+		border: 1px solid transparent;
+	}
+
+	.dialog-button.cancel {
+		background-color: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.2);
+		color: #ffffff;
+	}
+
+	.dialog-button.cancel:hover:not(:disabled) {
+		background-color: rgba(255, 255, 255, 0.15);
+	}
+
+	.dialog-button.primary {
+		background-color: #3b82f6;
+		color: #ffffff;
+	}
+
+	.dialog-button.primary:hover:not(:disabled) {
+		background-color: #2563eb;
+	}
+
+	.dialog-button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	.header-left {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+
+	.header-center {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+	}
+
+	.title {
+		font-size: 1.25rem;
+		font-weight: 400;
+		margin: 0;
+		color: #ffffff;
+	}
+
+	.header-right {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.header-clerk-controls {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-left: 0.5rem;
+		padding-left: 0.75rem;
+		border-left: 1px solid var(--sb-border-color, #404040);
+	}
+
+	.icon-button {
+		width: 36px;
+		height: 36px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: none;
+		border: none;
+		color: rgba(255, 255, 255, 0.8);
+		cursor: pointer;
+		border-radius: 4px;
+		transition: background-color 0.2s, color 0.2s;
+	}
+
+	.icon-button:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+		color: #ffffff;
+	}
+
+	.user-button {
+		border: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	/* Scene Panels Container */
+	.scene-panels-container {
+		flex: 1;
+		overflow-x: auto;
+		overflow-y: hidden;
+		min-height: 0;
+		position: relative;
+	}
+
+	.scene-panels-wrapper {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
+		padding: 1.5rem;
+		min-width: min-content;
+		height: 100%;
+		align-items: stretch;
+	}
+
+	/* Insert Button Container */
+	.insert-button-container {
+		flex-shrink: 0;
+		width: 60px;
+		opacity: 0;
+		transition: opacity 0.2s;
+		pointer-events: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.insert-button-container:hovered,
+	.insert-button-container.drag-over {
+		opacity: 1;
+		pointer-events: all;
+	}
+
+	.insert-button {
+		width: 100%;
+		height: 100%;
+		min-height: 300px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba(255, 255, 255, 0.05);
+		border: 2px dashed rgba(255, 255, 255, 0.3);
+		border-radius: 8px;
+		color: rgba(255, 255, 255, 0.7);
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.insert-button:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.5);
+		color: #ffffff;
+	}
+
+	/* Scene Panel */
+	.scene-panel {
+		flex-shrink: 0;
+		width: 400px;
+		display: flex;
+		flex-direction: column;
+		background-color: #2a2a2a;
+		border-radius: 8px;
+		overflow: hidden;
+		cursor: move;
+		transition: all 0.2s;
+		border: 2px solid transparent;
+		position: relative;
+	}
+
+	.scene-panel.selected {
+		border-color: #ffffff;
+	}
+
+	.scene-panel.dragging {
+		opacity: 0.5;
+		transform: scale(0.95);
+	}
+
+	.scene-panel.drag-over {
+		border-color: #ffffff;
+		box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+	}
+
+	.scene-content {
+		flex: 1;
+		background-color: #000000;
+		min-height: 300px;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		align-items: flex-start;
+		position: relative;
+		overflow-y: auto;
+		transition: background-color 0.2s, border-color 0.2s;
+	}
+
+	.generating-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.8);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		z-index: 10;
+		border-radius: 4px;
+	}
+
+	.generating-spinner {
+		color: #3b82f6;
+		animation: pulse 2s ease-in-out infinite;
+	}
+
+	.generating-text {
+		color: #ffffff;
+		font-size: 0.875rem;
+		font-weight: 500;
+		margin: 0;
+	}
+
+	@keyframes pulse {
+		0%, 100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.7;
+		}
+	}
+
+	.scene-content.drag-over {
+		background-color: rgba(59, 130, 246, 0.1);
+		border: 2px dashed rgba(59, 130, 246, 0.5);
+		border-radius: 4px;
+	}
+
+	.drop-zone-hint {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		width: 100%;
+		height: 100%;
+		min-height: 200px;
+		color: rgba(255, 255, 255, 0.5);
+		font-size: 0.875rem;
+		text-align: center;
+		padding: 2rem;
+	}
+
+	.drop-zone-hint svg {
+		opacity: 0.5;
+	}
+
+	.scene-content.drag-over .drop-zone-hint {
+		color: rgba(59, 130, 246, 0.8);
+	}
+
+	.scene-content.drag-over .drop-zone-hint svg {
+		opacity: 1;
+		color: rgba(59, 130, 246, 0.8);
+	}
+
+	.scene-description {
+		color: #ffffff;
+		font-size: 0.875rem;
+		line-height: 1.5;
+		width: 100%;
+	}
+
+	.scene-controls {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 0.75rem 1rem;
+		background-color: #2a2a2a;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.scene-controls > *:first-child {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.timestamp {
+		font-size: 0.875rem;
+		color: #ffffff;
+		font-weight: 500;
+	}
+
+	.duration-control {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		width: 100%;
+	}
+
+	.duration-label {
+		font-size: 0.75rem;
+		color: rgba(255, 255, 255, 0.7);
+	}
+
+	.duration-slider {
+		width: 100%;
+		height: 4px;
+		border-radius: 2px;
+		background: rgba(255, 255, 255, 0.2);
+		outline: none;
+		-webkit-appearance: none;
+	}
+
+	.duration-slider::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background: #ffffff;
+		cursor: pointer;
+	}
+
+	.duration-slider::-moz-range-thumb {
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background: #ffffff;
+		cursor: pointer;
+		border: none;
+	}
+
+	.image-generation-controls {
+		display: flex;
+		gap: 0.5rem;
+		width: 100%;
+	}
+
+	.image-gen-button {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.25rem;
+		padding: 0.375rem 0.5rem;
+		background-color: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 4px;
+		color: rgba(255, 255, 255, 0.9);
+		font-size: 0.75rem;
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.image-gen-button:hover:not(:disabled) {
+		background-color: rgba(255, 255, 255, 0.2);
+		border-color: rgba(255, 255, 255, 0.3);
+		color: #ffffff;
+	}
+
+	.image-gen-button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	.image-gen-button.generating {
+		background-color: rgba(59, 130, 246, 0.2);
+		border-color: rgba(59, 130, 246, 0.5);
+		color: #93c5fd;
+	}
+
+	.image-gen-button.generating .spinner {
+		animation: spin 1s linear infinite;
+	}
+
+	@keyframes spin {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	.scene-actions {
+		display: flex;
+		gap: 0.5rem;
+		margin-left: auto;
+	}
+
+	.action-button {
+		width: 28px;
+		height: 28px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: none;
+		border: none;
+		color: rgba(255, 255, 255, 0.7);
+		cursor: pointer;
+		border-radius: 4px;
+		transition: background-color 0.2s, color 0.2s;
+	}
+
+	.action-button:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+		color: #ffffff;
+	}
+
+	/* Add Scene End Button */
+	.add-scene-end {
+		flex-shrink: 0;
+		width: 400px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.add-scene-button {
+		width: 100%;
+		height: 100%;
+		min-height: 300px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		background-color: rgba(255, 255, 255, 0.05);
+		border: 2px dashed rgba(255, 255, 255, 0.3);
+		border-radius: 8px;
+		color: rgba(255, 255, 255, 0.7);
+		cursor: pointer;
+		transition: all 0.2s;
+		font-size: 0.875rem;
+	}
+
+	.add-scene-button:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.5);
+		color: #ffffff;
+	}
+
+	/* Timeline Container */
+	.timeline-container {
+		padding: 1rem 2rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		background-color: #1a1a1a;
+	}
+
+	.timeline {
+		position: relative;
+		height: 80px;
+		background-color: #2a2a2a;
+		border-radius: 4px;
+		overflow: hidden;
+	}
+
+	.time-markers {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 100%;
+	}
+
+	.time-marker {
+		position: absolute;
+		top: 0;
+		width: 1px;
+		height: 100%;
+		background-color: rgba(255, 255, 255, 0.2);
+	}
+
+	.time-label {
+		position: absolute;
+		top: 0.25rem;
+		left: 0.25rem;
+		font-size: 0.75rem;
+		color: rgba(255, 255, 255, 0.6);
+		transform: translateX(-50%);
+	}
+
+	.scene-blocks {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		height: 32px;
+		transform: translateY(-50%);
+	}
+
+	.scene-block {
+		position: absolute;
+		height: 100%;
+		background-color: #000000;
+		border-radius: 2px;
+		cursor: move;
+		transition: all 0.2s;
+		border: 2px solid transparent;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.scene-block.selected {
+		border-color: #ffffff;
+	}
+
+	.scene-block.dragging {
+		opacity: 0.5;
+		transform: scale(0.9);
+	}
+
+	.scene-block-number {
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: #ffffff;
+	}
+
+	/* Toolbar */
+	.toolbar {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 1rem 2rem;
+		background-color: #2a2a2a;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.toolbar-button {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.5rem 1rem;
+		background-color: transparent;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 4px;
+		color: #ffffff;
+		font-size: 0.875rem;
+		cursor: pointer;
+		transition: background-color 0.2s, border-color 0.2s;
+	}
+
+	.toolbar-button:hover:not(:disabled) {
+		background-color: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.3);
+	}
+
+	.toolbar-button:focus {
+		outline: 2px solid #ffffff;
+		outline-offset: 2px;
+	}
+
+	.toolbar-button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	.add-scene-toolbar-button {
+		margin-left: auto;
+	}
+
+	.help-button {
+		margin-left: 0;
+	}
+
+	.create-button {
+		background-color: #ffffff;
+		color: #000000;
+		font-weight: 500;
+		border-color: #ffffff;
+	}
+
+	.create-button:hover:not(:disabled) {
+		background-color: rgba(255, 255, 255, 0.9);
+	}
+</style>

@@ -1,0 +1,157 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://gftd.ai/ontology/storyboard-editor#",
+    "id": "@id",
+    "type": "@type",
+    "cpm": "https://example.org/cpm#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct": "http://purl.org/dc/terms/",
+    
+    "name": "dct:title",
+    "description": "dct:description",
+    "createdAt": {"@id": "dct:created", "@type": "xsd:dateTime"},
+    
+    "capability": {"@id": "cpm:Capability", "@container": "@set"},
+    "hasActivity": {"@id": "cpm:hasActivity", "@type": "@id", "@container": "@set"},
+    "realizedBy": {"@id": "cpm:realizedBy", "@type": "@id", "@container": "@set"}
+  },
+  
+  "@graph": [
+    {
+      "id": "https://gftd.ai/capability/project-management",
+      "type": "cpm:Capability",
+      "name": "Project Management",
+      "description": "Capability to create, list, and manage storyboard projects",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/create-storyboard-project"},
+        {"@id": "https://gftd.ai/activity/list-storyboard-projects"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/storyboard-editing",
+      "type": "cpm:Capability",
+      "name": "Storyboard Editing",
+      "description": "Capability to create, read, update, and delete storyboards with aspect ratio, resolution, duration, and variation settings",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/create-storyboard"},
+        {"@id": "https://gftd.ai/activity/edit-storyboard"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/scene-management",
+      "type": "cpm:Capability",
+      "name": "Scene Management",
+      "description": "Capability to create, update, delete, and arrange scenes on timeline with media (video/image/text), timing, and transitions",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/manage-scenes"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/ai-video-generation",
+      "type": "cpm:Capability",
+      "name": "AI Video Generation",
+      "description": "Capability to generate videos from storyboards using multiple AI providers (OpenAI, Runway ML Gen-3 Alpha). Videos are stored as bytea in PostgreSQL and returned as Base64-encoded data or URLs.",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/generate-video-openai"},
+        {"@id": "https://gftd.ai/activity/generate-video-runway"},
+        {"@id": "https://gftd.ai/activity/poll-video-generation-status"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/service/grpc"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/video-composition",
+      "type": "cpm:Capability",
+      "name": "Video Composition",
+      "description": "Capability to combine scene-level videos into final video with transitions using FFmpeg",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/generate-video"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/timeline-editing",
+      "type": "cpm:Capability",
+      "name": "Timeline Editing",
+      "description": "Capability to edit timeline with scene arrangement, timing, and transitions",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/edit-timeline"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/video-preview",
+      "type": "cpm:Capability",
+      "name": "Video Preview",
+      "description": "Capability to preview generated videos before final export",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/preview-video"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/scenario-management",
+      "type": "cpm:Capability",
+      "name": "Scenario Management",
+      "description": "Capability to create, edit, delete, and manage story scenarios with episode, part, and scene structure planning",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/create-scenario"},
+        {"@id": "https://gftd.ai/activity/edit-scenario"},
+        {"@id": "https://gftd.ai/activity/manage-scenario-structure"},
+        {"@id": "https://gftd.ai/activity/list-scenarios"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/graphql"}
+      ]
+    },
+    {
+      "id": "https://gftd.ai/capability/sponsor-management",
+      "type": "cpm:Capability",
+      "name": "Sponsor Management",
+      "description": "Capability to search, register, manage, contact, track, and post sponsor information as an organization",
+      "createdAt": "2025-01-30T00:00:00Z",
+      "hasActivity": [
+        {"@id": "https://gftd.ai/activity/search-sponsors"},
+        {"@id": "https://gftd.ai/activity/register-sponsor"},
+        {"@id": "https://gftd.ai/activity/update-sponsor"},
+        {"@id": "https://gftd.ai/activity/contact-sponsor"},
+        {"@id": "https://gftd.ai/activity/track-sponsor-status"},
+        {"@id": "https://gftd.ai/activity/post-sponsor-info"}
+      ],
+      "realizedBy": [
+        {"@id": "https://gftd.ai/performer/actor/storyboard-editor"},
+        {"@id": "https://gftd.ai/performer/service/grpc"}
+      ]
+    }
+  ]
+}

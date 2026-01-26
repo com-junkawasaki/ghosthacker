@@ -1,0 +1,9 @@
+[submodule "apps/zen-editor-sub"]
+	path = apps/zen-editor-sub
+	url = /Users/junkawasaki/github/ghosthacker/apps/zen-editor
+[submodule "apps/zen-editor-tmp"]
+	path = apps/zen-editor-tmp
+	url = /Users/junkawasaki/github/ghosthacker/apps/zen-editor
+[submodule "apps/zen-editor"]
+	path = apps/zen-editor
+	url = ./apps/zen-editor

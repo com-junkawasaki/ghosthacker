@@ -1,0 +1,195 @@
+# Global settings
+global:
+  imageRegistry: ""
+  imagePullSecrets: []
+
+# PostgreSQL Configuration
+postgresql:
+  enabled: true
+  auth:
+    postgresPassword: "postgres"
+    database: "postgres"
+  primary:
+    persistence:
+      enabled: true
+      size: 8Gi
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "250m"
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+    initdbScripts:
+      init-temporal-db.sh: |
+        #!/bin/bash
+        set -e
+        psql -U postgres -d postgres <<-EOSQL
+          CREATE DATABASE temporal;
+          GRANT ALL PRIVILEGES ON DATABASE temporal TO postgres;
+        EOSQL
+  service:
+    type: ClusterIP
+    ports:
+      postgresql: 5432
+
+# Temporal Configuration (via Scaffold)
+temporal:
+  enabled: true
+  version: "1.24.0"
+  image:
+    repository: temporalio/auto-setup
+    tag: "1.24"
+  database:
+    host: postgresql
+    port: 5432
+    user: postgres
+    password: postgres
+    database: temporal
+  frontend:
+    replicas: 1
+    resources:
+      requests:
+        memory: "512Mi"
+        cpu: "500m"
+      limits:
+        memory: "1Gi"
+        cpu: "1000m"
+  matching:
+    replicas: 1
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "250m"
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+  history:
+    replicas: 1
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "250m"
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+  worker:
+    replicas: 1
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "250m"
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+  ui:
+    enabled: true
+    replicas: 1
+    image:
+      repository: temporalio/ui
+      tag: "2.26.2"
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "100m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"
+
+# gRPC Go Service
+grpcGo:
+  enabled: true
+  image:
+    repository: producer-storyboard/grpc-go
+    tag: latest
+    pullPolicy: IfNotPresent
+  replicaCount: 2
+  service:
+    type: ClusterIP
+    port: 8081
+    targetPort: 8081
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+  env:
+    DATABASE_URL: "postgresql://postgres:postgres@postgresql:5432/postgres"
+    PORT: "8081"
+    HOST: "0.0.0.0"
+    TEMPORAL_ADDRESS: "temporal-frontend:7233"
+  secrets:
+    # These should be set via Kubernetes secrets
+    OPENAI_API_KEY: ""
+    HUME_API_KEY: ""
+    SUNO_API_KEY: ""
+    RUNWAY_API_KEY: ""
+    HIGGSFIELD_API_KEY: ""
+  healthcheck:
+    enabled: true
+    path: "/health"
+    port: 8081
+
+# Temporal Worker
+temporalWorker:
+  enabled: true
+  image:
+    repository: producer-storyboard/temporal-worker
+    tag: latest
+    pullPolicy: IfNotPresent
+  replicaCount: 2
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+  env:
+    DATABASE_URL: "postgresql://postgres:postgres@postgresql:5432/postgres"
+    TEMPORAL_ADDRESS: "temporal-frontend:7233"
+  secrets:
+    CLERK_SECRET_KEY: ""
+
+# Frontend (optional)
+frontend:
+  enabled: false
+  image:
+    repository: producer-storyboard/frontend
+    tag: latest
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  service:
+    type: ClusterIP
+    port: 5173
+    targetPort: 5173
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "256Mi"
+      cpu: "200m"
+  env:
+    NODE_ENV: "production"
+    PUBLIC_APP_URL: ""
+    PUBLIC_GRPC_API_URL: "/api/grpc"
+    GRPC_API_URL: "http://grpc-go:8081"
+
+# Ingress Configuration
+ingress:
+  enabled: false
+  className: "nginx"
+  annotations: {}
+  hosts:
+    - host: producer-storyboard.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+# ServiceMonitor for Prometheus (optional)
+serviceMonitor:
+  enabled: false

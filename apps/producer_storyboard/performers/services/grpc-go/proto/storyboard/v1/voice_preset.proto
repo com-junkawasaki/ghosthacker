@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package storyboard.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1;storyboardv1";
+
+// VoicePreset represents a Hume AI voice preset
+message VoicePreset {
+  string id = 1;
+  string project_id = 2;
+  string name = 3;
+  string hume_voice_id = 4;
+  optional string description = 5;
+  optional string character_id = 6;
+  optional string sample_audio_id = 7;
+  optional string settings = 8; // JSON string
+  string created_at = 9;
+  string updated_at = 10;
+}
+
+message ListVoicePresetsRequest {
+  string project_id = 1;
+  optional string character_id = 2; // Filter by character
+}
+
+message ListVoicePresetsResponse {
+  repeated VoicePreset presets = 1;
+}
+
+message GetVoicePresetRequest {
+  string id = 1;
+}
+
+message CreateVoicePresetRequest {
+  string project_id = 1;
+  string name = 2;
+  string hume_voice_id = 3;
+  optional string description = 4;
+  optional string character_id = 5;
+  optional string sample_audio_id = 6;
+  optional string settings = 7; // JSON string
+}
+
+message UpdateVoicePresetRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string hume_voice_id = 3;
+  optional string description = 4;
+  optional string character_id = 5;
+  optional string sample_audio_id = 6;
+  optional string settings = 7; // JSON string
+}
+
+message DeleteVoicePresetRequest {
+  string id = 1;
+}
+
+message DeleteVoicePresetResponse {
+  bool success = 1;
+}

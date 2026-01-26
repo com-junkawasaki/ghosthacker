@@ -1,0 +1,227 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://gftd.ai/ontology/epub#",
+    "id": "@id",
+    "type": "@type",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "dct": "http://purl.org/dc/terms/",
+    "epub": "https://gftd.ai/ontology/epub#",
+    
+    "label": "rdfs:label",
+    "comment": "rdfs:comment",
+    "domain": {"@id": "rdfs:domain", "@type": "@id"},
+    "range": {"@id": "rdfs:range", "@type": "@id"},
+    "subClassOf": {"@id": "rdfs:subClassOf", "@type": "@id"},
+    "property": {"@id": "owl:property", "@type": "@id"},
+    
+    "targetClass": {"@id": "sh:targetClass", "@type": "@id"},
+    "property": {"@id": "sh:property", "@container": "@set"},
+    "datatype": {"@id": "sh:datatype", "@type": "@id"},
+    "minCount": "sh:minCount",
+    "maxCount": "sh:maxCount",
+    "path": {"@id": "sh:path", "@type": "@id"}
+  },
+  
+  "@graph": [
+    {
+      "id": "epub:Epub",
+      "type": "owl:Class",
+      "label": "EPUB Document",
+      "comment": "An EPUB book document containing chapters, metadata, and media",
+      "subClassOf": "dct:BibliographicResource"
+    },
+    {
+      "id": "epub:Chapter",
+      "type": "owl:Class",
+      "label": "Chapter",
+      "comment": "A chapter within an EPUB book",
+      "subClassOf": "dct:Text"
+    },
+    {
+      "id": "epub:Paragraph",
+      "type": "owl:Class",
+      "label": "Paragraph",
+      "comment": "A paragraph within a chapter",
+      "subClassOf": "dct:Text"
+    },
+    {
+      "id": "epub:Media",
+      "type": "owl:Class",
+      "label": "Media Asset",
+      "comment": "Media file (image, audio, video) within an EPUB book",
+      "subClassOf": "dct:MediaType"
+    },
+    {
+      "id": "epub:Metadata",
+      "type": "owl:Class",
+      "label": "Metadata",
+      "comment": "Metadata key-value pair for EPUB document"
+    },
+    {
+      "id": "epub:hasChapter",
+      "type": "owl:ObjectProperty",
+      "label": "has chapter",
+      "comment": "Relates an EPUB document to its chapters",
+      "domain": "epub:Epub",
+      "range": "epub:Chapter"
+    },
+    {
+      "id": "epub:hasParagraph",
+      "type": "owl:ObjectProperty",
+      "label": "has paragraph",
+      "comment": "Relates a chapter to its paragraphs",
+      "domain": "epub:Chapter",
+      "range": "epub:Paragraph"
+    },
+    {
+      "id": "epub:hasMedia",
+      "type": "owl:ObjectProperty",
+      "label": "has media",
+      "comment": "Relates a chapter to its media assets",
+      "domain": "epub:Chapter",
+      "range": "epub:Media"
+    },
+    {
+      "id": "epub:hasMetadata",
+      "type": "owl:ObjectProperty",
+      "label": "has metadata",
+      "comment": "Relates an EPUB document to its metadata",
+      "domain": "epub:Epub",
+      "range": "epub:Metadata"
+    },
+    {
+      "id": "epub:nextChapter",
+      "type": "owl:ObjectProperty",
+      "label": "next chapter",
+      "comment": "Relates a chapter to its next chapter in sequence",
+      "domain": "epub:Chapter",
+      "range": "epub:Chapter"
+    },
+    {
+      "id": "epub:title",
+      "type": "owl:DatatypeProperty",
+      "label": "title",
+      "comment": "Title of EPUB document or chapter",
+      "range": "xsd:string"
+    },
+    {
+      "id": "epub:language",
+      "type": "owl:DatatypeProperty",
+      "label": "language",
+      "comment": "Language code (ISO 639-1) of EPUB document",
+      "range": "xsd:string"
+    },
+    {
+      "id": "epub:contentHtml",
+      "type": "owl:DatatypeProperty",
+      "label": "content HTML",
+      "comment": "HTML content of chapter or paragraph",
+      "range": "xsd:string"
+    },
+    {
+      "id": "epub:order",
+      "type": "owl:DatatypeProperty",
+      "label": "order",
+      "comment": "Order/sequence number of chapter or paragraph",
+      "range": "xsd:integer"
+    },
+    {
+      "id": "epub:mediaType",
+      "type": "owl:DatatypeProperty",
+      "label": "media type",
+      "comment": "MIME type of media asset",
+      "range": "xsd:string"
+    },
+    {
+      "id": "epub:mediaUrl",
+      "type": "owl:DatatypeProperty",
+      "label": "media URL",
+      "comment": "URL or path to media asset",
+      "range": "xsd:anyURI"
+    },
+    {
+      "id": "epub:metadataKey",
+      "type": "owl:DatatypeProperty",
+      "label": "metadata key",
+      "comment": "Key of metadata entry",
+      "range": "xsd:string"
+    },
+    {
+      "id": "epub:metadataValue",
+      "type": "owl:DatatypeProperty",
+      "label": "metadata value",
+      "comment": "Value of metadata entry",
+      "range": "xsd:string"
+    },
+    {
+      "id": "epub:EpubShape",
+      "type": "sh:NodeShape",
+      "targetClass": "epub:Epub",
+      "property": [
+        {
+          "path": "epub:title",
+          "datatype": "xsd:string",
+          "minCount": 1
+        },
+        {
+          "path": "epub:language",
+          "datatype": "xsd:string",
+          "minCount": 1
+        },
+        {
+          "path": "epub:hasChapter",
+          "minCount": 0
+        },
+        {
+          "path": "epub:hasMetadata",
+          "minCount": 0
+        }
+      ]
+    },
+    {
+      "id": "epub:ChapterShape",
+      "type": "sh:NodeShape",
+      "targetClass": "epub:Chapter",
+      "property": [
+        {
+          "path": "epub:title",
+          "datatype": "xsd:string",
+          "minCount": 1
+        },
+        {
+          "path": "epub:order",
+          "datatype": "xsd:integer",
+          "minCount": 1
+        },
+        {
+          "path": "epub:contentHtml",
+          "datatype": "xsd:string",
+          "minCount": 0
+        }
+      ]
+    },
+    {
+      "id": "epub:MediaShape",
+      "type": "sh:NodeShape",
+      "targetClass": "epub:Media",
+      "property": [
+        {
+          "path": "epub:mediaType",
+          "datatype": "xsd:string",
+          "minCount": 1
+        },
+        {
+          "path": "epub:mediaUrl",
+          "datatype": "xsd:anyURI",
+          "minCount": 1
+        }
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,398 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "id": "@id",
+    "type": "@type",
+
+    "ghui": "https://gftd.ai/ns/ghost-hacker/ui#",
+    "dct": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "name": "dct:title",
+    "description": "dct:description",
+    "createdAt": { "@id": "dct:created", "@type": "xsd:dateTime" },
+    "updatedAt": { "@id": "dct:modified", "@type": "xsd:dateTime" },
+
+    "screen": { "@id": "ghui:screen", "@type": "@id" },
+    "layers": { "@id": "ghui:layers", "@container": "@set", "@type": "@id" },
+    "children": { "@id": "ghui:children", "@container": "@set", "@type": "@id" },
+    "theme":   { "@id": "ghui:theme", "@type": "@id" },
+    "target":  { "@id": "ghui:target", "@type": "@id" },
+
+    "flexDirection": "ghui:flexDirection",
+    "align": "ghui:align",
+    "justify": "ghui:justify",
+    "padding": "ghui:padding",
+    "margin": "ghui:margin",
+    "width": "ghui:width",
+    "height": "ghui:height",
+    "position": "ghui:position",
+    "top": "ghui:top",
+    "left": "ghui:left",
+    "right": "ghui:right",
+    "bottom": "ghui:bottom",
+    "zIndex": "ghui:zIndex",
+
+    "fontFamily": "ghui:fontFamily",
+    "fontSize": "ghui:fontSize",
+    "fontWeight": "ghui:fontWeight",
+    "letterSpacing": "ghui:letterSpacing",
+    "lineHeight": "ghui:lineHeight",
+    "textAlign": "ghui:textAlign",
+
+    "backgroundColor": "ghui:backgroundColor",
+    "textColor": "ghui:textColor",
+    "accentColor": "ghui:accentColor",
+    "accentColorAlt": "ghui:accentColorAlt",
+    "borderColor": "ghui:borderColor",
+    "borderRadius": "ghui:borderRadius",
+    "borderWidth": "ghui:borderWidth",
+    "shadow": "ghui:shadow",
+    "opacity": "ghui:opacity",
+    "themeVariant": "ghui:themeVariant",
+
+    "interactionType": "ghui:interactionType",
+    "trigger": "ghui:trigger",
+    "targetState": "ghui:targetState",
+    "mapsToSessionState": "ghui:mapsToSessionState",
+
+    "animationType": "ghui:animationType",
+    "durationMs": { "@id": "ghui:durationMs", "@type": "xsd:integer" },
+    "delayMs":    { "@id": "ghui:delayMs", "@type": "xsd:integer" },
+    "easing": "ghui:easing",
+    "loop": { "@id": "ghui:loop", "@type": "xsd:boolean" },
+    "intensity": "ghui:intensity",
+
+    "sound": { "@id": "ghui:sound", "@type": "@id" },
+    "soundId": "ghui:soundId",
+    "volume": "ghui:volume",
+
+    "text": "ghui:text",
+
+    "ghui:Screen": "ghui:Screen",
+    "ghui:Layer": "ghui:Layer",
+    "ghui:Panel": "ghui:Panel",
+    "ghui:TextBlock": "ghui:TextBlock",
+    "ghui:Button": "ghui:Button",
+    "ghui:Icon": "ghui:Icon",
+    "ghui:Background": "ghui:Background",
+    "ghui:Theme": "ghui:Theme",
+    "ghui:Interaction": "ghui:Interaction",
+    "ghui:Animation": "ghui:Animation",
+    "ghui:Transition": "ghui:Transition",
+    "ghui:SoundCue": "ghui:SoundCue"
+  },
+
+  "@graph": [
+    {
+      "id": "ghui:GhostHackerDark",
+      "type": "ghui:Theme",
+      "name": "Ghost Hacker Dark",
+      "description": "2068 Tokyo ghost-hacker dark theme",
+      "backgroundColor": "#0b0c14",
+      "textColor": "#f5f5ff",
+      "accentColor": "#4fd2f5",
+      "accentColorAlt": "#ff4fa3",
+      "themeVariant": "dark",
+      "fontFamily": "Noto Sans JP, Space Grotesk",
+      "createdAt": "2025-11-14T12:00:00+09:00",
+      "updatedAt": "2025-11-14T12:00:00+09:00"
+    },
+
+    {
+      "id": "ghui:IntroScreen",
+      "type": "ghui:Screen",
+      "name": "Intro / Title Screen",
+      "description": "Ghost Hacker intro screen with title, copy and primary action",
+      "theme": "ghui:GhostHackerDark",
+      "layers": [
+        "ghui:IntroBackgroundLayer",
+        "ghui:IntroMainLayer",
+        "ghui:IntroOverlayLayer"
+      ]
+    },
+
+    {
+      "id": "ghui:IntroBackgroundLayer",
+      "type": "ghui:Layer",
+      "screen": "ghui:IntroScreen",
+      "zIndex": 0,
+      "backgroundColor": "#0b0c14",
+      "children": [
+        "ghui:IntroBackgroundNoise"
+      ]
+    },
+    {
+      "id": "ghui:IntroBackgroundNoise",
+      "type": "ghui:Background",
+      "name": "Subtle scanline / noise",
+      "opacity": 0.12,
+      "animationType": "noise",
+      "durationMs": 8000,
+      "loop": true
+    },
+
+    {
+      "id": "ghui:IntroMainLayer",
+      "type": "ghui:Layer",
+      "screen": "ghui:IntroScreen",
+      "zIndex": 1,
+      "children": [
+        "ghui:IntroCenterTitlePanel",
+        "ghui:IntroLeftCopyPanel",
+        "ghui:IntroBottomButtonPanel",
+        "ghui:IntroTopRightMenuIcon"
+      ]
+    },
+
+    {
+      "id": "ghui:IntroCenterTitlePanel",
+      "type": "ghui:Panel",
+      "position": "center",
+      "width": "100%",
+      "height": "40%",
+      "flexDirection": "column",
+      "align": "center",
+      "justify": "center",
+      "children": [
+        "ghui:IntroTitleText"
+      ]
+    },
+    {
+      "id": "ghui:IntroTitleText",
+      "type": "ghui:TextBlock",
+      "name": "Main Title",
+      "text": "GHOST HACKER",
+      "fontFamily": "Space Grotesk",
+      "fontSize": "48px",
+      "fontWeight": "700",
+      "letterSpacing": "0.25em",
+      "textAlign": "center",
+      "textColor": "#f5f5ff",
+      "animationType": "glitch",
+      "intensity": "medium"
+    },
+
+    {
+      "id": "ghui:IntroLeftCopyPanel",
+      "type": "ghui:Panel",
+      "position": "bottom-left",
+      "width": "40%",
+      "height": "35%",
+      "padding": "32px",
+      "flexDirection": "column",
+      "align": "flex-start",
+      "justify": "flex-end",
+      "children": [
+        "ghui:IntroCopyLine1",
+        "ghui:IntroCopyLine2",
+        "ghui:IntroCopyLine3"
+      ]
+    },
+    {
+      "id": "ghui:IntroCopyLine1",
+      "type": "ghui:TextBlock",
+      "text": "2068年、Tokyo。",
+      "fontFamily": "Noto Sans JP",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "textColor": "#b8b8d8",
+      "opacity": 0.9,
+      "animationType": "float",
+      "durationMs": 6000,
+      "loop": true
+    },
+    {
+      "id": "ghui:IntroCopyLine2",
+      "type": "ghui:TextBlock",
+      "text": "あなたの影から、生まれそこねたゴーストが立ち上がる。",
+      "fontFamily": "Noto Sans JP",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "textColor": "#b8b8d8",
+      "opacity": 0.9,
+      "animationType": "float",
+      "durationMs": 6500,
+      "loop": true
+    },
+    {
+      "id": "ghui:IntroCopyLine3",
+      "type": "ghui:TextBlock",
+      "text": "歪んだ記憶と因果を、あなたはどこまで書き換えられるだろう？",
+      "fontFamily": "Noto Sans JP",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "textColor": "#b8b8d8",
+      "opacity": 0.95,
+      "animationType": "float",
+      "durationMs": 7000,
+      "loop": true
+    },
+
+    {
+      "id": "ghui:IntroBottomButtonPanel",
+      "type": "ghui:Panel",
+      "position": "bottom-center",
+      "width": "100%",
+      "height": "25%",
+      "flexDirection": "column",
+      "align": "center",
+      "justify": "flex-start",
+      "children": [
+        "ghui:IntroPrimaryButton"
+      ]
+    },
+    {
+      "id": "ghui:IntroPrimaryButton",
+      "type": "ghui:Button",
+      "name": "Start Session Button",
+      "width": "220px",
+      "height": "52px",
+      "backgroundColor": "#4fd2f5",
+      "textColor": "#0b0c14",
+      "borderRadius": "28px",
+      "shadow": "0 0 24px rgba(79,210,245,0.45)",
+      "text": "はじめる",
+      "fontFamily": "Noto Sans JP",
+      "fontSize": "20px",
+      "fontWeight": "600",
+      "letterSpacing": "0.08em"
+    },
+
+    {
+      "id": "ghui:IntroTopRightMenuIcon",
+      "type": "ghui:Icon",
+      "position": "top-right",
+      "top": "16px",
+      "right": "24px",
+      "width": "24px",
+      "height": "24px",
+      "opacity": 0.75,
+      "name": "Menu",
+      "description": "Future settings / credits menu icon"
+    },
+
+    {
+      "id": "ghui:IntroOverlayLayer",
+      "type": "ghui:Layer",
+      "screen": "ghui:IntroScreen",
+      "zIndex": 2,
+      "children": [
+        "ghui:IntroScanlineOverlay"
+      ]
+    },
+    {
+      "id": "ghui:IntroScanlineOverlay",
+      "type": "ghui:Background",
+      "name": "Soft scanline overlay",
+      "opacity": 0.08,
+      "animationType": "scan",
+      "durationMs": 12000,
+      "loop": true
+    },
+
+    {
+      "id": "ghui:IntroStartClickInteraction",
+      "type": "ghui:Interaction",
+      "name": "Start button click → GeneratingGhost",
+      "interactionType": "stateTransition",
+      "trigger": "click",
+      "target": "ghui:IntroPrimaryButton",
+      "targetState": "GeneratingGhost",
+      "mapsToSessionState": "SessionState::GeneratingGhost",
+      "sound": "ghui:IntroClickSound"
+    },
+    {
+      "id": "ghui:IntroStartHoverInteraction",
+      "type": "ghui:Interaction",
+      "name": "Start button hover",
+      "interactionType": "visualFeedback",
+      "trigger": "hover",
+      "target": "ghui:IntroPrimaryButton"
+    },
+
+    {
+      "id": "ghui:IntroTitleGlitchAnimation",
+      "type": "ghui:Animation",
+      "name": "Title glitch loop",
+      "target": "ghui:IntroTitleText",
+      "animationType": "glitch",
+      "durationMs": 2200,
+      "delayMs": 400,
+      "easing": "ease-in-out",
+      "loop": true,
+      "intensity": "medium"
+    },
+    {
+      "id": "ghui:IntroFadeInBackground",
+      "type": "ghui:Animation",
+      "name": "Background fade-in",
+      "target": "ghui:IntroBackgroundLayer",
+      "animationType": "fadeIn",
+      "durationMs": 600,
+      "delayMs": 0,
+      "easing": "ease-out",
+      "loop": false
+    },
+    {
+      "id": "ghui:IntroFadeInTitle",
+      "type": "ghui:Animation",
+      "name": "Title fade-in",
+      "target": "ghui:IntroCenterTitlePanel",
+      "animationType": "fadeIn",
+      "durationMs": 700,
+      "delayMs": 150,
+      "easing": "ease-out",
+      "loop": false
+    },
+    {
+      "id": "ghui:IntroFadeInCopy",
+      "type": "ghui:Animation",
+      "name": "Copy fade-in",
+      "target": "ghui:IntroLeftCopyPanel",
+      "animationType": "fadeIn",
+      "durationMs": 800,
+      "delayMs": 350,
+      "easing": "ease-out",
+      "loop": false
+    },
+    {
+      "id": "ghui:IntroFadeInButton",
+      "type": "ghui:Animation",
+      "name": "Button fade-in up",
+      "target": "ghui:IntroBottomButtonPanel",
+      "animationType": "fadeInUp",
+      "durationMs": 650,
+      "delayMs": 550,
+      "easing": "ease-out",
+      "loop": false
+    },
+
+    {
+      "id": "ghui:IntroHoverButtonAnimation",
+      "type": "ghui:Animation",
+      "name": "Button hover scale/color",
+      "target": "ghui:IntroPrimaryButton",
+      "animationType": "hoverScaleAccent",
+      "durationMs": 160,
+      "delayMs": 0,
+      "easing": "ease-out",
+      "loop": false
+    },
+
+    {
+      "id": "ghui:IntroClickSound",
+      "type": "ghui:SoundCue",
+      "name": "Start click blip",
+      "soundId": "sfx/ui/start_blip_01",
+      "volume": 0.7
+    },
+    {
+      "id": "ghui:IntroHoverSound",
+      "type": "ghui:SoundCue",
+      "name": "Start hover hi-tech",
+      "soundId": "sfx/ui/hover_soft_01",
+      "volume": 0.4
+    }
+  ]
+}

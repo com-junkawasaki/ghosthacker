@@ -1,0 +1,38 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "react-hooks"],
+  "ignorePatterns": ["next-env.d.ts", "node_modules/", ".next/", "*.config.js"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "error",
+    "react-hooks/exhaustive-deps": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "CallExpression[callee.name='useEffect'] > ArrayExpression > MemberExpression[object.type='Identifier'][object.name=/Ref$/][property.name='current']",
+        "message": "ref.current should not be in dependency array. Use ref callback pattern or compare with previous value instead."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": "./tsconfig.json",
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+      },
+      "rules": {
+        "@typescript-eslint/no-unsafe-assignment": "error",
+        "@typescript-eslint/no-unsafe-return": "error",
+        "@typescript-eslint/no-unsafe-member-access": "error",
+        "@typescript-eslint/no-unsafe-call": "error"
+      }
+    }
+  ]
+}
+

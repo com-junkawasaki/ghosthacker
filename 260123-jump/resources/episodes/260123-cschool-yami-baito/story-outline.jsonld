@@ -1,0 +1,234 @@
+{
+  "@context": {
+    "character": "gh:character/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "schema": "http://schema.org/"
+  },
+  "@id": "story:dGKv-7XAKkJQlRVxvDSRY",
+  "dct:title": "Arc 0-3: 「やめたい…でも、怖い」",
+  "gh:actStructure": [
+    {
+      "@id": "act:1-temptation",
+      "gh:actNumber": 1,
+      "gh:actTitle": "誘惑",
+      "gh:actTitleEn": "Temptation",
+      "gh:emotionalArc": "日常の苦しみ → 甘い誘惑 → 踏み出す一歩",
+      "gh:keyScenes": [
+        "星蘭学院の華やかな日常（格差の中のソラ）",
+        "SNSで見つけた『高時給の簡単な仕事』",
+        "最初の仕事は簡単なアンケート回答",
+        "報酬が振り込まれる喜び"
+      ],
+      "gh:narrativePurpose": "ソラが闇バイトに手を出すまでの心理を描く",
+      "gh:pageRange": [
+        1,
+        6
+      ]
+    },
+    {
+      "@id": "act:2-escalation",
+      "gh:actNumber": 2,
+      "gh:actTitle": "深入り",
+      "gh:actTitleEn": "Deeper",
+      "gh:emotionalArc": "成功体験 → 要求の変化 → 不安の芽生え",
+      "gh:keyScenes": [
+        "報酬が増える（5000円→1万円→3万円）",
+        "要求される情報が徐々に機密性を帯びる",
+        "『お母さんの仕事の資料、少し見せて』",
+        "ソラの中の警報が鳴り始める"
+      ],
+      "gh:narrativePurpose": "闇バイトの典型的なエスカレーションパターンを描く",
+      "gh:pageRange": [
+        7,
+        12
+      ]
+    },
+    {
+      "@id": "act:3-trap",
+      "gh:actNumber": 3,
+      "gh:actTitle": "罠",
+      "gh:actTitleEn": "Trapped",
+      "gh:emotionalArc": "拒否 → 脅迫 → 絶望",
+      "gh:keyScenes": [
+        "断ろうとするソラ",
+        "『今までの記録、全部あるんだよ』",
+        "脅迫メッセージ（学校にバラす、親に言う、警察に言う）",
+        "逃げ場がないと思い込むソラ"
+      ],
+      "gh:narrativePurpose": "脅迫による心理的拘束のリアリティを描く",
+      "gh:pageRange": [
+        13,
+        18
+      ]
+    },
+    {
+      "@id": "act:4-discovery",
+      "gh:actNumber": 4,
+      "gh:actTitle": "発見",
+      "gh:actTitleEn": "Discovery",
+      "gh:emotionalArc": "異変の察知 → 調査 → 真相への接近",
+      "gh:keyScenes": [
+        "生徒会長・理香がソラの異変に気づく",
+        "Kanameに相談「水城くん、ちょっと相談があるの」",
+        "Kanameが独自に調査を開始",
+        "闇バイトのパターンを見抜く"
+      ],
+      "gh:narrativePurpose": "Kanameがソラの異変に気づき、介入を始める",
+      "gh:pageRange": [
+        19,
+        24
+      ]
+    },
+    {
+      "@id": "act:5-rescue",
+      "gh:actNumber": 5,
+      "gh:actTitle": "救出",
+      "gh:actTitleEn": "Rescue",
+      "gh:countermeasures": [
+        {
+          "gh:description": "警察のヤング・テレホン、#9110、消費者ホットライン188",
+          "gh:step": 1,
+          "gh:title": "相談窓口への連絡"
+        },
+        {
+          "gh:description": "脅迫メッセージ、取引記録のスクショ保存",
+          "gh:step": 2,
+          "gh:title": "証拠の保全"
+        },
+        {
+          "gh:description": "売ってしまった口座・携帯の無効化手続き",
+          "gh:step": 3,
+          "gh:title": "口座の凍結・携帯の対処"
+        },
+        {
+          "gh:description": "被害者として保護される道筋",
+          "gh:step": 4,
+          "gh:title": "弁護士・警察との連携"
+        }
+      ],
+      "gh:emotionalArc": "接触 → 信頼構築 → 打ち明け → 希望",
+      "gh:keyScenes": [
+        "Kanameがソラに声をかける",
+        "最初は拒絶されるが、Kanameの言葉「一人で抱え込まなくていい」",
+        "ソラが全てを打ち明ける",
+        "「逃げ道は、必ずある」"
+      ],
+      "gh:narrativePurpose": "Kanameがソラに寄り添い、解決への道を示す",
+      "gh:pageRange": [
+        25,
+        32
+      ]
+    },
+    {
+      "@id": "act:6-confrontation",
+      "gh:actNumber": 6,
+      "gh:actTitle": "対決",
+      "gh:actTitleEn": "Confrontation",
+      "gh:emotionalArc": "調査完了 → 証拠確保 → 決着",
+      "gh:keyScenes": [
+        "叔父・慎司からのアドバイス",
+        "Kanameが野村隆（卒業生）を特定",
+        "星蘭の卒業生ネットワークを悪用していたことが判明",
+        "警察・学校との連携で野村を追い詰める"
+      ],
+      "gh:narrativePurpose": "黒幕の特定と法的解決",
+      "gh:pageRange": [
+        33,
+        40
+      ]
+    },
+    {
+      "@id": "act:7-resolution",
+      "gh:actNumber": 7,
+      "gh:actTitle": "再生",
+      "gh:actTitleEn": "Rebirth",
+      "gh:emotionalArc": "解決 → 和解 → 前を向く",
+      "gh:keyScenes": [
+        "ソラが母に全てを打ち明ける",
+        "「助けてって言えてよかった」",
+        "Kanameの内面の変化「感情で動くことは、弱さじゃない」",
+        "Kanameがどこかへ歩き出す（次のArcへの伏線）"
+      ],
+      "gh:narrativePurpose": "被害からの回復と、Kanameの成長",
+      "gh:pageRange": [
+        41,
+        45
+      ]
+    }
+  ],
+  "gh:arc": "Arc 0",
+  "gh:castOfCharacters": [
+    {
+      "@id": "character:Kaname",
+      "gh:description": "星蘭学院3年。生徒会副会長。水城家の跡取り。HN: 3pa11er3apiv0t。法と論理で戦う。",
+      "gh:role": "主人公 / 問題解決者"
+    },
+    {
+      "@id": "character:SoraAoyama",
+      "gh:description": "2年生の特待生。母子家庭で経済的に苦しい。真面目で努力家だがプライドが高い。",
+      "gh:role": "被害者"
+    },
+    {
+      "@id": "character:RikaShirakawa",
+      "gh:description": "3年生。法律事務所パートナーの娘。ソラの異変に最初に気づく。",
+      "gh:role": "生徒会長 / 協力者"
+    },
+    {
+      "@id": "character:KenjiOhara",
+      "gh:description": "3年生。サッカー部キャプテン。Kanameの孤立を防ぐ存在。",
+      "gh:role": "Kanameの親友"
+    },
+    {
+      "@id": "character:TakashiNomura",
+      "gh:description": "星蘭の卒業生。投資詐欺グループの末端斡旋役。",
+      "gh:role": "黒幕 / 闇バイト斡旋者"
+    },
+    {
+      "@id": "character:MizukiShinji",
+      "gh:description": "元官僚。金融業界に詳しい。Kanameに解決の糸口を示す。",
+      "gh:role": "Kanameの叔父 / アドバイザー"
+    }
+  ],
+  "gh:educationalContent": {
+    "gh:keyTakeaways": [
+      "『簡単に稼げる』仕事には裏がある",
+      "一度でも応じると、脅迫材料にされる",
+      "脅されても、相談すれば助けてもらえる",
+      "被害者は罪に問われないことが多い（早期相談が重要）",
+      "口座や携帯を売ると、犯罪に使われて自分が加害者扱いされるリスク"
+    ],
+    "gh:mainMessage": "闇バイトは一度始めると抜け出しにくい。でも、被害者として助けを求めれば必ず道はある。",
+    "gh:resources": [
+      "警察相談ダイヤル #9110",
+      "消費者ホットライン 188",
+      "法テラス（日本司法支援センター）",
+      "ヤング・テレホン（各都道府県警察）",
+      "金融庁「詐欺的な投資勧誘」注意喚起"
+    ],
+    "gh:warningSignsOfDarkJob": [
+      "高すぎる報酬（時給1万円以上など）",
+      "仕事内容が曖昧",
+      "身分証や口座情報を要求される",
+      "秘密厳守を強調される",
+      "最初は簡単な仕事から始まる"
+    ]
+  },
+  "gh:episodeIndex": 3,
+  "gh:incidentSummary": {
+    "gh:description": "特待生の青山ソラが、経済的理由から『簡単な情報収集バイト』に手を出す。最初は軽い仕事だったが、次第に親の仕事に関わる機密情報を要求されるように。断ろうとすると過去の活動記録で脅迫される。",
+    "gh:nistFocus": [
+      "ID.RA (Risk Assessment)",
+      "PR.AA (Identity/Access)",
+      "RS.AN (Response Analysis)"
+    ],
+    "gh:type": "闇バイト（情報売買・特殊詐欺への加担）",
+    "gh:victim": "character:SoraAoyama"
+  },
+  "gh:mainCharacter": "character:Kaname",
+  "gh:mainLocation": "org:SeiranAcademy",
+  "gh:slug": "arc-0-3-kaname",
+  "gh:subtitle": "Kaname's Story - Dark Part-time Job \u0026 Information Trading",
+  "gh:tagline": "一人で抱え込まなくていい。逃げ道は、必ずある。",
+  "gh:theme": "闇バイト・特殊詐欺への巻き込まれからの脱出"
+}

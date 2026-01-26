@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package storyboard.v1;
+
+option go_package = "github.com/gftd/producer-storyboard/performers/services/grpc-go/internal/gen/storyboard/v1;storyboardv1";
+
+// WorldSetting represents a world/setting configuration
+message WorldSetting {
+  string id = 1;
+  string project_id = 2;
+  optional string org_id = 3;
+  string name = 4;
+  optional string description = 5;
+  optional string setting_type = 6; // 'fictional', 'real_world', 'alternate_reality', etc.
+  optional string time_period = 7;
+  optional string geography = 8;
+  optional string climate = 9;
+  optional string culture = 10;
+  optional string politics = 11;
+  optional string economy = 12;
+  optional string magic_system = 13;
+  optional string rules = 14;
+  optional string history = 15;
+  optional string attributes_json = 16; // JSON string
+  string created_at = 17;
+  string updated_at = 18;
+}
+
+message ListWorldSettingsRequest {
+  string project_id = 1;
+}
+
+message ListWorldSettingsResponse {
+  repeated WorldSetting world_settings = 1;
+}
+
+message GetWorldSettingRequest {
+  string id = 1;
+}
+
+message CreateWorldSettingRequest {
+  string project_id = 1;
+  string name = 2;
+  optional string description = 3;
+  optional string setting_type = 4;
+  optional string time_period = 5;
+  optional string geography = 6;
+  optional string climate = 7;
+  optional string culture = 8;
+  optional string politics = 9;
+  optional string economy = 10;
+  optional string magic_system = 11;
+  optional string rules = 12;
+  optional string history = 13;
+  optional string attributes_json = 14;
+}
+
+message UpdateWorldSettingRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string description = 3;
+  optional string setting_type = 4;
+  optional string time_period = 5;
+  optional string geography = 6;
+  optional string climate = 7;
+  optional string culture = 8;
+  optional string politics = 9;
+  optional string economy = 10;
+  optional string magic_system = 11;
+  optional string rules = 12;
+  optional string history = 13;
+  optional string attributes_json = 14;
+}
+
+message DeleteWorldSettingRequest {
+  string id = 1;
+}
+
+message DeleteWorldSettingResponse {
+  bool success = 1;
+}

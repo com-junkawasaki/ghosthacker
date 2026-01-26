@@ -1,0 +1,43 @@
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.o
+*.so
+*.dylib
+*.dll
+*.a
+
+# iOS
+*.xcodeproj
+*.xcworkspace
+DerivedData/
+
+# Android
+*.apk
+*.ap_
+*.aab
+.gradle/
+local.properties
+
+# WASM
+*.wasm
+pkg/
+
+# Environment
+.env
+.env.local
+
