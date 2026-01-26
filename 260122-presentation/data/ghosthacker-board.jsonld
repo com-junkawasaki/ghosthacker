@@ -73,14 +73,14 @@
     {
       "id": "gh:node/takeru",
       "nodeType": "char",
-      "name": "赤羽 猛 (Takeru)",
+      "name": "赤羽 千世 (Chise)",
       "role": "Rival: Short-tempered",
       "credentials": ["OSCP", "GXPN"],
       "school": "（元）通信制高校 C高校 / 大検取得",
       "hn": "aka_chise1",
-      "image": "/images/characters/takeru.png",
+      "image": "/images/characters/chise/main.png",
       "color": "#ff9500",
-      "description": "元C高校だが大検を取得してあまり顔を出さない。News Hacker の常連（hn: aka_chise1）。Aggressive self-taught hacker.",
+      "description": "短気な天才。元C高校だが大検を取得してあまり顔を出さない。News Hacker の常連（hn: aka_chise1）。力押しで突破するタイプのライバル。",
       "x": -140,
       "y": -360,
       "fixed": false
