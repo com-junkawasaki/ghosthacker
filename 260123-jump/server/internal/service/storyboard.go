@@ -1800,29 +1800,26 @@ func (s *StoryboardService) createMangaPageImage(panels []*storyboardpb.Panel, w
 					log.Printf("Warning: could not load panel image %s: %v", imgPath, err)
 					// Draw placeholder rectangle
 					drawPanelPlaceholder(canvas, destX, destY, destW, destH, p.Panel)
-					continue
-				}
-				
-				// Draw panel image with proper scaling and positioning (using imgX, imgY, imgScale from layout)
-				drawPanelImage(canvas, panelImg, destX, destY, destW, destH, imgX, imgY, imgScale)
-				
-				// Draw visual note at bottom (gray background, white text)
-				if p.Data != nil && p.Data.VisualNote != "" {
-					drawVisualNote(canvas, p.Data.VisualNote, p.Data.Shot, destX, destY, destW, destH)
-				}
-				
-				// Draw panel border
-				drawPanelBorder(canvas, destX, destY, destW, destH)
-				
-				// Draw dialogue bubbles on top
-				if p.Data != nil && len(p.Data.Dialogue) > 0 {
-					drawDialogues(canvas, p.Data.Dialogue, destX, destY, destW, destH)
+				} else {
+					// Draw panel image with proper scaling and positioning (using imgX, imgY, imgScale from layout)
+					drawPanelImage(canvas, panelImg, destX, destY, destW, destH, imgX, imgY, imgScale)
 				}
 			} else {
 				drawPanelPlaceholder(canvas, destX, destY, destW, destH, p.Panel)
 			}
 		} else {
 			drawPanelPlaceholder(canvas, destX, destY, destW, destH, p.Panel)
+		}
+		
+		// Always draw visual note, border, and dialogues (even for placeholders)
+		if p.Data != nil && p.Data.VisualNote != "" {
+			drawVisualNote(canvas, p.Data.VisualNote, p.Data.Shot, destX, destY, destW, destH)
+		}
+		
+		drawPanelBorder(canvas, destX, destY, destW, destH)
+		
+		if p.Data != nil && len(p.Data.Dialogue) > 0 {
+			drawDialogues(canvas, p.Data.Dialogue, destX, destY, destW, destH)
 		}
 	}
 	
@@ -1955,9 +1952,9 @@ func drawVisualNote(canvas *goimage.RGBA, visualNote string, shot string, panelX
 	// Create gg context for text rendering
 	dc := gg.NewContextForRGBA(canvas)
 	
-	// Load font - larger size for readability
+	// Load font
 	fontPath := getFontPath()
-	fontSize := 28.0
+	fontSize := 24.0
 	if fontPath != "" {
 		if err := dc.LoadFontFace(fontPath, fontSize); err != nil {
 			log.Printf("Warning: could not load font for visual note: %v", err)
@@ -1974,48 +1971,67 @@ func drawVisualNote(canvas *goimage.RGBA, visualNote string, shot string, panelX
 	}
 	
 	// Calculate text dimensions and wrapping
-	maxWidth := float64(panelW - 20)  // Padding on sides
-	lines := dc.WordWrap(text, maxWidth)
+	maxWidth := float64(panelW - 24)  // Padding on sides
 	
-	// If WordWrap doesn't work well for Japanese, manually wrap
-	if len(lines) == 1 && len([]rune(text)) > 30 {
-		// Manual wrapping for Japanese text
-		runes := []rune(text)
-		charsPerLine := int(maxWidth / fontSize)
-		if charsPerLine < 10 {
-			charsPerLine = 10
+	// Manual wrapping for Japanese text (more reliable)
+	runes := []rune(text)
+	charsPerLine := int(maxWidth / (fontSize * 0.6))  // Approximate char width
+	if charsPerLine < 8 {
+		charsPerLine = 8
+	}
+	
+	var lines []string
+	for i := 0; i < len(runes); i += charsPerLine {
+		end := i + charsPerLine
+		if end > len(runes) {
+			end = len(runes)
 		}
-		lines = []string{}
-		for i := 0; i < len(runes); i += charsPerLine {
-			end := i + charsPerLine
-			if end > len(runes) {
-				end = len(runes)
-			}
-			lines = append(lines, string(runes[i:end]))
+		lines = append(lines, string(runes[i:end]))
+	}
+	
+	// Calculate max lines that fit within panel (max 40% of panel height for visual note)
+	lineHeight := fontSize + 6
+	maxBarHeight := float64(panelH) * 0.4
+	maxLines := int(maxBarHeight / lineHeight)
+	if maxLines < 1 {
+		maxLines = 1
+	}
+	
+	// Truncate if too many lines
+	if len(lines) > maxLines {
+		lines = lines[:maxLines]
+		lastLine := []rune(lines[maxLines-1])
+		if len(lastLine) > 0 {
+			lines[maxLines-1] = string(lastLine[:len(lastLine)-1]) + "…"
 		}
 	}
 	
-	// Limit to max 3 lines
-	if len(lines) > 3 {
-		lines = lines[:3]
-		lines[2] = lines[2] + "…"
+	// Calculate bar height based on actual number of lines
+	barHeight := float64(len(lines))*lineHeight + 16  // Padding top and bottom
+	
+	// Ensure bar stays within panel bounds
+	if barHeight > float64(panelH) {
+		barHeight = float64(panelH)
 	}
 	
-	// Calculate bar height based on number of lines
-	lineHeight := fontSize + 8
-	barHeight := float64(len(lines))*lineHeight + 20  // Padding top and bottom
-	
-	// Draw semi-transparent gray background at bottom of panel
+	// Draw semi-transparent gray background at bottom of panel (inside panel bounds)
 	barY := float64(panelY + panelH) - barHeight
-	dc.SetRGBA(0.2, 0.2, 0.2, 0.85)  // Dark gray, 85% opacity
+	if barY < float64(panelY) {
+		barY = float64(panelY)
+	}
+	
+	dc.SetRGBA(0.15, 0.15, 0.15, 0.88)  // Dark gray, 88% opacity
 	dc.DrawRectangle(float64(panelX), barY, float64(panelW), barHeight)
 	dc.Fill()
 	
 	// Draw white text
 	dc.SetRGB(1, 1, 1)  // White
-	textY := barY + 10  // Starting Y position with top padding
+	textY := barY + 8  // Starting Y position with top padding
 	
 	for _, line := range lines {
+		if textY+fontSize > float64(panelY+panelH-4) {
+			break  // Don't draw text outside panel
+		}
 		dc.DrawString(line, float64(panelX+12), textY+fontSize)
 		textY += lineHeight
 	}
