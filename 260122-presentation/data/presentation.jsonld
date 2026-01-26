@@ -69,10 +69,10 @@
       "image": "/images/characters/ren/main.png",
       "color": "#0071e3",
       "description": "通信制高校C高校に通う効率厨の天才。ネット掲示板 News Hacker の常連（hn: null_pencil_axe）。情報の『怠惰』をハックする。",
-      "x": -753,
-      "y": -1169,
+      "x": -610,
+      "y": -2007,
       "fixed": false,
-      "scale": 1.7099999999999984
+      "scale": 3
     },
     {
       "id": "gh:node/nei",
@@ -87,10 +87,10 @@
       "image": "/images/characters/nei/main.png",
       "color": "#34c759",
       "description": "蓮の同級生で相棒。観察眼と段取りで“現場の詰み”をほどく女子高生。",
-      "x": -346,
-      "y": -872,
+      "x": -277,
+      "y": -1231,
       "fixed": false,
-      "scale": 1.505
+      "scale": 2.299999999999998
     },
     {
       "id": "gh:node/shouta",
@@ -103,10 +103,10 @@
       "image": "/images/characters/shouta/main.png",
       "color": "#ff3b30",
       "description": "巨大企業の後継者。レガシーと組織の歪みで追い詰められる。",
-      "x": 1312,
-      "y": -1116,
+      "x": 135,
+      "y": -1005,
       "fixed": false,
-      "scale": 1.964999999999999
+      "scale": 1.7550000000000003
     },
     {
       "id": "gh:node/takeru",
@@ -122,10 +122,10 @@
       "image": "/images/characters/chise/main.png",
       "color": "#ff9500",
       "description": "短気な天才。元C高校だが大検を取得してあまり顔を出さない。News Hacker の常連（hn: aka_chise1）。力押しで突破するタイプのライバル。",
-      "x": 1337,
-      "y": -205,
+      "x": -940,
+      "y": -843,
       "fixed": false,
-      "scale": 2.3099999999999983
+      "scale": 3
     },
     {
       "id": "gh:node/kaname",
@@ -141,10 +141,10 @@
       "image": "/images/characters/kaname/main.png",
       "color": "#af52de",
       "description": "都内有数の有名校で学生起業するエリート。News Hacker の常連（hn: 3pa11er3apiv0t）。『金融庁ルールに沿っているから大丈夫』という傲慢を嫌い、国内規制だけでなく国際規制（例: AML/CFT等）まで含めた“新・絶対ルール”を定義して押し通す。",
-      "x": -705,
-      "y": -70,
+      "x": -883,
+      "y": 316,
       "fixed": false,
-      "scale": 2
+      "scale": 2.639999999999996
     },
     {
       "id": "gh:node/hero",
@@ -154,8 +154,8 @@
       "image": "/images/characters/hero/main.png",
       "color": "#ff2d55",
       "description": "SNS型投資詐欺の首謀者。正義を騙り、承認欲求のために社会を壊す。",
-      "x": 466,
-      "y": 247,
+      "x": 1074,
+      "y": 76,
       "fixed": false,
       "scale": 1.8
     },
@@ -166,8 +166,8 @@
       "image": "/images/tmp/2024-06-20_22h48_38.png",
       "color": "#ff3b30",
       "description": "大規模ランサムウェア攻撃による事業停止。管理の『怠惰』の象徴。",
-      "x": 1978,
-      "y": -1047,
+      "x": -1875,
+      "y": -1862,
       "fixed": false,
       "scale": 2.640000000000002
     },
@@ -178,10 +178,10 @@
       "image": "/images/tmp/202203011648305.jpg",
       "color": "#ff9500",
       "description": "サプライチェーン攻撃によるトヨタ全ライン停止。運用の『短気』の象徴。",
-      "x": 2619,
-      "y": 260,
+      "x": -1858,
+      "y": -851,
       "fixed": false,
-      "scale": 2.409999999999998
+      "scale": 2.704999999999993
     },
     {
       "id": "gh:node/case-sbi",
@@ -190,10 +190,10 @@
       "image": "/images/tmp/OIP (3).webp",
       "color": "#af52de",
       "description": "SBI証券の口座侵害（2020）。『金融庁ガイドラインの項目を満たしているから大丈夫』という傲慢が穴を広げた。ログインだけの対策で満足し、重要操作（受取口座の追加/変更・出金）への強制MFA、異常検知のステップアップ、変更の冷却期間、ログの相関と24/7監視、委託先も含む統制テストが弱かった。国内規制の最低ラインだけでなく国際的な統制要求（例: AML/CFT系の不正取引監視）まで含めた設計の必要性を示す象徴。",
-      "x": -1242,
-      "y": -245,
+      "x": -1877,
+      "y": 274,
       "fixed": false,
-      "scale": 2.1550000000000007
+      "scale": 2.4949999999999966
     },
     {
       "id": "gh:node/case-sns-scam",
@@ -202,8 +202,8 @@
       "image": "/images/tmp/jiji_morinagatakuro.webp",
       "color": "#0071e3",
       "description": "SNS広告を悪用した大規模詐欺。社会の『虚飾』の象徴。",
-      "x": 859,
-      "y": 31,
+      "x": 1169,
+      "y": -915,
       "fixed": false,
       "scale": 1.915
     },
@@ -213,8 +213,8 @@
       "name": "CISSP",
       "color": "#0071e3",
       "description": "情報セキュリティの国際標準。",
-      "x": -1220,
-      "y": -1138,
+      "x": -1630,
+      "y": -1123,
       "fixed": false,
       "scale": 1.335
     },
@@ -224,8 +224,8 @@
       "name": "CISA",
       "color": "#af52de",
       "description": "公認情報システム監査師。",
-      "x": -130,
-      "y": -235,
+      "x": -1558,
+      "y": 259,
       "fixed": false,
       "scale": 1
     },
@@ -235,8 +235,8 @@
       "name": "情報安全確保支援士",
       "color": "#00a0a0",
       "description": "日本の国家資格。",
-      "x": -1307,
-      "y": 360,
+      "x": -1573,
+      "y": 426,
       "fixed": false,
       "scale": 1
     },
@@ -246,8 +246,8 @@
       "name": "Ransomware",
       "color": "#ff2d55",
       "description": "身代金要求型ウイルス。",
-      "x": -9,
-      "y": -1442,
+      "x": 410,
+      "y": -1942,
       "fixed": false,
       "scale": 2.055
     },
@@ -268,8 +268,8 @@
       "name": "SNS型投資詐欺",
       "color": "#ff2d55",
       "description": "著名人なりすまし詐欺。",
-      "x": 782,
-      "y": 615,
+      "x": 1497,
+      "y": -231,
       "fixed": false,
       "scale": 2.2
     },
@@ -279,8 +279,8 @@
       "name": "The GHOST",
       "color": "#ff2d55",
       "description": "情報が物理現象化した“悪意”。",
-      "x": 294,
-      "y": -438,
+      "x": -958,
+      "y": -2007,
       "fixed": false,
       "scale": 1.51
     },
@@ -290,8 +290,8 @@
       "name": "SIP Sequence",
       "color": "#00a0a0",
       "description": "Secure Information Physicality。",
-      "x": -1122,
-      "y": 461,
+      "x": -1516,
+      "y": 586,
       "fixed": false,
       "scale": 1
     },
@@ -301,8 +301,8 @@
       "name": "ARIA Aesthetic",
       "color": "#0071e3",
       "description": "柔らかな光と眼のディテール。",
-      "x": -1169,
-      "y": -970,
+      "x": -1577,
+      "y": -932,
       "fixed": false,
       "scale": 1
     },
@@ -312,8 +312,8 @@
       "name": "Ep.1 晒された連絡先",
       "description": "Arc 0 | High School & Privacy",
       "color": "#34c759",
-      "x": 703,
-      "y": -1302,
+      "x": 386,
+      "y": -2286,
       "fixed": false,
       "scale": 1.63
     },
@@ -323,8 +323,8 @@
       "name": "Ep.2 牙を剥く内部の影",
       "description": "Arc A | Construction & Sloth",
       "color": "#ff3b30",
-      "x": 264,
-      "y": -1034,
+      "x": 747,
+      "y": -1966,
       "fixed": false,
       "scale": 1.72
     },
@@ -334,8 +334,8 @@
       "name": "Ep.3 許しの毒",
       "description": "Arc A | CISSP Methodology",
       "color": "#ff3b30",
-      "x": 287,
-      "y": -766,
+      "x": 766,
+      "y": -1755,
       "fixed": false,
       "scale": 1.6649999999999991
     },
@@ -378,8 +378,8 @@
       "name": "Ep.7 Doneがない地獄",
       "description": "Arc B | Design Failure",
       "color": "#ff9500",
-      "x": -206,
-      "y": -31,
+      "x": 639,
+      "y": -1462,
       "fixed": false,
       "scale": 1.42
     },
@@ -389,8 +389,8 @@
       "name": "Ep.8 終端刻印",
       "description": "Arc B | Salvation",
       "color": "#ff9500",
-      "x": -174,
-      "y": 171,
+      "x": 605,
+      "y": -1269,
       "fixed": false,
       "scale": 1.415
     },
@@ -400,10 +400,10 @@
       "name": "Ep.9 空の要塞の崩壊",
       "description": "Arc C | Finance & Pride",
       "color": "#af52de",
-      "x": -277,
-      "y": 414,
+      "x": 190,
+      "y": -515,
       "fixed": false,
-      "scale": 1.475
+      "scale": 1.4849999999999999
     },
     {
       "id": "gh:node/ep10",
@@ -422,8 +422,8 @@
       "name": "Ep.11 消えた資産の足跡",
       "description": "Arc C | Audit Attack",
       "color": "#af52de",
-      "x": 939,
-      "y": 400,
+      "x": 653,
+      "y": -844,
       "fixed": false,
       "scale": 1
     },
@@ -433,8 +433,8 @@
       "name": "Ep.12 それは傲慢ですね",
       "description": "Arc C | Rule Killing",
       "color": "#af52de",
-      "x": 948,
-      "y": 517,
+      "x": 444,
+      "y": -441,
       "fixed": false,
       "scale": 1
     },
@@ -444,8 +444,8 @@
       "name": "Ep.13 群れのGhost",
       "description": "Arc D | Social Scam & Vainglory",
       "color": "#0071e3",
-      "x": 960,
-      "y": 650,
+      "x": 963,
+      "y": 617,
       "fixed": false,
       "scale": 1
     },
@@ -470,12 +470,78 @@
       "y": 890,
       "fixed": false,
       "scale": 1
+    },
+    {
+      "id": "gh:node/catch-laziness",
+      "nodeType": "concept",
+      "name": "怠惰\nlazieness",
+      "color": "#0071e3",
+      "x": -1216,
+      "y": -2587,
+      "fixed": false,
+      "scale": 3
+    },
+    {
+      "id": "gh:node/catch-pride",
+      "nodeType": "concept",
+      "name": "傲慢\npride",
+      "color": "#af52de",
+      "x": -883,
+      "y": 520,
+      "fixed": false,
+      "scale": 3
+    },
+    {
+      "id": "gh:node/catch-short-tempered",
+      "nodeType": "concept",
+      "name": "短気\nshort-tempered",
+      "color": "#ff9500",
+      "x": -940,
+      "y": -1090,
+      "fixed": false,
+      "scale": 3
     }
   ],
   "links": [
     {
       "source": "gh:node/case-sbi",
       "target": "gh:node/sc",
+      "label": "",
+      "color": "#999",
+      "x": 0,
+      "y": 0,
+      "fixed": true
+    },
+    {
+      "source": "gh:node/ren",
+      "target": "gh:node/shouta",
+      "label": "",
+      "color": "#999",
+      "x": 0,
+      "y": 0,
+      "fixed": true
+    },
+    {
+      "source": "gh:node/ren",
+      "target": "gh:node/catch-laziness",
+      "label": "",
+      "color": "#999",
+      "x": 0,
+      "y": 0,
+      "fixed": true
+    },
+    {
+      "source": "gh:node/kaname",
+      "target": "gh:node/catch-pride",
+      "label": "",
+      "color": "#999",
+      "x": 0,
+      "y": 0,
+      "fixed": true
+    },
+    {
+      "source": "gh:node/takeru",
+      "target": "gh:node/catch-short-tempered",
       "label": "",
       "color": "#999",
       "x": 0,
