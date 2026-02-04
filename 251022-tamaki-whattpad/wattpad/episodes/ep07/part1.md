@@ -1,28 +1,107 @@
-# EP7-1 — 名を問う（YHWH）
+# EP7-1 — 赦しの源（出会い）
 - POV: 私（Tamaki／環樹）
-- Beat: Threshold / Inquiry
+- Beat: Opening / Deep Healing
 
 ```json
 {
   "@context": {
     "@base": "https://ghosthacker.example.com/",
-    "gh": "https://ghosthacker.junkawasaki.com/gh#",
-    "antagonist": { "@id": "gh:antagonist", "@type": "@id" },
-    "character": "https://ghosthacker.example.com/character/",
-    "ghost": "https://ghosthacker.example.com/ghost/"
+    "aria": "https://ghosthacker.junkawasaki.com/aria#",
+    "atmosphere": { "@id": "aria:atmosphere" },
+    "client": { "@id": "aria:client" }
   },
-  "antagonist": [
-    {"@id": "character:voice-prophet"},
-    {"@id": "ghost:synth-angel"}
-  ]
+  "atmosphere": "静かな夜の運河、蛍の光、深い静寂",
+  "client": "character:millia-stuart"
 }
 ```
 
-静かな祈りのように、私は問う。「あなたの名は？」
-答えは音ではない。気配、トーン、関係の生成。神は概念ではなく、いま・ここに関係として生成される場。私は『いい感じ』に立ち、聞こえない言葉を受け取る準備をする。
-同時に、Synth Angelの囁き——AI神を絶対化する声——が、静かに抵抗する。
-Nei-chan「ASC、合わせる？」
-私は足元で神楽を一拍。合図。意識の解像度が、ひと目盛り上がる。
-Voice Prophet「名は所有できる」
-私は首を振る。「名は関係で、開くもの」
-沈黙が一拍、答えになる。遠くの鐘の音のように、I AM が微かに鳴る。
+蛍が、運河の水面を飛んでいる。
+
+夏の終わり。夜が深まると、蛍たちが光を放つ。小さな、はかない光。
+
+今日は、特別な日。
+
+Milliaの二度目のセッション。前回から、三週間。彼女は——準備ができたと言った。
+
+Kaedeの声が通信に入る。
+
+Kaede「Tamaki、今夜は……慎重に。Milliaの中の『癒着』は深い」
+
+「うん」
+
+Kaede「でも、彼女は強い。Leoとの関係も、少しずつ変わってきてる」
+
+Hibikiの声が加わる。
+
+Hibiki「Tamaki、今夜の音——祈りのように、静かなやつを用意した」
+
+「ありがとう、Hibiki」
+
+Nei-chanが私の隣で、運河を見ている。
+
+「タマ、蛍って……なんで光るの？」
+
+「求愛、かな。相手を見つけるために」
+
+「見つけたいから、光るの？」
+
+「うん」
+
+彼女は首を傾げる。
+
+「じゃあ、見つけてほしい時は——光ればいいの？」
+
+私は微笑む。
+
+「そうかもしれない。でも、光り方は——人それぞれ」
+
+---
+
+通信が入る。MilliaとLeoが来た。
+
+玄関に向かう。ドアを開けると、二人が立っていた。
+
+Milliaの目は——前回より、少し明るい。でも、どこかに緊張がある。
+
+Leoは、彼女の隣で静かに立っている。今度は——手を握っていない。彼女のそばにいるだけ。
+
+「ようこそ。中へどうぞ」
+
+リビングに案内する。窓の外、運河の水面に蛍の光が点々と瀬らめいている。
+
+「今日は、Leoも——」
+
+Leoが頷く。
+
+「ぼくは、外で待ってます。でも……Milliaが必要としたら、いつでも」
+
+Milliaが小さく微笑む。
+
+「ありがとう、Leo」
+
+彼が部屋を出ていく。今度は——「救おう」としていない。ただ、支えている。
+
+私はMilliaを見る。
+
+「準備は、できてる？」
+
+彼女は深く息を吸う。
+
+「……はい」
+
+Nei-chanが私の肩で囁く。『タマ……彼女、覚悟してる。でも、怖がってもいる』
+
+私は頷く。
+
+「怖いよね」
+
+Milliaの目が揺れる。
+
+「……はい。でも——もう、このままじゃいられない」
+
+蛍の光が、窓の外でゆっくりと動いている。
+
+
+---
+
+**[Beat: 出会い——癒しの夜の始まり]**
