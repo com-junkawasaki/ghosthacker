@@ -53,6 +53,7 @@
       "gh:pageNumber": 2,
       "gh:panels": [
         {
+          "@id": "panel:7ROofCeGcOoX",
           "characters": [
             "character:tamaki"
           ],
@@ -62,6 +63,9 @@
               "text": "いい感じでいる——呼吸を一つ置き、私の足場を確認する。"
             }
           ],
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/7ROofCeGcOoX_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/7ROofCeGcOoX_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Tamakiが窓ガラスに指を触れている。運河の反射が顔に揺れる。. Shot type: Medium Shot. Dialogue: Narration: いい感じでいる——呼吸を一つ置き、私の足場を確認する。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "panel": 1,
           "shot": "Medium Shot",
           "visual": "Tamakiが窓ガラスに指を触れている。運河の反射が顔に揺れる。"

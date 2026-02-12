@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "gh": "https://ghosthacker.gftd.ai/ns/"
+  },
+  "@type": "gh:GenerationQueue",
+  "gh:maxConcurrent": 1,
+  "gh:jobs": [
+    {
+      "@id": "job:JXmWzsa6myqu",
+      "@type": "gh:GenerationJob",
+      "gh:status": "running",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 2,
+      "gh:panel": 1,
+      "gh:model": "local",
+      "gh:prompt": "Tamakiが窓ガラスに指を触れている。運河の反射が顔に揺れる。. Shot type: Medium Shot. Dialogue: Narration: いい感じでいる——呼吸を一つ置き、私の足場を確認する。.",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:createdAt": "2026-02-12T18:17:49.198789+09:00",
+      "gh:startedAt": "2026-02-12T18:17:49.200111+09:00"
+    }
+  ]
+}
