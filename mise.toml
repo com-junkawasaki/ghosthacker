@@ -16,6 +16,16 @@ run = """
 #!/bin/bash
 trap 'kill 0' EXIT
 
+# Kill existing processes on our ports
+for port in 8081 1421; do
+  pid=$(lsof -ti:$port 2>/dev/null)
+  if [ -n "$pid" ]; then
+    echo "Killing existing process on port $port (PID: $pid)"
+    kill -9 $pid 2>/dev/null
+    sleep 0.5
+  fi
+done
+
 echo "Starting Go server on :8081..."
 cd apps/server && go run cmd/server/main.go &
 
@@ -35,17 +45,32 @@ wait
 [tasks.server]
 description = "Start Go backend server"
 dir = "apps/server"
-run = "go run cmd/server/main.go"
+run = """
+#!/bin/bash
+pid=$(lsof -ti:8081 2>/dev/null)
+[ -n "$pid" ] && echo "Killing port 8081 (PID: $pid)" && kill -9 $pid && sleep 0.5
+go run cmd/server/main.go
+"""
 
 [tasks.web]
 description = "Start Svelte dev server"
 dir = "apps/web"
-run = "pnpm dev"
+run = """
+#!/bin/bash
+pid=$(lsof -ti:1421 2>/dev/null)
+[ -n "$pid" ] && echo "Killing port 1421 (PID: $pid)" && kill -9 $pid && sleep 0.5
+pnpm dev
+"""
 
 [tasks."image-gen"]
 description = "Start local image generation service (MPS)"
 dir = "apps/image-gen"
-run = "source .venv/bin/activate && python app.py"
+run = """
+#!/bin/bash
+pid=$(lsof -ti:8100 2>/dev/null)
+[ -n "$pid" ] && echo "Killing port 8100 (PID: $pid)" && kill -9 $pid && sleep 0.5
+source .venv/bin/activate && python app.py
+"""
 
 # --- Setup ---
 

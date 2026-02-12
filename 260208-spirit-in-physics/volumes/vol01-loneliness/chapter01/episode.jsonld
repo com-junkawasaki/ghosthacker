@@ -31,9 +31,9 @@
             }
           ],
           "environment": "env:water-city-tokyo-2065",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v1.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v2.png",
           "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v2.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1770886519,
@@ -89,6 +89,7 @@
           "visual": "Tamakiの足元。神楽の一拍。小さな振動が床を走る。"
         },
         {
+          "@id": "panel:1WcZT5rLWc-9",
           "characters": [
             "character:tamaki",
             "character:nei"
@@ -99,6 +100,9 @@
               "text": "うん。タマ、今なら静かに潜れる"
             }
           ],
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/1WcZT5rLWc-9_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/1WcZT5rLWc-9_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Nei-chanがTamakiの肩で光の羽をひとあおぎ。ASCの制御が合う瞬間。. Shot type: Close-up. Dialogue: Nei-chan: うん。タマ、今なら静かに潜れる.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "panel": 3,
           "shot": "Close-up",
           "visual": "Nei-chanがTamakiの肩で光の羽をひとあおぎ。ASCの制御が合う瞬間。"
@@ -109,6 +113,7 @@
       "gh:pageNumber": 3,
       "gh:panels": [
         {
+          "@id": "panel:TxHVr4epKPVn",
           "characters": [
             "character:kaede"
           ],
@@ -122,6 +127,9 @@
               "text": "Tamaki、慎重に。救急で言えば、これは\"要注意\"レベル"
             }
           ],
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/3/TxHVr4epKPVn_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/3/TxHVr4epKPVn_v1.png",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Kaedeの通信。半透明の通信ウィンドウ越し。. Shot type: Medium Shot. Dialogue: Kaede: 汚染レベル、上がってる……. Kaede: Tamaki、慎重に。救急で言えば、これは\"要注意\"レベル.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "panel": 1,
           "shot": "Medium Shot",
           "visual": "Kaedeの通信。半透明の通信ウィンドウ越し。"
