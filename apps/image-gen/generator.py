@@ -6,7 +6,7 @@ import random
 import time
 
 import torch
-from diffusers import StableDiffusionXLPipeline
+from diffusers import StableDiffusionXLPipeline, LCMScheduler, EulerDiscreteScheduler
 from PIL import Image
 
 import config
@@ -20,6 +20,9 @@ class ImageGenerator:
         self.device = "mps" if torch.backends.mps.is_available() else "cpu"
         self.model_loaded = False
         self.load_time_ms = 0
+        # LCM-LoRA state
+        self._lcm_enabled = False
+        self._original_scheduler_config = None
         # Progress tracking
         self._current_job_id: str | None = None
         self._current_step: int = 0
@@ -77,7 +80,34 @@ class ImageGenerator:
 
         self.load_time_ms = int((time.time() - start) * 1000)
         self.model_loaded = True
+        self._original_scheduler_config = self.pipe.scheduler.config
         logger.info("Model loaded in %d ms", self.load_time_ms)
+
+    def enable_lcm(self):
+        """Enable LCM-LoRA for fast generation (4 steps)."""
+        if self._lcm_enabled:
+            return
+        if not self.model_loaded:
+            raise RuntimeError("Model not loaded. Call load_model() first.")
+        logger.info("Enabling LCM-LoRA: %s", config.LCM_LORA_ID)
+        start = time.time()
+        self.pipe.scheduler = LCMScheduler.from_config(self._original_scheduler_config)
+        self.pipe.load_lora_weights(config.LCM_LORA_ID)
+        self._lcm_enabled = True
+        logger.info("LCM-LoRA enabled in %d ms", int((time.time() - start) * 1000))
+
+    def disable_lcm(self):
+        """Disable LCM-LoRA, revert to normal scheduler."""
+        if not self._lcm_enabled:
+            return
+        logger.info("Disabling LCM-LoRA")
+        self.pipe.unload_lora_weights()
+        self.pipe.scheduler = EulerDiscreteScheduler.from_config(self._original_scheduler_config)
+        self._lcm_enabled = False
+
+    @property
+    def lcm_enabled(self) -> bool:
+        return self._lcm_enabled
 
     def generate(
         self,
@@ -103,12 +133,17 @@ class ImageGenerator:
         if negative_prompt is None:
             negative_prompt = config.DEFAULT_NEGATIVE_PROMPT
 
+        # Override steps & guidance for LCM mode
+        if self._lcm_enabled:
+            num_inference_steps = config.LCM_STEPS
+            guidance_scale = config.LCM_GUIDANCE_SCALE
+
         # MPS requires CPU generator for reproducibility
         generator = torch.Generator(device="cpu").manual_seed(seed)
 
         logger.info(
-            "Generating: %dx%d, steps=%d, cfg=%.1f, seed=%d",
-            width, height, num_inference_steps, guidance_scale, seed,
+            "Generating: %dx%d, steps=%d, cfg=%.1f, seed=%d, lcm=%s",
+            width, height, num_inference_steps, guidance_scale, seed, self._lcm_enabled,
         )
 
         # Reset progress tracking

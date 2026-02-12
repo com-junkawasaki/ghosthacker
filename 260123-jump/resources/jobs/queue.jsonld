@@ -8,7 +8,7 @@
     {
       "@id": "job:JXmWzsa6myqu",
       "@type": "gh:GenerationJob",
-      "gh:status": "running",
+      "gh:status": "failed",
       "gh:episodeId": "episode:sip-vol01-ch01",
       "gh:pageNumber": 2,
       "gh:panel": 1,
@@ -20,8 +20,30 @@
         "gh:estimatedRemainingMs": 0,
         "gh:avgStepTimeMs": 0
       },
+      "gh:error": "failed to generate image locally: failed to call local image gen: Post \"http://localhost:8100/generate-panel\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
       "gh:createdAt": "2026-02-12T18:17:49.198789+09:00",
-      "gh:startedAt": "2026-02-12T18:17:49.200111+09:00"
+      "gh:startedAt": "2026-02-12T18:20:32.259758+09:00",
+      "gh:completedAt": "2026-02-12T18:25:32.265381+09:00"
+    },
+    {
+      "@id": "job:K5A853fXSulx",
+      "@type": "gh:GenerationJob",
+      "gh:status": "failed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 2,
+      "gh:panel": 2,
+      "gh:model": "local",
+      "gh:prompt": "Tamakiの足元。神楽の一拍。小さな振動が床を走る。. Shot type: Close-up. Dialogue: Narration: Tree of Life（生命の樹）に錨を下ろす感覚。ここから始める。.",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:error": "failed to generate image locally: failed to call local image gen: Post \"http://localhost:8100/generate-panel\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
+      "gh:createdAt": "2026-02-12T18:20:32.259053+09:00",
+      "gh:startedAt": "2026-02-12T18:25:32.271981+09:00",
+      "gh:completedAt": "2026-02-12T18:30:32.28364+09:00"
     }
   ]
 }

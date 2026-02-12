@@ -57,6 +57,11 @@ ASPECT_RATIOS = {
     "2:3": (512, 768),
 }
 
+# LCM-LoRA acceleration settings
+LCM_LORA_ID = "latent-consistency/lcm-lora-sdxl"
+LCM_STEPS = 4
+LCM_GUIDANCE_SCALE = 1.5
+
 # Server settings
 HOST = "0.0.0.0"
 PORT = 8100

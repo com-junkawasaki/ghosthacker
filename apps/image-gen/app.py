@@ -21,6 +21,7 @@ gen = ImageGenerator()
 async def lifespan(app: FastAPI):
     logger.info("Loading model on startup...")
     gen.load_model()
+    gen.enable_lcm()
     yield
     logger.info("Shutting down.")
 
@@ -67,6 +68,7 @@ class HealthResponse(BaseModel):
     device: str
     model_loaded: bool
     load_time_ms: int
+    lcm_enabled: bool = False
 
 
 class ProgressResponse(BaseModel):
@@ -88,6 +90,7 @@ async def health():
         device=gen.device,
         model_loaded=gen.model_loaded,
         load_time_ms=gen.load_time_ms,
+        lcm_enabled=gen.lcm_enabled,
     )
 
 
@@ -125,6 +128,18 @@ async def cancel():
     """Request cancellation of the current generation."""
     gen.cancel_current()
     return {"status": "cancel_requested"}
+
+
+@app.post("/lcm")
+async def toggle_lcm(enable: bool = True):
+    """Enable or disable LCM-LoRA acceleration (4 steps instead of 28)."""
+    if not gen.model_loaded:
+        raise HTTPException(status_code=503, detail="Model not loaded yet")
+    if enable:
+        gen.enable_lcm()
+    else:
+        gen.disable_lcm()
+    return {"lcm_enabled": gen.lcm_enabled}
 
 
 @app.post("/generate-panel", response_model=GeneratePanelResponse)
