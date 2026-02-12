@@ -73,6 +73,12 @@ service StoryboardService {
 
   // Export storyboard to PDF
   rpc ExportPdf(ExportPdfRequest) returns (ExportPdfResponse);
+
+  // List available projects in the workspace
+  rpc ListProjects(ListProjectsRequest) returns (ListProjectsResponse);
+
+  // Switch the active project
+  rpc SwitchProject(SwitchProjectRequest) returns (SwitchProjectResponse);
 }
 
 message ExportPdfRequest {
@@ -472,4 +478,27 @@ message GeneratePanelImageResponse {
   string message = 2;
   GeneratedImage generated_image = 3;
   string image_url = 4; // URL to access the saved image
+}
+
+message ListProjectsRequest {}
+
+message ListProjectsResponse {
+  repeated Project projects = 1;
+  string active_project = 2; // Currently active project directory name
+}
+
+message Project {
+  string id = 1; // Directory name (e.g., "260123-jump")
+  string name = 2; // Display name (e.g., "Ghost Hacker")
+  bool has_storyboard = 3; // Whether resources/storyboard.jsonld exists
+}
+
+message SwitchProjectRequest {
+  string project_id = 1; // Directory name to switch to
+}
+
+message SwitchProjectResponse {
+  bool success = 1;
+  string message = 2;
+  string storyboard_path = 3;
 }

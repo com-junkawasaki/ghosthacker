@@ -99,6 +99,12 @@ const (
 	// StoryboardServiceExportPdfProcedure is the fully-qualified name of the StoryboardService's
 	// ExportPdf RPC.
 	StoryboardServiceExportPdfProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/ExportPdf"
+	// StoryboardServiceListProjectsProcedure is the fully-qualified name of the StoryboardService's
+	// ListProjects RPC.
+	StoryboardServiceListProjectsProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/ListProjects"
+	// StoryboardServiceSwitchProjectProcedure is the fully-qualified name of the StoryboardService's
+	// SwitchProject RPC.
+	StoryboardServiceSwitchProjectProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/SwitchProject"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
@@ -126,6 +132,8 @@ var (
 	storyboardServiceSaveChatSessionMethodDescriptor               = storyboardServiceServiceDescriptor.Methods().ByName("SaveChatSession")
 	storyboardServiceGetChatSessionsMethodDescriptor               = storyboardServiceServiceDescriptor.Methods().ByName("GetChatSessions")
 	storyboardServiceExportPdfMethodDescriptor                     = storyboardServiceServiceDescriptor.Methods().ByName("ExportPdf")
+	storyboardServiceListProjectsMethodDescriptor                  = storyboardServiceServiceDescriptor.Methods().ByName("ListProjects")
+	storyboardServiceSwitchProjectMethodDescriptor                 = storyboardServiceServiceDescriptor.Methods().ByName("SwitchProject")
 )
 
 // StoryboardServiceClient is a client for the gftd.ghosthacker.storyboard.v1.StoryboardService
@@ -175,6 +183,10 @@ type StoryboardServiceClient interface {
 	GetChatSessions(context.Context, *connect.Request[proto.GetChatSessionsRequest]) (*connect.Response[proto.GetChatSessionsResponse], error)
 	// Export storyboard to PDF
 	ExportPdf(context.Context, *connect.Request[proto.ExportPdfRequest]) (*connect.Response[proto.ExportPdfResponse], error)
+	// List available projects in the workspace
+	ListProjects(context.Context, *connect.Request[proto.ListProjectsRequest]) (*connect.Response[proto.ListProjectsResponse], error)
+	// Switch the active project
+	SwitchProject(context.Context, *connect.Request[proto.SwitchProjectRequest]) (*connect.Response[proto.SwitchProjectResponse], error)
 }
 
 // NewStoryboardServiceClient constructs a client for the
@@ -320,6 +332,18 @@ func NewStoryboardServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(storyboardServiceExportPdfMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		listProjects: connect.NewClient[proto.ListProjectsRequest, proto.ListProjectsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListProjectsProcedure,
+			connect.WithSchema(storyboardServiceListProjectsMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		switchProject: connect.NewClient[proto.SwitchProjectRequest, proto.SwitchProjectResponse](
+			httpClient,
+			baseURL+StoryboardServiceSwitchProjectProcedure,
+			connect.WithSchema(storyboardServiceSwitchProjectMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -347,6 +371,8 @@ type storyboardServiceClient struct {
 	saveChatSession               *connect.Client[proto.SaveChatSessionRequest, proto.SaveChatSessionResponse]
 	getChatSessions               *connect.Client[proto.GetChatSessionsRequest, proto.GetChatSessionsResponse]
 	exportPdf                     *connect.Client[proto.ExportPdfRequest, proto.ExportPdfResponse]
+	listProjects                  *connect.Client[proto.ListProjectsRequest, proto.ListProjectsResponse]
+	switchProject                 *connect.Client[proto.SwitchProjectRequest, proto.SwitchProjectResponse]
 }
 
 // LoadStoryboard calls gftd.ghosthacker.storyboard.v1.StoryboardService.LoadStoryboard.
@@ -463,6 +489,16 @@ func (c *storyboardServiceClient) ExportPdf(ctx context.Context, req *connect.Re
 	return c.exportPdf.CallUnary(ctx, req)
 }
 
+// ListProjects calls gftd.ghosthacker.storyboard.v1.StoryboardService.ListProjects.
+func (c *storyboardServiceClient) ListProjects(ctx context.Context, req *connect.Request[proto.ListProjectsRequest]) (*connect.Response[proto.ListProjectsResponse], error) {
+	return c.listProjects.CallUnary(ctx, req)
+}
+
+// SwitchProject calls gftd.ghosthacker.storyboard.v1.StoryboardService.SwitchProject.
+func (c *storyboardServiceClient) SwitchProject(ctx context.Context, req *connect.Request[proto.SwitchProjectRequest]) (*connect.Response[proto.SwitchProjectResponse], error) {
+	return c.switchProject.CallUnary(ctx, req)
+}
+
 // StoryboardServiceHandler is an implementation of the
 // gftd.ghosthacker.storyboard.v1.StoryboardService service.
 type StoryboardServiceHandler interface {
@@ -510,6 +546,10 @@ type StoryboardServiceHandler interface {
 	GetChatSessions(context.Context, *connect.Request[proto.GetChatSessionsRequest]) (*connect.Response[proto.GetChatSessionsResponse], error)
 	// Export storyboard to PDF
 	ExportPdf(context.Context, *connect.Request[proto.ExportPdfRequest]) (*connect.Response[proto.ExportPdfResponse], error)
+	// List available projects in the workspace
+	ListProjects(context.Context, *connect.Request[proto.ListProjectsRequest]) (*connect.Response[proto.ListProjectsResponse], error)
+	// Switch the active project
+	SwitchProject(context.Context, *connect.Request[proto.SwitchProjectRequest]) (*connect.Response[proto.SwitchProjectResponse], error)
 }
 
 // NewStoryboardServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -650,6 +690,18 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 		connect.WithSchema(storyboardServiceExportPdfMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	storyboardServiceListProjectsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListProjectsProcedure,
+		svc.ListProjects,
+		connect.WithSchema(storyboardServiceListProjectsMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceSwitchProjectHandler := connect.NewUnaryHandler(
+		StoryboardServiceSwitchProjectProcedure,
+		svc.SwitchProject,
+		connect.WithSchema(storyboardServiceSwitchProjectMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/gftd.ghosthacker.storyboard.v1.StoryboardService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case StoryboardServiceLoadStoryboardProcedure:
@@ -696,6 +748,10 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 			storyboardServiceGetChatSessionsHandler.ServeHTTP(w, r)
 		case StoryboardServiceExportPdfProcedure:
 			storyboardServiceExportPdfHandler.ServeHTTP(w, r)
+		case StoryboardServiceListProjectsProcedure:
+			storyboardServiceListProjectsHandler.ServeHTTP(w, r)
+		case StoryboardServiceSwitchProjectProcedure:
+			storyboardServiceSwitchProjectHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -791,4 +847,12 @@ func (UnimplementedStoryboardServiceHandler) GetChatSessions(context.Context, *c
 
 func (UnimplementedStoryboardServiceHandler) ExportPdf(context.Context, *connect.Request[proto.ExportPdfRequest]) (*connect.Response[proto.ExportPdfResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.ExportPdf is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListProjects(context.Context, *connect.Request[proto.ListProjectsRequest]) (*connect.Response[proto.ListProjectsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.ListProjects is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) SwitchProject(context.Context, *connect.Request[proto.SwitchProjectRequest]) (*connect.Response[proto.SwitchProjectResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.SwitchProject is not implemented"))
 }

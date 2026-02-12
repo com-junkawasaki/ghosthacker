@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { getEpisodes, getEpisodePanels, getArcs, getArcPanels, storyboardClient, streamUpdates, exportPdf } from '$lib/client/storyboard-client';
+	import { getEpisodes, getEpisodePanels, getArcs, getArcPanels, storyboardClient, streamUpdates, exportPdf, listProjects, switchProject } from '$lib/client/storyboard-client';
 	import StoryboardPage from './StoryboardPage.svelte';
 	import MangaEditor from './MangaEditor.svelte';
 	import ScriptView from './ScriptView.svelte';
@@ -10,6 +10,8 @@
 	// import { exportToPdf, type ExportMode } from '$lib/pdf-export';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 
+	let projects: Array<{ id: string; name: string; hasStoryboard: boolean }> = $state([]);
+	let activeProject = $state('');
 	let episodes: Array<{ id: string; title: string; totalPages: number }> = $state([]);
 	let arcs: Array<{ id: string; title: string; description: string; episodeIds: string[] }> = $state([]);
 	let selectedEpisode = $state('');
@@ -92,13 +94,91 @@
 
 	const storyboardPath = '';
 
-	onMount(async () => {
-		console.log('[StoryboardEditor] onMount: component mounted, loading episodes and arcs, sessionId:', sessionId);
+	async function loadProjects() {
 		try {
+			const response = await listProjects();
+			const mapped = (response.projects ?? []).map((p) => ({
+				id: p.id ?? '',
+				name: p.name ?? '',
+				hasStoryboard: p.hasStoryboard ?? false,
+			}));
+			if (mapped.length > 0) {
+				projects = mapped;
+				activeProject = response.activeProject ?? '';
+				return;
+			}
+		} catch (err) {
+			console.error('[StoryboardEditor] loadProjects ConnectRPC error:', err);
+		}
+		// Fallback: raw fetch (in case ConnectRPC response parsing issue)
+		try {
+			const apiBase = typeof window !== 'undefined' && window.location.port === '1421'
+				? 'http://localhost:8081' : '';
+			const res = await fetch(`${apiBase}/gftd.ghosthacker.storyboard.v1.StoryboardService/ListProjects`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: '{}'
+			});
+			const data = await res.json();
+			projects = (data.projects ?? []).map((p: any) => ({
+				id: p.id ?? '',
+				name: p.name ?? '',
+				hasStoryboard: p.hasStoryboard ?? p.has_storyboard ?? false,
+			}));
+			activeProject = data.activeProject ?? data.active_project ?? '';
+		} catch (fetchErr) {
+			console.error('[StoryboardEditor] loadProjects fetch fallback failed:', fetchErr);
+		}
+	}
+
+	async function handleProjectSwitch(projectId: string) {
+		if (projectId === activeProject) return;
+		try {
+			loading = true;
+			error = '';
+			// Try ConnectRPC first, then raw fetch fallback
+			try {
+				await switchProject(projectId);
+			} catch {
+				const apiBase = typeof window !== 'undefined' && window.location.port === '1421'
+					? 'http://localhost:8081' : '';
+				await fetch(`${apiBase}/gftd.ghosthacker.storyboard.v1.StoryboardService/SwitchProject`, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ projectId })
+				});
+			}
+			activeProject = projectId;
+			// Reset state and reload
+			episodes = [];
+			arcs = [];
+			panels = [];
+			selectedEpisode = '';
+			selectedArc = '';
+			selectedPage = 1;
 			await Promise.all([loadEpisodes(), loadArcs()]);
 		} catch (err) {
-			console.error('[StoryboardEditor] onMount: error loading initial data', err);
+			console.error('[StoryboardEditor] handleProjectSwitch error:', err);
+			error = `Failed to switch project: ${err}`;
+		} finally {
+			loading = false;
 		}
+	}
+
+	// Load initial data - use $effect for reliable initialization
+	let initialized = false;
+	$effect(() => {
+		if (initialized) return;
+		initialized = true;
+		console.log('[StoryboardEditor] init: loading projects, episodes and arcs, sessionId:', sessionId);
+		(async () => {
+			try {
+				await loadProjects();
+				await Promise.all([loadEpisodes(), loadArcs()]);
+			} catch (err) {
+				console.error('[StoryboardEditor] init: error loading initial data', err);
+			}
+		})();
 	});
 
 	$effect(() => {
@@ -377,13 +457,32 @@
 
 <div class="storyboard-editor">
 	<header class="editor-header">
+		<div class="project-selector">
+			<select
+				value={activeProject}
+				onchange={(e) => {
+					const newProject = e.currentTarget.value;
+					if (newProject !== activeProject) handleProjectSwitch(newProject);
+				}}
+				disabled={loading || projects.length === 0}
+			>
+				{#if projects.length === 0}
+					<option value="" disabled>Loading projects...</option>
+				{:else}
+					{#each projects as project}
+						<option value={project.id} selected={project.id === activeProject}>{project.name}{project.hasStoryboard ? '' : ' (no storyboard)'}</option>
+					{/each}
+				{/if}
+			</select>
+		</div>
+
 		<div class="edit-mode-selector">
-			<button 
-				class:active={editMode === 'episode'} 
+			<button
+				class:active={editMode === 'episode'}
 				onclick={() => editMode = 'episode'}
 			>By Episode</button>
-			<button 
-				class:active={editMode === 'arc'} 
+			<button
+				class:active={editMode === 'arc'}
 				onclick={() => editMode = 'arc'}
 			>By Arc</button>
 		</div>
@@ -679,6 +778,31 @@
 		background: #fff;
 		color: #4a90e2;
 		box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	}
+
+	.project-selector {
+		flex-shrink: 0;
+	}
+
+	.project-selector select {
+		padding: 0.4rem 0.6rem;
+		border: 2px solid #4a90e2;
+		border-radius: 6px;
+		font-size: 0.85rem;
+		font-weight: 600;
+		background: #e8f0fe;
+		color: #1a56db;
+		cursor: pointer;
+		min-width: 160px;
+	}
+
+	.project-selector select:hover {
+		background: #d0e2fd;
+	}
+
+	.project-selector select:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
 	}
 
 	.selection-controls {

@@ -36,7 +36,7 @@ func main() {
 		log.Printf("Warning: storyboard.jsonld not found at %s", storyboardPath)
 	}
 
-	storyboardService := service.NewStoryboardService(storyboardPath)
+	storyboardService := service.NewStoryboardService(storyboardPath, workspaceRoot, projectDir)
 
 	// Initialize Dapr workflow worker (in-process, no separate worker needed)
 	w, err := workflow.NewWorker()

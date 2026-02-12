@@ -456,15 +456,11 @@ func (s *StoryboardService) StartAutonomousGeneration(
 	workflowID := "a2a-gen-" + time.Now().Format("20060102-150405")
 
 	// Track active workflow in actor store
-	projectDir := os.Getenv("PROJECT_DIR")
-	if projectDir == "" {
-		projectDir = "260123-jump"
-	}
-	daprwf.GetActorStore().SetActiveWorkflow(ctx, projectDir, workflowID)
+	daprwf.GetActorStore().SetActiveWorkflow(ctx, s.projectDir, workflowID)
 
 	id, err := wfClient.ScheduleNewWorkflow(ctx, workflowName, workflow.WithInstanceID(workflowID), workflow.WithInput(params))
 	if err != nil {
-		daprwf.GetActorStore().ClearActiveWorkflow(ctx, projectDir)
+		daprwf.GetActorStore().ClearActiveWorkflow(ctx, s.projectDir)
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to start workflow: %w", err))
 	}
 
@@ -497,11 +493,7 @@ func (s *StoryboardService) TerminateAutonomousGeneration(
 	}
 
 	// Clear active workflow in actor store
-	projectDir := os.Getenv("PROJECT_DIR")
-	if projectDir == "" {
-		projectDir = "260123-jump"
-	}
-	daprwf.GetActorStore().ClearActiveWorkflow(ctx, projectDir)
+	daprwf.GetActorStore().ClearActiveWorkflow(ctx, s.projectDir)
 
 	// Broadcast termination to chat
 	s.BroadcastChatMessage("general", "system", "⚠️ Autonomous generation was terminated by the user.")

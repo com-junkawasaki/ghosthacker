@@ -47,6 +47,8 @@ import (
 
 type StoryboardService struct {
 	storyboardPath string
+	workspaceRoot  string
+	projectDir     string
 	cueCtx         *cue.Context
 	schema         cue.Value
 	mcpServer      *mcp.StoryboardMCPServer
@@ -54,6 +56,17 @@ type StoryboardService struct {
 
 	mu          sync.RWMutex
 	subscribers map[string]chan *storyboardpb.StreamUpdatesResponse
+}
+
+// projectResourcePath returns the absolute path for a resource within the active project.
+// e.g., projectResourcePath("characters/Ren/profile.jsonld")
+func (s *StoryboardService) projectResourcePath(relPath string) string {
+	return filepath.Join(s.workspaceRoot, s.projectDir, "resources", relPath)
+}
+
+// projectBasePath returns the absolute path to the active project directory.
+func (s *StoryboardService) projectBasePath() string {
+	return filepath.Join(s.workspaceRoot, s.projectDir)
 }
 
 // SetWorkflowClient sets the Dapr workflow client (called from main after worker init)
@@ -66,15 +79,94 @@ func (s *StoryboardService) GetWorkflowClient() *workflow.Client {
 	return s.workflowClient
 }
 
-func NewStoryboardService(storyboardPath string) *StoryboardService {
+func NewStoryboardService(storyboardPath, workspaceRoot, projectDir string) *StoryboardService {
 	cueCtx := cuecontext.New()
 	return &StoryboardService{
 		storyboardPath: storyboardPath,
+		workspaceRoot:  workspaceRoot,
+		projectDir:     projectDir,
 		cueCtx:         cueCtx,
 		schema:         schema.GetSchema(),
 		mcpServer:      mcp.NewStoryboardMCPServer(),
 		subscribers:    make(map[string]chan *storyboardpb.StreamUpdatesResponse),
 	}
+}
+
+func (s *StoryboardService) ListProjects(
+	ctx context.Context,
+	req *connect.Request[storyboardpb.ListProjectsRequest],
+) (*connect.Response[storyboardpb.ListProjectsResponse], error) {
+	entries, err := os.ReadDir(s.workspaceRoot)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to read workspace: %w", err))
+	}
+
+	var projects []*storyboardpb.Project
+	for _, entry := range entries {
+		if !entry.IsDir() || !strings.HasPrefix(entry.Name(), "26") {
+			continue
+		}
+
+		proj := &storyboardpb.Project{
+			Id:   entry.Name(),
+			Name: entry.Name(),
+		}
+
+		// Check for PROJECT.jsonld to get display name
+		projectFile := filepath.Join(s.workspaceRoot, entry.Name(), "PROJECT.jsonld")
+		if data, err := os.ReadFile(projectFile); err == nil {
+			var meta map[string]interface{}
+			if json.Unmarshal(data, &meta) == nil {
+				if title, ok := meta["dct:title"].(string); ok {
+					proj.Name = title
+				}
+			}
+		}
+
+		// Check if storyboard exists
+		sbPath := filepath.Join(s.workspaceRoot, entry.Name(), "resources/storyboard.jsonld")
+		if _, err := os.Stat(sbPath); err == nil {
+			proj.HasStoryboard = true
+		}
+
+		projects = append(projects, proj)
+	}
+
+	return connect.NewResponse(&storyboardpb.ListProjectsResponse{
+		Projects:      projects,
+		ActiveProject: s.projectDir,
+	}), nil
+}
+
+func (s *StoryboardService) SwitchProject(
+	ctx context.Context,
+	req *connect.Request[storyboardpb.SwitchProjectRequest],
+) (*connect.Response[storyboardpb.SwitchProjectResponse], error) {
+	projectID := req.Msg.ProjectId
+	if projectID == "" {
+		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("project_id is required"))
+	}
+
+	// Verify directory exists
+	projectPath := filepath.Join(s.workspaceRoot, projectID)
+	if _, err := os.Stat(projectPath); os.IsNotExist(err) {
+		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("project directory not found: %s", projectID))
+	}
+
+	newStoryboardPath := filepath.Join(s.workspaceRoot, projectID, "resources/storyboard.jsonld")
+
+	s.mu.Lock()
+	s.projectDir = projectID
+	s.storyboardPath = newStoryboardPath
+	s.mu.Unlock()
+
+	log.Printf("Switched to project: %s (storyboard: %s)", projectID, newStoryboardPath)
+
+	return connect.NewResponse(&storyboardpb.SwitchProjectResponse{
+		Success:        true,
+		Message:        fmt.Sprintf("Switched to project: %s", projectID),
+		StoryboardPath: newStoryboardPath,
+	}), nil
 }
 
 func (s *StoryboardService) validateAndLoad(filePath string) (map[string]interface{}, error) {
@@ -135,7 +227,7 @@ func (s *StoryboardService) aggregateMaster(filePath string) (map[string]interfa
 				continue
 			}
 
-		fullPath := filepath.Join(workspaceRoot, "260123-jump/resources", sourceFile)
+		fullPath := filepath.Join(workspaceRoot, s.projectDir, "resources", sourceFile)
 		log.Printf("aggregateMaster: resolving %s -> %s", sourceFile, fullPath)
 		data, err := os.ReadFile(fullPath)
 		if err != nil {
@@ -206,7 +298,7 @@ func (s *StoryboardService) aggregateMaster(filePath string) (map[string]interfa
 				}
 
 				// Resolve relative to episode directory
-				fullPath := filepath.Join(workspaceRoot, "260123-jump/resources", episodeDir, actSourceFile)
+				fullPath := filepath.Join(workspaceRoot, s.projectDir, "resources", episodeDir, actSourceFile)
 				log.Printf("aggregateMaster: resolving act %s -> %s", actSourceFile, fullPath)
 
 				data, err := os.ReadFile(fullPath)
@@ -237,7 +329,7 @@ func (s *StoryboardService) aggregateMaster(filePath string) (map[string]interfa
 	// 5. Resolve Arcs
 	if arcRef, ok := master["gh:arcs"].(map[string]interface{}); ok {
 		if sourceFile, ok := arcRef["gh:sourceFile"].(string); ok {
-			fullPath := filepath.Join(workspaceRoot, "260123-jump/resources", sourceFile)
+			fullPath := filepath.Join(workspaceRoot, s.projectDir, "resources", sourceFile)
 			data, err := os.ReadFile(fullPath)
 			if err == nil {
 				var arcData map[string]interface{}
@@ -549,7 +641,7 @@ func (s *StoryboardService) UpdatePanel(
 		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(filePath))))
 	}
 	epID := strings.TrimPrefix(req.Msg.EpisodeId, "episode:")
-	epPath := filepath.Join(workspaceRoot, "260123-jump", "resources/episodes", epID, "episode.jsonld")
+	epPath := filepath.Join(workspaceRoot, s.projectDir, "resources/episodes", epID, "episode.jsonld")
 	
 	// Find the episode data in the master map to save it individually
 	var targetEpisode map[string]interface{}
@@ -1398,7 +1490,7 @@ func (s *StoryboardService) ExportPdf(
 	m := maroto.New(cfg)
 
 	// Cover Page - Master Plan Image
-	coverImagePath := filepath.Join(workspaceRoot, "260123-jump", "resources", "logo", "ghosthacker-master-plan.jpeg")
+	coverImagePath := filepath.Join(workspaceRoot, s.projectDir, "resources", "logo", "ghosthacker-master-plan.jpeg")
 	if _, err := os.Stat(coverImagePath); err == nil {
 		// Load and add cover image
 		coverImgBytes, err := os.ReadFile(coverImagePath)
@@ -1542,7 +1634,7 @@ func (s *StoryboardService) buildPanelColSize(p *storyboardpb.Panel, workspaceRo
 			// imgURL is like "/images/episodes/episode:arc0-1-origin/pages/0/p0n1-dark-room_v2.png"
 			// Remove leading slash and join with resources path
 			cleanURL := strings.TrimPrefix(imgURL, "/")
-			imgPath := filepath.Join(workspaceRoot, "260123-jump", "resources", cleanURL)
+			imgPath := filepath.Join(workspaceRoot, s.projectDir, "resources", cleanURL)
 			
 			// Read and resize image for PDF
 			resizedData, err := resizeImageForPDF(imgPath, maxWidth, maxHeight)
@@ -1804,7 +1896,7 @@ func (s *StoryboardService) createMangaPageImage(panels []*storyboardpb.Panel, w
 			imgURL := p.Data.GeneratedImages[imgIdx].ImageUrl
 			if imgURL != "" {
 				cleanURL := strings.TrimPrefix(imgURL, "/")
-				imgPath := filepath.Join(workspaceRoot, "260123-jump", "resources", cleanURL)
+				imgPath := filepath.Join(workspaceRoot, s.projectDir, "resources", cleanURL)
 				
 				// Load and decode image
 				panelImg, err := loadImage(imgPath)
