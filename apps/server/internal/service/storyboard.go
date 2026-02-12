@@ -53,6 +53,7 @@ type StoryboardService struct {
 	schema         cue.Value
 	mcpServer      *mcp.StoryboardMCPServer
 	workflowClient *workflow.Client
+	jobQueue       *JobQueue
 
 	mu          sync.RWMutex
 	subscribers map[string]chan *storyboardpb.StreamUpdatesResponse
@@ -81,7 +82,7 @@ func (s *StoryboardService) GetWorkflowClient() *workflow.Client {
 
 func NewStoryboardService(storyboardPath, workspaceRoot, projectDir string) *StoryboardService {
 	cueCtx := cuecontext.New()
-	return &StoryboardService{
+	svc := &StoryboardService{
 		storyboardPath: storyboardPath,
 		workspaceRoot:  workspaceRoot,
 		projectDir:     projectDir,
@@ -90,6 +91,11 @@ func NewStoryboardService(storyboardPath, workspaceRoot, projectDir string) *Sto
 		mcpServer:      mcp.NewStoryboardMCPServer(),
 		subscribers:    make(map[string]chan *storyboardpb.StreamUpdatesResponse),
 	}
+
+	resourcesDir := filepath.Join(workspaceRoot, projectDir, "resources")
+	svc.jobQueue = NewJobQueue(resourcesDir, svc.broadcastUpdate, svc.executeGenerationJob)
+
+	return svc
 }
 
 func (s *StoryboardService) ListProjects(

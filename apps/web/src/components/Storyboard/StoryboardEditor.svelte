@@ -7,8 +7,10 @@
 	import ShootingView from './ShootingView.svelte';
 	import NodeTree from './NodeTree.svelte';
 	import ChatPanel from './ChatPanel.svelte';
+	import ImageGenStatus from './ImageGenStatus.svelte';
 	// import { exportToPdf, type ExportMode } from '$lib/pdf-export';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
+	import { updateJob, removeJob } from '$lib/stores/job-store.svelte';
 
 	let projects: Array<{ id: string; name: string; hasStoryboard: boolean }> = $state([]);
 	let activeProject = $state('');
@@ -220,6 +222,34 @@
 								agent: update.chatMessage.agentMode,
 								content: update.chatMessage.content
 							});
+						}
+					} else if (update.updateType?.startsWith('job_')) {
+						// Job progress/completion events
+						if (update.jobId) {
+							if (update.jobStatus === 'completed' || update.jobStatus === 'failed' || update.jobStatus === 'cancelled') {
+								updateJob(update.jobId, {
+									status: update.jobStatus,
+									imageUrl: update.jobImageUrl || '',
+									error: update.jobError || '',
+								});
+								// Reload panels to get the updated image
+								if (update.jobStatus === 'completed' && isRelevant) {
+									loadPanels();
+								}
+								// Remove from store after a brief delay
+								setTimeout(() => removeJob(update.jobId!), 3000);
+							} else {
+								updateJob(update.jobId, {
+									jobId: update.jobId,
+									episodeId: update.episodeId,
+									pageNumber: update.pageNumber,
+									panel: update.panel,
+									status: update.jobStatus || 'running',
+									currentStep: update.jobCurrentStep,
+									totalSteps: update.jobTotalSteps,
+									etaMs: update.jobEtaMs,
+								});
+							}
 						}
 					}
 				},
@@ -551,26 +581,29 @@
 			{/if}
 		</div>
 
-		<div class="export-controls">
-			<button 
-				class="export-btn"
-				onclick={handleExportPdf}
-				disabled={isExporting || panels.length === 0}
-				title={`Export ${viewMode} as PDF`}
-			>
-				{#if isExporting}
-					<span class="spinner"></span>
-					Exporting...
-				{:else}
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-						<polyline points="14 2 14 8 20 8"></polyline>
-						<line x1="12" y1="18" x2="12" y2="12"></line>
-						<line x1="9" y1="15" x2="15" y2="15"></line>
-					</svg>
-					PDF ({viewMode})
-				{/if}
-			</button>
+		<div class="header-right-group">
+			<ImageGenStatus />
+			<div class="export-controls">
+				<button
+					class="export-btn"
+					onclick={handleExportPdf}
+					disabled={isExporting || panels.length === 0}
+					title={`Export ${viewMode} as PDF`}
+				>
+					{#if isExporting}
+						<span class="spinner"></span>
+						Exporting...
+					{:else}
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+							<polyline points="14 2 14 8 20 8"></polyline>
+							<line x1="12" y1="18" x2="12" y2="12"></line>
+							<line x1="9" y1="15" x2="15" y2="15"></line>
+						</svg>
+						PDF ({viewMode})
+					{/if}
+				</button>
+			</div>
 		</div>
 	</header>
 
@@ -907,6 +940,12 @@
 
 	.empty-state button:hover {
 		background: #f5f5f5;
+	}
+
+	.header-right-group {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
 	}
 
 	.export-controls {

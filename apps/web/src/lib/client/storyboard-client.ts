@@ -1,7 +1,7 @@
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-web';
 import { StoryboardService } from '$lib/gen/proto/storyboard_pb';
-import type { GetEpisodesResponse, GetEpisodePanelsResponse, StreamUpdatesResponse, GetArcsResponse, GetArcPanelsResponse, ExportPdfResponse, ListProjectsResponse } from '$lib/gen/proto/storyboard_pb';
+import type { GetEpisodesResponse, GetEpisodePanelsResponse, StreamUpdatesResponse, GetArcsResponse, GetArcPanelsResponse, ExportPdfResponse, ListProjectsResponse, SubmitGenerationJobResponse, CancelGenerationJobResponse, ListGenerationJobsResponse } from '$lib/gen/proto/storyboard_pb';
 
 // Determine API base URL
 const getApiBaseUrl = (): string => {
@@ -297,4 +297,45 @@ export async function switchProject(projectId: string) {
 		throw new Error(response.message || 'Failed to switch project');
 	}
 	return response;
+}
+
+// --- Image Generation Job Queue ---
+
+/**
+ * Submit an image generation job to the queue
+ */
+export async function submitGenerationJob(
+	filePath: string,
+	episodeId: string,
+	pageNumber: number,
+	panel: number,
+	panelData: any,
+	model: string = ''
+): Promise<SubmitGenerationJobResponse> {
+	const response = await storyboardClient.submitGenerationJob({
+		filePath,
+		episodeId,
+		pageNumber,
+		panel,
+		panelData,
+		model,
+	});
+	if (!response.success) {
+		throw new Error(response.message || 'Failed to submit generation job');
+	}
+	return response;
+}
+
+/**
+ * Cancel a generation job
+ */
+export async function cancelGenerationJob(jobId: string): Promise<CancelGenerationJobResponse> {
+	return storyboardClient.cancelGenerationJob({ jobId });
+}
+
+/**
+ * List all generation jobs
+ */
+export async function listGenerationJobs(): Promise<ListGenerationJobsResponse> {
+	return storyboardClient.listGenerationJobs({});
 }

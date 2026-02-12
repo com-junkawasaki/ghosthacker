@@ -5,8 +5,8 @@ MODEL_ID = "cagliostrolab/animagine-xl-4.0"
 VAE_ID = "madebyollin/sdxl-vae-fp16-fix"
 
 # Default generation parameters
-DEFAULT_WIDTH = 1024
-DEFAULT_HEIGHT = 576  # 16:9 for cinematic panels
+DEFAULT_WIDTH = 304   # Small preview (closest multiple of 8 to 300)
+DEFAULT_HEIGHT = 304  # Small preview (closest multiple of 8 to 300)
 DEFAULT_STEPS = 28
 DEFAULT_GUIDANCE_SCALE = 7.0
 DEFAULT_NEGATIVE_PROMPT = (
@@ -46,15 +46,15 @@ STYLE_PRESETS = {
     },
 }
 
-# Aspect ratio presets
+# Aspect ratio presets (small preview sizes for fast generation)
 ASPECT_RATIOS = {
-    "16:9": (1024, 576),
-    "9:16": (576, 1024),
-    "1:1": (1024, 1024),
-    "4:3": (1024, 768),
-    "3:4": (768, 1024),
-    "3:2": (1024, 680),  # closest multiple of 8
-    "2:3": (680, 1024),
+    "16:9": (536, 304),   # ~16:9, multiples of 8
+    "9:16": (304, 536),
+    "1:1": (304, 304),
+    "4:3": (400, 304),    # ~4:3, multiples of 8
+    "3:4": (304, 400),
+    "3:2": (456, 304),    # ~3:2, multiples of 8
+    "2:3": (304, 456),
 }
 
 # Server settings
