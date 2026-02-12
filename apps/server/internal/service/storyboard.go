@@ -16,6 +16,7 @@ import (
 	"connectrpc.com/connect"
 	"cuelang.org/go/cue"
 	"cuelang.org/go/cue/cuecontext"
+	"github.com/dapr/go-sdk/workflow"
 	"storyboard-editor/backend/internal/mcp"
 	"storyboard-editor/backend/internal/schema"
 	"storyboard-editor/backend/proto"
@@ -49,9 +50,20 @@ type StoryboardService struct {
 	cueCtx         *cue.Context
 	schema         cue.Value
 	mcpServer      *mcp.StoryboardMCPServer
-	
+	workflowClient *workflow.Client
+
 	mu          sync.RWMutex
 	subscribers map[string]chan *storyboardpb.StreamUpdatesResponse
+}
+
+// SetWorkflowClient sets the Dapr workflow client (called from main after worker init)
+func (s *StoryboardService) SetWorkflowClient(c *workflow.Client) {
+	s.workflowClient = c
+}
+
+// GetWorkflowClient returns the Dapr workflow client
+func (s *StoryboardService) GetWorkflowClient() *workflow.Client {
+	return s.workflowClient
 }
 
 func NewStoryboardService(storyboardPath string) *StoryboardService {
@@ -1212,7 +1224,7 @@ func (s *StoryboardService) broadcastUpdate(update *storyboardpb.StreamUpdatesRe
 	}
 }
 
-// BroadcastChatMessage allows external components (like Temporal workers) to send messages to the chat
+// BroadcastChatMessage allows external components (like Dapr workflow activities) to send messages to the chat
 func (s *StoryboardService) BroadcastChatMessage(role, agentMode, content string) {
 	s.broadcastUpdate(&storyboardpb.StreamUpdatesResponse{
 		UpdateType: "chat_message",

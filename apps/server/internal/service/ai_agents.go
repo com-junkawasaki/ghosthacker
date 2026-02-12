@@ -9,12 +9,13 @@ import (
 	"regexp"
 	"strings"
 	"time"
-	"storyboard-editor/backend/internal/temporal"
-	"storyboard-editor/backend/proto"
+
+	daprwf "storyboard-editor/backend/internal/dapr"
+	storyboardpb "storyboard-editor/backend/proto"
 
 	"connectrpc.com/connect"
+	"github.com/dapr/go-sdk/workflow"
 	"github.com/mark3labs/mcp-go/mcp"
-	"go.temporal.io/sdk/client"
 )
 
 // GenerateScenario handles the high-level plot generation
@@ -24,36 +25,29 @@ func (s *StoryboardService) GenerateScenario(
 ) (*connect.Response[storyboardpb.GenerateScenarioResponse], error) {
 	log.Printf("GenerateScenario: prompt=%s", req.Msg.Prompt)
 
-	temporalHost := os.Getenv("TEMPORAL_HOST")
-	if temporalHost == "" {
-		// Fallback or error
-		log.Printf("Warning: TEMPORAL_HOST not set, skipping workflow start")
+	wfClient := s.GetWorkflowClient()
+	if wfClient == nil {
 		return connect.NewResponse(&storyboardpb.GenerateScenarioResponse{
 			Success:    false,
-			Message:    "Temporal server not configured (TEMPORAL_HOST missing)",
+			Message:    "Dapr workflow engine not initialized",
 			WorkflowId: "",
 		}), nil
 	}
 
-	c, err := client.Dial(client.Options{
-		HostPort: temporalHost,
-	})
-	if err != nil {
-		log.Printf("Error: failed to dial temporal at %s: %v", temporalHost, err)
-		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to dial temporal: %w", err))
+	workflowID := "scenario-gen-" + time.Now().Format("20060102-150405")
+	params := daprwf.AutonomousGenerationParams{
+		Goal: req.Msg.Prompt,
 	}
-	defer c.Close()
 
-	// TODO: Start Temporal Workflow for Scenario Generation
-	// workflowOptions := client.StartWorkflowOptions{
-	// 	ID:        "scenario-gen-" + time.Now().Format("20060102-150405"),
-	// 	TaskQueue: "storyboard-task-queue",
-	// }
+	id, err := wfClient.ScheduleNewWorkflow(ctx, "ScenarioGenerationWorkflow", workflow.WithInstanceID(workflowID), workflow.WithInput(params))
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to start workflow: %w", err))
+	}
 
 	return connect.NewResponse(&storyboardpb.GenerateScenarioResponse{
 		Success:    true,
-		Message:    "Scenario generation started (placeholder)",
-		WorkflowId: "placeholder-id",
+		Message:    "Scenario generation started",
+		WorkflowId: string(id),
 	}), nil
 }
 
@@ -426,40 +420,27 @@ func (s *StoryboardService) StartAutonomousGeneration(
 ) (*connect.Response[storyboardpb.StartAutonomousGenerationResponse], error) {
 	log.Printf("StartAutonomousGeneration: goal=%s", req.Msg.Goal)
 
-	temporalHost := os.Getenv("TEMPORAL_HOST")
-	if temporalHost == "" {
+	wfClient := s.GetWorkflowClient()
+	if wfClient == nil {
 		return connect.NewResponse(&storyboardpb.StartAutonomousGenerationResponse{
 			Success: false,
-			Message: "Temporal server not configured (TEMPORAL_HOST missing)",
+			Message: "Dapr workflow engine not initialized",
 		}), nil
 	}
 
-	c, err := client.Dial(client.Options{
-		HostPort: temporalHost,
-	})
-	if err != nil {
-		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to dial temporal: %w", err))
-	}
-	defer c.Close()
-
 	// Convert context to map
 	initialContext := make([]map[string]interface{}, len(req.Msg.InitialContext))
-	for i, ctx := range req.Msg.InitialContext {
+	for i, c := range req.Msg.InitialContext {
 		initialContext[i] = map[string]interface{}{
-			"type":        ctx.Type,
-			"id":          ctx.Id,
-			"page_number": ctx.PageNumber,
-			"panel":       ctx.Panel,
-			"json":        ctx.JsonContent,
+			"type":        c.Type,
+			"id":          c.Id,
+			"page_number": c.PageNumber,
+			"panel":       c.Panel,
+			"json":        c.JsonContent,
 		}
 	}
 
-	workflowOptions := client.StartWorkflowOptions{
-		ID:        "a2a-gen-" + time.Now().Format("20060102-150405"),
-		TaskQueue: "storyboard-task-queue",
-	}
-
-	params := temporal.AutonomousGenerationParams{
+	params := daprwf.AutonomousGenerationParams{
 		FilePath:       req.Msg.FilePath,
 		EpisodeID:      req.Msg.EpisodeId,
 		Goal:           req.Msg.Goal,
@@ -472,46 +453,55 @@ func (s *StoryboardService) StartAutonomousGeneration(
 		workflowName = "EpisodeMasterWorkflow"
 	}
 
-	we, err := c.ExecuteWorkflow(ctx, workflowOptions, workflowName, params)
+	workflowID := "a2a-gen-" + time.Now().Format("20060102-150405")
+
+	// Track active workflow in actor store
+	projectDir := os.Getenv("PROJECT_DIR")
+	if projectDir == "" {
+		projectDir = "260123-jump"
+	}
+	daprwf.GetActorStore().SetActiveWorkflow(ctx, projectDir, workflowID)
+
+	id, err := wfClient.ScheduleNewWorkflow(ctx, workflowName, workflow.WithInstanceID(workflowID), workflow.WithInput(params))
 	if err != nil {
+		daprwf.GetActorStore().ClearActiveWorkflow(ctx, projectDir)
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to start workflow: %w", err))
 	}
 
 	return connect.NewResponse(&storyboardpb.StartAutonomousGenerationResponse{
 		Success:    true,
 		Message:    "Autonomous A2A generation started",
-		WorkflowId: we.GetID(),
-		RunId:      we.GetRunID(),
+		WorkflowId: string(id),
+		RunId:      workflowID,
 	}), nil
 }
 
-// TerminateAutonomousGeneration terminates a running Temporal workflow
+// TerminateAutonomousGeneration terminates a running Dapr workflow
 func (s *StoryboardService) TerminateAutonomousGeneration(
 	ctx context.Context,
 	req *connect.Request[storyboardpb.TerminateAutonomousGenerationRequest],
 ) (*connect.Response[storyboardpb.TerminateAutonomousGenerationResponse], error) {
 	log.Printf("TerminateAutonomousGeneration: workflow_id=%s", req.Msg.WorkflowId)
 
-	temporalHost := os.Getenv("TEMPORAL_HOST")
-	if temporalHost == "" {
-		return nil, connect.NewError(connect.CodeFailedPrecondition, fmt.Errorf("TEMPORAL_HOST is not set"))
+	wfClient := s.GetWorkflowClient()
+	if wfClient == nil {
+		return nil, connect.NewError(connect.CodeFailedPrecondition, fmt.Errorf("Dapr workflow engine not initialized"))
 	}
 
-	c, err := client.Dial(client.Options{
-		HostPort: temporalHost,
-	})
-	if err != nil {
-		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to dial temporal: %w", err))
-	}
-	defer c.Close()
-
-	err = c.TerminateWorkflow(ctx, req.Msg.WorkflowId, "", req.Msg.Reason)
+	err := wfClient.TerminateWorkflow(ctx, req.Msg.WorkflowId)
 	if err != nil {
 		return connect.NewResponse(&storyboardpb.TerminateAutonomousGenerationResponse{
 			Success: false,
 			Message: fmt.Sprintf("Failed to terminate workflow: %v", err),
 		}), nil
 	}
+
+	// Clear active workflow in actor store
+	projectDir := os.Getenv("PROJECT_DIR")
+	if projectDir == "" {
+		projectDir = "260123-jump"
+	}
+	daprwf.GetActorStore().ClearActiveWorkflow(ctx, projectDir)
 
 	// Broadcast termination to chat
 	s.BroadcastChatMessage("general", "system", "⚠️ Autonomous generation was terminated by the user.")

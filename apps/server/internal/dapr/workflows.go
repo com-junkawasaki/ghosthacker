@@ -42,6 +42,13 @@ type episodeDraft struct {
 	Params  AutonomousGenerationParams
 }
 
+// BroadcastParams contains parameters for broadcasting agent messages
+type BroadcastParams struct {
+	AgentMode string
+	Content   string
+	Role      string // "user", "assistant", "system", "debug", "error"
+}
+
 // StoryboardUpdateWorkflow handles async storyboard updates
 func StoryboardUpdateWorkflow(ctx *workflow.WorkflowContext) (any, error) {
 	var params StoryboardUpdateParams
@@ -284,9 +291,9 @@ func EvaluationAgentWorkflow(ctx *workflow.WorkflowContext) (any, error) {
 	return &AutonomousGenerationResult{Success: true, Message: output}, nil
 }
 
-// RegisterWorkflows registers all workflows with the Dapr workflow registry
-func RegisterWorkflows(r *workflow.Registry) error {
-	workflows := []interface{}{
+// RegisterWorkflows registers all workflows with the Dapr workflow worker
+func RegisterWorkflows(w *workflow.WorkflowWorker) error {
+	workflows := []workflow.Workflow{
 		StoryboardUpdateWorkflow,
 		AutonomousGenerationWorkflow,
 		EpisodeMasterWorkflow,
@@ -299,16 +306,16 @@ func RegisterWorkflows(r *workflow.Registry) error {
 	}
 
 	for _, wf := range workflows {
-		if err := r.AddWorkflow(wf); err != nil {
+		if err := w.RegisterWorkflow(wf); err != nil {
 			return fmt.Errorf("failed to register workflow: %w", err)
 		}
 	}
 	return nil
 }
 
-// RegisterActivities registers all activities with the Dapr workflow registry
-func RegisterActivities(r *workflow.Registry) error {
-	activities := []interface{}{
+// RegisterActivities registers all activities with the Dapr workflow worker
+func RegisterActivities(w *workflow.WorkflowWorker) error {
+	activities := []workflow.Activity{
 		SaveStoryboardActivity,
 		ScenarioAgentActivity,
 		EpisodeAgentActivity,
@@ -326,7 +333,7 @@ func RegisterActivities(r *workflow.Registry) error {
 	}
 
 	for _, act := range activities {
-		if err := r.AddActivity(act); err != nil {
+		if err := w.RegisterActivity(act); err != nil {
 			return fmt.Errorf("failed to register activity: %w", err)
 		}
 	}

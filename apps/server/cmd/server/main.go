@@ -3,15 +3,18 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 
+	"github.com/dapr/go-sdk/workflow"
+	"github.com/rs/cors"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
-	"github.com/rs/cors"
 
+	daprwf "storyboard-editor/backend/internal/dapr"
 	"storyboard-editor/backend/internal/service"
 	"storyboard-editor/backend/proto/storyboardpbconnect"
 )
@@ -35,9 +38,49 @@ func main() {
 
 	storyboardService := service.NewStoryboardService(storyboardPath)
 
+	// Initialize Dapr workflow worker (in-process, no separate worker needed)
+	w, err := workflow.NewWorker()
+	if err != nil {
+		log.Printf("Warning: Failed to create Dapr workflow worker: %v (workflows disabled)", err)
+	} else {
+		if err := daprwf.RegisterWorkflows(w); err != nil {
+			log.Fatalf("Failed to register workflows: %v", err)
+		}
+		if err := daprwf.RegisterActivities(w); err != nil {
+			log.Fatalf("Failed to register activities: %v", err)
+		}
+
+		if err := w.Start(); err != nil {
+			log.Printf("Warning: Failed to start Dapr workflow worker: %v (workflows disabled)", err)
+		} else {
+			log.Printf("Dapr workflow worker started")
+			defer w.Shutdown()
+		}
+
+		// Create workflow client and inject into service
+		wfClient, err := workflow.NewClient()
+		if err != nil {
+			log.Printf("Warning: Failed to create Dapr workflow client: %v", err)
+		} else {
+			storyboardService.SetWorkflowClient(wfClient)
+			log.Printf("Dapr workflow client connected")
+		}
+	}
+
 	mux := http.NewServeMux()
-	path, handler := storyboardpbconnect.NewStoryboardServiceHandler(storyboardService)
-	mux.Handle(path, handler)
+
+	connectPath, connectHandler := storyboardpbconnect.NewStoryboardServiceHandler(storyboardService)
+	mux.Handle(connectPath, connectHandler)
+
+	// Health check — use a top-level handler that checks path before mux
+	topHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path == "/healthz" || r.URL.Path == "/" {
+			w.Header().Set("Content-Type", "application/json")
+			fmt.Fprintf(w, `{"status":"ok","project":%q}`, projectDir)
+			return
+		}
+		mux.ServeHTTP(w, r)
+	})
 
 	// Serve static images
 	imagesDir := filepath.Join(workspaceRoot, projectDir, "resources/images")
@@ -55,16 +98,16 @@ func main() {
 	log.Printf("Storyboard file: %s", storyboardPath)
 
 	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"*"},
-		AllowedMethods: []string{"GET", "POST", "OPTIONS", "PUT", "DELETE", "PATCH"},
-		AllowedHeaders: []string{"*"},
-		ExposedHeaders: []string{"*"},
+		AllowedOrigins:   []string{"*"},
+		AllowedMethods:   []string{"GET", "POST", "OPTIONS", "PUT", "DELETE", "PATCH"},
+		AllowedHeaders:   []string{"*"},
+		ExposedHeaders:   []string{"*"},
 		AllowCredentials: true,
 	})
 
 	server := &http.Server{
 		Addr:    ":" + port,
-		Handler: h2c.NewHandler(c.Handler(mux), &http2.Server{}),
+		Handler: h2c.NewHandler(c.Handler(topHandler), &http2.Server{}),
 	}
 
 	if err := server.ListenAndServe(); err != nil {
