@@ -1,7 +1,0 @@
-[build]
-  # Use custom build script for multiple binaries
-  # BP_GO_TARGETS is removed - Paketo doesn't support multiple targets directly
-  # Instead, we'll use a build script approach
-
-[metadata]
-  include-files = ["server", "worker"]

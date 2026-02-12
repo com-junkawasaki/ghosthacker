@@ -1,6 +1,0 @@
-{{- if and .Values.temporal.enabled .Values.temporal.ui.enabled }}
-# Note: Temporal UI service is created by Scaffold operator
-# This is a placeholder - Scaffold will create the service automatically
-# based on the TemporalCluster resource configuration
----
-{{- end }}
