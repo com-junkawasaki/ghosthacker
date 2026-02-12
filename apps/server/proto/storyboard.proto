@@ -73,6 +73,23 @@ service StoryboardService {
 
   // Export storyboard to PDF
   rpc ExportPdf(ExportPdfRequest) returns (ExportPdfResponse);
+
+  // List available projects in the workspace
+  rpc ListProjects(ListProjectsRequest) returns (ListProjectsResponse);
+
+  // Switch the active project
+  rpc SwitchProject(SwitchProjectRequest) returns (SwitchProjectResponse);
+
+  // --- Image Generation Job Queue ---
+
+  // Submit an image generation job to the queue
+  rpc SubmitGenerationJob(SubmitGenerationJobRequest) returns (SubmitGenerationJobResponse);
+
+  // Cancel a running or queued generation job
+  rpc CancelGenerationJob(CancelGenerationJobRequest) returns (CancelGenerationJobResponse);
+
+  // List all generation jobs (active and recent)
+  rpc ListGenerationJobs(ListGenerationJobsRequest) returns (ListGenerationJobsResponse);
 }
 
 message ExportPdfRequest {
@@ -413,7 +430,7 @@ message StreamUpdatesRequest {
 }
 
 message StreamUpdatesResponse {
-  string update_type = 1; // "panel_updated", "episode_added", "chat_message"
+  string update_type = 1; // "panel_updated", "episode_added", "chat_message", "job_progress", "job_completed", "job_failed", "job_cancelled"
   string episode_id = 2;
   int32 page_number = 3;
   int32 panel = 4;
@@ -421,6 +438,14 @@ message StreamUpdatesResponse {
   PanelData panel_data = 6; // Full panel data for direct update
   string sender_session_id = 7; // ID of the client who made the change
   ChatMessage chat_message = 8; // For A2A conversation display
+  // Job progress fields (for update_type "job_*")
+  string job_id = 9;
+  string job_status = 10; // "queued", "running", "completed", "failed", "cancelled"
+  int32 job_current_step = 11;
+  int32 job_total_steps = 12;
+  float job_eta_ms = 13;
+  string job_error = 14;
+  string job_image_url = 15;
 }
 
 message ChatMessage {
@@ -472,4 +497,73 @@ message GeneratePanelImageResponse {
   string message = 2;
   GeneratedImage generated_image = 3;
   string image_url = 4; // URL to access the saved image
+}
+
+message ListProjectsRequest {}
+
+message ListProjectsResponse {
+  repeated Project projects = 1;
+  string active_project = 2; // Currently active project directory name
+}
+
+message Project {
+  string id = 1; // Directory name (e.g., "260123-jump")
+  string name = 2; // Display name (e.g., "Ghost Hacker")
+  bool has_storyboard = 3; // Whether resources/storyboard.jsonld exists
+}
+
+message SwitchProjectRequest {
+  string project_id = 1; // Directory name to switch to
+}
+
+message SwitchProjectResponse {
+  bool success = 1;
+  string message = 2;
+  string storyboard_path = 3;
+}
+
+// --- Image Generation Job Queue Messages ---
+
+message SubmitGenerationJobRequest {
+  string file_path = 1;
+  string episode_id = 2;
+  int32 page_number = 3;
+  int32 panel = 4;
+  PanelData panel_data = 5;
+  string model = 6; // "openrouter" or "local"
+}
+
+message SubmitGenerationJobResponse {
+  bool success = 1;
+  string message = 2;
+  string job_id = 3;
+}
+
+message CancelGenerationJobRequest {
+  string job_id = 1;
+}
+
+message CancelGenerationJobResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message ListGenerationJobsRequest {}
+
+message ListGenerationJobsResponse {
+  repeated GenerationJobInfo jobs = 1;
+}
+
+message GenerationJobInfo {
+  string job_id = 1;
+  string status = 2; // "queued", "running", "completed", "failed", "cancelled"
+  int32 current_step = 3;
+  int32 total_steps = 4;
+  float estimated_remaining_ms = 5;
+  string error = 6;
+  string image_url = 7;
+  string episode_id = 8;
+  int32 page_number = 9;
+  int32 panel = 10;
+  string model = 11;
 }

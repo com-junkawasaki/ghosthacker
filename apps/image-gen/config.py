@@ -5,8 +5,8 @@ MODEL_ID = "cagliostrolab/animagine-xl-4.0"
 VAE_ID = "madebyollin/sdxl-vae-fp16-fix"
 
 # Default generation parameters
-DEFAULT_WIDTH = 1024
-DEFAULT_HEIGHT = 576  # 16:9 for cinematic panels
+DEFAULT_WIDTH = 768
+DEFAULT_HEIGHT = 768
 DEFAULT_STEPS = 28
 DEFAULT_GUIDANCE_SCALE = 7.0
 DEFAULT_NEGATIVE_PROMPT = (
@@ -46,16 +46,21 @@ STYLE_PRESETS = {
     },
 }
 
-# Aspect ratio presets
+# Aspect ratio presets (768px base)
 ASPECT_RATIOS = {
-    "16:9": (1024, 576),
-    "9:16": (576, 1024),
-    "1:1": (1024, 1024),
-    "4:3": (1024, 768),
-    "3:4": (768, 1024),
-    "3:2": (1024, 680),  # closest multiple of 8
-    "2:3": (680, 1024),
+    "16:9": (768, 432),   # multiples of 8
+    "9:16": (432, 768),
+    "1:1": (768, 768),
+    "4:3": (768, 576),
+    "3:4": (576, 768),
+    "3:2": (768, 512),
+    "2:3": (512, 768),
 }
+
+# LCM-LoRA acceleration settings
+LCM_LORA_ID = "latent-consistency/lcm-lora-sdxl"
+LCM_STEPS = 4
+LCM_GUIDANCE_SCALE = 1.5
 
 # Server settings
 HOST = "0.0.0.0"

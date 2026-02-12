@@ -2,6 +2,7 @@
 
 import logging
 import os
+import uuid
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException
@@ -20,6 +21,7 @@ gen = ImageGenerator()
 async def lifespan(app: FastAPI):
     logger.info("Loading model on startup...")
     gen.load_model()
+    gen.enable_lcm()
     yield
     logger.info("Shutting down.")
 
@@ -66,6 +68,16 @@ class HealthResponse(BaseModel):
     device: str
     model_loaded: bool
     load_time_ms: int
+    lcm_enabled: bool = False
+
+
+class ProgressResponse(BaseModel):
+    generating: bool
+    job_id: str | None = None
+    current_step: int = 0
+    total_steps: int = 0
+    avg_step_time_ms: float = 0
+    estimated_remaining_ms: float = 0
 
 
 # --- Endpoints ---
@@ -78,6 +90,7 @@ async def health():
         device=gen.device,
         model_loaded=gen.model_loaded,
         load_time_ms=gen.load_time_ms,
+        lcm_enabled=gen.lcm_enabled,
     )
 
 
@@ -103,18 +116,51 @@ async def generate(req: GenerateRequest):
     )
 
 
+@app.get("/progress", response_model=ProgressResponse)
+async def progress():
+    """Return current generation progress."""
+    p = gen.progress
+    return ProgressResponse(**p)
+
+
+@app.post("/cancel")
+async def cancel():
+    """Request cancellation of the current generation."""
+    gen.cancel_current()
+    return {"status": "cancel_requested"}
+
+
+@app.post("/lcm")
+async def toggle_lcm(enable: bool = True):
+    """Enable or disable LCM-LoRA acceleration (4 steps instead of 28)."""
+    if not gen.model_loaded:
+        raise HTTPException(status_code=503, detail="Model not loaded yet")
+    if enable:
+        gen.enable_lcm()
+    else:
+        gen.disable_lcm()
+    return {"lcm_enabled": gen.lcm_enabled}
+
+
 @app.post("/generate-panel", response_model=GeneratePanelResponse)
 async def generate_panel(req: GeneratePanelRequest):
     """Generate a panel image with style presets, matching Go server's conventions."""
     if not gen.model_loaded:
         raise HTTPException(status_code=503, detail="Model not loaded yet")
 
-    image, seed, gen_time = gen.generate_with_style(
-        prompt=req.prompt,
-        style=req.style,
-        aspect_ratio=req.aspect_ratio,
-        seed=req.seed,
-    )
+    gen._current_job_id = str(uuid.uuid4())
+    try:
+        image, seed, gen_time = gen.generate_with_style(
+            prompt=req.prompt,
+            style=req.style,
+            aspect_ratio=req.aspect_ratio,
+            seed=req.seed,
+        )
+    except InterruptedError:
+        gen._current_job_id = None
+        raise HTTPException(status_code=499, detail="Generation cancelled")
+    finally:
+        gen._current_job_id = None
 
     # Save to disk if output_path specified
     saved_path = None

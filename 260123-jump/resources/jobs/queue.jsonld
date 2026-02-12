@@ -1,0 +1,49 @@
+{
+  "@context": {
+    "gh": "https://ghosthacker.gftd.ai/ns/"
+  },
+  "@type": "gh:GenerationQueue",
+  "gh:maxConcurrent": 1,
+  "gh:jobs": [
+    {
+      "@id": "job:RTZ4jmiLIz73",
+      "@type": "gh:GenerationJob",
+      "gh:status": "failed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 1,
+      "gh:panel": 1,
+      "gh:model": "local",
+      "gh:prompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:error": "failed to generate image locally: local image gen error (500): Internal Server Error",
+      "gh:createdAt": "2026-02-12T20:28:57.167773+09:00",
+      "gh:startedAt": "2026-02-12T20:28:57.168102+09:00",
+      "gh:completedAt": "2026-02-12T20:28:57.978006+09:00"
+    },
+    {
+      "@id": "job:MaXseNSX8Rxx",
+      "@type": "gh:GenerationJob",
+      "gh:status": "failed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 2,
+      "gh:panel": 1,
+      "gh:model": "local",
+      "gh:prompt": "Tamakiが窓ガラスに指を触れている。運河の反射が顔に揺れる。. Shot type: Medium Shot. Dialogue: Narration: いい感じでいる——呼吸を一つ置き、私の足場を確認する。.",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:error": "failed to generate image locally: local image gen error (500): Internal Server Error",
+      "gh:createdAt": "2026-02-12T20:34:57.197184+09:00",
+      "gh:startedAt": "2026-02-12T20:34:57.197522+09:00",
+      "gh:completedAt": "2026-02-12T20:34:57.438612+09:00"
+    }
+  ]
+}

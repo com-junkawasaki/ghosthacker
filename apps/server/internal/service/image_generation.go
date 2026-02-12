@@ -71,12 +71,12 @@ func (s *StoryboardService) GeneratePanelImage(
 
 	log.Printf("Generating image with prompt: %s", fullPrompt)
 
-	// Create images directory: 260123-jump/resources/images/episodes/{episode_id}/pages/{page_number}/
+	// Create images directory: {project}/resources/images/episodes/{episode_id}/pages/{page_number}/
 	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
 	if workspaceRoot == "" {
 		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(filePath))))
 	}
-	imagesDir := filepath.Join(workspaceRoot, "260123-jump", "resources/images", "episodes", req.Msg.EpisodeId, "pages", fmt.Sprintf("%d", req.Msg.PageNumber))
+	imagesDir := filepath.Join(workspaceRoot, s.projectDir, "resources/images", "episodes", req.Msg.EpisodeId, "pages", fmt.Sprintf("%d", req.Msg.PageNumber))
 	if err := os.MkdirAll(imagesDir, fs.FileMode(0755)); err != nil {
 		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to create images directory: %w", err))
 	}
@@ -147,13 +147,13 @@ func (s *StoryboardService) GeneratePanelImage(
 	// If this was a character avatar generation, also save it to characters directory
 	if strings.HasPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:") {
 		charID := strings.TrimPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:")
-		charAvatarDir := filepath.Join(workspaceRoot, "260125-jump", "characters", charID)
+		charAvatarDir := filepath.Join(workspaceRoot, s.projectDir, "resources/characters", charID)
 		os.MkdirAll(charAvatarDir, 0755)
 		charAvatarPath := filepath.Join(charAvatarDir, "avatar.png")
 		os.WriteFile(charAvatarPath, imageBytes, 0644)
-		
+
 		// Also save as ID.png for backward compatibility in ScriptView
-		legacyAvatarDir := filepath.Join(workspaceRoot, "260125-jump", "images", "characters")
+		legacyAvatarDir := filepath.Join(workspaceRoot, s.projectDir, "resources/images", "characters")
 		os.MkdirAll(legacyAvatarDir, 0755)
 		os.WriteFile(filepath.Join(legacyAvatarDir, charID+".png"), imageBytes, 0644)
 		
@@ -379,7 +379,7 @@ func (s *StoryboardService) getEpisodeFilePath(masterFilePath, episodeID string)
 		}
 
 		// sourceFile is relative to resources/ directory
-		fullPath := filepath.Join(workspaceRoot, "260123-jump/resources", sourceFile)
+		fullPath := filepath.Join(workspaceRoot, s.projectDir, "resources", sourceFile)
 		return fullPath, nil
 	}
 
@@ -673,7 +673,7 @@ func (s *StoryboardService) saveImage(filePath, episodeID string, pageNumber, pa
 		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(filePath))))
 	}
 
-	imagesDir := filepath.Join(workspaceRoot, "260123-jump", "resources/images", "episodes", episodeID, "pages", fmt.Sprintf("%d", pageNumber))
+	imagesDir := filepath.Join(workspaceRoot, s.projectDir, "resources/images", "episodes", episodeID, "pages", fmt.Sprintf("%d", pageNumber))
 	if err := os.MkdirAll(imagesDir, fs.FileMode(0755)); err != nil {
 		return "", fmt.Errorf("failed to create images directory: %w", err)
 	}
@@ -754,7 +754,7 @@ func (s *StoryboardService) loadCharacterDetails(characterIDs []string, storyboa
 		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(storyboardPath))))
 	}
 
-	charDir := filepath.Join(workspaceRoot, "260123-jump", "resources/characters")
+	charDir := filepath.Join(workspaceRoot, s.projectDir, "resources/characters")
 	details := []string{}
 
 	for _, charID := range characterIDs {
@@ -857,7 +857,7 @@ func (s *StoryboardService) loadEnvironmentDetails(environmentID string, storybo
 
 	if !found {
 		// Try environments/ directory (new design: environments/ID/profile.jsonld)
-		envDir := filepath.Join(workspaceRoot, "260123-jump", "resources/environments")
+		envDir := filepath.Join(workspaceRoot, s.projectDir, "resources/environments")
 		id := strings.TrimPrefix(environmentID, "env:")
 		envFile := filepath.Join(envDir, id, "profile.jsonld")
 		data, err := os.ReadFile(envFile)
@@ -891,7 +891,7 @@ func (s *StoryboardService) loadEnvironmentDetails(environmentID string, storybo
 	}
 
 	// Fallback to datastore (legacy)
-	datastoreDir := filepath.Join(workspaceRoot, "260123-jump", "resources/datastore")
+	datastoreDir := filepath.Join(workspaceRoot, s.projectDir, "resources/datastore")
 	encodedID := base64.URLEncoding.EncodeToString([]byte(environmentID))
 	envFile := filepath.Join(datastoreDir, encodedID+".jsonld")
 
@@ -925,4 +925,197 @@ func (s *StoryboardService) loadEnvironmentDetails(environmentID string, storybo
 	}
 
 	return result, nil
+}
+
+// --- Job-based Generation RPCs ---
+
+// SubmitGenerationJob enqueues a new image generation job.
+func (s *StoryboardService) SubmitGenerationJob(
+	ctx context.Context,
+	req *connect.Request[storyboardpb.SubmitGenerationJobRequest],
+) (*connect.Response[storyboardpb.SubmitGenerationJobResponse], error) {
+	filePath := req.Msg.FilePath
+	if filePath == "" {
+		filePath = s.storyboardPath
+	}
+
+	prompt, err := s.buildImagePrompt(req.Msg.PanelData, filePath)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInvalidArgument, fmt.Errorf("failed to build prompt: %w", err))
+	}
+
+	job := &GenerationJob{
+		EpisodeID:  req.Msg.EpisodeId,
+		PageNumber: req.Msg.PageNumber,
+		Panel:      req.Msg.Panel,
+		Model:      req.Msg.Model,
+		Prompt:     prompt,
+		filePath:   filePath,
+		panelData:  req.Msg.PanelData,
+	}
+
+	jobID := s.jobQueue.EnqueueJob(job)
+
+	return connect.NewResponse(&storyboardpb.SubmitGenerationJobResponse{
+		Success: true,
+		Message: "Job submitted",
+		JobId:   jobID,
+	}), nil
+}
+
+// CancelGenerationJob cancels a queued or running generation job.
+func (s *StoryboardService) CancelGenerationJob(
+	ctx context.Context,
+	req *connect.Request[storyboardpb.CancelGenerationJobRequest],
+) (*connect.Response[storyboardpb.CancelGenerationJobResponse], error) {
+	if err := s.jobQueue.CancelJob(req.Msg.JobId); err != nil {
+		return connect.NewResponse(&storyboardpb.CancelGenerationJobResponse{
+			Success: false,
+			Message: err.Error(),
+		}), nil
+	}
+	return connect.NewResponse(&storyboardpb.CancelGenerationJobResponse{
+		Success: true,
+		Message: "Job cancelled",
+	}), nil
+}
+
+// ListGenerationJobs returns all generation jobs.
+func (s *StoryboardService) ListGenerationJobs(
+	ctx context.Context,
+	req *connect.Request[storyboardpb.ListGenerationJobsRequest],
+) (*connect.Response[storyboardpb.ListGenerationJobsResponse], error) {
+	jobs := s.jobQueue.ListJobs()
+	infos := make([]*storyboardpb.GenerationJobInfo, 0, len(jobs))
+	for _, j := range jobs {
+		infos = append(infos, &storyboardpb.GenerationJobInfo{
+			JobId:                j.ID,
+			Status:               j.Status,
+			CurrentStep:          int32(j.Progress.CurrentStep),
+			TotalSteps:           int32(j.Progress.TotalSteps),
+			EstimatedRemainingMs: float32(j.Progress.EstimatedRemainMs),
+			Error:                j.Error,
+			ImageUrl:             j.ImageURL,
+			EpisodeId:            j.EpisodeID,
+			PageNumber:           j.PageNumber,
+			Panel:                j.Panel,
+			Model:                j.Model,
+		})
+	}
+	return connect.NewResponse(&storyboardpb.ListGenerationJobsResponse{
+		Jobs: infos,
+	}), nil
+}
+
+// executeGenerationJob is the JobExecutor callback used by the queue.
+// It reuses the existing GeneratePanelImage logic.
+func (s *StoryboardService) executeGenerationJob(ctx context.Context, job *GenerationJob) error {
+	filePath := job.filePath
+	if filePath == "" {
+		filePath = s.storyboardPath
+	}
+
+	// Style setup
+	var stylePrefix, styleSuffix, style string
+	if job.panelData != nil && strings.HasPrefix(job.panelData.VisualNote, "CHARACTER_AVATAR:") {
+		stylePrefix = "Professional character portrait, headshot, Mai Yoneyama illustrator style, High-End Webtoon Aesthetic, Fine Line Art, Modern Manga Style, clean background. "
+		styleSuffix = ". Sharp focus on face and expressive eyes, intricate iris detail, consistent facial features, clean white background, high resolution, 8k."
+		style = "character_avatar"
+	} else {
+		stylePrefix = "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. "
+		styleSuffix = ". Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition."
+		style = "cinematic_sketch"
+	}
+	fullPrompt := stylePrefix + job.Prompt + styleSuffix
+
+	// Create images directory
+	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
+	if workspaceRoot == "" {
+		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(filePath))))
+	}
+	imagesDir := filepath.Join(workspaceRoot, s.projectDir, "resources/images", "episodes", job.EpisodeID, "pages", fmt.Sprintf("%d", job.PageNumber))
+	if err := os.MkdirAll(imagesDir, fs.FileMode(0755)); err != nil {
+		return fmt.Errorf("failed to create images directory: %w", err)
+	}
+
+	// Get panel ID
+	panelID, imageVersion, err := s.getOrCreatePanelID(filePath, job.EpisodeID, job.PageNumber, job.Panel)
+	if err != nil {
+		panelID = fmt.Sprintf("panel_%d_%d_%d", job.PageNumber, job.Panel, time.Now().Unix())
+		imageVersion = 1
+	}
+
+	filename := fmt.Sprintf("%s_v%d.png", panelID, imageVersion)
+	imagePath := filepath.Join(imagesDir, filename)
+	urlPath := fmt.Sprintf("/images/episodes/%s/pages/%d/%s", job.EpisodeID, job.PageNumber, filename)
+
+	log.Printf("Job %s: generating image for page %d panel %d", job.ID, job.PageNumber, job.Panel)
+
+	// Pre-update storyboard
+	s.preUpdateStoryboard(filePath, job.EpisodeID, job.PageNumber, job.Panel, urlPath, fullPrompt)
+
+	// Generate
+	useLocal := job.Model == "local" || (job.Model == "" && os.Getenv("USE_LOCAL_IMAGE_GEN") == "true")
+
+	var imageBytes []byte
+	if useLocal {
+		imageBytes, err = s.callLocalImageGen(ctx, job.Prompt, style, imagePath)
+		if err != nil {
+			return fmt.Errorf("failed to generate image locally: %w", err)
+		}
+	} else {
+		apiKey := os.Getenv("OPENROUTER_API_KEY")
+		if apiKey == "" {
+			return fmt.Errorf("OPENROUTER_API_KEY is not set")
+		}
+		imageDataURL, err := s.callOpenRouterAPI(ctx, apiKey, fullPrompt)
+		if err != nil {
+			return fmt.Errorf("failed to generate image: %w", err)
+		}
+		base64Data, err := extractBase64FromDataURL(imageDataURL)
+		if err != nil {
+			return fmt.Errorf("failed to extract image data: %w", err)
+		}
+		imageBytes, err = base64.StdEncoding.DecodeString(base64Data)
+		if err != nil {
+			return fmt.Errorf("failed to decode image: %w", err)
+		}
+	}
+
+	// Write image
+	if err := os.WriteFile(imagePath, imageBytes, fs.FileMode(0644)); err != nil {
+		return fmt.Errorf("failed to write image file: %w", err)
+	}
+	log.Printf("Job %s: saved image to %s", job.ID, imagePath)
+
+	// Character avatar handling
+	if job.panelData != nil && strings.HasPrefix(job.panelData.VisualNote, "CHARACTER_AVATAR:") {
+		charID := strings.TrimPrefix(job.panelData.VisualNote, "CHARACTER_AVATAR:")
+		charAvatarDir := filepath.Join(workspaceRoot, s.projectDir, "resources/characters", charID)
+		os.MkdirAll(charAvatarDir, 0755)
+		os.WriteFile(filepath.Join(charAvatarDir, "avatar.png"), imageBytes, 0644)
+		legacyDir := filepath.Join(workspaceRoot, s.projectDir, "resources/images/characters")
+		os.MkdirAll(legacyDir, 0755)
+		os.WriteFile(filepath.Join(legacyDir, charID+".png"), imageBytes, 0644)
+	}
+
+	// Final storyboard update
+	model := defaultModel
+	if useLocal {
+		model = "animagine-xl-4.0 (local)"
+	}
+	generatedImage := &storyboardpb.GeneratedImage{
+		ImageUrl:    urlPath,
+		ImagePrompt: job.Prompt,
+		GeneratedAt: time.Now().Unix(),
+		Model:       model,
+	}
+	s.finalUpdateStoryboard(filePath, job.EpisodeID, job.PageNumber, job.Panel, generatedImage)
+
+	// Store image URL in job for broadcast
+	s.jobQueue.mu.Lock()
+	job.ImageURL = urlPath
+	s.jobQueue.mu.Unlock()
+
+	return nil
 }

@@ -1,7 +1,7 @@
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-web';
 import { StoryboardService } from '$lib/gen/proto/storyboard_pb';
-import type { GetEpisodesResponse, GetEpisodePanelsResponse, StreamUpdatesResponse, GetArcsResponse, GetArcPanelsResponse, ExportPdfResponse } from '$lib/gen/proto/storyboard_pb';
+import type { GetEpisodesResponse, GetEpisodePanelsResponse, StreamUpdatesResponse, GetArcsResponse, GetArcPanelsResponse, ExportPdfResponse, ListProjectsResponse, SubmitGenerationJobResponse, CancelGenerationJobResponse, ListGenerationJobsResponse } from '$lib/gen/proto/storyboard_pb';
 
 // Determine API base URL
 const getApiBaseUrl = (): string => {
@@ -276,4 +276,66 @@ export function streamUpdates(
 	})();
 
 	return () => abortController.abort();
+}
+
+/**
+ * List available projects in the workspace
+ */
+export async function listProjects(): Promise<ListProjectsResponse> {
+	console.log('[storyboard-client] listProjects: calling API');
+	const response = await storyboardClient.listProjects({});
+	console.log('[storyboard-client] listProjects: response', response, 'projects:', response.projects?.length);
+	return response;
+}
+
+/**
+ * Switch the active project
+ */
+export async function switchProject(projectId: string) {
+	const response = await storyboardClient.switchProject({ projectId });
+	if (!response.success) {
+		throw new Error(response.message || 'Failed to switch project');
+	}
+	return response;
+}
+
+// --- Image Generation Job Queue ---
+
+/**
+ * Submit an image generation job to the queue
+ */
+export async function submitGenerationJob(
+	filePath: string,
+	episodeId: string,
+	pageNumber: number,
+	panel: number,
+	panelData: any,
+	model: string = ''
+): Promise<SubmitGenerationJobResponse> {
+	const response = await storyboardClient.submitGenerationJob({
+		filePath,
+		episodeId,
+		pageNumber,
+		panel,
+		panelData,
+		model,
+	});
+	if (!response.success) {
+		throw new Error(response.message || 'Failed to submit generation job');
+	}
+	return response;
+}
+
+/**
+ * Cancel a generation job
+ */
+export async function cancelGenerationJob(jobId: string): Promise<CancelGenerationJobResponse> {
+	return storyboardClient.cancelGenerationJob({ jobId });
+}
+
+/**
+ * List all generation jobs
+ */
+export async function listGenerationJobs(): Promise<ListGenerationJobsResponse> {
+	return storyboardClient.listGenerationJobs({});
 }

@@ -6,7 +6,7 @@ import random
 import time
 
 import torch
-from diffusers import StableDiffusionXLPipeline
+from diffusers import StableDiffusionXLPipeline, LCMScheduler, EulerDiscreteScheduler
 from PIL import Image
 
 import config
@@ -20,6 +20,46 @@ class ImageGenerator:
         self.device = "mps" if torch.backends.mps.is_available() else "cpu"
         self.model_loaded = False
         self.load_time_ms = 0
+        # LCM-LoRA state
+        self._lcm_enabled = False
+        self._original_scheduler_config = None
+        # Progress tracking
+        self._current_job_id: str | None = None
+        self._current_step: int = 0
+        self._total_steps: int = 0
+        self._step_start_time: float = 0
+        self._avg_step_time_ms: float = 0
+        self._cancelled: bool = False
+
+    def _step_callback(self, pipe, step_index, timestep, callback_kwargs):
+        """Called after each denoising step for progress tracking."""
+        self._current_step = step_index + 1
+        elapsed = (time.time() - self._step_start_time) * 1000
+        if self._current_step > 0:
+            self._avg_step_time_ms = elapsed / self._current_step
+        if self._cancelled:
+            raise InterruptedError("Generation cancelled")
+        return callback_kwargs
+
+    def cancel_current(self):
+        """Request cancellation of current generation."""
+        self._cancelled = True
+
+    @property
+    def progress(self) -> dict:
+        """Return current generation progress."""
+        if not self._current_job_id:
+            return {"generating": False}
+        remaining = self._total_steps - self._current_step
+        eta_ms = remaining * self._avg_step_time_ms if self._avg_step_time_ms > 0 else 0
+        return {
+            "generating": True,
+            "job_id": self._current_job_id,
+            "current_step": self._current_step,
+            "total_steps": self._total_steps,
+            "avg_step_time_ms": round(self._avg_step_time_ms, 1),
+            "estimated_remaining_ms": round(eta_ms, 1),
+        }
 
     def load_model(self):
         """Load the SDXL pipeline with MPS-optimized settings.
@@ -40,7 +80,34 @@ class ImageGenerator:
 
         self.load_time_ms = int((time.time() - start) * 1000)
         self.model_loaded = True
+        self._original_scheduler_config = self.pipe.scheduler.config
         logger.info("Model loaded in %d ms", self.load_time_ms)
+
+    def enable_lcm(self):
+        """Enable LCM-LoRA for fast generation (4 steps)."""
+        if self._lcm_enabled:
+            return
+        if not self.model_loaded:
+            raise RuntimeError("Model not loaded. Call load_model() first.")
+        logger.info("Enabling LCM-LoRA: %s", config.LCM_LORA_ID)
+        start = time.time()
+        self.pipe.scheduler = LCMScheduler.from_config(self._original_scheduler_config)
+        self.pipe.load_lora_weights(config.LCM_LORA_ID)
+        self._lcm_enabled = True
+        logger.info("LCM-LoRA enabled in %d ms", int((time.time() - start) * 1000))
+
+    def disable_lcm(self):
+        """Disable LCM-LoRA, revert to normal scheduler."""
+        if not self._lcm_enabled:
+            return
+        logger.info("Disabling LCM-LoRA")
+        self.pipe.unload_lora_weights()
+        self.pipe.scheduler = EulerDiscreteScheduler.from_config(self._original_scheduler_config)
+        self._lcm_enabled = False
+
+    @property
+    def lcm_enabled(self) -> bool:
+        return self._lcm_enabled
 
     def generate(
         self,
@@ -66,13 +133,26 @@ class ImageGenerator:
         if negative_prompt is None:
             negative_prompt = config.DEFAULT_NEGATIVE_PROMPT
 
+        # Override steps & guidance for LCM mode
+        if self._lcm_enabled:
+            num_inference_steps = config.LCM_STEPS
+            guidance_scale = config.LCM_GUIDANCE_SCALE
+
         # MPS requires CPU generator for reproducibility
         generator = torch.Generator(device="cpu").manual_seed(seed)
 
         logger.info(
-            "Generating: %dx%d, steps=%d, cfg=%.1f, seed=%d",
-            width, height, num_inference_steps, guidance_scale, seed,
+            "Generating: %dx%d, steps=%d, cfg=%.1f, seed=%d, lcm=%s",
+            width, height, num_inference_steps, guidance_scale, seed, self._lcm_enabled,
         )
+
+        # Reset progress tracking
+        self._current_step = 0
+        self._total_steps = num_inference_steps
+        self._avg_step_time_ms = 0
+        self._cancelled = False
+        self._step_start_time = time.time()
+
         start = time.time()
 
         result = self.pipe(
@@ -83,6 +163,7 @@ class ImageGenerator:
             num_inference_steps=num_inference_steps,
             guidance_scale=guidance_scale,
             generator=generator,
+            callback_on_step_end=self._step_callback,
         )
         image = result.images[0]
 

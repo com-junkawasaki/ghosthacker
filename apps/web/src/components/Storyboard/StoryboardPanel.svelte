@@ -3,7 +3,8 @@
 	import type { Panel, Dialogue, GeneratedImage } from '$lib/gen/proto/storyboard_pb';
 	import { PanelDataSchema, DialogueSchema, GeneratedImageSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
-	import { generatePanelDialogue, generatePanelImage, storyboardClient } from '$lib/client/storyboard-client';
+	import { generatePanelDialogue, submitGenerationJob, cancelGenerationJob, storyboardClient } from '$lib/client/storyboard-client';
+	import { getJobForPanel } from '$lib/stores/job-store.svelte';
 
 	export let panel: Panel;
 	export let episodeId: string = '';
@@ -25,7 +26,8 @@
 	let currentImageIndex = panel.data?.currentImageIndex ?? (generatedImages.length > 0 ? generatedImages.length - 1 : -1);
 	let generatingImage = false;
 	let imageError = '';
-	let selectedModel = 'openrouter'; // 'openrouter' or 'local'
+	let selectedModel = 'local'; // 'openrouter' or 'local'
+	let activeJobId = '';
 	let generatingDialogue = false;
 	let dialogueError = '';
 	let generatingCinematic = false;
@@ -222,9 +224,9 @@
 				runwayPrompt: runwayPrompt,
 			});
 
-			console.log('[StoryboardPanel] Generating image via backend API');
+			console.log('[StoryboardPanel] Submitting generation job');
 
-			const result = await generatePanelImage(
+			const result = await submitGenerationJob(
 				storyboardPath,
 				episodeId,
 				panel.pageNumber,
@@ -233,34 +235,47 @@
 				selectedModel
 			);
 
-			if (result.success && result.generatedImage) {
-				// Create GeneratedImage using schema to ensure proper serialization
-				const newImage = create(GeneratedImageSchema, {
-					imageUrl: result.generatedImage.imageUrl || '',
-					imagePrompt: result.generatedImage.imagePrompt || '',
-					generatedAt: BigInt(result.generatedImage.generatedAt || Date.now()),
-					model: result.generatedImage.model || 'google/gemini-3-pro-image-preview'
-				});
-				
-				// Add new image to history
-				generatedImages = [...generatedImages, newImage];
-				currentImageIndex = generatedImages.length - 1;
-				console.log('[StoryboardPanel] Image generated successfully', {
-					generatedImage: newImage,
-					allImages: generatedImages,
-					currentIndex: currentImageIndex
-				});
-				// Auto-save after generation
-				saveEdit();
+			if (result.success && result.jobId) {
+				activeJobId = result.jobId;
+				// Progress will be updated via StreamUpdates -> job-store
+				// generatingImage stays true until job completes
 			} else {
-				imageError = result.message || 'Failed to generate image';
-				console.error('[StoryboardPanel] Image generation failed:', imageError);
+				imageError = result.message || 'Failed to submit job';
+				generatingImage = false;
 			}
 		} catch (err) {
 			imageError = err instanceof Error ? err.message : 'Unknown error';
-			console.error('[StoryboardPanel] Error generating image:', err);
-		} finally {
+			console.error('[StoryboardPanel] Error submitting generation job:', err);
 			generatingImage = false;
+		}
+	}
+
+	async function handleCancelGeneration() {
+		if (!activeJobId) return;
+		try {
+			await cancelGenerationJob(activeJobId);
+		} catch (err) {
+			console.error('[StoryboardPanel] Error cancelling job:', err);
+		}
+		generatingImage = false;
+		activeJobId = '';
+	}
+
+	function formatEta(ms: number): string {
+		const seconds = Math.ceil(ms / 1000);
+		const minutes = Math.floor(seconds / 60);
+		const secs = seconds % 60;
+		if (minutes > 0) return `${minutes}:${secs.toString().padStart(2, '0')}`;
+		return `${secs}s`;
+	}
+
+	// Watch for job completion from store
+	$: {
+		const job = getJobForPanel(episodeId, panel.pageNumber, panel.panel);
+		if (!job && activeJobId && generatingImage) {
+			// Job was removed from store (completed/failed/cancelled)
+			generatingImage = false;
+			activeJobId = '';
 		}
 	}
 
@@ -379,14 +394,30 @@
 						<option value="openrouter">SeedReam 4.5 (API)</option>
 						<option value="local">AnimagineXL 4.0 (Local)</option>
 					</select>
-					<button
-						type="button"
-						onclick={handleGenerateImage}
-						disabled={generatingImage}
-						class="generate-btn"
-					>
-						{generatingImage ? 'Generating...' : 'Generate'}
-					</button>
+					{#if generatingImage && activeJobId}
+						{@const job = getJobForPanel(episodeId, panel.pageNumber, panel.panel)}
+						<div class="generation-progress">
+							<div class="progress-bar-container">
+								<div class="progress-bar-fill" style="width: {job && job.totalSteps > 0 ? (job.currentStep / job.totalSteps) * 100 : 0}%"></div>
+							</div>
+							<div class="progress-info">
+								<span class="progress-step">{job?.currentStep ?? 0}/{job?.totalSteps ?? 28}</span>
+								{#if job && job.etaMs > 0}
+									<span class="progress-eta">{formatEta(job.etaMs)}</span>
+								{/if}
+							</div>
+							<button type="button" onclick={handleCancelGeneration} class="cancel-btn">Cancel</button>
+						</div>
+					{:else}
+						<button
+							type="button"
+							onclick={handleGenerateImage}
+							disabled={generatingImage}
+							class="generate-btn"
+						>
+							{generatingImage ? 'Submitting...' : 'Generate'}
+						</button>
+					{/if}
 					{#if imageError}
 						<div class="image-error">{imageError}</div>
 					{/if}
@@ -741,6 +772,58 @@
 	.generate-btn:disabled {
 		background: #ccc;
 		cursor: not-allowed;
+	}
+
+	.generation-progress {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		width: 100%;
+	}
+
+	.progress-bar-container {
+		width: 100%;
+		height: 6px;
+		background: #e0e0e0;
+		border-radius: 3px;
+		overflow: hidden;
+	}
+
+	.progress-bar-fill {
+		height: 100%;
+		background: #4caf50;
+		border-radius: 3px;
+		transition: width 0.5s ease;
+	}
+
+	.progress-info {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.7rem;
+		color: #666;
+	}
+
+	.progress-step {
+		font-weight: 600;
+	}
+
+	.progress-eta {
+		color: #999;
+	}
+
+	.cancel-btn {
+		padding: 0.25rem 0.5rem;
+		background: #f44336;
+		color: white;
+		border: none;
+		border-radius: 3px;
+		cursor: pointer;
+		font-size: 0.7rem;
+		font-weight: 600;
+	}
+
+	.cancel-btn:hover {
+		background: #d32f2f;
 	}
 
 	.image-error {

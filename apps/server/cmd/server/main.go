@@ -3,11 +3,14 @@
 package main
 
 import (
+	"context"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/dapr/go-sdk/workflow"
 	"github.com/rs/cors"
@@ -36,7 +39,7 @@ func main() {
 		log.Printf("Warning: storyboard.jsonld not found at %s", storyboardPath)
 	}
 
-	storyboardService := service.NewStoryboardService(storyboardPath)
+	storyboardService := service.NewStoryboardService(storyboardPath, workspaceRoot, projectDir)
 
 	// Initialize Dapr workflow worker (in-process, no separate worker needed)
 	w, err := workflow.NewWorker()
@@ -72,11 +75,26 @@ func main() {
 	connectPath, connectHandler := storyboardpbconnect.NewStoryboardServiceHandler(storyboardService)
 	mux.Handle(connectPath, connectHandler)
 
+	imageGenURL := os.Getenv("IMAGE_GEN_URL")
+	if imageGenURL == "" {
+		imageGenURL = "http://localhost:8100"
+	}
+
 	// Health check — use a top-level handler that checks path before mux
 	topHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/healthz" || r.URL.Path == "/" {
 			w.Header().Set("Content-Type", "application/json")
 			fmt.Fprintf(w, `{"status":"ok","project":%q}`, projectDir)
+			return
+		}
+		// Proxy image-gen health check
+		if r.URL.Path == "/api/image-gen-health" {
+			proxyImageGenEndpoint(w, imageGenURL+"/health")
+			return
+		}
+		// Proxy image-gen progress
+		if r.URL.Path == "/api/image-gen-progress" {
+			proxyImageGenEndpoint(w, imageGenURL+"/progress")
 			return
 		}
 		mux.ServeHTTP(w, r)
@@ -113,4 +131,24 @@ func main() {
 	if err := server.ListenAndServe(); err != nil {
 		log.Fatal(err)
 	}
+}
+
+// proxyImageGenEndpoint proxies a GET request to the image-gen service.
+func proxyImageGenEndpoint(w http.ResponseWriter, url string) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	req, _ := http.NewRequestWithContext(ctx, "GET", url, nil)
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusServiceUnavailable)
+		fmt.Fprintf(w, `{"status":"unavailable"}`)
+		return
+	}
+	defer resp.Body.Close()
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(resp.StatusCode)
+	io.Copy(w, resp.Body)
 }

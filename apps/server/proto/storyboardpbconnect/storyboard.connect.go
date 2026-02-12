@@ -99,6 +99,21 @@ const (
 	// StoryboardServiceExportPdfProcedure is the fully-qualified name of the StoryboardService's
 	// ExportPdf RPC.
 	StoryboardServiceExportPdfProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/ExportPdf"
+	// StoryboardServiceListProjectsProcedure is the fully-qualified name of the StoryboardService's
+	// ListProjects RPC.
+	StoryboardServiceListProjectsProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/ListProjects"
+	// StoryboardServiceSwitchProjectProcedure is the fully-qualified name of the StoryboardService's
+	// SwitchProject RPC.
+	StoryboardServiceSwitchProjectProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/SwitchProject"
+	// StoryboardServiceSubmitGenerationJobProcedure is the fully-qualified name of the
+	// StoryboardService's SubmitGenerationJob RPC.
+	StoryboardServiceSubmitGenerationJobProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/SubmitGenerationJob"
+	// StoryboardServiceCancelGenerationJobProcedure is the fully-qualified name of the
+	// StoryboardService's CancelGenerationJob RPC.
+	StoryboardServiceCancelGenerationJobProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/CancelGenerationJob"
+	// StoryboardServiceListGenerationJobsProcedure is the fully-qualified name of the
+	// StoryboardService's ListGenerationJobs RPC.
+	StoryboardServiceListGenerationJobsProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/ListGenerationJobs"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
@@ -126,6 +141,11 @@ var (
 	storyboardServiceSaveChatSessionMethodDescriptor               = storyboardServiceServiceDescriptor.Methods().ByName("SaveChatSession")
 	storyboardServiceGetChatSessionsMethodDescriptor               = storyboardServiceServiceDescriptor.Methods().ByName("GetChatSessions")
 	storyboardServiceExportPdfMethodDescriptor                     = storyboardServiceServiceDescriptor.Methods().ByName("ExportPdf")
+	storyboardServiceListProjectsMethodDescriptor                  = storyboardServiceServiceDescriptor.Methods().ByName("ListProjects")
+	storyboardServiceSwitchProjectMethodDescriptor                 = storyboardServiceServiceDescriptor.Methods().ByName("SwitchProject")
+	storyboardServiceSubmitGenerationJobMethodDescriptor           = storyboardServiceServiceDescriptor.Methods().ByName("SubmitGenerationJob")
+	storyboardServiceCancelGenerationJobMethodDescriptor           = storyboardServiceServiceDescriptor.Methods().ByName("CancelGenerationJob")
+	storyboardServiceListGenerationJobsMethodDescriptor            = storyboardServiceServiceDescriptor.Methods().ByName("ListGenerationJobs")
 )
 
 // StoryboardServiceClient is a client for the gftd.ghosthacker.storyboard.v1.StoryboardService
@@ -175,6 +195,16 @@ type StoryboardServiceClient interface {
 	GetChatSessions(context.Context, *connect.Request[proto.GetChatSessionsRequest]) (*connect.Response[proto.GetChatSessionsResponse], error)
 	// Export storyboard to PDF
 	ExportPdf(context.Context, *connect.Request[proto.ExportPdfRequest]) (*connect.Response[proto.ExportPdfResponse], error)
+	// List available projects in the workspace
+	ListProjects(context.Context, *connect.Request[proto.ListProjectsRequest]) (*connect.Response[proto.ListProjectsResponse], error)
+	// Switch the active project
+	SwitchProject(context.Context, *connect.Request[proto.SwitchProjectRequest]) (*connect.Response[proto.SwitchProjectResponse], error)
+	// Submit an image generation job to the queue
+	SubmitGenerationJob(context.Context, *connect.Request[proto.SubmitGenerationJobRequest]) (*connect.Response[proto.SubmitGenerationJobResponse], error)
+	// Cancel a running or queued generation job
+	CancelGenerationJob(context.Context, *connect.Request[proto.CancelGenerationJobRequest]) (*connect.Response[proto.CancelGenerationJobResponse], error)
+	// List all generation jobs (active and recent)
+	ListGenerationJobs(context.Context, *connect.Request[proto.ListGenerationJobsRequest]) (*connect.Response[proto.ListGenerationJobsResponse], error)
 }
 
 // NewStoryboardServiceClient constructs a client for the
@@ -320,6 +350,36 @@ func NewStoryboardServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(storyboardServiceExportPdfMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		listProjects: connect.NewClient[proto.ListProjectsRequest, proto.ListProjectsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListProjectsProcedure,
+			connect.WithSchema(storyboardServiceListProjectsMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		switchProject: connect.NewClient[proto.SwitchProjectRequest, proto.SwitchProjectResponse](
+			httpClient,
+			baseURL+StoryboardServiceSwitchProjectProcedure,
+			connect.WithSchema(storyboardServiceSwitchProjectMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		submitGenerationJob: connect.NewClient[proto.SubmitGenerationJobRequest, proto.SubmitGenerationJobResponse](
+			httpClient,
+			baseURL+StoryboardServiceSubmitGenerationJobProcedure,
+			connect.WithSchema(storyboardServiceSubmitGenerationJobMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		cancelGenerationJob: connect.NewClient[proto.CancelGenerationJobRequest, proto.CancelGenerationJobResponse](
+			httpClient,
+			baseURL+StoryboardServiceCancelGenerationJobProcedure,
+			connect.WithSchema(storyboardServiceCancelGenerationJobMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		listGenerationJobs: connect.NewClient[proto.ListGenerationJobsRequest, proto.ListGenerationJobsResponse](
+			httpClient,
+			baseURL+StoryboardServiceListGenerationJobsProcedure,
+			connect.WithSchema(storyboardServiceListGenerationJobsMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -347,6 +407,11 @@ type storyboardServiceClient struct {
 	saveChatSession               *connect.Client[proto.SaveChatSessionRequest, proto.SaveChatSessionResponse]
 	getChatSessions               *connect.Client[proto.GetChatSessionsRequest, proto.GetChatSessionsResponse]
 	exportPdf                     *connect.Client[proto.ExportPdfRequest, proto.ExportPdfResponse]
+	listProjects                  *connect.Client[proto.ListProjectsRequest, proto.ListProjectsResponse]
+	switchProject                 *connect.Client[proto.SwitchProjectRequest, proto.SwitchProjectResponse]
+	submitGenerationJob           *connect.Client[proto.SubmitGenerationJobRequest, proto.SubmitGenerationJobResponse]
+	cancelGenerationJob           *connect.Client[proto.CancelGenerationJobRequest, proto.CancelGenerationJobResponse]
+	listGenerationJobs            *connect.Client[proto.ListGenerationJobsRequest, proto.ListGenerationJobsResponse]
 }
 
 // LoadStoryboard calls gftd.ghosthacker.storyboard.v1.StoryboardService.LoadStoryboard.
@@ -463,6 +528,31 @@ func (c *storyboardServiceClient) ExportPdf(ctx context.Context, req *connect.Re
 	return c.exportPdf.CallUnary(ctx, req)
 }
 
+// ListProjects calls gftd.ghosthacker.storyboard.v1.StoryboardService.ListProjects.
+func (c *storyboardServiceClient) ListProjects(ctx context.Context, req *connect.Request[proto.ListProjectsRequest]) (*connect.Response[proto.ListProjectsResponse], error) {
+	return c.listProjects.CallUnary(ctx, req)
+}
+
+// SwitchProject calls gftd.ghosthacker.storyboard.v1.StoryboardService.SwitchProject.
+func (c *storyboardServiceClient) SwitchProject(ctx context.Context, req *connect.Request[proto.SwitchProjectRequest]) (*connect.Response[proto.SwitchProjectResponse], error) {
+	return c.switchProject.CallUnary(ctx, req)
+}
+
+// SubmitGenerationJob calls gftd.ghosthacker.storyboard.v1.StoryboardService.SubmitGenerationJob.
+func (c *storyboardServiceClient) SubmitGenerationJob(ctx context.Context, req *connect.Request[proto.SubmitGenerationJobRequest]) (*connect.Response[proto.SubmitGenerationJobResponse], error) {
+	return c.submitGenerationJob.CallUnary(ctx, req)
+}
+
+// CancelGenerationJob calls gftd.ghosthacker.storyboard.v1.StoryboardService.CancelGenerationJob.
+func (c *storyboardServiceClient) CancelGenerationJob(ctx context.Context, req *connect.Request[proto.CancelGenerationJobRequest]) (*connect.Response[proto.CancelGenerationJobResponse], error) {
+	return c.cancelGenerationJob.CallUnary(ctx, req)
+}
+
+// ListGenerationJobs calls gftd.ghosthacker.storyboard.v1.StoryboardService.ListGenerationJobs.
+func (c *storyboardServiceClient) ListGenerationJobs(ctx context.Context, req *connect.Request[proto.ListGenerationJobsRequest]) (*connect.Response[proto.ListGenerationJobsResponse], error) {
+	return c.listGenerationJobs.CallUnary(ctx, req)
+}
+
 // StoryboardServiceHandler is an implementation of the
 // gftd.ghosthacker.storyboard.v1.StoryboardService service.
 type StoryboardServiceHandler interface {
@@ -510,6 +600,16 @@ type StoryboardServiceHandler interface {
 	GetChatSessions(context.Context, *connect.Request[proto.GetChatSessionsRequest]) (*connect.Response[proto.GetChatSessionsResponse], error)
 	// Export storyboard to PDF
 	ExportPdf(context.Context, *connect.Request[proto.ExportPdfRequest]) (*connect.Response[proto.ExportPdfResponse], error)
+	// List available projects in the workspace
+	ListProjects(context.Context, *connect.Request[proto.ListProjectsRequest]) (*connect.Response[proto.ListProjectsResponse], error)
+	// Switch the active project
+	SwitchProject(context.Context, *connect.Request[proto.SwitchProjectRequest]) (*connect.Response[proto.SwitchProjectResponse], error)
+	// Submit an image generation job to the queue
+	SubmitGenerationJob(context.Context, *connect.Request[proto.SubmitGenerationJobRequest]) (*connect.Response[proto.SubmitGenerationJobResponse], error)
+	// Cancel a running or queued generation job
+	CancelGenerationJob(context.Context, *connect.Request[proto.CancelGenerationJobRequest]) (*connect.Response[proto.CancelGenerationJobResponse], error)
+	// List all generation jobs (active and recent)
+	ListGenerationJobs(context.Context, *connect.Request[proto.ListGenerationJobsRequest]) (*connect.Response[proto.ListGenerationJobsResponse], error)
 }
 
 // NewStoryboardServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -650,6 +750,36 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 		connect.WithSchema(storyboardServiceExportPdfMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	storyboardServiceListProjectsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListProjectsProcedure,
+		svc.ListProjects,
+		connect.WithSchema(storyboardServiceListProjectsMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceSwitchProjectHandler := connect.NewUnaryHandler(
+		StoryboardServiceSwitchProjectProcedure,
+		svc.SwitchProject,
+		connect.WithSchema(storyboardServiceSwitchProjectMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceSubmitGenerationJobHandler := connect.NewUnaryHandler(
+		StoryboardServiceSubmitGenerationJobProcedure,
+		svc.SubmitGenerationJob,
+		connect.WithSchema(storyboardServiceSubmitGenerationJobMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceCancelGenerationJobHandler := connect.NewUnaryHandler(
+		StoryboardServiceCancelGenerationJobProcedure,
+		svc.CancelGenerationJob,
+		connect.WithSchema(storyboardServiceCancelGenerationJobMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	storyboardServiceListGenerationJobsHandler := connect.NewUnaryHandler(
+		StoryboardServiceListGenerationJobsProcedure,
+		svc.ListGenerationJobs,
+		connect.WithSchema(storyboardServiceListGenerationJobsMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/gftd.ghosthacker.storyboard.v1.StoryboardService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case StoryboardServiceLoadStoryboardProcedure:
@@ -696,6 +826,16 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 			storyboardServiceGetChatSessionsHandler.ServeHTTP(w, r)
 		case StoryboardServiceExportPdfProcedure:
 			storyboardServiceExportPdfHandler.ServeHTTP(w, r)
+		case StoryboardServiceListProjectsProcedure:
+			storyboardServiceListProjectsHandler.ServeHTTP(w, r)
+		case StoryboardServiceSwitchProjectProcedure:
+			storyboardServiceSwitchProjectHandler.ServeHTTP(w, r)
+		case StoryboardServiceSubmitGenerationJobProcedure:
+			storyboardServiceSubmitGenerationJobHandler.ServeHTTP(w, r)
+		case StoryboardServiceCancelGenerationJobProcedure:
+			storyboardServiceCancelGenerationJobHandler.ServeHTTP(w, r)
+		case StoryboardServiceListGenerationJobsProcedure:
+			storyboardServiceListGenerationJobsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -791,4 +931,24 @@ func (UnimplementedStoryboardServiceHandler) GetChatSessions(context.Context, *c
 
 func (UnimplementedStoryboardServiceHandler) ExportPdf(context.Context, *connect.Request[proto.ExportPdfRequest]) (*connect.Response[proto.ExportPdfResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.ExportPdf is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListProjects(context.Context, *connect.Request[proto.ListProjectsRequest]) (*connect.Response[proto.ListProjectsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.ListProjects is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) SwitchProject(context.Context, *connect.Request[proto.SwitchProjectRequest]) (*connect.Response[proto.SwitchProjectResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.SwitchProject is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) SubmitGenerationJob(context.Context, *connect.Request[proto.SubmitGenerationJobRequest]) (*connect.Response[proto.SubmitGenerationJobResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.SubmitGenerationJob is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) CancelGenerationJob(context.Context, *connect.Request[proto.CancelGenerationJobRequest]) (*connect.Response[proto.CancelGenerationJobResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.CancelGenerationJob is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) ListGenerationJobs(context.Context, *connect.Request[proto.ListGenerationJobsRequest]) (*connect.Response[proto.ListGenerationJobsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.ListGenerationJobs is not implemented"))
 }
