@@ -25,6 +25,7 @@
 	let currentImageIndex = panel.data?.currentImageIndex ?? (generatedImages.length > 0 ? generatedImages.length - 1 : -1);
 	let generatingImage = false;
 	let imageError = '';
+	let selectedModel = 'openrouter'; // 'openrouter' or 'local'
 	let generatingDialogue = false;
 	let dialogueError = '';
 	let generatingCinematic = false;
@@ -228,7 +229,8 @@
 				episodeId,
 				panel.pageNumber,
 				panel.panel,
-				panelData
+				panelData,
+				selectedModel
 			);
 
 			if (result.success && result.generatedImage) {
@@ -373,13 +375,17 @@
 		<div class="picture-frame">
 			{#if editing}
 				<div class="image-generation-controls">
+					<select bind:value={selectedModel} class="model-select" disabled={generatingImage}>
+						<option value="openrouter">SeedReam 4.5 (API)</option>
+						<option value="local">AnimagineXL 4.0 (Local)</option>
+					</select>
 					<button
 						type="button"
 						onclick={handleGenerateImage}
 						disabled={generatingImage}
 						class="generate-btn"
 					>
-						{generatingImage ? 'Generating...' : 'Generate Image'}
+						{generatingImage ? 'Generating...' : 'Generate'}
 					</button>
 					{#if imageError}
 						<div class="image-error">{imageError}</div>
@@ -703,10 +709,21 @@
 	.image-generation-controls {
 		width: 100%;
 		margin-bottom: 0.5rem;
+		display: flex;
+		gap: 0.25rem;
+	}
+
+	.model-select {
+		flex: 1;
+		padding: 0.5rem 0.25rem;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		background: white;
 	}
 
 	.generate-btn {
-		width: 100%;
+		flex: 0 0 auto;
 		padding: 0.5rem;
 		background: #4caf50;
 		color: white;

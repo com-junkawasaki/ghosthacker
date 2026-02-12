@@ -47,11 +47,6 @@ func (s *StoryboardService) GeneratePanelImage(
 		filePath = s.storyboardPath
 	}
 
-	apiKey := os.Getenv("OPENROUTER_API_KEY")
-	if apiKey == "" {
-		return nil, connect.NewError(connect.CodeFailedPrecondition, fmt.Errorf("OPENROUTER_API_KEY is not set"))
-	}
-
 	// Build prompt from panel data
 	prompt, err := s.buildImagePrompt(req.Msg.PanelData, filePath)
 	if err != nil {
@@ -106,24 +101,40 @@ func (s *StoryboardService) GeneratePanelImage(
 	// This ensures the UI knows where the image will be even if generation takes time
 	s.preUpdateStoryboard(filePath, req.Msg.EpisodeId, req.Msg.PageNumber, req.Msg.Panel, urlPath, fullPrompt)
 
-	// Call OpenRouter API
-	imageDataURL, err := s.callOpenRouterAPI(ctx, apiKey, fullPrompt)
-	if err != nil {
-		// If it's a character avatar request, we might want to use a different model or settings
-		// but for now we just log and return error
-		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to generate image: %w", err))
-	}
+	// Determine which model to use: request field > env var > default (openrouter)
+	useLocal := req.Msg.Model == "local" || (req.Msg.Model == "" && os.Getenv("USE_LOCAL_IMAGE_GEN") == "true")
 
-	// Extract base64 data from data URL
-	base64Data, err := extractBase64FromDataURL(imageDataURL)
-	if err != nil {
-		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to extract image data: %w", err))
-	}
+	// Generate image via local Diffusers service or OpenRouter API
+	var imageBytes []byte
+	if useLocal {
+		style := "cinematic_sketch"
+		if strings.HasPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:") {
+			style = "character_avatar"
+		}
+		imageBytes, err = s.callLocalImageGen(ctx, prompt, style, imagePath)
+		if err != nil {
+			return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to generate image locally: %w", err))
+		}
+	} else {
+		apiKey := os.Getenv("OPENROUTER_API_KEY")
+		if apiKey == "" {
+			return nil, connect.NewError(connect.CodeFailedPrecondition, fmt.Errorf("OPENROUTER_API_KEY is not set"))
+		}
 
-	// Decode base64
-	imageBytes, err := base64.StdEncoding.DecodeString(base64Data)
-	if err != nil {
-		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to decode image: %w", err))
+		imageDataURL, err := s.callOpenRouterAPI(ctx, apiKey, fullPrompt)
+		if err != nil {
+			return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to generate image: %w", err))
+		}
+
+		base64Data, err := extractBase64FromDataURL(imageDataURL)
+		if err != nil {
+			return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to extract image data: %w", err))
+		}
+
+		imageBytes, err = base64.StdEncoding.DecodeString(base64Data)
+		if err != nil {
+			return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to decode image: %w", err))
+		}
 	}
 
 	// Write image file
@@ -150,11 +161,15 @@ func (s *StoryboardService) GeneratePanelImage(
 	}
 
 	// Create GeneratedImage
+	model := defaultModel
+	if useLocal {
+		model = "animagine-xl-4.0 (local)"
+	}
 	generatedImage := &storyboardpb.GeneratedImage{
 		ImageUrl:    urlPath,
 		ImagePrompt: prompt,
 		GeneratedAt: time.Now().Unix(),
-		Model:       defaultModel,
+		Model:       model,
 	}
 
 	// Final update to storyboard JSON-LD to confirm the image is ready
@@ -566,6 +581,79 @@ func (s *StoryboardService) callOpenRouterAPI(ctx context.Context, apiKey, promp
 	}
 
 	return imageURL, nil
+}
+
+// callLocalImageGen sends a request to the local Diffusers image generation service.
+// The service generates the image and writes it to outputPath directly.
+// Returns the raw PNG bytes.
+func (s *StoryboardService) callLocalImageGen(ctx context.Context, prompt, style, outputPath string) ([]byte, error) {
+	baseURL := os.Getenv("IMAGE_GEN_URL")
+	if baseURL == "" {
+		baseURL = "http://localhost:8100"
+	}
+
+	requestBody := map[string]interface{}{
+		"prompt":       prompt,
+		"style":        style,
+		"aspect_ratio": "16:9",
+		"output_path":  outputPath,
+	}
+
+	jsonBody, err := json.Marshal(requestBody)
+	if err != nil {
+		return nil, fmt.Errorf("failed to marshal request: %w", err)
+	}
+
+	httpReq, err := http.NewRequestWithContext(ctx, "POST", baseURL+"/generate-panel", strings.NewReader(string(jsonBody)))
+	if err != nil {
+		return nil, fmt.Errorf("failed to create request: %w", err)
+	}
+	httpReq.Header.Set("Content-Type", "application/json")
+
+	client := &http.Client{Timeout: 300 * time.Second} // local gen can be slow
+	resp, err := client.Do(httpReq)
+	if err != nil {
+		return nil, fmt.Errorf("failed to call local image gen: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf("local image gen error (%d): %s", resp.StatusCode, string(body))
+	}
+
+	var result struct {
+		ImageBase64    string `json:"image_base64"`
+		Seed           int    `json:"seed"`
+		GenerationTime int    `json:"generation_time_ms"`
+		OutputPath     string `json:"output_path"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+		return nil, fmt.Errorf("failed to decode response: %w", err)
+	}
+
+	// If the service already wrote the file, read it back
+	if result.OutputPath != "" {
+		imageBytes, err := os.ReadFile(result.OutputPath)
+		if err != nil {
+			return nil, fmt.Errorf("failed to read generated image: %w", err)
+		}
+		log.Printf("Local image gen: %dx seed=%d in %dms -> %s", len(imageBytes), result.Seed, result.GenerationTime, result.OutputPath)
+		return imageBytes, nil
+	}
+
+	// Otherwise decode from base64
+	base64Data, err := extractBase64FromDataURL(result.ImageBase64)
+	if err != nil {
+		return nil, fmt.Errorf("failed to extract base64 from local gen response: %w", err)
+	}
+	imageBytes, err := base64.StdEncoding.DecodeString(base64Data)
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode base64: %w", err)
+	}
+
+	log.Printf("Local image gen: seed=%d in %dms", result.Seed, result.GenerationTime)
+	return imageBytes, nil
 }
 
 func extractBase64FromDataURL(dataURL string) (string, error) {

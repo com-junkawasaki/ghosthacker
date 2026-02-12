@@ -464,6 +464,7 @@ message GeneratePanelImageRequest {
   int32 page_number = 3;
   int32 panel = 4;
   PanelData panel_data = 5; // Panel data for prompt generation
+  string model = 6; // Model to use: "openrouter" (default) or "local" (AnimagineXL 4.0)
 }
 
 message GeneratePanelImageResponse {

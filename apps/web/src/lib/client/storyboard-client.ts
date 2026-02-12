@@ -148,14 +148,16 @@ export async function generatePanelImage(
 	episodeId: string,
 	pageNumber: number,
 	panel: number,
-	panelData: any
+	panelData: any,
+	model: string = ''
 ) {
 	const response = await storyboardClient.generatePanelImage({
 		filePath,
 		episodeId,
 		pageNumber,
 		panel,
-		panelData
+		panelData,
+		model,
 	});
 
 	if (!response || typeof response !== 'object') {
