@@ -8,6 +8,6 @@
 	html,
 	body {
 		@apply m-0 h-full bg-zinc-50 text-zinc-900;
-		font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+		font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
 	}
 }

@@ -122,14 +122,14 @@
 <style>
 	@reference "tailwindcss";
 
-	.storyboard-page { @apply flex-1 overflow-y-auto bg-zinc-50 p-2 md:p-6; }
+	.storyboard-page { @apply flex-1 overflow-y-auto bg-zinc-50 p-2; }
 	.storyboard-container { @apply mx-auto w-full max-w-[1400px] overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm; }
 	.page-section { @apply relative; }
 	.page-header { @apply cursor-pointer border-b border-zinc-200 bg-zinc-100/80 px-4 py-4 text-center transition hover:bg-zinc-100; }
-	.page-number { @apply text-base font-semibold tracking-wide text-zinc-700 md:text-xl; }
-	.page-divider { @apply my-5 h-0 border-0 border-t-2 border-zinc-300 md:my-8; }
+	.page-number { @apply text-base font-semibold tracking-wide text-zinc-700; }
+	.page-divider { @apply my-5 h-0 border-0 border-t-2 border-zinc-300; }
 	.grid-header {
-		@apply sticky top-0 z-10 hidden border-b border-zinc-300 bg-zinc-100 text-xs font-semibold text-zinc-600 md:grid;
+		@apply hidden;
 		grid-template-columns: 80px 1fr 1fr 400px 60px;
 	}
 	.col-cut, .col-picture, .col-picture-generated, .col-content, .col-seconds { @apply border-r border-zinc-300 px-3 py-3 text-center; }

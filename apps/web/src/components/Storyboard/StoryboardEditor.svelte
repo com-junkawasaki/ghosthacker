@@ -438,11 +438,6 @@
 
 	// PDF Export state
 	let isExporting = $state(false);
-	let currentScopeLabel = $derived(
-		editMode === 'episode'
-			? (episodes.find((e) => e.id === selectedEpisode)?.title ?? selectedEpisode ?? 'No episode')
-			: (arcs.find((a) => a.id === selectedArc)?.title ?? selectedArc ?? 'No arc')
-	);
 
 	async function handleExportPdf() {
 		if (isExporting || panels.length === 0) return;
@@ -488,7 +483,7 @@
 
 <div class="storyboard-editor">
 	<header class="editor-header">
-		<div class="header-row">
+		<div class="header-row header-row-primary">
 			<div class="project-selector">
 				<select
 					value={activeProject}
@@ -532,8 +527,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="header-row header-row-controls">
-			<div class="edit-mode-selector">
+		<div class="header-row header-row-secondary">
+			<div class="edit-mode-selector compact-segment">
 				<button
 					class:active={editMode === 'episode'}
 					onclick={() => editMode = 'episode'}
@@ -543,10 +538,10 @@
 					onclick={() => editMode = 'arc'}
 				>By Arc</button>
 			</div>
-			<div class="selection-controls">
+			<div class="selection-controls compact-selection">
 				{#if editMode === 'episode'}
 					<div class="episode-selector">
-						<label for="episode-select">Episode:</label>
+						<label for="episode-select">Episode</label>
 						<select
 							id="episode-select"
 							bind:value={selectedEpisode}
@@ -562,7 +557,7 @@
 					</div>
 				{:else}
 					<div class="arc-selector">
-						<label for="arc-select">Arc:</label>
+						<label for="arc-select">Arc</label>
 						<select
 							id="arc-select"
 							bind:value={selectedArc}
@@ -578,7 +573,9 @@
 					</div>
 				{/if}
 			</div>
-			<div class="view-switcher">
+		</div>
+		<div class="header-row">
+			<div class="view-switcher compact-segment">
 				<button 
 					class:active={viewMode === 'storyboard'} 
 					onclick={() => {
@@ -609,16 +606,6 @@
 				>Shooting</button>
 			</div>
 		</div>
-		<div class="ia-meta">
-			<span class="ia-chip">Scope: {currentScopeLabel}</span>
-			<span class="ia-chip">Panels: {panels.length}</span>
-			{#if selectedEpisode && episodes.length > 0}
-				{@const episode = episodes.find((e) => e.id === selectedEpisode)}
-				{#if episode}
-					<span class="ia-chip">{episode.totalPages} pages</span>
-				{/if}
-			{/if}
-		</div>
 	</header>
 
 	{#if error}
@@ -628,20 +615,6 @@
 	{#if loading}
 		<div class="loading">Loading...</div>
 	{:else if panels.length > 0}
-		<div class="workspace-switcher" role="tablist" aria-label="Workspace areas">
-			<button
-				class:active={workspacePane === 'structure'}
-				onclick={() => workspacePane = 'structure'}
-			>Structure</button>
-			<button
-				class:active={workspacePane === 'canvas'}
-				onclick={() => workspacePane = 'canvas'}
-			>Canvas</button>
-			<button
-				class:active={workspacePane === 'assistant'}
-				onclick={() => workspacePane = 'assistant'}
-			>Assistant</button>
-		</div>
 		<div class="editor-content">
 			<aside class="left-sidebar" class:mobile-hidden={workspacePane !== 'structure'}>
 				<NodeTree 
@@ -758,44 +731,36 @@
 <style>
 	@reference "tailwindcss";
 
-	.storyboard-editor { @apply flex h-screen flex-col bg-zinc-50 text-zinc-900; }
-	.editor-header { @apply sticky top-0 z-20 border-b border-zinc-200 bg-white/95 px-3 py-2 backdrop-blur; }
+	.storyboard-editor { @apply flex h-full flex-col bg-[#f2f2f7] text-zinc-900; }
+	.editor-header { @apply sticky top-0 z-20 border-b border-zinc-200/70 bg-white/85 px-2.5 py-2 backdrop-blur-xl; }
 	.header-row { @apply flex flex-wrap items-center gap-2; }
-	.header-row-controls { @apply items-start; }
+	.header-row-primary { @apply flex-nowrap; }
+	.header-row-secondary { @apply flex-nowrap items-center; }
 	.project-selector { @apply min-w-[180px] flex-1; }
-	.project-selector select { @apply w-full rounded-lg border border-sky-300 bg-sky-50 px-2.5 py-2 text-xs font-semibold text-sky-700 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200; }
-	.edit-mode-selector, .view-switcher, .workspace-switcher, .workspace-bottom-nav { @apply flex rounded-lg border border-zinc-200 bg-zinc-100 p-1; }
-	.edit-mode-selector button, .view-switcher button, .workspace-switcher button, .workspace-bottom-nav button { @apply flex-1 rounded-md px-3 py-2 text-xs font-semibold text-zinc-600 transition; }
-	.edit-mode-selector button.active, .view-switcher button.active, .workspace-switcher button.active, .workspace-bottom-nav button.active { @apply bg-white text-sky-700 shadow-sm; }
-	.selection-controls { @apply min-w-[220px] flex-1; }
+	.project-selector select { @apply w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-xs font-semibold text-zinc-700 shadow-sm outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-200; }
+	.edit-mode-selector, .view-switcher, .workspace-bottom-nav { @apply flex rounded-xl border border-zinc-200 bg-zinc-100/90 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]; }
+	.edit-mode-selector button, .view-switcher button, .workspace-bottom-nav button { @apply flex-1 rounded-lg px-3 py-2 text-[11px] font-semibold text-zinc-500 transition; }
+	.edit-mode-selector button.active, .view-switcher button.active, .workspace-bottom-nav button.active { @apply bg-white text-[#007aff] shadow-sm; }
+	.selection-controls { @apply min-w-0 flex-1; }
 	.episode-selector, .arc-selector { @apply flex w-full items-center gap-2; }
-	.episode-selector label, .arc-selector label { @apply whitespace-nowrap text-xs font-semibold text-zinc-700; }
-	.episode-selector select, .arc-selector select { @apply w-full rounded-md border border-zinc-300 bg-white px-2 py-2 text-xs text-zinc-800 outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-200; }
-	.view-switcher { @apply min-w-[240px] flex-1; }
-	.ia-meta { @apply flex flex-wrap gap-1.5; }
-	.ia-chip { @apply rounded-full border border-sky-200 bg-sky-50 px-2 py-0.5 text-[11px] font-medium text-sky-800; }
-	.error { @apply m-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700; }
+	.episode-selector label, .arc-selector label { @apply whitespace-nowrap text-[11px] font-semibold text-zinc-500; }
+	.episode-selector select, .arc-selector select { @apply w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-xs text-zinc-800 outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-200; }
+	.view-switcher { @apply w-full; }
+	.compact-segment { @apply min-w-[112px] flex-none; }
+	.compact-selection { @apply min-w-0; }
+	.error { @apply m-2 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700; }
 	.loading { @apply p-5 text-center text-sm text-zinc-600; }
 	.empty-state { @apply p-5 text-center text-sm text-zinc-600; }
-	.empty-state button { @apply mt-4 rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-800 transition hover:bg-zinc-50; }
+	.empty-state button { @apply mt-4 rounded-xl border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-800 transition hover:bg-zinc-50; }
 	.header-right-group { @apply ml-auto flex items-center gap-2; }
 	.export-controls { @apply flex items-center; }
-	.export-btn { @apply inline-flex items-center gap-1 rounded-md border border-sky-600 bg-sky-600 px-3 py-2 text-xs font-semibold text-white transition hover:border-sky-700 hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-60; }
+	.export-btn { @apply inline-flex items-center gap-1 rounded-xl border border-[#007aff] bg-[#007aff] px-3 py-2 text-xs font-semibold text-white transition hover:bg-[#0066d6] disabled:cursor-not-allowed disabled:opacity-60; }
 	.export-btn svg { @apply shrink-0; }
 	.spinner { @apply inline-block h-3.5 w-3.5 animate-spin rounded-full border-2 border-white border-t-transparent; }
-	.workspace-switcher { @apply mx-2 mt-1; }
-	.editor-content { @apply relative flex flex-1 overflow-hidden bg-zinc-900; }
-	.left-sidebar, .main-content, .right-sidebar { @apply flex min-w-0 flex-1 flex-col; }
-	.main-content { @apply overflow-hidden bg-white; }
+	.editor-content { @apply relative mx-2 mb-2 flex flex-1 overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm; }
+	.left-sidebar, .main-content, .right-sidebar { @apply flex min-w-0 flex-1 flex-col bg-white; }
+	.main-content { @apply overflow-hidden bg-[#f7f7fb]; }
 	.active-view { @apply flex flex-1 flex-col overflow-hidden; }
 	.mobile-hidden { @apply hidden; }
-	.workspace-bottom-nav { @apply sticky bottom-0 z-10 border-t border-zinc-200 bg-white px-2 py-1 pb-[calc(0.25rem+env(safe-area-inset-bottom,0px))] md:hidden; }
-
-	@media (min-width: 768px) {
-		.editor-header { @apply px-4 py-2; }
-		.workspace-switcher, .workspace-bottom-nav { @apply hidden; }
-		.left-sidebar { flex: 0 0 260px; @apply border-r border-zinc-800; }
-		.right-sidebar { flex: 0 0 350px; @apply border-l border-zinc-800; }
-		.mobile-hidden { @apply flex; }
-	}
+	.workspace-bottom-nav { @apply sticky bottom-0 z-10 mx-2 mb-2 border border-zinc-200 bg-white/95 px-2 py-1 pb-[calc(0.25rem+env(safe-area-inset-bottom,0px))] backdrop-blur-xl; }
 </style>

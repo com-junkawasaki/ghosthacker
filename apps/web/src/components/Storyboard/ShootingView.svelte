@@ -106,14 +106,12 @@
 	.text { @apply text-sm leading-relaxed text-zinc-800; }
 	.delivery { @apply text-xs italic text-emerald-600; }
 
-	@media (max-width: 767px) {
-		.shooting-container { @apply rounded-lg; }
-		.shooting-header h1 { @apply text-sm tracking-[0.12em]; }
-		.shooting-table th { @apply hidden; }
-		.shooting-table, .shooting-table tbody, .shooting-table tr, .shooting-table td { @apply block w-full; }
-		.panel-row { @apply mb-3 rounded-lg border border-zinc-200 bg-white; }
-		.panel-row td { @apply border-0 border-b border-zinc-100; }
-		.panel-row td:last-child { @apply border-b-0; }
-		.col-num, .col-shot, .col-action, .col-dialogue { width: auto; }
-	}
+	.shooting-container { @apply rounded-lg; }
+	.shooting-header h1 { @apply text-sm tracking-[0.12em]; }
+	.shooting-table th { @apply hidden; }
+	.shooting-table, .shooting-table tbody, .shooting-table tr, .shooting-table td { @apply block w-full; }
+	.panel-row { @apply mb-3 rounded-lg border border-zinc-200 bg-white; }
+	.panel-row td { @apply border-0 border-b border-zinc-100; }
+	.panel-row td:last-child { @apply border-b-0; }
+	.col-num, .col-shot, .col-action, .col-dialogue { width: auto; }
 </style>

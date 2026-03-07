@@ -653,9 +653,10 @@
 
 	.storyboard-panel-row {
 		display: grid;
-		grid-template-columns: 80px 1fr 1fr 400px 60px;
-		border-bottom: 1px solid #e0e0e0;
-		min-height: 200px;
+		grid-template-columns: 1fr;
+		gap: 0;
+		border-bottom: 1px solid #d4d4d8;
+		min-height: auto;
 		background: #fff;
 	}
 
@@ -668,19 +669,16 @@
 	.col-picture-generated,
 	.col-content,
 	.col-seconds {
-		padding: 1rem;
-		border-right: 1px solid #e0e0e0;
+		padding: 0.75rem;
+		border-right: none;
+		border-bottom: 1px solid #ececf0;
 		display: flex;
 		align-items: flex-start;
 		min-width: 0;
 	}
 
-	.col-cut:last-child,
-	.col-picture:last-child,
-	.col-picture-generated:last-child,
-	.col-content:last-child,
-	.col-seconds:last-child {
-		border-right: none;
+	.col-seconds {
+		border-bottom: none;
 	}
 
 	/* カット列 */
@@ -689,7 +687,7 @@
 		font-weight: 600;
 		color: #333;
 		cursor: pointer;
-		text-align: center;
+		text-align: left;
 		width: 100%;
 	}
 
@@ -724,7 +722,7 @@
 	}
 
 	.placeholder-text {
-		font-size: 3rem;
+		font-size: 2rem;
 		color: #ccc;
 		font-weight: 300;
 	}
@@ -776,7 +774,7 @@
 		height: auto;
 		border-radius: 4px;
 		object-fit: contain;
-		max-height: 300px;
+		max-height: 220px;
 	}
 
 	.image-generation-controls {
@@ -1121,8 +1119,8 @@
 
 	/* 秒列 */
 	.duration {
-		text-align: center;
-		font-size: 1rem;
+		text-align: left;
+		font-size: 0.95rem;
 		color: #666;
 		cursor: pointer;
 		width: 100%;
@@ -1225,54 +1223,17 @@
 		font-size: 0.75rem;
 	}
 
-	@media (max-width: 767px) {
-		.storyboard-panel-row {
-			grid-template-columns: 1fr;
-			gap: 0;
-			min-height: auto;
-			border-bottom: 1px solid #d4d4d8;
-		}
+	.model-select,
+	.generate-btn,
+	.generate-dialogue-btn,
+	.generate-dialogue-btn-legacy,
+	.save-btn,
+	.cancel-btn {
+		min-height: 38px;
+	}
 
-		.col-cut,
-		.col-picture,
-		.col-picture-generated,
-		.col-content,
-		.col-seconds {
-			padding: 0.75rem;
-			border-right: none;
-			border-bottom: 1px solid #ececf0;
-		}
-
-		.col-seconds {
-			border-bottom: none;
-		}
-
-		.cut-number,
-		.duration {
-			text-align: left;
-			font-size: 0.95rem;
-		}
-
-		.placeholder-text {
-			font-size: 2rem;
-		}
-
-		.generated-image {
-			max-height: 220px;
-		}
-
-		.model-select,
-		.generate-btn,
-		.generate-dialogue-btn,
-		.generate-dialogue-btn-legacy,
-		.save-btn,
-		.cancel-btn {
-			min-height: 38px;
-		}
-
-		.content-display {
-			font-size: 0.85rem;
-			line-height: 1.5;
-		}
+	.content-display {
+		font-size: 0.85rem;
+		line-height: 1.5;
 	}
 </style>

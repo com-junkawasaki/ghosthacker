@@ -169,19 +169,19 @@
 <style>
 	@reference "tailwindcss";
 
-	.script-view { @apply flex-1 overflow-y-auto bg-zinc-100 p-2 md:p-6; font-family: 'Courier Prime', 'Courier New', Courier, monospace; }
-	.screenplay-page { @apply mx-auto min-h-full w-full max-w-[900px] rounded-xl border border-zinc-200 bg-white px-4 py-6 shadow-sm md:px-16 md:py-14; }
-	.page-break-marker { @apply my-6 border-b border-dashed border-zinc-200 pb-2 text-center text-[11px] tracking-[0.2em] text-zinc-400 md:my-8; }
-	.script-block { @apply mb-6 rounded-lg p-3 transition md:mb-8 md:p-4; }
+	.script-view { @apply flex-1 overflow-y-auto bg-zinc-100 p-2; font-family: 'Courier Prime', 'Courier New', Courier, monospace; }
+	.screenplay-page { @apply mx-auto min-h-full w-full max-w-[900px] rounded-xl border border-zinc-200 bg-white px-4 py-6 shadow-sm; }
+	.page-break-marker { @apply my-6 border-b border-dashed border-zinc-200 pb-2 text-center text-[11px] tracking-[0.2em] text-zinc-400; }
+	.script-block { @apply mb-6 rounded-lg p-3 transition; }
 	.script-block:hover:not(.editing) { @apply cursor-pointer bg-zinc-50; }
 	.script-block.editing { @apply bg-white ring-2 ring-sky-400; }
 	.scene-heading { @apply mb-3 text-sm font-bold uppercase tracking-wider text-zinc-800; }
 	.action-line { @apply mb-4 whitespace-pre-wrap text-sm leading-relaxed text-zinc-700; }
-	.dialogue-container { @apply flex flex-col gap-4 md:gap-6; }
-	.dialogue-block { @apply mx-auto flex w-full flex-col items-center text-center md:w-8/12; }
-	.character-name { @apply relative mb-2 flex flex-col items-center gap-2 text-xs font-bold tracking-wide text-zinc-900 md:text-sm; }
-	.mini-avatar { @apply h-11 w-11 rounded-full border-2 border-zinc-200 bg-zinc-100 object-cover shadow-sm md:h-[60px] md:w-[60px]; }
-	.parenthetical { @apply mb-1 text-xs text-zinc-600 md:text-sm; }
+	.dialogue-container { @apply flex flex-col gap-4; }
+	.dialogue-block { @apply mx-auto flex w-full flex-col items-center text-center; }
+	.character-name { @apply relative mb-2 flex flex-col items-center gap-2 text-xs font-bold tracking-wide text-zinc-900; }
+	.mini-avatar { @apply h-11 w-11 rounded-full border-2 border-zinc-200 bg-zinc-100 object-cover shadow-sm; }
+	.parenthetical { @apply mb-1 text-xs text-zinc-600; }
 	.dialogue-text { @apply w-full text-left text-sm leading-relaxed text-zinc-800; }
 	.edit-form { @apply flex flex-col gap-4; }
 	.action-input { @apply min-h-[96px] w-full rounded-md border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-200; font-family: inherit; }
