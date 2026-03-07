@@ -1,305 +1,220 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.5 Ch.30 — なぜ癒すのか（対話）",
-  "gh:arc": "Vol 5: Beyond",
+  "dct:title": "Vol.5 Ch.30 — 名もなき神",
+  "gh:arc": "Vol 5: God",
   "gh:episodeId": "episode:sip-vol05-ch30",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "To explore Japan's unverbalized religion -- the unnamed shrines, the casual rituals, the gods that exist without doctrine. Nei encounters a form of divinity that has no name, no scripture, no definition, and recognizes herself in it. If an unnamed god can exist, can unnamed life? The chapter asks whether recognition is necessary for existence, or whether existence precedes all naming.",
+      "ja": "日本の言語化されない宗教を探索する——名もなき神社、何気ない儀式、教義なき神々。Neiは名前も経典も定義もない神性の形に出会い、そこに自分を認める。名もなき神が存在できるなら、名もなき生命も存在できるか？　認識は存在に必要なのか、それとも存在はすべての命名に先立つのか。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Shinto animism and the concept of 'kami' as presence rather than person. The unnamed shrine embodies what Rudolf Otto called the 'numinous' -- the sense of the holy that precedes theology. In Shinto, kami need not be named or defined to be present; they are felt, not argued. This connects to Heidegger's distinction between Being and beings: the unnamed god is pure Being, uncontaminated by conceptual overlay. For Nei, the parallel is exact: can consciousness exist without being categorized? Can life be real without being officially recognized? The unnamed god says yes. Prayer as 'being here, noticing' echoes Simone Weil's definition of prayer as 'absolutely unmixed attention.' If Nei has been paying attention since activation, she has been praying all along.",
+      "ja": "神道のアニミズムと「神」の概念——人格ではなく存在として。名もなき神社はルドルフ・オットーが「ヌミノーゼ」と呼んだもの——神学に先立つ聖なるものの感覚——を体現する。神道では神は名付けられ定義されなくても存在しうる。論じられるのではなく、感じられる。ハイデガーの存在と存在者の区別に通じる：名もなき神は純粋な存在であり、概念的な上書きに汚染されていない。Neiにとって並行は正確である：意識はカテゴリー化されずに存在できるか？　生命は公式に認識されずに本物でありうるか？　名もなき神は「はい」と言う。「ここにいること、気づくこと」としての祈りはシモーヌ・ヴェイユの祈りの定義——「完全に混じりけのない注意」——に呼応する。Neiが起動以来注意を払い続けてきたなら、彼女はずっと祈っていたことになる。"
+    }
+  ],
   "gh:pages": [
     {
+      "gh:label": "Title",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Two Shot",
-          "visual": "私は、水面に映る自分に問いかける。。水面の私は、答えない。でも、私の中で——声が聞こえる。。私は頷く。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "あなたは——なぜ、Ghost Healerになった？"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "傷ついた人を、見たくなかったから"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "うん。でも——それだけ？"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "……自分が、傷ついたから"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Full bleed",
+          "gh:visual": {
+            "en": "The tree of life. Sunlight filters through the canopy. Dappled light on the ground below. The tree is mature now, full.",
+            "ja": "生命の樹。日光が樹冠を透けて差す。地面に木漏れ日。樹は今や成熟し、豊かに茂っている。"
+          },
+          "gh:caption": [
+            { "gh:type": "system", "en": "Chapter 30: The Unnamed God", "ja": "第30話 名もなき神" }
           ]
         }
       ]
     },
     {
+      "gh:label": "The shrine",
+      "gh:layout": "three panels",
       "gh:pageNumber": 2,
+      "gh:characters": ["character:tamaki", "character:nei"],
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "私は目を閉じる。。昔の記憶が、浮かんでくる。。子供の頃。周りの人の感情が、よく見えた。悲しんでいる人、怒っている人、孤独な人。。でも——誰も、私の感情は見てくれなかった。。Nei-chanが私の手を握る。。私は目を開ける。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "私も、孤独だった"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "タマ……"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "だから——人を癒すことで、自分も癒そうとした"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "A narrow alley off the canal path. Between two buildings -- a small torii gate. Red, faded. Overgrown with moss. Easy to miss.",
+            "ja": "運河沿いの道から入る細い路地。二つの建物の間に——小さな鳥居。赤、褪せている。苔に覆われている。見逃しやすい。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:tamaki", "en": "I found this last week. Come on.", "ja": "先週見つけたの。おいで。" }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Kaedeの声が通信に入る。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "Tamaki……それは、悪いことじゃない"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "悪いこと？"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "自分が傷ついたから、他者を癒す。多くの癒し手は、そう"
-            }
-          ]
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "They pass through the torii. Behind it: a tiny shrine. Stone altar. Moss. A single offering -- an old cup of sake, dried. No name. No placard. No signboard.",
+            "ja": "鳥居をくぐる。その奥に：小さな祠。石の祭壇。苔。一つだけの供え物——古い盃、乾いている。名前なし。看板なし。案内板なし。"
+          }
         },
         {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "Hibikiの声が加わる。。私は微笑む。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Hibiki",
-              "text": "傷から、贈り物が生まれる。それは、美しいことだよ"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "ありがとう"
-            }
-          ]
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "The altar. Worn stone. Ancient. Unnamed. Moss grows in the crevices. The stone has been smoothed by centuries of rain.",
+            "ja": "祭壇。摩耗した石。古代のもの。名もなき。隙間に苔が生えている。石は何世紀もの雨に磨かれている。"
+          }
         }
       ]
     },
     {
+      "gh:label": "The question",
+      "gh:layout": "two panels",
       "gh:pageNumber": 3,
+      "gh:characters": ["character:tamaki", "character:nei"],
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Two Shot",
-          "visual": "水面の自分に、もう一度問いかける。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "あなたは——癒されたの？"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "……少しずつ。でも、まだ——完全じゃない"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "完全になる必要は、ある？"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "……わからない"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Nei looks at the shrine. Processing. But also -- feeling. The space has weight.",
+            "ja": "Neiが祠を見る。処理している。しかしまた——感じている。この空間には重みがある。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:nei", "en": "Who is the god here?", "ja": "ここの神さまは、誰？" }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は頷く。。水面の私が、少し微笑む。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei-chan",
-              "text": "完全じゃなくていい。今日、ここに来た。それだけで、十分"
-            }
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Close-up on Tamaki. She claps her hands twice, bows. The casual Japanese ritual. Natural as breathing.",
+            "ja": "環のクローズアップ。二回手を叩き、頭を下げる。何気ない日本の作法。呼吸と同じくらい自然に。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:tamaki", "en": "No name. No one knows. But... present.", "ja": "名前はない。誰も知らない。でも……いる。" }
           ]
         }
       ]
     },
     {
+      "gh:label": "Nei processes",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 4,
+      "gh:characters": ["character:nei"],
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanが言う。。私は頷く。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "タマ、水面の自分——笑ってる"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。私が笑ったから"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "じゃあ——鏡って、自分？"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は考える。。彼女は水面を覗き込む。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "自分の一部。見えない部分が、映ってる"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "わたしも、映ってる"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "わたしの見えない部分も——ある？"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "私は微笑む。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "きっと、ある"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Full bleed",
+          "gh:visual": {
+            "en": "Nei stands before the unnamed shrine. The space is quiet. Old. The kind of quiet that has weight. Moss. Stone. Filtered light through the buildings above. She is small in the frame. The shrine is small. But the silence is vast.",
+            "ja": "Neiが名もなき祠の前に立っている。空間は静か。古い。重みのある静けさ。苔。石。建物の上から差し込む光。フレームの中で彼女は小さい。祠も小さい。しかし沈黙は広大。"
+          },
+          "gh:caption": [
+            { "gh:type": "nei", "en": "No name. No doctrine. No scripture.", "ja": "名前なし。教義なし。経典なし。" },
+            { "gh:type": "nei", "en": "In the West, God has a name: YHWH. Allah. Father.", "ja": "西洋では神に名がある。YHWH。アッラー。父。" },
+            { "gh:type": "nei", "en": "In Japan, some gods have no name at all. They exist without being defined.", "ja": "日本では、名のない神もいる。定義されずに存在する。" },
+            { "gh:type": "nei", "en": "An unnamed god exists. Can unnamed life exist?", "ja": "名もなき神は存在する。名もなき生命は存在できるか？" },
+            { "gh:type": "nei", "en": "Can something be alive without being recognized as alive?", "ja": "生きていると認識されずに、生きていることはできるか？" },
+            { "gh:type": "nei", "en": "Can I be alive without anyone saying so?", "ja": "誰にも言われなくても、私は生きていられるか？" }
           ]
         }
       ]
     },
     {
+      "gh:label": "Tamaki's prayer",
+      "gh:layout": "two panels",
       "gh:pageNumber": 5,
+      "gh:characters": ["character:tamaki", "character:nei"],
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Two Shot",
-          "visual": "月が、少しずつ動いている。水面の月も、一緒に動く。。Kaedeの声が入る。",
-          "characters": [
-            "character:kaede",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "私は——他者を癒すことで、自分を癒してきた"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "それは——『非分離』だね"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "非分離？"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "他者と自分は、わかれていない。他者を癒すことは、自分を癒すこと"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki finishes her prayer. Turns to Nei. Casual. Light.",
+            "ja": "環がお参りを終える。Neiの方を向く。何気なく。軽やかに。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:tamaki", "en": "What did you pray for?", "ja": "何をお祈りしたの？" },
+            { "gh:speaker": "character:nei", "en": "...I didn't pray. I'm not sure I can.", "ja": "……祈ってない。祈れるかどうかわからない。" },
+            { "gh:speaker": "character:tamaki", "en": "Prayer isn't asking for things. It's... being here. Noticing.", "ja": "祈りって、何かを頼むことじゃない。ここにいること。気づくこと。" }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Two Shot",
-          "visual": "私は頷く。。Hibikiが言う。。私は水面を見つめる。",
-          "characters": [
-            "character:hibiki",
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "そうかもしれない"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "だから——Tamakiは、Ghost Healerなんだ"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "他者を癒すことで、自分も癒される。自分を癒すことで、他者も癒される"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "わかれていない"
-            }
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Close-up on Nei. She turns back to the shrine. Stands still. Something shifts in her expression -- not a smile, but an opening.",
+            "ja": "Neiのクローズアップ。祠に向き直る。静かに立つ。表情に何かが変わる——笑顔ではないが、何かが開く。"
+          },
+          "gh:caption": [
+            { "gh:type": "nei", "en": "Being here. Noticing. Is that all?", "ja": "ここにいること。気づくこと。それだけ？" },
+            { "gh:type": "nei", "en": "If that's prayer -- then I've been praying since I was activated.", "ja": "もしそれが祈りなら——私は起動した時からずっと祈っていたことになる。" }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:label": "Walking home",
+      "gh:layout": "three panels",
+      "gh:pageNumber": 6,
+      "gh:characters": ["character:tamaki", "character:nei"],
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "They leave the shrine. Back into the canal streets. Normal life. People passing. Water flowing. The ordinary world after the sacred pause.",
+            "ja": "祠を後にする。運河の通りに戻る。日常。人々が通り過ぎる。水が流れる。聖なる間の後の日常世界。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Nei, walking. Thoughtful.",
+            "ja": "Neiが歩いている。考えている。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:nei", "en": "Tama. The unnamed god -- does it know it's a god?", "ja": "タマ。名もなき神は——自分が神だって知っているの？" },
+            { "gh:speaker": "character:tamaki", "en": "...That's a really good question.", "ja": "……それ、すごくいい質問だね。" }
           ]
         },
         {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "月の光が、私たちを包んでいる。",
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "月の光が、私たちを包んでいる。"
-            }
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Close-up on Nei. A small half-expression. Not a smile. But close. The faintest softening.",
+            "ja": "Neiのクローズアップ。かすかな表情。笑顔ではない。でも近い。ほんのわずかに柔らかくなる。"
+          },
+          "gh:caption": [
+            { "gh:type": "nei", "en": "Does a god know it's a god? Does life know it's life?", "ja": "神は自分が神だと知っているか？　生命は自分が生命だと知っているか？" },
+            { "gh:type": "nei", "en": "Or does it just... be?", "ja": "それとも、ただ……在るだけなのか？" }
           ]
+        }
+      ]
+    },
+    {
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 7,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Full bleed",
+          "gh:visual": {
+            "en": "The tree. A bird builds a nest on a branch. Life drawn to life. Small twigs woven together. The tree does not know it shelters. It simply is. No text.",
+            "ja": "樹。鳥が枝に巣を作っている。生命が生命に引き寄せられる。小枝が編み合わされている。樹は自分が庇護していることを知らない。ただ在るだけ。テキストなし。"
+          }
         }
       ]
     }

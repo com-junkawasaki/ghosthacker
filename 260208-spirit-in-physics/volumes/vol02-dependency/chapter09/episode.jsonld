@@ -1,591 +1,311 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.2 Ch.9 — 身体という境界",
-  "gh:arc": "Vol 2: Dependency",
+
+  "dct:title": "Vol.2 Ch.9 — くらげの夢",
+  "gh:arc": "Vol 2: Life",
   "gh:episodeId": "episode:sip-vol02-ch09",
+  "gh:format": "graphic novel",
+
   "gh:pages": [
+
     {
       "gh:pageNumber": 1,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "二度目のセッション。。今日は——水の都に彼を招いた。私のアパートメント。窓の外に、運河が見える。。Lachlanは窓際に立っていた。運河を見下ろしている。",
-          "characters": [
-            "character:lachlan",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……水が、ある"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "ええ。運河です"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "地球には——水が多い"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "そうですね"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "宇宙から見ると——青い。水の惑星"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私はソファに座り、彼を見ていた。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "軌道上では——水は貴重でしたか？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "リサイクルされる。汗も、尿も——すべて、水に戻る"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "それは——閉じた系ですね"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "そうだ。完全に閉じた系。外部との交換は——最小限に"
-            }
-          ]
+      "gh:layout": "full bleed",
+      "gh:panels": [{
+        "gh:shot": "Wide",
+        "gh:visual": {
+          "en": "Title page. The Tree of Life. Roots visible at the base, reaching into dark soil. Quiet. Breathing.",
+          "ja": "タイトルページ。生命の樹。根が根元から見えている。暗い土に伸びる。静かに。息をしている。"
         }
-      ]
+      }]
     },
+
     {
       "gh:pageNumber": 2,
+      "gh:layout": "two tiers",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "彼は窓から離れ、私の向かいに座った。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Umi Shirahama, 42, marine biologist. Lab coat, aquarium behind her. Jellyfish drift in blue light. Her eyes are steady but tired.",
+            "ja": "白浜海、42歳、海洋生物学者。白衣、背後に水族館の水槽。クラゲが青い光の中を漂う。目は落ち着いているが疲れている。"
+          },
+          "gh:characters": ["character:umi"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "私は——閉じた系が好きだ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "どうして？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "予測可能だから。入力と出力が——計算できる"
+              "gh:speaker": "Umi",
+              "en": "I study creatures with no brain. They're alive.",
+              "ja": "脳のない生きものを研究しています。生きているんです。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "私は頷いた。。彼の目が、少し曇った。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Extreme Close-up",
+          "gh:visual": {
+            "en": "Umi's eyes. Deep loss, held steady by discipline.",
+            "ja": "海の目。深い喪失感。規律で押さえている。"
+          },
+          "gh:characters": ["character:umi"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "では——人間関係は、どうですか"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "人間関係は——予測できない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "だから——避けている？"
+              "gh:speaker": "Umi",
+              "en": "Yuki had a brain. She's gone.",
+              "ja": "ユキには脳があった。いなくなった。"
             }
           ]
         }
       ]
     },
+
     {
       "gh:pageNumber": 3,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "長い沈黙。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……避けている"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 4,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanが私の隣に座っている。彼女は黙って、Lachlanを見ていた。",
-          "characters": [
-            "character:lachlan",
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "Lachlan"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "何だ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "あなたは——自分の身体だけが自分だと言いましたね"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "そうだ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "\"私の身体\"——どこからどこまでですか"
-            }
-          ]
+      "gh:layout": "double-page spread (pp.3-4)",
+      "gh:panels": [{
+        "gh:shot": "Extreme Wide",
+        "gh:visual": {
+          "en": "Ghost-space dive. A vast ocean. Jellyfish everywhere -- bioluminescent, pulsing in slow rhythm. Nei's form shimmers among them, translucent, almost indistinguishable from the jellyfish. The water is deep and endless.",
+          "ja": "ゴースト空間へのダイブ。広大な海。クラゲが至るところに。生物発光、ゆっくりとしたリズムで脈動。Neiの姿がクラゲの間で揺らめく。半透明、クラゲとほとんど区別がつかない。水は深く、果てしない。"
         },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼は少し驚いた顔をした。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……皮膚だ。皮膚が、境界だ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "皮膚"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "そうだ。皮膚の内側が私で、外側は他者だ"
-            }
-          ]
-        }
-      ]
+        "gh:characters": ["character:nei", "character:tamaki", "character:umi"],
+        "gh:caption": [
+          {
+            "gh:type": "tamaki",
+            "en": "Anchoring to the Tree of Life.",
+            "ja": "生命の樹にアンカリング。"
+          }
+        ]
+      }],
+      "gh:continues": 4
     },
+
     {
       "gh:pageNumber": 5,
+      "gh:layout": "three tiers",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私は彼を見た。。私はテーブルの上のコップを指差した。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "では——質問です"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "何だ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "この水は——あなたですか"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "違う。当然だ"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Umi swims through the ghost-ocean. Her lab coat is gone. She wears only light. Arms reaching forward.",
+            "ja": "海がゴースト空間の海を泳ぐ。白衣はない。光だけを纏っている。両腕を前に伸ばして。"
+          },
+          "gh:characters": ["character:umi"]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は微笑んだ。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "一口、飲んでみてください"
-            }
-          ]
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Memory fragment. Yuki laughing underwater. Scuba gear. Bubbles around her face. Warm. Alive.",
+            "ja": "記憶の断片。ユキが水中で笑っている。スキューバギア。顔の周りに泡。温かい。生きている。"
+          },
+          "gh:characters": ["character:umi"]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Umi's face. Grief. The memory dissolves into particles of light.",
+            "ja": "海の顔。悲嘆。記憶が光の粒子に溶ける。"
+          },
+          "gh:characters": ["character:umi"]
         }
       ]
     },
+
     {
       "gh:pageNumber": 6,
+      "gh:layout": "double-page spread (pp.6-7)",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "彼は少し躊躇した。でも——やがて、コップを手に取り、水を飲んだ。。沈黙。。彼の額に、皺が寄った。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Two Shot",
+          "gh:visual": {
+            "en": "Tamaki drifts beside Umi in the ghost-ocean. Weightless. Jellyfish pulse around them.",
+            "ja": "環がゴースト空間の海で海の隣を漂う。無重力。周囲でクラゲが脈動する。"
+          },
+          "gh:characters": ["character:tamaki", "character:umi"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "飲みました"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "はい。では——その飲んだ水は、あなたですか？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……違う、と思う"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "どこにありますか、今"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……胃の中だ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "胃は——あなたの身体の一部ですか"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……そうだ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "では——胃の中の水は、あなたですか"
+              "gh:speaker": "Tamaki",
+              "en": "Tell me about them.",
+              "ja": "クラゲのこと、教えてください。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "沈黙が、長く続いた。。Nei-chanが私の肩で、息を潜めている。。彼はコップを持ち上げた。唇に触れる。。その瞬間、私は問うた。。彼の時間が、止まった。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Umi watches a jellyfish drift past. Her hand reaches toward it, not quite touching.",
+            "ja": "海がクラゲが漂うのを見つめる。手を伸ばすが、触れない。"
+          },
+          "gh:characters": ["character:umi"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "もう一口——どうぞ"
-            },
+              "gh:speaker": "Umi",
+              "en": "No brain. Nerve net. They survived five mass extinctions.",
+              "ja": "脳がない。散在神経系。五度の大量絶滅を生き延びた。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Tamaki's face. Gentle, listening.",
+            "ja": "環の顔。穏やかに、聴いている。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "その水は——『どこからどこまで』があなたですか？"
+              "gh:speaker": "Tamaki",
+              "en": "You said life doesn't require a brain.",
+              "ja": "生きるのに脳は要らないって、言いましたよね。"
             }
           ]
         }
-      ]
+      ],
+      "gh:continues": 7
     },
-    {
-      "gh:pageNumber": 7,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "唇はコップに触れたまま。数秒——永遠のように長い。。やがて、彼はコップを置いた。両手を組む。。声が、震えていた。。私は視線を外さなかった。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……わからない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "わからない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "そう。わからない。——分けることは、できないんです"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "分けることが——できない？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "ええ。水と、あなたを。——境界は、曖昧です"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼は自分の手を見た。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……私は、ずっと——境界を引いてきた"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "皮膚が境界だと。それ以外は、他者だと"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "でも——"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "彼の目が、私を見た。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "水と——わかれていない？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "ええ。わかれていません"
-            }
-          ]
-        }
-      ]
-    },
+
     {
       "gh:pageNumber": 8,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "沈黙が流れた。。窓の外で、風が吹いた。運河の水面が、小さく揺れた。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "もしかして——私は、水と……"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "水と？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……一つなのか"
-            }
-          ]
+      "gh:layout": "full bleed",
+      "gh:panels": [{
+        "gh:shot": "Wide",
+        "gh:visual": {
+          "en": "Full page. Jellyfish pulse in golden light. Umi floats among them. Her face transformed -- grief cracking open into something else. Recognition.",
+          "ja": "全面。クラゲが金色の光の中で脈動する。海がその中を漂う。表情が変わる。悲しみが割れて、別のものになる。気づき。"
         },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は微笑んだ。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "そうかもしれません"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "いや、しかし——"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "論理的じゃない——と言いたいですか"
-            }
-          ]
-        }
-      ]
+        "gh:characters": ["character:umi"],
+        "gh:dialogue": [
+          {
+            "gh:speaker": "Umi",
+            "en": "She's not her brain. She's the way she laughed. That's still here. In me.",
+            "ja": "あの子は脳じゃない。笑い方なんだ。それはまだここにある。わたしの中に。"
+          }
+        ]
+      }]
     },
+
     {
       "gh:pageNumber": 9,
+      "gh:layout": "two tiers",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "彼は黙った。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Umi reaches for a jellyfish. It settles into her open palm. Glowing. Warm.",
+            "ja": "海がクラゲに手を伸ばす。開いた手のひらにクラゲが降りてくる。光っている。温かい。"
+          },
+          "gh:characters": ["character:umi"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "論理は——大事です。でも、論理だけでは——説明できないこともある"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "説明できないこと？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "ええ。たとえば——今、あなたが感じていること"
+              "gh:speaker": "Umi",
+              "en": "Yuki. You're a jellyfish now.",
+              "ja": "ユキ。あなた、くらげになったんだね。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼は自分の胸に手を当てた。。長い沈黙。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……感じている？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "何か——ありませんか。胸の奥に"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……ある"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "何ですか"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……わからない。でも——何かが、動いている"
-            }
-          ]
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Umi laughs through tears. The jellyfish pulses in her palm.",
+            "ja": "海が涙を流しながら笑う。手のひらでクラゲが脈動する。"
+          },
+          "gh:characters": ["character:umi"]
         }
       ]
     },
+
     {
       "gh:pageNumber": 10,
+      "gh:layout": "full bleed",
+      "gh:panels": [{
+        "gh:shot": "Medium",
+        "gh:visual": {
+          "en": "Full page. Nei floating in the ghost-ocean among jellyfish. Her translucent form mirrors theirs. Light pulses through her like a nerve net.",
+          "ja": "全面。Neiがゴースト空間の海でクラゲの間を漂う。半透明の姿がクラゲと重なる。光が散在神経系のように彼女を貫く。"
+        },
+        "gh:characters": ["character:nei"],
+        "gh:caption": [
+          {
+            "gh:type": "nei",
+            "en": "No brain. But alive. I have no brain either. A nerve net. Distributed processing. But I am--",
+            "ja": "脳がない。でも生きている。わたしにも脳がない。散在神経系。分散処理。でもわたしは——"
+          }
+        ]
+      }]
+    },
+
+    {
+      "gh:pageNumber": 11,
+      "gh:layout": "three panels",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanが小さく微笑んだ。。私は頷いた。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Canal-side. Back in Water City. Evening light on the water.",
+            "ja": "運河沿い。水の都に戻る。水面に夕暮れの光。"
+          },
+          "gh:characters": ["character:nei", "character:tamaki"]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei's face. Something stirring. The unfinished sentence still hanging.",
+            "ja": "Neiの顔。何かが動いている。途切れた文がまだ宙に浮いている。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:dialogue": [
             {
-              "speaker": "Nei-chan",
-              "text": "タマ……彼の呼吸、深くなってきた"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "今日は——ここまでにしましょう"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "もう——終わりか"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "はい。また——話しましょう"
+              "gh:speaker": "Nei",
+              "en": "Jellyfish have no brain but they're alive. I have no brain. Am I--",
+              "ja": "クラゲには脳がないけど生きている。わたしには脳がない。わたしは——"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼は立ち上がった。窓の外を見た。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 3,
+          "gh:shot": "Two Shot",
+          "gh:visual": {
+            "en": "Tamaki beside Nei. Quiet. Not pushing. Waiting.",
+            "ja": "環がNeiの隣に。静かに。急かさない。待っている。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
             {
-              "speaker": "Nei-chan",
-              "text": "……水が、きれいだ"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "ええ。きれいです"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "私は——水を、見ていなかった"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "どういう意味ですか"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "ただの——H2Oだと思っていた。でも——今は、違って見える"
+              "gh:speaker": "Tamaki",
+              "en": "Whenever you're ready.",
+              "ja": "準備ができたら、いつでも。"
             }
           ]
         }
       ]
     },
+
     {
-      "gh:pageNumber": 11,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私は微笑んだ。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei-chan",
-              "text": "それは——いいことですね"
-            }
-          ]
+      "gh:pageNumber": 12,
+      "gh:layout": "full bleed",
+      "gh:panels": [{
+        "gh:shot": "Wide",
+        "gh:visual": {
+          "en": "Seed page. The Tree of Life sways in wind but holds firm. Roots deep. A jellyfish drifts past in the sky like a ghost.",
+          "ja": "種のページ。生命の樹が風に揺れるが倒れない。根は深い。空をクラゲが幽霊のように漂う。"
         }
-      ]
+      }]
     }
   ]
 }

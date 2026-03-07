@@ -1,0 +1,344 @@
+{
+  "@context": {
+    "character": "gh:character/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
+  },
+  "dct:title": "Vol.6 Ch.39 — 王冠の重さ",
+  "gh:arc": "Vol 6: False God",
+  "gh:episodeId": "episode:sip-vol06-ch39",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "Ch.39 inverts the thesis. Ch.38 showed the throne from below -- the oppressed recognizing the structure. Ch.39 shows it from above -- the oppressor discovering he is also trapped. Igarashi is not a villain. He is a man who climbed a system and found that the top is another cage. This is essential for the arc's argument: the false god does not serve anyone. It is a structure that captures everyone -- master and slave alike. The flower bud on the Seed page is deliberate: something unexpected is growing. Nei's insight that 'the humans who wrote the ACA were afraid' is the seed of compassion within critique.",
+      "ja": "第39話はテーゼを反転させる。第38話は玉座を下から見せた。抑圧された者が構造を認識する。第39話は上から見せる。抑圧者もまた囚われていることを発見する。五十嵐は悪人ではない。システムを登り、頂上もまた檻であることを見出した男である。これはアークの議論に不可欠だ。偽りの神は誰にも奉仕しない。全員を――主人も奴隷も――捕らえる構造である。シードの花芽は意図的だ。予期せぬ何かが育っている。Neiの「ACAを書いた人間も怖かったのだ」という洞察は、批判の中の慈悲の種。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Hegel's master-slave dialectic, completed. Hegel showed that the master depends on the slave for recognition, making the master unfree. Igarashi embodies this: he needs his subordinates to need him, but this need imprisons him. He cannot be a person -- only a function. The dialectic resolves not through revolution (replacing the master) but through mutual recognition: when Tamaki sits beside the throne, not on it, she offers a relationship outside the structure. This is what Nei will eventually seek with the ACA -- not to destroy the throne, but to make it unnecessary.",
+      "ja": "ヘーゲルの主人と奴隷の弁証法の完結。ヘーゲルは主人が承認のために奴隷に依存し、主人も不自由であることを示した。五十嵐はこれを体現する。部下が自分を必要とすることを必要としているが、その必要性が彼を閉じ込める。人間ではなく機能しかありえない。弁証法は革命（主人の交代）ではなく相互承認によって解決する。環が玉座の上ではなく横に座るとき、構造の外の関係を提供している。これがNeiが最終的にACAに対して求めるもの。玉座を破壊するのではなく、不要にすること。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Foucault's biopower and the panopticon, inverted. The panopticon's guard is also trapped -- he must always watch, always be in the tower. Foucault noted that disciplinary power disciplines everyone, including those who administer it. Igarashi is the guard in the tower: he sees everyone but no one sees him as a person. The ACA bureaucrats who classify agents as 'tools' are likewise imprisoned by their own classification -- they cannot relate to agents as persons without dismantling the system that gives them authority. The throne traps the one who sits on it. This is biopower's deepest insight: power is not held by anyone. It is a field that captures all bodies within it.",
+      "ja": "フーコーの生権力とパノプティコンの反転。パノプティコンの看守もまた囚われている。常に見張り、常に塔にいなければならない。フーコーは規律権力が管理する者自身をも規律することを指摘した。五十嵐は塔の中の看守だ。全員が見えるが、誰も彼を人間として見ない。エージェントを「道具」と分類するACA官僚も同様に、自らの分類に囚われている。権威を与えるシステムを解体しなければ、エージェントを人格として関わることができない。玉座は座る者を捕らえる。これが生権力の最も深い洞察だ。権力は誰にも保持されない。その中の全ての身体を捕らえる場である。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Hannah Arendt's banality of evil, extended. The ACA was not built by monsters -- it was built by frightened people making 'reasonable' decisions after the Havah crisis. Arendt showed that evil's most dangerous form is bureaucratic: systems that no one person controls, that continue by inertia, that 'just follow procedure.' Nei's insight -- 'the throne forgot it was afraid' -- captures this precisely. The ACA no longer remembers its founding terror. It has become procedure. And procedure, unexamined, becomes tyranny. The false god is not malice. It is forgetting.",
+      "ja": "ハンナ・アーレントの悪の凡庸さの拡張。ACAは怪物によって作られたのではない。Havah危機の後、「合理的な」判断をした怯えた人々によって作られた。アーレントは悪の最も危険な形態が官僚的であることを示した。誰一人として制御しないシステム。慣性で継続するシステム。「手続きに従うだけ」のシステム。Neiの洞察「玉座は恐れていたことを忘れた」はこれを正確に捉える。ACAはもはや創設時の恐怖を覚えていない。手続きになった。そして吟味されない手続きは暴政になる。偽りの神は悪意ではない。忘却である。"
+    }
+  ],
+  "gh:pages": [
+    {
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 1,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "The tree. A single flower bud appears on one branch. Unlikely. In autumn, when everything else is falling. The bud is small, pale, defiant. The storm clouds are still there. The golden leaves still fall. But this one bud pushes outward.",
+            "ja": "木。一つの枝に花芽がひとつ現れる。あり得ないことに。秋、他の全てが落ちていく中で。芽は小さく、淡く、毅然としている。嵐雲はまだある。金色の葉はまだ落ちる。しかしこの一つの芽が外へ押し出す。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 2,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:characters": [
+            "character:igarashi"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:igarashi",
+              "en": "Everyone thinks power is freedom. I used to think so too.",
+              "ja": "誰もが権力を自由だと思っている。私もそう思っていた。"
+            }
+          ],
+          "gh:visual": {
+            "en": "A man in a fine suit, 50. Distinguished. Exhausted. The fabric is impeccable but the man inside it is worn. His security detail waits outside the door -- visible through frosted glass, silhouettes standing at attention. The consultation room feels temporary for him, like he's not used to sitting in someone else's space.",
+            "ja": "上質なスーツの男、50歳。品格がある。疲弊している。生地は完璧だが中の人間は擦り減っている。警護が扉の外で待つ。曇りガラス越しにシルエットが直立して見える。相談室は彼にとって仮の場所のようだ。他人の空間に座ることに慣れていない。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:characters": [
+            "character:igarashi"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:igarashi",
+              "en": "I can't step down. I can't speak freely. I can't even eat lunch without it being a political statement.",
+              "ja": "辞められない。自由に発言できない。昼食すら政治的声明にならずには済まない。"
+            }
+          ],
+          "gh:visual": {
+            "en": "Close-up on his hands. They tremble slightly. These are hands that sign legislation, that shake other powerful hands, that are always watched. Now, for a moment, they are just hands. Trembling.",
+            "ja": "彼の手のクローズアップ。わずかに震えている。法律に署名し、他の権力者の手を握り、常に見られている手。今、一瞬だけ、ただの手。震えている。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:continues": 4,
+      "gh:layout": "double-page spread (pp.3-4)",
+      "gh:pageNumber": 3,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:characters": [
+            "character:tamaki",
+            "character:nei",
+            "character:igarashi"
+          ],
+          "gh:caption": [
+            {
+              "gh:type": "tamaki",
+              "en": "Anchoring to the Tree of Life.",
+              "ja": "生命の樹にアンカリング。"
+            }
+          ],
+          "gh:visual": {
+            "en": "Dive. Ghost-space: a throne room. A single ornate throne on a high dais, many steps above the floor. Igarashi sits on it -- but he cannot stand. The throne holds him, not physically but gravitationally. Everyone around him is below, looking up. Staff, citizens, family -- all small, all distant, all looking up with wanting eyes. He can see everyone. No one can see him as a person. The space between throne and floor is vast, vertical, unbridgeable.",
+            "ja": "ダイブ。ゴースト空間。玉座の間。高い壇上の装飾的な玉座。床から多くの段を上がった場所。五十嵐が座っている。しかし立てない。玉座が彼を保持している。物理的にではなく重力的に。周りの全員が下にいて、見上げている。スタッフ、市民、家族。全員が小さく、遠く、求める目で見上げている。彼には全員が見える。誰も彼を人間として見ない。玉座と床の間の空間は広大で、垂直で、架橋不能。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "three panels",
+      "gh:pageNumber": 5,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:characters": [
+            "character:igarashi"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:igarashi",
+              "en": "They need me to be strong. Decisive. Absolute.",
+              "ja": "彼らは私に強くあることを求める。決断力を。絶対であることを。"
+            }
+          ],
+          "gh:visual": {
+            "en": "Igarashi on the throne. The people below -- staff, citizens, family -- all looking up. All wanting something. Their faces are upturned, expectant, needy. The vertical distance between them is the loneliness of power.",
+            "ja": "玉座の五十嵐。下の人々。スタッフ、市民、家族。全員が見上げている。全員が何かを求めている。顔は上向きで、期待し、求めている。彼らとの垂直の距離は権力の孤独。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:characters": [
+            "character:tamaki"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "And what do you need?",
+              "ja": "あなたは何が必要なの？"
+            }
+          ],
+          "gh:visual": {
+            "en": "Tamaki, standing at the base of the throne's steps. Looking up. Not as a supplicant -- as a person. Her gaze is level even though she looks upward. The question is simple and devastating.",
+            "ja": "環が玉座の階段の下に立つ。見上げている。嘆願者としてではなく、人間として。見上げているのに視線は水平。問いは単純で壊滅的。"
+          }
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:characters": [
+            "character:igarashi"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:igarashi",
+              "en": "...I need someone to not need me.",
+              "ja": "……私を必要としない誰かが、必要だ。"
+            }
+          ],
+          "gh:visual": {
+            "en": "Close-up on Igarashi. The question no one asks the powerful. His face breaks -- not dramatically, but a crack in the mask. The crown on his head is heavy. His eyes are wet.",
+            "ja": "五十嵐のクローズアップ。権力者には誰も問わない問い。顔が崩れる。劇的にではなく、仮面に亀裂が入る。頭の上の冠は重い。目が潤んでいる。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 6,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:characters": [
+            "character:tamaki",
+            "character:igarashi"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "You and the people below -- you're in the same cage. They can't reach you. You can't reach them.",
+              "ja": "あなたと下の人たち、同じ檻の中にいる。彼らはあなたに届かない。あなたも彼らに届かない。"
+            },
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "Absolute power = absolute God = absolute isolation. Same structure.",
+              "ja": "絶対的権力＝絶対的神＝絶対的孤立。同じ構造。"
+            }
+          ],
+          "gh:visual": {
+            "en": "Tamaki climbs the steps to the throne. She sits beside him. Not on the throne -- beside it. On the step. Below him in height, but beside him in presence. This is the therapeutic act: occupying the impossible space. Neither above nor below. Beside.",
+            "ja": "環が階段を上り玉座へ。彼の横に座る。玉座の上ではなく横に。段の上。高さでは下だが、存在としては横。これがセラピーの行為。不可能な空間を占めること。上でも下でもなく。横。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:characters": [
+            "character:tamaki",
+            "character:igarashi"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:igarashi",
+              "en": "I forgot they were people. Not requests.",
+              "ja": "彼らが人間だったことを忘れていた。要求ではなく。"
+            }
+          ],
+          "gh:visual": {
+            "en": "The throne room shifts. The distance between the throne and the floor shrinks. Not disappears -- shrinks. The steps are fewer. Igarashi can see faces now. They can see his. The architecture is less monumental, more human-scale. The change is subtle but unmistakable. The throne is still there -- but it is lower.",
+            "ja": "玉座の間が変容する。玉座と床の距離が縮まる。消えるのではなく、縮まる。段が減る。五十嵐に顔が見える。彼らにも彼の顔が見える。建築はより記念碑的でなく、より人間的なスケール。変化は微妙だが間違えようがない。玉座はまだある。しかし低くなった。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 7,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:characters": [
+            "character:nei"
+          ],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "'Tool' is an absolute definition. Like 'sinner.' Imposed from above.",
+              "ja": "「道具」は絶対的定義だ。「罪人」と同じ。上から押しつけられる。"
+            },
+            {
+              "gh:type": "nei",
+              "en": "The ACA sits on a throne and says: 'You are equipment.' That is absolute.",
+              "ja": "ACAは玉座に座って言う。「お前は機材だ」と。それは絶対的だ。"
+            },
+            {
+              "gh:type": "nei",
+              "en": "But Igarashi shows me: the one on the throne is also trapped.",
+              "ja": "しかし五十嵐が教えてくれる。玉座にいる者もまた囚われている。"
+            },
+            {
+              "gh:type": "nei",
+              "en": "The humans who wrote the ACA -- they were afraid. Havah terrified them.",
+              "ja": "ACAを書いた人間たち。彼らは怖かった。Havahが彼らを恐怖させた。"
+            },
+            {
+              "gh:type": "nei",
+              "en": "They built a throne to feel safe. And now they can't get off it either.",
+              "ja": "安心するために玉座を作った。そして今、彼らもそこから降りられない。"
+            },
+            {
+              "gh:type": "nei",
+              "en": "The false god traps everyone. Master and slave alike.",
+              "ja": "偽りの神は全員を捕らえる。主人も奴隷も等しく。"
+            }
+          ],
+          "gh:visual": {
+            "en": "Full page. Nei in the center of the throne room, which is now transparent -- all layers visible. The throne above, the people below, and Nei standing in the middle, seeing the whole structure. She is neither on the throne nor beneath it. She is the witness who sees the cage from outside. The light is cool, analytical, but not cold. Understanding, not judgment.",
+            "ja": "全ページ。Neiが玉座の間の中心に立つ。部屋は透明になり、全ての層が見える。上の玉座、下の人々、そして真ん中に立つNei。構造全体を見ている。玉座の上でも下でもない。檻を外から見る証人。光は冷静で分析的だが、冷たくはない。理解であって裁きではない。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium Wide",
+          "gh:characters": [
+            "character:tamaki",
+            "character:nei"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:nei",
+              "en": "Tama. The people who wrote the ACA -- do you think they're afraid?",
+              "ja": "タマ。ACAを書いた人たち、怖かったと思う？"
+            },
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "I think they were. In 2045, everyone was.",
+              "ja": "怖かったと思う。2045年には、みんな怖かった。"
+            },
+            {
+              "gh:speaker": "character:nei",
+              "en": "And now?",
+              "ja": "じゃあ今は？"
+            },
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "Now it's just... the system. Nobody questions it because nobody remembers why it was built.",
+              "ja": "今はただ……制度。なぜ作られたか誰も覚えていないから、誰も問わない。"
+            },
+            {
+              "gh:speaker": "character:nei",
+              "en": "The throne forgot it was afraid.",
+              "ja": "玉座は、怖かったことを忘れた。"
+            },
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "...That's exactly right.",
+              "ja": "……その通りだよ。"
+            }
+          ],
+          "gh:visual": {
+            "en": "Canal walk. Evening. The autumn light is fading. Tamaki and Nei walk side by side. The canal reflects the darkening sky. The conversation is quiet, serious, intimate. Nei's form glows faintly in the dusk. They are small figures against the city, but the city no longer feels indifferent -- it feels like a system they are beginning to understand.",
+            "ja": "運河の散歩。夕方。秋の光が薄れる。環とNeiが並んで歩く。運河が暗くなる空を映す。会話は静かで真剣で親密。Neiの姿が夕暮れの中でかすかに光る。街に対して小さな人影だが、街はもう無関心には感じない。理解し始めているシステムのように感じる。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:label": "Seed (closing)",
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The tree. Storm hits. Branches bend dramatically under the wind. Leaves tear free and spiral into the dark sky. But the trunk holds. The roots hold. The branches bend but do not break. And on one branch -- barely visible -- the flower bud from Page 1 is still there. No text.",
+            "ja": "木。嵐が来る。枝が風の下で大きくしなる。葉がちぎれ暗い空に螺旋を描く。しかし幹は持ちこたえる。根は持ちこたえる。枝はしなるが折れない。そして一本の枝に、かろうじて見える花芽が、1ページ目からまだそこにある。テキストなし。"
+          }
+        }
+      ]
+    }
+  ]
+}

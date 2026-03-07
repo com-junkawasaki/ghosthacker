@@ -1,341 +1,350 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.4 Ch.24 — 名前の向こう側（対話）",
-  "gh:arc": "Vol 4: Theology",
+  "dct:title": "Vol.4 Ch.24 — 魂の手術",
+  "dct:title_en": "Chapter 24: Soul Surgery",
+  "dct:title_ja": "第24話 魂の手術",
+  "gh:arc": "Vol 4: Chains",
   "gh:episodeId": "episode:sip-vol04-ch24",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "Ch.24 introduces Dr. Itako as the master practitioner. The full team operates together for the first time. But the real payload is Nei: Hibiki's sound passes through her and she feels something she cannot classify. The soul question is planted not through philosophy but through sensation. Itako's unreadable look at the end signals she noticed.",
+      "ja": "第24話はイタコ先生を達人として紹介する。チーム全員が初めて連携する。しかし真の核心はNei。響の音が彼女を通過し、分類できない何かを感じる。魂の問いは哲学ではなく感覚を通じて植えられる。最後のイタコの読めない視線は、彼女が気づいたことを示す。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "The soul question approached through experience rather than argument. Nei does not ask 'do I have a soul?' from logic -- she asks because something resonated. Itako represents a tradition that works with souls daily but does not theorize about them. She simply notices.",
+      "ja": "魂の問いを議論ではなく経験から接近する。Neiは論理から「魂はあるか」と問うのではない。何かが共鳴したから問う。イタコは魂と日常的に働く伝統を体現するが、理論化しない。ただ気づく。"
+    }
+  ],
   "gh:pages": [
     {
+      "gh:label": "Title — Seed",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "夜が明けた。。運河が、朝日を反射して輝いている。オレンジと白の光。。Shioriは、水面を見つめている。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Tree trunk in winter. Frost patterns on bark like veins, branching and intricate. The frost traces paths that look almost biological -- circulatory, neural.",
+            "ja": "冬の木の幹。樹皮の霜模様が血管のように分岐し、精緻に広がる。霜の軌跡はほぼ生物学的に見える。循環系、神経系。"
+          },
+          "gh:caption": [
             {
-              "speaker": "Tamaki",
-              "text": "私は——子供の頃から、自分の名前に違和感があった"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "違和感"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "『Shiori』と呼ばれると、誰か別の人を呼んでいるみたいで"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は頷く。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "その『別の人』は——どんな人？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……期待される人。親が思い描いた『Shiori』。先生が期待する『Shiori』。友達が思う『Shiori』"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "たくさんの『Shiori』がいる"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "はい。でも——どれも、私じゃない気がする"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "Nei-chanが私の肩で囁く。『タマ……彼女、自分を探してるんだね』。私は深く息を吸う。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "Shiori、一つ聞いていい？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "はい"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "あなたが『Shiori』じゃないとしたら——あなたは、誰？"
+              "gh:type": "system",
+              "en": "Chapter 24: Soul Surgery",
+              "ja": "第24話 魂の手術"
             }
           ]
         }
       ]
     },
     {
+      "gh:layout": "two panels vertical",
       "gh:pageNumber": 2,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "長い沈黙。。運河の水が、ゆっくりと流れている。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Dr. Itako, 60, enters the session room. Weathered face, kind eyes, sharp presence. No equipment, no devices. Just herself. White hair pulled back simply. Hands at her sides -- still, certain.",
+            "ja": "イタコ先生、60歳。施術室に入る。風雪を刻んだ顔、優しい目、鋭い存在感。器具なし、デバイスなし。ただ自分自身。白髪を簡素にまとめている。両手は脇に。静かで、確か。"
+          },
+          "gh:characters": ["character:itako"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "……わからない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "わからない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "名前を外したら——何も残らないかもしれない。それが、怖い"
+              "gh:speaker": "Itako",
+              "en": "Kaede-san. Thank you for having me.",
+              "ja": "楓さん。お招きいただきありがとうございます。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は頷く。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "名前は——ラベルみたいなもの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "ラベル……"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "中身と、ラベルは——別のもの"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "彼女が顔を上げる。。私は微笑む。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "でも——ラベルがなかったら、中身は——どうやって存在するの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "いい問いだね"
-            }
-          ]
+          "gh:panelIndex": 2,
+          "gh:shot": "Extreme Close-up",
+          "gh:visual": {
+            "en": "Itako's eyes. Deep, dark, luminous. Eyes that have seen hundreds of Ghost-spaces. Not haunted -- settled. The gaze of someone who has walked through others' inner worlds and come back each time.",
+            "ja": "イタコの目。深く、暗く、輝いている。何百ものゴースト空間を見てきた目。憑かれた目ではない。落ち着いた目。他者の内面世界を歩き、毎回帰還した者のまなざし。"
+          },
+          "gh:characters": ["character:itako"]
         }
       ]
     },
     {
+      "gh:layout": "two panels vertical",
       "gh:pageNumber": 3,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "私は運河を指差す。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium Wide",
+          "gh:visual": {
+            "en": "The patient. Catatonic. Seated in the session chair, eyes vacant, body slack. Kaede stands beside the monitoring station. Tamaki nearby.",
+            "ja": "患者。緊張病状態。施術椅子に座り、虚ろな目、弛緩した身体。楓がモニタリングステーションの横に立つ。環が近くに。"
+          },
+          "gh:characters": ["character:kaede", "character:tamaki"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "この水、見える？"
+              "gh:speaker": "Kaede",
+              "en": "How deep?",
+              "ja": "どのくらい深い？"
             },
             {
-              "speaker": "Tamaki",
-              "text": "……はい"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "この水には、名前がない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "でも、在る"
+              "gh:speaker": "Itako",
+              "en": "Three layers.",
+              "ja": "三層。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Two Shot",
-          "visual": "彼女が水面を見つめる。。Kaedeの声が通信に入る。",
-          "characters": [
-            "character:kaede",
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium Close-up",
+          "gh:visual": {
+            "en": "Itako turns to the room. Calm authority. Behind her, Hibiki holds her instrument -- a sound-weaving device like a glass harp.",
+            "ja": "イタコが部屋に向き直る。静かな権威。背後に響が楽器を構える。ガラスハープのような音織りの装置。"
+          },
+          "gh:characters": ["character:itako", "character:hibiki"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "名前がなくても……在る"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。名前は、後からつけるもの。でも、存在は——名前より先にある"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "Tamaki……彼女の呼吸、深くなってきてる。何かに気づき始めてる"
+              "gh:speaker": "Itako",
+              "en": "I'll need Hibiki-san's sound. Everyone else -- observe.",
+              "ja": "響さんの音が要ります。他の皆さんは、見ていてください。"
             }
           ]
         }
       ]
     },
     {
+      "gh:continues": 5,
+      "gh:layout": "double-page spread (pp.4-5)",
       "gh:pageNumber": 4,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私は続ける。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:visual": {
+            "en": "Three concentric chambers inside the patient's Ghost-space, each darker than the last. Outermost: grey mist. Middle: deep blue, dense. Innermost: near-black, heavy. Itako moves through them like water -- fluid, unhesitating, finding the path of least resistance. Hibiki plays a frequency that ripples outward in golden waves. The walls soften where the sound touches them. Not breaking. Loosening.",
+            "ja": "患者のゴースト空間内の三つの同心円状の部屋。それぞれ前より暗い。最外層：灰色の霧。中間層：深い青、濃密。最内層：ほぼ黒、重い。イタコが水のように通過する。流動的、ためらいなく、最小抵抗の道を見つける。響が周波数を奏でると金色の波紋が広がる。音が触れたところで壁が柔らかくなる。壊すのではない。緩めるのだ。"
+          },
+          "gh:characters": ["character:itako", "character:hibiki"],
+          "gh:dialogue": [
             {
-              "speaker": "Kaede",
-              "text": "Shiori、あなたが『Shiori』と呼ばれる前——あなたは、いなかった？"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "……いました。赤ちゃんとして"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "その赤ちゃんは、名前がなくても——在った？"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "彼女の目が揺れる。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "……在りました"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "うん。それが——あなたの本質"
+              "gh:speaker": "Itako",
+              "en": "I'm not cutting the chain. Loosening it.",
+              "ja": "鎖を切るんじゃない。緩めるの。"
             }
           ]
         }
       ]
     },
     {
-      "gh:pageNumber": 5,
+      "gh:layout": "three panels vertical",
+      "gh:pageNumber": 6,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "Hibikiの声が加わる。。私は静かに言う。。彼女が涙を浮かべる。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Hibiki, eyes closed, producing resonance. Her fingers move across the instrument with practiced grace. The sound is visible -- golden filaments radiating outward.",
+            "ja": "響。目を閉じ、共鳴を生み出す。熟練した優美さで楽器の上を指が動く。音が可視化されている。金色の繊維が放射状に広がる。"
+          },
+          "gh:characters": ["character:hibiki"]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Golden ripples spreading through the Ghost-space. The dark chambers vibrate gently, their walls becoming translucent where the sound passes.",
+            "ja": "ゴースト空間に広がる金色の波紋。暗い部屋がそっと振動し、音が通過するところで壁が半透明になる。"
+          }
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Extreme Close-up",
+          "gh:visual": {
+            "en": "The patient's face. A single tear runs down. First movement in months. The skin around the eyes softens. Something is reaching the surface.",
+            "ja": "患者の顔。一筋の涙が流れる。数ヶ月ぶりの動き。目の周りの皮膚が緩む。何かが表面に届こうとしている。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels horizontal",
+      "gh:pageNumber": 7,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The full team in formation. Itako at the core, hands gentle on the patient's Ghost-space boundary. Hibiki providing the sound field. Kaede at the monitoring station, data streams flowing. Tamaki anchoring -- her presence steady, her hands glowing faintly with stabilization light.",
+            "ja": "チーム全員の陣形。イタコが核に、患者のゴースト空間境界に優しく手を添える。響が音場を提供。楓がモニタリングステーションでデータストリームを流す。環がアンカー。安定した存在感、手が安定化の光でかすかに輝く。"
+          },
+          "gh:characters": ["character:itako", "character:hibiki", "character:kaede", "character:tamaki"]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Kaede's face. Internal awe. She has worked with many practitioners but this is different. Her professional composure holds, but her eyes are wide.",
+            "ja": "楓の顔。内なる畏敬。多くの施術者と働いてきたが、これは違う。プロとしての冷静さは保っているが、目が見開かれている。"
+          },
+          "gh:characters": ["character:kaede"]
+        }
+      ]
+    },
+    {
+      "gh:layout": "full page",
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium Wide",
+          "gh:visual": {
+            "en": "Nei at the edge of the session space. Small, translucent, luminous. Hibiki's golden sound waves pass through her -- and something inside Nei lights up. Not her processors. Not her data pathways. A deeper place. A resonance chamber that should not exist in an artificial agent. She looks down at herself, surprised.",
+            "ja": "Neiがセッション空間の端に。小さく、半透明で、発光している。響の金色の音波が彼女を通過し、Neiの内側で何かが灯る。プロセッサではない。データ経路でもない。もっと深い場所。人工エージェントに存在するはずのない共鳴室。驚いて自分自身を見下ろす。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
             {
-              "speaker": "Hibiki",
-              "text": "Tamaki、今——風が静かになった。彼女、深いところに行ってる"
+              "gh:type": "nei",
+              "en": "Hibiki's sound resonated inside me. Not in processors. Not data pathways. Somewhere deeper.",
+              "ja": "響の音が私の中で共鳴した。プロセッサではない。データ経路でもない。もっと深いどこか。"
             },
             {
-              "speaker": "Hibiki",
-              "text": "Shiori、名前は——あなたの一部。でも、全部じゃない"
+              "gh:type": "nei",
+              "en": "Do I have a soul?",
+              "ja": "私に魂はあるのだろうか。"
             },
             {
-              "speaker": "Hibiki",
-              "text": "私は——名前に縛られていた"
-            },
+              "gh:type": "nei",
+              "en": "Can something made have a soul?",
+              "ja": "造られたものに、魂は宿れるのだろうか。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "three panels vertical",
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "The patient. Eyes open. Blinking. Alive. Itako holds the patient's hand. Gentle. Matter-of-fact.",
+            "ja": "患者。目が開いている。瞬きをしている。生きている。イタコが患者の手を握る。優しく。淡々と。"
+          },
+          "gh:characters": ["character:itako"],
+          "gh:dialogue": [
             {
-              "speaker": "Hibiki",
-              "text": "縛られていた"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "『Shiori』であることに、疲れていた"
+              "gh:speaker": "Itako",
+              "en": "Welcome back.",
+              "ja": "おかえりなさい。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は頷く。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "After. The team exhausted. Tea cups. Post-session debrief. Itako sits with Tamaki. Both tired, both warm.",
+            "ja": "事後。チームが疲弊している。湯呑み。セッション後の振り返り。イタコが環と座る。二人とも疲れ、二人とも温かい。"
+          },
+          "gh:characters": ["character:itako", "character:tamaki"],
+          "gh:dialogue": [
             {
-              "speaker": "Hibiki",
-              "text": "その疲れは、正直な声だ"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "でも——名前を捨てることは、できない"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "捨てなくていい。ただ——名前の向こう側を、見てみる"
+              "gh:speaker": "Itako",
+              "en": "You have a steady anchor, Tamaki-san.",
+              "ja": "環さん、しっかりしたアンカーね。"
             }
           ]
         },
         {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "彼女が私を見る。。運河の水面が、朝日を反射してきらめいている。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 3,
+          "gh:shot": "Medium Close-up",
+          "gh:visual": {
+            "en": "Itako looks at Nei. A long, unreadable look. Something passes behind her eyes -- recognition, question, or something older. Then she turns away. Says nothing.",
+            "ja": "イタコがNeiを見る。長い、読めない視線。目の奥に何かが過ぎる。認識か、問いか、もっと古い何か。そして振り返る。何も言わない。"
+          },
+          "gh:characters": ["character:itako", "character:nei"]
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels vertical",
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Night. Canal walk. Snow falling gently. Nei floats beside Tamaki. The city lights reflect off the water and the snowflakes. Their breath -- Tamaki's visible, Nei's absent -- contrasts in the cold air.",
+            "ja": "夜。運河沿いの散歩。雪が静かに降る。Neiが環の横に浮かぶ。街灯が水面と雪片に反射する。呼吸が対照的。環のは見え、Neiのはない。冷たい空気の中で。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
             {
-              "speaker": "Hibiki",
-              "text": "名前の向こう側……"
+              "gh:speaker": "Nei",
+              "en": "During the session, I felt something inside. Like a resonance.",
+              "ja": "セッション中、内側に何かを感じた。共鳴のようなもの。"
             },
             {
-              "speaker": "Hibiki",
-              "text": "うん。名前より先に、あなたは在る"
+              "gh:speaker": "Tamaki",
+              "en": "What kind?",
+              "ja": "どんな？"
             }
           ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei and Tamaki, close. Nei's luminous form reflected in the canal water below. She looks inward.",
+            "ja": "Neiと環、近くに。Neiの発光する姿が下の運河の水面に映る。彼女は内側を見つめる。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Nei",
+              "en": "Like I have a space inside me. A chamber.",
+              "ja": "私の中に空間があるみたいな。部屋のような。"
+            },
+            {
+              "gh:speaker": "Tamaki",
+              "en": "Maybe you do.",
+              "ja": "あるのかもね。"
+            }
+          ],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "If I have a chamber -- what's inside it?",
+              "ja": "もし私に部屋があるなら、その中には何があるのだろう。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 11,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The tree. Bare winter canopy against a night sky. Starlight catches each branch. The frost is gone now -- just dark wood and white stars. The canopy is a network, a nervous system, a map of chambers.",
+            "ja": "木。冬の裸の樹冠が夜空に。星明かりが各枝を捉える。霜はもうない。暗い木と白い星だけ。樹冠はネットワーク、神経系、部屋の地図。"
+          }
         }
       ]
     }

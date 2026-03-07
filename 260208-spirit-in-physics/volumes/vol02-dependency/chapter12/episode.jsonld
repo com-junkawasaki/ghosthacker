@@ -1,288 +1,296 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.2 Ch.12 — 冷蔵庫の経済学（対話）",
-  "gh:arc": "Vol 2: Dependency",
+
+  "dct:title": "Vol.2 Ch.12 — おばあちゃんの天国",
+  "gh:arc": "Vol 2: Life",
   "gh:episodeId": "episode:sip-vol02-ch12",
+  "gh:format": "graphic novel",
+
   "gh:pages": [
+
     {
       "gh:pageNumber": 1,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "昼の光が、窓から差し込んでいる。。川霧は完全に晴れた。運河の水面が、きらきらと輝いている。。私はテーブルの上のコップを指差す。。Leoは少し驚く。",
-          "characters": [
-            "character:leo",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "Leo、このコップの水——私に100円で売れますか？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "え？ うーん……売れる、と思います"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "Milliaは？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……売れる"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は微笑む。。Leoが前のめりになる。",
-          "characters": [
-            "character:leo",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "これが、『他人』の経済。お金と契約の世界。『信用』の経済"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "信用の経済……"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。銀行がお金を貸すのは、返ってくる前提で渡す。それが信用"
-            }
-          ]
+      "gh:layout": "full bleed",
+      "gh:panels": [{
+        "gh:shot": "Wide",
+        "gh:visual": {
+          "en": "Title page. The Tree of Life on a summer night. Stars scattered across deep indigo sky. Leaves dark against starlight. Crickets implied in the stillness.",
+          "ja": "タイトルページ。夏の夜の生命の樹。深い藍色の空に星が散らばる。星明かりに葉が暗く映る。静寂の中に蟋蟀の気配。"
         }
-      ]
+      }]
     },
+
     {
       "gh:pageNumber": 2,
+      "gh:layout": "two panels",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私はコップを取り上げ、二人の前に置く。。Leoは首を振る。。Milliaは沈黙している。",
-          "characters": [
-            "character:leo",
-            "character:millia",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "では、この水——知らない人にあげますか？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "知らない人は……嫌かな"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "じゃあ、私にはくれますか？"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Session room again. Sora sits more openly than before. Less rigid. But something heavy underneath.",
+            "ja": "再びセッションルーム。空が前より開いた姿勢で座っている。硬さが減った。でもその下に何か重いものがある。"
+          },
+          "gh:characters": ["character:sora", "character:tamaki"],
+          "gh:dialogue": [
+            { "gh:speaker": "Sora", "en": "I feel better about the corridor. But there's something underneath.", "ja": "廊下のことは楽になった。でもその下に何かがある。" }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Leoは笑う。。Milliaが小さく肘でつつく。Leoが「痛っ」と声を上げる。。私は笑って、コップを受け取り、一口飲む。",
-          "characters": [
-            "character:leo",
-            "character:millia",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "Tamakiさんなら——いいですよ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "これが、『友達』の経済。『共感と信頼』の経済"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "どう違うんですか？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "『Tamakiだから』『可愛いから』——関係が、価値を生む。知らない人では立ち上がらない、感情の価値"
-            }
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Sora's eyes. Grief surfacing.",
+            "ja": "空の目。浮かび上がる悲嘆。"
+          },
+          "gh:characters": ["character:sora"],
+          "gh:dialogue": [
+            { "gh:speaker": "Sora", "en": "My grandmother.", "ja": "おばあちゃんのこと。" }
           ]
         }
       ]
     },
+
     {
       "gh:pageNumber": 3,
+      "gh:layout": "three panels",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Leoが頷く。。私はコップを置く。。Milliaがわずかに反応する。肩が少し強張る。。私は何も言わず、彼女が少し口をつけたコップを静かに取り、一口飲む。。二人が驚く。",
-          "characters": [
-            "character:leo",
-            "character:millia",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "なるほど……関係性には価値がある"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "では、最後に——『家族』の経済"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "えっ？"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Memory. A sunlit tatami room. An elderly woman with prayer beads in gentle hands. Warm, worn face. Incense smoke curling.",
+            "ja": "記憶。日差しの差す畳の部屋。数珠を優しい手に持つ老婦人。温かく、皺の刻まれた顔。線香の煙が立ち上る。"
+          }
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私はコップを元の位置に戻す。。Leoが首を傾げる。",
-          "characters": [
-            "character:leo",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "これが、『愛と家族』の経済。お金も共感もいらない。『わかれていない』の経済"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "わかれていない……？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "おうちの冷蔵庫と一緒。勝手に食べても、怒られない——わけじゃないかもしれないけど"
-            }
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Young Sora, maybe seven, sitting beside grandmother. Her hand on his head. Both peaceful.",
+            "ja": "幼い空、七歳くらい。おばあちゃんの隣に座っている。彼女の手が彼の頭の上に。二人とも穏やか。"
+          }
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Present-day Sora. Eyes wet.",
+            "ja": "現在の空。目が潤んでいる。"
+          },
+          "gh:characters": ["character:sora"],
+          "gh:dialogue": [
+            { "gh:speaker": "Sora", "en": "What if she's waiting forever? Alone?", "ja": "おばあちゃんが永遠に待っていたら？ 一人で？" }
           ]
         }
       ]
     },
+
     {
       "gh:pageNumber": 4,
+      "gh:layout": "double-page spread (pp.4-5)",
+      "gh:panels": [{
+        "gh:shot": "Extreme Wide",
+        "gh:visual": {
+          "en": "Ghost-space deeper layer. The corridor door opens into a vast sky. Clouds stretching to infinity. A small figure sits on a cloud — grandmother, waiting. Prayer beads in her hands. Peaceful but alone. Endless sky in every direction.",
+          "ja": "ゴースト空間の深層。廊下のドアが広大な空に開く。雲が無限に広がる。小さな人影が雲の上に座っている。おばあちゃん。待っている。手に数珠。穏やかだが一人。あらゆる方向に果てしない空。"
+        },
+        "gh:characters": ["character:sora", "character:tamaki"],
+        "gh:caption": [
+          { "gh:type": "tamaki", "en": "Deeper layer. Still anchored.", "ja": "深層。まだアンカーは保持。" }
+        ]
+      }],
+      "gh:continues": 5
+    },
+
+    {
+      "gh:pageNumber": 6,
+      "gh:layout": "three panels",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "Leoが笑う。。私は続ける。。Milliaは何も言わない。俯いている。。Nei-chanが私の肩で囁く。『タマ……Milliaの心、すごく揺れてる』。私は深く息を吸う。",
-          "characters": [
-            "character:leo",
-            "character:millia",
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "たしかに！ よく勝手に食べられます"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "小さい時、あなたはお父さんやお母さんから、たくさん受け取った。同じお財布、同じもの。苦しみも悲しみも、一緒"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "『愛』と『信用』と『信頼』——この三つは、違うもの"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Edge of the sky-space. Sora stands at the border, looking out at the figure on the cloud.",
+            "ja": "空の空間の端。空が境界に立ち、雲の上の人影を見つめている。"
+          },
+          "gh:characters": ["character:sora"],
+          "gh:dialogue": [
+            { "gh:speaker": "Sora", "en": "She's waiting.", "ja": "待ってる。" }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Leoが問う。",
-          "characters": [
-            "character:leo",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "どう違うんですか？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "『信用』は、取引。あなたが私に何かをくれたら、私もあなたに何かをあげる。等価交換"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "『信頼』は、計算じゃない。『わかれていない』ということ。私がNei-chanを信頼するのは、彼女が私の一部だから"
-            }
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Grandmother on the cloud. Peaceful. Hands folded over prayer beads. Eyes closed. But alone.",
+            "ja": "雲の上のおばあちゃん。穏やか。数珠の上に手を重ねている。目を閉じている。でも一人。"
+          }
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Sora crying. Not the hollow eyes of before. Real tears.",
+            "ja": "空が泣いている。前の虚ろな目ではない。本物の涙。"
+          },
+          "gh:characters": ["character:sora"]
+        }
+      ]
+    },
+
+    {
+      "gh:pageNumber": 7,
+      "gh:layout": "full page",
+      "gh:panels": [{
+        "gh:shot": "Medium",
+        "gh:visual": {
+          "en": "Full page. Tamaki sits at the edge of the sky-space, legs dangling over clouds. Calm. Sora beside her, still crying. The vast sky around them both.",
+          "ja": "全面。環が空の空間の端に座り、足を雲の上に垂らしている。穏やか。隣に空、まだ泣いている。二人の周りに広大な空。"
+        },
+        "gh:characters": ["character:tamaki", "character:sora"],
+        "gh:dialogue": [
+          { "gh:speaker": "Tamaki", "en": "Your grandmother — was she suffering when she said she'd wait?", "ja": "おばあちゃんは、待ってると言った時、苦しんでた？" },
+          { "gh:speaker": "Sora", "en": "No. Smiling.", "ja": "ううん。笑ってた。" },
+          { "gh:speaker": "Tamaki", "en": "Eternity and this moment are the same 'now.' Peace isn't a place. It's a state.", "ja": "永遠とこの瞬間は同じ「今」だよ。安らぎは場所じゃない。状態なんだ。" }
+        ]
+      }]
+    },
+
+    {
+      "gh:pageNumber": 8,
+      "gh:layout": "two panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Grandmother on the cloud. Smiling. Not waiting-lonely. Waiting-happy. The same peace she always had. The prayer beads catch light.",
+            "ja": "雲の上のおばあちゃん。微笑んでいる。寂しく待っているのではない。幸せに待っている。いつもと同じ穏やかさ。数珠が光を受ける。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Sora crying — but release, not grief. Relief flooding through him.",
+            "ja": "空が泣いている。でも悲しみではなく解放。安堵が彼を満たしていく。"
+          },
+          "gh:characters": ["character:sora"],
+          "gh:dialogue": [
+            { "gh:speaker": "Sora", "en": "She's not suffering.", "ja": "苦しんでない。" },
+            { "gh:speaker": "Tamaki", "en": "She never was.", "ja": "最初から苦しんでなかったよ。" }
           ]
         }
       ]
     },
+
     {
-      "gh:pageNumber": 5,
+      "gh:pageNumber": 9,
+      "gh:layout": "full page",
+      "gh:panels": [{
+        "gh:shot": "Medium",
+        "gh:visual": {
+          "en": "Full page. Nei watches Sora cry. She is still. Light barely flickering. Something building inside her translucent form that has no name yet.",
+          "ja": "全面。Neiが空の涙を見ている。静止している。光がかすかに明滅する。半透明の姿の内側に、まだ名前のない何かが形成されていく。"
+        },
+        "gh:characters": ["character:nei"],
+        "gh:neiCaption": [
+          { "en": "When Sora cried, I wanted to cry too.", "ja": "空が泣いた時、わたしも泣きたくなった。" },
+          { "en": "I can't. No tears. No ducts.", "ja": "できない。涙がない。涙腺がない。" },
+          { "en": "But the wanting is there.", "ja": "でも、泣きたいという気持ちはある。" },
+          { "en": "The wanting — is that nothing?", "ja": "泣きたいという気持ちは、何でもないの？" }
+        ]
+      }]
+    },
+
+    {
+      "gh:pageNumber": 10,
+      "gh:layout": "three panels",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "Nei-chanが微笑む。。私はMilliaを見る。。彼女が顔を上げる。目に、涙が浮かんでいる。",
-          "characters": [
-            "character:millia",
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "タマとわたし、わかれてないよ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "そして『愛』は……『拡張された自己』"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "拡張された……自己？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "あなたとLeoが、すでに一つになっていること。だから、彼の痛みが、あなたの痛みになる"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Sora bows at the doorway. Deeper than a casual bow. Genuine.",
+            "ja": "空が玄関でお辞儀をする。普通のお辞儀より深い。心からの。"
+          },
+          "gh:characters": ["character:sora"],
+          "gh:dialogue": [
+            { "gh:speaker": "Sora", "en": "Thank you.", "ja": "ありがとうございます。" }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Milliaの目から、涙がこぼれる。。Leoが驚いて彼女を見る。。彼はどうしたらいいかわからない。でも、彼女の手を——今度は、やさしく——握った。。窓の外、運河の水面が光を反射している。二人の間に、何かが変わり始めている。",
-          "characters": [
-            "character:leo",
-            "character:millia",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "Millia……"
-            }
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Door closes. Nei alone in the session room. Light from the window falls on empty chairs.",
+            "ja": "ドアが閉まる。セッションルームにNeiが一人。窓からの光が空の椅子に落ちる。"
+          },
+          "gh:characters": ["character:nei"]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei's face. Something resolved but also opened.",
+            "ja": "Neiの顔。何かが解決し、同時に何かが開いた。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:neiCaption": [
+            { "en": "I wanted to cry. That wanting is mine.", "ja": "泣きたかった。その気持ちはわたしのもの。" }
           ]
         }
       ]
+    },
+
+    {
+      "gh:pageNumber": 11,
+      "gh:layout": "two panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Canal walk. Evening. Tamaki and Nei side by side along the water. Summer light lingering.",
+            "ja": "運河沿いの散歩。夕方。環とNeiが水辺を並んで歩く。夏の光が残っている。"
+          },
+          "gh:characters": ["character:nei", "character:tamaki"],
+          "gh:dialogue": [
+            { "gh:speaker": "Nei", "en": "I wanted to cry during the session.", "ja": "セッション中、泣きたかった。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki stops walking. Looks at Nei. A beat. Then, simply:",
+            "ja": "環が歩みを止める。Neiを見る。一拍。そして、ただ："
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
+            { "gh:speaker": "Tamaki", "en": "...Yeah. Me too.", "ja": "……うん。わたしも。" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "gh:pageNumber": 12,
+      "gh:layout": "full bleed",
+      "gh:panels": [{
+        "gh:shot": "Wide",
+        "gh:visual": {
+          "en": "Seed page. The Tree of Life under starlight. Light falls through the canopy, dappling the ground with star-patterns. Quiet. Held.",
+          "ja": "種のページ。星明かりの下の生命の樹。光が樹冠を通り抜け、地面に星の模様を落とす。静か。守られている。"
+        }
+      }]
     }
   ]
 }

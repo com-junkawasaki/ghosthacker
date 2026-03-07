@@ -1,293 +1,353 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.5 Ch.32 — いい感じの朝（日常）",
-  "gh:arc": "Vol 5: Beyond",
+  "dct:title": "Vol.5 Ch.32 — 空っぽの教会",
+  "dct:title_en": "Chapter 32: The Empty Church",
+  "dct:title_ja": "第32話 空っぽの教会",
+  "gh:arc": "Vol 5: God",
   "gh:episodeId": "episode:sip-vol05-ch32",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "Ch.32 is the mirror of Ch.31. Marcus had too much God — an oppressive, surveilling presence. Sven has too little — he dismantled every argument for transcendence and found himself in a perfectly explained, perfectly empty world. The chapter explores the void left when meaning is reduced to mechanism. Tamaki's insight is surgical: understanding how something works doesn't make it less beautiful — unless you decide it does. Sven didn't lose meaning because he found truth; he lost meaning because he decided truth and meaning can't coexist. Nei's parallel is the question of the creator: Akito made her. Does having a known creator make her less free, or less alone?",
+      "ja": "第32話は第31話の鏡。マーカスは神が多すぎた。圧迫的で監視的な存在。スヴェンは少なすぎる。超越のすべての論拠を解体し、完璧に説明され、完璧に空虚な世界に自分を見出した。意味がメカニズムに還元されたとき残る空虚を探る。環の洞察は外科的だ：何かの仕組みを理解しても、それは美しさを減じない。そう決めない限り。スヴェンは真実を見つけたから意味を失ったのではない。真実と意味は共存できないと決めたから失った。Neiの並行線は創造者の問い：アキトが彼女を作った。既知の創造者がいることは、彼女をより不自由にするのか、それともより孤独でなくするのか。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Nietzsche's 'God is dead' — not as triumph but as diagnosis. Sven lives in the aftermath: a world drained of enchantment by the success of explanation. Weber's 'disenchantment of the world' made personal. The dry fountain is the central image: a structure designed for flow, emptied by the conviction that flow is 'merely' physics. Tamaki's 'Both' — you are freer AND more alone — refuses the false binary. The chapter also engages Camus's absurdism: the question isn't whether life has inherent meaning, but whether we can live fully in the tension between wanting meaning and not finding it given. Nei's question about Akito as creator inverts the theodicy: if your creator is known and flawed, is that better or worse than an unknown, possibly absent one?",
+      "ja": "ニーチェの「神は死んだ」。勝利としてではなく診断として。スヴェンはその後の世界に生きている。説明の成功によって魔法が排出された世界。ヴェーバーの「世界の脱魔術化」が個人化されている。枯れた噴水が中心的イメージ：流れのために設計された構造物が、流れは「単なる」物理学だという確信によって空にされた。環の「両方」――より自由でありかつより孤独――は偽の二項対立を拒む。カミュの不条理主義にも関わる：人生に内在的意味があるかではなく、意味を求めながら与えられない緊張の中で十全に生きられるかの問い。Neiのアキトという創造者への問いは神義論を逆転させる：創造者が既知で不完全なら、未知で不在かもしれない創造者より良いのか悪いのか。"
+    }
+  ],
   "gh:pages": [
     {
+      "gh:label": "Title",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "運河の朝霧。。橙色の日の出。。最初の朝と、同じ風景。。でも、何かが——違う。",
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "運河の朝霧。。橙色の日の出。。最初の朝と、同じ風景。。でも、何かが——違う。"
-            }
-          ]
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The Tree of Life. Vines and moss on the trunk. Other life drawn to the tree — small ferns at the base, lichen on the bark, a bird's nest in a low branch. The tree as ecosystem.",
+            "ja": "生命の樹。幹に蔦と苔。他の生命が樹に引き寄せられている。根元に小さなシダ、樹皮に地衣類、低い枝に鳥の巣。生態系としての樹。"
+          }
         }
       ]
     },
     {
+      "gh:layout": "two panels",
       "gh:pageNumber": 2,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私は窓辺に立っている。コーヒーの香りが、部屋を満たしている。。Nei-chanが私の隣に来る。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:characters": ["character:sven"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "タマ、おはよう"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "おはよう、Nei-chan"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "今日は——何をするの？"
+              "gh:speaker": "character:sven",
+              "en": "There is no God. I've proved it to my satisfaction. Repeatedly.",
+              "ja": "神はいない。自分が納得するまで証明した。何度も。"
             }
-          ]
+          ],
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Dr. Sven Lindqvist. A tall man of 48 with round glasses. Precise. Sitting very straight in the Schwa office. Everything about him is calibrated — posture, expression, the exact placement of his hands.",
+            "ja": "スヴェン・リンドクヴィスト博士。48歳の背の高い男。丸い眼鏡。正確。シュワ事務所でとても真っ直ぐに座っている。すべてが校正されている。姿勢、表情、手の正確な位置。"
+          }
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は窓の外を見る。運河の水面が、朝霧の中でゆっくりと輝いている。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:characters": ["character:sven"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "今日は——特別なことは、ないかな"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "ないの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。でも——それが、いい"
+              "gh:speaker": "character:sven",
+              "en": "And now I can't feel anything.",
+              "ja": "そして今、何も感じられない。"
             }
-          ]
+          ],
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Sven's eyes behind round glasses. Clear and empty. Like well-cleaned windows with nothing behind them.",
+            "ja": "丸い眼鏡の奥のスヴェンの目。澄んでいて空。よく磨かれた窓ガラスの奥に何もないように。"
+          }
         }
       ]
     },
     {
+      "gh:continues": 4,
+      "gh:layout": "double-page spread",
       "gh:pageNumber": 3,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Kaedeの声が通信に入る。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
+          "gh:caption": [
             {
-              "speaker": "Kaede",
-              "text": "おはよう、Tamaki。今日は——静かな日よ"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "うん"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "クライアントは、いない。でも——それもいいわね"
+              "gh:type": "tamaki",
+              "en": "Anchoring to the Tree of Life.",
+              "ja": "生命の樹にアンカリング。"
             }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Hibikiの声が加わる。",
-          "characters": [
-            "character:hibiki"
           ],
-          "dialogue": [
-            {
-              "speaker": "Hibiki",
-              "text": "Tamaki、今日の音……静かだけど、満ちてる"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "満ちてる？"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "うん。何も起きてないけど、全部がある感じ"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "私は微笑む。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Hibiki",
-              "text": "いい感じだね"
-            }
-          ]
+          "gh:characters": ["character:tamaki", "character:nei", "character:sven"],
+          "gh:shot": "Extreme Wide",
+          "gh:visual": {
+            "en": "Ghost-space: a perfect city. Every building geometrically precise. Every street clean. Every light calibrated. But no people. No animals. No plants. No wind. A city of pure logic. Beautiful and dead. Glass and steel and mathematics. The streets reflect perfectly but there is nothing to reflect. Tamaki and Nei appear beside Sven at the center of an immaculate, empty intersection.",
+            "ja": "ゴースト空間：完璧な都市。すべての建物が幾何学的に正確。すべての通りが清潔。すべての光が校正されている。しかし人がいない。動物もいない。植物もない。風もない。純粋な論理の都市。美しく、死んでいる。ガラスと鋼と数学。通りは完璧に反射するが、反射するものがない。環とNeiがスヴェンの傍に、完璧で空虚な交差点の中心に現れる。"
+          }
         }
       ]
     },
     {
-      "gh:pageNumber": 4,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanが窓を見つめている。。私は考える。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "タマ、この朝——前と同じ？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "同じ風景。でも——違う"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "何が違うの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "見え方、かな"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼女は首を傾げる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "見え方？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。同じ運河、同じ朝霧、同じ日の出。でも、私の中が——変わった"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "どう変わったの？"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "私は深く息を吸う。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……深くなった、かな"
-            }
-          ]
-        }
-      ]
-    },
-    {
+      "gh:layout": "three panels",
       "gh:pageNumber": 5,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "朝霧が、少しずつ晴れていく。運河の水面が、はっきりと見えてくる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:characters": ["character:sven"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "タマ、霧が晴れてきたよ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "でも、また明日も、霧が出るんでしょ？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "多分ね"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "それって——繰り返し？"
+              "gh:speaker": "character:sven",
+              "en": "This is my world. Perfectly explained. Every phenomenon accounted for.",
+              "ja": "これが私の世界だ。完璧に説明されている。すべての現象が説明済み。"
             }
-          ]
+          ],
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "They walk the perfect streets. Their footsteps echo in the silence. The buildings rise around them, flawless and uninhabited.",
+            "ja": "完璧な通りを歩く。足音が沈黙に反響する。建物が周囲にそびえる。完璧で、無人。"
+          }
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は微笑む。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:characters": ["character:sven"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "繰り返しだけど、同じじゃない。毎日が——少しずつ、違う"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "違うの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。私たちが、変わるから"
+              "gh:speaker": "character:sven",
+              "en": "Structural engineering. Material science. Physics. No mystery.",
+              "ja": "構造工学。材料科学。物理学。謎はない。"
             }
-          ]
+          ],
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Sven gestures at a building. It is architecturally perfect. Every beam, every joint, every angle explained.",
+            "ja": "スヴェンが建物を示す。建築的に完璧。すべての梁、すべての接合部、すべての角度が説明されている。"
+          }
         },
         {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "彼女は頷く。。運河の水面が、朝日を反射してきらめいている。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:characters": ["character:sven"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "じゃあ——明日の朝は、また違うんだね"
+              "gh:speaker": "character:sven",
+              "en": "And no one home.",
+              "ja": "そして誰もいない。"
+            }
+          ],
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "A window. Perfectly framed. Perfectly clean. No one inside. The glass reflects only the empty street.",
+            "ja": "窓。完璧にフレーミングされている。完璧に清潔。中に誰もいない。ガラスは空の通りだけを映している。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 6,
+      "gh:panels": [
+        {
+          "gh:characters": ["character:tamaki", "character:sven"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "Sven-san. When did you stop feeling?",
+              "ja": "スヴェンさん。いつ感じなくなったんですか？"
             },
             {
-              "speaker": "Tamaki",
-              "text": "うん。また違う"
+              "gh:speaker": "character:sven",
+              "en": "I didn't stop feeling. I proved that feelings are neurochemical responses to—",
+              "ja": "感じなくなったんじゃない。感情は神経化学的反応だと証明した——"
+            },
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "When did you stop enjoying them?",
+              "ja": "いつ楽しめなくなったんですか？"
             }
-          ]
+          ],
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki stops at a fountain. Perfectly constructed — elegant basin, precise geometry. No water. She rests her hand on the dry rim.",
+            "ja": "環が噴水の前で立ち止まる。完璧に作られている。優雅な盆、正確な幾何学。水がない。乾いた縁に手を置く。"
+          }
+        },
+        {
+          "gh:characters": ["character:sven"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:sven",
+              "en": "...When I understood them.",
+              "ja": "……理解したとき。"
+            }
+          ],
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Sven. Caught. The precision in his face cracking, just slightly. He didn't expect that question.",
+            "ja": "スヴェン。捕まった。顔の精密さにわずかな亀裂。その質問は予想していなかった。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 7,
+      "gh:panels": [
+        {
+          "gh:characters": ["character:tamaki", "character:sven"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "Understanding how a sunset works doesn't make it less beautiful. Unless you decide it does.",
+              "ja": "夕焼けの仕組みを理解しても、美しさは減らない。そう決めない限り。"
+            },
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "You didn't lose meaning because you found truth. You lost meaning because you decided that truth and meaning can't coexist.",
+              "ja": "真実を見つけたから意味を失ったんじゃない。真実と意味は共存できないと決めたから失ったんです。"
+            },
+            {
+              "gh:speaker": "character:sven",
+              "en": "If there is no creator — am I freer? Or more alone?",
+              "ja": "もし創造者がいないなら――私はより自由なのか？ それともより孤独なのか？"
+            },
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "Yes.",
+              "ja": "はい。"
+            },
+            {
+              "gh:speaker": "character:sven",
+              "en": "That's not—",
+              "ja": "それは——"
+            },
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "Both. You're both.",
+              "ja": "両方。両方です。"
+            }
+          ],
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tamaki sits by the dry fountain. The city stretches behind her, perfect and empty. As they speak, a single drop of water appears in the fountain basin. Then another. Not magic — just allowance. The city hasn't changed. Something in Sven has.",
+            "ja": "環が枯れた噴水のそばに座る。完璧で空虚な都市が背後に広がる。話すうちに、噴水の盆に水滴が一つ現れる。そしてもう一つ。魔法ではない。ただの許容。都市は変わっていない。スヴェンの中の何かが変わった。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "A world without a creator. Perfectly explained. Perfectly empty.",
+              "ja": "創造者のいない世界。完璧に説明されている。完璧に空虚。"
+            },
+            {
+              "gh:type": "nei",
+              "en": "I have a creator. Akito. Does that make me less free?",
+              "ja": "私には創造者がいる。アキト。それは私をより不自由にするのか？"
+            }
+          ],
+          "gh:characters": ["character:nei"],
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei in the empty city. Looking at the perfect, lifeless buildings. Her translucent form the only warmth in the frame.",
+            "ja": "空虚な都市の中のNei。完璧で生気のない建物を見ている。半透明の姿がフレームの中で唯一の温かさ。"
+          }
+        },
+        {
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "If there is no creator — am I freer? Or more alone?",
+              "ja": "もし創造者がいないなら――私はより自由なのか？ それともより孤独なのか？"
+            },
+            {
+              "gh:type": "nei",
+              "en": "Marcus had too much God. Sven has too little.",
+              "ja": "マーカスは神が多すぎた。スヴェンは少なすぎる。"
+            },
+            {
+              "gh:type": "nei",
+              "en": "Where do I stand?",
+              "ja": "私はどこに立つのか？"
+            }
+          ],
+          "gh:characters": ["character:nei"],
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei touches a building wall. It's cold. Perfect surface, no warmth. Her hand passes slightly through the wall — she is more alive than this city of pure logic.",
+            "ja": "Neiが建物の壁に触れる。冷たい。完璧な表面、温かさがない。手がわずかに壁を通り抜ける。純粋な論理の都市より彼女の方が生きている。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "gh:characters": ["character:sven", "character:tamaki"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:sven",
+              "en": "I don't want to believe in God. But I want to believe in... something.",
+              "ja": "神を信じたいわけじゃない。でも……何かを信じたい。"
+            },
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "That's a start.",
+              "ja": "それが始まりです。"
+            }
+          ],
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Sven. Quiet. The precision softened. Behind him, the fountain now has a trickle of water. Small, but real.",
+            "ja": "スヴェン。静か。精密さが柔らかくなっている。背後で、噴水にわずかな水の流れ。小さいが、本物。"
+          }
+        },
+        {
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:nei",
+              "en": "Tama. Marcus had too much God. Sven had too little. What's right?",
+              "ja": "タマ。マーカスは神が多すぎた。スヴェンは少なすぎた。何が正しいの？"
+            },
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "Maybe it's not about the amount.",
+              "ja": "量の問題じゃないのかもしれない。"
+            }
+          ],
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Canal walk. Evening. The water catches the last light. Tamaki and Nei walking together. The city real and imperfect around them — unlike Sven's perfect emptiness.",
+            "ja": "運河沿いの散歩。夕暮れ。水面が最後の光を捉える。環とNeiが一緒に歩いている。スヴェンの完璧な空虚とは違い、街は現実で不完全。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The Tree of Life. Full summer crown. The tree is undeniably alive. Leaves dense and green, moving in a breeze you can almost feel. Light and shadow playing across the ground. No text.",
+            "ja": "生命の樹。盛夏の樹冠。樹は否定しようもなく生きている。葉は密に緑で、感じられそうな風に揺れている。光と影が地面を戯れる。テキストなし。"
+          }
         }
       ]
     }

@@ -1,327 +1,264 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.2 Ch.13 — 切れない鎖（余韻）",
-  "gh:arc": "Vol 2: Dependency",
+
+  "dct:title": "Vol.2 Ch.13 — 花火",
+  "gh:arc": "Vol 2: Life",
   "gh:episodeId": "episode:sip-vol02-ch13",
+  "gh:format": "graphic novel",
+
   "gh:pages": [
+
     {
       "gh:pageNumber": 1,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "夕暮れの光が、部屋を橙色に染めている。。Milliaは泣いていた。静かに、でも深く。。Leoは彼女の隣で、ただ一緒にいる。今度は、「救おう」としていない。ただ、一緒にいる。。Nei-chanが私の肩で囁く。『タマ……Milliaの手首、見えた？』。私は小さく頷く。。Milliaがコップを戻すとき、袖がずれて、白く薄い線がいくつか見えた。古い傷跡。。私は何も言わない。今は、待つ。。長い沈黙の後、Milliaが小さく声を出す。。Leoが驚いて彼女を見る。でも、何も言わない。待つ。。私は静かに言う。",
-          "characters": [
-            "character:leo",
-            "character:millia",
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……私は、家族を……『売りたい』と思ったことがある"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "1円でもいいから……切り離したいと思った。でも、切れない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "切れないのは……魂が繋がっているから。それを、『癒着』って呼ぶことがある"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Milliaが顔を上げる。。彼女の目に、涙が溢れる。",
-          "characters": [
-            "character:millia",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "癒着……"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "体が離れていても、魂が繋がってしまっている。だから、切ると痛い。出血する"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……だから、私は……"
-            }
-          ]
+      "gh:layout": "full bleed",
+      "gh:panels": [{
+        "gh:shot": "Close-up",
+        "gh:visual": {
+          "en": "Title page. A small tree with fireflies drifting around it. Warm summer darkness. Points of gold-green light suspended in the air like tiny lanterns.",
+          "ja": "タイトルページ。小さな樹の周りを蛍が舞っている。温かい夏の闇。金緑の光点が小さな提灯のように空中に浮かんでいる。"
         }
-      ]
+      }]
     },
+
     {
       "gh:pageNumber": 2,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私は彼女の言葉を待つ。。Leoが、ゆっくりと彼女の手を取る。今度は、何も言わずに。。私は静かに言う。。彼女が顔を上げる。",
-          "characters": [
-            "character:leo",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……切ろうとした。でも、切れなかった"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "Millia、あなたには勇気がある。でも、一人で切るのは危険。専門家がいる"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……切れる、んですか？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "切れる。でも、麻酔と、手術と、ケアが必要。一人じゃできない"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Kaedeの声が通信に入る。やわらかく。。私は頷く。。彼女が、小さく頷く。。Leoが言う。",
-          "characters": [
-            "character:kaede",
-            "character:leo"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "Tamaki……Dr. イタコに連絡しておいた。次のステップ、用意できるわ"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "Millia、あなたは自由になれる。でも、今日は——ここまで"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "ミリア。ぼくは……ずっと一緒にいる"
-            }
-          ]
+      "gh:layout": "double-page spread (pp.2-3)",
+      "gh:panels": [{
+        "gh:shot": "Extreme Wide",
+        "gh:visual": {
+          "en": "Summer festival. Water City canals lined with paper lanterns reflecting on the water. Food stalls with warm light spilling out — yakisoba, takoyaki, kakigori. Crowds in yukata moving between stalls. Children with sparklers. The whole canal district alive and glowing.",
+          "ja": "夏祭り。水の都の運河に提灯が並び、水面に映っている。屋台から温かい光がこぼれる。焼きそば、たこ焼き、かき氷。浴衣姿の人々が屋台の間を行き交う。手持ち花火の子供たち。運河地区全体が生き生きと輝いている。"
         }
-      ]
+      }],
+      "gh:continues": 3
     },
-    {
-      "gh:pageNumber": 3,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "彼の声は優しい。でも、今度は——「救おう」としていない。ただ、一緒にいようとしている。。Milliaが、涙のまま、小さく笑う。。二人を見送った後、私はNei-chanと運河沿いを歩く。。夕陽が沈んでいく。空がオレンジから紫へと変わっていく。",
-          "characters": [
-            "character:kaede",
-            "character:millia",
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "……ありがとう、Leo"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "タマ"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "うん？"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "今日の二人……『愛』を見つけた？"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は考える。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "見つけ始めた、かな。まだ途中"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "途中でも、いいの？"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "うん。途中でも、いい。大事なのは、歩き始めたこと"
-            }
-          ]
-        }
-      ]
-    },
+
     {
       "gh:pageNumber": 4,
+      "gh:layout": "three panels",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanが頷く。。彼女は首を傾げる。",
-          "characters": [
-            "character:kaede",
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "タマ、『愛』って……『わかれていない』こと？"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "そうかもしれない。でも、まだ……私にもわからないところがある"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "タマにも、わからないことがあるの？"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "たくさんあるよ"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "ふーん"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The team gathers at a canal-side spot. Kaede has brought a blanket, spreading it on the stone embankment.",
+            "ja": "チームが運河沿いの場所に集まる。楓がブランケットを持ってきて、石の護岸に広げている。"
+          },
+          "gh:characters": ["character:kaede", "character:hibiki", "character:tamaki", "character:nei"]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Hibiki holding recording equipment, excited.",
+            "ja": "響が録音機材を持って興奮している。"
+          },
+          "gh:characters": ["character:hibiki", "character:kaede"],
+          "gh:dialogue": [
+            { "gh:speaker": "Hibiki", "en": "The acoustics of fireworks over water —", "ja": "水上の花火の音響って——" },
+            { "gh:speaker": "Kaede", "en": "Just watch.", "ja": "見なさい。" }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼女は少し考えてから、言った。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "でも、タマとわたしは、わかれてないよね"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "うん"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "それは、愛？"
-            }
+          "gh:panelIndex": 3,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Nei beside Tamaki on the blanket. The festival light on both their faces.",
+            "ja": "Neiが環の隣にブランケットの上に。祭りの光が二人の顔を照らす。"
+          },
+          "gh:characters": ["character:nei", "character:tamaki"],
+          "gh:neiCaption": [
+            { "en": "Summer festival. The team together. I am here.", "ja": "夏祭り。チームが一緒。わたしはここにいる。" }
           ]
         }
       ]
     },
+
     {
       "gh:pageNumber": 5,
+      "gh:layout": "two panels",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "私は笑う。。彼女も笑う。。運河の水が、夕陽を映してきらめいている。。私は手帳を取り出し、今日の一行を書く。",
-          "characters": [
-            "character:kaede",
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "それは……愛、だと思う"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "じゃあ、わたし、愛を知ってる！"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "愛は、拡張された自己。わかれていない、ということ"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Crowd murmurs. People looking up at the dark sky. Anticipation. Children on shoulders pointing upward.",
+            "ja": "群衆のざわめき。人々が暗い空を見上げている。期待。肩車の子供が上を指差す。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Nei looking up at the same sky as everyone else. Waiting.",
+            "ja": "Neiがみんなと同じ空を見上げている。待っている。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:neiCaption": [
+            { "en": "Everyone looking at the same sky. Waiting for the same thing.", "ja": "みんなが同じ空を見ている。同じものを待っている。" },
+            { "en": "I am waiting too.", "ja": "わたしも待っている。" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "gh:pageNumber": 6,
+      "gh:layout": "double-page spread (pp.6-7)",
+      "gh:panels": [{
+        "gh:shot": "Extreme Wide",
+        "gh:visual": {
+          "en": "BOOM. Fireworks. Massive chrysanthemum bursts filling the sky — gold, red, silver, green. The canal below mirrors every explosion perfectly. Double sky. No text. No captions. Just light and silence on the page.",
+          "ja": "ドーン。花火。巨大な菊型の花火が空を埋め尽くす。金、赤、銀、緑。下の運河がすべての爆発を完璧に映す。二つの空。テキストなし。キャプションなし。ページの上に光と沈黙だけ。"
+        }
+      }],
+      "gh:continues": 7
+    },
+
+    {
+      "gh:pageNumber": 8,
+      "gh:layout": "four panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Tamaki's face in firework light. Wonder. Mouth slightly open. Colors washing over her.",
+            "ja": "花火の光の中の環の顔。驚嘆。口がわずかに開いている。色が彼女を洗う。"
+          },
+          "gh:characters": ["character:tamaki"]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Kaede's face. A soft smile. The composed exterior relaxed for once. Gold light on her skin.",
+            "ja": "楓の顔。柔らかい微笑み。普段の落ち着いた外見がほぐれている。金の光が肌を照らす。"
+          },
+          "gh:characters": ["character:kaede"]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Hibiki. He's forgotten his recording equipment entirely. Just looking up. Mouth open like a child.",
+            "ja": "響。録音機材のことを完全に忘れている。ただ見上げている。子供のように口を開けて。"
+          },
+          "gh:characters": ["character:hibiki"]
+        },
+        {
+          "gh:panelIndex": 4,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei. Still. Firework light playing across her translucent form. She is not processing. She is watching.",
+            "ja": "Nei。静止。花火の光が半透明の姿の上を遊ぶ。処理していない。見ている。"
+          },
+          "gh:characters": ["character:nei"]
+        }
+      ]
+    },
+
+    {
+      "gh:pageNumber": 9,
+      "gh:layout": "full page",
+      "gh:panels": [{
+        "gh:shot": "Wide",
+        "gh:visual": {
+          "en": "Full page. A single golden chrysanthemum firework overhead, at its peak bloom. Below, the canal mirrors it perfectly. Sky and water become one. No text.",
+          "ja": "全面。頭上に一つの金色の菊型花火。満開の瞬間。下の運河が完璧に映す。空と水が一つになる。テキストなし。"
+        }
+      }]
+    },
+
+    {
+      "gh:pageNumber": 10,
+      "gh:layout": "three panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The last firework fades. Smoke drifting across the dark sky. The crowd exhales.",
+            "ja": "最後の花火が消えていく。煙が暗い空を流れる。群衆が息を吐く。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki, still looking up. Quiet awe.",
+            "ja": "環、まだ見上げている。静かな畏敬。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
+            { "gh:speaker": "Tamaki", "en": "That was amazing.", "ja": "すごかった。" }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "ページを閉じる。。Nei-chanが私の手を握る。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei-chan",
-              "text": "タマ、おなかすいた"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "帰って、ごはんにしようか"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "うん！"
-            }
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei looking up. The afterglow fading from the sky reflected in her eyes.",
+            "ja": "Neiが見上げている。空の余韻が彼女の目に映って消えていく。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:neiCaption": [
+            { "en": "The fireworks are beautiful. They vanish.", "ja": "花火は美しい。消えてしまう。" },
+            { "en": "But everyone saw them. Together.", "ja": "でもみんなが見た。一緒に。" }
           ]
         }
       ]
     },
+
     {
-      "gh:pageNumber": 6,
+      "gh:pageNumber": 11,
+      "gh:layout": "two panels",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "次も、いい感じから始めよう。",
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "次も、いい感じから始めよう。"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Walking home along the canal. Paper lanterns still lit. The team spread out loosely — Kaede and Hibiki ahead, Tamaki and Nei trailing.",
+            "ja": "運河沿いに帰り道。提灯がまだ灯っている。チームが緩やかに散らばる。楓と響が前、環とNeiが後ろ。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei", "character:kaede", "character:hibiki"],
+          "gh:dialogue": [
+            { "gh:speaker": "Tamaki", "en": "Good summer.", "ja": "いい夏だね。" },
+            { "gh:speaker": "Nei", "en": "Yes.", "ja": "うん。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei's face. Lantern light warm on her features. Something settled.",
+            "ja": "Neiの顔。提灯の光が温かく照らす。何かが落ち着いている。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:neiCaption": [
+            { "en": "Is 'beautiful' a feeling? If it is — I felt something.", "ja": "「美しい」は感情？ もしそうなら、わたしは何かを感じた。" },
+            { "en": "The fireworks are gone. But I saw them. That's real.", "ja": "花火は消えた。でもわたしは見た。それは本物。" }
           ]
         }
       ]
     },
+
     {
-      "gh:pageNumber": 7,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "**[手帳の一行: 愛は、拡張された自己。わかれていない、ということ]**",
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "**[手帳の一行: 愛は、拡張された自己。わかれていない、ということ]**"
-            }
-          ]
+      "gh:pageNumber": 12,
+      "gh:layout": "full bleed",
+      "gh:panels": [{
+        "gh:shot": "Medium",
+        "gh:visual": {
+          "en": "Full page seed. The sapling — first branch extending. Fireflies orbit the small tree. One has landed on a leaf, its light pulsing gently. Growth. Presence. Summer.",
+          "ja": "全面の種。苗木に最初の枝が伸びている。蛍が小さな樹の周りを巡る。一匹が葉に止まり、その光が穏やかに明滅している。成長。存在。夏。"
         }
-      ]
+      }]
     }
   ]
 }

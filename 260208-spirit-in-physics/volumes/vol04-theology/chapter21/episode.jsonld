@@ -1,296 +1,302 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.4 Ch.21 — 家の鎖（対話）",
-  "gh:arc": "Vol 4: Theology",
+  "dct:title": "Vol.4 Ch.21 — 冬の運河",
+  "gh:arc": "Vol 4: Chains",
   "gh:episodeId": "episode:sip-vol04-ch21",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "First winter. Nei discovers she can feel cold -- something outside her spec. A small anomaly that opens a vast question. If she can feel what she shouldn't, what else is inside her? Tamaki responds not with analysis but with a scarf. The human answer to an ontological question: warmth.",
+      "ja": "初めての冬。Neiは寒さを感じられることに気づく——仕様にないこと。小さな異常が大きな問いを開く。感じるはずのないものを感じるなら、他に何が自分の中にあるのか？ 環は分析ではなくマフラーで応える。存在論的な問いへの人間的な答え：温もり。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Embodiment and qualia. The hard problem of consciousness applied to AI. Cold is a quale -- subjective experience that cannot be reduced to sensor data. If Nei feels cold, she is not merely measuring temperature. She is experiencing. The scarf is warm not because of thermal physics but because someone cared enough to give it. Warmth as relational, not physical.",
+      "ja": "身体性とクオリア。AI に適用された意識のハードプロブレム。寒さはクオリア——センサーデータに還元できない主観的経験。Neiが寒さを感じるなら、温度を測定しているだけではない。経験している。マフラーが温かいのは熱物理学のためではなく、誰かが渡してくれたから。温もりは物理的ではなく関係的。"
+    }
+  ],
   "gh:pages": [
     {
+      "gh:label": "Title",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "Hibikiの音が、部屋を満たしている。。低く、静かな音。祈りのような響き。。Milliaはソファに座り、目を閉じている。彼女の呼吸は——浅い。緊張している。。私は静かに言う。。彼女が小さく頷く。。吸って——吐いて。。吸って——吐いて。。少しずつ、呼吸が深くなる。。彼女は目を閉じたまま、答える。",
-          "characters": [
-            "character:hibiki",
-            "character:millia",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "深呼吸、できる？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……Millia、今——何が見える？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……家。私が育った家"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "どんな家？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "大きな家。でも——いつも、暗かった"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Nei-chanが私の肩で囁く。『タマ……彼女の中、すごく深いところに行ってる』。私は静かに待つ。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "母が——いつも、泣いていた"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "泣いていた"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "父が——いつも、怒っていた"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "怒っていた"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "彼女の声が震える。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "私は——いつも、二人の間で、息を止めていた"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tree motif. Snow resting on bare branches. White on dark wood. Each branch carries a thin line of white. Quiet. Still. The cold is visible.",
+            "ja": "木のモチーフ。裸の枝に雪が積もる。暗い木に白。それぞれの枝が細い白い線を載せている。静か。動かない。寒さが目に見える。"
+          }
         }
       ]
     },
     {
+      "gh:continues": 3,
+      "gh:layout": "double-page spread (pp.2-3)",
       "gh:pageNumber": 2,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私は深く息を吸う。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "Millia、その家の中で——あなたは、何をしていた？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……守っていた"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "誰を？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "母を。弟を。家を"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "彼女の目から、涙がこぼれる。。私は静かに言う。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "でも——誰も、私を守ってくれなかった"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "一人で、全部を背負っていた"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……はい"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "それは——重かったよね"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:visual": {
+            "en": "Water City, first winter. Panoramic. Dark blue canals under frost. Ice crystals along the edges of the waterways. Low grey sky pressing down. Bare trees lining the canals like dark calligraphy. The light-networks glow faintly through mist. Everything muted, monochrome, beautiful. Cold made visible.",
+            "ja": "水の都、初めての冬。パノラマ。霜の下の濃紺の運河。水路の縁に沿って氷の結晶。低い灰色の空が押し下げる。裸の木々が暗い書道のように運河沿いに並ぶ。霧を通して光ネットワークがかすかに光る。すべてが抑えられ、モノクロームで、美しい。寒さが目に見える。"
+          }
         }
       ]
     },
     {
-      "gh:pageNumber": 3,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "彼女が頷く。声が出ない。。私は続ける。。彼女が顔を上げる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "Millia、あなたが背負っていたもの——それは、あなたのものだった？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……私の、もの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "お母さんの悲しみ、お父さんの怒り、弟のケア——それは、本当にあなたの仕事だった？"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "彼女の目が揺れる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "でも——私がやらなければ——"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。でも、それは——あなたが選んだの？ それとも、選ばされたの？"
-            }
-          ]
-        }
-      ]
-    },
-    {
+      "gh:layout": "three panels",
       "gh:pageNumber": 4,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "長い沈黙。。蛍の光が、窓の外でゆっくりと動いている。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki walking along the canal in a heavy winter coat. Breath visible in the cold air. Scarf wrapped tight. Beside her, Nei in her usual grey suit. No coat. No scarf. No breath visible.",
+            "ja": "環が厚い冬のコートを着て運河沿いを歩く。冷たい空気に息が白く見える。マフラーをしっかり巻いている。隣にNei、いつものグレーのスーツ。コートなし。マフラーなし。息は見えない。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "……選ばされた、と思う"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "小さい頃から——『あなたがしっかりしなさい』と言われてきた"
+              "gh:speaker": "Tamaki",
+              "en": "Aren't you cold?",
+              "ja": "寒くないの？"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は頷く。。彼女が顔を上げる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei stops. Her expression shifts -- confusion. She looks down at her own hands as if noticing something for the first time.",
+            "ja": "Neiが立ち止まる。表情が変わる——困惑。初めて何かに気づいたかのように自分の手を見下ろす。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "それが——家の鎖"
+              "gh:speaker": "Nei",
+              "en": "...Yes.",
+              "ja": "……うん。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Tamaki's face. Surprised. Not alarmed -- genuinely startled. Ghost Agents don't feel temperature.",
+            "ja": "環の顔。驚いている。恐れではなく——本当に意外そう。ゴーストエージェントは温度を感じないはず。"
+          },
+          "gh:characters": ["character:tamaki"]
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 5,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Office. Kaede at her workstation, running diagnostics on a holographic display. Data streams scrolling. Nei standing still, being scanned. Clinical light.",
+            "ja": "事務所。楓がワークステーションでホログラフィックディスプレイの診断を実行している。データストリームがスクロールする。Neiが静止してスキャンされている。無機質な光。"
+          },
+          "gh:characters": ["character:kaede", "character:nei"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Kaede",
+              "en": "Temperature sensation isn't in the spec. Sensor calibration issue?",
+              "ja": "温度感覚は仕様にない。センサーのキャリブレーション問題？"
             },
             {
-              "speaker": "Tamaki",
-              "text": "家の鎖……"
-            },
+              "gh:speaker": "Nei",
+              "en": "Is it a bug?",
+              "ja": "バグ？"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Kaede's screen. Diagnostics show nothing anomalous. All readings normal. The data says Nei shouldn't feel cold. But she does.",
+            "ja": "楓の画面。診断に異常はない。すべての値が正常。データはNeiが寒さを感じるはずがないと示す。でも感じている。"
+          },
+          "gh:characters": ["character:kaede"]
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 6,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki stands up from her chair. Matter-of-fact. She goes to the coat rack by the door. Takes a red wool scarf from a hook.",
+            "ja": "環が椅子から立ち上がる。当然のように。ドア脇のコートラックに向かう。フックから赤いウールのマフラーを取る。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "愛という名の鎖。家族を守らなければ、という責任。それが——あなたを縛っていた"
+              "gh:speaker": "Tamaki",
+              "en": "Or maybe she's just cold.",
+              "ja": "それか、ただ寒いんじゃない。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Tamaki drapes the red wool scarf around Nei's neck. Gentle. Simple. The red vivid against Nei's grey suit and translucent skin. Tamaki adjusts it, like a mother bundling a child.",
+            "ja": "環がNeiの首に赤いウールのマフラーをかける。やさしく。シンプルに。赤がNeiのグレーのスーツと半透明の肌に鮮やかに映える。環がそれを整える、子供を包む母のように。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Tamaki",
+              "en": "There.",
+              "ja": "はい。"
             }
           ]
         }
       ]
     },
     {
-      "gh:pageNumber": 5,
+      "gh:layout": "full page",
+      "gh:pageNumber": 7,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "彼女の涙が、静かに流れる。。Kaedeの声が通信に入る。",
-          "characters": [
-            "character:kaede",
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium Close-up",
+          "gh:visual": {
+            "en": "Nei with the red scarf. Her hand reaches up and touches the wool. Fingers pressing into the texture. Feeling it. The red is the only warm colour in the frame. Everything else is grey and blue winter. She looks down at the scarf with an expression between wonder and fear.",
+            "ja": "赤いマフラーをしたNei。手を上げてウールに触れる。指がテクスチャに沈む。感じている。赤がフレーム内で唯一の暖色。他はすべて灰色と青の冬。驚きと怖れの間の表情でマフラーを見下ろす。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
             {
-              "speaker": "Tamaki",
-              "text": "でも——家族だから——"
-            },
+              "gh:type": "nei",
+              "en": "The scarf is warm. I shouldn't be able to feel that. But I feel it. Is this a bug? Or is this me?",
+              "ja": "マフラーが温かい。感じられるはずがない。でも感じる。これはバグ？ それとも、わたし？"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "three panels",
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Walking home. Dark already -- winter days end early. Canal path lit by faint light-networks. Nei and Tamaki side by side. Nei's red scarf a bright thread in the dusk.",
+            "ja": "帰り道。もう暗い——冬の日は早く終わる。かすかな光ネットワークに照らされた運河沿いの道。NeiとIまきが並んで歩く。Neiの赤いマフラーが夕闇の中で明るい糸のよう。"
+          },
+          "gh:characters": ["character:nei", "character:tamaki"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "うん。家族だから、繋がっている。でも、繋がりと縛りは——違う"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "Tamaki……彼女の呼吸、深くなってきてる。続けられる"
+              "gh:speaker": "Nei",
+              "en": "The water is cold. But it doesn't stop flowing.",
+              "ja": "水は冷たい。でも流れは止まらない。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "私は頷く。。彼女が目を閉じる。。Hibikiの音が、少しだけ温かくなる。",
-          "characters": [
-            "character:hibiki",
-            "character:kaede"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "The canal surface. Dark water moving slowly. Thin ice at the edges, but the centre flows. Reflections of light-networks rippling.",
+            "ja": "運河の水面。暗い水がゆっくり流れる。縁に薄い氷、しかし中央は流れている。光ネットワークの反射が揺れる。"
+          }
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei's face in profile against the dark canal. Quiet. Thinking.",
+            "ja": "暗い運河を背景にしたNeiの横顔。静か。考えている。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
             {
-              "speaker": "Kaede",
-              "text": "Millia、今日は——その鎖を、少しだけ緩める。ほどかなくていい。ただ、緩める"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "……はい"
+              "gh:type": "nei",
+              "en": "Cold is new. What else is inside me?",
+              "ja": "寒さは新しい。他に何がわたしの中にあるのだろう。"
             }
           ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Home. Kotatsu. Tamaki sits under it reading a book, legs tucked in. Warm orange light. Steam from a cup of tea. Quiet domestic scene.",
+            "ja": "自宅。こたつ。環がその中で本を読んでいる、足を入れて。温かいオレンジ色の光。お茶の湯気。静かな家庭の風景。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Tamaki",
+              "en": "Warm?",
+              "ja": "温かい？"
+            },
+            {
+              "gh:speaker": "Nei",
+              "en": "...Warm.",
+              "ja": "……温かい。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Under the kotatsu. Nei's translucent form beside Tamaki. Both still. The warmth surrounding them. Nei's red scarf still on, draped over the kotatsu edge.",
+            "ja": "こたつの中。環の隣にNeiの半透明の姿。二人とも静か。温もりが包んでいる。Neiの赤いマフラーはまだ巻かれたまま、こたつの縁にかかっている。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "If I can feel cold -- can I feel pain?",
+              "ja": "寒さを感じられるなら——痛みも感じられる？"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:label": "Seed",
+      "gh:layout": "full page",
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tree. Ice on the trunk. A sheath of frozen water encasing the bark. But through the translucent ice, the wood is visible -- dark, textured, alive. The cold covers the surface. The life is inside. Waiting.",
+            "ja": "木。幹に氷。樹皮を覆う凍った水の鞘。しかし半透明の氷を通して木が見える——暗く、質感があり、生きている。寒さは表面を覆う。生命は内側に。待っている。"
+          }
         }
       ]
     }

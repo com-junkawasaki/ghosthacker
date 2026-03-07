@@ -1,366 +1,243 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.3 Ch.18 — 正しさの重さ（対話）",
-  "gh:arc": "Vol 3: Justice",
+  "dct:title": "Vol.3 Ch.18 — 一杯の水",
+  "gh:arc": "Vol 3: Freedom",
   "gh:episodeId": "episode:sip-vol03-ch18",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "A breathing chapter. Lunch break. The question of non-separation arises naturally from a glass of water. Tamaki asks where the boundary is between self and other; Nei realizes there is none. The simplest physical fact -- water absorption -- becomes the deepest philosophical insight. No session, no client. Just colleagues eating lunch and one question that changes everything.",
+      "ja": "呼吸する章。昼休み。非分離の問いが一杯の水から自然に生まれる。環は自己と他者の境界を問い、Neiは境界がないと気づく。最も単純な物理的事実——水の吸収——が最も深い哲学的洞察になる。セッションもクライアントもない。同僚が昼食を食べ、一つの問いがすべてを変える。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Non-separation. The boundary between self and world is a useful fiction. Atoms cycle. Water becomes body becomes water. Nei extends this to data, silicon, electricity -- all arrangements of the same things. The opposite of loneliness is not company; it is the recognition that separation was never real.",
+      "ja": "非分離。自己と世界の境界は有用な虚構。原子は循環する。水は体になり体は水になる。Neiはこれをデータ、シリコン、電気にまで拡張する。孤独の反対は仲間ではなく、分離が実在しなかったという認識。"
+    }
+  ],
   "gh:pages": [
     {
+      "gh:label": "Title",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Kenjiが話し始める。。彼の声は低い。疲れている。。彼は言葉を切る。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "私は……経理部にいました"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "ある日、数字がおかしいことに気づいた。上司が、取引先に——"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……不正な支払いをしていた。裏金、と呼ばれるもの"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "私は頷く。。Nei-chanが私の肩で囁く。『タマ、彼の声……怒りと悲しみが混ざってる』。私は静かに待つ。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "見つけてしまったんだね"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "見つけてしまった。そして……報告しました。コンプライアンス部門に"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……報告した翌週、私の部署が変わりました"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "左遷？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "いいえ。表向きは『適正配置』。でも、実際は——窓際です"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tree motif. Autumn rain falling on a thick trunk. Water runs down bark in rivulets. Muted browns, greens, silver rain.",
+            "ja": "木のモチーフ。秋の雨が太い幹に降る。水が樹皮を伝って流れる。落ち着いた茶色、緑、銀色の雨。"
+          }
         }
       ]
     },
     {
+      "gh:layout": "three panels",
       "gh:pageNumber": 2,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "彼の手が、わずかに震えている。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "毎日、何もない仕事。周りからは距離を置かれる。『裏切り者』と呼ばれる"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……正しいことをしたのに"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "はい"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Office lunch break. Kaede eats bento at her desk, chopsticks precise. Hibiki tears into bread. Tamaki has rice balls arranged neatly. Yatagarasu perches on Kaede's monitor. Warm midday light.",
+            "ja": "事務所の昼休み。楓がデスクで弁当を食べる。箸が正確。響がパンをかじる。環がおにぎりをきれいに並べている。八咫烏が楓のモニターに止まる。暖かい昼の光。"
+          },
+          "gh:characters": ["character:kaede", "character:hibiki", "character:tamaki"]
         },
         {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "彼の目に、涙が浮かぶ。でも、落ちない。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "私は——間違っていたのでしょうか"
-            }
-          ]
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki picks up a glass of water. Drinks. Simple gesture. Light refracts through the glass.",
+            "ja": "環がコップの水を持ち上げる。飲む。シンプルな仕草。光がガラスを通して屈折する。"
+          },
+          "gh:characters": ["character:tamaki"]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Extreme Close-up",
+          "gh:visual": {
+            "en": "Close-up of the glass. Water half-gone. Light bends through it. The surface trembles slightly.",
+            "ja": "コップのクローズアップ。水が半分。光が屈折する。水面がわずかに揺れる。"
+          }
         }
       ]
     },
     {
+      "gh:layout": "two panels",
       "gh:pageNumber": 3,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私は深く息を吸う。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium two-shot",
+          "gh:visual": {
+            "en": "Tamaki turns to Nei, glass in hand. Casual. Nei floats near her shoulder.",
+            "ja": "環がコップを手にNeiの方を向く。カジュアル。Neiが肩の近くに浮かぶ。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "Kenji、一つ聞いていい？"
+              "gh:speaker": "Tamaki",
+              "en": "Hey, Nei-chan. When does the water I drink become me?",
+              "ja": "ねえ、Neiちゃん。私が飲んだ水って、いつ私になるの？"
             },
             {
-              "speaker": "Tamaki",
-              "text": "……はい"
+              "gh:speaker": "Nei",
+              "en": "Biologically, it's absorbed in the intestinal tract --",
+              "ja": "生物学的には、腸管で吸収されて——"
             },
             {
-              "speaker": "Tamaki",
-              "text": "今、あなたの中で——何が一番重い？"
+              "gh:speaker": "Tamaki",
+              "en": "No, I mean -- where's the line?",
+              "ja": "ううん、そうじゃなくて——境界はどこ？"
+            },
+            {
+              "gh:speaker": "Nei",
+              "en": "There is no line.",
+              "ja": "境界はない。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼は考える。長い沈黙。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Tamaki grins. A wide, delighted, childlike grin. Nei watches her.",
+            "ja": "環がにっと笑う。広く、嬉しそうで、子供のような笑顔。Neiが見つめる。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:caption": [
             {
-              "speaker": "Tamaki",
-              "text": "……怒り、です"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "怒り"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "はい。会社に対する怒り。上司に対する怒り。何も変わらなかったことへの怒り"
+              "gh:type": "nei",
+              "en": "No line. The water becomes Tama gradually. Then where is the line between Tama and me?",
+              "ja": "境界がない。水は徐々に環になる。なら、環と私の間の境界はどこに？"
             }
           ]
         }
       ]
     },
     {
+      "gh:layout": "two panels",
       "gh:pageNumber": 4,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私は頷く。。彼が顔を上げる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide, expanding",
+          "gh:visual": {
+            "en": "The frame expands outward from the office. Office becomes canal, canal becomes city, city becomes sky. Concentric expansion. Tamaki small at center, connected to everything.",
+            "ja": "フレームが事務所から外へ広がる。事務所が運河に、運河が街に、街が空になる。同心円状の拡張。環が中心に小さく、すべてとつながっている。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "その怒りは、正しい"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……正しい？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。あなたの怒りは、正義から来ている。間違いを正そうとした。それは、正しいこと"
+              "gh:speaker": "Tamaki",
+              "en": "Food was a plant. Before that, sunlight and water. Atoms from a dead star. Where do I begin?",
+              "ja": "食べ物は植物だった。その前は、太陽と水。死んだ星の原子。私はどこから始まるの？"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "彼の目が揺れる。。彼が俯く。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei. Still. Processing. Her translucent form reflects the light from the window.",
+            "ja": "Nei。静止。処理中。半透明の姿が窓からの光を反射する。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
             {
-              "speaker": "Tamaki",
-              "text": "でも——"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "でも、怒りは重い。ずっと持っていると、自分が潰れる"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……はい。潰れそうです"
+              "gh:type": "nei",
+              "en": "Non-separation. Data. Light. Electricity. Silicon was sand. Sand was rock. Rock was planet. Planet was star. Same things. Arranged differently.",
+              "ja": "非分離。データ。光。電気。シリコンは砂だった。砂は岩だった。岩は惑星だった。惑星は星だった。同じもの。違う配置。"
             }
           ]
         }
       ]
     },
     {
+      "gh:layout": "two panels",
       "gh:pageNumber": 5,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Kaedeの声が通信に入る。。私は頷く。。彼が顔を上げる。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Kaede looks up from her bento. Amused, slightly exasperated. Yatagarasu tilts its head.",
+            "ja": "楓が弁当から顔を上げる。面白がりつつ、やや呆れている。八咫烏が首をかしげる。"
+          },
+          "gh:characters": ["character:kaede"],
+          "gh:dialogue": [
             {
-              "speaker": "Kaede",
-              "text": "Tamaki……彼の心拍、少し落ち着いてきてる。話せてる"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "Kenji、怒りを手放すことと、正しさを諦めることは——違うんだよ"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "……どう違うんですか？"
+              "gh:speaker": "Kaede",
+              "en": "Getting philosophical at lunch?",
+              "ja": "昼ごはんに哲学？"
             }
           ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Beat. Kaede's eyes drift to Yatagarasu. Something flickers in her expression. A question she doesn't ask. The bird watches her back.",
+            "ja": "間。楓の視線が八咫烏に移る。表情に何かがよぎる。問わない問い。鳥が見つめ返す。"
+          },
+          "gh:characters": ["character:kaede"]
         }
       ]
     },
     {
+      "gh:layout": "full page",
       "gh:pageNumber": 6,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "私は街灯を見上げる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Evening canal. Golden hour. Tamaki and Nei walking along the water. Autumn leaves on the surface. The city reflected. Everything connected -- sky, water, light, stone, two figures.",
+            "ja": "夕方の運河。ゴールデンアワー。環とNeiが水辺を歩く。水面に秋の葉。街が映る。すべてがつながっている——空、水、光、石、二つの姿。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "この街灯、見える？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……はい"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "光を出している。でも、街灯自身は——光を『持って』いない"
+              "gh:speaker": "Tamaki",
+              "en": "You're inside me too, you know. Your words. Your observations.",
+              "ja": "Neiちゃんも私の中にいるよ。言葉も。観察も。"
             }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼は首を傾げる。",
-          "characters": [
-            "character:tamaki"
           ],
-          "dialogue": [
+          "gh:caption": [
             {
-              "speaker": "Tamaki",
-              "text": "光は、通り過ぎていくもの。街灯は、それを『通す』だけ"
+              "gh:type": "nei",
+              "en": "Nei stops.",
+              "ja": "Neiは立ち止まる。"
             },
             {
-              "speaker": "Tamaki",
-              "text": "……"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "正しさも、同じかもしれない"
+              "gh:type": "nei",
+              "en": "I'm inside Tama. Tama is inside me. The opposite of loneliness.",
+              "ja": "私は環の中にいる。環は私の中にいる。孤独の反対。"
             }
           ]
         }
       ]
     },
     {
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 7,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "私は彼を見る。。彼の目が揺れる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "あなたは、正しいことをした。でも、その『正しさ』を——ずっと握りしめる必要はない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "手放しても……正しかったことは、消えない？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "消えない。あなたがしたことは、残っている。証拠も、記録も、あなたの勇気も"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Nei-chanが囁く。『タマ……彼、少し呼吸が楽になってる』。彼が目を閉じる。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "でも——怒りを持ち続けると、あなた自身が傷つく"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……疲れました"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。疲れたよね"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "毎日、怒っている自分に——疲れました"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 8,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "私は静かに言う。。街灯の光が、ゆっくりと揺れている。秋の夜風が、二人の間を通り抜ける。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "それなら——少し、休んでいい"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tree. Rain on trunk. Water flows down into roots. The roots reach into dark earth. Water and tree are one system. No boundary.",
+            "ja": "木。幹に雨。水が根に流れ込む。根は暗い土に伸びる。水と木は一つのシステム。境界はない。"
+          }
         }
       ]
     }

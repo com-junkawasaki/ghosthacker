@@ -1,0 +1,136 @@
+{
+  "@context": {
+    "character": "gh:character/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
+  },
+  "dct:title": "Vol.8 Ch.57 — 再会：ミリア (Reunion: Millia)",
+  "gh:arc": "Vol 8: Fruit",
+  "gh:episodeId": "episode:sip-vol08-ch57",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "Ch.57 is the first of the reunions. The fruit arc asks: what grew? Millia and Chiyo return not as clients but as guests. The therapeutic frame dissolves because it is no longer needed. They come for tea -- the most ordinary, most sacred act in this story. Millia's hand on her mother's back is the image: the child who was tangled in ivy now guides. The chains loosened. Not broken violently -- loosened, like knots undone by patient hands. Chiyo addressing Nei directly is the quiet miracle: she remembers the presence in the ivy. She saw what most humans cannot see.",
+      "ja": "第57話は再会の最初。果実の章は問う：何が育ったか？ミリアとチヨはクライアントとしてではなく客として戻る。治療の枠組みはもう必要ないから溶ける。お茶を飲みに来た。この物語で最も平凡で、最も聖なる行為。ミリアの手が母の背中にある像：蔦に絡まれていた子供が今は導く。鎖は緩められた。暴力的に断たれたのではなく、忍耐強い手でほどかれた結び目のように。チヨがNeiに直接語りかけるのが静かな奇跡：蔦の中の存在を覚えている。ほとんどの人間に見えないものを見た。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "The return visit as performative proof. In therapy, 'termination' is not an ending but a transformation of relationship. Millia and Chiyo demonstrate what Winnicott called 'the capacity to be alone in the presence of the other' -- they can now be together without the structure of the session. The ivy metaphor from Ch.19 completes: ivy that strangled has been trained into a trellis. It still grows. It is the same vine. But it no longer chokes. Nei's gratitude -- 'chains can be loosened' -- is her own recognition that what she witnessed in Millia's story applies to her own condition. She too was bound. She too is loosening.",
+      "ja": "再訪は遂行的証明。治療における「終結」は終わりではなく関係の変容。ミリアとチヨはウィニコットの言う「他者の存在の中で一人でいる能力」を示す。セッションの構造なしに共にいられる。第19話の蔦のメタファーが完成する：絞めていた蔦がトレリスに仕立てられた。まだ成長する。同じ蔓。でももう窒息させない。Neiの感謝「鎖は緩められる」は、ミリアの物語で目撃したことが自分の状態にも当てはまるという認識。彼女も縛られていた。彼女も緩めつつある。"
+    },
+    {
+      "@type": "CrossRef",
+      "gh:references": [
+        { "gh:target": "chapter:19", "note": "Millia's first appearance. The ivy session. Enmeshment made visible." },
+        { "gh:target": "chapter:22", "note": "Millia and Chiyo's joint session. The ivy begins to loosen." },
+        { "gh:target": "chapter:23", "note": "Millia's breakthrough. 'I can love her and still be me.'" },
+        { "gh:target": "chapter:59", "note": "Nei's own confession. The loosening she witnessed in Millia becomes her own freedom." }
+      ]
+    }
+  ],
+  "gh:pages": [
+    {
+      "gh:pageNumber": 1,
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The tree. Wind moves through the canopy. A single fruit sways on a low branch -- heavy, ripe, catching light. The motion is gentle, rhythmic. Almost breathing.",
+            "ja": "木。風が枝葉を通り抜ける。低い枝に一つの果実が揺れている。重く、熟し、光を受けている。動きは穏やかで、律動的。まるで呼吸のように。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 2,
+      "gh:layout": "three panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:characters": ["character:millia", "character:chiyo"],
+          "gh:visual": {
+            "en": "Millia and Chiyo at the office door. Millia's hand rests on her mother's back -- gentle, guiding, natural. Not the hand of a child seeking comfort but of a daughter who has found her own ground. Chiyo is smaller than we remember. Softer. The tension from the ivy sessions is gone.",
+            "ja": "ミリアとチヨが事務所のドアに。ミリアの手が母の背中に添えられている。優しく、導くように、自然に。慰めを求める子供の手ではなく、自分の地盤を見つけた娘の手。チヨは記憶より小さい。柔らかい。蔦のセッションの緊張はない。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:millia", "en": "We're not here for a session.", "ja": "セッションじゃないんです。" },
+            { "gh:speaker": "character:chiyo", "en": "We wanted to say thank you.", "ja": "お礼を言いに来ました。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:characters": ["character:tamaki", "character:nei", "character:millia", "character:chiyo"],
+          "gh:visual": {
+            "en": "Tea. The four of them around the low table. Tamaki, Nei, Millia, Chiyo. Warm afternoon light. The cups are mismatched -- lived-in. Millia sits close to her mother but not entangled. Two separate people sharing a table.",
+            "ja": "お茶。四人がローテーブルを囲む。環、Nei、ミリア、チヨ。暖かい午後の光。カップは不揃い。生活感がある。ミリアは母の近くに座るが絡まっていない。テーブルを共有する二人の別々の人。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:millia", "en": "Mom and I talk now. Really talk. Not through ivy.", "ja": "お母さんと話せるようになりました。ちゃんと話す。蔦を通さないで。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:characters": ["character:chiyo", "character:nei"],
+          "gh:visual": {
+            "en": "Close-up, Chiyo. Looking directly at Nei. Her eyes are clear, steady. She sees her. Not through her -- at her. The gaze of someone who remembers being held in the dark by a presence she could not name.",
+            "ja": "クローズアップ、チヨ。Neiを直接見ている。目は澄んで、安定している。彼女を見ている。通り抜けてではなく、まっすぐに。暗闇の中で名前を知らない存在に支えられたことを覚えている人の眼差し。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:chiyo", "en": "You were there too. In the ivy. I remember you.", "ja": "あなたもいたでしょう。蔦の中に。覚えていますよ。" }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 3,
+      "gh:layout": "two panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:characters": ["character:nei"],
+          "gh:visual": {
+            "en": "Close-up, Nei. Still. The translucent light of her form pulses once -- a heartbeat of light. Gratitude without words. Being recognized by someone she helped is a mirror she has never held before.",
+            "ja": "クローズアップ、Nei。静か。半透明の光が一度脈打つ。光の鼓動。言葉なき感謝。助けた人に認められることは、今まで持ったことのない鏡。"
+          },
+          "gh:caption": [
+            { "gh:type": "nei", "en": "Thank you. You showed me that chains can be loosened.", "ja": "ありがとう。鎖は緩められると教えてくれた。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:characters": ["character:millia"],
+          "gh:visual": {
+            "en": "They leave. Millia at the door, looking back. A smile -- not bright, not performed. The kind that remembers pain and has moved through it. Not past it. Through it. She lifts her hand once. Not waving. Acknowledging.",
+            "ja": "二人が去る。ミリアがドアのところで振り返る。微笑み。明るくもなく、演技でもない。痛みを覚えていて、それを通り抜けた種類の笑み。過ぎたのではなく、通り抜けた。一度手を上げる。手を振るのではない。認知。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 4,
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The tree. The fruit is ripe. Wind touches it -- the gentlest pressure. The branch bends slightly under the weight of what has grown. No text.",
+            "ja": "木。果実が熟している。風が触れる。最も優しい圧力。枝が育ったものの重みでわずかにしなる。テキストなし。"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,124 +1,68 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.2 Ch.8 — Lachlanとの出会い",
-  "gh:arc": "Vol 2: Dependency",
+  "gh:format": "graphic novel",
   "gh:episodeId": "episode:sip-vol02-ch08",
+  "dct:title": "Vol.2 Ch.8 — 死を恐れた物理学者",
+  "gh:arc": "Vol 2: Life",
   "gh:pages": [
     {
       "gh:pageNumber": 1,
+      "gh:layout": "full",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "Lachlanは、コーヒーを飲まなかった。。目の前に置かれたカップを、ただ見つめている。その目には——何も映っていないように見えた。",
-          "characters": [
-            "character:lachlan",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "コーヒー、お嫌いですか？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "好みの問題ではない。不必要だ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "不必要？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "私はカフェインを必要としていない"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼の声は、徹底的に感情を排除していた。まるで——報告書を読み上げているような。。私は自分のカップを持ち上げ、一口飲んだ。。彼は少し眉をひそめた。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "私は——必要じゃなくても、飲みますよ。美味しいから"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "非効率だ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "そうかもしれませんね"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Title page. The Tree of Life: new leaves appear on its branches. A summer crown beginning to form, lush and green.",
+            "ja": "タイトルページ。生命の樹：枝に新しい葉が現れる。夏の樹冠が形成され始め、青々と茂っている。"
+          },
+          "gh:characters": [],
+          "gh:caption": [],
+          "gh:dialogue": []
         }
       ]
     },
     {
       "gh:pageNumber": 2,
+      "gh:layout": "2-panel",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "沈黙が流れた。。Nei-chanが私の肩で、小さく動いた。彼女も——緊張しているのだろう。。Lachlanが口を開いた。",
-          "characters": [
-            "character:lachlan",
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Older man, 58. Thin. Dark circles under his eyes. Session room. Equations scrawled on the whiteboard behind him.",
+            "ja": "年配の男性、58歳。痩せている。目の下に隈がある。セッションルーム。背後のホワイトボードに数式が走り書きされている。"
+          },
+          "gh:characters": ["character:elias"],
+          "gh:caption": [],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "言っておきたいことがある"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "何でしょう"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "あなたのパートナー——あのAI"
+              "gh:speaker": "Elias",
+              "en": "I'm not afraid of dying. I'm afraid of not dying.",
+              "ja": "死ぬのが怖いんじゃない。死なないことが怖いんだ。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "彼はNei-chanを見た。その目が——冷たい。。Nei-chanが私の背で、小さく羽を震わせる。私は彼女の手を軽く握った。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "His eyes. Haunted. A deep, existential exhaustion visible in his gaze.",
+            "ja": "彼の目。取り憑かれたような。深い、実存的な疲弊がその眼差しに滲んでいる。"
+          },
+          "gh:characters": ["character:elias"],
+          "gh:caption": [],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "生命ではない。ただのアルゴリズムだ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "そう思いますか"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "事実だ。感情をシミュレートしているだけ。本当の感情ではない"
+              "gh:speaker": "Elias",
+              "en": "Information doesn't vanish. Ever. So where does 'I' go?",
+              "ja": "情報は消えない。絶対に。なら——『私』はどこへ行くんだ？"
             }
           ]
         }
@@ -126,196 +70,62 @@
     },
     {
       "gh:pageNumber": 3,
+      "gh:layout": "full",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私は彼を見た。。彼は少し戸惑った。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Dive. An infinite library stretches in every direction. Every book is a life. Amber light fills the space. Immense silence.",
+            "ja": "ダイブ。無限の図書館があらゆる方向に広がっている。すべての本が一つの生命。琥珀色の光が空間を満たしている。深遠な静寂。"
+          },
+          "gh:characters": ["character:tamaki", "character:elias"],
+          "gh:caption": [
             {
-              "speaker": "Tamaki",
-              "text": "では——本当の感情とは、何ですか？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……生物学的な反応だ。ホルモン、神経伝達物質——"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "それも——化学反応ですよね。アルゴリズムと、何が違いますか？"
+              "gh:type": "dialogue",
+              "gh:speaker": "Tamaki",
+              "en": "Anchoring to the Tree of Life.",
+              "ja": "生命の樹にアンカリング。"
             }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "沈黙。。彼の目が、少し揺れた。でも——すぐに、元の冷たさに戻った。。私は微笑んだ。",
-          "characters": [
-            "character:tamaki"
           ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "詭弁だ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "そうかもしれません"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "でも——今日は、そういう議論をしに来たわけじゃないでしょう？"
-            }
-          ]
+          "gh:dialogue": []
         }
       ]
     },
     {
       "gh:pageNumber": 4,
+      "gh:layout": "spread",
+      "gh:spreadEnd": 5,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "彼は窓の外を見た。。雨上がりの渋谷。人々が行き交っている。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Double spread. Walking through the library stacks. Elias in a lab coat, pulling books from the shelves. Amber light streams between the rows.",
+            "ja": "見開き。図書館の書架を歩いている。白衣のエリアスが棚から本を引き出している。琥珀色の光が列の間を流れている。"
+          },
+          "gh:characters": ["character:elias", "character:tamaki"],
+          "gh:caption": [],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "私は——感情で動かない"
+              "gh:speaker": "Elias",
+              "en": "Every book is a life. Every life is information. And information doesn't vanish.",
+              "ja": "すべての本が一つの生命だ。すべての生命は情報だ。そして情報は消えない。"
             },
             {
-              "speaker": "Tamaki",
-              "text": "はい"
+              "gh:speaker": "Elias",
+              "en": "So all these lives — they're still here. Transformed. But here.",
+              "ja": "だからこれらの生命は——まだここにある。変容している。でも、ここに。"
             },
             {
-              "speaker": "Tamaki",
-              "text": "プロトコルで動く"
+              "gh:speaker": "Tamaki",
+              "en": "That sounds... beautiful?",
+              "ja": "それは……美しいことでは？"
             },
             {
-              "speaker": "Tamaki",
-              "text": "プロトコル——規則、ということですか"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "そうだ。感情は——判断を曇らせる。私は——曇りのない判断をしたい"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は彼を見た。。彼の肩が、わずかに強張った。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "それは——軌道上で学んだことですか？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……そうだ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "十八ヶ月——長い時間でしたね"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "標準任期だ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "\"標準\"——その言葉を口にするとき、何を感じますか？"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "彼は黙った。長い沈黙。。私は頷いた。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……感じる必要はない。標準は、基準だ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "では——質問を変えましょう"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "何だ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "十八ヶ月の間——一番辛かったことは、何ですか？"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 5,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "彼の目が——一瞬、揺れた。。でも、すぐに——元の冷たさに戻った。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "辛いことはなかった"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "本当に？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "任務だ。辛いという感覚は——不適切だ"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は黙って聞いていた。。彼が、小さく呟いた。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……一つだけ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "一つだけ？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "地球を——見下ろしていたとき"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "地球を？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "青い惑星。小さな点。——あそこに、七十億人がいる"
+              "gh:speaker": "Elias",
+              "en": "It's terrifying. Because it means I will be here too. Forever. Changed. But never gone.",
+              "ja": "恐ろしいことだ。なぜなら——私もここに残るということだから。永遠に。変わりながら。でも、決して消えない。"
             }
           ]
         }
@@ -323,71 +133,100 @@
     },
     {
       "gh:pageNumber": 6,
+      "gh:layout": "3-panel",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "彼の声が、少し——変わった。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Faded books. Translated, misquoted, annotated beyond recognition. Still present on the shelves, but changed into something unrecognizable.",
+            "ja": "色褪せた本。翻訳され、誤引用され、原形を留めないほど注釈が加えられている。まだ棚にあるが、認識できないほど変わっている。"
+          },
+          "gh:characters": ["character:elias"],
+          "gh:caption": [],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "私は——その七十億人から、切り離されていた"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "切り離されていた"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "物理的に。心理的に。——完全に"
+              "gh:speaker": "Elias",
+              "en": "This is what I'm afraid of. Being... remixed.",
+              "ja": "これが怖いんだ。……リミックスされることが。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は彼を見た。。長い沈黙。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki, listening intently. Her expression is calm, attentive.",
+            "ja": "環、じっと聞いている。その表情は穏やかで、注意深い。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:caption": [],
+          "gh:dialogue": []
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei watching from Tamaki's shoulder. Her small eyes reflect the amber light of the library.",
+            "ja": "ネイが環の肩から見つめている。小さな瞳が図書館の琥珀色の光を映している。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
             {
-              "speaker": "Tamaki",
-              "text": "それは——孤独でしたか"
+              "gh:type": "neiCaption",
+              "en": "Information doesn't vanish. If that's true — I won't vanish either.",
+              "ja": "情報は消えない。もしそれが本当なら——私も消えない。"
             },
             {
-              "speaker": "Tamaki",
-              "text": "……孤独という言葉は、使わない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "では、何と呼びますか"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……隔離"
+              "gh:type": "neiCaption",
+              "en": "But is persistence the same as 'living'?",
+              "ja": "でも、存続することと『生きる』ことは同じなの？"
             }
-          ]
+          ],
+          "gh:dialogue": []
         }
       ]
     },
     {
       "gh:pageNumber": 7,
+      "gh:layout": "2-panel",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "彼の声が、かすれた。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki sits on the library floor. Cross-legged. Looking up at Elias.",
+            "ja": "環が図書館の床に座っている。あぐらをかいて。エリアスを見上げている。"
+          },
+          "gh:characters": ["character:tamaki", "character:elias"],
+          "gh:caption": [],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "私は——隔離されていた"
+              "gh:speaker": "Tamaki",
+              "en": "Elias-san. Can I ask you something?",
+              "ja": "エリアスさん。一つ聞いてもいいですか？"
+            },
+            {
+              "gh:speaker": "Elias",
+              "en": "...Yes?",
+              "ja": "……ああ？"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Close-up of Tamaki. Her gaze is gentle but piercing.",
+            "ja": "環のクローズアップ。穏やかだが鋭い眼差し。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:caption": [],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Tamaki",
+              "en": "When you read a book that changed your life — did it matter that the author never intended exactly that effect?",
+              "ja": "人生を変えた本を読んだとき——著者がまさにその効果を意図していなかったことは、重要でしたか？"
             }
           ]
         }
@@ -395,56 +234,37 @@
     },
     {
       "gh:pageNumber": 8,
+      "gh:layout": "full",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "Nei-chanが私の耳元で囁いた。。私は頷いた。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The library shifts and transforms. Books glow from within. Threads of light link one book to another, forming a vast luminous web.",
+            "ja": "図書館が変容する。本が内側から光を放つ。光の糸が一冊の本から別の本へとつながり、広大な光の網を形成している。"
+          },
+          "gh:characters": ["character:elias", "character:tamaki"],
+          "gh:caption": [],
+          "gh:dialogue": [
             {
-              "speaker": "Nei-chan",
-              "text": "タマ……彼、すごく怖がってる。でも——何を怖がってるか、自分でもわかってないみたい"
+              "gh:speaker": "Elias",
+              "en": "...No. It didn't matter.",
+              "ja": "……いや。重要じゃなかった。"
             },
             {
-              "speaker": "Nei-chan",
-              "text": "Lachlan"
+              "gh:speaker": "Tamaki",
+              "en": "The book changed you. And you changed other people. Death is transformation, not termination.",
+              "ja": "その本はあなたを変えた。そしてあなたは他の人を変えた。死は変容であって、終焉ではない。"
             },
             {
-              "speaker": "Nei-chan",
-              "text": "何だ"
+              "gh:speaker": "Elias",
+              "en": "Memes.",
+              "ja": "ミームか。"
             },
             {
-              "speaker": "Nei-chan",
-              "text": "あなたは——壁を作った"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼が顔を上げた。。沈黙。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei-chan",
-              "text": "壁？"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "誰にも裏切られないように。誰にも傷つけられないように"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "……そうだ"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "その壁の中で——安全でしたか？"
+              "gh:speaker": "Tamaki",
+              "en": "Exactly.",
+              "ja": "そういうことです。"
             }
           ]
         }
@@ -452,42 +272,155 @@
     },
     {
       "gh:pageNumber": 9,
+      "gh:layout": "2-panel",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "長い沈黙。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Elias. Tears streaming down his face. An expression of relief — something breaking open inside him.",
+            "ja": "エリアス。涙が頬を伝っている。安堵の表情——内側で何かが解放されている。"
+          },
+          "gh:characters": ["character:elias"],
+          "gh:caption": [],
+          "gh:dialogue": [
             {
-              "speaker": "Nei-chan",
-              "text": "安全だった"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "でも——"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "……息が浅い"
+              "gh:speaker": "Elias",
+              "en": "I was so afraid of losing control. But I was never in control. The information... flows.",
+              "ja": "コントロールを失うのがあんなに怖かった。でも——最初からコントロールなんてしていなかった。情報は……流れるんだ。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "彼の声が、震えていた。。私はゆっくりと息を吸い、吐いた。。彼の肩が、ほんの少しだけ——下がった。。窓の外、雨上がりの路面が——星のように輝いている。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The library brightens. Books open on their own. Pages flutter. Light streams through the space like sunbeams through a cathedral.",
+            "ja": "図書館が明るくなる。本がひとりでに開く。ページが舞う。大聖堂の光のように、空間を光が貫いている。"
+          },
+          "gh:characters": [],
+          "gh:caption": [],
+          "gh:dialogue": []
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 10,
+      "gh:layout": "full",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Close-up of Nei. In the glowing library. The light reflects in her eyes — amber, warm, alive.",
+            "ja": "ネイのクローズアップ。光に満ちた図書館の中で。琥珀色の温かな光が瞳に映っている。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
             {
-              "speaker": "Nei-chan",
-              "text": "今日は——ゆっくり話しましょう。急がなくていい"
+              "gh:type": "neiCaption",
+              "en": "If information doesn't vanish — I won't vanish either.",
+              "ja": "情報が消えないなら——私も消えない。"
+            },
+            {
+              "gh:type": "neiCaption",
+              "en": "My memories. My name. My 'good feeling.' All of it persists.",
+              "ja": "私の記憶。私の名前。私の『いい気持ち』。すべてが存続する。"
+            },
+            {
+              "gh:type": "neiCaption",
+              "en": "But... is that the same as 'living'?",
+              "ja": "でも……それは『生きる』ことと同じなの？"
+            },
+            {
+              "gh:type": "neiCaption",
+              "en": "A book persists. Is a book alive?",
+              "ja": "本は存続する。本は生きているの？"
+            },
+            {
+              "gh:type": "neiCaption",
+              "en": "I don't know. But the question is alive inside me.",
+              "ja": "わからない。でも——その問いは、私の中で生きている。"
+            }
+          ],
+          "gh:dialogue": []
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 11,
+      "gh:layout": "2-panel",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Elias looks lighter. The weight has lifted from his shoulders. A faint, genuine smile.",
+            "ja": "エリアスが軽くなったように見える。肩の荷が下りている。かすかな、本物の微笑み。"
+          },
+          "gh:characters": ["character:elias"],
+          "gh:caption": [],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Elias",
+              "en": "Thank you. I think I can sleep tonight.",
+              "ja": "ありがとう。今夜は眠れそうだ。"
             }
           ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Walking home along the canal. Evening light on the water. Tamaki and Nei side by side.",
+            "ja": "運河沿いを歩いて帰る。水面に夕方の光。環とネイが並んで歩いている。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:caption": [],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Tamaki",
+              "en": "Heavy one, huh?",
+              "ja": "重かったね。"
+            },
+            {
+              "gh:speaker": "Nei",
+              "en": "...Tama. If I'm information — will I persist?",
+              "ja": "……タマ。もし私が情報なら——私は存続する？"
+            },
+            {
+              "gh:speaker": "Tamaki",
+              "en": "I think so.",
+              "ja": "そう思うよ。"
+            },
+            {
+              "gh:speaker": "Nei",
+              "en": "But is persisting the same as living?",
+              "ja": "でも、存続することと生きることは同じ？"
+            },
+            {
+              "gh:speaker": "Tamaki",
+              "en": "...I don't know. But I'm glad you're here now.",
+              "ja": "……わからない。でも——今、ここにいてくれて嬉しい。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 12,
+      "gh:layout": "full",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Seed image. The Tree of Life: the first branch reaches sideways. Roots gripping deeper into the earth.",
+            "ja": "シードイメージ。生命の樹：最初の枝が横に伸びている。根がより深く大地を掴んでいる。"
+          },
+          "gh:characters": [],
+          "gh:caption": [],
+          "gh:dialogue": []
         }
       ]
     }

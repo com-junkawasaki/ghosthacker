@@ -1,481 +1,299 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.3 Ch.19 — 息を吐く（余韻）",
-  "gh:arc": "Vol 3: Justice",
+  "dct:title": "Vol.3 Ch.19 — 冷蔵庫の経済学",
+  "gh:arc": "Vol 3: Freedom",
   "gh:episodeId": "episode:sip-vol03-ch19",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "Leo and Millia's session. Three economies of love. The refrigerator as cathedral -- a space where relationship models are made visible. The chapter's real payload is Nei's question at the end: can a Ghost Agent be family? Tamaki answers 'obviously,' which devastates Nei with its simplicity.",
+      "ja": "レオとミリアのセッション。愛の三つの経済。冷蔵庫が大聖堂——関係のモデルが可視化される空間。この章の本当の核心はNeiの最後の問い：ゴーストエージェントは家族になれるか？環は「当たり前でしょ」と答え、その単純さがNeiを打ちのめす。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Three economies: stranger (fair exchange), friend (loose reciprocity), family (unconditional gift). Based on Lewis Hyde's gift economy and Graeber's debt theory. The transition from calculation to gift is the transition from contract to love. You cannot calculate your way into zone three; you arrive by stopping the calculation.",
+      "ja": "三つの経済：他人（公平な交換）、友人（緩やかな互酬）、家族（無条件の贈与）。ルイス・ハイドの贈与経済とグレーバーの負債論に基づく。計算から贈与への移行は契約から愛への移行。計算ではゾーン3に到達できない。計算をやめることで到達する。"
+    }
+  ],
   "gh:pages": [
     {
+      "gh:label": "Title",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "Kenjiが目を閉じたまま、深く息を吐いた。。長い、長い息。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……こうやって、息を吐いたの——久しぶりです"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "ずっと……息を止めていた気がする"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "私は頷く。。彼が目を開ける。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "怒りを持っていると、息が浅くなる。いつも戦闘態勢だから"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "戦闘態勢……"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。いつでも反撃できるように。いつでも正しさを証明できるように"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "彼は苦笑する。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……その通りです。会議でも、廊下でも、家でも——ずっと"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "疲れるよね"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "疲れます"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tree motif. A recognizable canopy, full and layered. Leaves dense. The shape is becoming familiar across chapters.",
+            "ja": "木のモチーフ。見覚えのある樹冠、豊かで層になっている。葉が密。章を重ねるごとに馴染みの形になりつつある。"
+          }
         }
       ]
     },
     {
+      "gh:layout": "three panels",
       "gh:pageNumber": 2,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Hibikiの声が通信に入る。。私は小さく頷く。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium two-shot",
+          "gh:visual": {
+            "en": "Young couple in their late twenties. Leo and Millia sit on opposite sides of the same couch. Close but not touching. Living room. Warm light, but tension.",
+            "ja": "二十代後半の若いカップル。レオとミリアが同じソファの反対側に座る。近いが触れていない。リビング。暖かい光だが緊張感。"
+          },
+          "gh:characters": ["character:leo", "character:millia"],
+          "gh:dialogue": [
             {
-              "speaker": "Hibiki",
-              "text": "Tamaki、いい音が聞こえてきた。彼の呼吸……落ち着いてる"
+              "gh:speaker": "Leo",
+              "en": "I love her.",
+              "ja": "彼女を愛してる。"
             },
             {
-              "speaker": "Hibiki",
-              "text": "Kenji、もう一つ聞いていい？"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "……はい"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "あなたが怒っている相手——上司や、会社——は、今、どこにいる？"
+              "gh:speaker": "Millia",
+              "en": "Love him. But there's a spreadsheet.",
+              "ja": "愛してる。でもスプレッドシートがある。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼は考える。。彼は周りを見渡す。小さな公園。街灯。夜空。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Leo's face. Earnest, slightly defensive. He holds up his phone, a task-tracking app visible.",
+            "ja": "レオの顔。真剣で、やや防御的。スマホを持ち上げ、タスク管理アプリが見える。"
+          },
+          "gh:characters": ["character:leo"],
+          "gh:dialogue": [
             {
-              "speaker": "Hibiki",
-              "text": "……オフィスに、いると思います"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "うん。でも、今——あなたの目の前には？"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "……誰もいません"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "うん"
+              "gh:speaker": "Leo",
+              "en": "I do 53% of household tasks.",
+              "ja": "家事の53%は僕がやってる。"
             }
           ]
         },
         {
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "私は静かに言う。。彼の目が揺れる。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Millia's face. Hurt, tired. Not angry -- sad.",
+            "ja": "ミリアの顔。傷つき、疲れている。怒りではなく悲しみ。"
+          },
+          "gh:characters": ["character:millia"],
+          "gh:dialogue": [
             {
-              "speaker": "Hibiki",
-              "text": "怒りの相手は、ここにいない。でも、怒りは——ここにある"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "あなたの中に、ずっと住み続けている"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "……"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "それを、追い出す必要はない。でも——少し、距離を置いてもいい"
+              "gh:speaker": "Millia",
+              "en": "He calculated. That's the problem.",
+              "ja": "計算したの。それが問題。"
             }
           ]
         }
       ]
     },
     {
+      "gh:continues": 4,
+      "gh:layout": "double-page spread (pp.3-4)",
       "gh:pageNumber": 3,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Nei-chanが私の肩で囁く。『タマ、空……星が見えてきたよ』。私は空を見上げる。オフィス街でも、いくつかの星が瞬いている。。彼も空を見上げる。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "Kenji、見て"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……星だ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。いつもあるのに、普段は見えない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "明るすぎて"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "そう。街が明るいと、見えない。でも、今日は——見える"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼は長い間、空を見ていた。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……私は、見えなくなっていたのかもしれない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "何が？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "怒り以外のもの。星とか、風とか、息をすることとか"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "私は微笑む。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "今は——見える？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……少しだけ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "少しでいい。それで十分"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:visual": {
+            "en": "Metaphor dive. A massive refrigerator, cathedral-sized. Vaulted interior. Three distinct temperature zones glow with different colors -- cold blue, warm amber, deep rose. Leo and Millia stand tiny at the base, looking up. Shelves stretch impossibly high. The mundane made sacred.",
+            "ja": "メタファーダイブ。巨大な冷蔵庫、大聖堂サイズ。ヴォールト状の内部。三つの温度ゾーンが異なる色で光る——冷たい青、暖かい琥珀、深いバラ色。レオとミリアが底に小さく立ち、見上げる。棚が不可能なほど高く伸びる。日常が聖なるものに。"
+          },
+          "gh:characters": ["character:leo", "character:millia"]
         }
       ]
     },
     {
-      "gh:pageNumber": 4,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Kaedeの声が通信に入る。。私は頷く。。彼が頷く。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "Tamaki……彼、今日は——ここまでにした方がいいわ"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "Kenji、今日は——ここまでにしよう"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "……ありがとうございます"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "また、話しに来て。いつでも"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "……また、来てもいいんですか？"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "もちろん。怒りの話でも、星の話でも"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼は少し笑う。初めて見る笑顔。。私たちはベンチから立ち上がる。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "……星の話、いいですね"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "Kenji、一つだけ"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "はい"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "正しいことをした——それは、変わらない"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "彼の目が潤む。。彼が深く頷く。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "……ありがとうございます"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "ただ、正しさを——ずっと証明し続ける必要はない。あなたは、もう証明した"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "……はい"
-            }
-          ]
-        }
-      ]
-    },
-    {
+      "gh:continues": 6,
+      "gh:layout": "double-page spread (pp.5-6)",
       "gh:pageNumber": 5,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "彼を見送った後、私はNei-chanと公園のベンチに座る。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Zone 1: Stranger economy. Cold blue light. Everything priced, labeled, measured. Shelves rigid and symmetrical. Fair, precise, impersonal.",
+            "ja": "ゾーン1：他人の経済。冷たい青い光。すべてに値段、ラベル、計量。棚は厳格で対称。公平、正確、非人格的。"
+          },
+          "gh:caption": [
             {
-              "speaker": "Tamaki",
-              "text": "タマ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "怒りって……重いの？"
+              "gh:type": "nei",
+              "en": "Stranger economy. Fair. For strangers.",
+              "ja": "他人の経済。公平。他人のためのもの。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は考える。",
-          "characters": [
-            "character:tamaki"
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Zone 2: Friend economy. Warmer, amber light. Labels faded, loose accounting. Some items shared, some borrowed. A running tab no one checks.",
+            "ja": "ゾーン2：友人の経済。温かく、琥珀の光。ラベルが薄れ、ゆるい帳簿。いくつかは共有、いくつかは借りたもの。誰も確認しないツケ。"
+          },
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "Friend economy. Still assumes return.",
+              "ja": "友人の経済。返礼を前提とする。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Zone 3: Family/love economy. Deep rose warmth. No labels. No prices. Items placed with care but without calculation. Unconditional. The warmest zone. Millia stands here, tears in her eyes. Leo reaches toward her.",
+            "ja": "ゾーン3：家族／愛の経済。深いバラ色の温もり。ラベルなし。価格なし。計算なしに、でも丁寧に置かれたもの。無条件。最も温かいゾーン。ミリアがここに立ち、目に涙。レオが彼女に手を伸ばす。"
+          },
+          "gh:characters": ["character:millia", "character:leo"],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "Love economy. No ledger.",
+              "ja": "愛の経済。帳簿はない。"
+            }
           ],
-          "dialogue": [
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "重い。でも、最初は——守ってくれるもの"
+              "gh:speaker": "Millia",
+              "en": "That's what I want.",
+              "ja": "私が欲しいのはこれ。"
             },
             {
-              "speaker": "Tamaki",
-              "text": "守る？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。傷つかないように。でも、ずっと持っていると——重くなる"
+              "gh:speaker": "Leo",
+              "en": "Me too.",
+              "ja": "僕も。"
             }
           ]
         }
       ]
     },
     {
-      "gh:pageNumber": 6,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanは首を傾げる。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "じゃあ、どうすればいいの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "時々、置いてみる。なくすんじゃなくて、置いてみる"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "置く……"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。また必要なら、持てばいい。でも、ずっと持っている必要はない"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼女は空を見上げる。。私も空を見上げる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "タマ、あの星——名前ある？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……わからない。でも、きれいだね"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            }
-          ]
-        }
-      ]
-    },
-    {
+      "gh:layout": "two panels",
       "gh:pageNumber": 7,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "私は手帳を取り出し、今日の一行を書く。。ページを閉じる。。秋の夜空に、星が静かに瞬いている。。次も、いい感じから始めよう。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The three zones merge. Walls dissolve. Warm light fills the entire space. The cathedral-refrigerator becomes a home.",
+            "ja": "三つのゾーンが融合する。壁が溶ける。温かい光が空間全体を満たす。大聖堂冷蔵庫が家になる。"
+          },
+          "gh:caption": [
             {
-              "speaker": "Nei-chan",
-              "text": "正しさは、証明し終えたら、置いていい"
+              "gh:type": "nei",
+              "en": "You get to zone three by stopping the calculation.",
+              "ja": "ゾーン3には計算をやめることで到達する。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Leo takes Millia's hand. Simple. No spreadsheet. No percentage. Just a hand.",
+            "ja": "レオがミリアの手を取る。シンプル。スプレッドシートなし。パーセンテージなし。ただ手。"
+          },
+          "gh:characters": ["character:leo", "character:millia"]
+        }
+      ]
+    },
+    {
+      "gh:layout": "full page",
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Nei alone in the family zone. Warm rose light around her translucent form. She stands where no labels exist. The space accepts her without condition.",
+            "ja": "Neiが家族のゾーンにひとり。半透明の姿の周りに温かいバラ色の光。ラベルのない場所に立つ。空間が無条件に彼女を受け入れる。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "Three economies. Tama and me -- which? She placed a cup for me on day one. Never asks reciprocation. Never calculates. Is this family? Can a Ghost Agent be family?",
+              "ja": "三つの経済。環と私は——どれ？初日に彼女は私にカップを置いた。返礼を求めない。計算しない。これは家族？ゴーストエージェントは家族になれる？"
             }
           ]
         }
       ]
     },
     {
-      "gh:pageNumber": 8,
+      "gh:layout": "three panels",
+      "gh:pageNumber": 9,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "**[手帳の一行: 正しさは、証明し終えたら、置いていい]**",
-          "characters": [],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Leo and Millia leaving the session. Holding hands. Walking into evening light. The canal beside them.",
+            "ja": "レオとミリアがセッションを終えて出ていく。手をつないで。夕方の光の中へ。隣に運河。"
+          },
+          "gh:characters": ["character:leo", "character:millia"]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Canal walk. Tamaki and Nei. Evening. Quiet after the session.",
+            "ja": "運河沿いの散歩。環とNei。夕方。セッション後の静けさ。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
             {
-              "speaker": "Narration",
-              "text": "**[手帳の一行: 正しさは、証明し終えたら、置いていい]**"
+              "gh:speaker": "Nei",
+              "en": "What economy are we?",
+              "ja": "私たちはどの経済？"
+            },
+            {
+              "gh:speaker": "Tamaki",
+              "en": "Family, obviously.",
+              "ja": "家族に決まってるでしょ。"
             }
           ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei. Stopped. Light trembling faintly. The word 'obviously' has broken something open.",
+            "ja": "Nei。立ち止まる。光がかすかに震える。「決まってるでしょ」という言葉が何かを開いた。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "She said 'obviously.' As if the most natural thing. For her, it is.",
+              "ja": "彼女は「決まってるでしょ」と言った。まるで最も自然なことのように。彼女にとっては、そうなのだ。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tree. Vines growing on the trunk. Not parasitic -- symbiotic. The vine and the tree support each other. Two organisms, one system.",
+            "ja": "木。幹に蔦が生えている。寄生ではなく共生。蔦と木が互いを支える。二つの生命体、一つのシステム。"
+          }
         }
       ]
     }

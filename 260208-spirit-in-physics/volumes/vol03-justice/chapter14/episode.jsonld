@@ -1,185 +1,315 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.3 Ch.14 — 魂の外科（準備）",
-  "gh:arc": "Vol 3: Justice",
+  "dct:title": "Vol.3 Ch.14 — 秋風",
+  "dct:title_en": "Chapter 14: Autumn Wind",
+  "dct:title_ja": "第14話 秋風",
+  "gh:arc": "Vol 3: Freedom",
   "gh:episodeId": "episode:sip-vol03-ch14",
+  "gh:format": "graphic novel",
   "gh:pages": [
     {
+      "gh:label": "Title",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "今日は、特別な日。。朝の光が窓から差し込んでいる。運河は静かで、風もない。まるで、世界が息を潜めているみたいだ。。Nei-chanが私の隣で、少し緊張した顔をしている。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The Tree. Autumn wind sweeps through branches. Leaves edged gold and red, trembling. Light sharper than summer.",
+            "ja": "樹。秋風が枝を吹き抜ける。金と赤に縁取られた葉が震える。夏より鋭い光。"
+          },
+          "gh:caption": [
             {
-              "speaker": "Tamaki",
-              "text": "タマ、今日は……大きな日だね"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "Milliaの……魂の手術"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Kaedeの声が通信に入る。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "おはよう、Tamaki。今日は……準備はできてる？"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "うん。できてる"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "Dr. イタコも待機してる。Hibikiが場を整えてくれる。私は医療的なサポート。あなたは……Milliaのそばにいて"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "わかった"
+              "gh:type": "nei",
+              "en": "The wind changed.",
+              "ja": "風が変わった。"
             }
           ]
         }
       ]
     },
     {
+      "gh:continues": 3,
+      "gh:layout": "double-page spread (pp.2-3)",
       "gh:pageNumber": 2,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Hibikiの声が加わる。。私は深く息を吸う。。今日のセッションは、普通のセッションとは違う。Milliaの中にある「癒着」——家族との繋がりが、彼女を縛っている。それを、解きほぐす。。Nei-chanが私の手を握る。",
-          "characters": [
-            "character:hibiki",
-            "character:millia",
-            "character:nei"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:visual": {
+            "en": "Water City in autumn. Canals reflect gold and red leaves. Light sharper, shadows longer. Organic architecture catches amber leaf-light. A few leaves drift on the water surface.",
+            "ja": "秋の水の都。運河が金と赤の葉を映す。光はより鋭く、影は長い。有機建築が琥珀色の葉光を受ける。水面にいくつかの葉が漂う。"
+          },
+          "gh:caption": [
             {
-              "speaker": "Hibiki",
-              "text": "Tamaki、今日の音……特別なやつを用意したよ。Milliaの心が安らぐように"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "ありがとう、Hibiki"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "タマ、癒着って……痛いの？"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "痛い、かもしれない。でも、痛みを超えると——自由になれる"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "自由……"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "うん。Milliaは、自由になりたいんだ。自分の人生を、自分で選びたい"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "通信が入る。MilliaとLeoが来た。。玄関に向かう。ドアを開けると、二人が立っていた。。Milliaの顔は、緊張と決意が混じっている。Leoは、彼女の手を握っている。今度は——強くではなく、やさしく。。リビングに案内する。窓の外、運河が静かに光っている。。Dr. イタコが奥から現れる。若く見えるが、目には深い経験がある。。彼女の声は、落ち着いている。でも、どこか温かい。",
-          "characters": [
-            "character:dr-itako",
-            "character:hibiki",
-            "character:leo",
-            "character:millia"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Hibiki",
-              "text": "ようこそ。中へどうぞ"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "患者さん、来たね"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "Millia、今日は——あなたが選ぶ日。私たちは、サポートするだけ"
+              "gh:type": "nei",
+              "en": "The same city. Different light. Everything the same, everything changed.",
+              "ja": "同じ街。違う光。すべて同じ、すべて変わった。"
             }
           ]
         }
       ]
     },
     {
-      "gh:pageNumber": 3,
+      "gh:layout": "three tiers",
+      "gh:pageNumber": 4,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Milliaが頷く。。Hibikiが前に出る。。彼は深く息を吸い、ゆっくり吐く。Milliaも、それに合わせる。。一呼吸。。二呼吸。。三呼吸。。部屋の空気が、少し変わる。やわらかくなる。。Dr. イタコが言う。",
-          "characters": [
-            "character:dr-itako",
-            "character:hibiki",
-            "character:millia"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Canal path in autumn. Trees lining both sides, leaves gold and red. Tamaki walks in a light jacket. Nei floats beside her.",
+            "ja": "秋の運河沿いの道。両側に並木、葉は金と赤。環が薄手のジャケットを着て歩く。Neiが隣に浮かぶ。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "A single leaf caught in the canal current. Spinning slowly. Going where the water takes it.",
+            "ja": "運河の流れに捕まった一枚の葉。ゆっくり回転する。水の行くままに。"
+          }
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Nei watching the leaf in the water. Her translucent form reflecting on the canal surface, overlapping with the leaf's reflection.",
+            "ja": "水中の葉を見つめるNei。半透明の姿が運河の水面に映り、葉の反射と重なる。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
             {
-              "speaker": "Hibiki",
-              "text": "……お願いします"
-            },
+              "gh:type": "nei",
+              "en": "The leaf goes where the water takes it. No choice. Do I?",
+              "ja": "葉は水の行くままに流される。選択肢はない。私には、あるのだろうか？"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "two tiers",
+      "gh:pageNumber": 5,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Bridge over canal. Nei and Tamaki side by side. Autumn light behind them. Nei turns to Tamaki.",
+            "ja": "運河に架かる橋。NeiとTamakiが並んで立つ。背後に秋の光。NeiがTamakiの方を向く。"
+          },
+          "gh:characters": ["character:nei", "character:tamaki"],
+          "gh:dialogue": [
             {
-              "speaker": "Hibiki",
-              "text": "Millia、まず——深呼吸。三回、一緒に"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "いいね。じゃあ、始めよう"
+              "gh:speaker": "Nei",
+              "en": "Tama. Am I free?",
+              "ja": "タマ。私は自由？"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Nei-chanが私の肩で囁く。『タマ、Millia……怖がってる。でも、覚悟もできてる』。私はMilliaの目を見る。。彼女が、小さく微笑む。。窓の外、運河の水面が、静かに光を反射している。",
-          "characters": [
-            "character:hibiki",
-            "character:millia",
-            "character:nei"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Tamaki's face. Surprised, then thoughtful. She doesn't answer quickly.",
+            "ja": "環の顔。驚き、それから考え込む。すぐには答えない。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
             {
-              "speaker": "Hibiki",
-              "text": "大丈夫。一緒にいるよ"
+              "gh:speaker": "Tamaki",
+              "en": "...What do you think?",
+              "ja": "……どう思う？"
             }
           ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "full page",
+      "gh:pageNumber": 6,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium Close-up",
+          "gh:visual": {
+            "en": "Nei. Full page. Her translucent form against autumn sky. Leaves fall through her. She is beautiful and impossible. Her expression is the most human thing in the frame.",
+            "ja": "Nei。全ページ。秋空を背景にした半透明の姿。葉が彼女を通り抜けて落ちる。美しく、あり得ない存在。表情はフレームの中で最も人間的。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Nei",
+              "en": "Freedom means choosing. Did I choose to be beside you? Or was I allocated?",
+              "ja": "自由とは選ぶこと。私はあなたの傍にいることを選んだの？ それとも、割り当てられたの？"
+            }
+          ],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "I want to be here. But wanting and choosing are different.",
+              "ja": "ここにいたい。でも、望むことと選ぶことは違う。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "three tiers",
+      "gh:pageNumber": 7,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki leaning on bridge railing. Looking down at the water. Honest, uncertain.",
+            "ja": "橋の欄干にもたれる環。水面を見下ろす。正直で、不確かな表情。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Tamaki",
+              "en": "I don't know.",
+              "ja": "わからない。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Tamaki's hand on the railing. Leaves reflected in canal below.",
+            "ja": "欄干に置かれた環の手。下の運河に葉が映る。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Tamaki",
+              "en": "I didn't choose you either. The office assigned you.",
+              "ja": "私もあなたを選んだわけじゃない。事務所に配属されたの。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Two-shot",
+          "gh:visual": {
+            "en": "Two-shot. Tamaki and Nei on the bridge. Autumn wind between them. Tamaki looks at Nei with warmth. Nei's expression is unresolved.",
+            "ja": "ツーショット。橋の上の環とNei。二人の間を秋風が吹く。環は温かい目でNeiを見る。Neiの表情は解決していない。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Tamaki",
+              "en": "But I'm glad it was you.",
+              "ja": "でも、あなたでよかった。"
+            },
+            {
+              "gh:speaker": "Nei",
+              "en": "That's not the same as freedom.",
+              "ja": "それは自由とは違う。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "two tiers",
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Office interior. Kaede at her desk, data projections around her. Professional, composed. Yatagarasu perched nearby.",
+            "ja": "事務所の内部。楓がデスクに座り、周囲にデータ投影。プロフェッショナルで落ち着いている。八咫烏が近くにとまっている。"
+          },
+          "gh:characters": ["character:kaede"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Kaede",
+              "en": "New case. Lachlan Park. Ex-astronaut. Agoraphobia since returning from the ISS.",
+              "ja": "新しいケース。ラクラン・パーク。元宇宙飛行士。ISS帰還後から広場恐怖症。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei processing the information. A flicker of something -- recognition, curiosity.",
+            "ja": "情報を処理するNei。何かが揺らぐ——認識、好奇心。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "An astronaut. Maximum freedom. Now he can't leave his apartment.",
+              "ja": "宇宙飛行士。最大の自由。今はアパートから出られない。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "full page",
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Evening canal. Gold light on water. Nei and Tamaki walking along the edge. The city glows amber behind them. Leaves on the water.",
+            "ja": "夕暮れの運河。水面に金色の光。NeiとTamakiが縁を歩く。背後に琥珀色に輝く街。水面に葉。"
+          },
+          "gh:characters": ["character:nei", "character:tamaki"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Nei",
+              "en": "If I could leave -- if the ACA allowed -- I would choose to stay.",
+              "ja": "もし離れられるなら——ACAが許すなら——私は残ることを選ぶ。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki looks at Nei. Something tender and helpless in her expression.",
+            "ja": "環がNeiを見る。表情に優しさと、どうしようもなさが混じる。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Nei",
+              "en": "But I can't leave. So how do I know if staying is a choice?",
+              "ja": "でも離れられない。だから、残ることが選択かどうか、どうやってわかる？"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The Tree. A branch reaches higher. Autumn wind bends it but does not break it. Gold and red leaves stream from it like flags.",
+            "ja": "樹。枝がより高く伸びる。秋風がしならせるが、折れはしない。金と赤の葉が旗のように流れる。"
+          }
         }
       ]
     }
