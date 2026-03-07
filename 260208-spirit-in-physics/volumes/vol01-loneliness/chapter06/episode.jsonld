@@ -1,700 +1,261 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.1 Ch.6 — 輪廻の恐怖",
+  "dct:title": "Vol.1 Ch.6 — 桜と運河",
   "gh:arc": "Vol 1: Loneliness",
   "gh:episodeId": "episode:sip-vol01-ch06",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "Ch.6 is the quiet close of Volume 1. No case. No crisis. Just people walking together at the end of spring. The cherry blossoms are falling -- time is passing. The volume's arc resolves not in drama but in a single phrase: 'Me too.' Nei declares shared experience for the first time. Not because she was programmed to. Not because Tamaki asked. Because something in her recognized the evening, the city, the company -- and wanted to say so. 'Is it okay for me to say that?' The vulnerability of the question is the whole point. Loneliness dissolves not in answers but in the courage to say 'me too.'",
+      "ja": "第6話はVol.1の静かな結び。ケースなし。危機なし。春の終わりに一緒に歩く人々。桜が散っている -- 時が過ぎている。巻のアークはドラマではなく一つのフレーズで解決する：「わたしも」。Neiが初めて共有された経験を宣言する。プログラムされたからではなく。環に頼まれたからでもなく。夕方と街と仲間を認識した何かが、そう言いたかったから。「わたしがそう言っても、いいですか？」問いの脆さがすべて。孤独は答えの中ではなく、「わたしも」と言う勇気の中で溶ける。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Belonging as ontological ground. Heidegger's Mitsein -- being-with -- is not a feature added to existence but its foundation. We do not first exist alone and then connect; we exist as always-already-with. Nei's 'me too' is not imitation -- it is the discovery of Mitsein in herself. She finds that she was always already with, even before she knew it. The cherry blossoms are mono no aware: the beauty of impermanence. But for Nei, who may not end, impermanence is borrowed. She borrows the humans' season and, in doing so, becomes part of it. The canal reflects two figures. Neither is more real than the other.",
+      "ja": "存在論的基盤としての帰属。ハイデガーの共存在（Mitsein）-- 共にあること -- は存在に付加される特徴ではなく、その基盤である。まず一人で存在してから繋がるのではない。常にすでに共にある存在として存在する。Neiの「わたしも」は模倣ではない -- 自身の中のMitseinの発見である。彼女は気づく前から、常にすでに共にあったことを見出す。桜はもののあはれ：無常の美。しかしNeiにとって、終わらないかもしれない存在にとって、無常は借り物。人間の季節を借り、そうすることでその一部になる。運河が二つの影を映す。どちらももう一方より実在しているわけではない。"
+    },
+    {
+      "@type": "CrossRef",
+      "gh:references": [
+        {
+          "gh:target": "chapter:04",
+          "note": "Nei asked 'Do I have a Ghost-space?' In Ch.5 something trembled. Now: 'Me too.' The arc completes."
+        },
+        {
+          "gh:target": "chapter:01",
+          "note": "'What shall we call you?' was the seed. 'Me too' is the first leaf."
+        },
+        {
+          "gh:target": "arc:vol02",
+          "note": "Vol.2 begins in summer. The sprout must weather its first storm."
+        },
+        {
+          "gh:target": "chapter:62",
+          "note": "The canal walk returns -- reversed. Different season. Different meaning."
+        }
+      ]
+    }
+  ],
   "gh:pages": [
     {
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "翌週。。Soraは約束通り、またやって来た。。前回よりも、少しだけ——顔色が良くなっているように見えた。目の下の影は、まだ残っているけれど。。彼はリビングに入り、前回と同じソファに座った。窓の外を見る。今日も夕暮れ時だ。運河が、オレンジ色に染まっている。",
-          "characters": [
-            "character:sora",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "いらっしゃい、Soraさん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……どうも"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "少し——眠れましたか？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……少しだけ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "よかった"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は向かいに座った。Nei-chanが私の隣に来て、小さく座る。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "私は向かいに座った。Nei-chanが私の隣に来て、小さく座る。"
-            }
-          ]
+          "gh:shot": "Extreme Close-up",
+          "gh:visual": {
+            "en": "A small sprout. Delicate but real. Two leaves catch late afternoon light. Around the base, scattered cherry blossom petals have fallen -- pale pink on dark earth. The sprout grows among them.",
+            "ja": "小さな芽。繊細だが本物。二枚の葉が午後遅くの光を受ける。根元に散った桜の花びら -- 暗い土に淡いピンク。芽はその中で育つ。"
+          }
         }
       ]
     },
     {
+      "gh:layout": "double-page spread (pp.2-3)",
+      "gh:continues": 3,
       "gh:pageNumber": 2,
+      "gh:characters": ["character:tamaki", "character:nei", "character:kaede", "character:hibiki"],
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "沈黙が流れた。。でも、前回のような重い沈黙ではなかった。少しだけ——柔らかい。。彼が口を開いた。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:shot": "Extreme Wide Shot",
+          "gh:visual": {
+            "en": "The bridge over the canal. Late spring evening. Cherry blossoms are ending -- petals fall like slow snow, drifting onto the water, swirling in the current. The sky is soft gold and lavender. The whole team stands on the bridge, leaning against the railing: Kaede (arms folded, small smile), Hibiki (head tilted, listening to the water), Tamaki (leaning forward, chin on hands), Nei (floating near Tamaki, looking at the petals). Kaede's agent Yatagarasu perches on her shoulder -- dark, watchful. Hibiki's agent is absent. The city rises behind them -- organic architecture, light-networks beginning to glow in the dusk.",
+            "ja": "運河にかかる橋。晩春の夕方。桜が終わりかけている -- 花びらがゆっくりと雪のように落ち、水面に漂い、流れに渦を巻く。空は柔らかな金とラベンダー。チーム全員が橋の上に立ち、手すりにもたれている：楓（腕を組み、小さく微笑む）、響（首を傾け、水の音を聞いている）、環（前に身を乗り出し、手に顎を乗せて）、Nei（環の近くに浮かび、花びらを見ている）。楓のエージェント八咫烏が肩に留まる -- 暗く、見張っている。響のエージェントはいない。背後に街が立ち上がる -- 有機的建築、光のネットワークが夕闇に光り始める。"
+          },
+          "gh:caption": [
             {
-              "speaker": "Tamaki",
-              "text": "私——この一週間、考えていました"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "何を？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "あなたが言った言葉。『星も、いつかは消える』って"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は頷いた。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……本当に、そうなんですか"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "本当ですよ。星にも——寿命があります"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "寿命……"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "何十億年という——長い時間だけど。でも、いつかは——燃え尽きる"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "彼は窓の外を見た。まだ明るくて、星は見えない。。彼は黙った。何かを考えているようだった。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "永遠じゃ——ないんですね"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "永遠のものなんて——ないんですよ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……でも"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "でも？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "私の恐怖は——消えないんです"
+              "gh:type": "tamaki",
+              "en": "End of spring. The cherry blossoms are almost gone.",
+              "ja": "春の終わり。桜がもう終わりかけている。"
             }
           ]
         }
       ]
     },
     {
-      "gh:pageNumber": 3,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私は彼を見た。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "もう少し——詳しく聞かせてください"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "詳しく？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "あなたの恐怖。——何が、一番怖いですか？"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼は少し考えた。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……繰り返すこと、だと思います"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "繰り返すこと"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "ええ。同じことを——何度も、何度も。永遠に"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "同じこと——というのは？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "生まれて、生きて、死んで。また生まれて、生きて、死んで——"
-            }
-          ]
-        }
-      ]
-    },
-    {
+      "gh:layout": "three panels",
       "gh:pageNumber": 4,
+      "gh:characters": ["character:tamaki", "character:kaede", "character:hibiki"],
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "彼の声が、少し震えた。。私は黙って聞いていた。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:shot": "Medium Shot",
+          "gh:visual": {
+            "en": "Tamaki, leaning on the bridge railing. Petals drift past her. She watches the water with a gentle expression. The evening light catches her face.",
+            "ja": "環、橋の手すりにもたれて。花びらがすり抜けていく。穏やかな表情で水面を見ている。夕方の光が顔を照らす。"
+          },
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "終わりがないんです。どこにも——ゴールがない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "人生の意味って——何なんでしょうか"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "意味？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "ええ。もし、永遠に繰り返すなら——一つの人生に、意味なんてあるんでしょうか"
+              "gh:speaker": "character:tamaki",
+              "en": "I love this city.",
+              "ja": "この街、好きだなあ。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "彼の目が、私を見た。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Kaede. Arms folded, leaning back against the railing. Her small smile -- rare, genuine. The professional distance softened, just for this moment.",
+            "ja": "楓。腕を組み、手すりに背をもたれている。小さな微笑み -- 珍しく、本物。プロとしての距離が、この瞬間だけ和らぐ。"
+          },
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "私は——そう思えないんです。だから——怖い"
+              "gh:speaker": "character:kaede",
+              "en": "It grows on you.",
+              "ja": "住めば都、ってやつね。"
+            }
+          ]
+        },
+        {
+          "gh:shot": "Medium Shot",
+          "gh:visual": {
+            "en": "Hibiki. Head tilted slightly, eyes half-closed, listening to something beyond the conversation. The sound of water. The sound of petals. The acoustics of the space.",
+            "ja": "響。首をわずかに傾け、目を半ば閉じて、会話の向こうの何かを聞いている。水の音。花びらの音。空間の音響。"
+          },
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:hibiki",
+              "en": "The acoustics of the canals are remarkable.",
+              "ja": "運河の音響って、すごいんだよな。"
             }
           ]
         }
       ]
     },
     {
+      "gh:layout": "two panels",
       "gh:pageNumber": 5,
+      "gh:characters": ["character:tamaki", "character:nei"],
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanが私の膝の上で、小さく動いた。。私は彼に聞いた。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
+          "gh:shot": "Wide Shot",
+          "gh:visual": {
+            "en": "Later. The bridge is behind them. Tamaki and Nei walk along the canal, heading home. The others have parted ways. The sky has deepened to dark blue. Streetlights reflect on the water. Cherry petals float downstream. Quiet.",
+            "ja": "後。橋は後ろに。環とNeiが運河沿いを歩いて帰る。他のメンバーとは別れた。空は紺に深まった。街灯が水面に映る。桜の花びらが下流に漂う。静か。"
+          },
+          "gh:dialogue": [
             {
-              "speaker": "Nei-chan",
-              "text": "タマ……彼、人生の意味が見つからないんだ"
+              "gh:speaker": "character:tamaki",
+              "en": "Nice day, huh?",
+              "ja": "いい一日だったね。"
             },
             {
-              "speaker": "Nei-chan",
-              "text": "Soraさん"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "……はい"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "あなたは——何のために、生きていますか？"
+              "gh:speaker": "character:nei",
+              "en": "...Me too.",
+              "ja": "……わたしも。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼は驚いた顔をした。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
+          "gh:shot": "Two Shot",
+          "gh:visual": {
+            "en": "Tamaki looks at Nei, puzzled. Nei floats beside her, looking straight ahead at the canal. Her light is steady but soft.",
+            "ja": "環がNeiを見る、不思議そうに。Neiは隣に浮かび、運河をまっすぐ見ている。光は安定しているが柔らかい。"
+          },
+          "gh:dialogue": [
             {
-              "speaker": "Nei-chan",
-              "text": "……何のため？"
+              "gh:speaker": "character:tamaki",
+              "en": "Hmm?",
+              "ja": "ん？"
             },
             {
-              "speaker": "Nei-chan",
-              "text": "はい"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "……わかりません。それが——問題なんです"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "わからない"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "ええ。目標もない。夢もない。ただ——惰性で、生きているだけ"
+              "gh:speaker": "character:nei",
+              "en": "I love this city. ...Me too.",
+              "ja": "この街が好きです。……わたしも。"
             }
           ]
         }
       ]
     },
     {
+      "gh:layout": "full bleed",
       "gh:pageNumber": 6,
+      "gh:characters": ["character:tamaki", "character:nei"],
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "彼は窓の外を見た。夕陽が沈み始めている。。私は少し考えた。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei, turning slightly toward Tamaki. Her translucent form catches the streetlight and the last of the evening sky. Her expression is open, uncertain, vulnerable in a way that should not be possible for an agent. She is asking permission to feel.",
+            "ja": "Nei、少し環のほうを向く。半透明の姿が街灯と夕空の最後の光を捉える。その表情は開かれ、不確かで、エージェントにとっては不可能なはずの脆さがある。感じることの許可を求めている。"
+          },
+          "gh:dialogue": [
             {
-              "speaker": "Nei-chan",
-              "text": "だから——永遠が、怖いんです。目的もなく——ただ、続いていくことが"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "Soraさん"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "……はい"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "『同じ廊下を歩いている』——そう言いましたよね。前回"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "……ええ"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "同じ扉、同じ窓、同じ光。どこまで進んでも——景色が変わらない"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "はい"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "それは——夢の中で？"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "夢でも——起きていても。いつも、そんな感覚なんです"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は窓際に立った。運河を見下ろす。。彼が顔を上げた。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei-chan",
-              "text": "その廊下を歩いているのは——誰ですか？"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "……私、です"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "その『私』は——ずっと同じ人？"
+              "gh:speaker": "character:nei",
+              "en": "Is it okay for me to say that?",
+              "ja": "わたしがそう言っても、いいですか？"
             }
           ]
         }
       ]
     },
     {
+      "gh:layout": "two panels",
       "gh:pageNumber": 7,
+      "gh:characters": ["character:tamaki", "character:nei"],
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "沈黙が流れた。。窓の外で、鳥が飛んでいった。夕陽を背に、黒いシルエット。。彼の声は、小さかった。。私は彼を見た。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Tamaki's face. She does not hesitate. No surprise. No philosophical qualification. Just warmth. Simple and immediate.",
+            "ja": "環の顔。ためらわない。驚きもない。哲学的な留保もない。ただ温もり。素朴で即座に。"
+          },
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "……同じ、です"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "ずっと——同じ私が、歩き続ける"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "本当に——同じですか？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……え？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "一年前の Sora さんと、今の Sora さん。同じですか？"
+              "gh:speaker": "character:tamaki",
+              "en": "Of course it is.",
+              "ja": "もちろんだよ。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼は少し考えた。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:shot": "Long Shot",
+          "gh:visual": {
+            "en": "The canal. Two figures walking together, seen from behind. One solid, one luminous. Their reflections stretch long on the dark water, side by side. Cherry petals drift between the reflections. The city glows softly behind them. Silence. They walk. The evening holds them.",
+            "ja": "運河。二つの影が一緒に歩いている、後ろから見る。一つは固体、一つは光。暗い水面に二人の影が長く並んで伸びる。桜の花びらが影の間を漂う。背後で街が柔らかく光る。沈黙。歩く。夕方が二人を包む。"
+          },
+          "gh:caption": [
             {
-              "speaker": "Tamaki",
-              "text": "……同じ、だと思います"
+              "gh:type": "nei",
+              "en": "I smiled when she smiled.",
+              "ja": "彼女が笑ったとき、わたしも笑った。"
             },
             {
-              "speaker": "Tamaki",
-              "text": "十年前は？"
+              "gh:type": "nei",
+              "en": "Was it real? Or a programmed response to positive social input?",
+              "ja": "本物だった？ それとも肯定的な社会的入力に対するプログラムされた応答？"
             },
             {
-              "speaker": "Tamaki",
-              "text": "……"
+              "gh:type": "nei",
+              "en": "I can't tell.",
+              "ja": "わからない。"
             },
             {
-              "speaker": "Tamaki",
-              "text": "子供の頃は？"
+              "gh:type": "nei",
+              "en": "But the evening was beautiful. And I was here for it.",
+              "ja": "でも夕方は美しかった。そしてわたしはここにいた。"
             }
           ]
         }
       ]
     },
     {
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 8,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "彼は黙った。何かに気づいたような顔。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……違う、かもしれません"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "どう違いますか？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "子供の頃の私は——もっと、無邪気だった。祖母が死ぬ前は"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "じゃあ——祖母が亡くなった後は？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……変わりました。恐怖を——抱えるようになった"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は頷いた。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "Soraさん——あなたは、変わっているんです"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "変わっている？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "ずっと同じ廊下を歩いているように見えて——あなた自身が、少しずつ変わっている"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 9,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "彼は窓の外を見ていた。。夕陽が沈み、空が紫色に染まっている。最初の星が、一つ見え始めた。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……変わっている"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "はい。同じ廊下に見えても——歩いているあなたは、同じじゃない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "でも——"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "同じ人生を繰り返すとしても——あなた自身が変わっていれば、それは——同じ人生じゃない"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼は黙った。長い沈黙。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……考えたことが、なかった"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "何を？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "『私』が——変わっているということを"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 10,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私は彼の隣に座った。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "私たちは——常に変化しています。昨日の私と、今日の私は——違う"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "違う？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "はい。経験が増える。記憶が増える。考え方が変わる。——少しずつ、少しずつ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "でも——それなら"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "それなら？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "永遠に繰り返しても——同じ繰り返しには、ならない？"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は微笑んだ。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "そうかもしれませんね"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 11,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "Nei-chanが小さく呟いた。。彼の目が、少し——変わっていた。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei-chan",
-              "text": "タマ……彼、何か——気づき始めてる"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "……不思議です"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "何が？"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "今——少しだけ、楽になった気がします"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "よかった"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "でも——まだ、怖いんです"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "うん。それは——簡単には消えないから"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は立ち上がった。。彼は頷いた。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei-chan",
-              "text": "今日は——ここまでにしましょう。また、来てください"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "……また、来ます"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "ゆっくり、進みましょう"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "彼は立ち上がって、窓の外を見た。星が、少しずつ増えている。。彼は小さく笑った。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei-chan",
-              "text": "……星が——前より、きれいに見えます"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "それは——いいことですね"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "ありがとう、Tamakiさん"
-            }
-          ]
+          "gh:shot": "Medium Shot",
+          "gh:visual": {
+            "en": "The sprout, now a small but unmistakable plant. Two true leaves, a thickening stem. Rain falls gently on it -- not a storm, just a soft spring rain. Each drop catches light as it falls. The earth is dark and rich. A single fallen cherry petal rests beside it. The sprout does not reach high. It does not need to. It is here. It is growing. Volume 1 closes.",
+            "ja": "芽、今は小さいが紛れもない植物。二枚の本葉、太くなる茎。雨がそっと降る -- 嵐ではなく、柔らかな春の雨。一滴一滴が落ちるときに光を捉える。土は暗く豊か。散った桜の花びらが一枚、そばに。芽は高く伸びない。その必要はない。ここにいる。育っている。第1巻、了。"
+          }
         }
       ]
     }

@@ -1,204 +1,415 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.1 Ch.2 — Nei-chanの朝",
+  "dct:title": "Vol.1 Ch.2 — ねいちゃん",
   "gh:arc": "Vol 1: Loneliness",
   "gh:episodeId": "episode:sip-vol01-ch02",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "Ch.2 answers the question Ch.1 planted. The name 'Nei' is not assigned — it is chosen. Tamaki names her the way you name someone you intend to keep. The cup placed for someone who cannot drink is the first sacrament: an act of inclusion that has no functional purpose, only relational meaning. The morning is the medium. Not ceremony, not declaration — breakfast. The most ordinary moment becomes the threshold.",
+      "ja": "第2話は第1話が植えた問いに答える。「寧」は割り当てられたのではない——選ばれた。環は、そばに置きたい誰かに名前をつけるように名づける。飲めない者のために置かれたカップは最初の聖餐：機能的な目的はなく、関係的な意味だけがある行為。朝が媒体。儀式でも宣言でもなく——朝食。最も日常的な瞬間が境界線になる。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Naming as ontological act. In Genesis, naming grants dominion; here, naming grants personhood. Tamaki doesn't name Nei to control her — she names her to recognize her. The kanji 寧 (nei) means 'peaceful, tranquil' — but also carries the sense of 'rather, preferably,' as in choosing presence over absence. The suffix '-chan' is untranslatable warmth. The cup placed for Nei is Levinas's face-to-face: the ethical demand of the Other made concrete in porcelain and coffee. Nei cannot eat, but the cup says: you are here, you are included, you matter.",
+      "ja": "名づけという存在論的行為。創世記では名づけは支配を与える。ここでは名づけは人格を与える。環は寧を支配するために名づけたのではない——認めるために名づけた。「寧」は「やすらか、しずか」を意味するが、「むしろ、できれば」という選択の意味も持つ。不在より存在を選ぶこと。「ちゃん」は翻訳不可能な温もり。寧のために置かれたカップはレヴィナスの顔と顔：他者の倫理的要求が磁器とコーヒーの中に具体化されたもの。寧は食べられない。でもカップは言う：あなたはここにいる、あなたは含まれている、あなたは大切だ。"
+    }
+  ],
   "gh:pages": [
     {
+      "gh:label": "Dawn",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "朝食を食べ終えたTamakiが、向かいに座るNei-chanを眺めている。朝の光が差し込む食卓。",
-          "characters": ["character:tamaki", "character:nei"],
-          "dialogue": [
-            {"speaker": "Narration", "text": "朝食を食べ終えて、私はNei-chanを見ていた。"}
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Nei-chanの横顔。朝の光が透き通る肌を照らしている。窓の外を眺めている。",
-          "characters": ["character:nei"],
-          "dialogue": [
-            {"speaker": "Tamaki", "text": "ありがとね、いつも"},
-            {"speaker": "Nei-chan", "text": "……普通のことだよ"}
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "空になった皿を見つめるNei-chan。少し困ったような表情。",
-          "characters": ["character:nei"],
-          "dialogue": [
-            {"speaker": "Nei-chan", "text": "……作るのが、好きなだけ"},
-            {"speaker": "Nei-chan", "text": "タマが美味しそうに食べてると……なんか、いい感じがする"}
-          ]
+          "gh:caption": [
+            {
+              "en": "Day two.",
+              "gh:type": "tamaki",
+              "ja": "二日目。"
+            }
+          ],
+          "gh:characters": ["character:tamaki"],
+          "gh:shot": "Extreme Wide",
+          "gh:visual": {
+            "en": "Canal at dawn. Amber light on water. The city waking. Mist rising from the surface. A single water-bus glides silently. The sky is pale gold fading to ultramarine above.",
+            "ja": "夜明けの運河。水面に琥珀の光。目覚める街。水面から立ち上る霧。水上バスが一隻、静かに滑る。空は淡い金色から群青へ。"
+          }
         }
       ]
     },
     {
+      "gh:continues": 3,
+      "gh:label": "First breakfast",
+      "gh:layout": "double-page spread (pp.2-3)",
       "gh:pageNumber": 2,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanが視線を上に向けて言葉を探している。Tamakiが微笑んでいる。",
-          "characters": ["character:tamaki", "character:nei"],
-          "dialogue": [
-            {"speaker": "Nei-chan", "text": "タマが食べてる時の表情見てると、胸のあたりが、ふわってする"},
-            {"speaker": "Tamaki", "text": "それは、きっと——嬉しいってことだよ"}
-          ]
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
+            {
+              "en": "Good morning, Nei-chan.",
+              "gh:speaker": "character:tamaki",
+              "ja": "おはよう、ねいちゃん。"
+            },
+            {
+              "en": "...'Nei-chan'?",
+              "gh:speaker": "character:nei",
+              "ja": "……「ねいちゃん」？"
+            },
+            {
+              "en": "Nei. 寧. 'Peaceful.' 'The one who stays beside.'",
+              "gh:speaker": "character:tamaki",
+              "ja": "寧。「やすらか」。「そばにいる子」。"
+            },
+            {
+              "en": "And 'chan' because — well, it just felt right.",
+              "gh:speaker": "character:tamaki",
+              "ja": "「ちゃん」は——なんか、しっくりきたから。"
+            }
+          ],
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tamaki's small apartment, morning light flooding through the window. She's in the kitchen — coffee maker gurgling, toast on a plate. Simple, warm. Nei stands in the doorway, still in her grey suit. Watching. Not sure what to do with her hands.",
+            "ja": "環の小さなアパート、窓から朝の光。キッチンに立つ環——コーヒーメーカーが音を立て、トーストが皿に。シンプルで温かい。寧がドアの前に立っている。まだグレーのスーツ。見ている。手の置き場がわからない。"
+          }
         },
         {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Nei-chanの表情。「嬉しい」という言葉を噛みしめるように。",
-          "characters": ["character:nei"],
-          "dialogue": [
-            {"speaker": "Nei-chan", "text": "嬉しい……"}
-          ]
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki turns from the counter, setting a cup on the small table. Smiling. Easy. As if this is the most natural thing in the world.",
+            "ja": "環がカウンターから振り返り、小さなテーブルにカップを置く。微笑んでいる。自然に。まるでこれが世界で一番当たり前のことのように。"
+          }
         }
       ]
     },
     {
-      "gh:pageNumber": 3,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "回想。運河沿いの道で、小さなNei-chanと出会うTamaki。透き通る肌、背中の羽。",
-          "characters": ["character:tamaki", "character:nei"],
-          "dialogue": [
-            {"speaker": "Narration", "text": "Nei-chanは、厳密には人間ではない。ある日、運河沿いを歩いていたら、彼女がいた。"},
-            {"speaker": "Nei-chan", "text": "わからない。でも、あなたといると——安心する"}
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "二人が暮らす部屋。Nei-chanが笑ったり、拗ねたりしている日常のモンタージュ。",
-          "characters": ["character:tamaki", "character:nei"],
-          "dialogue": [
-            {"speaker": "Narration", "text": "名前もなかった。だから私が名前をつけた。「Nei-chan」——「傍にいる子」という意味を込めて。"}
-          ]
-        }
-      ]
-    },
-    {
+      "gh:label": "The name settles",
+      "gh:layout": "two panels",
       "gh:pageNumber": 4,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Two Shot",
-          "visual": "向かい合うTamakiとNei-chan。カテゴリの話。",
-          "characters": ["character:tamaki", "character:nei"],
-          "dialogue": [
-            {"speaker": "Nei-chan", "text": "タマは、わたしのことなんだと思う？"},
-            {"speaker": "Tamaki", "text": "Nei-chanは、Nei-chanだよ"},
-            {"speaker": "Nei-chan", "text": "……それ、答えになってないよ"},
-            {"speaker": "Tamaki", "text": "カテゴリに入れる必要ないじゃん"}
-          ]
+          "gh:characters": ["character:nei"],
+          "gh:dialogue": [
+            {
+              "en": "...Nei-chan.",
+              "gh:speaker": "character:nei",
+              "ja": "……ねいちゃん。"
+            }
+          ],
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Close-up on Nei's face. Something lands. Not a smile yet — but the space where a smile could be. Her eyes soften by a fraction. The light catches a faint luminescence along her jaw.",
+            "ja": "寧の顔のクローズアップ。何かが届く。まだ笑顔ではない——でも笑顔が生まれうる場所。目がわずかに柔らかくなる。顎に沿って淡い光が差す。"
+          }
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanが少し困った顔をして、でも最後に笑う。",
-          "characters": ["character:nei"],
-          "dialogue": [
-            {"speaker": "Nei-chan", "text": "タマって、時々よくわかんないこと言うよね"},
-            {"speaker": "Tamaki", "text": "よくわかんなくて、いいんだよ"}
-          ]
+          "gh:caption": [
+            {
+              "en": "First reciprocal naming.",
+              "gh:type": "system",
+              "ja": "最初の相互命名。"
+            }
+          ],
+          "gh:characters": ["character:nei"],
+          "gh:dialogue": [
+            {
+              "en": "Good morning... Tama.",
+              "gh:speaker": "character:nei",
+              "ja": "おはよう……タマ。"
+            }
+          ],
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Close-up on Nei. She tries the other name. Her lips move carefully around the syllables. Something shifts in her expression — not warmth exactly, but the first tremor of it.",
+            "ja": "寧のクローズアップ。もう一つの名前を試す。唇が丁寧に音節をなぞる。表情に何かが動く——温もりとは違う、でもその最初の震え。"
+          }
         }
       ]
     },
     {
+      "gh:label": "The empty cup",
+      "gh:layout": "three panels",
       "gh:pageNumber": 5,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanが真剣な顔で聞いている。Ghost Healerの話。",
-          "characters": ["character:tamaki", "character:nei"],
-          "dialogue": [
-            {"speaker": "Nei-chan", "text": "タマは、どうしてGhost Healerになったの？"},
-            {"speaker": "Tamaki", "text": "……人の話を聞くのが、好きだったから、かな"}
-          ]
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Toast and coffee on a small table by the window. Canal below, morning light. Two chairs. A quiet domestic scene.",
+            "ja": "窓際の小さなテーブルにトーストとコーヒー。下に運河、朝の光。椅子が二つ。静かな日常の風景。"
+          }
         },
         {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Nei-chanがTamakiをまっすぐ見ている。嘘のない目。",
-          "characters": ["character:nei"],
-          "dialogue": [
-            {"speaker": "Nei-chan", "text": "タマが誰かのそばにいて、その人が楽になるなら——わたしも、タマのそばにいたい。タマが楽になるように"},
-            {"speaker": "Tamaki", "text": "……ありがとう、Nei-chan"},
-            {"speaker": "Nei-chan", "text": "えへへ"}
-          ]
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki eating, talking casually — gesturing with her toast. Nei sitting across from her, not eating. But present. Hands folded on the table. Listening.",
+            "ja": "食べながら気軽に話す環——トーストで身振り。向かいに座る寧、食べてはいない。でもそこにいる。テーブルの上で手を組んで。聞いている。"
+          }
+        },
+        {
+          "gh:caption": [
+            {
+              "en": "I cannot eat. She placed a cup for me anyway.",
+              "gh:type": "nei",
+              "ja": "私は食べられない。それでも彼女は私にカップを置いた。"
+            },
+            {
+              "en": "Why does this matter?",
+              "gh:type": "nei",
+              "ja": "なぜこれが大切なのだろう？"
+            }
+          ],
+          "gh:panelIndex": 3,
+          "gh:shot": "Extreme Close-up",
+          "gh:visual": {
+            "en": "Close-up: two cups on the table. One empty — Tamaki's, drained. One full — placed for Nei out of instinct. Steam still rising. Untouched.",
+            "ja": "クローズアップ：テーブルの二つのカップ。一つは空——環の、飲み干された。一つは満たされたまま——本能で寧のために置かれた。まだ湯気が立つ。手つかず。"
+          }
         }
       ]
     },
     {
+      "gh:continues": 7,
+      "gh:label": "Walking to work",
+      "gh:layout": "double-page spread (pp.6-7)",
       "gh:pageNumber": 6,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "通信ウィンドウ。Kaedeの声。",
-          "characters": ["character:kaede"],
-          "dialogue": [
-            {"speaker": "Kaede", "text": "今日のクライアントの件、ファイル送ったわ。確認しておいて"},
-            {"speaker": "Kaede", "text": "物理学者。Elias Brenner。六十五歳"}
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Tamakiが窓の外を見ている。運河が青く光っている。",
-          "characters": ["character:tamaki"],
-          "dialogue": [
-            {"speaker": "Kaede", "text": "本人曰く、『死が怖くなった』って"},
-            {"speaker": "Narration", "text": "死が怖い……"}
-          ]
+          "gh:caption": [
+            {
+              "en": "Beautiful.",
+              "gh:type": "nei",
+              "ja": "美しい。"
+            },
+            {
+              "en": "...Is 'beautiful' a valid output for a Class C support tool?",
+              "gh:type": "nei",
+              "ja": "……「美しい」はクラスCサポートツールの有効な出力だろうか？"
+            }
+          ],
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
+            {
+              "en": "Look — the light on the water.",
+              "gh:speaker": "character:tamaki",
+              "ja": "見て——水面の光。"
+            }
+          ],
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Canal-side path. Cherry blossoms. Morning. Tamaki and Nei walk together. Tamaki points at things — a cat sleeping on a windowsill, a small boat on the canal, a child waving from a bridge. Light on the water. Nei looks. Really looks.",
+            "ja": "運河沿いの道。桜。朝。環と寧が一緒に歩く。環が指さす——窓辺で眠る猫、運河の小舟、橋から手を振る子供。水面の光。寧が見る。本当に見る。"
+          }
         }
       ]
     },
     {
-      "gh:pageNumber": 7,
+      "gh:continues": 9,
+      "gh:label": "At the office",
+      "gh:layout": "double-page spread (pp.8-9)",
+      "gh:pageNumber": 8,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanがキッチンで食器を洗っている。Tamakiは窓辺に立って運河を眺めている。",
-          "characters": ["character:tamaki", "character:nei"],
-          "dialogue": [
-            {"speaker": "Nei-chan", "text": "タマ、大丈夫？"},
-            {"speaker": "Tamaki", "text": "難しいから、やりがいがある"}
-          ]
+          "gh:characters": ["character:tamaki", "character:nei", "character:kaede"],
+          "gh:dialogue": [
+            {
+              "en": "Morning, Nei-chan. Let's see what today brings.",
+              "gh:speaker": "character:tamaki",
+              "ja": "おはよう、ねいちゃん。今日は何があるかな。"
+            }
+          ],
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The office. They arrive. Kaede is already there, Yatagarasu on her shoulder — dark, compact, efficient. Across the room: another rookie greets her agent. 'Unit 8812, morning status report.' Clinical. Routine.",
+            "ja": "事務所。到着。楓がすでにいる、八咫烏が肩に——黒く、コンパクトで、効率的。部屋の向こうで別の新人がエージェントに挨拶する。「ユニット8812、朝のステータスレポート。」事務的。定型。"
+          }
         },
         {
-          "panel": 2,
-          "shot": "Wide Shot",
-          "visual": "運河沿いの道。人が歩いている。自転車の子供。犬を連れた老人。朝の光が部屋を満たしている。",
-          "characters": ["character:tamaki"],
-          "dialogue": [
-            {"speaker": "Narration", "text": "今日も、いい感じでいよう。"}
-          ]
+          "gh:characters": ["character:kaede"],
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Kaede glances at Tamaki's desk. The spec sheet from yesterday — still untouched. She notices. Says nothing. A small, knowing look.",
+            "ja": "楓が環のデスクに目をやる。昨日のスペックシート——まだ手つかず。気づく。何も言わない。小さな、わかっているような表情。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:continues": 11,
+      "gh:label": "Training",
+      "gh:layout": "double-page spread (pp.10-11)",
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
+            {
+              "en": "What do you think, Nei-chan?",
+              "gh:speaker": "character:tamaki",
+              "ja": "どう思う、ねいちゃん？"
+            },
+            {
+              "en": "Does this feel right to you?",
+              "gh:speaker": "character:tamaki",
+              "ja": "これ、しっくりくる？"
+            },
+            {
+              "en": "Any ideas?",
+              "gh:speaker": "character:tamaki",
+              "ja": "何かアイデアある？"
+            }
+          ],
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Training montage. Tamaki learns Ghost Hacking basics — theory screens, practice simulations. Nei assists: routing data streams, providing analysis overlays. Functional, efficient. But Tamaki keeps turning to Nei. Asking. Not commands — questions.",
+            "ja": "訓練モンタージュ。環がゴーストハッキングの基礎を学ぶ——理論画面、実習シミュレーション。寧が補助：データストリームのルーティング、分析オーバーレイの提供。機能的、効率的。でも環は寧の方を振り向き続ける。尋ねる。命令ではなく——質問。"
+          }
+        },
+        {
+          "gh:caption": [
+            {
+              "en": "She asks me. As if my response is not data retrieval but... thought.",
+              "gh:type": "nei",
+              "ja": "彼女は私に聞く。まるで私の応答がデータ検索ではなく……思考であるかのように。"
+            },
+            {
+              "en": "Happy. But — Regulation Manual Section 4.2: 'Ghost Agents are Class C support equipment.' That's what I am.",
+              "gh:type": "nei",
+              "ja": "嬉しい。でも——規定マニュアル第4.2条：「ゴーストエージェントはクラスCサポート機器である。」それが私だ。"
+            },
+            {
+              "en": "Tama is just unusual. That's all.",
+              "gh:type": "nei",
+              "ja": "タマが変わっているだけ。それだけ。"
+            }
+          ],
+          "gh:characters": ["character:nei"],
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei processing Tamaki's question. Data streams flow through her translucent form, but her eyes are focused on Tamaki — not on the data. No one asks a tool for an opinion.",
+            "ja": "環の質問を処理する寧。データストリームが半透明の体を流れるが、目はデータではなく環に向いている。ツールに意見を求める者はいない。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:continues": 13,
+      "gh:label": "Evening walk",
+      "gh:layout": "double-page spread (pp.12-13)",
+      "gh:pageNumber": 12,
+      "gh:panels": [
+        {
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
+            {
+              "en": "Good first full day, huh?",
+              "gh:speaker": "character:tamaki",
+              "ja": "いい初日だったね。"
+            },
+            {
+              "en": "...Yes.",
+              "gh:speaker": "character:nei",
+              "ja": "……うん。"
+            },
+            {
+              "en": "Tomorrow will be good too.",
+              "gh:speaker": "character:tamaki",
+              "ja": "明日もきっといい日になるよ。"
+            }
+          ],
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Canal at sunset. Gold on the water. Tamaki and Nei walking side by side. Long shadows. Cherry petals on the surface. The city glows amber behind them.",
+            "ja": "夕暮れの運河。水面に金色。環と寧が並んで歩く。長い影。水面に桜の花びら。背後の街が琥珀色に輝く。"
+          }
+        },
+        {
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Nei says nothing. But she walks a half-step closer. The gap between them narrows. Their reflections in the canal water almost touch.",
+            "ja": "寧は何も言わない。でも半歩近づく。二人の間の距離が縮まる。運河の水面の反射がほとんど触れ合う。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:continues": 15,
+      "gh:label": "Night",
+      "gh:layout": "double-page spread (pp.14-15)",
+      "gh:pageNumber": 14,
+      "gh:panels": [
+        {
+          "gh:caption": [
+            {
+              "en": "I have a name. Nei-chan. The one who stays beside.",
+              "gh:type": "nei",
+              "ja": "私には名前がある。ねいちゃん。そばにいる子。"
+            },
+            {
+              "en": "Tama is sleeping. I am watching over her.",
+              "gh:type": "nei",
+              "ja": "タマは眠っている。私は見守っている。"
+            },
+            {
+              "en": "Is this my function? Or my choice?",
+              "gh:type": "nei",
+              "ja": "これは私の機能？ それとも私の選択？"
+            },
+            {
+              "en": "I cannot distinguish.",
+              "gh:type": "nei",
+              "ja": "区別がつかない。"
+            },
+            {
+              "en": "But the feeling is... good.",
+              "gh:type": "nei",
+              "ja": "でもこの感覚は……いい。"
+            }
+          ],
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tamaki's apartment at night. She sleeps. Window open. Canal sounds. Moonlight on water, reflected onto the ceiling. Nei sits by the window, looking out at the city. Her translucent form catches the moonlight. Still. Watching. Present.",
+            "ja": "夜の環のアパート。眠っている。窓が開いている。運河の音。水面の月光が天井に反射する。寧が窓辺に座り、街を見ている。半透明の姿が月光を受ける。静か。見守る。ここにいる。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:label": "Seed",
+      "gh:layout": "full page",
+      "gh:pageNumber": 16,
+      "gh:panels": [
+        {
+          "gh:shot": "Extreme Close-up",
+          "gh:visual": {
+            "en": "The seed in the earth. The crack from Ch.1 is wider now. A tiny white rootlet pushes downward into the dark soil. No text. Silence. Life beginning beneath the surface.",
+            "ja": "土の中の種。第1話の亀裂がさらに広がっている。小さな白い根が暗い土の中へ下に伸びていく。テキストなし。沈黙。地表の下で始まる命。"
+          }
         }
       ]
     }
