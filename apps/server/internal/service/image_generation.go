@@ -109,9 +109,9 @@ func (s *StoryboardService) GeneratePanelImage(
 	var imageBytes []byte
 	if useLocal {
 		if req.Msg.Model == "cinematic-fast" {
-			imageBytes, err = s.callLocalCinematicGen(ctx, prompt, imagePath, true)
+			imageBytes, err = s.callLocalCinematicGen(ctx, prompt, imagePath, true, req.Msg.PanelData.Characters...)
 		} else if req.Msg.Model == "cinematic" {
-			imageBytes, err = s.callLocalCinematicGen(ctx, prompt, imagePath, false)
+			imageBytes, err = s.callLocalCinematicGen(ctx, prompt, imagePath, false, req.Msg.PanelData.Characters...)
 		} else {
 			style := "cinematic_sketch"
 			if strings.HasPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:") {
@@ -643,16 +643,34 @@ func (s *StoryboardService) callLocalImageGen(ctx context.Context, prompt, style
 
 // callLocalCinematicGen sends a request for 2-stage cinematic generation
 // (photorealistic → anime style transfer).
-func (s *StoryboardService) callLocalCinematicGen(ctx context.Context, prompt, outputPath string, fast bool) ([]byte, error) {
+func (s *StoryboardService) callLocalCinematicGen(ctx context.Context, prompt, outputPath string, fast bool, characterIDs ...string) ([]byte, error) {
 	baseURL := os.Getenv("IMAGE_GEN_URL")
 	if baseURL == "" {
 		baseURL = "http://localhost:8100"
 	}
 
 	requestBody := map[string]interface{}{
-		"prompt":      prompt,
+		"prompt":       prompt,
 		"aspect_ratio": "16:9",
-		"output_path": outputPath,
+		"output_path":  outputPath,
+	}
+
+	// Resolve character reference images for IP-Adapter
+	if len(characterIDs) > 0 {
+		var refPaths []string
+		imagesDir := filepath.Join(s.workspaceRoot, s.projectDir, "resources", "images", "characters")
+		for _, cid := range characterIDs {
+			slug := strings.TrimPrefix(cid, "character:")
+			imgPath := filepath.Join(imagesDir, slug+".png")
+			if _, err := os.Stat(imgPath); err == nil {
+				refPaths = append(refPaths, imgPath)
+				log.Printf("Cinematic IP-Adapter ref: %s -> %s", cid, imgPath)
+			}
+		}
+		if len(refPaths) > 0 {
+			requestBody["reference_image_paths"] = refPaths
+			requestBody["ip_adapter_scale"] = 0.5
+		}
 	}
 
 	jsonBody, err := json.Marshal(requestBody)

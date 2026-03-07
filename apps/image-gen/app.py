@@ -66,6 +66,8 @@ class GenerateCinematicRequest(BaseModel):
     seed: int | None = None
     denoising_strength: float = 0.65
     output_path: str | None = None
+    reference_image_paths: list[str] = Field(default_factory=list)
+    ip_adapter_scale: float = 0.5
 
 
 class GeneratePanelResponse(BaseModel):
@@ -208,12 +210,23 @@ async def generate_cinematic_fast(req: GenerateCinematicRequest):
     if not gen.model_loaded:
         raise HTTPException(status_code=503, detail="Model not loaded yet")
 
+    # Load character reference images for IP-Adapter
+    ref_images = []
+    for path in req.reference_image_paths:
+        try:
+            ref_images.append(Image.open(path).convert("RGB"))
+            logger.info("Loaded reference image: %s", path)
+        except Exception as e:
+            logger.warning("Failed to load reference image %s: %s", path, e)
+
     gen._current_job_id = str(uuid.uuid4())
     try:
         image, seed, gen_time = gen.generate_cinematic_fast(
             prompt=req.prompt,
             aspect_ratio=req.aspect_ratio,
             seed=req.seed,
+            ip_adapter_images=ref_images if ref_images else None,
+            ip_adapter_scale=req.ip_adapter_scale,
         )
     except InterruptedError:
         gen._current_job_id = None

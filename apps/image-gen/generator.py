@@ -375,9 +375,12 @@ class ImageGenerator:
         prompt: str,
         aspect_ratio: str = "16:9",
         seed: int | None = None,
+        ip_adapter_images: list[Image.Image] | None = None,
+        ip_adapter_scale: float = 0.5,
     ) -> tuple[Image.Image, int, int]:
         """Fast photorealistic generation using Lightning model (6 steps).
 
+        Supports IP-Adapter for character face reference consistency.
         No anime conversion — produces cinematic/photographic output directly.
         """
         if seed is None:
@@ -393,26 +396,50 @@ class ImageGenerator:
             timestep_spacing="trailing",
         )
 
+        # IP-Adapter for character reference
+        extra_kwargs = {}
+        steps = config.LIGHTNING_STEPS
+        guidance = config.LIGHTNING_GUIDANCE
+        if ip_adapter_images:
+            self.load_ip_adapter()
+            # Lightning needs more steps/guidance for IP-Adapter conditioning to work
+            steps = max(steps, 8)
+            guidance = max(guidance, 2.0)
+            # Lower scale for Lightning to avoid noise artifacts
+            effective_scale = min(ip_adapter_scale, 0.35)
+            self.pipe.set_ip_adapter_scale(effective_scale)
+            # Pass first image directly for single IP-Adapter
+            extra_kwargs["ip_adapter_image"] = ip_adapter_images[0] if len(ip_adapter_images) == 1 else ip_adapter_images
+            logger.info("IP-Adapter: %d ref images, scale=%.2f (clamped), steps=%d, guidance=%.1f",
+                        len(ip_adapter_images), effective_scale, steps, guidance)
+        elif self._ip_adapter_loaded:
+            logger.info("Unloading IP-Adapter (no refs)")
+            self.pipe.unload_ip_adapter()
+            self._ip_adapter_loaded = False
+            # Re-enable attention slicing when not using IP-Adapter
+            self.pipe.enable_attention_slicing()
+
         generator = torch.Generator(device="cpu").manual_seed(seed)
 
         self._current_step = 0
-        self._total_steps = config.LIGHTNING_STEPS
+        self._total_steps = steps
         self._avg_step_time_ms = 0
         self._cancelled = False
         self._step_start_time = time.time()
 
-        logger.info("Cinematic FAST: Lightning %dx%d steps=%d seed=%d",
-                     dims[0], dims[1], config.LIGHTNING_STEPS, seed)
+        logger.info("Cinematic FAST: Lightning %dx%d steps=%d cfg=%.1f seed=%d",
+                     dims[0], dims[1], steps, guidance, seed)
         start = time.time()
         result = self.pipe(
             prompt=prompt,
             negative_prompt=config.PHOTOREALISTIC_NEGATIVE_PROMPT,
             width=dims[0],
             height=dims[1],
-            num_inference_steps=config.LIGHTNING_STEPS,
-            guidance_scale=config.LIGHTNING_GUIDANCE,
+            num_inference_steps=steps,
+            guidance_scale=guidance,
             generator=generator,
             callback_on_step_end=self._step_callback,
+            **extra_kwargs,
         )
         image = result.images[0]
 
