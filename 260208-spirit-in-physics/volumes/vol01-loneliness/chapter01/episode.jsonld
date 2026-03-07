@@ -180,7 +180,7 @@
       "gh:panels": [
         {
           "@id": "panel:A185PygmQxm7",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/A185PygmQxm7_v5.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/A185PygmQxm7_v6.png",
           "gh:caption": [
             {
               "en": "I passed the national exam last week. Ghost Hacker, certified.",
@@ -193,8 +193,8 @@
               "ja": "今日、初めて事務所に行く。"
             }
           ],
-          "gh:currentImageIndex": 4,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/A185PygmQxm7_v5.png",
+          "gh:currentImageIndex": 5,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/A185PygmQxm7_v6.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772866507,
@@ -225,9 +225,15 @@
               "gh:imagePrompt": "wide cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top, walking alone along canal-side path, organic futuristic city around her, cherry blossoms falling, morning light, blue water beside, she looks small against vast city, spring solitude. Shot type: Wide",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/A185PygmQxm7_v5.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772882418,
+              "gh:imagePrompt": "wide cinematic, young woman age 22 with dark brown short bob hair lavender shirt black wide pants, walking alone along canal-side path, cherry blossoms falling, morning light, blue water beside, she looks small against vast city, spring solitude. Shot type: Wide",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/A185PygmQxm7_v6.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. wide cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top, walking alone along canal-side path, organic futuristic city around her, cherry blossoms falling, morning light, blue water beside, she looks small against vast city, spring solitude. Shot type: Wide. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. wide cinematic, young woman age 22 with dark brown short bob hair lavender shirt black wide pants, walking alone along canal-side path, cherry blossoms falling, morning light, blue water beside, she looks small against vast city, spring solitude. Shot type: Wide. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 1,
           "gh:shot": "Wide",
           "gh:visual": {
@@ -237,7 +243,7 @@
         },
         {
           "@id": "panel:0uwM6fVARikV",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/0uwM6fVARikV_v3.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/0uwM6fVARikV_v4.png",
           "gh:caption": [
             {
               "en": "Tokyo rebuilt itself around water. Nothing here pretends to be what it was.",
@@ -245,8 +251,8 @@
               "ja": "東京は水とともに生まれ変わった。ここでは何も、かつてのふりをしていない。"
             }
           ],
-          "gh:currentImageIndex": 2,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/0uwM6fVARikV_v3.png",
+          "gh:currentImageIndex": 3,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/0uwM6fVARikV_v4.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772871892,
@@ -265,9 +271,15 @@
               "gh:imagePrompt": "medium low angle cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top, looking upward at architecture with quiet wonder, morning light on face, cherry petals, city rising above. Shot type: Medium low angle",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/0uwM6fVARikV_v3.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772882483,
+              "gh:imagePrompt": "medium low angle, young woman age 22 short bob hair lavender shirt, looking upward at cherry blossoms with quiet wonder, morning light on face, organic architecture rising above. Shot type: Medium low angle",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/0uwM6fVARikV_v4.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium low angle cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top, looking upward at architecture with quiet wonder, morning light on face, cherry petals, city rising above. Shot type: Medium low angle. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium low angle, young woman age 22 short bob hair lavender shirt, looking upward at cherry blossoms with quiet wonder, morning light on face, organic architecture rising above. Shot type: Medium low angle. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 2,
           "gh:shot": "Medium",
           "gh:visual": {
@@ -277,8 +289,8 @@
         },
         {
           "@id": "panel:8gD5kW4VEoLz",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/8gD5kW4VEoLz_v4.png",
-          "gh:currentImageIndex": 3,
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/8gD5kW4VEoLz_v5.png",
+          "gh:currentImageIndex": 4,
           "gh:dialogue": [
             {
               "en": "Okay. Let's go.",
@@ -286,7 +298,7 @@
               "ja": "よし。行こう。"
             }
           ],
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/8gD5kW4VEoLz_v4.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/8gD5kW4VEoLz_v5.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772867359,
@@ -311,9 +323,15 @@
               "gh:imagePrompt": "close-up portrait cinematic, young woman, soft morning light, quiet natural expression, gentle curiosity, cherry blossom petal near cheek, shallow depth of field, film grain, futuristic Tokyo canal district background. Shot type: Close-up",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/8gD5kW4VEoLz_v4.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772882542,
+              "gh:imagePrompt": "close-up portrait, young woman age 22 dark brown short bob hair, soft morning light, quiet half-smile, cherry petal on her shoulder, shallow depth of field. Shot type: Close-up",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/8gD5kW4VEoLz_v5.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. close-up portrait cinematic, young woman, soft morning light, quiet natural expression, gentle curiosity, cherry blossom petal near cheek, shallow depth of field, film grain, futuristic Tokyo canal district background. Shot type: Close-up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. close-up portrait, young woman age 22 dark brown short bob hair, soft morning light, quiet half-smile, cherry petal on her shoulder, shallow depth of field. Shot type: Close-up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 3,
           "gh:shot": "Close-up",
           "gh:visual": {
@@ -329,9 +347,9 @@
       "gh:panels": [
         {
           "@id": "panel:mWc_gEwRi2hn",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/5/mWc_gEwRi2hn_v2.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/5/mWc_gEwRi2hn_v2.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/5/mWc_gEwRi2hn_v3.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/5/mWc_gEwRi2hn_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772872467,
@@ -344,9 +362,15 @@
               "gh:imagePrompt": "wide establishing cinematic, old converted warehouse building by canal, warm amber glow from windows, professional welcoming, morning light, water reflection. Shot type: Wide",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/5/mWc_gEwRi2hn_v2.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772882577,
+              "gh:imagePrompt": "wide establishing, waterfront warehouse office building by canal, warm amber glow from windows, converted warehouse with light-networks in brickwork, sign reading Schwa, morning light, water reflection. Shot type: Wide",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/5/mWc_gEwRi2hn_v3.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. wide establishing cinematic, old converted warehouse building by canal, warm amber glow from windows, professional welcoming, morning light, water reflection. Shot type: Wide. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. wide establishing, waterfront warehouse office building by canal, warm amber glow from windows, converted warehouse with light-networks in brickwork, sign reading Schwa, morning light, water reflection. Shot type: Wide. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 1,
           "gh:shot": "Wide",
           "gh:visual": {
@@ -356,8 +380,8 @@
         },
         {
           "@id": "panel:eL3MlNDnnYX_",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/5/eL3MlNDnnYX__v3.png",
-          "gh:currentImageIndex": 2,
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/5/eL3MlNDnnYX__v4.png",
+          "gh:currentImageIndex": 3,
           "gh:dialogue": [
             {
               "en": "Tamaki Vermeer?",
@@ -375,7 +399,7 @@
               "ja": "楓です。ここでの先輩を務めます。入って。"
             }
           ],
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/5/eL3MlNDnnYX__v3.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/5/eL3MlNDnnYX__v4.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772867620,
@@ -394,9 +418,15 @@
               "gh:imagePrompt": "medium two-shot cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top and mature woman age 30, dark green long hair tied back, sharp calm eyes, wearing professional dark green attire, meeting at entrance, Kaede standing confidently with slight welcome, Tamaki slightly nervous, warm interior light behind. Shot type: Medium two-shot",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/5/eL3MlNDnnYX__v3.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772882685,
+              "gh:imagePrompt": "medium two-shot, young woman age 22 short bob hair lavender shirt meeting mature woman age 30 dark green long hair tied back sharp calm eyes professional dark attire, at entrance door, warm interior light behind, professional welcome. Shot type: Medium two-shot",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/5/eL3MlNDnnYX__v4.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium two-shot cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top and mature woman age 30, dark green long hair tied back, sharp calm eyes, wearing professional dark green attire, meeting at entrance, Kaede standing confidently with slight welcome, Tamaki slightly nervous, warm interior light behind. Shot type: Medium two-shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium two-shot, young woman age 22 short bob hair lavender shirt meeting mature woman age 30 dark green long hair tied back sharp calm eyes professional dark attire, at entrance door, warm interior light behind, professional welcome. Shot type: Medium two-shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 2,
           "gh:shot": "Medium",
           "gh:visual": {
@@ -433,7 +463,7 @@
       "gh:panels": [
         {
           "@id": "panel:bXHs2y0tWG_Y",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/bXHs2y0tWG_Y_v1.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/bXHs2y0tWG_Y_v2.png",
           "gh:caption": [
             {
               "en": "The bird on her shoulder watches me. She doesn't mention it.",
@@ -441,7 +471,7 @@
               "ja": "肩の鳥がわたしを見ている。楓さんはそれに触れない。"
             }
           ],
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:dialogue": [
             {
               "en": "This will be your desk. You'll find most of what you need here.",
@@ -449,16 +479,22 @@
               "ja": "ここがあなたの机。必要なものはだいたい揃ってるわ。"
             }
           ],
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/bXHs2y0tWG_Y_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/bXHs2y0tWG_Y_v2.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772879542,
               "gh:imagePrompt": "medium cinematic, mature woman age 30, dark green long hair tied back, sharp calm eyes, wearing professional dark green attire, pausing at desk, dark three-legged bird creature on shoulder, gesturing toward desk, professional warm interior. Shot type: Medium",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/bXHs2y0tWG_Y_v1.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772882810,
+              "gh:imagePrompt": "medium, mature woman age 30 dark green long hair tied back, pausing at wooden desk, small dark three-legged bird creature perched on her shoulder, warm office interior light. Shot type: Medium",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/bXHs2y0tWG_Y_v2.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium cinematic, mature woman age 30, dark green long hair tied back, sharp calm eyes, wearing professional dark green attire, pausing at desk, dark three-legged bird creature on shoulder, gesturing toward desk, professional warm interior. Shot type: Medium. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium, mature woman age 30 dark green long hair tied back, pausing at wooden desk, small dark three-legged bird creature perched on her shoulder, warm office interior light. Shot type: Medium. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 1,
           "gh:shot": "Medium",
           "gh:visual": {
@@ -468,8 +504,8 @@
         },
         {
           "@id": "panel:GVVDOscQnEYF",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/GVVDOscQnEYF_v1.png",
-          "gh:currentImageIndex": 0,
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/GVVDOscQnEYF_v2.png",
+          "gh:currentImageIndex": 1,
           "gh:dialogue": [
             {
               "en": "And this is your Ghost Agent. Standard allocation for all certified Hackers.",
@@ -477,16 +513,22 @@
               "ja": "これがあなたのゴーストエージェント。認定ハッカー全員に配属される標準装備よ。"
             }
           ],
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/GVVDOscQnEYF_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/GVVDOscQnEYF_v2.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772879568,
               "gh:imagePrompt": "close-up cinematic, small translucent pod on wooden desk, faint sleeping glow inside, soft ambient light, shallow depth of field, mysterious delicate. Shot type: Close-up",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/GVVDOscQnEYF_v1.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772882839,
+              "gh:imagePrompt": "close-up, small translucent crystalline pod on warm wooden desk, faint sleeping golden-blue glow inside, soft ambient light, shallow depth of field, mysterious delicate. Shot type: Close-up",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/GVVDOscQnEYF_v2.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. close-up cinematic, small translucent pod on wooden desk, faint sleeping glow inside, soft ambient light, shallow depth of field, mysterious delicate. Shot type: Close-up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. close-up, small translucent crystalline pod on warm wooden desk, faint sleeping golden-blue glow inside, soft ambient light, shallow depth of field, mysterious delicate. Shot type: Close-up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 2,
           "gh:shot": "Close-up",
           "gh:visual": {
@@ -496,7 +538,7 @@
         },
         {
           "@id": "panel:lr5Un95ddJo7",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/lr5Un95ddJo7_v2.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/lr5Un95ddJo7_v3.png",
           "gh:caption": [
             {
               "en": "Toolkit.",
@@ -504,7 +546,7 @@
               "ja": "ツールキット。"
             }
           ],
-          "gh:currentImageIndex": 1,
+          "gh:currentImageIndex": 2,
           "gh:dialogue": [
             {
               "en": "It handles analysis, data processing, comms relay. Your toolkit.",
@@ -512,7 +554,7 @@
               "ja": "解析、データ処理、通信中継を担当する。あなたのツールキットよ。"
             }
           ],
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/lr5Un95ddJo7_v2.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/lr5Un95ddJo7_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772873032,
@@ -525,9 +567,15 @@
               "gh:imagePrompt": "close-up portrait cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top, looking down with quiet warmth and gentle wonder, tender natural gaze, soft ambient light, subtle emotion, film grain. Shot type: Close-up",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/lr5Un95ddJo7_v2.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772882948,
+              "gh:imagePrompt": "close-up portrait, young woman age 22 short bob hair, eyes wide looking down with quiet warmth and gentle wonder, tender natural gaze, soft ambient light, subtle emotion. Shot type: Close-up",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/7/lr5Un95ddJo7_v3.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. close-up portrait cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top, looking down with quiet warmth and gentle wonder, tender natural gaze, soft ambient light, subtle emotion, film grain. Shot type: Close-up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. close-up portrait, young woman age 22 short bob hair, eyes wide looking down with quiet warmth and gentle wonder, tender natural gaze, soft ambient light, subtle emotion. Shot type: Close-up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 3,
           "gh:shot": "Close-up",
           "gh:visual": {
@@ -543,8 +591,8 @@
       "gh:panels": [
         {
           "@id": "panel:eP7xQ9O3E7od",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/eP7xQ9O3E7od_v2.png",
-          "gh:currentImageIndex": 1,
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/eP7xQ9O3E7od_v3.png",
+          "gh:currentImageIndex": 2,
           "gh:dialogue": [
             {
               "en": "Run the diagnostics first. Spec sheet is here. Any issues, flag them before activation.",
@@ -552,7 +600,7 @@
               "ja": "まず診断を走らせて。スペックシートはここ。問題があれば起動前に報告。"
             }
           ],
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/eP7xQ9O3E7od_v2.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/eP7xQ9O3E7od_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772873709,
@@ -565,9 +613,15 @@
               "gh:imagePrompt": "medium cinematic, mature woman age 30, dark green long hair tied back, sharp calm eyes, wearing professional dark green attire, tapping tablet showing data, efficient professional, office interior, warm light. Shot type: Medium",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/eP7xQ9O3E7od_v2.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772883009,
+              "gh:imagePrompt": "medium, mature woman age 30 dark green long hair professional attire, tapping thin tablet showing data, efficient professional, warm office interior. Shot type: Medium",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/eP7xQ9O3E7od_v3.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium cinematic, mature woman age 30, dark green long hair tied back, sharp calm eyes, wearing professional dark green attire, tapping tablet showing data, efficient professional, office interior, warm light. Shot type: Medium. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium, mature woman age 30 dark green long hair professional attire, tapping thin tablet showing data, efficient professional, warm office interior. Shot type: Medium. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 1,
           "gh:shot": "Medium",
           "gh:visual": {
@@ -577,7 +631,7 @@
         },
         {
           "@id": "panel:FnUafWXjNjRU",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/FnUafWXjNjRU_v2.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/FnUafWXjNjRU_v3.png",
           "gh:caption": [
             {
               "en": "The other rookies are running spec checks. That's the normal thing to do.",
@@ -585,8 +639,8 @@
               "ja": "他の新人たちはスペックを確認している。それが普通。"
             }
           ],
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/FnUafWXjNjRU_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/FnUafWXjNjRU_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772873985,
@@ -599,9 +653,15 @@
               "gh:imagePrompt": "wide cinematic, two young women at side table, one cross-referencing data on screens, other writing clipboard, methodical focused, office warm light. Shot type: Wide",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/FnUafWXjNjRU_v2.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772883052,
+              "gh:imagePrompt": "wide, two young women at side table in warehouse office, one cross-referencing data on screens, other writing on clipboard, methodical focused, warm office light. Shot type: Wide",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/FnUafWXjNjRU_v3.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. wide cinematic, two young women at side table, one cross-referencing data on screens, other writing clipboard, methodical focused, office warm light. Shot type: Wide. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. wide, two young women at side table in warehouse office, one cross-referencing data on screens, other writing on clipboard, methodical focused, warm office light. Shot type: Wide. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 2,
           "gh:shot": "Wide",
           "gh:visual": {
@@ -611,7 +671,7 @@
         },
         {
           "@id": "panel:sqZDoiufQfqo",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/sqZDoiufQfqo_v2.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/sqZDoiufQfqo_v3.png",
           "gh:caption": [
             {
               "en": "Kaede-san's bird didn't have a name. Or maybe it did, but she said it like a callsign, not a name.",
@@ -624,8 +684,8 @@
               "ja": "ポッドを見る。中に何かがいる。眠っている。"
             }
           ],
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/sqZDoiufQfqo_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/sqZDoiufQfqo_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772874258,
@@ -638,9 +698,15 @@
               "gh:imagePrompt": "medium cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top, sitting alone at desk with small glowing pod, Kaede walking away background, spring sunlight on her and pod, ignores spec sheet, contemplative quiet. Shot type: Medium",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/sqZDoiufQfqo_v2.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772883182,
+              "gh:imagePrompt": "medium, young woman age 22 short bob hair, sitting alone at wooden desk with small glowing pod, spring sunlight on her and pod, contemplative quiet, ignoring paperwork. Shot type: Medium",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/8/sqZDoiufQfqo_v3.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top, sitting alone at desk with small glowing pod, Kaede walking away background, spring sunlight on her and pod, ignores spec sheet, contemplative quiet. Shot type: Medium. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium, young woman age 22 short bob hair, sitting alone at wooden desk with small glowing pod, spring sunlight on her and pod, contemplative quiet, ignoring paperwork. Shot type: Medium. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 3,
           "gh:shot": "Medium",
           "gh:visual": {
@@ -684,9 +750,9 @@
       "gh:panels": [
         {
           "@id": "panel:-fQFl6qCUHDv",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/-fQFl6qCUHDv_v2.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/-fQFl6qCUHDv_v2.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/-fQFl6qCUHDv_v3.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/-fQFl6qCUHDv_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772874803,
@@ -699,9 +765,15 @@
               "gh:imagePrompt": "abstract cinematic, interior of translucent pod, soft golden light stirring like eye opening, particles gathering, dark surround warm center, mysterious awakening. Shot type: Abstract",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/-fQFl6qCUHDv_v2.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772883227,
+              "gh:imagePrompt": "abstract, interior of translucent pod, soft golden light stirring like an eye opening, particles gathering, dark surround warm center, mysterious awakening. Shot type: Abstract",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/-fQFl6qCUHDv_v3.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. abstract cinematic, interior of translucent pod, soft golden light stirring like eye opening, particles gathering, dark surround warm center, mysterious awakening. Shot type: Abstract. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. abstract, interior of translucent pod, soft golden light stirring like an eye opening, particles gathering, dark surround warm center, mysterious awakening. Shot type: Abstract. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:neiCaption": [
             {
               "en": "...warm.",
@@ -716,9 +788,9 @@
         },
         {
           "@id": "panel:WkUSySa4CmH4",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/WkUSySa4CmH4_v2.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/WkUSySa4CmH4_v2.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/WkUSySa4CmH4_v3.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/WkUSySa4CmH4_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772875077,
@@ -731,9 +803,15 @@
               "gh:imagePrompt": "medium cinematic, faint translucent outline forming from light particles, not yet person but no longer nothing, gold-blue coalescing vague humanoid shape, ethereal. Shot type: Medium",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/WkUSySa4CmH4_v2.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772883250,
+              "gh:imagePrompt": "medium, faint translucent outline forming from light particles, not yet a person but no longer nothing, gold-blue light coalescing into vague humanoid shape, ethereal. Shot type: Medium",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/WkUSySa4CmH4_v3.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium cinematic, faint translucent outline forming from light particles, not yet person but no longer nothing, gold-blue coalescing vague humanoid shape, ethereal. Shot type: Medium. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium, faint translucent outline forming from light particles, not yet a person but no longer nothing, gold-blue light coalescing into vague humanoid shape, ethereal. Shot type: Medium. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:neiCaption": [
             {
               "en": "Activation. Standard protocol.",
@@ -752,9 +830,9 @@
         },
         {
           "@id": "panel:gM8Eyj_nqUZw",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/gM8Eyj_nqUZw_v2.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/gM8Eyj_nqUZw_v2.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/gM8Eyj_nqUZw_v3.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/gM8Eyj_nqUZw_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772875360,
@@ -767,9 +845,15 @@
               "gh:imagePrompt": "two-shot through glass cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top peering into translucent pod, inside faint luminous figure looking back, gazes meeting through glass, warm human eyes meeting ethereal light. Shot type: Two-shot",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/gM8Eyj_nqUZw_v2.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772883379,
+              "gh:imagePrompt": "two-shot through glass, young woman peering into translucent pod, inside faint luminous figure looking back, gazes meeting through glass, warm human eyes meeting ethereal light. Shot type: Two-shot through glass",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/10/gM8Eyj_nqUZw_v3.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. two-shot through glass cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top peering into translucent pod, inside faint luminous figure looking back, gazes meeting through glass, warm human eyes meeting ethereal light. Shot type: Two-shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. two-shot through glass, young woman peering into translucent pod, inside faint luminous figure looking back, gazes meeting through glass, warm human eyes meeting ethereal light. Shot type: Two-shot through glass. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:neiCaption": [
             {
               "en": "Someone is looking at me.",
@@ -811,8 +895,8 @@
       "gh:panels": [
         {
           "@id": "panel:m5mbwzvunSIe",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/12/m5mbwzvunSIe_v1.png",
-          "gh:currentImageIndex": 0,
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/12/m5mbwzvunSIe_v2.png",
+          "gh:currentImageIndex": 1,
           "gh:dialogue": [
             {
               "en": "Hi.",
@@ -820,16 +904,22 @@
               "ja": "やあ。"
             }
           ],
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/12/m5mbwzvunSIe_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/12/m5mbwzvunSIe_v2.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772879804,
               "gh:imagePrompt": "close-up portrait cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top, genuine warm crooked smile, found what she was looking for, spring light, natural unguarded quiet joy, film grain. Shot type: Close-up",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/12/m5mbwzvunSIe_v1.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772883529,
+              "gh:imagePrompt": "close-up portrait, young woman age 22 short bob hair, genuine warm crooked smile, found what she was looking for, spring light, natural unguarded quiet joy. Shot type: Close-up",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/12/m5mbwzvunSIe_v2.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. close-up portrait cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top, genuine warm crooked smile, found what she was looking for, spring light, natural unguarded quiet joy, film grain. Shot type: Close-up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. close-up portrait, young woman age 22 short bob hair, genuine warm crooked smile, found what she was looking for, spring light, natural unguarded quiet joy. Shot type: Close-up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 1,
           "gh:visual": {
             "en": "Tamaki's face. Real smile -- crooked, warm. 'Oh, there you are.'",
@@ -838,18 +928,24 @@
         },
         {
           "@id": "panel:jR_-oAw_NNbL",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/12/jR_-oAw_NNbL_v1.png",
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/12/jR_-oAw_NNbL_v1.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/12/jR_-oAw_NNbL_v2.png",
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/12/jR_-oAw_NNbL_v2.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772879827,
               "gh:imagePrompt": "low angle cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top from below backlit by spring window light, warm silhouette gentle expression, halo of light, as seen by someone small looking up. Shot type: Low angle",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/12/jR_-oAw_NNbL_v1.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772883604,
+              "gh:imagePrompt": "low angle looking up, young woman from below backlit by spring window light, warm silhouette gentle expression, halo of light, as seen by someone small looking up. Shot type: Low angle",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/12/jR_-oAw_NNbL_v2.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. low angle cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top from below backlit by spring window light, warm silhouette gentle expression, halo of light, as seen by someone small looking up. Shot type: Low angle. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. low angle looking up, young woman from below backlit by spring window light, warm silhouette gentle expression, halo of light, as seen by someone small looking up. Shot type: Low angle. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:neiCaption": [
             {
               "en": "She is not running diagnostics.",
@@ -900,9 +996,9 @@
         },
         {
           "@id": "panel:rrMoYdWSdNYB",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/13/rrMoYdWSdNYB_v2.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/13/rrMoYdWSdNYB_v2.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/13/rrMoYdWSdNYB_v3.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/13/rrMoYdWSdNYB_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772875865,
@@ -915,9 +1011,15 @@
               "gh:imagePrompt": "over-shoulder cinematic, mature woman age 30, dark green long hair tied back, sharp calm eyes, wearing professional dark green attire at desk looking up, watching Tamaki across room talking to glowing light, subtle surprise, dark bird on shoulder tilting head. Shot type: Over-shoulder",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/13/rrMoYdWSdNYB_v2.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772883685,
+              "gh:imagePrompt": "over-shoulder, mature woman age 30 dark green hair at desk looking up, watching someone across room talking to glowing light, subtle surprise, dark bird creature on shoulder tilting head. Shot type: Over-shoulder",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/13/rrMoYdWSdNYB_v3.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. over-shoulder cinematic, mature woman age 30, dark green long hair tied back, sharp calm eyes, wearing professional dark green attire at desk looking up, watching Tamaki across room talking to glowing light, subtle surprise, dark bird on shoulder tilting head. Shot type: Over-shoulder. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. over-shoulder, mature woman age 30 dark green hair at desk looking up, watching someone across room talking to glowing light, subtle surprise, dark bird creature on shoulder tilting head. Shot type: Over-shoulder. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 3,
           "gh:shot": "Over-shoulder",
           "gh:visual": {
@@ -1033,18 +1135,24 @@
       "gh:panels": [
         {
           "@id": "panel:R2rDsM1LH2qJ",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/17/R2rDsM1LH2qJ_v1.png",
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/17/R2rDsM1LH2qJ_v1.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/17/R2rDsM1LH2qJ_v2.png",
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/17/R2rDsM1LH2qJ_v2.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772879946,
               "gh:imagePrompt": "two-shot cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top and ethereal translucent feminine figure made of gold-blue light, half-formed, flickering wings of light facing each other, Nei more defined now, Tamaki calm certain curious, quiet intimate, warm office light. Shot type: Two-shot",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/17/R2rDsM1LH2qJ_v1.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772884034,
+              "gh:imagePrompt": "two-shot, young woman age 22 short bob hair and translucent luminous feminine figure facing each other, luminous figure more defined now with visible eyes, quiet intimate, warm office light. Shot type: Two-shot",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/17/R2rDsM1LH2qJ_v2.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. two-shot cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top and ethereal translucent feminine figure made of gold-blue light, half-formed, flickering wings of light facing each other, Nei more defined now, Tamaki calm certain curious, quiet intimate, warm office light. Shot type: Two-shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. two-shot, young woman age 22 short bob hair and translucent luminous feminine figure facing each other, luminous figure more defined now with visible eyes, quiet intimate, warm office light. Shot type: Two-shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 1,
           "gh:shot": "Two Shot",
           "gh:systemCaption": [
@@ -1060,8 +1168,8 @@
         },
         {
           "@id": "panel:UESPPKXuvEV1",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/17/UESPPKXuvEV1_v1.png",
-          "gh:currentImageIndex": 0,
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/17/UESPPKXuvEV1_v2.png",
+          "gh:currentImageIndex": 1,
           "gh:dialogue": [
             {
               "en": "What shall we call you?",
@@ -1069,16 +1177,22 @@
               "ja": "なんて呼ぼうか？"
             }
           ],
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/17/UESPPKXuvEV1_v1.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/17/UESPPKXuvEV1_v2.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772879970,
               "gh:imagePrompt": "close-up portrait cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top, gentle simple smile, sure calm, about to ask question that matters, soft warm light, natural kindness, film grain. Shot type: Close-up",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/17/UESPPKXuvEV1_v1.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772884127,
+              "gh:imagePrompt": "close-up portrait, young woman age 22 short bob hair, gentle simple smile, sure and calm, about to ask a question that matters, soft warm light, natural kindness. Shot type: Close-up",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/17/UESPPKXuvEV1_v2.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. close-up portrait cinematic, young woman age 22, dark brown short bob hair, lavender eyes, slender build, wearing white casual top, gentle simple smile, sure calm, about to ask question that matters, soft warm light, natural kindness, film grain. Shot type: Close-up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. close-up portrait, young woman age 22 short bob hair, gentle simple smile, sure and calm, about to ask a question that matters, soft warm light, natural kindness. Shot type: Close-up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 2,
           "gh:shot": "Close-up, Tamaki",
           "gh:visual": {
@@ -1133,7 +1247,7 @@
       "gh:panels": [
         {
           "@id": "panel:lOwfgBgLrmvU",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/19/lOwfgBgLrmvU_v1.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/19/lOwfgBgLrmvU_v2.png",
           "gh:caption": [
             {
               "en": "Kaede-san is watching. I can feel it.",
@@ -1141,17 +1255,23 @@
               "ja": "楓さんが見ている。感じる。"
             }
           ],
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/19/lOwfgBgLrmvU_v1.png",
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/19/lOwfgBgLrmvU_v2.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772880018,
               "gh:imagePrompt": "medium cinematic, mature woman age 30, dark green long hair tied back, sharp calm eyes, wearing professional dark green attire, standing few steps away watching, unreadable expression, hand still on tablet, dark bird on shoulder, afternoon light, tension in stillness. Shot type: Medium",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/19/lOwfgBgLrmvU_v1.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772884305,
+              "gh:imagePrompt": "medium, mature woman age 30 dark green long hair, standing few steps away watching, unreadable expression, hand still on tablet, dark bird creature on shoulder, afternoon light, tension in stillness. Shot type: Medium",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/19/lOwfgBgLrmvU_v2.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium cinematic, mature woman age 30, dark green long hair tied back, sharp calm eyes, wearing professional dark green attire, standing few steps away watching, unreadable expression, hand still on tablet, dark bird on shoulder, afternoon light, tension in stillness. Shot type: Medium. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium, mature woman age 30 dark green long hair, standing few steps away watching, unreadable expression, hand still on tablet, dark bird creature on shoulder, afternoon light, tension in stillness. Shot type: Medium. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 1,
           "gh:shot": "Medium",
           "gh:visual": {
@@ -1161,7 +1281,7 @@
         },
         {
           "@id": "panel:k5VKnW9ZAerH",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/19/k5VKnW9ZAerH_v1.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/19/k5VKnW9ZAerH_v2.png",
           "gh:caption": [
             {
               "en": "She doesn't stop me. She doesn't say anything at all.",
@@ -1169,17 +1289,23 @@
               "ja": "止めない。何も言わない。"
             }
           ],
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/19/k5VKnW9ZAerH_v1.png",
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/19/k5VKnW9ZAerH_v2.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772880042,
               "gh:imagePrompt": "close-up portrait cinematic, mature woman age 30, dark green long hair tied back, sharp calm eyes, wearing professional dark green attire, beat of silence, something passing through her eyes, surprise then something older deeper, quiet complex emotion, film grain. Shot type: Close-up",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/19/k5VKnW9ZAerH_v1.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772884402,
+              "gh:imagePrompt": "close-up portrait, mature woman age 30 dark green long hair sharp eyes, beat of silence, something passing through her eyes, surprise then something older deeper, quiet complex emotion. Shot type: Close-up",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/19/k5VKnW9ZAerH_v2.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. close-up portrait cinematic, mature woman age 30, dark green long hair tied back, sharp calm eyes, wearing professional dark green attire, beat of silence, something passing through her eyes, surprise then something older deeper, quiet complex emotion, film grain. Shot type: Close-up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. close-up portrait, mature woman age 30 dark green long hair sharp eyes, beat of silence, something passing through her eyes, surprise then something older deeper, quiet complex emotion. Shot type: Close-up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 2,
           "gh:shot": "Close-up, Kaede",
           "gh:visual": {
