@@ -39,11 +39,6 @@
 		return '';
 	}
 
-	function getAvatarUrl(speaker: string): string {
-		if (!speaker || speaker === 'Narration' || speaker === 'NewsHacker') return '';
-		return `${getBackendBaseUrl()}/images/characters/${speaker}.png`;
-	}
-
 	function defaultDialogueX(index: number): number {
 		return Math.min(78, 8 + index * 22);
 	}

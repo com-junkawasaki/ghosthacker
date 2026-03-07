@@ -11,21 +11,81 @@
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 	import { updateJob, removeJob } from '$lib/stores/job-store.svelte';
 	import { FileDown, LayoutGrid, PenTool, MessageCircle } from 'lucide-svelte';
+	const validViews = ['storyboard', 'webtoon', 'manga', 'script', 'shooting'];
+
+	// ---- URL ↔ State ----
+	// URL pattern: /{projectId}/episodes/{episodeId}/{view}
+	//              /{projectId}/arcs/{arcId}/{view}
+	//              /{projectId}  → default episode + storyboard
+	//              /             → active project default
+
+	interface UrlState {
+		projectId: string;
+		editMode: 'episode' | 'arc';
+		resourceId: string;  // episodeId or arcId
+		view: string;
+	}
+
+	function parseUrl(): UrlState {
+		if (typeof window === 'undefined') return { projectId: '', editMode: 'episode', resourceId: '', view: 'storyboard' };
+		const segments = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
+		const state: UrlState = { projectId: '', editMode: 'episode', resourceId: '', view: 'storyboard' };
+
+		if (segments.length >= 1) state.projectId = decodeURIComponent(segments[0]!);
+		if (segments.length >= 3 && (segments[1] === 'episodes' || segments[1] === 'arcs')) {
+			state.editMode = segments[1] === 'arcs' ? 'arc' : 'episode';
+			state.resourceId = decodeURIComponent(segments[2]!);
+		}
+		if (segments.length >= 4 && validViews.includes(segments[3]!)) {
+			state.view = segments[3]!;
+		} else if (segments.length === 2 && validViews.includes(segments[1]!)) {
+			// /{projectId}/{view} shorthand
+			state.view = segments[1]!;
+		}
+		return state;
+	}
+
+	function buildUrl(projectId: string, mode: string, resourceId: string, view: string): string {
+		if (!projectId) return '/';
+		const base = `/${encodeURIComponent(projectId)}`;
+		const resource = mode === 'arc' ? 'arcs' : 'episodes';
+		if (!resourceId) return view === 'storyboard' ? base : `${base}/${view}`;
+		const viewSuffix = view === 'storyboard' ? '' : `/${view}`;
+		return `${base}/${resource}/${encodeURIComponent(resourceId)}${viewSuffix}`;
+	}
+
+	function pushUrl() {
+		if (typeof window === 'undefined') return;
+		const target = buildUrl(activeProject, editMode, editMode === 'episode' ? selectedEpisode : selectedArc, viewMode);
+		if (window.location.pathname !== target) {
+			history.pushState({}, '', target);
+		}
+	}
+
+	function replaceUrl() {
+		if (typeof window === 'undefined') return;
+		const target = buildUrl(activeProject, editMode, editMode === 'episode' ? selectedEpisode : selectedArc, viewMode);
+		if (window.location.pathname !== target) {
+			history.replaceState({}, '', target);
+		}
+	}
+
+	const initialUrl = parseUrl();
 
 	let projects: Array<{ id: string; name: string; hasStoryboard: boolean }> = $state([]);
-	let activeProject = $state('');
+	let activeProject = $state(initialUrl.projectId);
 	let episodes: Array<{ id: string; title: string; totalPages: number }> = $state([]);
 	let arcs: Array<{ id: string; title: string; description: string; episodeIds: string[] }> = $state([]);
-	let selectedEpisode = $state('');
-	let selectedArc = $state('');
-	let editMode = $state<string>('episode');
+	let selectedEpisode = $state(initialUrl.editMode === 'episode' ? initialUrl.resourceId : '');
+	let selectedArc = $state(initialUrl.editMode === 'arc' ? initialUrl.resourceId : '');
+	let editMode = $state<string>(initialUrl.editMode);
 	let panels: Panel[] = $state([]);
 	let loading = $state(false);
 	let error = $state('');
 	let selectedPage = $state(1);
 	let selectedPanelIndex = $state(1);
 	let selectedPanelData = $state<PanelData | undefined>(undefined);
-	let viewMode = $state<string>('storyboard');
+	let viewMode = $state<string>(initialUrl.view);
 	let projectCharacterIds: string[] = $state([]);
 	let workspacePane = $state<string>('canvas');
 
@@ -102,17 +162,80 @@
 			activeProject = projectId;
 			episodes = []; arcs = []; panels = []; selectedEpisode = ''; selectedArc = ''; selectedPage = 1;
 			await Promise.all([loadEpisodes(), loadArcs(), loadProjectCharacters()]);
+			pushUrl();
 		} catch (err) {
 			error = `Failed to switch project: ${err}`;
 		} finally { loading = false; }
 	}
+
+	// Sync viewMode ↔ URL
+	function setViewMode(v: string) {
+		viewMode = v;
+		workspacePane = 'canvas';
+		pushUrl();
+	}
+
+	function setEpisode(id: string) {
+		selectedEpisode = id;
+		pushUrl();
+	}
+
+	function setArc(id: string) {
+		selectedArc = id;
+		pushUrl();
+	}
+
+	function setEditMode(mode: string) {
+		editMode = mode;
+		pushUrl();
+	}
+
+	// Browser back/forward
+	$effect(() => {
+		if (typeof window === 'undefined') return;
+		const handlePopState = () => {
+			const s = parseUrl();
+			if (s.projectId && s.projectId !== activeProject) {
+				handleProjectSwitch(s.projectId);
+			}
+			if (s.editMode !== editMode) editMode = s.editMode;
+			if (s.resourceId) {
+				if (s.editMode === 'episode' && s.resourceId !== selectedEpisode) selectedEpisode = s.resourceId;
+				if (s.editMode === 'arc' && s.resourceId !== selectedArc) selectedArc = s.resourceId;
+			}
+			if (s.view !== viewMode) {
+				viewMode = s.view;
+				workspacePane = 'canvas';
+			}
+		};
+		window.addEventListener('popstate', handlePopState);
+		return () => window.removeEventListener('popstate', handlePopState);
+	});
 
 	let initialized = false;
 	$effect(() => {
 		if (initialized) return;
 		initialized = true;
 		(async () => {
-			try { await loadProjects(); await Promise.all([loadEpisodes(), loadArcs(), loadProjectCharacters()]); } catch (err) { console.error('[StoryboardEditor] init error', err); }
+			try {
+				await loadProjects();
+				// If URL specified a project, switch to it
+				if (initialUrl.projectId && initialUrl.projectId !== activeProject) {
+					const found = projects.find(p => p.id === initialUrl.projectId);
+					if (found) {
+						await switchProject(found.id);
+						activeProject = found.id;
+					}
+				}
+				await Promise.all([loadEpisodes(), loadArcs(), loadProjectCharacters()]);
+				// If URL specified a resource, select it
+				if (initialUrl.resourceId) {
+					if (initialUrl.editMode === 'episode') selectedEpisode = initialUrl.resourceId;
+					else selectedArc = initialUrl.resourceId;
+				}
+				// Set canonical URL after data is loaded
+				replaceUrl();
+			} catch (err) { console.error('[StoryboardEditor] init error', err); }
 		})();
 	});
 
@@ -201,8 +324,8 @@
 	});
 
 	$effect(() => {
-		if (editMode === 'episode' && !selectedEpisode && episodes.length > 0) { const f = episodes[0]; if (f) selectedEpisode = f.id; }
-		else if (editMode === 'arc' && !selectedArc && arcs.length > 0) { const f = arcs[0]; if (f) selectedArc = f.id; }
+		if (editMode === 'episode' && !selectedEpisode && episodes.length > 0) { const f = episodes[0]; if (f) { selectedEpisode = f.id; replaceUrl(); } }
+		else if (editMode === 'arc' && !selectedArc && arcs.length > 0) { const f = arcs[0]; if (f) { selectedArc = f.id; replaceUrl(); } }
 	});
 
 	let isExporting = $state(false);
@@ -283,16 +406,16 @@
 		<div class="nav-row">
 			<div class="ios-segment shrink-0">
 				{#each editModeItems as item}
-					<button class:active={editMode === item.value} onclick={() => editMode = item.value}>{item.label}</button>
+					<button class:active={editMode === item.value} onclick={() => setEditMode(item.value)}>{item.label}</button>
 				{/each}
 			</div>
 			{#if editMode === 'episode'}
-				<select class="content-select" bind:value={selectedEpisode}>
+				<select class="content-select" value={selectedEpisode} onchange={(e) => setEpisode(e.currentTarget.value)}>
 					{#if episodes.length === 0}<option value="" disabled>No episodes</option>
 					{:else}{#each episodes as ep}<option value={ep.id}>{ep.title}</option>{/each}{/if}
 				</select>
 			{:else}
-				<select class="content-select" bind:value={selectedArc}>
+				<select class="content-select" value={selectedArc} onchange={(e) => setArc(e.currentTarget.value)}>
 					{#if arcs.length === 0}<option value="" disabled>No arcs</option>
 					{:else}{#each arcs as arc}<option value={arc.id}>{arc.title}</option>{/each}{/if}
 				</select>
@@ -302,7 +425,7 @@
 		<div class="nav-row">
 			<div class="ios-segment flex-1">
 				{#each viewModeItems as item}
-					<button class:active={viewMode === item.value} onclick={() => { viewMode = item.value; workspacePane = 'canvas'; }}>{item.label}</button>
+					<button class:active={viewMode === item.value} onclick={() => setViewMode(item.value)}>{item.label}</button>
 				{/each}
 			</div>
 		</div>

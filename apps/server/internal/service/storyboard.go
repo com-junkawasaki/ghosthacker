@@ -17,6 +17,7 @@ import (
 	"cuelang.org/go/cue"
 	"cuelang.org/go/cue/cuecontext"
 	"github.com/dapr/go-sdk/workflow"
+	"storyboard-editor/backend/internal/jsonld"
 	"storyboard-editor/backend/internal/mcp"
 	"storyboard-editor/backend/internal/schema"
 	"storyboard-editor/backend/proto"
@@ -435,8 +436,9 @@ func (s *StoryboardService) UpdatePanel(
 					continue
 				}
 
-				panelIndex, _ := panel["panel"].(float64)
-				if int32(panelIndex) == req.Msg.Panel {
+				pn := jsonld.Wrap(panel)
+				panelIndex, _ := pn.Int32("gh:panelIndex", "panel")
+				if panelIndex == req.Msg.Panel {
 					// Update panel data
 					if req.Msg.PanelData.Characters != nil {
 						charRefs := make([]interface{}, len(req.Msg.PanelData.Characters))
@@ -752,9 +754,10 @@ func (s *StoryboardService) GetEpisodes(
 			continue
 		}
 
-		id, _ := episode["gh:episodeId"].(string)
-		title, _ := episode["dct:title"].(string)
-		
+		ep := jsonld.Wrap(episode)
+		id, _ := ep.Str("gh:episodeId")
+		title, _ := ep.Str("dct:title")
+
 		totalPages := int32(0)
 		if pages, ok := episode["gh:pages"].([]interface{}); ok {
 			totalPages = int32(len(pages))
@@ -786,39 +789,19 @@ func (s *StoryboardService) GetArcs(
 		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("failed to read storyboard file: %w", err))
 	}
 
-	arcsData, ok := storyboard["gh:arcs"].(map[string]interface{})
-	if !ok {
+	master := jsonld.Wrap(storyboard)
+	arcNodes := master.Slice("gh:arcs")
+	if len(arcNodes) == 0 {
 		return connect.NewResponse(&storyboardpb.GetArcsResponse{
 			Arcs: []*storyboardpb.Arc{},
 		}), nil
 	}
 
-	episodeList, ok := arcsData["gh:episodes"].([]interface{})
-	if !ok {
-		return connect.NewResponse(&storyboardpb.GetArcsResponse{
-			Arcs: []*storyboardpb.Arc{},
-		}), nil
-	}
-
-	arcs := make([]*storyboardpb.Arc, 0, len(episodeList))
-	for _, e := range episodeList {
-		arcMap, ok := e.(map[string]interface{})
-		if !ok {
-			continue
-		}
-
-		id, _ := arcMap["gh:arc"].(string)
-		desc, _ := arcMap["gh:description"].(string)
-		
-		var epIDs []string
-		if ids, ok := arcMap["gh:episodeIds"].([]interface{}); ok {
-			epIDs = make([]string, len(ids))
-			for i, idVal := range ids {
-				if s, ok := idVal.(string); ok {
-					epIDs[i] = s
-				}
-			}
-		}
+	arcs := make([]*storyboardpb.Arc, 0, len(arcNodes))
+	for _, an := range arcNodes {
+		id, _ := an.Str("gh:arc")
+		desc, _ := an.Str("gh:description")
+		epIDs := an.StringSlice("gh:episodeIds")
 
 		arcs = append(arcs, &storyboardpb.Arc{
 			Id:          id,
@@ -932,14 +915,9 @@ func (s *StoryboardService) GetArcPanels(
 					continue
 				}
 
-				panelIndex, _ := panel["panel"].(float64)
-				
-				// Reusing the panel data extraction logic would be better, 
-				// but for now let's keep it simple or refactor later.
-				// For this task, I'll implement a helper or just copy-paste for speed.
-				// (Refactoring to a helper function would be cleaner)
-				
-				pObj := s.extractPanelData(panel, int32(pageNum), int32(panelIndex))
+				pn := jsonld.Wrap(panel)
+				panelIndex, _ := pn.Int32("gh:panelIndex", "panel")
+				pObj := s.extractPanelData(panel, int32(pageNum), panelIndex)
 				allPanels = append(allPanels, pObj)
 			}
 		}
@@ -952,216 +930,138 @@ func (s *StoryboardService) GetArcPanels(
 
 // Helper to extract panel data (refactored from GetEpisodePanels)
 func (s *StoryboardService) extractPanelData(panel map[string]interface{}, pageNum int32, panelIndex int32) *storyboardpb.Panel {
+	n := jsonld.Wrap(panel)
 	panelData := &storyboardpb.PanelData{}
 
-	// Extract characters
-	if chars, ok := panel["characters"].([]interface{}); ok {
-		panelData.Characters = make([]string, len(chars))
-		for i, c := range chars {
-			if charID, ok := c.(string); ok {
-				panelData.Characters[i] = charID
-			}
+	// Extract characters (old: "characters", new: "gh:characters")
+	panelData.Characters = n.StringSlice("gh:characters", "characters")
+
+	// Extract dialogue (old: "dialogue" with speaker/text, new: "gh:dialogue" with gh:speaker and bilingual en/ja)
+	for _, dn := range n.Slice("gh:dialogue", "dialogue") {
+		speaker, _ := dn.Str("gh:speaker", "speaker")
+		// New format: text in "en"/"ja" fields; old format: "text" field
+		text, _ := dn.Str("en", "text")
+		dObj := &storyboardpb.Dialogue{
+			Speaker: speaker,
+			Text:    text,
 		}
+		if v, ok := dn.Str("gh:delivery"); ok {
+			dObj.Delivery = v
+		}
+		if v, ok := dn.Str("gh:subtext"); ok {
+			dObj.Subtext = v
+		}
+		if v, ok := dn.Str("gh:emotion"); ok {
+			dObj.Emotion = v
+		}
+		if v, ok := dn.Int32("gh:pauseBeforeMs"); ok {
+			dObj.PauseBeforeMs = v
+		}
+		if v, ok := dn.Int32("gh:pauseAfterMs"); ok {
+			dObj.PauseAfterMs = v
+		}
+		if ml, ok := dn.Map("gh:mangaLayout"); ok {
+			mt := &storyboardpb.MangaText{}
+			mt.Text, _ = ml.Str("text")
+			mt.Type, _ = ml.Str("type")
+			mt.X, _ = ml.Float32("x")
+			mt.Y, _ = ml.Float32("y")
+			mt.FontSize, _ = ml.Float32("fontSize")
+			mt.Style, _ = ml.Str("style")
+			dObj.MangaLayout = mt
+		}
+		panelData.Dialogue = append(panelData.Dialogue, dObj)
 	}
 
-	// Extract dialogue
-	if dialogues, ok := panel["dialogue"].([]interface{}); ok {
-		panelData.Dialogue = make([]*storyboardpb.Dialogue, 0, len(dialogues))
-		for _, d := range dialogues {
-			dialogue, ok := d.(map[string]interface{})
-			if !ok {
+	// Extract caption-based dialogue (new format: gh:caption, gh:neiCaption, gh:systemCaption)
+	extractCaptions := func(captionType string, keys ...string) {
+		for _, cn := range n.Slice(keys...) {
+			text, _ := cn.Str("en", "text")
+			if text == "" {
 				continue
 			}
-			speaker, _ := dialogue["speaker"].(string)
-			text, _ := dialogue["text"].(string)
-			dObj := &storyboardpb.Dialogue{
+			speaker := captionType
+			if s, ok := cn.Str("gh:type"); ok {
+				speaker = s
+			}
+			panelData.Dialogue = append(panelData.Dialogue, &storyboardpb.Dialogue{
 				Speaker: speaker,
 				Text:    text,
-			}
-			if v, ok := dialogue["gh:delivery"].(string); ok {
-				dObj.Delivery = v
-			}
-			if v, ok := dialogue["gh:subtext"].(string); ok {
-				dObj.Subtext = v
-			}
-			if v, ok := dialogue["gh:emotion"].(string); ok {
-				dObj.Emotion = v
-			}
-			if v, ok := dialogue["gh:pauseBeforeMs"].(float64); ok {
-				dObj.PauseBeforeMs = int32(v)
-			}
-			if v, ok := dialogue["gh:pauseAfterMs"].(float64); ok {
-				dObj.PauseAfterMs = int32(v)
-			}
-			if ml, ok := dialogue["gh:mangaLayout"].(map[string]interface{}); ok {
-				mt := &storyboardpb.MangaText{}
-				if val, ok := ml["text"].(string); ok {
-					mt.Text = val
-				}
-				if val, ok := ml["type"].(string); ok {
-					mt.Type = val
-				}
-				if val, ok := ml["x"].(float64); ok {
-					mt.X = float32(val)
-				}
-				if val, ok := ml["y"].(float64); ok {
-					mt.Y = float32(val)
-				}
-				if val, ok := ml["fontSize"].(float64); ok {
-					mt.FontSize = float32(val)
-				}
-				if val, ok := ml["style"].(string); ok {
-					mt.Style = val
-				}
-				dObj.MangaLayout = mt
-			}
-			panelData.Dialogue = append(panelData.Dialogue, dObj)
+			})
 		}
 	}
+	extractCaptions("narration", "gh:caption")
+	extractCaptions("nei", "gh:neiCaption")
+	extractCaptions("system", "gh:systemCaption")
 
 	// Extract environment
-	if env, ok := panel["environment"].(string); ok {
-		panelData.Environment = env
-	}
+	panelData.Environment, _ = n.Str("gh:environment", "environment")
 
-	// Extract visual note
-	if visual, ok := panel["visual"].(string); ok {
-		panelData.VisualNote = visual
-	}
+	// Extract visual note (old: flat string "visual", new: bilingual "gh:visual")
+	panelData.VisualNote, _ = n.Str("gh:visual", "visual")
 
 	// Extract camera direction
-	if cameraDir, ok := panel["gh:cameraDirection"].(string); ok {
-		panelData.CameraDirection = cameraDir
-	}
+	panelData.CameraDirection, _ = n.Str("gh:cameraDirection", "cameraDirection")
 
 	// Extract duration
-	if duration, ok := panel["gh:durationSeconds"].(float64); ok {
-		panelData.DurationSeconds = float32(duration)
-	}
+	panelData.DurationSeconds, _ = n.Float32("gh:durationSeconds")
 
 	// Extract cut number
-	if cutNum, ok := panel["gh:cutNumber"].(string); ok {
-		panelData.CutNumber = cutNum
-	}
+	panelData.CutNumber, _ = n.Str("gh:cutNumber")
 
-	if shot, ok := panel["shot"].(string); ok {
-		panelData.Shot = shot
-	}
+	// Extract shot (old: "shot", new: "gh:shot")
+	panelData.Shot, _ = n.Str("gh:shot", "shot")
 
-	if runwayPrompt, ok := panel["gh:runwayPrompt"].(string); ok {
-		panelData.RunwayPrompt = runwayPrompt
-	}
-
-	if generatedImageUrl, ok := panel["gh:generatedImageUrl"].(string); ok {
-		panelData.GeneratedImageUrl = generatedImageUrl
-	}
-
-	if imagePrompt, ok := panel["gh:imagePrompt"].(string); ok {
-		panelData.ImagePrompt = imagePrompt
-	}
+	panelData.RunwayPrompt, _ = n.Str("gh:runwayPrompt")
+	panelData.GeneratedImageUrl, _ = n.Str("gh:generatedImageUrl")
+	panelData.ImagePrompt, _ = n.Str("gh:imagePrompt")
 
 	// Extract manga layout
-	if ml, ok := panel["gh:mangaLayout"].(map[string]interface{}); ok {
+	if ml, ok := n.Map("gh:mangaLayout"); ok {
 		mangaLayout := &storyboardpb.MangaLayout{}
-		if panels, ok := ml["panels"].([]interface{}); ok {
-			mangaLayout.Panels = make([]*storyboardpb.MangaPanelLayout, 0, len(panels))
-			for _, p := range panels {
-				if pMap, ok := p.(map[string]interface{}); ok {
-					mpl := &storyboardpb.MangaPanelLayout{}
-					if val, ok := pMap["panelIndex"].(float64); ok {
-						mpl.PanelIndex = int32(val)
-					}
-					if val, ok := pMap["x"].(float64); ok {
-						mpl.X = float32(val)
-					}
-					if val, ok := pMap["y"].(float64); ok {
-						mpl.Y = float32(val)
-					}
-					if val, ok := pMap["width"].(float64); ok {
-						mpl.Width = float32(val)
-					}
-					if val, ok := pMap["height"].(float64); ok {
-						mpl.Height = float32(val)
-					}
-					if val, ok := pMap["shape"].(string); ok {
-						mpl.Shape = val
-					}
-					if val, ok := pMap["zIndex"].(float64); ok {
-						mpl.ZIndex = int32(val)
-					}
-					if val, ok := pMap["imageX"].(float64); ok {
-						mpl.ImageX = float32(val)
-					}
-					if val, ok := pMap["imageY"].(float64); ok {
-						mpl.ImageY = float32(val)
-					}
-					if val, ok := pMap["imageScale"].(float64); ok {
-						mpl.ImageScale = float32(val)
-					}
-					mangaLayout.Panels = append(mangaLayout.Panels, mpl)
-				}
-			}
+		for _, pn := range ml.Slice("panels") {
+			mpl := &storyboardpb.MangaPanelLayout{}
+			mpl.PanelIndex, _ = pn.Int32("panelIndex")
+			mpl.X, _ = pn.Float32("x")
+			mpl.Y, _ = pn.Float32("y")
+			mpl.Width, _ = pn.Float32("width")
+			mpl.Height, _ = pn.Float32("height")
+			mpl.Shape, _ = pn.Str("shape")
+			mpl.ZIndex, _ = pn.Int32("zIndex")
+			mpl.ImageX, _ = pn.Float32("imageX")
+			mpl.ImageY, _ = pn.Float32("imageY")
+			mpl.ImageScale, _ = pn.Float32("imageScale")
+			mangaLayout.Panels = append(mangaLayout.Panels, mpl)
 		}
-		if texts, ok := ml["texts"].([]interface{}); ok {
-			mangaLayout.Texts = make([]*storyboardpb.MangaText, 0, len(texts))
-			for _, t := range texts {
-				if tMap, ok := t.(map[string]interface{}); ok {
-					mt := &storyboardpb.MangaText{}
-					if val, ok := tMap["text"].(string); ok {
-						mt.Text = val
-					}
-					if val, ok := tMap["type"].(string); ok {
-						mt.Type = val
-					}
-					if val, ok := tMap["x"].(float64); ok {
-						mt.X = float32(val)
-					}
-					if val, ok := tMap["y"].(float64); ok {
-						mt.Y = float32(val)
-					}
-					if val, ok := tMap["fontSize"].(float64); ok {
-						mt.FontSize = float32(val)
-					}
-					if val, ok := tMap["style"].(string); ok {
-						mt.Style = val
-					}
-					mangaLayout.Texts = append(mangaLayout.Texts, mt)
-				}
-			}
+		for _, tn := range ml.Slice("texts") {
+			mt := &storyboardpb.MangaText{}
+			mt.Text, _ = tn.Str("text")
+			mt.Type, _ = tn.Str("type")
+			mt.X, _ = tn.Float32("x")
+			mt.Y, _ = tn.Float32("y")
+			mt.FontSize, _ = tn.Float32("fontSize")
+			mt.Style, _ = tn.Str("style")
+			mangaLayout.Texts = append(mangaLayout.Texts, mt)
 		}
 		panelData.MangaLayout = mangaLayout
 	}
 
 	// Load generated images history
-	if generatedImages, ok := panel["gh:generatedImages"].([]interface{}); ok {
-		panelData.GeneratedImages = make([]*storyboardpb.GeneratedImage, 0, len(generatedImages))
-		for _, img := range generatedImages {
-			imgMap, ok := img.(map[string]interface{})
-			if !ok {
-				continue
-			}
-			generatedImg := &storyboardpb.GeneratedImage{}
-			if url, ok := imgMap["gh:imageUrl"].(string); ok {
-				generatedImg.ImageUrl = url
-			}
-			if prompt, ok := imgMap["gh:imagePrompt"].(string); ok {
-				generatedImg.ImagePrompt = prompt
-			}
-			if timestamp, ok := imgMap["gh:generatedAt"].(float64); ok {
-				generatedImg.GeneratedAt = int64(timestamp)
-			}
-			if model, ok := imgMap["gh:model"].(string); ok {
-				generatedImg.Model = model
-			}
-			panelData.GeneratedImages = append(panelData.GeneratedImages, generatedImg)
+	for _, img := range n.Slice("gh:generatedImages") {
+		generatedImg := &storyboardpb.GeneratedImage{}
+		generatedImg.ImageUrl, _ = img.Str("gh:imageUrl")
+		generatedImg.ImagePrompt, _ = img.Str("gh:imagePrompt")
+		if ts, ok := img.Float("gh:generatedAt"); ok {
+			generatedImg.GeneratedAt = int64(ts)
 		}
+		generatedImg.Model, _ = img.Str("gh:model")
+		panelData.GeneratedImages = append(panelData.GeneratedImages, generatedImg)
 	}
 
 	// Load current image index
-	if idx, ok := panel["gh:currentImageIndex"].(float64); ok {
-		panelData.CurrentImageIndex = int32(idx)
+	if idx, ok := n.Int32("gh:currentImageIndex"); ok {
+		panelData.CurrentImageIndex = idx
 	} else if len(panelData.GeneratedImages) > 0 {
-		// Default to last image if index not set
 		panelData.CurrentImageIndex = int32(len(panelData.GeneratedImages) - 1)
 	}
 
@@ -1254,8 +1154,9 @@ func (s *StoryboardService) GetEpisodePanels(
 				continue
 			}
 
-			panelIndex, _ := panel["panel"].(float64)
-			pObj := s.extractPanelData(panel, int32(pageNum), int32(panelIndex))
+			pn := jsonld.Wrap(panel)
+			panelIndex, _ := pn.Int32("gh:panelIndex", "panel")
+			pObj := s.extractPanelData(panel, int32(pageNum), panelIndex)
 			panels = append(panels, pObj)
 		}
 	}
@@ -1407,15 +1308,11 @@ func (s *StoryboardService) AnalyzeStructure(
 }
 
 func (s *StoryboardService) extractMetadata(storyboard map[string]interface{}) *storyboardpb.StoryboardMetadata {
+	n := jsonld.Wrap(storyboard)
 	metadata := &storyboardpb.StoryboardMetadata{}
 
-	if title, ok := storyboard["dct:title"].(string); ok {
-		metadata.Title = title
-	}
-
-	if desc, ok := storyboard["dct:description"].(string); ok {
-		metadata.Description = desc
-	}
+	metadata.Title, _ = n.Str("dct:title")
+	metadata.Description, _ = n.Str("dct:description")
 
 	if episodes, ok := storyboard["gh:episodes"].([]interface{}); ok {
 		episodeIDs := make([]string, 0, len(episodes))

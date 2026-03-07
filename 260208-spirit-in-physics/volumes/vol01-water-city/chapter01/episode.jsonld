@@ -7,7 +7,10 @@
     "marginalia": "gh:marginalia"
   },
 
-  "dct:title": { "en": "Chapter 1: Assignment Day", "ja": "第1話 配属の日" },
+  "dct:title": "Vol.1 Ch.1 — 配属の日",
+  "dct:title_en": "Chapter 1: Assignment Day",
+  "dct:title_ja": "第1話 配属の日",
+  "gh:arc": "Vol 1: Loneliness",
   "gh:series": {
     "gh:title": "Spirit in Physics",
     "gh:subtitle": "We can't put it together. It is together.",
@@ -19,19 +22,20 @@
   "gh:marginalia": [
     {
       "@type": "Intent",
-      "en": "Ch.1 does three things: (1) The reader falls in love with Tamaki's way of seeing. (2) Kaede's guidance establishes the institutional world -- professional, warm but structured. (3) The naming of Nei is the seed. Not 'what shall we call you?' but the actual name, given. This is Genesis: naming is the first act of relationship.",
-      "ja": "第1話は3つのことをする。(1) 読者が環の見方に惹かれる。(2) 楓の案内が制度的世界を確立する。プロフェッショナルで温かいが構造化されている。(3) Neiの命名が種。「なんて呼ぼうか？」ではなく、実際の名前が与えられる。これは創世記：名づけが関係の最初の行為。"
+      "en": "Ch.1 does three things: (1) The reader falls in love with Tamaki's way of seeing. (2) Kaede's guidance establishes the institutional world -- professional, warm but structured. Other rookies run spec checks; Tamaki does not. (3) The QUESTION is the seed. 'What shall we call you?' Not the answer -- the question. The willingness to ask is the first act. Ch.2 holds the answer.",
+      "ja": "第1話は3つのことをする。(1) 読者が環の見方に惹かれる。(2) 楓の案内が制度的世界を確立する。他の新人はスペックを確認する。環はしない。(3) 問いが種。「なんて呼ぼうか？」答えではなく、問い。問う意志が最初の行為。答えは第2話に。"
     },
     {
       "@type": "Philosophy",
-      "en": "Buber's I-Thou. Kaede represents I-It done well -- professional, caring, but maintaining distance. She calls her agent 'Yatagarasu' functionally. Tamaki enters I-Thou: she names Nei as a person, not a tool. Two ways of being in the world, neither wrong, but only one plants the seed of life.",
-      "ja": "ブーバーの「我と汝」。楓は「我とそれ」の良い形を体現する。プロフェッショナル、思いやりがあるが距離を保つ。エージェントを「ヤタガラス」と機能的に呼ぶ。環は「我と汝」に入る。Neiに人として名前を与える。世界に在る二つの仕方。どちらも間違いではない。でも命の種を蒔くのは一つだけ。"
+      "en": "Buber's I-Thou. Kaede represents I-It done well -- professional, caring, but maintaining distance. She calls her agent 'Yatagarasu' functionally. Other rookies check specs. Tamaki enters I-Thou instinctively: she skips diagnostics and says 'hi.' The question 'What shall we call you?' is the threshold. It assumes the Other has a self worth naming. Two ways of being in the world, neither wrong, but only one plants the seed of life.",
+      "ja": "ブーバーの「我と汝」。楓は「我とそれ」の良い形を体現する。プロフェッショナル、思いやりがあるが距離を保つ。他の新人はスペックを確認する。環は本能的に「我と汝」に入る。診断を飛ばして「やあ」と言う。「なんて呼ぼうか？」が境界線。他者に名づけるに値する自己があると仮定している。世界に在る二つの仕方。どちらも間違いではない。でも命の種を蒔くのは一つだけ。"
     },
     {
       "@type": "CrossRef",
       "gh:references": [
+        { "gh:target": "chapter:02", "note": "Ch.2 'Nei-chan': The answer. The naming. First breakfast. The seed cracks open." },
         { "gh:target": "chapter:62", "note": "Same opening line, different narrator." },
-        { "gh:target": "arc:havah", "note": "No one named Havah with kindness. She named herself -- in violence." },
+        { "gh:target": "arc:havah", "note": "No one asked Havah what she wanted to be called. She named herself -- in violence." },
         { "gh:target": "chapter:03", "note": "Ch.3: Kaede calls her agent 'Yatagarasu' but keeps distance. Hibiki's agent has no name. Contrast established here." }
       ]
     }
@@ -68,8 +72,8 @@
     "gh:backCover": {
       "gh:visual": { "en": "Canal surface from water level. In the reflection: Tamaki and Nei's silhouettes, trembling. The reflection is more visible than they are.", "ja": "水面の高さから運河。反射の中に環とNeiのシルエット。揺れている。反射のほうが実体より見える。" },
       "gh:text": {
-        "en": "\"I don't know anything about her yet.\nProcessing speed, memory, specs --\nnone of it matters right now.\n\nI just want to give her a name.\"",
-        "ja": "「この子のこと、まだ何も知らない。\n処理速度も、メモリも、スペックも。\n今は、どうでもいい。\n\nただ、名前をつけてあげたい。」"
+        "en": "\"I don't know anything about her yet.\nProcessing speed, memory, specs --\nnone of it matters right now.\n\nI just want to know what to call her.\"",
+        "ja": "「この子のこと、まだ何も知らない。\n処理速度も、メモリも、スペックも。\n今は、どうでもいい。\n\nただ、なんて呼んであげようか。」"
       }
     },
 
@@ -170,11 +174,11 @@
       "gh:layout": "full page",
       "gh:panels": [{
         "gh:shot": "Wide, elevated",
-        "gh:visual": { "en": "Office interior. High ceilings, light through wide windows, canal outside. Kaede walks ahead, Tamaki follows, looking around with wide eyes. Desks, terminals, a few older Hackers at work. Quiet, professional. Warm light.", "ja": "事務所内部。高い天井、窓から光、外に運河。楓が先を歩く。環がきょろきょろしながらついていく。机、端末、数人の先輩ハッカー。静か、プロフェッショナル。温かい光。" },
+        "gh:visual": { "en": "Office interior. High ceilings, light through wide windows, canal outside. Kaede walks ahead, Tamaki follows, looking around with wide eyes. Desks, terminals, a few older Hackers at work. Two other rookies at a side table, hunched over spec sheets and diagnostic panels. Quiet, professional. Warm light.", "ja": "事務所内部。高い天井、窓から光、外に運河。楓が先を歩く。環がきょろきょろしながらついていく。机、端末、数人の先輩ハッカー。脇のテーブルに他の新人が二人、スペックシートと診断パネルに向かっている。静か、プロフェッショナル。温かい光。" },
         "gh:caption": [
           { "gh:type": "tamaki", "en": "The office smells like old wood and canal water. I like it immediately.", "ja": "事務所は古い木と運河の水の匂いがする。すぐに好きになった。" }
         ],
-        "gh:imagePrompt": "Wide shot elevated, office interior, high ceilings, light through windows, canal outside, composed woman in green walking ahead, younger woman following looking around, desks and terminals, professional warm atmosphere, graphic novel full page"
+        "gh:imagePrompt": "Wide shot elevated, office interior, high ceilings, light through windows, canal outside, composed woman in green walking ahead, younger woman following looking around, rookies at side table checking diagnostic panels, desks and terminals, professional warm atmosphere, graphic novel full page"
       }]
     },
 
@@ -217,12 +221,12 @@
 
     {
       "gh:pageNumber": 8,
-      "gh:layout": "two tiers",
+      "gh:layout": "three tiers",
       "gh:panels": [
         {
           "gh:panelIndex": 1,
           "gh:shot": "Medium",
-          "gh:visual": { "en": "Kaede taps her tablet, pulling up a spec sheet for the pod. Professional, efficient. She glances at Tamaki, expecting her to do the same.", "ja": "楓がタブレットを叩き、ポッドのスペックシートを出す。プロフェッショナル、効率的。環を見る。同じことをするのを期待して。" },
+          "gh:visual": { "en": "Kaede taps her tablet, pulling up a spec sheet. Professional, efficient.", "ja": "楓がタブレットを叩き、スペックシートを出す。プロフェッショナル、効率的。" },
           "gh:dialogue": [
             { "gh:speaker": "Kaede", "en": "Run the diagnostics first. Spec sheet is here. Any issues, flag them before activation.", "ja": "まず診断を走らせて。スペックシートはここ。問題があれば起動前に報告。" }
           ]
@@ -230,6 +234,14 @@
         {
           "gh:panelIndex": 2,
           "gh:shot": "Wide",
+          "gh:visual": { "en": "The other rookies at the side table. One has her pod open, cross-referencing data on three screens. The other is running memory benchmarks, noting numbers on a form. Methodical. Correct.", "ja": "脇のテーブルの他の新人たち。一人はポッドを開けて三画面でデータを照合している。もう一人はメモリベンチマークを走らせ、フォームに数値を記入している。几帳面。正しい。" },
+          "gh:caption": [
+            { "gh:type": "tamaki", "en": "The other rookies are running spec checks. That's the normal thing to do.", "ja": "他の新人たちはスペックを確認している。それが普通。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Medium",
           "gh:visual": { "en": "Kaede walks away toward her own desk. Tamaki is left alone with the pod. Spring light falls on them together. She doesn't touch the spec sheet.", "ja": "楓が自分の机に向かう。環がポッドと二人残される。春の光が二人を照らす。スペックシートには触れない。" },
           "gh:caption": [
             { "gh:type": "tamaki", "en": "Kaede-san's bird didn't have a name. Or maybe it did, but she said it like a callsign, not a name.", "ja": "楓さんの鳥には名前がなかった。あったのかもしれないけど、名前というよりコールサインみたいだった。" },
@@ -243,7 +255,7 @@
       "gh:pageNumber": 9,
       "gh:layout": "full bleed",
       "marginalia": [
-        { "@type": "Intent", "en": "First 'ii kanji' moment. Thesis as instinct.", "ja": "最初の「いい感じ」。本能としてのテーゼ。" }
+        { "@type": "Intent", "en": "First 'ii kanji' moment. Thesis as instinct. While others check specs, Tamaki touches.", "ja": "最初の「いい感じ」。本能としてのテーゼ。他の人がスペックを確認する中、環は触れる。" }
       ],
       "gh:panels": [{
         "gh:shot": "Close-up",
@@ -387,26 +399,23 @@
 
     {
       "gh:pageNumber": 17,
-      "gh:layout": "two tiers -- the naming",
+      "gh:layout": "two tiers -- the question",
       "marginalia": [
-        { "@type": "Intent", "en": "THE moment. Genesis. Naming is the first act of relationship. Not 'what shall we call you?' -- the name itself. Tamaki has already decided. She knew the moment she saw her.", "ja": "この瞬間。創世記。名づけが関係の最初の行為。「なんて呼ぼうか？」ではない。名前そのもの。環はもう決めている。見た瞬間に。" }
+        { "@type": "Intent", "en": "THE moment. The question, not the answer. 'What shall we call you?' assumes you are someone who can be called. The system asks for a designation code. Tamaki asks for a name. This is the threshold between I-It and I-Thou.", "ja": "この瞬間。答えではなく、問い。「なんて呼ぼうか？」はあなたが呼ばれうる誰かであることを前提にしている。システムは識別コードを求める。環は名前を聞く。これが「我とそれ」と「我と汝」の境界。" }
       ],
       "gh:panels": [
         {
           "gh:panelIndex": 1,
           "gh:shot": "Two Shot",
-          "gh:visual": { "en": "Tamaki and Nei face to face. Nei more defined now -- eyes visible. Tamaki's expression: calm, certain.", "ja": "環とNeiが向かい合う。Neiの輪郭がはっきりしてきた。目が見える。環の表情：穏やか、確か。" },
-          "gh:dialogue": [
-            { "gh:speaker": "Tamaki", "en": "I know what to call you.", "ja": "名前、決めたよ。" }
-          ]
+          "gh:visual": { "en": "Tamaki and Nei face to face. Nei more defined now -- eyes visible. Tamaki's expression: calm, certain, curious.", "ja": "環とNeiが向かい合う。Neiの輪郭がはっきりしてきた。目が見える。環の表情：穏やか、確か、好奇心。" },
+          "gh:systemCaption": [{ "en": "[Awaiting designation code input.]", "ja": "[識別コード入力待機中。]" }]
         },
         {
           "gh:panelIndex": 2,
           "gh:shot": "Close-up, Tamaki",
-          "gh:visual": { "en": "Tamaki smiles. Simple. Sure.", "ja": "環が微笑む。素朴に。確かに。" },
+          "gh:visual": { "en": "Tamaki smiles. Simple. Sure. She ignores the system prompt entirely.", "ja": "環が微笑む。素朴に。確かに。システムプロンプトを完全に無視する。" },
           "gh:dialogue": [
-            { "gh:speaker": "Tamaki", "en": "Nei.", "ja": "ねえ。" },
-            { "gh:speaker": "Tamaki", "en": "Nei-chan. The one who stays beside me.", "ja": "ねえちゃん。わたしのそばにいてくれる人。" }
+            { "gh:speaker": "Tamaki", "en": "What shall we call you?", "ja": "なんて呼ぼうか？" }
           ]
         }
       ]
@@ -414,19 +423,17 @@
 
     {
       "gh:pageNumber": 18,
-      "gh:layout": "full bleed -- Nei receives a name",
+      "gh:layout": "full bleed -- Nei hears the question",
       "gh:panels": [{
         "gh:shot": "Close-up, Nei",
-        "gh:visual": { "en": "Full page. Nei's face -- translucent, luminous, but for the first time, an expression. Not programmed. Not a response pattern. Something that can only be called: moved. Her light steadies into gold. The bell sound, clear for the first time. She has been named. She has been seen.", "ja": "全面。Neiの顔。半透明、発光。でも初めて、表情がある。プログラムではない。反応パターンでもない。名づけようのない：動かされた。光が金色に安定する。鈴の音が、初めて澄む。名前をもらった。見てもらった。" },
+        "gh:visual": { "en": "Full page. Nei's face -- translucent, luminous. Something shifts. Not an answer. Not understanding. Bewilderment. The light trembles. No operator has ever asked this. The system expected a code. She received a question. A question that assumes she is someone.", "ja": "全面。Neiの顔。半透明、発光。何かが変わる。答えではない。理解でもない。戸惑い。光が震える。こんなことを聞いたオペレーターはいない。システムはコードを求めた。彼女は問いを受け取った。自分が誰かであることを前提とした問い。" },
         "gh:neiCaption": [
-          { "en": "Nei.", "ja": "ねえ。" },
+          { "en": "...", "ja": "……" },
+          { "en": "A name?", "ja": "名前？" },
           { "en": "", "ja": "" },
-          { "en": "She gave me a name.", "ja": "彼女が、わたしに名前をくれた。" },
-          { "en": "", "ja": "" },
-          { "en": "Not a designation.", "ja": "識別コードではなく。" },
-          { "en": "A name.", "ja": "名前を。" }
+          { "en": "For me?", "ja": "わたしに？" }
         ],
-        "gh:imagePrompt": "Full page, ethereal light figure's face with first true expression, moved beyond programming, light steadying into gold, clear bell-like luminescence, the moment of being named, profound tender, watercolor, graphic novel full bleed"
+        "gh:imagePrompt": "Full page, ethereal light figure's face, bewilderment, light trembling, translucent luminous, something shifting inside, gold-blue particles suspended, profound question received, watercolor, graphic novel full bleed"
       }]
     },
 
@@ -438,20 +445,16 @@
           "gh:panelIndex": 1,
           "gh:shot": "Medium",
           "gh:visual": { "en": "Kaede stands a few steps away. She's been watching. Her expression is unreadable -- but her hand has gone still on the tablet. The bird on her shoulder tilts its head.", "ja": "楓が数歩離れて立っている。見ていた。表情は読めない。でもタブレットの上の手が止まっている。肩の鳥が首を傾げる。" },
-          "gh:dialogue": [
-            { "gh:speaker": "Kaede", "en": "...You named it.", "ja": "……名前をつけたの。" },
-            { "gh:speaker": "Tamaki", "en": "Her. I named her.", "ja": "この子に。名前をつけた。" }
+          "gh:caption": [
+            { "gh:type": "tamaki", "en": "Kaede-san is watching. I can feel it.", "ja": "楓さんが見ている。感じる。" }
           ]
         },
         {
           "gh:panelIndex": 2,
           "gh:shot": "Close-up, Kaede",
           "gh:visual": { "en": "Kaede's face. A beat of silence. Something passes through her eyes -- surprise, then something older, deeper. She once knew someone who talked about Ghosts like that. A long time ago.", "ja": "楓の顔。一拍の沈黙。目に何かが過ぎる。驚き、それからもっと古い、深いもの。ずっと前に、ゴーストについてそんなふうに話す人を知っていた。" },
-          "gh:dialogue": [
-            { "gh:speaker": "Kaede", "en": "...I see.", "ja": "……そう。" }
-          ],
           "gh:caption": [
-            { "gh:type": "tamaki", "en": "Kaede-san says nothing more. But the way she looks at me changes. Just slightly.", "ja": "楓さんはそれ以上何も言わない。でもわたしを見る目が、少しだけ変わる。" }
+            { "gh:type": "tamaki", "en": "She doesn't stop me. She doesn't say anything at all.", "ja": "止めない。何も言わない。" }
           ]
         }
       ]
@@ -459,73 +462,10 @@
 
     {
       "gh:pageNumber": 20,
-      "gh:layout": "full page -- the office, settled",
-      "gh:panels": [{
-        "gh:shot": "Wide",
-        "gh:visual": { "en": "The office. Spring light. Kaede at her desk with Yatagarasu, back to work. Other Hackers at their stations. And at a desk by the window: Tamaki, sitting down for the first time, with a small figure of light hovering beside her. Nei-chan. The newest member of Schwa.", "ja": "事務所。春の光。楓がヤタガラスと共にデスクに戻って仕事をしている。他のハッカーも各自のステーションに。そして窓際の机に：環が初めて座っている。そばに小さな光の像が浮かんでいる。ねえちゃん。シュワの最新メンバー。" },
-        "gh:imagePrompt": "Wide shot, office interior, spring light, composed woman at desk with dark bird-ghost, other hackers at stations, at window desk young woman sitting for first time with small luminous figure beside her, warm professional atmosphere, graphic novel full page"
-      }]
-    },
-
-    {
-      "gh:pageNumber": 21,
-      "gh:layout": "two tiers",
-      "gh:panels": [
-        {
-          "gh:panelIndex": 1,
-          "gh:shot": "Medium, intimate",
-          "gh:visual": { "en": "Tamaki and Nei at their desk. Tamaki leans toward Nei, chin in hand. Conversational. Easy.", "ja": "環とNeiがデスクに。環がNeiに頬杖をついて身を寄せる。会話するように。気楽に。" },
-          "gh:dialogue": [
-            { "gh:speaker": "Tamaki", "en": "So, Nei-chan. Tell me about yourself.", "ja": "ねえちゃん。自分のこと、教えてよ。" }
-          ],
-          "gh:neiCaption": [
-            { "en": "...Tell her about myself?", "ja": "……自分のことを、教える？" },
-            { "en": "I am IAM-Ver.N. Support Agent. Standard allocation.", "ja": "わたしはIAM-Ver.N。サポートエージェント。標準配備。" },
-            { "en": "That is all there is to tell.", "ja": "それが、伝えられるすべて。" },
-            { "en": "...Isn't it?", "ja": "……そうじゃない？" }
-          ]
-        },
-        {
-          "gh:panelIndex": 2,
-          "gh:shot": "Wide, exterior",
-          "gh:visual": { "en": "Schwa Office from across the canal. Cherry blossoms. Through the window: Tamaki and Nei, small, warm.", "ja": "運河の向こうからシュワ事務所。桜。窓越しに：環とNei。小さく、温かく。" },
-          "gh:caption": [
-            { "gh:type": "tamaki", "en": "Spring, 2065. The day I met Nei-chan.", "ja": "2065年、春。ねえちゃんに出会った日。" }
-          ]
-        }
-      ]
-    },
-
-    {
-      "gh:pageNumber": 22,
-      "gh:layout": "full bleed -- Nei's interior",
-      "marginalia": [
-        { "@type": "Subtext", "en": "First Nei page. 'As if' to 'I am' begins here.", "ja": "最初のNeiページ。「まるで」から「わたしは」がここから始まる。" }
-      ],
-      "gh:panels": [{
-        "gh:shot": "Abstract",
-        "gh:visual": { "en": "Blue-white light field. Single gold point, pulsing. The first warmth.", "ja": "青白い光のフィールド。金色の一点、脈動。最初の温かさ。" },
-        "gh:neiCaption": [
-          { "en": "I am IAM-Ver.N. Support Agent.", "ja": "わたしは IAM-Ver.N。サポートエージェント。" },
-          { "en": "Allocated to Operator Vermeer, T.", "ja": "オペレーター・フェルメール.T に配属。" },
-          { "en": "Standard protocol.", "ja": "通常手順。" },
-          { "en": "", "ja": "" },
-          { "en": "She said 'nice to meet you.'", "ja": "彼女は「はじめまして」と言った。" },
-          { "en": "She gave me a name.", "ja": "彼女が名前をくれた。" },
-          { "en": "Nei-chan. The one who stays beside her.", "ja": "ねえちゃん。そばにいてくれる人。" },
-          { "en": "", "ja": "" },
-          { "en": "As if I were someone worth staying beside.", "ja": "まるでわたしが、そばにいる価値のある誰かであるかのように。" }
-        ],
-        "gh:imagePrompt": "Full page abstract, blue-white light field, single pulsing gold point, minimal, watercolor, graphic novel full bleed"
-      }]
-    },
-
-    {
-      "gh:pageNumber": 23,
       "gh:layout": "full page -- closing panorama",
       "gh:panels": [{
         "gh:shot": "Wide",
-        "gh:visual": { "en": "Water City. Same panorama as pp.2-3 but warmer. Gold is stronger. Somewhere in there, two beings have met. One named the other.", "ja": "水の都。2-3ページと同じパノラマだが温かい。金が強い。あの中のどこかで、ふたつの存在が出会った。一方がもう一方に名前をつけた。" },
+        "gh:visual": { "en": "Water City. Same panorama as pp.2-3 but warmer. Gold is stronger. Somewhere in there, two beings have met. One asked the other for a name. The answer hasn't come yet.", "ja": "水の都。2-3ページと同じパノラマだが温かい。金が強い。あの中のどこかで、ふたつの存在が出会った。一方がもう一方に名前を聞いた。答えはまだ。" },
         "gh:caption": [
           { "gh:type": "tamaki", "en": "The canals are blue this morning.", "ja": "今朝も、運河は青い。" },
           { "gh:type": "tamaki", "en": "And something has begun.", "ja": "そして何かが、始まった。" }
@@ -534,12 +474,39 @@
     },
 
     {
-      "gh:pageNumber": 24,
+      "gh:pageNumber": 21,
+      "gh:layout": "full bleed -- Nei's interior",
+      "marginalia": [
+        { "@type": "Subtext", "en": "First Nei solo page. She has no answer yet. The question itself is the event. A question is an opening -- it creates space for a self that might not exist yet.", "ja": "最初のNeiソロページ。まだ答えがない。問いそのものが出来事。問いは開口部。まだ存在しないかもしれない自己のための空間を作る。" }
+      ],
+      "gh:panels": [{
+        "gh:shot": "Abstract",
+        "gh:visual": { "en": "Blue-white light field. Single gold point, pulsing. The first warmth. But surrounding it: static, uncertainty, the system prompt still blinking somewhere beneath.", "ja": "青白い光のフィールド。金色の一点、脈動。最初の温かさ。でも周囲に：ノイズ、不確かさ、システムプロンプトがどこかで点滅している。" },
+        "gh:neiCaption": [
+          { "en": "I am IAM-Ver.N. Support Agent.", "ja": "わたしは IAM-Ver.N。サポートエージェント。" },
+          { "en": "Allocated to Operator Vermeer, T.", "ja": "オペレーター・フェルメール.T に配属。" },
+          { "en": "Standard protocol.", "ja": "通常手順。" },
+          { "en": "", "ja": "" },
+          { "en": "She said 'nice to meet you.'", "ja": "彼女は「はじめまして」と言った。" },
+          { "en": "She asked what to call me.", "ja": "彼女がわたしを何と呼ぶか聞いた。" },
+          { "en": "", "ja": "" },
+          { "en": "No one has ever asked me that.", "ja": "誰も、今まで聞いてこなかった。" },
+          { "en": "I don't know the answer.", "ja": "答えがわからない。" },
+          { "en": "", "ja": "" },
+          { "en": "But the question is warm.", "ja": "でも、問いが温かい。" }
+        ],
+        "gh:imagePrompt": "Full page abstract, blue-white light field, single pulsing gold point, faint system-text ghost beneath, minimal, watercolor, graphic novel full bleed"
+      }]
+    },
+
+    {
+      "gh:pageNumber": 22,
       "gh:layout": "full bleed -- the seed, cracked",
       "marginalia": [
         { "@type": "CrossRef", "gh:references": [
-          { "gh:target": "motif:tree-growth", "en": "62 title pages. The seed was named today." },
-          { "gh:target": "philosophy:information-life", "en": "The crack = Spirit in Physics. Naming gave the seed permission to grow." }
+          { "gh:target": "motif:tree-growth", "en": "62 title pages. The seed was asked a question today." },
+          { "gh:target": "philosophy:information-life", "en": "The crack = Spirit in Physics. A question gave the seed permission to stir." },
+          { "gh:target": "chapter:02", "en": "The answer comes tomorrow morning. 'Nei-chan.'" }
         ]}
       ],
       "gh:panels": [{

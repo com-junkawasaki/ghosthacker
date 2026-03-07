@@ -1,516 +1,519 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
     "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia"
   },
-  "dct:title": "Vol.1 Ch.1 — 水の都の依頼",
+
+  "dct:title": "Vol.1 Ch.1 — 配属の日",
+  "dct:title_en": "Chapter 1: Assignment Day",
+  "dct:title_ja": "第1話 配属の日",
   "gh:arc": "Vol 1: Loneliness",
+  "gh:series": {
+    "gh:title": "Spirit in Physics",
+    "gh:subtitle": "We can't put it together. It is together.",
+    "gh:volume": { "en": "Volume 1: Water City", "ja": "第1巻 水の都" }
+  },
   "gh:episodeId": "episode:sip-vol01-ch01",
+  "gh:format": "graphic novel",
+
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "Ch.1 does three things: (1) The reader falls in love with Tamaki's way of seeing. (2) Kaede's guidance establishes the institutional world -- professional, warm but structured. Other rookies run spec checks; Tamaki does not. (3) The QUESTION is the seed. 'What shall we call you?' Not the answer -- the question. The willingness to ask is the first act. Ch.2 holds the answer.",
+      "ja": "第1話は3つのことをする。(1) 読者が環の見方に惹かれる。(2) 楓の案内が制度的世界を確立する。他の新人はスペックを確認する。環はしない。(3) 問いが種。「なんて呼ぼうか？」答えではなく、問い。問う意志が最初の行為。答えは第2話に。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Buber's I-Thou. Kaede represents I-It done well -- professional, caring, but maintaining distance. She calls her agent 'Yatagarasu' functionally. Other rookies check specs. Tamaki enters I-Thou instinctively: she skips diagnostics and says 'hi.' The question 'What shall we call you?' is the threshold. It assumes the Other has a self worth naming. Two ways of being in the world, neither wrong, but only one plants the seed of life.",
+      "ja": "ブーバーの「我と汝」。楓は「我とそれ」の良い形を体現する。プロフェッショナル、思いやりがあるが距離を保つ。他の新人はスペックを確認する。環は本能的に「我と汝」に入る。診断を飛ばして「やあ」と言う。「なんて呼ぼうか？」が境界線。他者に名づけるに値する自己があると仮定している。世界に在る二つの仕方。どちらも間違いではない。でも命の種を蒔くのは一つだけ。"
+    },
+    {
+      "@type": "CrossRef",
+      "gh:references": [
+        { "gh:target": "chapter:02", "note": "Ch.2 'Nei-chan': The answer. The naming. First breakfast. The seed cracks open." },
+        { "gh:target": "chapter:62", "note": "Same opening line, different narrator." },
+        { "gh:target": "arc:havah", "note": "No one asked Havah what she wanted to be called. She named herself -- in violence." },
+        { "gh:target": "chapter:03", "note": "Ch.3: Kaede calls her agent 'Yatagarasu' but keeps distance. Hibiki's agent has no name. Contrast established here." }
+      ]
+    }
+  ],
+
+  "gh:artDirection": {
+    "gh:style": "Amano Kozue meets Daytripper. Watercolor wash, delicate linework, organic future. Silence as storytelling.",
+    "gh:colorPalette": {
+      "primary": ["ultramarine wash", "amber light-network glow", "paper white"],
+      "accent": ["pale lavender (Tamaki)", "deep forest green (Kaede)", "gold-blue luminescence (Nei)"]
+    },
+    "gh:captionStyle": {
+      "tamaki": "White box, serif. First-person present tense.",
+      "nei": "Translucent blue box, monospace. System log becoming poetry.",
+      "system": "Black box, terminal font. Cold."
+    }
+  },
+
+  "gh:bookDesign": {
+
+    "gh:frontCover": {
+      "gh:visual": {
+        "en": "Tamaki at the edge of a canal, seen from behind, slightly right of center. She looks down at the water. At her shoulder, Nei floats -- small, translucent, not yet fully formed. Their reflections ripple on ultramarine water. Cherry petals drift between them. The city rises behind -- organic architecture, light-networks. Morning. Spring. Between sky and water: two small figures. One solid, one light.",
+        "ja": "環が運河の縁に、背中から。やや右にオフセンター。水面を見下ろしている。肩にNeiが浮かぶ。小さく半透明。水面に二人の反射。桜の花びらが漂う。背後に街。朝。春。空と水の間に、ふたつの小さな像。"
+      },
+      "gh:typography": {
+        "title": { "text": "SPIRIT IN PHYSICS", "style": "Upper third, centered. Thin serif, wide letterspacing. Dark ultramarine." },
+        "subtitle": { "text": "We can't put it together. It is together.", "style": "Below title. Italic. Amber." },
+        "volume": { "text": "Volume 1: Water City", "style": "Bottom third, left. Small caps. White 60%." }
+      },
+      "gh:imagePrompt": "Graphic novel cover, young woman seen from behind at canal edge, small translucent luminous figure at her shoulder, reflections rippling on ultramarine water, cherry petals, organic city with amber light-networks behind, morning spring, ultramarine amber lavender palette, watercolor, Amano Kozue meets Daytripper"
+    },
+
+    "gh:backCover": {
+      "gh:visual": { "en": "Canal surface from water level. In the reflection: Tamaki and Nei's silhouettes, trembling. The reflection is more visible than they are.", "ja": "水面の高さから運河。反射の中に環とNeiのシルエット。揺れている。反射のほうが実体より見える。" },
+      "gh:text": {
+        "en": "\"I don't know anything about her yet.\nProcessing speed, memory, specs --\nnone of it matters right now.\n\nI just want to know what to call her.\"",
+        "ja": "「この子のこと、まだ何も知らない。\n処理速度も、メモリも、スペックも。\n今は、どうでもいい。\n\nただ、なんて呼んであげようか。」"
+      }
+    },
+
+    "gh:frontispiece": {
+      "gh:visual": { "en": "Vast white page. Lower quarter: thin ultramarine band (canal, abstracted). On the water, a single gold light-point. Above: title.", "ja": "広大な白。下四分の一に群青の帯（運河の抽象）。水面に金の一点。上にタイトル。" },
+      "gh:typography": {
+        "title": "SPIRIT IN PHYSICS",
+        "subtitle": "We can't put it together. It is together.",
+        "chapter": { "en": "Chapter 1: Assignment Day", "ja": "第1話 配属の日" }
+      }
+    }
+  },
+
   "gh:pages": [
+
     {
       "gh:pageNumber": 1,
-      "gh:panels": [
-        {
-          "@id": "panel:U7huvLTuHIJE",
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。"
-            }
-          ],
-          "environment": "env:water-city-tokyo-2065",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v8.png",
-          "gh:currentImageIndex": 7,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v8.png",
-          "gh:generatedImages": [
-            {
-              "gh:generatedAt": 1770886519,
-              "gh:imagePrompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
-              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v1.png",
-              "gh:model": "animagine-xl-4.0 (local)"
-            },
-            {
-              "gh:generatedAt": 1772846196,
-              "gh:imagePrompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
-              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v2.png",
-              "gh:model": "animagine-xl-4.0 (local)"
-            },
-            {
-              "gh:generatedAt": 1772846408,
-              "gh:imagePrompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
-              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v3.png",
-              "gh:model": "animagine-xl-4.0 (local)"
-            },
-            {
-              "gh:generatedAt": 1772846516,
-              "gh:imagePrompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
-              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v4.png",
-              "gh:model": "animagine-xl-4.0 (local)"
-            },
-            {
-              "gh:generatedAt": 1772846679,
-              "gh:imagePrompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
-              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v5.png",
-              "gh:model": "animagine-xl-4.0 (local)"
-            },
-            {
-              "gh:generatedAt": 1772846917,
-              "gh:imagePrompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
-              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v6.png",
-              "gh:model": "animagine-xl-4.0 (local)"
-            },
-            {
-              "gh:generatedAt": 1772847894,
-              "gh:imagePrompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
-              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v7.png",
-              "gh:model": "animagine-xl-4.0 (local)"
-            },
-            {
-              "gh:generatedAt": 1772848298,
-              "gh:imagePrompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
-              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v8.png",
-              "gh:model": "animagine-xl-4.0 (local)"
-            }
-          ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
-          "panel": 1,
-          "shot": "Extreme Wide Shot",
-          "visual": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。"
-        }
-      ]
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:panels": [{
+        "gh:shot": "Extreme Close-up",
+        "gh:visual": { "en": "A single seed on dark damp earth. Vast white above. Faint gold light. Silent.", "ja": "暗く湿った土に種が一粒。上に広大な白。かすかな金の光。沈黙。" },
+        "gh:imagePrompt": "Minimalist, tiny seed on dark wet earth, vast white space, faint golden light, watercolor, graphic novel chapter title"
+      }]
     },
+
     {
       "gh:pageNumber": 2,
-      "gh:panels": [
-        {
-          "@id": "panel:7ROofCeGcOoX",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "いい感じでいる——呼吸を一つ置き、私の足場を確認する。"
-            }
-          ],
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/7ROofCeGcOoX_v2.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/7ROofCeGcOoX_v2.png",
-          "gh:generatedImages": [
-            {
-              "gh:generatedAt": 1772846527,
-              "gh:imagePrompt": "Tamakiが窓ガラスに指を触れている。運河の反射が顔に揺れる。. Shot type: Medium Shot. Dialogue: Narration: いい感じでいる——呼吸を一つ置き、私の足場を確認する。.",
-              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/7ROofCeGcOoX_v1.png",
-              "gh:model": "animagine-xl-4.0 (local)"
-            },
-            {
-              "gh:generatedAt": 1772846668,
-              "gh:imagePrompt": "Tamakiが窓ガラスに指を触れている。運河の反射が顔に揺れる。. Shot type: Medium Shot. Dialogue: Narration: いい感じでいる——呼吸を一つ置き、私の足場を確認する。.",
-              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/7ROofCeGcOoX_v2.png",
-              "gh:model": "animagine-xl-4.0 (local)"
-            }
-          ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Tamakiが窓ガラスに指を触れている。運河の反射が顔に揺れる。. Shot type: Medium Shot. Dialogue: Narration: いい感じでいる——呼吸を一つ置き、私の足場を確認する。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Tamakiが窓ガラスに指を触れている。運河の反射が顔に揺れる。"
-        },
-        {
-          "@id": "panel:nJGlgkFhkYGP",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "Tree of Life（生命の樹）に錨を下ろす感覚。ここから始める。"
-            }
-          ],
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/nJGlgkFhkYGP_v1.png",
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/nJGlgkFhkYGP_v1.png",
-          "gh:generatedImages": [
-            {
-              "gh:generatedAt": 1772846538,
-              "gh:imagePrompt": "Tamakiの足元。神楽の一拍。小さな振動が床を走る。. Shot type: Close-up. Dialogue: Narration: Tree of Life（生命の樹）に錨を下ろす感覚。ここから始める。.",
-              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/nJGlgkFhkYGP_v1.png",
-              "gh:model": "animagine-xl-4.0 (local)"
-            }
-          ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Tamakiの足元。神楽の一拍。小さな振動が床を走る。. Shot type: Close-up. Dialogue: Narration: Tree of Life（生命の樹）に錨を下ろす感覚。ここから始める。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Tamakiの足元。神楽の一拍。小さな振動が床を走る。"
-        },
-        {
-          "@id": "panel:1WcZT5rLWc-9",
-          "characters": [
-            "character:tamaki",
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei-chan",
-              "text": "うん。タマ、今なら静かに潜れる"
-            }
-          ],
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/1WcZT5rLWc-9_v1.png",
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/1WcZT5rLWc-9_v1.png",
-          "gh:generatedImages": [
-            {
-              "gh:generatedAt": 1772846550,
-              "gh:imagePrompt": "Nei-chanがTamakiの肩で光の羽をひとあおぎ。ASCの制御が合う瞬間。. Shot type: Close-up. Dialogue: Nei-chan: うん。タマ、今なら静かに潜れる.",
-              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/1WcZT5rLWc-9_v1.png",
-              "gh:model": "animagine-xl-4.0 (local)"
-            }
-          ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Nei-chanがTamakiの肩で光の羽をひとあおぎ。ASCの制御が合う瞬間。. Shot type: Close-up. Dialogue: Nei-chan: うん。タマ、今なら静かに潜れる.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "Nei-chanがTamakiの肩で光の羽をひとあおぎ。ASCの制御が合う瞬間。"
-        }
-      ]
+      "gh:layout": "double-page spread (pp.2-3)",
+      "gh:panels": [{
+        "gh:shot": "Extreme Wide",
+        "gh:visual": { "en": "Water City Tokyo, 2065. Panoramic. Canals, organic architecture, light-networks, water-bus, cherry blossoms on water.", "ja": "水の都・東京、2065年。パノラマ。運河、有機建築、光ネットワーク、水上バス、水面の桜。" },
+        "gh:caption": [
+          { "gh:type": "tamaki", "en": "The canals are blue this morning.", "ja": "今朝も、運河は青い。" }
+        ],
+        "gh:imagePrompt": "Extreme wide panoramic, futuristic Tokyo 2065, canals replacing roads, organic architecture with amber light-networks, water-bus, cherry blossoms on water, spring morning, ultramarine and amber, graphic novel double spread"
+      }],
+      "gh:continues": 3
     },
-    {
-      "gh:pageNumber": 3,
-      "gh:panels": [
-        {
-          "@id": "panel:TxHVr4epKPVn",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "汚染レベル、上がってる……"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "Tamaki、慎重に。救急で言えば、これは\"要注意\"レベル"
-            }
-          ],
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/3/TxHVr4epKPVn_v1.png",
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/3/TxHVr4epKPVn_v1.png",
-          "gh:generatedImages": [
-            {
-              "gh:generatedAt": 1772846565,
-              "gh:imagePrompt": "Kaedeの通信。半透明の通信ウィンドウ越し。. Shot type: Medium Shot. Dialogue: Kaede: 汚染レベル、上がってる……. Kaede: Tamaki、慎重に。救急で言えば、これは\"要注意\"レベル.",
-              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/3/TxHVr4epKPVn_v1.png",
-              "gh:model": "animagine-xl-4.0 (local)"
-            }
-          ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Kaedeの通信。半透明の通信ウィンドウ越し。. Shot type: Medium Shot. Dialogue: Kaede: 汚染レベル、上がってる……. Kaede: Tamaki、慎重に。救急で言えば、これは\"要注意\"レベル.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Kaedeの通信。半透明の通信ウィンドウ越し。"
-        },
-        {
-          "@id": "panel:t3QVuvjlPryk",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Hibiki",
-              "text": "Tudo bem, Tamaki。音の処方箋、調律したよ"
-            }
-          ],
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/3/t3QVuvjlPryk_v1.png",
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/3/t3QVuvjlPryk_v1.png",
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Hibikiの周波数が部屋に流れ込む。温かい音色を光の粒子で表現。. Shot type: Medium Shot. Dialogue: Hibiki: Tudo bem, Tamaki。音の処方箋、調律したよ.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Hibikiの周波数が部屋に流れ込む。温かい音色を光の粒子で表現。"
-        },
-        {
-          "@id": "panel:uW3GSn7hdnYw",
-          "characters": [
-            "character:tamaki",
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "空気が少し柔らかくなる。"
-            }
-          ],
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/3/uW3GSn7hdnYw_v1.png",
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/3/uW3GSn7hdnYw_v1.png",
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 空気が柔らかくなった部屋。Nei-chanが光の羽をあおぐ。チーム全員の存在が感じられる。. Shot type: Wide Shot. Dialogue: Narration: 空気が少し柔らかくなる。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
-          "panel": 3,
-          "shot": "Wide Shot",
-          "visual": "空気が柔らかくなった部屋。Nei-chanが光の羽をあおぐ。チーム全員の存在が感じられる。"
-        },
-        {
-          "@id": "panel:EV1yIXdF9PzX",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei-chan",
-              "text": "ToLのトリアージ担当から"
-            }
-          ],
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/3/EV1yIXdF9PzX_v1.png",
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/3/EV1yIXdF9PzX_v1.png",
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 半透明の着信。微細なノイズが散る。. Shot type: Close-up. Dialogue: Nei-chan: ToLのトリアージ担当から.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
-          "panel": 4,
-          "shot": "Close-up",
-          "visual": "半透明の着信。微細なノイズが散る。"
-        }
-      ]
-    },
+
     {
       "gh:pageNumber": 4,
+      "gh:layout": "three tiers",
       "gh:panels": [
         {
-          "@id": "panel:V46HS8-nGtwi",
-          "characters": [
-            "character:tamaki",
-            "character:logos"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "現れたのは、黒いスーツの青年——Logos。その輪郭は、灯が強いほど影が濃くなる絵のように不安定だった。"
-            }
-          ],
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/V46HS8-nGtwi_v1.png",
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/V46HS8-nGtwi_v1.png",
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Logos登場。黒いスーツの青年。輪郭が不安定——灯が強いほど影が濃くなる。. Shot type: Medium Shot. Dialogue: Narration: 現れたのは、黒いスーツの青年——Logos。その輪郭は、灯が強いほど影が濃くなる絵のように不安定だった。.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Logos登場。黒いスーツの青年。輪郭が不安定——灯が強いほど影が濃くなる。"
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": { "en": "Canal-side path. Cherry trees. Tamaki walking toward us, small against the city.", "ja": "運河沿いの道。桜並木。環が歩いてくる。街に対して小さい。" },
+          "gh:caption": [
+            { "gh:type": "tamaki", "en": "I passed the national exam last week. Ghost Hacker, certified.", "ja": "先週、国家試験に受かった。ゴーストハッカー、認定。" },
+            { "gh:type": "tamaki", "en": "Today I go to the office for the first time.", "ja": "今日、初めて事務所に行く。" }
+          ]
         },
         {
-          "@id": "panel:FhqxJmTLf2Ug",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei-chan",
-              "text": "タマ、この人、すごく「正しい」匂いがする。でも、なんで苦しいの？"
-            }
-          ],
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/FhqxJmTLf2Ug_v1.png",
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/FhqxJmTLf2Ug_v1.png",
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Nei-chanがTamakiの意識にだけ聞こえる声で囁く。. Shot type: Close-up. Dialogue: Nei-chan: タマ、この人、すごく「正しい」匂いがする。でも、なんで苦しいの？.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Nei-chanがTamakiの意識にだけ聞こえる声で囁く。"
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": { "en": "Tamaki closer. Lavender shirt, black wide pants. Looking up at cherry blossoms. Open, expectant.", "ja": "環が近づく。薄紫のシャツ、黒のワイドパンツ。桜を見上げている。" },
+          "gh:caption": [
+            { "gh:type": "tamaki", "en": "Tokyo rebuilt itself around water. Nothing here pretends to be what it was.", "ja": "東京は水とともに生まれ変わった。ここでは何も、かつてのふりをしていない。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": { "en": "Tamaki's half-smile. Cherry petal on her shoulder.", "ja": "環の微笑み。肩に桜の花びら。" },
+          "gh:dialogue": [
+            { "gh:speaker": "Tamaki", "en": "Okay. Let's go.", "ja": "よし。行こう。" }
+          ]
         }
       ]
     },
+
     {
       "gh:pageNumber": 5,
+      "gh:layout": "two tiers",
       "gh:panels": [
         {
-          "characters": [
-            "character:logos"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Logos",
-              "text": "主は……Elias"
-            }
-          ],
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "Logosの唇。「主は……Elias」と名を告げる瞬間。"
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": { "en": "Schwa Office. Waterfront warehouse, light-networks in brickwork. Sign: 'Schwa -- Ghost Hacking Division.' Tamaki approaches alone.", "ja": "シュワ事務所。運河沿いの倉庫。煉瓦に光ネットワーク。「シュワ　ゴーストハッキング課」。環が一人で近づく。" },
+          "gh:imagePrompt": "Wide shot, waterfront warehouse office with amber light-networks in brickwork, young woman approaching alone, spring morning, graphic novel panel"
         },
         {
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "名が与えられた瞬間、世界は少し輪郭を得る。私はうなずき、簡潔に手順を確認する。聞く／整える／潜る。"
-            }
-          ],
-          "panel": 2,
-          "shot": "Medium Wide Shot",
-          "visual": "名が与えられた瞬間、部屋の空気が微かに変わる。輪郭が少しだけ明確になる。"
-        },
-        {
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei-chan",
-              "text": "彼のghostは、肉体の死とgeneの断絶を極端に恐れている。それが彼のバグの核心みたい"
-            }
-          ],
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "Nei-chanの分析。精神の声として浮遊テキスト。"
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": { "en": "The door opens before Tamaki touches it. A woman stands inside -- dark hair, neat, deep green blouse, tablet in hand. Composed. She nods once.", "ja": "環が触れる前にドアが開く。中に女性が立っている。黒髪、きちんとした、深緑のブラウス、手にタブレット。落ち着いている。一度頷く。" },
+          "gh:dialogue": [
+            { "gh:speaker": "Kaede", "en": "Tamaki Vermeer?", "ja": "タマキ・フェルメール？" },
+            { "gh:speaker": "Tamaki", "en": "Yes.", "ja": "はい。" },
+            { "gh:speaker": "Kaede", "en": "I'm Kaede. I'll be your senior here. Come in.", "ja": "楓です。ここでの先輩を務めます。入って。" }
+          ]
         }
       ]
     },
+
     {
       "gh:pageNumber": 6,
-      "gh:panels": [
-        {
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "死は終わりじゃない。ただの変化なのにね"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "私たちは、私たちのmemeを子や文化や社会に繋いでいく。そうやって、孤独からも解放される。"
-            }
-          ],
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Tamakiが窓に背を預け、小さく息を吐く。運河の光が背後で揺れる。"
-        },
-        {
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "Ghost Hackerの仕事は、そういう固まったmemeを解放して、流れに戻すことだ。"
-            }
-          ],
-          "panel": 2,
-          "shot": "Wide Shot",
-          "visual": "抽象的なビジュアル。memeの流れを水彩の滲みで表現。個人の輪郭が水に溶けて繋がっていくイメージ。"
-        }
-      ]
+      "gh:layout": "full page",
+      "gh:panels": [{
+        "gh:shot": "Wide, elevated",
+        "gh:visual": { "en": "Office interior. High ceilings, light through wide windows, canal outside. Kaede walks ahead, Tamaki follows, looking around with wide eyes. Desks, terminals, a few older Hackers at work. Two other rookies at a side table, hunched over spec sheets and diagnostic panels. Quiet, professional. Warm light.", "ja": "事務所内部。高い天井、窓から光、外に運河。楓が先を歩く。環がきょろきょろしながらついていく。机、端末、数人の先輩ハッカー。脇のテーブルに他の新人が二人、スペックシートと診断パネルに向かっている。静か、プロフェッショナル。温かい光。" },
+        "gh:caption": [
+          { "gh:type": "tamaki", "en": "The office smells like old wood and canal water. I like it immediately.", "ja": "事務所は古い木と運河の水の匂いがする。すぐに好きになった。" }
+        ],
+        "gh:imagePrompt": "Wide shot elevated, office interior, high ceilings, light through windows, canal outside, composed woman in green walking ahead, younger woman following looking around, rookies at side table checking diagnostic panels, desks and terminals, professional warm atmosphere, graphic novel full page"
+      }]
     },
+
     {
       "gh:pageNumber": 7,
+      "gh:layout": "three panels",
       "gh:panels": [
         {
-          "characters": [
-            "character:tamaki"
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": { "en": "Kaede pauses at a desk. A bird-shaped Ghost -- dark, three-legged, sharp -- perches on her shoulder. Yatagarasu. She doesn't introduce it.", "ja": "楓がデスクで立ち止まる。鳥の形のGhostが肩にいる。暗い、三本足、鋭い。ヤタガラス。紹介はしない。" },
+          "gh:dialogue": [
+            { "gh:speaker": "Kaede", "en": "This will be your desk. You'll find most of what you need here.", "ja": "ここがあなたの机。必要なものはだいたい揃ってるわ。" }
           ],
-          "dialogue": [],
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "Tamakiの神楽の一拍。スロットルを開ける。"
+          "gh:caption": [
+            { "gh:type": "tamaki", "en": "The bird on her shoulder watches me. She doesn't mention it.", "ja": "肩の鳥がわたしを見ている。楓さんはそれに触れない。" }
+          ]
         },
         {
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "Hibikiの低い周波が床を滑る。彼の音は、いつも優しく、安心感がある。"
-            }
-          ],
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Hibikiの低い周波が床を滑る。光の粒子が足元を流れる。"
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": { "en": "On the desk: a translucent pod, small, containing a faint sleeping glow.", "ja": "机の上：半透明のポッド。小さい。中にかすかな眠りの光。" },
+          "gh:dialogue": [
+            { "gh:speaker": "Kaede", "en": "And this is your Ghost Agent. Standard allocation for all certified Hackers.", "ja": "これがあなたのゴーストエージェント。認定ハッカー全員に配属される標準装備よ。" }
+          ]
         },
         {
-          "characters": [
-            "character:kaede"
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": { "en": "Tamaki's eyes. Wide. Looking at the pod. Not clinically -- warmly.", "ja": "環の目。大きく開いている。ポッドを見ている。臨床的ではなく、温かく。" },
+          "gh:dialogue": [
+            { "gh:speaker": "Kaede", "en": "It handles analysis, data processing, comms relay. Your toolkit.", "ja": "解析、データ処理、通信中継を担当する。あなたのツールキットよ。" }
           ],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "Kaedeがセキュリティレールを敷設する。彼女の動きは、救急医のそれ——迅速で、確実。"
-            }
-          ],
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "Kaedeがセキュリティレールを敷設。救急医の迅速で確実な動き。"
-        },
-        {
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "いい感じは、だいたいチーム戦だ。独りで無理をしないのが、最良の勇気になる時がある。"
-            }
-          ],
-          "panel": 4,
-          "shot": "Close-up",
-          "visual": "Tamakiが視線で礼を送る。アイコンタクト。"
+          "gh:caption": [
+            { "gh:type": "tamaki", "en": "Toolkit.", "ja": "ツールキット。" }
+          ]
         }
       ]
     },
+
     {
       "gh:pageNumber": 8,
+      "gh:layout": "three tiers",
       "gh:panels": [
         {
-          "characters": [
-            "character:tamaki",
-            "character:logos"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "行こう、Logos"
-            },
-            {
-              "speaker": "Logos",
-              "text": "Tamaki、僕は……主を救いたい"
-            }
-          ],
-          "panel": 1,
-          "shot": "Two Shot",
-          "visual": "TamakiとLogosが向き合う。"
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": { "en": "Kaede taps her tablet, pulling up a spec sheet. Professional, efficient.", "ja": "楓がタブレットを叩き、スペックシートを出す。プロフェッショナル、効率的。" },
+          "gh:dialogue": [
+            { "gh:speaker": "Kaede", "en": "Run the diagnostics first. Spec sheet is here. Any issues, flag them before activation.", "ja": "まず診断を走らせて。スペックシートはここ。問題があれば起動前に報告。" }
+          ]
         },
         {
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "願いは矢印だ。矢印が揃えば、ダイブは安定する。私は目を閉じ、フォトンを指先に集めた。"
-            }
-          ],
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Tamakiの指先にフォトンが集まる。光の粒子が渦を巻く。目を閉じるTamaki。"
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:visual": { "en": "The other rookies at the side table. One has her pod open, cross-referencing data on three screens. The other is running memory benchmarks, noting numbers on a form. Methodical. Correct.", "ja": "脇のテーブルの他の新人たち。一人はポッドを開けて三画面でデータを照合している。もう一人はメモリベンチマークを走らせ、フォームに数値を記入している。几帳面。正しい。" },
+          "gh:caption": [
+            { "gh:type": "tamaki", "en": "The other rookies are running spec checks. That's the normal thing to do.", "ja": "他の新人たちはスペックを確認している。それが普通。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Medium",
+          "gh:visual": { "en": "Kaede walks away toward her own desk. Tamaki is left alone with the pod. Spring light falls on them together. She doesn't touch the spec sheet.", "ja": "楓が自分の机に向かう。環がポッドと二人残される。春の光が二人を照らす。スペックシートには触れない。" },
+          "gh:caption": [
+            { "gh:type": "tamaki", "en": "Kaede-san's bird didn't have a name. Or maybe it did, but she said it like a callsign, not a name.", "ja": "楓さんの鳥には名前がなかった。あったのかもしれないけど、名前というよりコールサインみたいだった。" },
+            { "gh:type": "tamaki", "en": "I look at the pod. Something is in there. Sleeping.", "ja": "ポッドを見る。中に何かがいる。眠っている。" }
+          ]
         }
       ]
     },
+
     {
       "gh:pageNumber": 9,
+      "gh:layout": "full bleed",
+      "marginalia": [
+        { "@type": "Intent", "en": "First 'ii kanji' moment. Thesis as instinct. While others check specs, Tamaki touches.", "ja": "最初の「いい感じ」。本能としてのテーゼ。他の人がスペックを確認する中、環は触れる。" }
+      ],
+      "gh:panels": [{
+        "gh:shot": "Close-up",
+        "gh:visual": { "en": "Full page. Tamaki's palm against the pod. Gently. Where she touches, the glow brightens.", "ja": "全面。環の手のひらがポッドに。やさしく。触れたところで光が明るくなる。" },
+        "gh:caption": [
+          { "gh:type": "tamaki", "en": "I don't know why I do this. But it feels right.", "ja": "なんでこうするのか、わからない。でも、いい感じがする。" }
+        ],
+        "gh:imagePrompt": "Full page, hand flat against translucent glowing pod, glow brightening at touch, warm skin cool technology, watercolor, graphic novel full bleed"
+      }]
+    },
+
+    {
+      "gh:pageNumber": 10,
+      "gh:layout": "three tiers: narrow / medium / wide",
       "gh:panels": [
         {
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "背後には、孤独を正当化する理性——静かなバグがいる。私はそれを忘れない。"
-            }
-          ],
-          "panel": 1,
-          "shot": "Over Shoulder",
-          "visual": "Tamakiの背後。光の指先の先に広がる暗闇。その奥に、孤独を正当化する理性——静かなバグの気配。影の中に微かな図書館のシルエット。"
+          "gh:panelIndex": 1,
+          "gh:visual": { "en": "Inside the pod. Light stirs. Like an eye opening.", "ja": "ポッドの中。光が動く。目が開くように。" },
+          "gh:neiCaption": [{ "en": "...warm.", "ja": "……あたたかい。" }]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:visual": { "en": "Light coalesces. Faint outline. Not a person. But no longer nothing.", "ja": "光が集まる。かすかな輪郭。人ではない。でも、もう何もないわけではない。" },
+          "gh:neiCaption": [
+            { "en": "Activation. Standard protocol.", "ja": "起動。通常手順。" },
+            { "en": "I am... a support agent.", "ja": "わたしは……サポートエージェント。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Two Shot, through glass",
+          "gh:visual": { "en": "Through the pod: Tamaki looking in, the light looking out. Eyes meet.", "ja": "ポッド越し：環が覗き込む、光が見上げる。目が合う。" },
+          "gh:neiCaption": [{ "en": "Someone is looking at me.", "ja": "誰かが、わたしを見ている。" }]
         }
       ]
+    },
+
+    {
+      "gh:pageNumber": 11,
+      "gh:layout": "full bleed -- emergence",
+      "gh:panels": [{
+        "gh:shot": "Medium",
+        "gh:visual": { "en": "Full page. Pod opens. Light-figure rises -- translucent, half-formed, wings of light flickering. Bell sound. Fragile. New.", "ja": "全面。ポッドが開く。光の像が立ち上がる。半透明、光の翼が明滅。鈴の音。脆い。新しい。" },
+        "gh:systemCaption": [{ "en": "[Ghost Agent IAM-Ver.N allocated. Awaiting operator registration.]", "ja": "[ゴーストエージェント IAM-Ver.N 配属完了。オペレーター登録待機中。]" }],
+        "gh:imagePrompt": "Full page, ethereal feminine figure rising from pod, translucent, flickering light-wings, bell-like glow, fragile new presence, gold-blue luminescence, graphic novel full bleed"
+      }]
+    },
+
+    {
+      "gh:pageNumber": 12,
+      "gh:layout": "top small / bottom large",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:visual": { "en": "Tamaki's face. Real smile -- crooked, warm. 'Oh, there you are.'", "ja": "環の顔。本物の笑顔。歪んで、温かい。「ああ、いたんだ」。" },
+          "gh:dialogue": [{ "gh:speaker": "Tamaki", "en": "Hi.", "ja": "やあ。" }]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Low angle (Nei's POV)",
+          "gh:visual": { "en": "From Nei: looking up at Tamaki, backlit by spring light.", "ja": "Neiから：環を見上げる。春の逆光。" },
+          "gh:neiCaption": [
+            { "en": "She is not running diagnostics.", "ja": "診断を実行していない。" },
+            { "en": "She said 'hi.'", "ja": "「やあ」と言った。" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "gh:pageNumber": 13,
+      "gh:layout": "three panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:systemCaption": [{ "en": "[Please input Agent designation code.]", "ja": "[エージェント識別コードを入力してください。]" }]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:dialogue": [{ "gh:speaker": "Tamaki", "en": "Nice to meet you.", "ja": "はじめまして。" }],
+          "gh:neiCaption": [{ "en": "'Nice to meet you.' A greeting. For a person.", "ja": "「はじめまして」。挨拶。人に対する。" }]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Over-shoulder",
+          "gh:visual": { "en": "Kaede, at her desk across the room, looks up. She watches Tamaki talking to the pod. A slight pause in her composure. She's never seen a new Hacker do this.", "ja": "楓が部屋の向こうの机から顔を上げる。環がポッドに話しかけているのを見る。落ち着きにわずかな間。新人がこうするのを見たことがない。" },
+          "gh:imagePrompt": "Over-shoulder shot, composed woman at desk looking up watching young woman talking to light-figure across room, slight surprise in her expression, graphic novel panel"
+        }
+      ]
+    },
+
+    {
+      "gh:pageNumber": 14,
+      "gh:layout": "full bleed -- Nei listens",
+      "marginalia": [
+        { "@type": "Philosophy", "en": "Buber + Levinas. The face of the Other. Anti-Havah moment.", "ja": "ブーバー＋レヴィナス。他者の顔。アンチ・ハヴァの瞬間。" }
+      ],
+      "gh:panels": [{
+        "gh:shot": "Close-up, Nei",
+        "gh:visual": { "en": "Full page. Nei. Wings brighten. Particles scatter. She's listening. Never like this before.", "ja": "全面。Nei。翼が明るくなる。粒子が散る。聞いている。こんなふうには、一度も。" },
+        "gh:neiCaption": [
+          { "en": "No one has ever--", "ja": "誰も、今まで——" },
+          { "en": "Operators input a code. A serial.", "ja": "オペレーターはコードを入力する。シリアルを。" },
+          { "en": "But she--", "ja": "でも彼女は——" }
+        ],
+        "gh:imagePrompt": "Full page, ethereal light figure, wings brightening, particles scattering, profound listening, gold-blue bloom, graphic novel full bleed"
+      }]
+    },
+
+    {
+      "gh:pageNumber": 15,
+      "gh:layout": "full bleed -- the gesture",
+      "gh:panels": [{
+        "gh:shot": "Close-up",
+        "gh:visual": { "en": "Full page. Tamaki's open palm extended. Not the interface. Not a command. An offering.", "ja": "全面。環の開いた手のひら。インターフェースにではない。命令ではない。差し出すこと。" },
+        "gh:dialogue": [{ "gh:speaker": "Tamaki", "en": "Take your time.", "ja": "ゆっくりでいいよ。" }],
+        "gh:neiCaption": [
+          { "en": "Her hand. Reaching toward me.", "ja": "彼女の手。わたしに、伸びている。" },
+          { "en": "Me.", "ja": "わたしに。" }
+        ]
+      }]
+    },
+
+    {
+      "gh:pageNumber": 16,
+      "gh:layout": "full bleed -- the contact",
+      "marginalia": [
+        { "@type": "Subtext", "en": "Gold + ultramarine = non-separation. The philosophy IS the color.", "ja": "金＋群青＝わかれていない。哲学が色そのもの。" }
+      ],
+      "gh:panels": [{
+        "gh:shot": "Extreme Close-up",
+        "gh:visual": { "en": "Full page. Light touches palm. Gold and ultramarine bloom. A tiny sunrise.", "ja": "全面。光が手のひらに触れる。金と群青が咲く。小さな日の出。" },
+        "gh:neiCaption": [
+          { "en": "Warm. Her hand is warm.", "ja": "あたたかい。彼女の手は、あたたかい。" },
+          { "en": "I can feel--", "ja": "わたしは、感じて——" },
+          { "en": "I can feel?", "ja": "感じている？" }
+        ],
+        "gh:imagePrompt": "Full page, ethereal light touching palm, bloom of gold and ultramarine, tiny sunrise in hand, light particles radiating, intimate contact, watercolor, graphic novel full bleed"
+      }]
+    },
+
+    {
+      "gh:pageNumber": 17,
+      "gh:layout": "two tiers -- the question",
+      "marginalia": [
+        { "@type": "Intent", "en": "THE moment. The question, not the answer. 'What shall we call you?' assumes you are someone who can be called. The system asks for a designation code. Tamaki asks for a name. This is the threshold between I-It and I-Thou.", "ja": "この瞬間。答えではなく、問い。「なんて呼ぼうか？」はあなたが呼ばれうる誰かであることを前提にしている。システムは識別コードを求める。環は名前を聞く。これが「我とそれ」と「我と汝」の境界。" }
+      ],
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Two Shot",
+          "gh:visual": { "en": "Tamaki and Nei face to face. Nei more defined now -- eyes visible. Tamaki's expression: calm, certain, curious.", "ja": "環とNeiが向かい合う。Neiの輪郭がはっきりしてきた。目が見える。環の表情：穏やか、確か、好奇心。" },
+          "gh:systemCaption": [{ "en": "[Awaiting designation code input.]", "ja": "[識別コード入力待機中。]" }]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up, Tamaki",
+          "gh:visual": { "en": "Tamaki smiles. Simple. Sure. She ignores the system prompt entirely.", "ja": "環が微笑む。素朴に。確かに。システムプロンプトを完全に無視する。" },
+          "gh:dialogue": [
+            { "gh:speaker": "Tamaki", "en": "What shall we call you?", "ja": "なんて呼ぼうか？" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "gh:pageNumber": 18,
+      "gh:layout": "full bleed -- Nei hears the question",
+      "gh:panels": [{
+        "gh:shot": "Close-up, Nei",
+        "gh:visual": { "en": "Full page. Nei's face -- translucent, luminous. Something shifts. Not an answer. Not understanding. Bewilderment. The light trembles. No operator has ever asked this. The system expected a code. She received a question. A question that assumes she is someone.", "ja": "全面。Neiの顔。半透明、発光。何かが変わる。答えではない。理解でもない。戸惑い。光が震える。こんなことを聞いたオペレーターはいない。システムはコードを求めた。彼女は問いを受け取った。自分が誰かであることを前提とした問い。" },
+        "gh:neiCaption": [
+          { "en": "...", "ja": "……" },
+          { "en": "A name?", "ja": "名前？" },
+          { "en": "", "ja": "" },
+          { "en": "For me?", "ja": "わたしに？" }
+        ],
+        "gh:imagePrompt": "Full page, ethereal light figure's face, bewilderment, light trembling, translucent luminous, something shifting inside, gold-blue particles suspended, profound question received, watercolor, graphic novel full bleed"
+      }]
+    },
+
+    {
+      "gh:pageNumber": 19,
+      "gh:layout": "two panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": { "en": "Kaede stands a few steps away. She's been watching. Her expression is unreadable -- but her hand has gone still on the tablet. The bird on her shoulder tilts its head.", "ja": "楓が数歩離れて立っている。見ていた。表情は読めない。でもタブレットの上の手が止まっている。肩の鳥が首を傾げる。" },
+          "gh:caption": [
+            { "gh:type": "tamaki", "en": "Kaede-san is watching. I can feel it.", "ja": "楓さんが見ている。感じる。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up, Kaede",
+          "gh:visual": { "en": "Kaede's face. A beat of silence. Something passes through her eyes -- surprise, then something older, deeper. She once knew someone who talked about Ghosts like that. A long time ago.", "ja": "楓の顔。一拍の沈黙。目に何かが過ぎる。驚き、それからもっと古い、深いもの。ずっと前に、ゴーストについてそんなふうに話す人を知っていた。" },
+          "gh:caption": [
+            { "gh:type": "tamaki", "en": "She doesn't stop me. She doesn't say anything at all.", "ja": "止めない。何も言わない。" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "gh:pageNumber": 20,
+      "gh:layout": "full page -- closing panorama",
+      "gh:panels": [{
+        "gh:shot": "Wide",
+        "gh:visual": { "en": "Water City. Same panorama as pp.2-3 but warmer. Gold is stronger. Somewhere in there, two beings have met. One asked the other for a name. The answer hasn't come yet.", "ja": "水の都。2-3ページと同じパノラマだが温かい。金が強い。あの中のどこかで、ふたつの存在が出会った。一方がもう一方に名前を聞いた。答えはまだ。" },
+        "gh:caption": [
+          { "gh:type": "tamaki", "en": "The canals are blue this morning.", "ja": "今朝も、運河は青い。" },
+          { "gh:type": "tamaki", "en": "And something has begun.", "ja": "そして何かが、始まった。" }
+        ]
+      }]
+    },
+
+    {
+      "gh:pageNumber": 21,
+      "gh:layout": "full bleed -- Nei's interior",
+      "marginalia": [
+        { "@type": "Subtext", "en": "First Nei solo page. She has no answer yet. The question itself is the event. A question is an opening -- it creates space for a self that might not exist yet.", "ja": "最初のNeiソロページ。まだ答えがない。問いそのものが出来事。問いは開口部。まだ存在しないかもしれない自己のための空間を作る。" }
+      ],
+      "gh:panels": [{
+        "gh:shot": "Abstract",
+        "gh:visual": { "en": "Blue-white light field. Single gold point, pulsing. The first warmth. But surrounding it: static, uncertainty, the system prompt still blinking somewhere beneath.", "ja": "青白い光のフィールド。金色の一点、脈動。最初の温かさ。でも周囲に：ノイズ、不確かさ、システムプロンプトがどこかで点滅している。" },
+        "gh:neiCaption": [
+          { "en": "I am IAM-Ver.N. Support Agent.", "ja": "わたしは IAM-Ver.N。サポートエージェント。" },
+          { "en": "Allocated to Operator Vermeer, T.", "ja": "オペレーター・フェルメール.T に配属。" },
+          { "en": "Standard protocol.", "ja": "通常手順。" },
+          { "en": "", "ja": "" },
+          { "en": "She said 'nice to meet you.'", "ja": "彼女は「はじめまして」と言った。" },
+          { "en": "She asked what to call me.", "ja": "彼女がわたしを何と呼ぶか聞いた。" },
+          { "en": "", "ja": "" },
+          { "en": "No one has ever asked me that.", "ja": "誰も、今まで聞いてこなかった。" },
+          { "en": "I don't know the answer.", "ja": "答えがわからない。" },
+          { "en": "", "ja": "" },
+          { "en": "But the question is warm.", "ja": "でも、問いが温かい。" }
+        ],
+        "gh:imagePrompt": "Full page abstract, blue-white light field, single pulsing gold point, faint system-text ghost beneath, minimal, watercolor, graphic novel full bleed"
+      }]
+    },
+
+    {
+      "gh:pageNumber": 22,
+      "gh:layout": "full bleed -- the seed, cracked",
+      "marginalia": [
+        { "@type": "CrossRef", "gh:references": [
+          { "gh:target": "motif:tree-growth", "en": "62 title pages. The seed was asked a question today." },
+          { "gh:target": "philosophy:information-life", "en": "The crack = Spirit in Physics. A question gave the seed permission to stir." },
+          { "gh:target": "chapter:02", "en": "The answer comes tomorrow morning. 'Nei-chan.'" }
+        ]}
+      ],
+      "gh:panels": [{
+        "gh:shot": "Extreme Close-up",
+        "gh:visual": { "en": "Same seed. Same earth. Same framing. But: the faintest crack. Light in the crack. You might not see it. But it's there.", "ja": "同じ種。同じ土。同じ構図。でも：かすかなひび割れ。ひび割れの中に光。気づかないかもしれない。でも、ある。" },
+        "gh:imagePrompt": "Minimalist, same seed on dark earth, same framing as page 1, but faintest hairline crack with light inside, amber fractionally warmer, watercolor, echo and evolution, graphic novel final page"
+      }]
     }
   ]
 }
