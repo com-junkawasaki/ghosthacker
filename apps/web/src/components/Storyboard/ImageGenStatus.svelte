@@ -1,8 +1,6 @@
 <script lang="ts">
+	import { listGenerationJobs } from '$lib/client/storyboard-client';
 	import { getActiveJobCount } from '$lib/stores/job-store.svelte';
-
-	const baseUrl = typeof window !== 'undefined' && window.location.port === '1421'
-		? 'http://localhost:8081' : '';
 
 	let health = $state<{
 		status: string;
@@ -16,12 +14,14 @@
 
 	async function checkHealth() {
 		try {
-			const res = await fetch(`${baseUrl}/api/image-gen-health`);
-			if (res.ok) {
-				health = await res.json();
-			} else {
-				health = { status: 'unavailable', model: '', device: '', model_loaded: false, load_time_ms: 0 };
-			}
+			await listGenerationJobs();
+			health = {
+				status: 'ok',
+				model: 'via connect',
+				device: '-',
+				model_loaded: true,
+				load_time_ms: 0
+			};
 		} catch {
 			health = { status: 'unavailable', model: '', device: '', model_loaded: false, load_time_ms: 0 };
 		}

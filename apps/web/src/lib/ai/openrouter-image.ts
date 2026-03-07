@@ -25,84 +25,13 @@ export interface ImageGenerationResponse {
 export async function generateImage(
 	options: ImageGenerationOptions
 ): Promise<ImageGenerationResponse> {
-	if (!OPENROUTER_API_KEY) {
-		return {
-			success: false,
-			error: 'OPENROUTER_API_KEY is not set. Please set VITE_OPENROUTER_API_KEY environment variable.',
-		};
-	}
-
-	const {
-		prompt,
-		model = 'bytedance-seed/seedream-4.5',
-		aspectRatio = '16:9',
-		imageSize = '1024x1024',
-	} = options;
-
-	try {
-		console.log('[openrouter-image] Generating image with prompt:', prompt);
-		console.log('[openrouter-image] Model:', model);
-
-		const response = await fetch(OPENROUTER_API_URL, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${OPENROUTER_API_KEY}`,
-				'HTTP-Referer': window.location.origin,
-				'X-Title': 'ghosthacker-storyboard-editor',
-			},
-			body: JSON.stringify({
-				model,
-				messages: [{ role: 'user', content: prompt }],
-				modalities: ['text', 'image'],
-				image_config: {
-					aspect_ratio: aspectRatio,
-					image_size: imageSize,
-				},
-				stream: false,
-			}),
-		});
-
-		if (!response.ok) {
-			const errorData = await response.json().catch(() => ({}));
-			console.error('[openrouter-image] API error:', errorData);
-			return {
-				success: false,
-				error: `OpenRouter API error (${response.status}): ${JSON.stringify(errorData)}`,
-			};
-		}
-
-		const result = (await response.json()) as any;
-		console.log('[openrouter-image] Response:', result);
-
-		// Extract image URL from response
-		// OpenRouter image output is typically a data URL under:
-		// choices[0].message.images[0].image_url.url
-		const imageUrl =
-			result?.choices?.[0]?.message?.images?.[0]?.image_url?.url ??
-			result?.choices?.[0]?.message?.images?.[0]?.image_url ??
-			null;
-
-		if (!imageUrl || typeof imageUrl !== 'string') {
-			console.error('[openrouter-image] No image in response:', result);
-			return {
-				success: false,
-				error: 'No image returned from OpenRouter (missing choices[0].message.images[0])',
-			};
-		}
-
-		console.log('[openrouter-image] Image generated successfully');
-		return {
-			success: true,
-			imageUrl,
-		};
-	} catch (error) {
-		console.error('[openrouter-image] Error generating image:', error);
-		return {
-			success: false,
-			error: error instanceof Error ? error.message : 'Unknown error',
-		};
-	}
+	void options;
+	void OPENROUTER_API_KEY;
+	void OPENROUTER_API_URL;
+	return {
+		success: false,
+		error: 'Direct fetch-based OpenRouter calls are disabled. Use the backend Connect client APIs.',
+	};
 }
 
 /**

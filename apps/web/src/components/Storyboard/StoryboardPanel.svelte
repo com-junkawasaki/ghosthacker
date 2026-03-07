@@ -24,9 +24,10 @@
 	let runwayPrompt = panel.data?.runwayPrompt ?? '';
 	let generatedImages: GeneratedImage[] = panel.data?.generatedImages ?? [];
 	let currentImageIndex = panel.data?.currentImageIndex ?? (generatedImages.length > 0 ? generatedImages.length - 1 : -1);
+	let imageLoadFailed = false;
 	let generatingImage = false;
 	let imageError = '';
-	let selectedModel = 'local'; // 'openrouter' or 'local'
+	let selectedModel = 'local'; // 'openrouter' or 'local' (default: animage/animagine local)
 	let activeJobId = '';
 	let generatingDialogue = false;
 	let dialogueError = '';
@@ -39,22 +40,45 @@
 		currentImageIndex = panel.data.currentImageIndex ?? (generatedImages.length > 0 ? generatedImages.length - 1 : -1);
 	}
 
+	function getBackendBaseUrl(): string {
+		if (typeof window !== 'undefined') {
+			return window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin;
+		}
+		return 'http://localhost:8081';
+	}
+
+	function resolveImageUrl(rawUrl: string): string {
+		const url = (rawUrl ?? '').trim();
+		if (!url) return '';
+		if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
+			return url;
+		}
+
+		// Handle accidental absolute local filesystem path.
+		const marker = '/resources/images/';
+		const markerIndex = url.indexOf(marker);
+		if (markerIndex >= 0) {
+			const rel = url.slice(markerIndex + marker.length);
+			return `${getBackendBaseUrl()}/images/${rel}`;
+		}
+
+		if (url.startsWith('/')) {
+			return `${getBackendBaseUrl()}${url}`;
+		}
+		return `${getBackendBaseUrl()}/${url}`;
+	}
+
 	// Computed: current image URL (convert relative path to full URL)
 	$: currentImageUrl = currentImageIndex >= 0 && currentImageIndex < generatedImages.length 
 		? (() => {
 			const url = generatedImages[currentImageIndex]?.imageUrl ?? '';
-			if (!url) return '';
-			// If it's already a full URL (data URL or http), return as is
-			if (url.startsWith('http') || url.startsWith('data:')) {
-				return url;
-			}
-			// Otherwise, prepend backend base URL
-			const baseUrl = typeof window !== 'undefined' 
-				? (window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin)
-				: 'http://localhost:8081';
-			return baseUrl + url;
+			return resolveImageUrl(url);
 		})()
 		: '';
+
+	$: if (currentImageUrl) {
+		imageLoadFailed = false;
+	}
 
 	function startEdit() {
 		editing = true;
@@ -388,42 +412,40 @@
 	<!-- 画列（生成画像） -->
 	<div class="col-picture-generated">
 		<div class="picture-frame">
-			{#if editing}
-				<div class="image-generation-controls">
-					<select bind:value={selectedModel} class="model-select" disabled={generatingImage}>
-						<option value="openrouter">SeedReam 4.5 (API)</option>
-						<option value="local">AnimagineXL 4.0 (Local)</option>
-					</select>
-					{#if generatingImage && activeJobId}
-						{@const job = getJobForPanel(episodeId, panel.pageNumber, panel.panel)}
-						<div class="generation-progress">
-							<div class="progress-bar-container">
-								<div class="progress-bar-fill" style="width: {job && job.totalSteps > 0 ? (job.currentStep / job.totalSteps) * 100 : 0}%"></div>
-							</div>
-							<div class="progress-info">
-								<span class="progress-step">{job?.currentStep ?? 0}/{job?.totalSteps ?? 28}</span>
-								{#if job && job.etaMs > 0}
-									<span class="progress-eta">{formatEta(job.etaMs)}</span>
-								{/if}
-							</div>
-							<button type="button" onclick={handleCancelGeneration} class="cancel-btn">Cancel</button>
+			<div class="image-generation-controls">
+				<select bind:value={selectedModel} class="model-select" disabled={generatingImage}>
+					<option value="local">Animage / AnimagineXL 4.0 (Local)</option>
+					<option value="openrouter">SeedReam 4.5 (API)</option>
+				</select>
+				{#if generatingImage && activeJobId}
+					{@const job = getJobForPanel(episodeId, panel.pageNumber, panel.panel)}
+					<div class="generation-progress">
+						<div class="progress-bar-container">
+							<div class="progress-bar-fill" style="width: {job && job.totalSteps > 0 ? (job.currentStep / job.totalSteps) * 100 : 0}%"></div>
 						</div>
-					{:else}
-						<button
-							type="button"
-							onclick={handleGenerateImage}
-							disabled={generatingImage}
-							class="generate-btn"
-						>
-							{generatingImage ? 'Submitting...' : 'Generate'}
-						</button>
-					{/if}
-					{#if imageError}
-						<div class="image-error">{imageError}</div>
-					{/if}
-				</div>
-			{/if}
-			{#if currentImageUrl}
+						<div class="progress-info">
+							<span class="progress-step">{job?.currentStep ?? 0}/{job?.totalSteps ?? 28}</span>
+							{#if job && job.etaMs > 0}
+								<span class="progress-eta">{formatEta(job.etaMs)}</span>
+							{/if}
+						</div>
+						<button type="button" onclick={handleCancelGeneration} class="cancel-btn">Cancel</button>
+					</div>
+				{:else}
+					<button
+						type="button"
+						onclick={handleGenerateImage}
+						disabled={generatingImage}
+						class="generate-btn"
+					>
+						{generatingImage ? 'Submitting...' : 'Generate'}
+					</button>
+				{/if}
+				{#if imageError}
+					<div class="image-error">{imageError}</div>
+				{/if}
+			</div>
+			{#if currentImageUrl && !imageLoadFailed}
 				<div class="generated-image-container">
 					{#if generatedImages.length > 1}
 						<button
@@ -435,7 +457,15 @@
 							←
 						</button>
 					{/if}
-					<img src={currentImageUrl} alt="Generated image" class="generated-image" />
+					<img
+						src={currentImageUrl}
+						alt="Generated image"
+						class="generated-image"
+						onerror={() => {
+							imageLoadFailed = true;
+							imageError = `Image could not be loaded: ${currentImageUrl}`;
+						}}
+					/>
 					{#if generatedImages.length > 1}
 						<button
 							type="button"

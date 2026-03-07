@@ -6,6 +6,46 @@
   "gh:maxConcurrent": 1,
   "gh:jobs": [
     {
+      "@id": "job:C6qDGwvtRIGT",
+      "@type": "gh:GenerationJob",
+      "gh:status": "completed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 1,
+      "gh:panel": 1,
+      "gh:model": "local",
+      "gh:prompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
+      "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v5.png",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:createdAt": "2026-03-07T10:24:15.851218+09:00",
+      "gh:startedAt": "2026-03-07T10:24:28.522951+09:00",
+      "gh:completedAt": "2026-03-07T10:24:39.548352+09:00"
+    },
+    {
+      "@id": "job:r_tTMx2VD1uk",
+      "@type": "gh:GenerationJob",
+      "gh:status": "completed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 1,
+      "gh:panel": 1,
+      "gh:model": "local",
+      "gh:prompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
+      "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v6.png",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:createdAt": "2026-03-07T10:28:26.441635+09:00",
+      "gh:startedAt": "2026-03-07T10:28:26.442489+09:00",
+      "gh:completedAt": "2026-03-07T10:28:37.257652+09:00"
+    },
+    {
       "@id": "job:1l3sZf2lO47S",
       "@type": "gh:GenerationJob",
       "gh:status": "failed",
@@ -48,12 +88,13 @@
     {
       "@id": "job:6l3i2J7oUXtB",
       "@type": "gh:GenerationJob",
-      "gh:status": "running",
+      "gh:status": "completed",
       "gh:episodeId": "episode:sip-vol01-ch01",
       "gh:pageNumber": 2,
       "gh:panel": 1,
       "gh:model": "local",
       "gh:prompt": "Tamakiが窓ガラスに指を触れている。運河の反射が顔に揺れる。. Shot type: Medium Shot. Dialogue: Narration: いい感じでいる——呼吸を一つ置き、私の足場を確認する。.",
+      "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/7ROofCeGcOoX_v2.png",
       "gh:progress": {
         "gh:currentStep": 0,
         "gh:totalSteps": 0,
@@ -61,7 +102,8 @@
         "gh:avgStepTimeMs": 0
       },
       "gh:createdAt": "2026-02-12T20:14:49.016294+09:00",
-      "gh:startedAt": "2026-02-12T20:14:49.016709+09:00"
+      "gh:startedAt": "2026-03-07T10:24:15.851759+09:00",
+      "gh:completedAt": "2026-03-07T10:24:28.522867+09:00"
     }
   ]
 }

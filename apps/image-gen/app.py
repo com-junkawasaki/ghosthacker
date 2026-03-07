@@ -21,7 +21,8 @@ gen = ImageGenerator()
 async def lifespan(app: FastAPI):
     logger.info("Loading model on startup...")
     gen.load_model()
-    gen.enable_lcm()
+    if config.DEFAULT_ENABLE_LCM:
+        gen.enable_lcm()
     yield
     logger.info("Shutting down.")
 

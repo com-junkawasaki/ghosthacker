@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { getEpisodes, getEpisodePanels, getArcs, getArcPanels, storyboardClient, streamUpdates, exportPdf, listProjects, switchProject } from '$lib/client/storyboard-client';
 	import StoryboardPage from './StoryboardPage.svelte';
 	import MangaEditor from './MangaEditor.svelte';
@@ -97,40 +96,13 @@
 	const storyboardPath = '';
 
 	async function loadProjects() {
-		try {
-			const response = await listProjects();
-			const mapped = (response.projects ?? []).map((p) => ({
-				id: p.id ?? '',
-				name: p.name ?? '',
-				hasStoryboard: p.hasStoryboard ?? false,
-			}));
-			if (mapped.length > 0) {
-				projects = mapped;
-				activeProject = response.activeProject ?? '';
-				return;
-			}
-		} catch (err) {
-			console.error('[StoryboardEditor] loadProjects ConnectRPC error:', err);
-		}
-		// Fallback: raw fetch (in case ConnectRPC response parsing issue)
-		try {
-			const apiBase = typeof window !== 'undefined' && window.location.port === '1421'
-				? 'http://localhost:8081' : '';
-			const res = await fetch(`${apiBase}/gftd.ghosthacker.storyboard.v1.StoryboardService/ListProjects`, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: '{}'
-			});
-			const data = await res.json();
-			projects = (data.projects ?? []).map((p: any) => ({
-				id: p.id ?? '',
-				name: p.name ?? '',
-				hasStoryboard: p.hasStoryboard ?? p.has_storyboard ?? false,
-			}));
-			activeProject = data.activeProject ?? data.active_project ?? '';
-		} catch (fetchErr) {
-			console.error('[StoryboardEditor] loadProjects fetch fallback failed:', fetchErr);
-		}
+		const response = await listProjects();
+		projects = (response.projects ?? []).map((p) => ({
+			id: p.id ?? '',
+			name: p.name ?? '',
+			hasStoryboard: p.hasStoryboard ?? false,
+		}));
+		activeProject = response.activeProject ?? '';
 	}
 
 	async function handleProjectSwitch(projectId: string) {
@@ -138,18 +110,7 @@
 		try {
 			loading = true;
 			error = '';
-			// Try ConnectRPC first, then raw fetch fallback
-			try {
-				await switchProject(projectId);
-			} catch {
-				const apiBase = typeof window !== 'undefined' && window.location.port === '1421'
-					? 'http://localhost:8081' : '';
-				await fetch(`${apiBase}/gftd.ghosthacker.storyboard.v1.StoryboardService/SwitchProject`, {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ projectId })
-				});
-			}
+			await switchProject(projectId);
 			activeProject = projectId;
 			// Reset state and reload
 			episodes = [];
@@ -466,7 +427,12 @@
 
 			if (response.pdfContent) {
 				// Download the PDF
-				const blob = new Blob([response.pdfContent], { type: 'application/pdf' });
+				const pdfBytes = response.pdfContent;
+				const pdfBuffer = pdfBytes.buffer.slice(
+					pdfBytes.byteOffset,
+					pdfBytes.byteOffset + pdfBytes.byteLength
+				) as ArrayBuffer;
+				const blob = new Blob([pdfBuffer], { type: 'application/pdf' });
 				const url = window.URL.createObjectURL(blob);
 				const a = document.createElement('a');
 				a.href = url;
