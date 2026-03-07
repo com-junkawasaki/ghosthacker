@@ -8,6 +8,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
+from PIL import Image
+
 import config
 from generator import ImageGenerator, image_to_base64
 
@@ -56,6 +58,14 @@ class GeneratePanelRequest(BaseModel):
     output_path: str | None = None
     reference_image_paths: list[str] = Field(default_factory=list)
     ip_adapter_scale: float = 0.4
+
+
+class GenerateCinematicRequest(BaseModel):
+    prompt: str
+    aspect_ratio: str = "16:9"
+    seed: int | None = None
+    denoising_strength: float = 0.65
+    output_path: str | None = None
 
 
 class GeneratePanelResponse(BaseModel):
@@ -183,6 +193,41 @@ async def generate_panel(req: GeneratePanelRequest):
         image.save(req.output_path, "PNG")
         saved_path = req.output_path
         logger.info("Saved panel image to: %s", saved_path)
+
+    return GeneratePanelResponse(
+        image_base64=image_to_base64(image),
+        seed=seed,
+        generation_time_ms=gen_time,
+        output_path=saved_path,
+    )
+
+
+@app.post("/generate-cinematic", response_model=GeneratePanelResponse)
+async def generate_cinematic(req: GenerateCinematicRequest):
+    """2-stage generation: photorealistic → anime style transfer."""
+    if not gen.model_loaded:
+        raise HTTPException(status_code=503, detail="Model not loaded yet")
+
+    gen._current_job_id = str(uuid.uuid4())
+    try:
+        image, seed, gen_time = gen.generate_cinematic(
+            prompt=req.prompt,
+            aspect_ratio=req.aspect_ratio,
+            seed=req.seed,
+            denoising_strength=req.denoising_strength,
+        )
+    except InterruptedError:
+        gen._current_job_id = None
+        raise HTTPException(status_code=499, detail="Generation cancelled")
+    finally:
+        gen._current_job_id = None
+
+    saved_path = None
+    if req.output_path:
+        os.makedirs(os.path.dirname(req.output_path), exist_ok=True)
+        image.save(req.output_path, "PNG")
+        saved_path = req.output_path
+        logger.info("Saved cinematic image to: %s", saved_path)
 
     return GeneratePanelResponse(
         image_base64=image_to_base64(image),

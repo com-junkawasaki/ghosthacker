@@ -2,6 +2,7 @@
 
 # Model settings
 MODEL_ID = "cagliostrolab/animagine-xl-4.0"
+PHOTOREALISTIC_MODEL_ID = "SG161222/RealVisXL_V4.0"
 VAE_ID = "madebyollin/sdxl-vae-fp16-fix"
 
 # Default generation parameters
@@ -15,38 +16,43 @@ DEFAULT_NEGATIVE_PROMPT = (
     "extra digits, fewer digits, cropped, worst quality, low quality, "
     "low score, bad score, average score, signature, watermark, username, blurry, "
     "comic strip, manga page, multiple panels, split screen, collage, contact sheet, grid layout, "
-    "speech bubble, dialogue balloon, japanese text, kana, kanji"
+    "speech bubble, dialogue balloon, japanese text, kana, kanji, "
+    "abstract, metallic, chrome, reflective surface, distorted, melting, "
+    "surreal, cubism, geometric shapes, 3d render, CGI, plastic, "
+    "chibi, super deformed, exaggerated proportions, overly cute, "
+    "dark, horror, gore, grotesque, ugly face, deformed face"
 )
 
 # Unified visual world style guide for Spirit in Physics.
+# Based on drawstyle.jsonld: 天野こずえ × 田村由美, quiet body language,
+# precise eyes/gaze, organic future city, silence as storytelling.
 CORE_VISUAL_STYLE = (
-    "Amano Kozue inspired color and atmosphere, gentle luminous air, "
-    "subtle emotional eyes, contemplative character acting, "
-    "environment and character integrated into one coherent physical space, "
-    "cinematic depth, clean composition, nuanced light and shadow, "
-    "English graphic novel visual language (not manga page formatting). "
+    "manga illustration, anime style, "
+    "natural eyes, quiet gaze, subtle facial expression, "
+    "soft luminous lighting, cinematic composition, "
 )
 
 # Style presets matching Go server's image_generation.go
 STYLE_PRESETS = {
     "cinematic_sketch": {
         "prefix": (
-            CORE_VISUAL_STYLE +
-            "Single-scene illustration, single panel, one moment, one composition, "
-            "graphic novel panel rendering, clean linework, clear silhouettes, stable anatomy. "
+            CORE_VISUAL_STYLE
         ),
         "suffix": (
-            ". Crisp graphic novel render, soft shading, expressive eyes, high clarity, "
-            "do not draw multiple frames or page layout, no text overlays."
+            ", masterpiece, best quality, very aesthetic, absurdres, "
+            "detailed face, soft shading, film grain"
         ),
     },
     "character_avatar": {
         "prefix": (
-            CORE_VISUAL_STYLE +
-            "Character headshot portrait, graphic novel character design, fine linework. "
+            "manga illustration, anime style, character portrait, "
+            "natural face, quiet gaze, "
+            "Amano Kozue soft atmosphere, clean background, "
+            "upper body, looking at viewer, "
         ),
         "suffix": (
-            ". Sharp face focus, expressive eyes, clean background, high detail, no text."
+            ", masterpiece, best quality, very aesthetic, absurdres, "
+            "sharp focus, soft lighting"
         ),
     },
 }
@@ -61,6 +67,20 @@ ASPECT_RATIOS = {
     "3:2": (1152, 768),
     "2:3": (768, 1152),
 }
+
+# Photorealistic negative prompt (for stage 1)
+PHOTOREALISTIC_NEGATIVE_PROMPT = (
+    "lowres, bad anatomy, bad hands, text, error, missing finger, "
+    "extra digits, fewer digits, cropped, worst quality, low quality, "
+    "signature, watermark, username, blurry, "
+    "cartoon, anime, illustration, painting, drawing, "
+    "deformed face, ugly face, disfigured"
+)
+
+# Style transfer settings (photorealistic → anime)
+STYLE_TRANSFER_DENOISING = 0.65
+STYLE_TRANSFER_STEPS = 28
+STYLE_TRANSFER_GUIDANCE = 7.0
 
 # LCM-LoRA acceleration settings
 LCM_LORA_ID = "latent-consistency/lcm-lora-sdxl"

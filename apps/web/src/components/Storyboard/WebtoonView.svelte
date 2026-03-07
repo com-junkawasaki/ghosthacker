@@ -1,11 +1,44 @@
 <script lang="ts">
 	import type { Panel } from '$lib/gen/proto/storyboard_pb';
+	import { storyboardClient } from '$lib/client/storyboard-client';
 
-	let { panels = [], episodeId = '' } = $props<{
+	let { panels = [], episodeId = '', storyboardPath = '' } = $props<{
 		panels: Panel[];
 		episodeId?: string;
 		storyboardPath?: string;
 	}>();
+
+	let selectedModel: 'local' | 'cinematic' = $state('local');
+	let generatingPanels: Set<string> = $state(new Set());
+
+	function panelKey(panel: Panel): string {
+		return `${panel.pageNumber}-${panel.panel}`;
+	}
+
+	async function generateImage(panel: Panel) {
+		const key = panelKey(panel);
+		generatingPanels.add(key);
+		generatingPanels = new Set(generatingPanels);
+		try {
+			await storyboardClient.generatePanelImage({
+				filePath: storyboardPath,
+				episodeId,
+				pageNumber: panel.pageNumber,
+				panel: panel.panel,
+				model: selectedModel,
+				panelData: {
+					visualNote: panel.data?.visualNote ?? '',
+					shot: panel.data?.shot ?? '',
+					characters: panel.data?.characters ?? [],
+				},
+			});
+		} catch (e) {
+			console.error('Generation failed:', e);
+		} finally {
+			generatingPanels.delete(key);
+			generatingPanels = new Set(generatingPanels);
+		}
+	}
 
 	let pagesMap = $derived(panels.reduce((acc: Record<number, Panel[]>, panel: Panel) => {
 		const pageNum = panel.pageNumber;
@@ -45,14 +78,20 @@
 </script>
 
 <div class="webtoon-scroll">
+	<div class="webtoon-controls">
+		<select bind:value={selectedModel} class="model-select">
+			<option value="local">AnimagineXL (local)</option>
+			<option value="cinematic">Cinematic (photo→anime)</option>
+		</select>
+	</div>
 	<div class="webtoon-strip">
 		{#each pageNumbers as pageNum}
 			{#each pagesMap[pageNum] as panel}
 				{@const imageUrl = getCurrentImageUrl(panel)}
 				{@const dialogues = panel.data?.dialogue ?? []}
 				{@const visualNote = panel.data?.visualNote ?? ''}
-
 				{@const mangaLayout = panel.data?.mangaLayout}
+				{@const isGenerating = generatingPanels.has(panelKey(panel))}
 
 				<div class="webtoon-panel">
 					{#if imageUrl}
@@ -92,6 +131,13 @@
 							{#if visualNote}
 								<div class="visual-note-float">{visualNote}</div>
 							{/if}
+							<button
+								class="gen-btn on-image"
+								onclick={() => generateImage(panel)}
+								disabled={isGenerating}
+							>
+								{isGenerating ? '⏳' : '🎨'}
+							</button>
 						</div>
 					{:else}
 						<div class="panel-placeholder">
@@ -109,6 +155,13 @@
 									{/each}
 								</div>
 							{/if}
+							<button
+								class="gen-btn"
+								onclick={() => generateImage(panel)}
+								disabled={isGenerating}
+							>
+								{isGenerating ? 'Generating...' : `Generate (${selectedModel})`}
+							</button>
 						</div>
 					{/if}
 				</div>
@@ -214,5 +267,28 @@
 
 	.webtoon-end {
 		@apply flex items-center justify-center py-16 text-[13px] text-zinc-600;
+	}
+
+	.webtoon-controls {
+		@apply sticky top-0 z-20 flex items-center justify-center gap-3 py-2;
+		background: rgba(0, 0, 0, 0.85);
+		backdrop-filter: blur(8px);
+	}
+
+	.model-select {
+		@apply rounded border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-[13px] text-zinc-300;
+	}
+
+	.gen-btn {
+		@apply mt-3 rounded border border-zinc-600 bg-zinc-800 px-4 py-1.5 text-[12px] text-zinc-400 transition-colors hover:bg-zinc-700 hover:text-zinc-200 disabled:opacity-50;
+	}
+
+	.gen-btn.on-image {
+		@apply absolute right-2 top-2 m-0 rounded-full border-0 bg-black/50 px-2 py-1 text-[16px] opacity-0 transition-opacity;
+		z-index: 15;
+	}
+
+	.image-wrap:hover .gen-btn.on-image {
+		@apply opacity-100;
 	}
 </style>

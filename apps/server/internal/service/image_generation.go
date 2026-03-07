@@ -103,16 +103,21 @@ func (s *StoryboardService) GeneratePanelImage(
 	s.preUpdateStoryboard(filePath, req.Msg.EpisodeId, req.Msg.PageNumber, req.Msg.Panel, urlPath, fullPrompt)
 
 	// Determine which model to use: request field > env var > default (openrouter)
-	useLocal := req.Msg.Model == "local" || (req.Msg.Model == "" && os.Getenv("USE_LOCAL_IMAGE_GEN") == "true")
+	useLocal := req.Msg.Model == "local" || req.Msg.Model == "cinematic" || (req.Msg.Model == "" && os.Getenv("USE_LOCAL_IMAGE_GEN") == "true")
 
 	// Generate image via local Diffusers service or OpenRouter API
 	var imageBytes []byte
 	if useLocal {
-		style := "cinematic_sketch"
-		if strings.HasPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:") {
-			style = "character_avatar"
+		if req.Msg.Model == "cinematic" {
+			// 2-stage: photorealistic → anime style transfer
+			imageBytes, err = s.callLocalCinematicGen(ctx, prompt, imagePath)
+		} else {
+			style := "cinematic_sketch"
+			if strings.HasPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:") {
+				style = "character_avatar"
+			}
+			imageBytes, err = s.callLocalImageGen(ctx, prompt, style, imagePath, req.Msg.PanelData.Characters...)
 		}
-		imageBytes, err = s.callLocalImageGen(ctx, prompt, style, imagePath, req.Msg.PanelData.Characters...)
 		if err != nil {
 			return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to generate image locally: %w", err))
 		}
@@ -163,7 +168,9 @@ func (s *StoryboardService) GeneratePanelImage(
 
 	// Create GeneratedImage
 	model := defaultModel
-	if useLocal {
+	if req.Msg.Model == "cinematic" {
+		model = "cyberrealistic-xl + animagine-xl-4.0 (cinematic)"
+	} else if useLocal {
 		model = "animagine-xl-4.0 (local)"
 	}
 	generatedImage := &storyboardpb.GeneratedImage{
@@ -585,7 +592,7 @@ func (s *StoryboardService) callLocalImageGen(ctx context.Context, prompt, style
 	}
 	httpReq.Header.Set("Content-Type", "application/json")
 
-	client := &http.Client{Timeout: 300 * time.Second} // local gen can be slow
+	client := &http.Client{Timeout: 600 * time.Second} // local gen can be slow (SDXL + IP-Adapter on MPS)
 	resp, err := client.Do(httpReq)
 	if err != nil {
 		return nil, fmt.Errorf("failed to call local image gen: %w", err)
@@ -628,6 +635,76 @@ func (s *StoryboardService) callLocalImageGen(ctx context.Context, prompt, style
 	}
 
 	log.Printf("Local image gen: seed=%d in %dms", result.Seed, result.GenerationTime)
+	return imageBytes, nil
+}
+
+// callLocalCinematicGen sends a request for 2-stage cinematic generation
+// (photorealistic → anime style transfer).
+func (s *StoryboardService) callLocalCinematicGen(ctx context.Context, prompt, outputPath string) ([]byte, error) {
+	baseURL := os.Getenv("IMAGE_GEN_URL")
+	if baseURL == "" {
+		baseURL = "http://localhost:8100"
+	}
+
+	requestBody := map[string]interface{}{
+		"prompt":      prompt,
+		"aspect_ratio": "16:9",
+		"output_path": outputPath,
+	}
+
+	jsonBody, err := json.Marshal(requestBody)
+	if err != nil {
+		return nil, fmt.Errorf("failed to marshal request: %w", err)
+	}
+
+	httpReq, err := http.NewRequestWithContext(ctx, "POST", baseURL+"/generate-cinematic", strings.NewReader(string(jsonBody)))
+	if err != nil {
+		return nil, fmt.Errorf("failed to create request: %w", err)
+	}
+	httpReq.Header.Set("Content-Type", "application/json")
+
+	// 2-stage takes roughly twice as long
+	client := &http.Client{Timeout: 1200 * time.Second}
+	resp, err := client.Do(httpReq)
+	if err != nil {
+		return nil, fmt.Errorf("failed to call cinematic gen: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf("cinematic gen error (%d): %s", resp.StatusCode, string(body))
+	}
+
+	var result struct {
+		ImageBase64    string `json:"image_base64"`
+		Seed           int    `json:"seed"`
+		GenerationTime int    `json:"generation_time_ms"`
+		OutputPath     string `json:"output_path"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+		return nil, fmt.Errorf("failed to decode response: %w", err)
+	}
+
+	if result.OutputPath != "" {
+		imageBytes, err := os.ReadFile(result.OutputPath)
+		if err != nil {
+			return nil, fmt.Errorf("failed to read generated image: %w", err)
+		}
+		log.Printf("Cinematic gen: seed=%d in %dms -> %s", result.Seed, result.GenerationTime, result.OutputPath)
+		return imageBytes, nil
+	}
+
+	base64Data, err := extractBase64FromDataURL(result.ImageBase64)
+	if err != nil {
+		return nil, fmt.Errorf("failed to extract base64: %w", err)
+	}
+	imageBytes, err := base64.StdEncoding.DecodeString(base64Data)
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode base64: %w", err)
+	}
+
+	log.Printf("Cinematic gen: seed=%d in %dms", result.Seed, result.GenerationTime)
 	return imageBytes, nil
 }
 

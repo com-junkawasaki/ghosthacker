@@ -5,8 +5,10 @@ import logging
 import random
 import time
 
+import gc
+
 import torch
-from diffusers import StableDiffusionXLPipeline, LCMScheduler, EulerDiscreteScheduler
+from diffusers import StableDiffusionXLPipeline, StableDiffusionXLImg2ImgPipeline, LCMScheduler, EulerDiscreteScheduler
 from PIL import Image
 from transformers import CLIPVisionModelWithProjection
 
@@ -21,6 +23,7 @@ class ImageGenerator:
         self.device = "mps" if torch.backends.mps.is_available() else "cpu"
         self.model_loaded = False
         self.load_time_ms = 0
+        self._current_model_id: str | None = None
         # LCM-LoRA state
         self._lcm_enabled = False
         self._original_scheduler_config = None
@@ -84,6 +87,7 @@ class ImageGenerator:
 
         self.load_time_ms = int((time.time() - start) * 1000)
         self.model_loaded = True
+        self._current_model_id = config.MODEL_ID
         self._original_scheduler_config = self.pipe.scheduler.config
         logger.info("Model loaded in %d ms", self.load_time_ms)
 
@@ -121,6 +125,8 @@ class ImageGenerator:
             raise RuntimeError("Model not loaded. Call load_model() first.")
         logger.info("Loading IP-Adapter for SDXL...")
         start = time.time()
+        # Disable attention slicing before loading IP-Adapter (SlicedAttnProcessor conflicts)
+        self.pipe.disable_attention_slicing()
         self._image_encoder = CLIPVisionModelWithProjection.from_pretrained(
             "h94/IP-Adapter",
             subfolder="sdxl_models/image_encoder",
@@ -173,15 +179,19 @@ class ImageGenerator:
         # MPS requires CPU generator for reproducibility
         generator = torch.Generator(device="cpu").manual_seed(seed)
 
-        # IP-Adapter: load on demand and set scale
+        # IP-Adapter: load on demand, unload when not needed
         extra_kwargs = {}
         if ip_adapter_images:
             self.load_ip_adapter()
             self.pipe.set_ip_adapter_scale(ip_adapter_scale)
-            extra_kwargs["ip_adapter_image"] = ip_adapter_images
+            # Wrap in list: single IP-Adapter receives all images as one batch
+            extra_kwargs["ip_adapter_image"] = [ip_adapter_images]
             logger.info("Using IP-Adapter with %d ref images, scale=%.2f", len(ip_adapter_images), ip_adapter_scale)
         elif self._ip_adapter_loaded:
-            self.pipe.set_ip_adapter_scale(0.0)
+            # Unload IP-Adapter to avoid requiring image_embeds when not using references
+            logger.info("Unloading IP-Adapter (no reference images for this generation)")
+            self.pipe.unload_ip_adapter()
+            self._ip_adapter_loaded = False
 
         logger.info(
             "Generating: %dx%d, steps=%d, cfg=%.1f, seed=%d, lcm=%s",
@@ -230,11 +240,7 @@ class ImageGenerator:
             tuple of (PIL Image, seed used, generation time in ms)
         """
         preset = config.STYLE_PRESETS.get(style, config.STYLE_PRESETS["cinematic_sketch"])
-        single_panel_guard = (
-            "Single panel illustration only, one scene only, "
-            "English graphic novel style, no manga page layout, no split frames, no text. "
-        )
-        full_prompt = single_panel_guard + preset["prefix"] + prompt + preset["suffix"]
+        full_prompt = preset["prefix"] + prompt + preset["suffix"]
 
         dims = config.ASPECT_RATIOS.get(aspect_ratio, config.ASPECT_RATIOS["16:9"])
 
@@ -246,6 +252,123 @@ class ImageGenerator:
             ip_adapter_images=ip_adapter_images,
             ip_adapter_scale=ip_adapter_scale,
         )
+
+
+    def _swap_model(self, model_id: str):
+        """Unload current model and load a different SDXL checkpoint."""
+        if self._current_model_id == model_id:
+            return
+        logger.info("Swapping model: %s → %s", self._current_model_id, model_id)
+        # Clean up current pipeline
+        if self._ip_adapter_loaded:
+            self.pipe.unload_ip_adapter()
+            self._ip_adapter_loaded = False
+        del self.pipe
+        self.pipe = None
+        self._image_encoder = None
+        gc.collect()
+        if self.device == "mps":
+            torch.mps.empty_cache()
+
+        start = time.time()
+        self.pipe = StableDiffusionXLPipeline.from_pretrained(
+            model_id,
+            torch_dtype=torch.float32,
+            use_safetensors=True,
+        )
+        self.pipe.to(self.device)
+        self.pipe.enable_attention_slicing()
+        self._current_model_id = model_id
+        self._original_scheduler_config = self.pipe.scheduler.config
+        self._lcm_enabled = False
+        logger.info("Model %s loaded in %d ms", model_id, int((time.time() - start) * 1000))
+
+    def generate_cinematic(
+        self,
+        prompt: str,
+        aspect_ratio: str = "16:9",
+        seed: int | None = None,
+        denoising_strength: float = config.STYLE_TRANSFER_DENOISING,
+    ) -> tuple[Image.Image, int, int]:
+        """2-stage pipeline: photorealistic → anime style transfer.
+
+        Stage 1: Generate photorealistic image with CyberRealistic XL.
+        Stage 2: Style-transfer to anime with AnimagineXL img2img.
+
+        Returns:
+            tuple of (final PIL Image, seed used, total generation time in ms)
+        """
+        if seed is None:
+            seed = random.randint(0, 2**32 - 1)
+
+        dims = config.ASPECT_RATIOS.get(aspect_ratio, config.ASPECT_RATIOS["16:9"])
+        total_start = time.time()
+
+        # --- Stage 1: Photorealistic ---
+        self._swap_model(config.PHOTOREALISTIC_MODEL_ID)
+        generator = torch.Generator(device="cpu").manual_seed(seed)
+
+        self._current_step = 0
+        self._total_steps = config.DEFAULT_STEPS
+        self._avg_step_time_ms = 0
+        self._cancelled = False
+        self._step_start_time = time.time()
+
+        logger.info("Stage 1: Photorealistic generation %dx%d seed=%d", dims[0], dims[1], seed)
+        photo_result = self.pipe(
+            prompt=prompt,
+            negative_prompt=config.PHOTOREALISTIC_NEGATIVE_PROMPT,
+            width=dims[0],
+            height=dims[1],
+            num_inference_steps=config.DEFAULT_STEPS,
+            guidance_scale=config.DEFAULT_GUIDANCE_SCALE,
+            generator=generator,
+            callback_on_step_end=self._step_callback,
+        )
+        photo_image = photo_result.images[0]
+        logger.info("Stage 1 complete in %d ms", int((time.time() - self._step_start_time) * 1000))
+
+        # --- Stage 2: Anime style transfer via img2img ---
+        self._swap_model(config.MODEL_ID)
+
+        preset = config.STYLE_PRESETS["cinematic_sketch"]
+        style_prompt = preset["prefix"] + prompt + preset["suffix"]
+
+        generator = torch.Generator(device="cpu").manual_seed(seed)
+
+        # Build img2img pipeline from the txt2img pipeline components
+        img2img_pipe = StableDiffusionXLImg2ImgPipeline(
+            vae=self.pipe.vae,
+            text_encoder=self.pipe.text_encoder,
+            text_encoder_2=self.pipe.text_encoder_2,
+            tokenizer=self.pipe.tokenizer,
+            tokenizer_2=self.pipe.tokenizer_2,
+            unet=self.pipe.unet,
+            scheduler=self.pipe.scheduler,
+        )
+
+        self._current_step = 0
+        self._total_steps = config.STYLE_TRANSFER_STEPS
+        self._avg_step_time_ms = 0
+        self._step_start_time = time.time()
+
+        logger.info("Stage 2: Style transfer denoising=%.2f", denoising_strength)
+        anime_result = img2img_pipe(
+            prompt=style_prompt,
+            negative_prompt=config.DEFAULT_NEGATIVE_PROMPT,
+            image=photo_image,
+            strength=denoising_strength,
+            num_inference_steps=config.STYLE_TRANSFER_STEPS,
+            guidance_scale=config.STYLE_TRANSFER_GUIDANCE,
+            generator=generator,
+            callback_on_step_end=self._step_callback,
+        )
+        final_image = anime_result.images[0]
+
+        total_time_ms = int((time.time() - total_start) * 1000)
+        logger.info("2-stage generation complete in %d ms (seed=%d)", total_time_ms, seed)
+
+        return final_image, seed, total_time_ms
 
 
 def image_to_base64(image: Image.Image, fmt: str = "PNG") -> str:
