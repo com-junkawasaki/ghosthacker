@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getEpisodes, getEpisodePanels, getArcs, getArcPanels, storyboardClient, streamUpdates, exportPdf, listProjects, switchProject } from '$lib/client/storyboard-client';
+	import { getEpisodes, getEpisodePanels, getArcs, getArcPanels, storyboardClient, streamUpdates, exportPdf, listProjects, switchProject, loadStoryboard } from '$lib/client/storyboard-client';
 	import StoryboardPage from './StoryboardPage.svelte';
 	import MangaEditor from './MangaEditor.svelte';
 	import ScriptView from './ScriptView.svelte';
@@ -25,6 +25,8 @@
 	let selectedPanelIndex = $state(1);
 	let selectedPanelData = $state<PanelData | undefined>(undefined);
 	let viewMode = $state<'storyboard' | 'manga' | 'script' | 'shooting'>('storyboard');
+	let projectCharacterIds: string[] = $state([]);
+	let workspacePane = $state<'structure' | 'canvas' | 'assistant'>('canvas');
 	
 	// Chat Panel reference
 	let chatPanel = $state<any>(undefined);
@@ -32,12 +34,14 @@
 	function openChatWithAgent(agent: any, prompt?: string) {
 		if (chatPanel) {
 			chatPanel.triggerAgent(agent, prompt);
+			workspacePane = 'assistant';
 		}
 	}
 
 	function addContextToChat(type: string, data: any) {
 		if (chatPanel) {
 			chatPanel.addContext(type, data);
+			workspacePane = 'assistant';
 		}
 	}
 	
@@ -105,6 +109,32 @@
 		activeProject = response.activeProject ?? '';
 	}
 
+	function normalizeCharacterId(id: string): string {
+		if (!id) return id;
+		if (!id.startsWith('character:')) return `character:${id}`;
+		return id;
+	}
+
+	async function loadProjectCharacters() {
+		try {
+			const response = await loadStoryboard(storyboardPath);
+			const json = JSON.parse(response.jsonldContent || '{}') as Record<string, any>;
+			const chars = Array.isArray(json['gh:characters']) ? json['gh:characters'] : [];
+			const ids = chars
+				.map((c: any) => {
+					if (typeof c === 'string') return c;
+					if (c && typeof c === 'object') return c['@id'] ?? c.id ?? '';
+					return '';
+				})
+				.filter((v: string) => !!v)
+				.map((v: string) => normalizeCharacterId(v));
+			projectCharacterIds = Array.from(new Set(ids)).sort((a, b) => a.localeCompare(b));
+		} catch (err) {
+			console.warn('[StoryboardEditor] loadProjectCharacters: failed, fallback to panel-derived list', err);
+			projectCharacterIds = [];
+		}
+	}
+
 	async function handleProjectSwitch(projectId: string) {
 		if (projectId === activeProject) return;
 		try {
@@ -119,7 +149,7 @@
 			selectedEpisode = '';
 			selectedArc = '';
 			selectedPage = 1;
-			await Promise.all([loadEpisodes(), loadArcs()]);
+			await Promise.all([loadEpisodes(), loadArcs(), loadProjectCharacters()]);
 		} catch (err) {
 			console.error('[StoryboardEditor] handleProjectSwitch error:', err);
 			error = `Failed to switch project: ${err}`;
@@ -137,7 +167,7 @@
 		(async () => {
 			try {
 				await loadProjects();
-				await Promise.all([loadEpisodes(), loadArcs()]);
+				await Promise.all([loadEpisodes(), loadArcs(), loadProjectCharacters()]);
 			} catch (err) {
 				console.error('[StoryboardEditor] init: error loading initial data', err);
 			}
@@ -408,6 +438,11 @@
 
 	// PDF Export state
 	let isExporting = $state(false);
+	let currentScopeLabel = $derived(
+		editMode === 'episode'
+			? (episodes.find((e) => e.id === selectedEpisode)?.title ?? selectedEpisode ?? 'No episode')
+			: (arcs.find((a) => a.id === selectedArc)?.title ?? selectedArc ?? 'No arc')
+	);
 
 	async function handleExportPdf() {
 		if (isExporting || panels.length === 0) return;
@@ -453,123 +488,136 @@
 
 <div class="storyboard-editor">
 	<header class="editor-header">
-		<div class="project-selector">
-			<select
-				value={activeProject}
-				onchange={(e) => {
-					const newProject = e.currentTarget.value;
-					if (newProject !== activeProject) handleProjectSwitch(newProject);
-				}}
-				disabled={loading || projects.length === 0}
-			>
-				{#if projects.length === 0}
-					<option value="" disabled>Loading projects...</option>
+		<div class="header-row">
+			<div class="project-selector">
+				<select
+					value={activeProject}
+					onchange={(e) => {
+						const newProject = e.currentTarget.value;
+						if (newProject !== activeProject) handleProjectSwitch(newProject);
+					}}
+					disabled={loading || projects.length === 0}
+				>
+					{#if projects.length === 0}
+						<option value="" disabled>Loading projects...</option>
+					{:else}
+						{#each projects as project}
+							<option value={project.id} selected={project.id === activeProject}>{project.name}{project.hasStoryboard ? '' : ' (no storyboard)'}</option>
+						{/each}
+					{/if}
+				</select>
+			</div>
+			<div class="header-right-group">
+				<ImageGenStatus />
+				<div class="export-controls">
+					<button
+						class="export-btn"
+						onclick={handleExportPdf}
+						disabled={isExporting || panels.length === 0}
+						title={`Export ${viewMode} as PDF`}
+					>
+						{#if isExporting}
+							<span class="spinner"></span>
+							Exporting...
+						{:else}
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+								<polyline points="14 2 14 8 20 8"></polyline>
+								<line x1="12" y1="18" x2="12" y2="12"></line>
+								<line x1="9" y1="15" x2="15" y2="15"></line>
+							</svg>
+							PDF
+						{/if}
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="header-row header-row-controls">
+			<div class="edit-mode-selector">
+				<button
+					class:active={editMode === 'episode'}
+					onclick={() => editMode = 'episode'}
+				>By Episode</button>
+				<button
+					class:active={editMode === 'arc'}
+					onclick={() => editMode = 'arc'}
+				>By Arc</button>
+			</div>
+			<div class="selection-controls">
+				{#if editMode === 'episode'}
+					<div class="episode-selector">
+						<label for="episode-select">Episode:</label>
+						<select
+							id="episode-select"
+							bind:value={selectedEpisode}
+						>
+							{#if episodes.length === 0}
+								<option value="" disabled>No episodes available</option>
+							{:else}
+								{#each episodes as episode}
+									<option value={episode.id}>{episode.title}</option>
+								{/each}
+							{/if}
+						</select>
+					</div>
 				{:else}
-					{#each projects as project}
-						<option value={project.id} selected={project.id === activeProject}>{project.name}{project.hasStoryboard ? '' : ' (no storyboard)'}</option>
-					{/each}
+					<div class="arc-selector">
+						<label for="arc-select">Arc:</label>
+						<select
+							id="arc-select"
+							bind:value={selectedArc}
+						>
+							{#if arcs.length === 0}
+								<option value="" disabled>No arcs available</option>
+							{:else}
+								{#each arcs as arc}
+									<option value={arc.id}>{arc.title}</option>
+								{/each}
+							{/if}
+						</select>
+					</div>
 				{/if}
-			</select>
+			</div>
+			<div class="view-switcher">
+				<button 
+					class:active={viewMode === 'storyboard'} 
+					onclick={() => {
+						viewMode = 'storyboard';
+						workspacePane = 'canvas';
+					}}
+				>Storyboard</button>
+				<button 
+					class:active={viewMode === 'manga'} 
+					onclick={() => {
+						viewMode = 'manga';
+						workspacePane = 'canvas';
+					}}
+				>Manga</button>
+				<button 
+					class:active={viewMode === 'script'} 
+					onclick={() => {
+						viewMode = 'script';
+						workspacePane = 'canvas';
+					}}
+				>Script</button>
+				<button 
+					class:active={viewMode === 'shooting'} 
+					onclick={() => {
+						viewMode = 'shooting';
+						workspacePane = 'canvas';
+					}}
+				>Shooting</button>
+			</div>
 		</div>
-
-		<div class="edit-mode-selector">
-			<button
-				class:active={editMode === 'episode'}
-				onclick={() => editMode = 'episode'}
-			>By Episode</button>
-			<button
-				class:active={editMode === 'arc'}
-				onclick={() => editMode = 'arc'}
-			>By Arc</button>
-		</div>
-
-		<div class="selection-controls">
-			{#if editMode === 'episode'}
-				<div class="episode-selector">
-					<label for="episode-select">Episode:</label>
-					<select
-						id="episode-select"
-						bind:value={selectedEpisode}
-					>
-						{#if episodes.length === 0}
-							<option value="" disabled>No episodes available</option>
-						{:else}
-							{#each episodes as episode}
-								<option value={episode.id}>{episode.title}</option>
-							{/each}
-						{/if}
-					</select>
-				</div>
-			{:else}
-				<div class="arc-selector">
-					<label for="arc-select">Arc:</label>
-					<select
-						id="arc-select"
-						bind:value={selectedArc}
-					>
-						{#if arcs.length === 0}
-							<option value="" disabled>No arcs available</option>
-						{:else}
-							{#each arcs as arc}
-								<option value={arc.id}>{arc.title}</option>
-							{/each}
-						{/if}
-					</select>
-				</div>
-			{/if}
-		</div>
-
-		<div class="view-switcher">
-			<button 
-				class:active={viewMode === 'storyboard'} 
-				onclick={() => viewMode = 'storyboard'}
-			>Storyboard</button>
-			<button 
-				class:active={viewMode === 'manga'} 
-				onclick={() => viewMode = 'manga'}
-			>Manga</button>
-			<button 
-				class:active={viewMode === 'script'} 
-				onclick={() => viewMode = 'script'}
-			>Script</button>
-			<button 
-				class:active={viewMode === 'shooting'} 
-				onclick={() => viewMode = 'shooting'}
-			>Shooting</button>
-		</div>
-
-		<div class="episode-info">
+		<div class="ia-meta">
+			<span class="ia-chip">Scope: {currentScopeLabel}</span>
+			<span class="ia-chip">Panels: {panels.length}</span>
 			{#if selectedEpisode && episodes.length > 0}
 				{@const episode = episodes.find((e) => e.id === selectedEpisode)}
 				{#if episode}
-					<span class="total-pages">{episode.totalPages} pages</span>
+					<span class="ia-chip">{episode.totalPages} pages</span>
 				{/if}
 			{/if}
-		</div>
-
-		<div class="header-right-group">
-			<ImageGenStatus />
-			<div class="export-controls">
-				<button
-					class="export-btn"
-					onclick={handleExportPdf}
-					disabled={isExporting || panels.length === 0}
-					title={`Export ${viewMode} as PDF`}
-				>
-					{#if isExporting}
-						<span class="spinner"></span>
-						Exporting...
-					{:else}
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-							<polyline points="14 2 14 8 20 8"></polyline>
-							<line x1="12" y1="18" x2="12" y2="12"></line>
-							<line x1="9" y1="15" x2="15" y2="15"></line>
-						</svg>
-						PDF ({viewMode})
-					{/if}
-				</button>
-			</div>
 		</div>
 	</header>
 
@@ -580,12 +628,25 @@
 	{#if loading}
 		<div class="loading">Loading...</div>
 	{:else if panels.length > 0}
-		<div 
-			class="editor-content" 
-		>
-			<aside class="left-sidebar">
+		<div class="workspace-switcher" role="tablist" aria-label="Workspace areas">
+			<button
+				class:active={workspacePane === 'structure'}
+				onclick={() => workspacePane = 'structure'}
+			>Structure</button>
+			<button
+				class:active={workspacePane === 'canvas'}
+				onclick={() => workspacePane = 'canvas'}
+			>Canvas</button>
+			<button
+				class:active={workspacePane === 'assistant'}
+				onclick={() => workspacePane = 'assistant'}
+			>Assistant</button>
+		</div>
+		<div class="editor-content">
+			<aside class="left-sidebar" class:mobile-hidden={workspacePane !== 'structure'}>
 				<NodeTree 
 					{panels} 
+					characterIds={projectCharacterIds}
 					selectedId={editMode === 'episode' ? selectedEpisode : selectedArc} 
 					onSelect={(panel) => {
 						selectedPanelIndex = panel.panel;
@@ -596,7 +657,7 @@
 				/>
 			</aside>
 
-			<main class="main-content">
+			<main class="main-content" class:mobile-hidden={workspacePane !== 'canvas'}>
 				<div class="active-view">
 					{#if viewMode === 'storyboard'}
 						<StoryboardPage
@@ -663,7 +724,7 @@
 				</div>
 			</main>
 
-			<aside class="right-sidebar">
+			<aside class="right-sidebar" class:mobile-hidden={workspacePane !== 'assistant'}>
 				<ChatPanel 
 					bind:this={chatPanel} 
 					selectedEpisode={editMode === 'episode' ? selectedEpisode : selectedArc} 
@@ -672,6 +733,20 @@
 				/>
 			</aside>
 		</div>
+		<nav class="workspace-bottom-nav">
+			<button
+				class:active={workspacePane === 'structure'}
+				onclick={() => workspacePane = 'structure'}
+			>Structure</button>
+			<button
+				class:active={workspacePane === 'canvas'}
+				onclick={() => workspacePane = 'canvas'}
+			>Canvas</button>
+			<button
+				class:active={workspacePane === 'assistant'}
+				onclick={() => workspacePane = 'assistant'}
+			>Assistant</button>
+		</nav>
 	{:else if episodes.length === 0 && !loading}
 		<div class="empty-state">
 			<p>No episodes available. Check console for details.</p>
@@ -681,286 +756,46 @@
 </div>
 
 <style>
-	.storyboard-editor {
-		display: flex;
-		flex-direction: column;
-		height: 100vh;
-		background: #f5f5f0;
-		font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
-	}
+	@reference "tailwindcss";
 
-	.editor-content {
-		display: flex;
-		flex: 1;
-		overflow: hidden;
-		position: relative;
-		background: #1e1e1e;
-	}
+	.storyboard-editor { @apply flex h-screen flex-col bg-zinc-50 text-zinc-900; }
+	.editor-header { @apply sticky top-0 z-20 border-b border-zinc-200 bg-white/95 px-3 py-2 backdrop-blur; }
+	.header-row { @apply flex flex-wrap items-center gap-2; }
+	.header-row-controls { @apply items-start; }
+	.project-selector { @apply min-w-[180px] flex-1; }
+	.project-selector select { @apply w-full rounded-lg border border-sky-300 bg-sky-50 px-2.5 py-2 text-xs font-semibold text-sky-700 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200; }
+	.edit-mode-selector, .view-switcher, .workspace-switcher, .workspace-bottom-nav { @apply flex rounded-lg border border-zinc-200 bg-zinc-100 p-1; }
+	.edit-mode-selector button, .view-switcher button, .workspace-switcher button, .workspace-bottom-nav button { @apply flex-1 rounded-md px-3 py-2 text-xs font-semibold text-zinc-600 transition; }
+	.edit-mode-selector button.active, .view-switcher button.active, .workspace-switcher button.active, .workspace-bottom-nav button.active { @apply bg-white text-sky-700 shadow-sm; }
+	.selection-controls { @apply min-w-[220px] flex-1; }
+	.episode-selector, .arc-selector { @apply flex w-full items-center gap-2; }
+	.episode-selector label, .arc-selector label { @apply whitespace-nowrap text-xs font-semibold text-zinc-700; }
+	.episode-selector select, .arc-selector select { @apply w-full rounded-md border border-zinc-300 bg-white px-2 py-2 text-xs text-zinc-800 outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-200; }
+	.view-switcher { @apply min-w-[240px] flex-1; }
+	.ia-meta { @apply flex flex-wrap gap-1.5; }
+	.ia-chip { @apply rounded-full border border-sky-200 bg-sky-50 px-2 py-0.5 text-[11px] font-medium text-sky-800; }
+	.error { @apply m-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700; }
+	.loading { @apply p-5 text-center text-sm text-zinc-600; }
+	.empty-state { @apply p-5 text-center text-sm text-zinc-600; }
+	.empty-state button { @apply mt-4 rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-800 transition hover:bg-zinc-50; }
+	.header-right-group { @apply ml-auto flex items-center gap-2; }
+	.export-controls { @apply flex items-center; }
+	.export-btn { @apply inline-flex items-center gap-1 rounded-md border border-sky-600 bg-sky-600 px-3 py-2 text-xs font-semibold text-white transition hover:border-sky-700 hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-60; }
+	.export-btn svg { @apply shrink-0; }
+	.spinner { @apply inline-block h-3.5 w-3.5 animate-spin rounded-full border-2 border-white border-t-transparent; }
+	.workspace-switcher { @apply mx-2 mt-1; }
+	.editor-content { @apply relative flex flex-1 overflow-hidden bg-zinc-900; }
+	.left-sidebar, .main-content, .right-sidebar { @apply flex min-w-0 flex-1 flex-col; }
+	.main-content { @apply overflow-hidden bg-white; }
+	.active-view { @apply flex flex-1 flex-col overflow-hidden; }
+	.mobile-hidden { @apply hidden; }
+	.workspace-bottom-nav { @apply sticky bottom-0 z-10 border-t border-zinc-200 bg-white px-2 py-1 pb-[calc(0.25rem+env(safe-area-inset-bottom,0px))] md:hidden; }
 
-	.left-sidebar {
-		width: 260px;
-		flex-shrink: 0;
-		border-right: 1px solid #333;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.right-sidebar {
-		width: 350px;
-		flex-shrink: 0;
-		border-left: 1px solid #333;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.main-content {
-		flex: 1;
-		display: flex;
-		position: relative;
-		overflow: hidden;
-		background: #fff;
-	}
-
-	.active-view {
-		flex: 1;
-		overflow: hidden;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.storyboard-view {
-		flex: 1;
-		overflow: hidden;
-		display: flex;
-		flex-direction: column;
-		border-right: 1px solid #ddd;
-	}
-
-	.manga-view {
-		flex: 1;
-		overflow: hidden;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.editor-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 0.5rem 1.5rem;
-		background: #fff;
-		border-bottom: 2px solid #ddd;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-		gap: 1rem;
-	}
-
-	.edit-mode-selector {
-		display: flex;
-		background: #f0f0f0;
-		padding: 3px;
-		border-radius: 6px;
-	}
-
-	.edit-mode-selector button {
-		padding: 0.3rem 0.8rem;
-		border: none;
-		background: transparent;
-		border-radius: 4px;
-		font-size: 0.8rem;
-		font-weight: 600;
-		color: #666;
-		cursor: pointer;
-		transition: all 0.2s;
-	}
-
-	.edit-mode-selector button.active {
-		background: #fff;
-		color: #4a90e2;
-		box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-	}
-
-	.project-selector {
-		flex-shrink: 0;
-	}
-
-	.project-selector select {
-		padding: 0.4rem 0.6rem;
-		border: 2px solid #4a90e2;
-		border-radius: 6px;
-		font-size: 0.85rem;
-		font-weight: 600;
-		background: #e8f0fe;
-		color: #1a56db;
-		cursor: pointer;
-		min-width: 160px;
-	}
-
-	.project-selector select:hover {
-		background: #d0e2fd;
-	}
-
-	.project-selector select:disabled {
-		opacity: 0.6;
-		cursor: not-allowed;
-	}
-
-	.selection-controls {
-		display: flex;
-		align-items: center;
-		flex: 1;
-	}
-
-	.episode-selector, .arc-selector {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-	}
-
-	.episode-selector label, .arc-selector label {
-		font-weight: 600;
-		font-size: 0.9rem;
-	}
-
-	.episode-selector select, .arc-selector select {
-		padding: 0.4rem 0.8rem;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		font-size: 0.9rem;
-		min-width: 150px;
-	}
-
-	.view-switcher {
-		display: flex;
-		background: #eee;
-		padding: 3px;
-		border-radius: 6px;
-		margin: 0 1rem;
-	}
-
-	.view-switcher button {
-		padding: 0.4rem 1rem;
-		border: none;
-		background: transparent;
-		border-radius: 4px;
-		font-size: 0.85rem;
-		font-weight: 600;
-		color: #666;
-		cursor: pointer;
-		transition: all 0.2s;
-	}
-
-	.view-switcher button.active {
-		background: #fff;
-		color: #4a90e2;
-		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-	}
-
-	.debug-info {
-		margin-left: 0.5rem;
-		color: #f90;
-		font-size: 1.2rem;
-		cursor: help;
-	}
-
-	.episode-info {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-		color: #666;
-		font-size: 0.9rem;
-	}
-
-	.total-pages {
-		font-weight: 500;
-	}
-
-	.error {
-		padding: 1rem;
-		background: #fee;
-		color: #c00;
-		border: 1px solid #fcc;
-		margin: 1rem;
-		border-radius: 4px;
-	}
-
-	.loading {
-		padding: 2rem;
-		text-align: center;
-		color: #666;
-	}
-
-	.empty-state {
-		padding: 2rem;
-		text-align: center;
-		color: #666;
-	}
-
-	.empty-state button {
-		margin-top: 1rem;
-		padding: 0.5rem 1rem;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		background: #fff;
-		cursor: pointer;
-	}
-
-	.empty-state button:hover {
-		background: #f5f5f5;
-	}
-
-	.header-right-group {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-	}
-
-	.export-controls {
-		display: flex;
-		align-items: center;
-	}
-
-	.export-btn {
-		display: flex;
-		align-items: center;
-		gap: 0.4rem;
-		padding: 0.4rem 0.8rem;
-		border: 1px solid #4a90e2;
-		border-radius: 4px;
-		background: #4a90e2;
-		color: white;
-		font-size: 0.85rem;
-		font-weight: 600;
-		cursor: pointer;
-		transition: all 0.2s;
-	}
-
-	.export-btn:hover:not(:disabled) {
-		background: #357abd;
-		border-color: #357abd;
-	}
-
-	.export-btn:disabled {
-		opacity: 0.6;
-		cursor: not-allowed;
-	}
-
-	.export-btn svg {
-		flex-shrink: 0;
-	}
-
-	.spinner {
-		display: inline-block;
-		width: 14px;
-		height: 14px;
-		border: 2px solid #ffffff;
-		border-radius: 50%;
-		border-top-color: transparent;
-		animation: spin 0.8s linear infinite;
-	}
-
-	@keyframes spin {
-		to {
-			transform: rotate(360deg);
-		}
+	@media (min-width: 768px) {
+		.editor-header { @apply px-4 py-2; }
+		.workspace-switcher, .workspace-bottom-nav { @apply hidden; }
+		.left-sidebar { flex: 0 0 260px; @apply border-r border-zinc-800; }
+		.right-sidebar { flex: 0 0 350px; @apply border-l border-zinc-800; }
+		.mobile-hidden { @apply flex; }
 	}
 </style>

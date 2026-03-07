@@ -33,6 +33,8 @@
 	let dialogueError = '';
 	let generatingCinematic = false;
 	let cinematicError = '';
+	let fieldPrefix = '';
+	$: fieldPrefix = `panel-${panel.pageNumber}-${panel.panel}`;
 
 	// Reactive: update when panel prop changes (important for initial data load)
 	$: if (panel.data?.generatedImages) {
@@ -459,7 +461,7 @@
 					{/if}
 					<img
 						src={currentImageUrl}
-						alt="Generated image"
+						alt="Generated panel preview"
 						class="generated-image"
 						onerror={() => {
 							imageLoadFailed = true;
@@ -493,8 +495,9 @@
 		{#if editing}
 			<div class="content-editor">
 				<div class="characters-section">
-					<label>Characters:</label>
+					<label for={`${fieldPrefix}-characters`}>Characters:</label>
 					<input
+						id={`${fieldPrefix}-characters`}
 						type="text"
 						value={characters.join(', ')}
 						oninput={(e) => {
@@ -507,31 +510,34 @@
 					/>
 				</div>
 				<div class="environment-section">
-					<label>Environment:</label>
+					<label for={`${fieldPrefix}-environment`}>Environment:</label>
 					<input
+						id={`${fieldPrefix}-environment`}
 						type="text"
 						bind:value={environment}
 						placeholder="env:ren-office"
 					/>
 				</div>
 				<div class="shot-section">
-					<label>Shot Type:</label>
+					<label for={`${fieldPrefix}-shot`}>Shot Type:</label>
 					<input
+						id={`${fieldPrefix}-shot`}
 						type="text"
 						bind:value={shot}
 						placeholder="Close-up, Wide Shot, etc."
 					/>
 				</div>
 				<div class="prompt-section">
-					<label>Runway Prompt:</label>
+					<label for={`${fieldPrefix}-prompt`}>Runway Prompt:</label>
 					<textarea
+						id={`${fieldPrefix}-prompt`}
 						bind:value={runwayPrompt}
 						placeholder="Runway base prompt..."
 						class="prompt-input"
 					></textarea>
 				</div>
 				<div class="dialogue-section">
-					<label>Dialogue:</label>
+					<div class="dialogue-label" id={`${fieldPrefix}-dialogue-label`}>Dialogue:</div>
 					<div class="dialogue-generation-controls">
 						<button
 							type="button"
@@ -556,6 +562,7 @@
 					{#each dialogues as dialogue, index}
 						<div class="dialogue-item">
 							<input
+								id={index === 0 ? `${fieldPrefix}-dialogue-first-speaker` : undefined}
 								type="text"
 								bind:value={dialogue.speaker}
 								placeholder="Speaker"
@@ -642,11 +649,14 @@
 </div>
 
 <style>
+	@reference "tailwindcss";
+
 	.storyboard-panel-row {
 		display: grid;
 		grid-template-columns: 80px 1fr 1fr 400px 60px;
 		border-bottom: 1px solid #e0e0e0;
 		min-height: 200px;
+		background: #fff;
 	}
 
 	.storyboard-panel-row:hover {
@@ -662,6 +672,7 @@
 		border-right: 1px solid #e0e0e0;
 		display: flex;
 		align-items: flex-start;
+		min-width: 0;
 	}
 
 	.col-cut:last-child,
@@ -700,6 +711,7 @@
 		background: #f9f9f9;
 		position: relative;
 		padding: 0.5rem;
+		overflow: hidden;
 	}
 
 	.visual-placeholder {
@@ -772,6 +784,7 @@
 		margin-bottom: 0.5rem;
 		display: flex;
 		gap: 0.25rem;
+		flex-wrap: wrap;
 	}
 
 	.model-select {
@@ -1024,6 +1037,15 @@
 		color: #555;
 	}
 
+	.dialogue-label {
+		display: block;
+		font-weight: 600;
+		margin-top: 0.75rem;
+		margin-bottom: 0.25rem;
+		font-size: 0.85rem;
+		color: #555;
+	}
+
 	.content-editor input[type='text'],
 	.content-editor textarea {
 		width: 100%;
@@ -1201,5 +1223,56 @@
 		border: 1px solid #fcc;
 		border-radius: 4px;
 		font-size: 0.75rem;
+	}
+
+	@media (max-width: 767px) {
+		.storyboard-panel-row {
+			grid-template-columns: 1fr;
+			gap: 0;
+			min-height: auto;
+			border-bottom: 1px solid #d4d4d8;
+		}
+
+		.col-cut,
+		.col-picture,
+		.col-picture-generated,
+		.col-content,
+		.col-seconds {
+			padding: 0.75rem;
+			border-right: none;
+			border-bottom: 1px solid #ececf0;
+		}
+
+		.col-seconds {
+			border-bottom: none;
+		}
+
+		.cut-number,
+		.duration {
+			text-align: left;
+			font-size: 0.95rem;
+		}
+
+		.placeholder-text {
+			font-size: 2rem;
+		}
+
+		.generated-image {
+			max-height: 220px;
+		}
+
+		.model-select,
+		.generate-btn,
+		.generate-dialogue-btn,
+		.generate-dialogue-btn-legacy,
+		.save-btn,
+		.cancel-btn {
+			min-height: 38px;
+		}
+
+		.content-display {
+			font-size: 0.85rem;
+			line-height: 1.5;
+		}
 	}
 </style>

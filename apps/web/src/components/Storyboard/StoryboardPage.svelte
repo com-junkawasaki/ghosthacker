@@ -81,12 +81,12 @@
 
 		{#each pageNumbers as pageNum}
 			<div class="page-section" data-page={pageNum}>
-				<div class="page-header" onclick={() => {
+				<button type="button" class="page-header" onclick={() => {
 					dispatch('pageChange', pageNum);
 					dispatch('contextAdd', { type: 'page', data: { pageNumber: pageNum } });
 				}}>
 					<div class="page-number">Page {pageNum}</div>
-				</div>
+				</button>
 				
 				<div class="panels-container">
 					{#each pagesMap[pageNum] as panel, i (panel.panel + '-' + i)}
@@ -120,105 +120,20 @@
 </div>
 
 <style>
-	.storyboard-page {
-		flex: 1;
-		overflow-y: auto;
-		padding: 2rem;
-		background: #faf9f5;
-	}
+	@reference "tailwindcss";
 
-	.storyboard-container {
-		max-width: 1400px;
-		margin: 0 auto;
-		background: #fff;
-		border: 2px solid #ddd;
-		border-radius: 8px;
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	}
-
-	.page-section {
-		position: relative;
-	}
-
-	.page-header {
-		padding: 1.5rem 2rem;
-		text-align: center;
-		background: #f5f5f0;
-		border-bottom: 1px solid #ddd;
-		cursor: pointer;
-		transition: background 0.2s;
-	}
-
-	.page-header:hover {
-		background: #e8e8e0;
-	}
-
-	.page-number {
-		font-size: 1.25rem;
-		font-weight: 600;
-		color: #333;
-	}
-
-	.page-divider {
-		margin: 0;
-		border: none;
-		border-top: 3px solid #ccc;
-		height: 0;
-		margin-top: 2rem;
-		margin-bottom: 2rem;
-	}
-
+	.storyboard-page { @apply flex-1 overflow-y-auto bg-zinc-50 p-2 md:p-6; }
+	.storyboard-container { @apply mx-auto w-full max-w-[1400px] overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm; }
+	.page-section { @apply relative; }
+	.page-header { @apply cursor-pointer border-b border-zinc-200 bg-zinc-100/80 px-4 py-4 text-center transition hover:bg-zinc-100; }
+	.page-number { @apply text-base font-semibold tracking-wide text-zinc-700 md:text-xl; }
+	.page-divider { @apply my-5 h-0 border-0 border-t-2 border-zinc-300 md:my-8; }
 	.grid-header {
-		display: grid;
+		@apply sticky top-0 z-10 hidden border-b border-zinc-300 bg-zinc-100 text-xs font-semibold text-zinc-600 md:grid;
 		grid-template-columns: 80px 1fr 1fr 400px 60px;
-		background: #e8e6e0;
-		border-bottom: 2px solid #ccc;
-		font-weight: 600;
-		font-size: 0.9rem;
-		color: #555;
 	}
-
-	.col-cut,
-	.col-picture,
-	.col-picture-generated,
-	.col-content,
-	.col-seconds {
-		padding: 0.75rem 1rem;
-		border-right: 1px solid #ccc;
-		text-align: center;
-	}
-
-	.col-cut:last-child,
-	.col-picture:last-child,
-	.col-picture-generated:last-child,
-	.col-content:last-child,
-	.col-seconds:last-child {
-		border-right: none;
-	}
-
-	.panels-container {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.panel-wrapper {
-		cursor: pointer;
-		transition: background 0.2s;
-	}
-
-	.panel-wrapper:hover {
-		background: #f0f7ff;
-	}
-
-	.panel-wrapper:focus {
-		outline: 2px solid #4a90e2;
-		outline-offset: -2px;
-	}
-
-	/* Ensure grid header stays at top on scroll */
-	.grid-header {
-		position: sticky;
-		top: 0;
-		z-index: 10;
-	}
+	.col-cut, .col-picture, .col-picture-generated, .col-content, .col-seconds { @apply border-r border-zinc-300 px-3 py-3 text-center; }
+	.col-cut:last-child, .col-picture:last-child, .col-picture-generated:last-child, .col-content:last-child, .col-seconds:last-child { @apply border-r-0; }
+	.panels-container { @apply flex flex-col; }
+	.panel-wrapper { @apply cursor-pointer transition hover:bg-sky-50/60 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-0; }
 </style>

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import MangaPage from './MangaPage.svelte';
 	import type { Panel, PanelData } from '$lib/gen/proto/storyboard_pb';
-	import type { LayoutTemplate } from '$lib/manga-layouts';
-	import { MANGA_TEMPLATES, applyTemplate, getTemplateByName, selectLayoutForPage } from '$lib/manga-layouts';
+	import type { LayoutTemplate, LayoutStyle } from '$lib/manga-layouts';
+	import { getTemplatesForStyle, applyTemplate, getTemplateByName, selectLayoutForPage } from '$lib/manga-layouts';
 	import { PanelDataSchema, MangaLayoutSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
 	import { createEventDispatcher } from 'svelte';
@@ -44,7 +44,8 @@
 		.sort((a, b) => a - b));
 
 	let currentPagePanels = $derived(pagesMap[selectedPage] || []);
-	let templates = $derived(MANGA_TEMPLATES[currentPagePanels.length] || []);
+	let layoutStyle = $state<LayoutStyle>('graphic-novel');
+	let templates = $derived(getTemplatesForStyle(currentPagePanels.length, layoutStyle));
 	
 	// Get the stored layout info for the current page
 	let currentPageLayoutInfo = $derived(pageLayouts[selectedPage]);
@@ -60,6 +61,15 @@
 		if (currentPagePanels.length > 0 && !hasAppliedLayout) {
 			autoApplyLayout();
 		}
+	});
+
+	// Re-apply best template when style changes to switch reading flow.
+	let appliedStyleForPage = $state<Record<number, LayoutStyle>>({});
+	$effect(() => {
+		if (currentPagePanels.length === 0) return;
+		if (appliedStyleForPage[selectedPage] === layoutStyle) return;
+		autoApplyLayout();
+		appliedStyleForPage = { ...appliedStyleForPage, [selectedPage]: layoutStyle };
 	});
 
 	function autoApplyLayout() {
@@ -78,7 +88,7 @@
 			template = selectLayoutForPage(panelCount, {
 				actKeyBeat: currentPageLayoutInfo?.category,
 				hasDialogue: currentPagePanels.some((panel: Panel) => (panel.data?.dialogue?.length ?? 0) > 0)
-			});
+			}, layoutStyle);
 		}
 		
 		if (template) {
@@ -139,6 +149,13 @@
 			</select>
 		</div>
 		<div class="tools">
+			<div class="layout-style-selector">
+				<span>Style:</span>
+				<select bind:value={layoutStyle}>
+					<option value="graphic-novel">Graphic Novel (L→R)</option>
+					<option value="jump-manga">Jump Manga</option>
+				</select>
+			</div>
 			{#if templates.length > 0}
 				<div class="template-selector">
 					<span>Layout:</span>
@@ -194,6 +211,23 @@
 		margin-right: 1rem;
 		padding-right: 1rem;
 		border-right: 1px solid #444;
+	}
+
+	.layout-style-selector {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-right: 1rem;
+		padding-right: 1rem;
+		border-right: 1px solid #444;
+	}
+
+	.layout-style-selector select {
+		background: #444;
+		color: #fff;
+		border: 1px solid #555;
+		padding: 0.25rem;
+		border-radius: 4px;
 	}
 
 	.template-selector span {

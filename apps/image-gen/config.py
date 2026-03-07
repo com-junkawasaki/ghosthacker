@@ -20,30 +20,19 @@ DEFAULT_NEGATIVE_PROMPT = (
 STYLE_PRESETS = {
     "cinematic_sketch": {
         "prefix": (
-            "Amano Kozue inspired, ARIA-inspired, manga style, "
-            "cinematic storyboard composition, clean manga line art, "
-            "clear character silhouettes, consistent facial anatomy, "
-            "focus on camera framing staging and body language, "
-            "manga panel layout reference. "
+            "Amano Kozue ARIA manga style, cinematic storyboard, "
+            "clean lineart, clear silhouettes, stable anatomy. "
         ),
         "suffix": (
-            ". Detailed manga rendering, crisp clean lines, "
-            "balanced shading with soft highlights, "
-            "clear eyes and facial structure, stable proportions, "
-            "Amano Kozue and ARIA mood, high visual clarity, "
-            "cinematic composition."
+            ". Crisp manga render, soft shading, clear eyes, high clarity."
         ),
     },
     "character_avatar": {
         "prefix": (
-            "Professional character portrait, headshot, "
-            "Amano Kozue inspired, ARIA-inspired, manga style, "
-            "fine line art, clean background. "
+            "Character headshot, Amano Kozue ARIA manga style, fine lineart. "
         ),
         "suffix": (
-            ". Sharp focus on face and expressive eyes, intricate iris detail, "
-            "consistent facial features, clean white background, "
-            "high resolution, 8k."
+            ". Sharp face focus, expressive eyes, clean background, high detail."
         ),
     },
 }

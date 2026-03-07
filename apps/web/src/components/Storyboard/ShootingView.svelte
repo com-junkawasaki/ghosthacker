@@ -78,86 +78,42 @@
 </div>
 
 <style>
-	.shooting-view {
-		flex: 1;
-		overflow-y: auto;
-		background: #fff;
-		padding: 2rem;
-		font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-	}
+	@reference "tailwindcss";
 
-	.shooting-container {
-		max-width: 1200px;
-		margin: 0 auto;
-	}
-
-	.shooting-header {
-		border-bottom: 3px solid #000;
-		margin-bottom: 2rem;
-		padding-bottom: 1rem;
-	}
-
-	.shooting-header h1 {
-		font-size: 1.5rem;
-		font-weight: 900;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-	}
-
-	.shooting-table {
-		width: 100%;
-		border-collapse: collapse;
-	}
-
-	.shooting-table th {
-		background: #f0f0f0;
-		text-align: left;
-		padding: 0.75rem;
-		font-size: 0.7rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		border: 1px solid #ddd;
-	}
-
-	.panel-row {
-		border-bottom: 1px solid #eee;
-	}
-
-	.panel-row:hover {
-		background: #f9f9f9;
-	}
-
-	.panel-row td {
-		padding: 1rem;
-		vertical-align: top;
-		border: 1px solid #eee;
-	}
-
+	.shooting-view { @apply flex-1 overflow-y-auto bg-zinc-50 p-2 md:p-6; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+	.shooting-container { @apply mx-auto w-full max-w-[1200px] overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm; }
+	.shooting-header { @apply border-b-2 border-zinc-900 px-4 py-3 md:px-6 md:py-4; }
+	.shooting-header h1 { @apply text-base font-black uppercase tracking-widest text-zinc-900 md:text-2xl; }
+	.shooting-table { @apply w-full border-collapse; }
+	.shooting-table th { @apply border border-zinc-200 bg-zinc-100 px-3 py-2 text-left text-[11px] font-bold uppercase tracking-widest text-zinc-600; }
+	.panel-row { @apply border-b border-zinc-100; }
+	.panel-row:hover { @apply bg-zinc-50; }
+	.panel-row td { @apply border border-zinc-100 px-3 py-3 align-top text-sm; }
 	.col-num { width: 80px; }
 	.col-shot { width: 200px; }
 	.col-action { width: 400px; }
-	.col-dialogue { flex: 1; }
+	.col-dialogue { width: auto; }
+	.panel-id { @apply text-xs font-bold text-zinc-900; }
+	.cut-id { @apply text-[11px] text-zinc-500; }
+	.shot-type { @apply text-xs font-bold uppercase text-zinc-900; }
+	.camera-dir { @apply text-xs italic text-amber-600; }
+	.duration { @apply mt-1 text-[11px] text-zinc-500; }
+	.visual-note { @apply text-sm leading-relaxed text-zinc-800; }
+	.env-tag { @apply mt-2 text-[11px] text-zinc-500; }
+	.dialogue-line { @apply mb-3; }
+	.speaker { @apply mb-1 flex items-center gap-1.5 text-xs font-bold text-zinc-800; }
+	.mini-avatar { @apply h-4.5 w-4.5 rounded-full; }
+	.text { @apply text-sm leading-relaxed text-zinc-800; }
+	.delivery { @apply text-xs italic text-emerald-600; }
 
-	.panel-id { font-weight: bold; font-size: 0.8rem; }
-	.cut-id { font-size: 0.7rem; color: #888; }
-
-	.shot-type { font-weight: bold; text-transform: uppercase; font-size: 0.9rem; }
-	.camera-dir { font-size: 0.8rem; color: #e67e22; font-style: italic; }
-	.duration { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
-
-	.visual-note { font-size: 0.9rem; line-height: 1.5; }
-	.env-tag { font-size: 0.7rem; color: #888; margin-top: 0.5rem; }
-
-	.dialogue-line { margin-bottom: 1rem; }
-	.speaker { 
-		font-weight: bold; 
-		font-size: 0.8rem; 
-		display: flex; 
-		align-items: center; 
-		gap: 0.4rem;
-		margin-bottom: 0.2rem;
+	@media (max-width: 767px) {
+		.shooting-container { @apply rounded-lg; }
+		.shooting-header h1 { @apply text-sm tracking-[0.12em]; }
+		.shooting-table th { @apply hidden; }
+		.shooting-table, .shooting-table tbody, .shooting-table tr, .shooting-table td { @apply block w-full; }
+		.panel-row { @apply mb-3 rounded-lg border border-zinc-200 bg-white; }
+		.panel-row td { @apply border-0 border-b border-zinc-100; }
+		.panel-row td:last-child { @apply border-b-0; }
+		.col-num, .col-shot, .col-action, .col-dialogue { width: auto; }
 	}
-	.mini-avatar { width: 18px; height: 18px; border-radius: 50%; }
-	.text { font-size: 0.9rem; line-height: 1.4; }
-	.delivery { font-size: 0.75rem; color: #2ecc71; font-style: italic; }
 </style>

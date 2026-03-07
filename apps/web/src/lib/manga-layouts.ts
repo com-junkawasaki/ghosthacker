@@ -15,6 +15,8 @@ export interface LayoutTemplate {
 	}>;
 }
 
+export type LayoutStyle = 'jump-manga' | 'graphic-novel';
+
 /**
  * Jump Manga Style Layout Templates
  * 
@@ -346,6 +348,132 @@ export const MANGA_TEMPLATES: Record<number, LayoutTemplate[]> = {
 };
 
 /**
+ * Graphic Novel layout templates (left-to-right reading flow).
+ */
+export const GRAPHIC_NOVEL_TEMPLATES: Record<number, LayoutTemplate[]> = {
+	1: [
+		{
+			name: 'Graphic Novel Full Frame',
+			category: 'impact',
+			panels: [{ x: 0, y: 0, width: 100, height: 100, emphasis: true }]
+		}
+	],
+	2: [
+		{
+			name: 'Graphic Novel Two Column',
+			category: 'dialogue',
+			panels: [
+				{ x: 0, y: 0, width: 50, height: 100 },
+				{ x: 50, y: 0, width: 50, height: 100 }
+			]
+		}
+	],
+	3: [
+		{
+			name: 'Graphic Novel Top + Two',
+			category: 'transition',
+			panels: [
+				{ x: 0, y: 0, width: 100, height: 55, emphasis: true },
+				{ x: 0, y: 55, width: 50, height: 45 },
+				{ x: 50, y: 55, width: 50, height: 45 }
+			]
+		}
+	],
+	4: [
+		{
+			name: 'Graphic Novel 2x2 Grid',
+			category: 'dialogue',
+			panels: [
+				{ x: 0, y: 0, width: 50, height: 50 },
+				{ x: 50, y: 0, width: 50, height: 50 },
+				{ x: 0, y: 50, width: 50, height: 50 },
+				{ x: 50, y: 50, width: 50, height: 50 }
+			]
+		}
+	],
+	5: [
+		{
+			name: 'Graphic Novel Wide + Four',
+			category: 'establishing',
+			panels: [
+				{ x: 0, y: 0, width: 100, height: 40, emphasis: true },
+				{ x: 0, y: 40, width: 50, height: 30 },
+				{ x: 50, y: 40, width: 50, height: 30 },
+				{ x: 0, y: 70, width: 50, height: 30 },
+				{ x: 50, y: 70, width: 50, height: 30 }
+			]
+		}
+	],
+	6: [
+		{
+			name: 'Graphic Novel 3x2 Grid',
+			category: 'action',
+			panels: [
+				{ x: 0, y: 0, width: 33.34, height: 50 },
+				{ x: 33.34, y: 0, width: 33.33, height: 50 },
+				{ x: 66.67, y: 0, width: 33.33, height: 50 },
+				{ x: 0, y: 50, width: 33.34, height: 50 },
+				{ x: 33.34, y: 50, width: 33.33, height: 50 },
+				{ x: 66.67, y: 50, width: 33.33, height: 50 }
+			]
+		}
+	],
+	7: [
+		{
+			name: 'Graphic Novel Hero + Six',
+			category: 'climax',
+			panels: [
+				{ x: 0, y: 0, width: 100, height: 34, emphasis: true },
+				{ x: 0, y: 34, width: 33.34, height: 33 },
+				{ x: 33.34, y: 34, width: 33.33, height: 33 },
+				{ x: 66.67, y: 34, width: 33.33, height: 33 },
+				{ x: 0, y: 67, width: 33.34, height: 33 },
+				{ x: 33.34, y: 67, width: 33.33, height: 33 },
+				{ x: 66.67, y: 67, width: 33.33, height: 33 }
+			]
+		}
+	],
+	8: [
+		{
+			name: 'Graphic Novel 4x2 Grid',
+			category: 'action',
+			panels: [
+				{ x: 0, y: 0, width: 25, height: 50 },
+				{ x: 25, y: 0, width: 25, height: 50 },
+				{ x: 50, y: 0, width: 25, height: 50 },
+				{ x: 75, y: 0, width: 25, height: 50 },
+				{ x: 0, y: 50, width: 25, height: 50 },
+				{ x: 25, y: 50, width: 25, height: 50 },
+				{ x: 50, y: 50, width: 25, height: 50 },
+				{ x: 75, y: 50, width: 25, height: 50 }
+			]
+		}
+	],
+	9: [
+		{
+			name: 'Graphic Novel 3x3 Grid',
+			category: 'dialogue',
+			panels: [
+				{ x: 0, y: 0, width: 33.34, height: 33.34 },
+				{ x: 33.34, y: 0, width: 33.33, height: 33.34 },
+				{ x: 66.67, y: 0, width: 33.33, height: 33.34 },
+				{ x: 0, y: 33.34, width: 33.34, height: 33.33 },
+				{ x: 33.34, y: 33.34, width: 33.33, height: 33.33 },
+				{ x: 66.67, y: 33.34, width: 33.33, height: 33.33 },
+				{ x: 0, y: 66.67, width: 33.34, height: 33.33 },
+				{ x: 33.34, y: 66.67, width: 33.33, height: 33.33 },
+				{ x: 66.67, y: 66.67, width: 33.33, height: 33.33 }
+			]
+		}
+	]
+};
+
+export function getTemplatesForStyle(panelCount: number, style: LayoutStyle): LayoutTemplate[] {
+	const source = style === 'graphic-novel' ? GRAPHIC_NOVEL_TEMPLATES : MANGA_TEMPLATES;
+	return source[panelCount] || [];
+}
+
+/**
  * Select the best layout template based on narrative context
  */
 export function selectLayoutForPage(
@@ -355,16 +483,18 @@ export function selectLayoutForPage(
 		emotionalArc?: string;
 		hasDialogue?: boolean;
 		isSpread?: boolean;
-	}
+	},
+	style: LayoutStyle = 'jump-manga'
 ): LayoutTemplate {
-	const templates = MANGA_TEMPLATES[panelCount];
+	const templates = getTemplatesForStyle(panelCount, style);
 	if (!templates || templates.length === 0) {
 		// Fallback to closest panel count
-		const counts = Object.keys(MANGA_TEMPLATES).map(Number).sort((a, b) => a - b);
+		const source = style === 'graphic-novel' ? GRAPHIC_NOVEL_TEMPLATES : MANGA_TEMPLATES;
+		const counts = Object.keys(source).map(Number).sort((a, b) => a - b);
 		const closest = counts.reduce((prev, curr) =>
 			Math.abs(curr - panelCount) < Math.abs(prev - panelCount) ? curr : prev
 		);
-		return MANGA_TEMPLATES[closest]![0]!;
+		return source[closest]![0]!;
 	}
 
 	// Select based on narrative context
@@ -423,7 +553,7 @@ export function applyTemplate(panels: any[], template: LayoutTemplate) {
  * Get layout template by name
  */
 export function getTemplateByName(panelCount: number, templateName: string): LayoutTemplate | undefined {
-	const templates = MANGA_TEMPLATES[panelCount];
+	const templates = [...(MANGA_TEMPLATES[panelCount] || []), ...(GRAPHIC_NOVEL_TEMPLATES[panelCount] || [])];
 	if (!templates) return undefined;
 	return templates.find((t) => t.name === templateName || t.nameJa === templateName);
 }

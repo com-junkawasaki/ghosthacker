@@ -1,7 +1,7 @@
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-web';
 import { StoryboardService } from '$lib/gen/proto/storyboard_pb';
-import type { GetEpisodesResponse, GetEpisodePanelsResponse, StreamUpdatesResponse, GetArcsResponse, GetArcPanelsResponse, ExportPdfResponse, ListProjectsResponse, SubmitGenerationJobResponse, CancelGenerationJobResponse, ListGenerationJobsResponse } from '$lib/gen/proto/storyboard_pb';
+import type { GetEpisodesResponse, GetEpisodePanelsResponse, StreamUpdatesResponse, GetArcsResponse, GetArcPanelsResponse, ExportPdfResponse, ListProjectsResponse, SubmitGenerationJobResponse, CancelGenerationJobResponse, ListGenerationJobsResponse, LoadStoryboardResponse } from '$lib/gen/proto/storyboard_pb';
 
 // Determine API base URL
 const getApiBaseUrl = (): string => {
@@ -21,6 +21,20 @@ const transport = createConnectTransport({
 });
 
 export const storyboardClient = createClient(StoryboardService, transport);
+
+/**
+ * Load full storyboard JSON-LD content using Connect client
+ */
+export async function loadStoryboard(filePath: string = ''): Promise<LoadStoryboardResponse> {
+	const response = await storyboardClient.loadStoryboard({ filePath });
+	if (!response || typeof response !== 'object') {
+		throw new Error('Invalid response: response is not an object');
+	}
+	if (typeof response.jsonldContent !== 'string') {
+		throw new Error('Invalid response: missing jsonldContent');
+	}
+	return response;
+}
 
 /**
  * Type-safe wrapper for getEpisodes with runtime validation
