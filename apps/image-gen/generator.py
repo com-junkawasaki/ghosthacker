@@ -8,6 +8,7 @@ import time
 import torch
 from diffusers import StableDiffusionXLPipeline, LCMScheduler, EulerDiscreteScheduler
 from PIL import Image
+from transformers import CLIPVisionModelWithProjection
 
 import config
 
@@ -23,6 +24,9 @@ class ImageGenerator:
         # LCM-LoRA state
         self._lcm_enabled = False
         self._original_scheduler_config = None
+        # IP-Adapter state
+        self._ip_adapter_loaded = False
+        self._image_encoder = None
         # Progress tracking
         self._current_job_id: str | None = None
         self._current_step: int = 0
@@ -109,6 +113,28 @@ class ImageGenerator:
     def lcm_enabled(self) -> bool:
         return self._lcm_enabled
 
+    def load_ip_adapter(self):
+        """Load IP-Adapter for character reference image conditioning."""
+        if self._ip_adapter_loaded:
+            return
+        if not self.model_loaded:
+            raise RuntimeError("Model not loaded. Call load_model() first.")
+        logger.info("Loading IP-Adapter for SDXL...")
+        start = time.time()
+        self._image_encoder = CLIPVisionModelWithProjection.from_pretrained(
+            "h94/IP-Adapter",
+            subfolder="sdxl_models/image_encoder",
+            torch_dtype=torch.float32,
+        ).to(self.device)
+        self.pipe.load_ip_adapter(
+            "h94/IP-Adapter",
+            subfolder="sdxl_models",
+            weight_name="ip-adapter_sdxl.bin",
+            image_encoder=self._image_encoder,
+        )
+        self._ip_adapter_loaded = True
+        logger.info("IP-Adapter loaded in %d ms", int((time.time() - start) * 1000))
+
     def generate(
         self,
         prompt: str,
@@ -118,8 +144,14 @@ class ImageGenerator:
         num_inference_steps: int = config.DEFAULT_STEPS,
         guidance_scale: float = config.DEFAULT_GUIDANCE_SCALE,
         seed: int | None = None,
+        ip_adapter_images: list[Image.Image] | None = None,
+        ip_adapter_scale: float = 0.4,
     ) -> tuple[Image.Image, int, int]:
-        """Generate an image from a text prompt.
+        """Generate an image from a text prompt, optionally conditioned on reference images.
+
+        Args:
+            ip_adapter_images: Character reference images for style/identity consistency.
+            ip_adapter_scale: Strength of IP-Adapter influence (0.0-1.0). Default 0.4.
 
         Returns:
             tuple of (PIL Image, seed used, generation time in ms)
@@ -140,6 +172,16 @@ class ImageGenerator:
 
         # MPS requires CPU generator for reproducibility
         generator = torch.Generator(device="cpu").manual_seed(seed)
+
+        # IP-Adapter: load on demand and set scale
+        extra_kwargs = {}
+        if ip_adapter_images:
+            self.load_ip_adapter()
+            self.pipe.set_ip_adapter_scale(ip_adapter_scale)
+            extra_kwargs["ip_adapter_image"] = ip_adapter_images
+            logger.info("Using IP-Adapter with %d ref images, scale=%.2f", len(ip_adapter_images), ip_adapter_scale)
+        elif self._ip_adapter_loaded:
+            self.pipe.set_ip_adapter_scale(0.0)
 
         logger.info(
             "Generating: %dx%d, steps=%d, cfg=%.1f, seed=%d, lcm=%s",
@@ -164,6 +206,7 @@ class ImageGenerator:
             guidance_scale=guidance_scale,
             generator=generator,
             callback_on_step_end=self._step_callback,
+            **extra_kwargs,
         )
         image = result.images[0]
 
@@ -178,6 +221,8 @@ class ImageGenerator:
         style: str = "cinematic_sketch",
         aspect_ratio: str = "16:9",
         seed: int | None = None,
+        ip_adapter_images: list[Image.Image] | None = None,
+        ip_adapter_scale: float = 0.4,
     ) -> tuple[Image.Image, int, int]:
         """Generate an image with a predefined style preset.
 
@@ -198,6 +243,8 @@ class ImageGenerator:
             width=dims[0],
             height=dims[1],
             seed=seed,
+            ip_adapter_images=ip_adapter_images,
+            ip_adapter_scale=ip_adapter_scale,
         )
 
 

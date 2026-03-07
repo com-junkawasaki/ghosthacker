@@ -11,34 +11,50 @@ const StoryboardSchema = `
 	schema: "http://schema.org/"
 	dct: "http://purl.org/dc/terms/"
 	prov: "http://www.w3.org/ns/prov#"
-	character: "gh:character/"
-	arc: "gh:arc/"
-	panel: "gh:panelIndex"
-	purpose: "gh:narrativePurpose"
-	shot: "gh:shotType"
-	prompt: "gh:runwayPrompt"
-	properties: "gh:shotProperties"
-	episodeId: "gh:episodeId"
-	episodeIndex: "gh:episodeIndex"
-	characters: "gh:characters"
-	dialogue: "gh:dialogue"
-	speaker: "gh:speaker"
-	text: "gh:text"
-	visual: "gh:visual"
-	env: "gh:environment/"
-	environment: "gh:environment"
-	environments: "gh:environments"
+	character?: "gh:character/"
+	arc?: "gh:arc/"
+	panel?: "gh:panelIndex"
+	purpose?: "gh:narrativePurpose"
+	shot?: "gh:shotType"
+	prompt?: "gh:runwayPrompt"
+	properties?: "gh:shotProperties"
+	episodeId?: "gh:episodeId"
+	episodeIndex?: "gh:episodeIndex"
+	characters?: "gh:characters"
+	dialogue?: "gh:dialogue"
+	speaker?: "gh:speaker"
+	text?: "gh:text"
+	visual?: "gh:visual"
+	env?: "gh:environment/"
+	environment?: "gh:environment"
+	environments?: "gh:environments"
+	marginalia?: string
 	...
 }
 
+// BilingualText: either a flat string or an {en, ja} object
+#BilingualText: string | { en: string, ja?: string } | { en?: string, ja: string }
+
+// Dialogue in storyboard (old) format
 #Dialogue: {
-	speaker: string
-	text:    string
+	speaker?: string
+	"gh:speaker"?: string
+	text?:    string
+	en?: string
+	ja?: string
 	"gh:delivery"?: string
 	"gh:subtext"?: string
 	"gh:emotion"?: string
 	"gh:pauseBeforeMs"?: int
 	"gh:pauseAfterMs"?: int
+	...
+}
+
+// Caption (graphic novel format)
+#Caption: {
+	"gh:type"?: string
+	en?: string
+	ja?: string
 	...
 }
 
@@ -54,7 +70,8 @@ const StoryboardSchema = `
 	"gh:eyeDetail"?: string
 }
 
-#Panel: {
+// StoryboardPanel: old format with flat string fields and @context aliases
+#StoryboardPanel: {
 	panel: int
 	shot: string
 	"gh:shotProperties": #ShotProperties
@@ -69,19 +86,44 @@ const StoryboardSchema = `
 	"generatedImageUrl"?: string
 	"gh:generatedImageUrl"?: string
 	"gh:imagePrompt"?: string
-	"gh:generatedImages"?: [...{
-		"gh:imageUrl": string
-		"gh:imagePrompt": string
-		"gh:generatedAt": number
-		"gh:model": string
-		...
-	}]
+	"gh:generatedImages"?: [...#GeneratedImage]
 	"gh:currentImageIndex"?: int
 	...
 }
 
+// GraphicNovelPanel: new format with gh: prefixed keys and bilingual text
+#GraphicNovelPanel: {
+	"gh:panelIndex"?: int
+	"gh:shot"?: string
+	"gh:visual"?: #BilingualText
+	"gh:dialogue"?: [...#Dialogue]
+	"gh:caption"?: [...#Caption]
+	"gh:neiCaption"?: [...#Caption]
+	"gh:systemCaption"?: [...#Caption]
+	"gh:characters"?: [...string]
+	"gh:imagePrompt"?: string
+	"gh:generatedImageUrl"?: string
+	"gh:generatedImages"?: [...#GeneratedImage]
+	"gh:currentImageIndex"?: int
+	...
+}
+
+#GeneratedImage: {
+	"gh:imageUrl": string
+	"gh:imagePrompt": string
+	"gh:generatedAt": number
+	"gh:model": string
+	...
+}
+
+// Panel: union of both formats
+#Panel: #StoryboardPanel | #GraphicNovelPanel
+
 #Page: {
 	"gh:pageNumber": int
+	"gh:label"?: string
+	"gh:layout"?: string
+	"gh:continues"?: int
 	"gh:act"?: string
 	"gh:pageBeat"?: {
 		"gh:emotionalShift"?: string
@@ -91,6 +133,7 @@ const StoryboardSchema = `
 		...
 	}
 	"gh:panels": [...#Panel]
+	marginalia?: [...]
 	...
 }
 
@@ -135,9 +178,13 @@ const StoryboardSchema = `
 	"gh:episode"?: int
 	"gh:episodeIndex"?: int
 	"gh:episodeId": string
-	"dct:title": string
+	"dct:title": #BilingualText
+	"dct:title_en"?: string
+	"dct:title_ja"?: string
 	"gh:presentationTagline"?: string
 	"gh:arc": string
+	"gh:format"?: string
+	"gh:sourceFile"?: string
 	"gh:industry"?: string
 	"gh:mainCharacter"?: string
 	"gh:supportingCharacters"?: [...string]
@@ -147,6 +194,10 @@ const StoryboardSchema = `
 	"gh:incidentDescription"?: string
 	"gh:actStructure"?: [...#ActStructure]
 	"gh:pages"?: [...#Page]
+	"gh:marginalia"?: [...]
+	"gh:artDirection"?: _
+	"gh:bookDesign"?: _
+	"gh:series"?: _
 	...
 }
 

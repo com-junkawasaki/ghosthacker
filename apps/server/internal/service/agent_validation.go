@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strings"
 	"unicode/utf8"
+
+	"storyboard-editor/backend/internal/jsonld"
 )
 
 // ValidationResult represents the findings of an agent output validation
@@ -99,21 +101,15 @@ func isCJK(r rune) bool {
 
 func extractAllText(episode map[string]interface{}) string {
 	var sb strings.Builder
-	pages, _ := episode["gh:pages"].([]interface{})
-	for _, pg := range pages {
-		page, _ := pg.(map[string]interface{})
-		panels, _ := page["gh:panels"].([]interface{})
-		for _, p := range panels {
-			panel, _ := p.(map[string]interface{})
-			if visual, ok := panel["visual"].(string); ok {
+	ep := jsonld.Wrap(episode)
+	for _, page := range ep.Slice("gh:pages") {
+		for _, panel := range page.Slice("gh:panels") {
+			if visual, ok := panel.Str("gh:visual", "visual"); ok {
 				sb.WriteString(visual + " ")
 			}
-			if dialogues, ok := panel["dialogue"].([]interface{}); ok {
-				for _, d := range dialogues {
-					dm, _ := d.(map[string]interface{})
-					if text, ok := dm["text"].(string); ok {
-						sb.WriteString(text + " ")
-					}
+			for _, d := range panel.Slice("gh:dialogue", "dialogue") {
+				if text, ok := d.Str("en", "text"); ok {
+					sb.WriteString(text + " ")
 				}
 			}
 		}
@@ -123,15 +119,10 @@ func extractAllText(episode map[string]interface{}) string {
 
 func countDialogueLines(episode map[string]interface{}) int {
 	count := 0
-	pages, _ := episode["gh:pages"].([]interface{})
-	for _, pg := range pages {
-		page, _ := pg.(map[string]interface{})
-		panels, _ := page["gh:panels"].([]interface{})
-		for _, p := range panels {
-			panel, _ := p.(map[string]interface{})
-			if dialogues, ok := panel["dialogue"].([]interface{}); ok {
-				count += len(dialogues)
-			}
+	ep := jsonld.Wrap(episode)
+	for _, page := range ep.Slice("gh:pages") {
+		for _, panel := range page.Slice("gh:panels") {
+			count += len(panel.Slice("gh:dialogue", "dialogue"))
 		}
 	}
 	return count
@@ -139,11 +130,9 @@ func countDialogueLines(episode map[string]interface{}) int {
 
 func countTotalPanels(episode map[string]interface{}) int {
 	count := 0
-	pages, _ := episode["gh:pages"].([]interface{})
-	for _, pg := range pages {
-		page, _ := pg.(map[string]interface{})
-		panels, _ := page["gh:panels"].([]interface{})
-		count += len(panels)
+	ep := jsonld.Wrap(episode)
+	for _, page := range ep.Slice("gh:pages") {
+		count += len(page.Slice("gh:panels"))
 	}
 	return count
 }
@@ -151,27 +140,25 @@ func countTotalPanels(episode map[string]interface{}) int {
 // ValidatePanelConstraints checks constraints for a single panel
 func ValidatePanelConstraints(panel map[string]interface{}) []string {
 	var errors []string
-	
+	n := jsonld.Wrap(panel)
+
 	// 1. Visual note presence
-	visual, _ := panel["visual"].(string)
+	visual, _ := n.Str("gh:visual", "visual")
 	if strings.TrimSpace(visual) == "" {
 		errors = append(errors, "Panel must have a visual description (visual)")
 	}
 
 	// 2. Character presence
-	chars, _ := panel["characters"].([]interface{})
+	chars := n.StringSlice("gh:characters", "characters")
 	if len(chars) == 0 {
 		// Not strictly an error but often a warning
 	}
 
 	// 3. Dialogue length check
-	if dialogues, ok := panel["dialogue"].([]interface{}); ok {
-		for _, d := range dialogues {
-			dm, _ := d.(map[string]interface{})
-			text, _ := dm["text"].(string)
-			if utf8.RuneCountInString(text) > 200 {
-				errors = append(errors, "Dialogue line is too long (>200 chars)")
-			}
+	for _, d := range n.Slice("gh:dialogue", "dialogue") {
+		text, _ := d.Str("en", "text")
+		if utf8.RuneCountInString(text) > 200 {
+			errors = append(errors, "Dialogue line is too long (>200 chars)")
 		}
 	}
 

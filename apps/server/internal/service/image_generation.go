@@ -17,6 +17,7 @@ import (
 
 	"connectrpc.com/connect"
 	gonanoid "github.com/matoous/go-nanoid/v2"
+	"storyboard-editor/backend/internal/jsonld"
 	"storyboard-editor/backend/proto"
 )
 
@@ -111,7 +112,7 @@ func (s *StoryboardService) GeneratePanelImage(
 		if strings.HasPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:") {
 			style = "character_avatar"
 		}
-		imageBytes, err = s.callLocalImageGen(ctx, prompt, style, imagePath)
+		imageBytes, err = s.callLocalImageGen(ctx, prompt, style, imagePath, req.Msg.PanelData.Characters...)
 		if err != nil {
 			return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to generate image locally: %w", err))
 		}
@@ -292,47 +293,23 @@ func (s *StoryboardService) finalUpdateStoryboard(filePath, episodeID string, pa
 }
 
 func (s *StoryboardService) updatePanelInMap(storyboard map[string]interface{}, episodeID string, pageNumber, panel int32, updateFn func(map[string]interface{})) {
-	episodes, ok := storyboard["gh:episodes"].([]interface{})
-	if !ok {
-		return
-	}
-
-	for _, e := range episodes {
-		episode, ok := e.(map[string]interface{})
-		if !ok || episode["gh:episodeId"] != episodeID {
+	sb := jsonld.Wrap(storyboard)
+	for _, ep := range sb.Slice("gh:episodes") {
+		epID, _ := ep.Str("gh:episodeId")
+		if epID != episodeID {
 			continue
 		}
 
-		pages, ok := episode["gh:pages"].([]interface{})
-		if !ok {
-			continue
-		}
-
-		for _, pg := range pages {
-			page, ok := pg.(map[string]interface{})
-			if !ok {
+		for _, page := range ep.Slice("gh:pages") {
+			pNum, _ := page.Int32("gh:pageNumber")
+			if pNum != pageNumber {
 				continue
 			}
 
-			pNum, _ := page["gh:pageNumber"].(float64)
-			if int32(pNum) != pageNumber {
-				continue
-			}
-
-			panels, ok := page["gh:panels"].([]interface{})
-			if !ok {
-				continue
-			}
-
-			for _, p := range panels {
-				pMap, ok := p.(map[string]interface{})
-				if !ok {
-					continue
-				}
-
-				pIdx, _ := pMap["panel"].(float64)
-				if int32(pIdx) == panel {
-					updateFn(pMap)
+			for _, p := range page.Slice("gh:panels") {
+				pIdx, _ := p.Int32("gh:panelIndex", "panel")
+				if pIdx == panel {
+					updateFn(p.Raw())
 					return
 				}
 			}
@@ -404,38 +381,29 @@ func (s *StoryboardService) loadEpisodeFile(filePath string) (map[string]interfa
 // updatePanelInEpisode updates a panel in an individual episode file
 // Episode files have gh:pages at the root level (not inside gh:episodes)
 func (s *StoryboardService) updatePanelInEpisode(episode map[string]interface{}, pageNumber, panel int32, updateFn func(map[string]interface{})) bool {
-	pages, ok := episode["gh:pages"].([]interface{})
-	if !ok {
+	ep := jsonld.Wrap(episode)
+	pages := ep.Slice("gh:pages")
+	if len(pages) == 0 {
 		log.Printf("updatePanelInEpisode: no gh:pages found in episode")
 		return false
 	}
 
-	for _, pg := range pages {
-		page, ok := pg.(map[string]interface{})
-		if !ok {
+	for _, page := range pages {
+		pNum, _ := page.Int32("gh:pageNumber")
+		if pNum != pageNumber {
 			continue
 		}
 
-		pNum, _ := page["gh:pageNumber"].(float64)
-		if int32(pNum) != pageNumber {
-			continue
-		}
-
-		panels, ok := page["gh:panels"].([]interface{})
-		if !ok {
+		panels := page.Slice("gh:panels")
+		if len(panels) == 0 {
 			log.Printf("updatePanelInEpisode: no gh:panels found in page %d", pageNumber)
 			continue
 		}
 
 		for _, p := range panels {
-			pMap, ok := p.(map[string]interface{})
-			if !ok {
-				continue
-			}
-
-			pIdx, _ := pMap["panel"].(float64)
-			if int32(pIdx) == panel {
-				updateFn(pMap)
+			pIdx, _ := p.Int32("gh:panelIndex", "panel")
+			if pIdx == panel {
+				updateFn(p.Raw())
 				log.Printf("updatePanelInEpisode: updated panel %d on page %d", panel, pageNumber)
 				return true
 			}
@@ -458,40 +426,28 @@ func (s *StoryboardService) getOrCreatePanelID(masterFilePath string, episodeID 
 		return "", 0, fmt.Errorf("failed to load episode file: %w", err)
 	}
 
-	pages, ok := episodeData["gh:pages"].([]interface{})
-	if !ok {
+	ep := jsonld.Wrap(episodeData)
+	epPages := ep.Slice("gh:pages")
+	if len(epPages) == 0 {
 		return "", 0, fmt.Errorf("no gh:pages found in episode")
 	}
 
-	for _, pg := range pages {
-		page, ok := pg.(map[string]interface{})
-		if !ok {
+	for _, page := range epPages {
+		pNum, _ := page.Int32("gh:pageNumber")
+		if pNum != pageNumber {
 			continue
 		}
 
-		pNum, _ := page["gh:pageNumber"].(float64)
-		if int32(pNum) != pageNumber {
-			continue
-		}
-
-		panels, ok := page["gh:panels"].([]interface{})
-		if !ok {
-			continue
-		}
-
-		for _, p := range panels {
-			pMap, ok := p.(map[string]interface{})
-			if !ok {
+		for _, p := range page.Slice("gh:panels") {
+			pIdx, _ := p.Int32("gh:panelIndex", "panel")
+			if pIdx != panel {
 				continue
 			}
 
-			pIdx, _ := pMap["panel"].(float64)
-			if int32(pIdx) != panel {
-				continue
-			}
+			pMap := p.Raw()
 
 			// Check if panel already has an @id
-			panelID, hasID := pMap["@id"].(string)
+			panelID, hasID := p.Str("@id")
 			if !hasID || panelID == "" {
 				// Generate new nanoid for this panel
 				newID, err := gonanoid.New(12)
@@ -586,7 +542,7 @@ func (s *StoryboardService) callOpenRouterAPI(ctx context.Context, apiKey, promp
 // callLocalImageGen sends a request to the local Diffusers image generation service.
 // The service generates the image and writes it to outputPath directly.
 // Returns the raw PNG bytes.
-func (s *StoryboardService) callLocalImageGen(ctx context.Context, prompt, style, outputPath string) ([]byte, error) {
+func (s *StoryboardService) callLocalImageGen(ctx context.Context, prompt, style, outputPath string, characterIDs ...string) ([]byte, error) {
 	baseURL := os.Getenv("IMAGE_GEN_URL")
 	if baseURL == "" {
 		baseURL = "http://localhost:8100"
@@ -597,6 +553,25 @@ func (s *StoryboardService) callLocalImageGen(ctx context.Context, prompt, style
 		"style":        style,
 		"aspect_ratio": "16:9",
 		"output_path":  outputPath,
+	}
+
+	// Resolve character reference images for IP-Adapter
+	if len(characterIDs) > 0 {
+		var refPaths []string
+		imagesDir := filepath.Join(s.workspaceRoot, s.projectDir, "resources", "images", "characters")
+		for _, cid := range characterIDs {
+			// character IDs like "character:tamaki" → "tamaki"
+			slug := strings.TrimPrefix(cid, "character:")
+			imgPath := filepath.Join(imagesDir, slug+".png")
+			if _, err := os.Stat(imgPath); err == nil {
+				refPaths = append(refPaths, imgPath)
+				log.Printf("IP-Adapter ref: %s -> %s", cid, imgPath)
+			}
+		}
+		if len(refPaths) > 0 {
+			requestBody["reference_image_paths"] = refPaths
+			requestBody["ip_adapter_scale"] = 0.4
+		}
 	}
 
 	jsonBody, err := json.Marshal(requestBody)
@@ -1059,7 +1034,11 @@ func (s *StoryboardService) executeGenerationJob(ctx context.Context, job *Gener
 
 	var imageBytes []byte
 	if useLocal {
-		imageBytes, err = s.callLocalImageGen(ctx, job.Prompt, style, imagePath)
+		var charIDs []string
+		if job.panelData != nil {
+			charIDs = job.panelData.Characters
+		}
+		imageBytes, err = s.callLocalImageGen(ctx, job.Prompt, style, imagePath, charIDs...)
 		if err != nil {
 			return fmt.Errorf("failed to generate image locally: %w", err)
 		}

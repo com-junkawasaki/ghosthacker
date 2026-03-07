@@ -14,8 +14,9 @@
   "gh:episodes": [
     {
       "gh:episodeId": "episode:sip-vol01-ch01",
-      "dct:title": "Vol.1 Ch.1 — 水の都の依頼",
+      "dct:title": "Vol.1 Ch.1 — 配属の日",
       "gh:arc": "Vol 1: Loneliness",
+      "gh:format": "graphic novel",
       "gh:sourceFile": "../volumes/vol01-loneliness/chapter01/episode.jsonld"
     },
     {

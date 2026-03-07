@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"connectrpc.com/connect"
+	"storyboard-editor/backend/internal/jsonld"
 	storyboardpb "storyboard-editor/backend/proto"
 )
 
@@ -319,7 +320,7 @@ func (s *StoryboardService) buildDialogueContext(storyboard map[string]interface
 		return "(episode not found)", allowedSpeakers
 	}
 
-	pages, _ := episode["gh:pages"].([]interface{})
+	ep := jsonld.Wrap(episode)
 	type ctxItem struct {
 		Page  int32
 		Panel int32
@@ -327,47 +328,30 @@ func (s *StoryboardService) buildDialogueContext(storyboard map[string]interface
 	}
 	items := make([]ctxItem, 0, 64)
 
-	for _, pg := range pages {
-		pageMap, ok := pg.(map[string]interface{})
-		if !ok {
-			continue
-		}
-		pn, _ := pageMap["gh:pageNumber"].(float64)
-		pn32 := int32(pn)
+	for _, pageNode := range ep.Slice("gh:pages") {
+		pn32, _ := pageNode.Int32("gh:pageNumber")
 		if pn32 > pageNumber {
 			continue
 		}
-		panels, _ := pageMap["gh:panels"].([]interface{})
-		for _, p := range panels {
-			panelMap, ok := p.(map[string]interface{})
-			if !ok {
-				continue
-			}
-			pidx, _ := panelMap["panel"].(float64)
-			pidx32 := int32(pidx)
+		for _, panelNode := range pageNode.Slice("gh:panels") {
+			pidx32, _ := panelNode.Int32("gh:panelIndex", "panel")
 			if pn32 == pageNumber && pidx32 >= panel {
 				continue // only prior panels
 			}
 
-			visual, _ := panelMap["visual"].(string)
+			visual, _ := panelNode.Str("gh:visual", "visual")
 			if visual != "" {
 				items = append(items, ctxItem{Page: pn32, Panel: pidx32, Text: "VISUAL: " + visual})
 			}
 
-			if ds, ok := panelMap["dialogue"].([]interface{}); ok {
-				for _, di := range ds {
-					dm, ok := di.(map[string]interface{})
-					if !ok {
-						continue
-					}
-					speaker, _ := dm["speaker"].(string)
-					text, _ := dm["text"].(string)
-					if strings.TrimSpace(speaker) != "" {
-						allowedSpeakers[speaker] = struct{}{}
-					}
-					if strings.TrimSpace(text) != "" {
-						items = append(items, ctxItem{Page: pn32, Panel: pidx32, Text: fmt.Sprintf("%s: %s", speaker, text)})
-					}
+			for _, d := range panelNode.Slice("gh:dialogue", "dialogue") {
+				speaker, _ := d.Str("gh:speaker", "speaker")
+				text, _ := d.Str("en", "text")
+				if strings.TrimSpace(speaker) != "" {
+					allowedSpeakers[speaker] = struct{}{}
+				}
+				if strings.TrimSpace(text) != "" {
+					items = append(items, ctxItem{Page: pn32, Panel: pidx32, Text: fmt.Sprintf("%s: %s", speaker, text)})
 				}
 			}
 		}
