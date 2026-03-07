@@ -13,26 +13,40 @@ DEFAULT_ENABLE_LCM = False
 DEFAULT_NEGATIVE_PROMPT = (
     "lowres, bad anatomy, bad hands, text, error, missing finger, "
     "extra digits, fewer digits, cropped, worst quality, low quality, "
-    "low score, bad score, average score, signature, watermark, username, blurry"
+    "low score, bad score, average score, signature, watermark, username, blurry, "
+    "comic strip, manga page, multiple panels, split screen, collage, contact sheet, grid layout, "
+    "speech bubble, dialogue balloon, japanese text, kana, kanji"
+)
+
+# Unified visual world style guide for Spirit in Physics.
+CORE_VISUAL_STYLE = (
+    "Amano Kozue inspired color and atmosphere, gentle luminous air, "
+    "subtle emotional eyes, contemplative character acting, "
+    "environment and character integrated into one coherent physical space, "
+    "cinematic depth, clean composition, nuanced light and shadow, "
+    "English graphic novel visual language (not manga page formatting). "
 )
 
 # Style presets matching Go server's image_generation.go
 STYLE_PRESETS = {
     "cinematic_sketch": {
         "prefix": (
-            "Amano Kozue ARIA manga style, cinematic storyboard, "
-            "clean lineart, clear silhouettes, stable anatomy. "
+            CORE_VISUAL_STYLE +
+            "Single-scene illustration, single panel, one moment, one composition, "
+            "graphic novel panel rendering, clean linework, clear silhouettes, stable anatomy. "
         ),
         "suffix": (
-            ". Crisp manga render, soft shading, clear eyes, high clarity."
+            ". Crisp graphic novel render, soft shading, expressive eyes, high clarity, "
+            "do not draw multiple frames or page layout, no text overlays."
         ),
     },
     "character_avatar": {
         "prefix": (
-            "Character headshot, Amano Kozue ARIA manga style, fine lineart. "
+            CORE_VISUAL_STYLE +
+            "Character headshot portrait, graphic novel character design, fine linework. "
         ),
         "suffix": (
-            ". Sharp face focus, expressive eyes, clean background, high detail."
+            ". Sharp face focus, expressive eyes, clean background, high detail, no text."
         ),
     },
 }

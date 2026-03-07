@@ -185,7 +185,11 @@ class ImageGenerator:
             tuple of (PIL Image, seed used, generation time in ms)
         """
         preset = config.STYLE_PRESETS.get(style, config.STYLE_PRESETS["cinematic_sketch"])
-        full_prompt = preset["prefix"] + prompt + preset["suffix"]
+        single_panel_guard = (
+            "Single panel illustration only, one scene only, "
+            "English graphic novel style, no manga page layout, no split frames, no text. "
+        )
+        full_prompt = single_panel_guard + preset["prefix"] + prompt + preset["suffix"]
 
         dims = config.ASPECT_RATIOS.get(aspect_ratio, config.ASPECT_RATIOS["16:9"])
 

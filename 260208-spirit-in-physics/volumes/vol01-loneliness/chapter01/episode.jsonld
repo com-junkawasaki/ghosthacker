@@ -31,9 +31,9 @@
             }
           ],
           "environment": "env:water-city-tokyo-2065",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v6.png",
-          "gh:currentImageIndex": 5,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v6.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v8.png",
+          "gh:currentImageIndex": 7,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v8.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1770886519,
@@ -69,6 +69,18 @@
               "gh:generatedAt": 1772846917,
               "gh:imagePrompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v6.png",
+              "gh:model": "animagine-xl-4.0 (local)"
+            },
+            {
+              "gh:generatedAt": 1772847894,
+              "gh:imagePrompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v7.png",
+              "gh:model": "animagine-xl-4.0 (local)"
+            },
+            {
+              "gh:generatedAt": 1772848298,
+              "gh:imagePrompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v8.png",
               "gh:model": "animagine-xl-4.0 (local)"
             }
           ],
