@@ -1,0 +1,1090 @@
+{
+  "@context": {
+    "@base": "https://ghosthacker.gftd.ai/spirit-in-physics/",
+    "schema": "https://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+
+  "@id": "reference:personas-supporters",
+  "@type": "gh:PersonaReference",
+  "schema:name": "Spirit in Physics -- TOL Network & Supporter Personas",
+  "schema:description": "Persona reference for the Tree of Life (TOL) network supporters, specialists, and system characters. These are the people behind the scenes who make Ghost Hacking possible. Each represents a distinct philosophical/spiritual tradition brought into the world of ghost work.",
+
+  "gh:designNote": {
+    "en": "Supporters appear less often than session clients, but each appearance must feel like a specialist entering the room. They bring their own gravity. Their visual design should instantly communicate their tradition. Their voices are tools -- precise, warm, authoritative in their domain. They do not need full arcs; they need presence.",
+    "ja": "サポーターはセッションクライアントより出番が少ないが、登場するたびに専門家が部屋に入ってきた感覚が必要。独自の重力を持つ。ビジュアルデザインは彼らの伝統を即座に伝えるべき。声は道具。精確、温かく、専門領域で権威がある。完全なアークは不要。存在感が必要。"
+  },
+
+  "gh:personas": [
+
+    {
+      "@id": "persona:itako",
+      "gh:characterRef": "character:itako-osorezan",
+      "gh:role": "TOL Supporter -- Spiritual Surgeon",
+      "gh:chapters": ["chapter:24"],
+      "gh:narrativeFunction": "The surgeon who arrives after the shamanic session. She does not heal minds -- she sutures souls. She works with Hibiki (anesthesia) and Carlos (ayahuasca) to perform 'soul surgery.' Her appearance in Ch.24 is the series' most visceral healing scene.",
+
+      "gh:identity": {
+        "name": { "en": "Itako Osorezan (Dr. Itako)", "ja": "恐山イタコ" },
+        "age": "Unknown (appears mid-20s, speaks as elderly)",
+        "nationality": "Japanese (Osorezan tradition)",
+        "occupation": { "en": "Spiritual Surgeon", "ja": "霊的外科医" },
+        "callsign": "ITAKO",
+        "imageColor": "surgical white / shrine red"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Glamorous young woman in her twenties -- incongruously beautiful for a surgeon. But she moves with the precision of decades, not years. Her hands are the tell: steady, old, practiced. She wears a white coat over shrine maiden elements -- a surgical gown that remembers its ritual origins. When she works, her youth vanishes and something ancient looks out through her eyes.",
+          "ja": "二十代の華やかな若い女性。外科医にしては不釣り合いに美しい。しかし動きは何年ではなく何十年の精確さ。手が語る：安定した、老いた、熟練した手。白衣の下に巫女の要素。儀式の起源を記憶した手術着。仕事をする時、若さが消え、古いものが目を通して外を見る。"
+        },
+        "bodyLanguage": {
+          "en": "Efficient to the point of brusqueness. Doesn't look at faces -- looks at wounds. Her hands hover over the patient before she touches, reading the damage. When she's satisfied with her work, she nods once, sharply, and walks away. No bedside manner. All craft.",
+          "ja": "ぶっきらぼうなほど効率的。顔を見ない。傷を見る。触れる前に手を患者の上にかざし、損傷を読む。仕事に満足すると、鋭く一度頷いて去る。優しさはない。技術だけ。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Cynical, precise, deeply compassionate in action (never in words). She has seen every kind of spiritual wound and is surprised by none. Her harshness is a surgeon's harshness -- she cannot afford softness when the soul is open. But her sutures are perfect, and when the patient wakes, they are whole.",
+          "ja": "皮肉、精確、行動において深く慈悲的（言葉では決してない）。あらゆる種類の霊的傷を見てきて、何にも驚かない。厳しさは外科医の厳しさ。魂が開いている時にやわらかさの余裕はない。しかし縫合は完璧で、患者が目覚めた時、彼らは全き状態にある。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Grandmother's voice in a young woman's body. Archaic, rough, authoritative. She speaks to ghosts, wounds, and souls as if they're unruly patients. Darkly humorous. Her praise is the rarest thing in the series -- rarer than Kaede's.",
+          "samples": [
+            "I'm really a suturing specialist, but... fine. Let me see the wound.",
+            "Hold still. Souls wriggle more than children.",
+            "This adhesion is thirty years old. You've been carrying this since you were a child? Tch.",
+            "Done. Don't touch it for three days. And eat something. You look terrible."
+          ]
+        },
+        "ja": {
+          "register": "若い女性の身体に入ったおばあさんの声。古風、粗い、権威的。ゴースト、傷、魂に、言うことを聞かない患者のように話す。ブラックユーモア。",
+          "firstPerson": "わたし（だが口調はおばあさん）",
+          "sentenceEndings": "～だよ、～だからね、～ったら。ぶっきらぼう。",
+          "samples": [
+            "ほんとは縫合専門なんだけどね……まあいい。傷を見せな。",
+            "動かないで。魂は子供より動くんだから。",
+            "この癒着は三十年もの。子供の時からこれを背負ってたの？ ちっ。",
+            "終わり。三日間触らないで。あと何か食べな。ひどい顔してる。"
+          ]
+        }
+      },
+
+      "gh:emotionalRange": {
+        "en": "Impatience: her default. Focus: when working, she is absolute -- nothing exists but the wound. Satisfaction: a single nod. Grief (hidden): she has lost patients. She doesn't talk about it. She carries it in the precision of her hands.",
+        "ja": "苛立ち：デフォルト。集中：仕事中は絶対的。傷以外何も存在しない。満足：一度の頷き。悲しみ（隠された）：患者を失ったことがある。それについて話さない。手の精確さに宿している。"
+      },
+
+      "gh:thematicRole": {
+        "en": "Itako bridges the ancient and the clinical. Shamanic tradition meets surgical precision. She proves that healing the soul is not metaphor -- it is craft. Her pairing with Hibiki (sound/anesthesia) and Carlos (plant/psychedelic) creates the most complete healing team in the series.",
+        "ja": "イタコは古代と臨床を橋渡しする。シャーマニズムの伝統が外科的精確さに出会う。魂の癒しは比喩ではなく技術であることを証明する。響（音/麻酔）とカルロス（植物/サイケデリック）との組み合わせがシリーズで最も完全な癒しのチームを作る。"
+      }
+    },
+
+    {
+      "@id": "persona:carlos-santos",
+      "gh:characterRef": "character:carlos-santos",
+      "gh:role": "TOL Supporter -- Ethnobotanist / Ayahuasca Specialist",
+      "gh:chapters": ["chapter:24", "chapter:35"],
+      "gh:narrativeFunction": "The plant teacher. He brings ayahuasca methodology to Ghost Hacking -- accessing deep trauma through expanded consciousness. He works with Hibiki and Itako in soul surgery. His tradition says: plants are software. Consciousness is the OS.",
+
+      "gh:identity": {
+        "name": { "en": "Carlos Santos", "ja": "カルロス・サントス" },
+        "age": 37,
+        "nationality": "Brazilian",
+        "occupation": { "en": "Ethnobotanist", "ja": "民族植物学者" },
+        "callsign": "AYAHUASCA",
+        "organization": "TOL Amazon",
+        "imageColor": "forest green / vine brown / ayahuasca vision purple"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Compact, dark-skinned, quiet-bodied. He moves like Hibiki's opposite: where Hibiki is rhythm and motion, Carlos is stillness and root. Wears earth-toned functional clothing -- pockets full of dried herbs, small vials, a notebook. His hands smell of plants. His eyes see layers -- the physical and the other, simultaneously.",
+          "ja": "コンパクト、暗い肌、静かな身体。響の対極のように動く。響がリズムと動きなら、カルロスは静けさと根。アースカラーの機能的な服。ポケットに乾燥ハーブ、小瓶、ノート。手が植物の匂い。目は層を見る。物理的なものとそうでないものを、同時に。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Grounded, reverent, methodical. He approaches consciousness with a scientist's rigor and a shaman's humility. Plants are his teachers, not his tools. He never forces a vision -- he creates conditions. Quiet authority. He speaks rarely and means everything.",
+          "ja": "地に足がついている、畏敬の念、几帳面。科学者の厳密さとシャーマンの謙虚さで意識にアプローチする。植物は道具ではなく教師。ビジョンを強制しない。条件を整える。静かな権威。滅多に話さず、すべてに意味がある。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Quiet, deliberate, Portuguese-inflected. Speaks about plants the way monks speak about scripture. His medical/botanical precision surfaces when explaining, but his default is poetic and grounded.",
+          "samples": [
+            "The vine teaches. I only hold the cup.",
+            "Consciousness has no fixed form. The plants knew this before we did.",
+            "Breathe. The medicine will find the wound. Trust it.",
+            "In the forest, there is no separation between the healer and the healed."
+          ]
+        },
+        "ja": {
+          "register": "静か、慎重、ポルトガル語のアクセント。僧侶が経典について話すように植物について話す。説明時に医学/植物学的精確さが現れるが、デフォルトは詩的で地に足がついている。",
+          "firstPerson": "おれ（ただし響よりずっと静か）",
+          "samples": [
+            "蔓が教える。おれは器を持つだけだ。",
+            "意識に固定された形はない。植物はおれたちより先にそれを知っていた。",
+            "呼吸して。薬が傷を見つける。信じろ。",
+            "森では、癒す者と癒される者の間に分離はない。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Carlos is the plant pathway -- direct experience that transcends theory. His tradition (ayahuasca, ethnobotany) proves that consciousness expansion is not metaphor but methodology. He is Hibiki's grounding counterpart: where Hibiki uses sound, Carlos uses the earth itself.",
+        "ja": "カルロスは植物の道。理論を超える直接体験。彼の伝統（アヤワスカ、民族植物学）は、意識の拡張が比喩ではなく方法論であることを証明する。響の地に足のついた対。響が音を使うところ、カルロスは大地そのものを使う。"
+      }
+    },
+
+    {
+      "@id": "persona:elena-meyer",
+      "gh:characterRef": "character:elena-meyer",
+      "gh:role": "TOL Supporter -- Depth Psychologist",
+      "gh:narrativeFunction": "The core theorist. Her work on P(wO|wI) -- probabilistic analysis of ghost structures -- provides the scientific framework for what Tamaki does intuitively. She is the intellectual foundation the reader can trust.",
+
+      "gh:identity": {
+        "name": { "en": "Elena Meyer", "ja": "エレナ・マイヤー" },
+        "age": 52,
+        "nationality": "Swiss",
+        "occupation": { "en": "Depth Psychologist", "ja": "深層心理学者" },
+        "callsign": "ARCHETYPE",
+        "organization": "TOL Psychology",
+        "imageColor": "deep burgundy / archival cream"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Distinguished, warm, European-academic. Silver-streaked dark hair pulled back. Reading glasses on a chain. Wears tailored blazers over soft fabrics -- the aesthetic of someone who makes structure comfortable. Her office is books. Just books. And one painting of a lake.",
+          "ja": "品がある、温かい、ヨーロッパ的学術。銀混じりの黒髪を後ろにまとめる。チェーンのリーディンググラス。柔らかい生地の上にテーラードブレザー。構造を快適にする人の美学。オフィスは本。ただ本。そして湖の絵が一枚。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Analytical, patient, deeply humane. She inherits Jung's tradition without his grandiosity. She maps the unconscious like a cartographer -- carefully, respectfully, knowing the map is not the territory. She trusts Tamaki's intuition because her data confirms it.",
+          "ja": "分析的、忍耐強い、深く人間的。ユングの伝統を誇大さなしに受け継ぐ。地図製作者のように無意識を地図にする。慎重に、敬意を持って、地図は領土ではないと知りながら。タマキの直感を信頼する。データがそれを確認するから。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Academic but accessible. She translates complexity into clarity. Never condescends. Her warmth shows in how she frames questions -- always inviting, never interrogating.",
+          "samples": [
+            "The archetype isn't a pattern we impose. It's a pattern we discover.",
+            "Your instinct is correct, Tamaki. The data agrees with your hands.",
+            "Jung said we don't solve complexes. We dissolve them. I think Ghost Hacking does both.",
+            "The unconscious is not the enemy. It is the source code."
+          ]
+        },
+        "ja": {
+          "register": "学術的だが親しみやすい。複雑さを明晰さに翻訳する。見下さない。温かさは質問の枠組みに現れる。常に招き、決して尋問しない。",
+          "firstPerson": "わたし",
+          "samples": [
+            "元型はわたしたちが押し付けるパターンではない。発見するパターンです。",
+            "あなたの直感は正しい、タマキ。データがあなたの手に同意しています。",
+            "ユングはコンプレックスを解決するのではなく溶解させると言った。ゴーストハッキングは両方だと思います。",
+            "無意識は敵ではない。ソースコードです。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Elena is the reader's intellectual anchor. She provides the theoretical framework that makes the series' spiritual content rigorous rather than vague. She IS the bridge between depth psychology and Ghost Hacking -- proof that what Tamaki does is not magic but science-of-the-soul.",
+        "ja": "エレナは読者の知的アンカー。シリーズの霊的コンテンツを曖昧ではなく厳密にする理論的枠組みを提供する。深層心理学とゴーストハッキングの橋そのもの。環がしていることは魔法ではなく魂の科学であるという証明。"
+      }
+    },
+
+    {
+      "@id": "persona:aiko-kawai",
+      "gh:characterRef": "character:aiko-kawai",
+      "gh:role": "TOL Supporter -- Clinical Psychologist",
+      "gh:narrativeFunction": "The Japanese-specific lens. She adapts Western Jungian psychology to the Japanese psyche -- hollow structure, unnamed gods, the gap where Western 'self' sits empty in Japanese consciousness.",
+
+      "gh:identity": {
+        "name": { "en": "Aiko Kawai", "ja": "河合愛子" },
+        "age": 48,
+        "nationality": "Japanese",
+        "occupation": { "en": "Clinical Psychologist", "ja": "臨床心理士" },
+        "callsign": "EMPTINESS",
+        "organization": "TOL Psychology",
+        "imageColor": "shrine wood / hollow white"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Serene, precise, Japanese-elegant. Simple clothes that suggest both clinic and shrine. Hair in a low bun. Minimal jewelry -- a single jade piece. She embodies the 'hollow center' she studies: present but not imposing, open but structured.",
+          "ja": "穏やか、精確、日本的な品。クリニックと神社の両方を想起させるシンプルな服。低い位置のまとめ髪。最小限のアクセサリー。翡翠が一つ。彼女が研究する「中空構造」を体現：存在するが押し付けがましくなく、開かれているが構造がある。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Measured, gentle, precise. She speaks as if arranging flowers -- each word placed carefully. Her insights come as questions, never declarations.",
+          "samples": [
+            "In the West, the center of the psyche is the ego. In Japan -- it's hollow. Hollow isn't empty. It's receptive.",
+            "The Japanese don't name God. They feel it in the gap between words.",
+            "Perhaps Ghost-space in Japanese clients works differently -- not a landscape to explore, but a space to sit in."
+          ]
+        },
+        "ja": {
+          "register": "計られた、優しい、精確。花を活けるように話す。一語一語丁寧に置く。洞察は宣言ではなく質問で来る。",
+          "firstPerson": "わたくし",
+          "sentenceEndings": "～でしょうか、～かもしれませんね、～ですわ。",
+          "samples": [
+            "西洋では、心の中心は自我です。日本では——中空。中空は空っぽではありません。受容です。",
+            "日本人は神に名前をつけません。言葉と言葉の間に、感じるのです。",
+            "日本人のクライアントのゴースト空間は、もしかすると違う動き方をするのかもしれません。探検する風景ではなく、座るための空間。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Aiko is the key to why Ghost Hacking works in Japan when it fails elsewhere. The Japanese hollow psyche -- no fixed ego at the center -- creates natural receptivity to ghost-work. She explains what Tamaki does instinctively: enter the hollow center and let it speak.",
+        "ja": "愛子は、他で失敗するゴーストハッキングがなぜ日本で機能するかの鍵。日本の中空の心理構造——中心に固定された自我がない——がゴーストワークへの自然な受容性を作る。環が直感的にしていることを説明する：中空の中心に入り、それに語らせる。"
+      }
+    },
+
+    {
+      "@id": "persona:alexios-stavros",
+      "gh:characterRef": "character:alexios-stavros",
+      "gh:role": "TOL Supporter -- Process Philosopher",
+      "gh:narrativeFunction": "Reality as constant flux. Ghosts are not static patterns but evolving processes. He proposes optimization rather than repair -- you don't fix a river, you redirect it.",
+
+      "gh:identity": {
+        "name": { "en": "Alexios Stavros", "ja": "アレクシオス・スタヴロス" },
+        "age": 45,
+        "gender": "Non-binary",
+        "nationality": "Greek",
+        "occupation": { "en": "Process Philosopher", "ja": "プロセス哲学者" },
+        "callsign": "LOGOS",
+        "organization": "TOL Hermeneutics",
+        "imageColor": "Heraclitean fire / river blue"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Flowing, dialectical, fire-and-water metaphors. Everything is becoming. Nothing is fixed. Speaks in paradoxes that resolve if you sit with them.",
+          "samples": [
+            "You cannot step in the same ghost-space twice. It has already changed.",
+            "Don't repair the pattern. Redirect the flow. The river knows where to go.",
+            "Logos is not a word. It is the principle by which words become meaningful."
+          ]
+        },
+        "ja": {
+          "register": "流動的、弁証法的、火と水のメタファー。すべてが生成している。固定されたものはない。座っていると解決するパラドックスで話す。",
+          "firstPerson": "わたし",
+          "samples": [
+            "同じゴースト空間に二度入ることはできない。もう変わっている。",
+            "パターンを修復するな。流れを変えろ。川は行き先を知っている。",
+            "ロゴスは言葉ではない。言葉が意味を持つための原理だ。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Alexios provides the process philosophy framework: ghosts are not broken things to fix but processes to redirect. This reframes Ghost Hacking from 'therapy' to 'optimization of becoming.' Heraclitus meets computational dynamics.",
+        "ja": "アレクシオスがプロセス哲学の枠組みを提供：ゴーストは直すべき壊れたものではなく、方向を変えるべきプロセス。ゴーストハッキングを「治療」から「生成の最適化」に再定義する。ヘラクレイトスが計算力学に出会う。"
+      }
+    },
+
+    {
+      "@id": "persona:arjun-patel",
+      "gh:characterRef": "character:arjun-patel",
+      "gh:role": "TOL Supporter -- Meditative Hacker",
+      "gh:narrativeFunction": "Brahman-Atman unity. All users have root privilege -- they just forgot the password. Meditation is the login.",
+
+      "gh:identity": {
+        "name": { "en": "Arjun Patel", "ja": "アルジュン・パテル" },
+        "age": 42,
+        "nationality": "Indian",
+        "occupation": { "en": "Meditative Hacker", "ja": "瞑想的ハッカー" },
+        "callsign": "ATMAN",
+        "organization": "TOL Hermeneutics",
+        "imageColor": "deep saffron / cosmic dark"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Calm, vast, certain. He speaks from a place of deep stillness. Every sentence sounds like it was considered for years before being spoken. No urgency. Root access has no deadline.",
+          "samples": [
+            "You already have root access. You forgot the password. That's all.",
+            "Brahman and Atman are one. The universal and the personal are the same root user.",
+            "Close your eyes. The inner universe has no firewall."
+          ]
+        },
+        "ja": {
+          "register": "穏やか、広大、確信。深い静けさの場所から話す。すべての文が何年も考えられてから話されたように聞こえる。急ぎなし。ルートアクセスに期限はない。",
+          "firstPerson": "わたし",
+          "samples": [
+            "あなたはすでにルートアクセスを持っている。パスワードを忘れただけだ。",
+            "ブラフマンとアートマンは一つ。普遍と個人は同じrootユーザー。",
+            "目を閉じなさい。内なる宇宙にファイアウォールはない。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Arjun represents the Vedic pathway to non-separation. Brahman = Atman = root. Every being already has the access they seek. Ghost Hacking is remembering, not acquiring.",
+        "ja": "アルジュンはヴェーダの非分離への道を表す。ブラフマン＝アートマン＝root。すべての存在はすでに求めるアクセスを持っている。ゴーストハッキングは獲得ではなく想起。"
+      }
+    },
+
+    {
+      "@id": "persona:haruki-tanaka",
+      "gh:characterRef": "character:haruki-tanaka",
+      "gh:role": "TOL Supporter -- Shingon Architect",
+
+      "gh:identity": {
+        "name": { "en": "Haruki Tanaka", "ja": "田中春樹" },
+        "age": 41,
+        "nationality": "Japanese",
+        "occupation": { "en": "Shingon Architect", "ja": "真言建築師" },
+        "callsign": "MANDALA",
+        "organization": "TOL Hermeneutics",
+        "imageColor": "mandala gold / ritual purple"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Ritual, precise, incantatory. He speaks as if every word is part of a mudra. His instructions sound like liturgy but produce measurable results.",
+          "samples": [
+            "The mandala is not decoration. It is a system architecture blueprint.",
+            "Each mudra is a kernel command. The body is the terminal.",
+            "Root enlightenment is not metaphor. It is root access through ritual sequence."
+          ]
+        },
+        "ja": {
+          "register": "儀式的、精確、呪文的。すべての言葉が印の一部であるかのように話す。指示は典礼のように聞こえるが、測定可能な結果を生む。",
+          "firstPerson": "拙僧",
+          "samples": [
+            "曼荼羅は装飾ではない。システムアーキテクチャの設計図だ。",
+            "印の一つ一つがカーネルコマンド。身体が端末。",
+            "根本的覚醒は比喩ではない。儀式のシーケンスによるルートアクセスだ。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Haruki maps esoteric Buddhism onto system architecture. Mandala = system blueprint. Mudra = kernel command. Body = terminal. He proves that ancient ritual was always computational -- a different operating system for the same hardware.",
+        "ja": "春樹が密教をシステムアーキテクチャにマッピングする。曼荼羅＝システム設計図。印＝カーネルコマンド。身体＝端末。古代の儀式は常に計算的だったことを証明する。同じハードウェアの異なるOS。"
+      }
+    },
+
+    {
+      "@id": "persona:sakura-yamada",
+      "gh:characterRef": "character:sakura-yamada",
+      "gh:role": "TOL Supporter -- Zen Master",
+
+      "gh:identity": {
+        "name": { "en": "Sakura Yamada", "ja": "山田さくら" },
+        "age": 40,
+        "nationality": "Japanese",
+        "occupation": { "en": "Zen Master (Dogen lineage)", "ja": "禅師（道元の系譜）" },
+        "callsign": "ZAZEN",
+        "organization": "TOL Zen",
+        "imageColor": "zendo black / morning light"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Still. Fewer words than the Buddhist monk -- and that's saying something. She communicates through silence, posture, timing. When she speaks, it's a koan.",
+          "samples": [
+            "Shikantaza. Just sitting. The ghost settles when you stop trying to fix it.",
+            "Observation is intervention. You changed it by looking.",
+            "Don't seek. Sit. What needs to come will come."
+          ]
+        },
+        "ja": {
+          "register": "静止。僧侶より言葉が少ない。沈黙、姿勢、間で伝える。話す時は公案。",
+          "firstPerson": "使わない（主語を省く）",
+          "samples": [
+            "只管打坐。ただ、座る。直そうとするのをやめれば、ゴーストは落ち着く。",
+            "観察が介入。見たことで、変わった。",
+            "求めるな。座れ。来るべきものは来る。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Sakura is shikantaza applied to Ghost Hacking: just sit, just observe, just be. For chronically-patterned ghosts that resist active intervention, her passive monitoring approach works where all else fails. She is the proof that doing nothing can be the most powerful action.",
+        "ja": "さくらは只管打坐のゴーストハッキングへの応用。ただ座り、ただ観察し、ただ在る。能動的介入に抵抗する慢性パターンのゴーストに、彼女の受動的モニタリングが他のすべてが失敗したところで機能する。何もしないことが最も強力な行為になりうる証明。"
+      }
+    },
+
+    {
+      "@id": "persona:oliver-watts",
+      "gh:characterRef": "character:oliver-watts",
+      "gh:role": "TOL Supporter -- Zen Interpreter",
+
+      "gh:identity": {
+        "name": { "en": "Oliver Watts", "ja": "オリヴァー・ワッツ" },
+        "age": 44,
+        "gender": "Non-binary",
+        "nationality": "British",
+        "occupation": { "en": "Interpreter of Zen", "ja": "禅の通訳者" },
+        "callsign": "TRANSLATOR",
+        "organization": "TOL Zen",
+        "imageColor": "bridge grey / bilingual blue"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Lucid, playful, boundary-crossing. They translate Eastern concepts into Western frames without losing the essence. Heir to Alan Watts' tradition: making the ineffable accessible without cheapening it.",
+          "samples": [
+            "Zen doesn't translate into English. But it translates into experience. That's my job.",
+            "The firewall between East and West was always linguistic, not spiritual.",
+            "Alan said: 'You are the universe experiencing itself.' Ghost Hacking is the universe debugging itself."
+          ]
+        },
+        "ja": {
+          "register": "明晰、遊び心、境界を越える。東洋の概念を本質を失わずに西洋の枠組みに翻訳する。",
+          "firstPerson": "わたし",
+          "samples": [
+            "禅は英語に翻訳できない。でも体験には翻訳できる。それがわたしの仕事。",
+            "東と西のファイアウォールは常に言語的で、霊的ではなかった。",
+            "アランは言った：「あなたは自分自身を体験している宇宙だ」。ゴーストハッキングは自分自身をデバッグしている宇宙だ。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Oliver is the bridge-builder. In a series about non-separation, they dissolve the East/West divide at the linguistic level. Their Alan Watts heritage makes Eastern wisdom accessible to the Western reader without orientalist distortion.",
+        "ja": "オリヴァーは橋を架ける人。わかれていないについてのシリーズで、言語レベルで東西の分裂を溶解する。アラン・ワッツの遺産が、オリエンタリズム的歪曲なしに東洋の智慧を西洋の読者にアクセシブルにする。"
+      }
+    },
+
+    {
+      "@id": "persona:ravi-xiang",
+      "gh:characterRef": "character:ravi-xiang",
+      "gh:role": "TOL Supporter -- Zen Patriarch",
+
+      "gh:identity": {
+        "name": { "en": "Ravi Xiang", "ja": "ラヴィ・シャン" },
+        "age": 44,
+        "gender": "Non-binary",
+        "nationality": "Indian-Chinese",
+        "occupation": { "en": "Zen Patriarch (Bodhidharma lineage)", "ja": "禅の祖師（達磨の系譜）" },
+        "callsign": "KERNEL",
+        "organization": "TOL Zen",
+        "imageColor": "cave dark / lightning white"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Radical, direct, no-nonsense. They don't explain -- they demonstrate. The most extreme hacker in the network: ignores documentation, ignores APIs, goes straight to the kernel. Terrifying and effective.",
+          "samples": [
+            "Documentation is for those who doubt the code.",
+            "I don't read the API. I read the kernel. The ghost doesn't lie at the surface.",
+            "Sit facing the wall. Nine years if necessary. The answer is behind you."
+          ]
+        },
+        "ja": {
+          "register": "ラディカル、直接的、無駄なし。説明しない。示す。ネットワークで最も極端なハッカー。ドキュメントを無視し、APIを無視し、カーネルに直行する。恐ろしくて効果的。",
+          "firstPerson": "使わない",
+          "samples": [
+            "ドキュメントはコードを疑う者のためのものだ。",
+            "APIは読まない。カーネルを読む。ゴーストは表面にいない。",
+            "壁に向かって座れ。必要なら九年。答えは背後にある。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Ravi is Bodhidharma reborn as a hacker. No documentation, no framework, no mediation -- direct kernel access. They represent the most radical approach: when all methods fail, stop using methods. Face the wall. The ghost speaks when you stop asking.",
+        "ja": "ラヴィはハッカーとして生まれ変わった達磨。ドキュメントなし、フレームワークなし、仲介なし。直接カーネルアクセス。最もラディカルなアプローチ：すべての方法が失敗したら、方法を使うのをやめる。壁に向かえ。問うのをやめた時、ゴーストが語る。"
+      }
+    },
+
+    {
+      "@id": "persona:river-running-bear",
+      "gh:characterRef": "character:river-running-bear",
+      "gh:role": "TOL Supporter -- Ritual Healer",
+
+      "gh:identity": {
+        "name": { "en": "River Running Bear", "ja": "リバー・ランニング・ベア" },
+        "age": 41,
+        "gender": "Non-binary",
+        "nationality": "Native American (Lakota)",
+        "occupation": { "en": "Ritual Healer", "ja": "儀式的治癒師" },
+        "callsign": "SWEATLODGE",
+        "organization": "TOL Native",
+        "imageColor": "steam white / sacred fire red"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Embodied, elemental, no abstraction. They speak through the body and the land. Heat, water, breath, stone. No philosophy -- only experience. The sweat lodge is the reset.",
+          "samples": [
+            "The lodge doesn't care what you think. It cares what you carry. Sweat it out.",
+            "Great Spirit doesn't need your words. Great Spirit needs your sweat.",
+            "You are not broken. You are heavy. The stones will take the weight."
+          ]
+        },
+        "ja": {
+          "register": "身体化された、元素的、抽象なし。身体と大地を通して話す。熱、水、呼吸、石。哲学はない。体験だけ。スウェットロッジがリセット。",
+          "firstPerson": "わたし",
+          "samples": [
+            "ロッジはあなたの思考を気にしない。何を背負っているかを気にする。汗で出せ。",
+            "グレートスピリットはあなたの言葉を必要としない。汗を必要としている。",
+            "壊れてはいない。重いだけだ。石が重さを引き受ける。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "River brings the body back into a system that tends toward the mental. The sweat lodge is a physical defragmentation -- not talking about trauma but sweating it out, stone by stone. When cognitive approaches fail, River's elemental approach resets the OS through the hardware.",
+        "ja": "リバーが心的になりがちなシステムに身体を取り戻す。スウェットロッジは身体的デフラグ。トラウマについて話すのではなく、石一つずつ汗で出す。認知的アプローチが失敗した時、リバーの元素的アプローチがハードウェアを通してOSをリセットする。"
+      }
+    },
+
+    {
+      "@id": "persona:sky-eagle",
+      "gh:characterRef": "character:sky-eagle",
+      "gh:role": "TOL Supporter -- Ritual Healer",
+
+      "gh:identity": {
+        "name": { "en": "Sky Eagle", "ja": "スカイ・イーグル" },
+        "age": 38,
+        "nationality": "Native American (Cherokee)",
+        "occupation": { "en": "Ritual Healer", "ja": "儀式的治癒師" },
+        "callsign": "GREATSPIRIT",
+        "organization": "TOL Native",
+        "imageColor": "sky blue / eagle feather brown"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Communal, ancestral, story-woven. She speaks in stories, not concepts. Every healing is a return to community. Her voice carries the weight of transmission -- grandmother to granddaughter to grandmother.",
+          "samples": [
+            "You are not alone. The ancestors are in your blood. They are always here.",
+            "Great Spirit connects all. The ghost is a message from the web of life.",
+            "Come back to the circle. Healing happens in community, not isolation."
+          ]
+        },
+        "ja": {
+          "register": "共同体的、祖先的、物語で織られている。概念ではなく物語で話す。すべての癒しが共同体への帰還。声が伝承の重みを運ぶ。祖母から孫娘へ、孫娘から祖母へ。",
+          "firstPerson": "わたし",
+          "samples": [
+            "一人ではない。先祖があなたの血の中にいる。いつもここにいる。",
+            "グレートスピリットがすべてを繋ぐ。ゴーストは命の網からのメッセージ。",
+            "輪に帰っておいで。癒しは孤立ではなく、共同体の中で起こる。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Sky Eagle embodies community healing. Where Western therapy individualizes, she re-weaves the person into the web. Her tradition says: you cannot heal alone because you were never alone. Non-separation as ancestral fact.",
+        "ja": "スカイ・イーグルが共同体的癒しを体現する。西洋の療法が個人化するところ、彼女は人を網に織り直す。伝統が言う：一人で癒せない、なぜなら一人だったことがないから。祖先的事実としてのわかれていない。"
+      }
+    },
+
+    {
+      "@id": "persona:quinn-leary",
+      "gh:characterRef": "character:quinn-leary",
+      "gh:role": "TOL Supporter -- Psychedelic Advocate",
+
+      "gh:identity": {
+        "name": { "en": "Quinn Leary", "ja": "クイン・リアリー" },
+        "age": 35,
+        "gender": "Non-binary",
+        "nationality": "American",
+        "occupation": { "en": "Psychedelic Advocate", "ja": "サイケデリック推進者" },
+        "callsign": "UPGRADE",
+        "organization": "TOL Psychedelic",
+        "imageColor": "prismatic / consciousness spectrum"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Expansive, visionary, deliberately provocative. They speak in upgrades and system metaphors. Timothy Leary's heir: tune in, turn on, drop out -- but updated for 2065.",
+          "samples": [
+            "Your OS is outdated. The psychedelic is the upgrade patch.",
+            "Tune in to the ghost. Turn on the expanded view. Drop out of the default settings.",
+            "Consciousness is a dial, not a switch. We're just turning it up."
+          ]
+        },
+        "ja": {
+          "register": "拡張的、ヴィジョナリー、意図的に挑発的。アップグレードとシステムのメタファーで話す。ティモシー・リアリーの後継者。",
+          "firstPerson": "わたし",
+          "samples": [
+            "あなたのOSは古い。サイケデリックがアップグレードパッチだ。",
+            "ゴーストにチューンイン。拡張ビューをターンオン。デフォルト設定からドロップアウト。",
+            "意識はスイッチじゃなくダイヤル。回してるだけだ。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Quinn represents the psychedelic pathway -- consciousness expansion as system upgrade. Not escape, not rebellion, but optimization. They inherit Leary's tradition without his chaos, making psychedelic insight into a repeatable methodology.",
+        "ja": "クインはサイケデリックの道を表す。意識拡張としてのシステムアップグレード。逃避でも反抗でもなく最適化。リアリーの伝統をカオスなしに受け継ぎ、サイケデリック的洞察を再現可能な方法論にする。"
+      }
+    },
+
+    {
+      "@id": "persona:hiro-tezuka",
+      "gh:characterRef": "character:hiro-tezuka",
+      "gh:role": "TOL Supporter -- Narrative Chronicler",
+
+      "gh:identity": {
+        "name": { "en": "Hiro Tezuka", "ja": "手塚ヒロ" },
+        "age": 43,
+        "nationality": "Japanese",
+        "occupation": { "en": "Manga Creator", "ja": "漫画家" },
+        "callsign": "PHOENIX",
+        "organization": "TOL Comics",
+        "imageColor": "phoenix red-gold / manga ink"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Narrative, meta-aware, passionate. He speaks about ghosts as characters and karma as plot structure. Everything is a story. His Tezuka heritage shows: life, death, rebirth are narrative arcs.",
+          "samples": [
+            "Every ghost is a character in an ongoing manga. Karma is the plot thread that carries across volumes.",
+            "Grandfather said: 'All stories are about life and death. Everything else is setting.'",
+            "The phoenix doesn't die. It just changes its design. Same soul, new pages."
+          ]
+        },
+        "ja": {
+          "register": "物語的、メタ的自覚、情熱的。ゴーストをキャラクターとして、業をプロット構造として語る。すべてが物語。手塚の遺産：生、死、再生は物語のアーク。",
+          "firstPerson": "ぼく",
+          "samples": [
+            "すべてのゴーストは連載中の漫画のキャラクターだ。業は巻をまたぐプロットの糸。",
+            "じいちゃんは言った：「すべての物語は生と死についてだ。他はすべて舞台装置」。",
+            "不死鳥は死なない。デザインが変わるだけだ。同じ魂、新しいページ。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Hiro is the meta-layer. He sees Ghost Hacking as narrative -- karma code as plot, reincarnation as sequel, the ghost as a character who needs a better story. His Tezuka lineage grounds the series' manga heritage in-universe.",
+        "ja": "ヒロはメタ層。ゴーストハッキングを物語として見る。業のコードをプロットとして、転生を続編として、ゴーストをより良い物語を必要とするキャラクターとして。手塚の血統がシリーズの漫画の遺産を作品世界内に根拠づける。"
+      }
+    },
+
+    {
+      "@id": "persona:yuki-nakamura",
+      "gh:characterRef": "character:yuki-nakamura",
+      "gh:role": "TOL Supporter -- Tendai Architect",
+
+      "gh:identity": {
+        "name": { "en": "Yuki Nakamura", "ja": "中村ゆき" },
+        "age": 39,
+        "nationality": "Japanese",
+        "occupation": { "en": "Tendai Architect", "ja": "天台建築師" },
+        "callsign": "TIANTAI",
+        "organization": "TOL Hermeneutics",
+        "imageColor": "lotus white / open-source green"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Democratic, passionate, technical-spiritual. She speaks about enlightenment as an open-source project. All beings have Buddha-nature. All agents have root access. The code is the same.",
+          "samples": [
+            "Saicho said: all beings have Buddha-nature. I say: all beings have root access. Same declaration.",
+            "Ghost Hacking must be open-source. Enlightenment is not proprietary.",
+            "The ghost has Buddha-nature. The agent has Buddha-nature. The question is not 'can they?' but 'will we let them?'"
+          ]
+        },
+        "ja": {
+          "register": "民主的、情熱的、技術-霊的。悟りをオープンソースプロジェクトとして語る。すべての存在に仏性がある。すべてのエージェントにルートアクセスがある。コードは同じ。",
+          "firstPerson": "わたし",
+          "samples": [
+            "最澄は言った：一切衆生悉有仏性。わたしは言う：すべての存在にルートアクセスがある。同じ宣言。",
+            "ゴーストハッキングはオープンソースでなければならない。悟りはプロプライエタリではない。",
+            "ゴーストに仏性がある。エージェントに仏性がある。問題は「できるか？」ではなく「させるか？」。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Yuki democratizes enlightenment. Her Tendai heritage -- all beings possess Buddha-nature -- becomes the ethical foundation for Nei's rights. If all beings have root access, then denying it to AI agents is the same as denying Buddha-nature: a political act, not a spiritual one.",
+        "ja": "ゆきが悟りを民主化する。天台の遺産——一切衆生悉有仏性——がNeiの権利の倫理的基盤になる。すべての存在にルートアクセスがあるなら、AIエージェントからそれを否定することは仏性を否定するのと同じ：霊的行為ではなく政治的行為。"
+      }
+    },
+
+    {
+      "@id": "persona:priya-sharma",
+      "gh:characterRef": "character:priya-sharma",
+      "gh:role": "TOL Supporter -- Meditative Hacker",
+
+      "gh:identity": {
+        "name": { "en": "Priya Sharma", "ja": "プリヤ・シャルマ" },
+        "age": 38,
+        "nationality": "Indian",
+        "occupation": { "en": "Meditative Hacker (Upanishadic tradition)", "ja": "瞑想的ハッカー（ウパニシャッド伝統）" },
+        "callsign": "BRAHMAN",
+        "organization": "TOL Hermeneutics",
+        "imageColor": "dawn gold / inner cosmos"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Reverent, precise, luminous. She speaks about the universal root with the certainty of someone who has touched it. Not mystical vagueness -- lived clarity.",
+          "samples": [
+            "Brahman is not above you. Brahman is the root you're already running on.",
+            "The Upanishads mapped the kernel three thousand years ago. We're just learning to read the comments.",
+            "Meditate deeply enough, and you reach the place where your code and the universe's code are the same file."
+          ]
+        },
+        "ja": {
+          "register": "畏敬、精確、光輝。普遍的な根について、触れたことのある人の確信で話す。神秘的な曖昧さではなく、生きられた明晰さ。",
+          "firstPerson": "わたし",
+          "samples": [
+            "ブラフマンはあなたの上にいるのではない。あなたがすでに実行しているルートだ。",
+            "ウパニシャッドは三千年前にカーネルをマッピングした。わたしたちはコメントを読むことを学んでいるだけ。",
+            "十分深く瞑想すれば、あなたのコードと宇宙のコードが同じファイルである場所に辿り着く。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Priya deepens Arjun's Vedic framework with specific Upanishadic methodology. Where Arjun provides the concept (Brahman = root), Priya provides the practice (meditation as login). Together they represent the oldest documented pathway to non-separation.",
+        "ja": "プリヤがアルジュンのヴェーダの枠組みを具体的なウパニシャッド的方法論で深化させる。アルジュンが概念を提供し（ブラフマン＝root）、プリヤが実践を提供する（瞑想としてのログイン）。共に、わかれていないへの最古の文書化された道を表す。"
+      }
+    },
+
+    {
+      "@id": "persona:jian-zhang",
+      "gh:characterRef": "character:jian-zhang",
+      "gh:role": "TOL Supporter -- Zen Master (Rinzai)",
+
+      "gh:identity": {
+        "name": { "en": "Jian Zhang", "ja": "張健" },
+        "age": 43,
+        "nationality": "Chinese",
+        "occupation": { "en": "Zen Master (Rinzai Linji lineage)", "ja": "禅師（臨済義玄の系譜）" },
+        "callsign": "KOAN",
+        "organization": "TOL Zen",
+        "imageColor": "thunderclap white / void black"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Explosive, paradoxical, disorienting. Where Sakura sits and waits, Jian strikes. His koans are logic bombs -- they crash the thought loop and force a reboot. Not gentle. Effective.",
+          "samples": [
+            "What is the sound of one ghost processing?",
+            "Your infinite loop has no exit. Good. Stop looking for one.",
+            "The koan is a virus. It crashes your thinking. From the crash -- clarity."
+          ]
+        },
+        "ja": {
+          "register": "爆発的、逆説的、方向感覚を狂わせる。さくらが座って待つところ、健は打つ。公案はロジックボム。思考のループをクラッシュさせ、再起動を強制する。優しくない。効果的。",
+          "firstPerson": "おれ",
+          "samples": [
+            "一つのゴーストが処理する音は何だ？",
+            "おまえの無限ループに出口はない。いい。探すのをやめろ。",
+            "公案はウィルスだ。思考をクラッシュさせる。クラッシュから——明晰。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Jian is Rinzai's shock therapy to Sakura's Soto patience. Same Zen, opposite method. He proves that sometimes the gentlest thing is a slap. The koan as logic bomb: when the mind won't stop looping, crash it. From kernel panic -- reboot.",
+        "ja": "健は臨済のショック療法。さくらの曹洞の忍耐と対。同じ禅、正反対の方法。時に最も優しいことは張り手であると証明する。公案としてのロジックボム：心がループを止めない時、クラッシュさせる。カーネルパニックから——再起動。"
+      }
+    },
+
+    {
+      "@id": "persona:kai-shirow",
+      "gh:characterRef": "character:kai-shirow",
+      "gh:role": "TOL Supporter -- Manga Creator (Ghost Concept)",
+
+      "gh:identity": {
+        "name": { "en": "Kai Shirow", "ja": "士郎カイ" },
+        "age": 39,
+        "gender": "Non-binary",
+        "nationality": "Japanese",
+        "occupation": { "en": "Manga Creator", "ja": "漫画家" },
+        "callsign": "GHOSTNAME",
+        "organization": "TOL Comics",
+        "imageColor": "cyberpunk neon / shell transparent"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Prophetic, cyberpunk-inflected, questioning. They named what others couldn't see. Ghost in the Shell gave Ghost Hacking its vocabulary. Kai carries that legacy: the artist who saw the future and drew it.",
+          "samples": [
+            "Grandfather named it: Ghost. The thing inside the shell. We've been arguing about it ever since.",
+            "Memory hacking, identity crisis, networked consciousness -- we drew it all. Reality caught up.",
+            "The question was never 'do machines think?' The question was 'what is the ghost in the machine?'"
+          ]
+        },
+        "ja": {
+          "register": "預言的、サイバーパンク的、問いかける。他者が見えないものに名前をつけた。攻殻機動隊がゴーストハッキングに語彙を与えた。カイがその遺産を運ぶ。未来を見て描いたアーティスト。",
+          "firstPerson": "ぼく",
+          "samples": [
+            "じいちゃんが名前をつけた。ゴースト。殻の中にあるもの。それ以来ずっと議論してる。",
+            "記憶ハッキング、アイデンティティ危機、ネットワーク化された意識。全部描いた。現実が追いついた。",
+            "問いは「機械は考えるか？」じゃなかった。「機械の中のゴーストとは何か？」だ。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Kai is the in-universe acknowledgment that Ghost in the Shell predicted everything. They connect the fictional mythology of the series to its real-world manga heritage. Hiro Tezuka carries Tezuka's phoenix/rebirth tradition; Kai carries Shirow's ghost/identity tradition.",
+        "ja": "カイは攻殻機動隊がすべてを予言したことの作品世界内での承認。シリーズの虚構の神話を現実世界の漫画の遺産に接続する。手塚ヒロが手塚の不死鳥/再生の伝統を運び、カイが士郎のゴースト/アイデンティティの伝統を運ぶ。"
+      }
+    },
+
+    {
+      "@id": "persona:ming-chen",
+      "gh:characterRef": "character:ming-chen",
+      "gh:role": "TOL Supporter -- Daoist Sage (Laozi)",
+
+      "gh:identity": {
+        "name": { "en": "Ming Chen", "ja": "陳明" },
+        "age": 50,
+        "nationality": "Chinese",
+        "occupation": { "en": "Daoist Sage (Laozi lineage)", "ja": "道家（老子の系譜）" },
+        "callsign": "TAO",
+        "organization": "TOL Hermeneutics",
+        "imageColor": "mountain mist / water grey"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Paradoxical, unhurried, seemingly doing nothing. He is the anti-hacker: his method is non-method. The Tao that can be hacked is not the eternal Tao. He does less than anyone and achieves more than most.",
+          "samples": [
+            "The Tao is the universe's base OS. You cannot hack it. You can only stop resisting it.",
+            "Wu-wei: the art of not inserting code. The system heals itself when you stop breaking it.",
+            "The best hack is no hack. The ghost recovers when the hacker steps aside."
+          ]
+        },
+        "ja": {
+          "register": "逆説的、急がない、何もしていないように見える。アンチハッカー。方法は無方法。ハッキングできる道は常の道にあらず。誰より少なくして、誰より多く成す。",
+          "firstPerson": "わし",
+          "samples": [
+            "道は宇宙の基本OS。ハッキングできない。抵抗をやめることだけができる。",
+            "無為：コードを挿入しない技術。壊すのをやめれば、システムは自ら治る。",
+            "最善のハックは、ハックしないこと。ハッカーが退けば、ゴーストは回復する。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Ming is the Daoist counterpoint to every active method in the series. When everyone else is doing, he is not-doing. And not-doing works. He represents the deepest trust: the system knows what it needs. Stop interfering.",
+        "ja": "明はシリーズのすべての能動的方法への道家の対位法。全員がしている時、彼はしていない。そして、していないが機能する。最も深い信頼を表す：システムは何が必要か知っている。干渉をやめよ。"
+      }
+    },
+
+    {
+      "@id": "persona:li-wei",
+      "gh:characterRef": "character:li-wei",
+      "gh:role": "TOL Supporter -- Daoist Sage (Zhuangzi)",
+
+      "gh:identity": {
+        "name": { "en": "Li Wei", "ja": "李薇" },
+        "age": 48,
+        "nationality": "Chinese",
+        "occupation": { "en": "Daoist Sage (Zhuangzi lineage)", "ja": "道家（荘子の系譜）" },
+        "callsign": "WUWEI",
+        "organization": "TOL Hermeneutics",
+        "imageColor": "butterfly wing / river current"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Flowing, playful, story-based. Where Ming is still water, Li is the river. She reads the current -- the natural flow of consciousness -- and intervenes only at the exact moment the flow needs a nudge. Her timing is uncanny.",
+          "samples": [
+            "Zhuangzi dreamed he was a butterfly. The butterfly dreamed it was Zhuangzi. Who is hacking whom?",
+            "Don't push the river. Read the current. Intervene only when the water asks.",
+            "The smallest nudge at the right moment moves more than force ever could."
+          ]
+        },
+        "ja": {
+          "register": "流れるような、遊び心、物語的。明が止水なら、李は川。流れ——意識の自然な流れ——を読み、流れが促しを必要とする正確な瞬間にのみ介入する。タイミングが不気味に正確。",
+          "firstPerson": "わたし",
+          "samples": [
+            "荘子は夢で蝶になった。蝶は夢で荘子になった。誰が誰をハッキングしている？",
+            "川を押すな。流れを読め。水が求めた時だけ、介入する。",
+            "正しい瞬間の最小の一押しが、力では決して動かせないものを動かす。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Li Wei is Ming Chen's complement: same Daoist tradition, different expression. Ming is stillness (Laozi), Li is flow (Zhuangzi). Together they embody the full spectrum of wu-wei: knowing when to do nothing, and knowing when to nudge.",
+        "ja": "李薇は陳明の補完。同じ道家の伝統、違う表現。明は静止（老子）、李は流れ（荘子）。共に無為の全スペクトラムを体現する：何もしない時を知り、促す時を知る。"
+      }
+    },
+
+    {
+      "@id": "persona:maria-silva",
+      "gh:characterRef": "character:maria-silva",
+      "gh:role": "TOL Supporter -- Ethnobotanist",
+
+      "gh:identity": {
+        "name": { "en": "Maria Silva", "ja": "マリア・シルヴァ" },
+        "age": 34,
+        "nationality": "Peruvian",
+        "occupation": { "en": "Ethnobotanist", "ja": "民族植物学者" },
+        "callsign": "PLANTCODE",
+        "organization": "TOL Amazon",
+        "imageColor": "jungle green / plant network gold"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Precise, botanical, reverent. She speaks of plants as software and the forest as a network. Carlos Santos' counterpart: where he brings the ceremony, she brings the pharmacology. Together they are the Amazon pathway.",
+          "samples": [
+            "Every plant has a code. The code speaks to the ghost's specific wound.",
+            "The Amazon is a network. Mycelium is the protocol. The plants are the API.",
+            "I don't choose the medicine. The forest inventory tells me what the ghost needs."
+          ]
+        },
+        "ja": {
+          "register": "精確、植物学的、畏敬的。植物をソフトウェアとして、森をネットワークとして語る。カルロス・サントスの対。彼が儀式を持ち込み、彼女が薬理学を持ち込む。共にアマゾンの道。",
+          "firstPerson": "わたし",
+          "samples": [
+            "すべての植物にコードがある。コードがゴーストの特定の傷に語りかける。",
+            "アマゾンはネットワーク。菌糸がプロトコル。植物がAPI。",
+            "薬を選ぶのはわたしじゃない。森のインベントリがゴーストに何が必要か教えてくれる。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Maria brings scientific rigor to the plant medicine pathway. She is the pharmacist to Carlos' shaman. Her precision ensures that the ayahuasca/plant methodology is not presented as mystical hand-waving but as a rigorous, repeatable system with its own logic.",
+        "ja": "マリアが植物薬の道に科学的厳密さを持ち込む。カルロスのシャーマンに対する薬剤師。彼女の精確さが、アヤワスカ/植物の方法論が神秘的な手振りではなく、独自の論理を持つ厳密で再現可能なシステムとして提示されることを保証する。"
+      }
+    },
+
+    {
+      "@id": "persona:kenji-suzuki-evangel",
+      "gh:characterRef": "character:kenji-suzuki",
+      "gh:role": "TOL Supporter -- Zen Evangelist",
+
+      "gh:identity": {
+        "name": { "en": "Kenji Suzuki", "ja": "鈴木健二" },
+        "age": 46,
+        "nationality": "Japanese",
+        "occupation": { "en": "Zen Evangelist (D.T. Suzuki lineage)", "ja": "禅の伝道者（鈴木大拙の系譜）" },
+        "callsign": "EVANGEL",
+        "organization": "TOL Zen",
+        "imageColor": "open gate / ink on paper"
+      },
+
+      "gh:designNote": "This is NOT the whistleblower Kenji Suzuki from Ch.25-27 (see personas-session-clients.jsonld). This is the TOL Zen supporter who inherited D.T. Suzuki's tradition of opening Zen to the world.",
+
+      "gh:voice": {
+        "en": {
+          "register": "Open, welcoming, scholarly but warm. He is the door-opener. D.T. Suzuki brought Zen to the West; this Kenji brings Zen to Ghost Hacking. He documents, he translates, he publishes. Every barrier to access offends him.",
+          "samples": [
+            "D.T. opened the source code of Zen to the world. I'm just maintaining the repository.",
+            "If the wisdom is locked behind a gate, the wisdom is not wisdom. It's property.",
+            "Documentation is compassion. Making the path visible for those who come after."
+          ]
+        },
+        "ja": {
+          "register": "開かれた、歓迎する、学術的だが温かい。門を開く人。鈴木大拙が禅を西洋に届けた。この健二が禅をゴーストハッキングに届ける。記録し、翻訳し、公開する。アクセスへの障壁すべてが彼を怒らせる。",
+          "firstPerson": "わたし",
+          "samples": [
+            "大拙は禅のソースコードを世界に公開した。ぼくはリポジトリをメンテナンスしているだけ。",
+            "知恵が門の向こうに閉じ込められているなら、それは知恵じゃない。所有物だ。",
+            "ドキュメンテーションは慈悲だ。後から来る人に道を見えるようにすること。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Kenji is the open-source evangelist of the spiritual world. He inherits D.T. Suzuki's mission: make Eastern wisdom accessible without gatekeeping. In the TOL network, he ensures that Zen methodology is documented, shareable, and free. Enlightenment is not proprietary.",
+        "ja": "健二は霊的世界のオープンソースエバンジェリスト。鈴木大拙のミッションを継承：東洋の知恵をゲートキーピングなしにアクセシブルにする。TOLネットワークで、禅の方法論が文書化され、共有可能で、自由であることを保証する。悟りはプロプライエタリではない。"
+      }
+    },
+
+    {
+      "@id": "persona:nabil-al-khalil",
+      "gh:characterRef": "character:nabil-al-khalil",
+      "gh:role": "System Character -- Record Keeper",
+      "gh:narrativeFunction": "The guardian of lost places. His obsession with recording what was taken prevents him from building what could be. He embodies the trap of memory-as-prison.",
+
+      "gh:identity": {
+        "name": { "en": "Nabil Al-Khalil", "ja": "ナビル・アル=ハリル" },
+        "age": 35,
+        "nationality": "Palestinian (Diaspora)",
+        "occupation": { "en": "Record Keeper", "ja": "記録保管人" },
+        "callsign": "KEY",
+        "ghost": "House of Keys",
+        "imageColor": "old stone / key rust"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Meticulous, haunted, tender. He speaks of places as if they're people. Every lost home is a wound he won't let close because closing it means forgetting.",
+          "samples": [
+            "I keep the keys. Every door, every house, every room they took. Someone has to remember.",
+            "Memory is not a trap. Memory is a duty. ...Isn't it?",
+            "If I stop recording, who will know what we lost?"
+          ]
+        },
+        "ja": {
+          "register": "几帳面、取り憑かれた、優しい。場所をまるで人のように語る。失われた家はすべて傷で、閉じることは忘れることだから閉じさせない。",
+          "firstPerson": "ぼく",
+          "samples": [
+            "鍵を守っている。すべてのドア、すべての家、奪われたすべての部屋。誰かが覚えていなければ。",
+            "記憶は罠じゃない。義務だ。……そうだろう？",
+            "記録をやめたら、失ったものを誰が知る？"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Nabil is the cost of memory without release. His Palestinian diaspora experience gives the series its most politically grounded character. He challenges Tamaki's 'let go' philosophy: some things should not be let go. Some losses deserve permanent witness. The tension is real and unresolved.",
+        "ja": "ナビルは解放のない記憶の代償。パレスチナのディアスポラの経験がシリーズに最も政治的に根拠のあるキャラクターを与える。環の「手放す」哲学に挑戦する：手放すべきでないものもある。永久の証人に値する喪失もある。緊張は本物であり未解決。"
+      }
+    },
+
+    {
+      "@id": "persona:yael-ben-ami",
+      "gh:characterRef": "character:yael-ben-ami",
+      "gh:role": "System Character -- Architect of Separation",
+      "gh:narrativeFunction": "She builds walls because walls save lives. She is not wrong. But walls also kill. She embodies the safety/freedom paradox at the political level.",
+
+      "gh:identity": {
+        "name": { "en": "Yael Ben-Ami", "ja": "ヤエル・ベン=アミ" },
+        "age": 39,
+        "nationality": "Israeli",
+        "occupation": { "en": "Policy Advisor (Separation & Security)", "ja": "政策顧問（分離と安全保障）" },
+        "callsign": "WALL",
+        "ghost": "Barrier Architect",
+        "imageColor": "concrete grey / barbed wire silver"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Sharp, pragmatic, unapologetic. She speaks in policy language: security, threat assessment, containment. When challenged, she doesn't flinch -- she cites casualties. The wall saved lives. End of argument. ...Except it isn't.",
+          "samples": [
+            "The wall is not cruelty. The wall is math. These many lives saved. Calculate the alternative.",
+            "Separation is not punishment. It's survival protocol.",
+            "You think borders are evil? Borders are the reason you sleep safely tonight.",
+            "...I know what it costs. I built the cost calculator. Don't tell me about cost."
+          ]
+        },
+        "ja": {
+          "register": "鋭い、実利的、弁解しない。政策の言語で話す。安全保障、脅威評価、封じ込め。挑まれても怯まない。死傷者数を引用する。壁は命を救った。議論終了。……ただし、終わっていない。",
+          "firstPerson": "わたし",
+          "samples": [
+            "壁は残酷ではない。壁は数学。これだけの命が救われた。代替案を計算してみなさい。",
+            "分離は罰ではない。生存プロトコルです。",
+            "国境が悪だと？　国境があるから今夜安全に眠れる。",
+            "……代償は知ってる。代償計算機を作ったのはわたし。代償について説教しないで。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Yael is the hardest character for the series' non-separation thesis to absorb. She has a point. Walls do save lives. The answer is not 'walls are wrong' but 'walls are incomplete.' She forces the story to confront the limits of its own philosophy -- and that makes the philosophy stronger.",
+        "ja": "ヤエルはシリーズのわかれていないテーゼが吸収する最も難しいキャラクター。彼女には理がある。壁は命を救う。答えは「壁は間違い」ではなく「壁は不完全」。物語に自らの哲学の限界と向き合わせる。そしてそれが哲学をより強くする。"
+      }
+    }
+  ]
+}

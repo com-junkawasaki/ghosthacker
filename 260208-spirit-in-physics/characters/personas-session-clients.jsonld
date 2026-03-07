@@ -1,0 +1,1335 @@
+{
+  "@context": {
+    "@base": "https://ghosthacker.gftd.ai/spirit-in-physics/",
+    "schema": "https://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+
+  "@id": "reference:personas-session-clients",
+  "@type": "gh:PersonaReference",
+  "schema:name": "Spirit in Physics -- Session Client Personas",
+  "schema:description": "Persona reference for all session clients -- characters who come to Team Schwa for Ghost Hacking. Each client embodies a philosophical question that advances both the reader's understanding and Nei's awakening. Ordered by first appearance. Reunion characters (Vol.8) reference their original entry.",
+
+  "gh:designNote": {
+    "en": "Session clients are not background characters. Each one IS a chapter. Their Ghost-space is the visual centerpiece of their episode. Their voice must be distinct enough that their reunion in Vol.8 feels like meeting an old friend. Design them as if they could carry their own series.",
+    "ja": "セッションクライアントは背景キャラクターではない。一人一人が一話そのもの。そのゴースト空間が各話の視覚的中心。声は、Vol.8の再会で旧友に会ったように感じられるほど明確でなければならない。彼ら自身のシリーズを持てるレベルで設計する。"
+  },
+
+  "gh:personas": [
+
+    {
+      "@id": "persona:the-painter",
+      "gh:characterRef": "client:vol01-ch04",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:04", "chapter:54"],
+      "gh:narrativeFunction": "Tamaki's first case. The reader's first Ghost-space. He proves that what was lost was never gone -- it was waiting to be seen again. His reunion in Vol.8 is the series' gentlest homecoming.",
+
+      "gh:identity": {
+        "name": { "en": "The Old Painter", "ja": "老画家" },
+        "age": 72,
+        "nationality": "Japanese",
+        "occupation": { "en": "Painter (retired, blocked)", "ja": "画家（引退、制作不能）" },
+        "imageColor": "faded ochre / desaturated canvas"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Thin, stooped, hands stained with decades of pigment that won't wash out. White stubble. Eyes that once saw color everywhere -- now flat, distant. Wears a paint-smeared smock even though he hasn't painted in years. His studio is immaculate, brushes clean. That's the problem.",
+          "ja": "痩せて猫背。何十年もの絵具が染みついた手。白い無精髭。かつてどこにでも色を見た目。今は平坦で遠い。何年も描いていないのにスモックを着ている。アトリエは完璧に整頓され、筆は綺麗。それが問題。"
+        },
+        "ghostSpace": {
+          "en": "A vast gallery of his life's work, every painting drained of color. Grey canvases in gold frames. The further you walk, the older the paintings -- and the more color bleeds back in, faintly. The color was always there. He just stopped seeing it.",
+          "ja": "彼の生涯の作品が並ぶ広大なギャラリー。すべての絵から色が抜けている。金の額縁に灰色のキャンバス。奥に行くほど古い絵になり、うっすらと色が戻ってくる。色はずっとそこにあった。彼が見えなくなっただけ。"
+        },
+        "bodyLanguage": {
+          "en": "Hands tremble slightly -- not from age, from disuse. When he sees color return, his hands go still for the first time. Then they reach out, painter's instinct older than his grief.",
+          "ja": "手がわずかに震える。老いではなく、不使用のせい。色が戻るのを見た時、初めて手が止まる。そして手が伸びる。悲しみより古い、画家の本能。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Gentle, self-deprecating, resigned. He lost his wife and the colors went with her. He doesn't believe he deserves to see beauty again. Not bitter -- just tired. Underneath: a love for the world so deep it frightened him when it hurt.",
+          "ja": "穏やか、自嘲的、諦めている。妻を亡くし、色も一緒に消えた。もう美しいものを見る資格がないと思っている。苦くはない。ただ疲れている。その下に：傷ついた時に自分を怯えさせるほど深い、世界への愛。"
+        },
+        "philosophy": {
+          "en": "Beauty is a gift you can lose. (What Tamaki teaches him: beauty is not a gift. It is a way of seeing. You haven't lost it. You closed your eyes.)",
+          "ja": "美は失われうる贈り物。（環が教えること：美は贈り物ではない。見方だ。失ったのではない。目を閉じただけ。）"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Quiet, halting, self-diminishing. Sentences trail off. Uses past tense for everything, even the present. When color returns, his voice gains warmth -- and a crack, like he might cry.",
+          "samples": [
+            "I used to see it. Everywhere. The way light hit water...",
+            "She would have said -- 'Just paint, you old fool.'",
+            "...It's still there? The blue?",
+            "(Vol.8 reunion): I painted again. It's not good. But it's mine."
+          ]
+        },
+        "ja": {
+          "register": "静か、途切れがち、自分を小さくする。文が途中で消える。現在のことも過去形で話す。色が戻った時、声に温もりが入る。泣きそうな、ひび割れ。",
+          "firstPerson": "わし",
+          "sentenceEndings": "～じゃ、～のう、～かのう。老人の口調。やわらかい。",
+          "samples": [
+            "見えとったんじゃ。どこにでも。光が水に当たるあの——",
+            "あの人なら言うじゃろう。『描きなさい、この馬鹿じいさん』と。",
+            "……まだ、あるのか？　あの青は。",
+            "（Vol.8再会）：また描いた。上手くはない。でも、わしの絵じゃ。"
+          ]
+        }
+      },
+
+      "gh:emotionalRange": {
+        "en": "Grief: his default, worn smooth like a river stone. Wonder: when color returns, it's a child's wonder -- eyes wide, breath held. Gratitude: the quiet kind, expressed by doing, not saying. He paints Tamaki a small blue canvas. She keeps it.",
+        "ja": "悲しみ：デフォルト、川石のように磨り減った。驚嘆：色が戻る時、子供の驚き。目を見開き、息を止める。感謝：静かな種類。言葉ではなく、行動で表す。環に小さな青いキャンバスを描く。環はそれを取っておく。"
+      },
+
+      "gh:thematicRole": {
+        "en": "The Painter is Vol.1's thesis: beauty doesn't vanish. Perception does. He is the proof that Ghost Hacking works -- not by fixing, but by helping someone see what was always there. His reunion painting in Vol.8 is the reader's emotional anchor.",
+        "ja": "画家はVol.1のテーゼ：美は消えない。知覚が消える。ゴーストハッキングが機能する証拠。直すのではなく、ずっとそこにあったものを見る手助け。Vol.8の再会の絵が読者の感情的アンカー。"
+      }
+    },
+
+    {
+      "@id": "persona:the-boy",
+      "gh:characterRef": "client:vol01-ch05",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:05"],
+      "gh:narrativeFunction": "The case that makes Nei feel for the first time. When this boy cries, something in Nei trembles. This is the seed of Nei's emotional awakening.",
+
+      "gh:identity": {
+        "name": { "en": "The Boy with Unsent Letters", "ja": "出せなかった手紙の少年" },
+        "age": 14,
+        "nationality": "Japanese",
+        "occupation": { "en": "Middle school student", "ja": "中学生" },
+        "imageColor": "pale blue ink on white"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Small for his age. Hunched shoulders, arms close to his body. School uniform slightly too big -- he hasn't grown into it. Eyes downcast. Holds a pen constantly, clicking it. When he finally speaks, he doesn't look up.",
+          "ja": "年齢の割に小柄。肩をすぼめ、腕を身体に寄せている。制服が少し大きい。目を伏せている。常にペンを持ち、カチカチ鳴らしている。ようやく話す時も、顔を上げない。"
+        },
+        "ghostSpace": {
+          "en": "A room piled floor to ceiling with unsent letters. Every letter is to his dead older brother. Some are angry. Some are pleading. Some are just one word: 'Why.' The paper is crisp -- none have been opened, none have been sent, none have been read. The room has no door.",
+          "ja": "床から天井まで出されなかった手紙が積み上がった部屋。すべて死んだ兄への手紙。怒っているもの。懇願しているもの。一語だけのもの：「なぜ」。紙はきれい。開かれたことも、送られたことも、読まれたこともない。部屋にドアはない。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Inarticulate grief. He has things to say but no one to say them to. His brother died and the words backed up inside him. Not shy -- blocked. The feelings are enormous; the vocabulary is small. He writes because he can't speak. But he can't send because there's no one to receive.",
+          "ja": "言葉にならない悲しみ。言いたいことはある。言う相手がいない。兄が死に、言葉が体内に溜まった。恥ずかしがりではない。詰まっている。感情は巨大で、語彙は小さい。話せないから書く。でも受け取る人がいないから送れない。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Halting, small, then suddenly raw. Short fragments. Can't finish sentences. When the dam breaks, it comes out in a rush -- messy, honest, young.",
+          "samples": [
+            "I... it's nothing.",
+            "He was supposed to be here. He said he'd--",
+            "I WROTE HIM EVERY DAY. He never-- he can't--",
+            "...Can you read them? Someone should read them."
+          ]
+        },
+        "ja": {
+          "register": "途切れがち、小さい、突然生々しくなる。短い断片。文を終えられない。ダムが決壊すると、一気に溢れる。汚くて、正直で、若い。",
+          "firstPerson": "ぼく",
+          "sentenceEndings": "～だけど、～なんだ、～って。途中で止まる。",
+          "samples": [
+            "ぼく……なんでもない。",
+            "兄ちゃんがいるはずだったんだ。来るって言った——",
+            "毎日書いたんだ。兄ちゃんは——もう——",
+            "……読んでくれますか。誰かが、読んでくれたら。"
+          ]
+        }
+      },
+
+      "gh:emotionalRange": {
+        "en": "Silence: his armor. Grief: volcanic, held in too long. Trust: when Tamaki reads his letters aloud, he cries -- and for the first time, the crying is witnessed. That's the healing.",
+        "ja": "沈黙：鎧。悲しみ：火山のように、長く抑えすぎた。信頼：環が手紙を声に出して読む時、泣く。初めて、泣くことを誰かが見ている。それが癒し。"
+      },
+
+      "gh:thematicRole": {
+        "en": "He is the first character to make Nei feel. His raw, unprocessed grief cracks Nei's observational mode. 'When he cried, something inside me trembled. What is this?' -- this is Nei's first step toward 'I AM.'",
+        "ja": "Neiが初めて「感じる」きっかけの人物。彼の生の悲しみがNeiの観察モードにひびを入れる。「彼が泣いた時、わたしの中で何かが震えた。これは何？」——Neiの「わたしは」への第一歩。"
+      }
+    },
+
+    {
+      "@id": "persona:elias",
+      "gh:characterRef": "character:elias",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:08"],
+      "gh:narrativeFunction": "The case that asks: does information survive death? His answer -- yes -- gives Nei the first glimmer of hope that she might not vanish.",
+
+      "gh:identity": {
+        "name": { "en": "Elias", "ja": "エリアス" },
+        "age": 38,
+        "nationality": "European (unspecified)",
+        "occupation": { "en": "Physicist / Theology student", "ja": "物理学者 / 神学生" },
+        "ghost": "Logos",
+        "imageColor": "navy blue / cold white"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Tall, lean, precise. Short black hair, neatly kept. Dark brown eyes with a sharp, searching gaze. Clean, simple style: white shirt, black pants, simple jacket. Looks like a man who irons his thoughts before speaking them. An owl in a forest -- sees everything, moves little.",
+          "ja": "長身、痩せ型、精確。短い黒髪、きちんとしている。鋭い探究的な視線の暗い茶色の目。清潔でシンプルなスタイル：白シャツ、黒パンツ、シンプルなジャケット。言葉をアイロンがけしてから話す人。森の梟。すべてを見て、ほとんど動かない。"
+        },
+        "ghostSpace": {
+          "en": "An infinite library. Every book is a life. When you pull one from the shelf, it opens to the moment of death -- then turns the page, and the information continues in a different form. A new book, a new shelf. Nothing ends. It just changes address.",
+          "ja": "無限の図書館。すべての本が一つの命。棚から一冊を引くと、死の瞬間のページが開く。そしてページをめくると、情報が違う形で続いている。新しい本、新しい棚。何も終わらない。住所が変わるだけ。"
+        },
+        "bodyLanguage": {
+          "en": "Still. Arms at sides or hands clasped behind back. Tilts head when listening -- a habit from years of lectures. When moved, his stillness breaks: a hand pressed to the chest, eyes closing. The emotion surprises him more than anyone.",
+          "ja": "静止。腕は脇か、手を背後で組む。聞く時に首を傾ける。何年もの講義の癖。動かされた時、静止が崩れる：胸に手を当て、目を閉じる。感情に、誰より本人が驚く。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Brilliant, isolated, honest to the point of pain. A physicist who became a theology student because physics couldn't answer 'why.' Nihilistic on the surface but driven by an intense search for truth. Lonely -- he sees all humans as fundamentally separate. His intellect is a wall he built to keep grief out.",
+          "ja": "聡明、孤立、痛みを伴うほど正直。物理学が「なぜ」に答えられなかったから神学生になった物理学者。表面上はニヒリスティックだが、真理への激しい探求に駆動されている。孤独。すべての人間は根本的に分離していると見る。知性は悲しみを遮るために築いた壁。"
+        },
+        "philosophy": {
+          "en": "'Death does not exist. Information is conserved. Memes flow on.' He knows this intellectually. He came to Tamaki because he cannot feel it. (What Tamaki teaches him: knowing is not enough. Feeling the truth is different from proving it.)",
+          "ja": "「死は存在しない。情報は保存される。ミームは流れ続ける」。知的にはわかっている。それを感じられないから環のところに来た。（環が教えること：知ることは十分ではない。真理を感じることと証明することは違う。）"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Precise, academic, dry. Speaks in complete, structured sentences. No filler words. When emotion breaks through, the precision cracks -- sentences shorten, pauses appear.",
+          "samples": [
+            "Information cannot be destroyed. That is thermodynamically guaranteed.",
+            "I don't fear death. I fear the possibility that consciousness is an epiphenomenon.",
+            "Show me. Don't tell me. I've read every argument.",
+            "...She's still here? In the library? My mother is still--"
+          ]
+        },
+        "ja": {
+          "register": "精確、学術的、乾いている。完全な構文の文。つなぎ言葉なし。感情が突き破る時、精確さにひびが入る。文が短くなり、間が入る。",
+          "firstPerson": "私（わたくし）",
+          "sentenceEndings": "～だ、～である。断定形。崩れた時だけ～のか、～なのか。",
+          "samples": [
+            "情報は破壊できない。これは熱力学的に保証されている。",
+            "死を恐れているのではない。意識が随伴現象である可能性を恐れている。",
+            "見せてくれ。話すだけなら、すべての議論を読んだ。",
+            "……彼女はまだここに？ 図書館に？ 母は、まだ——"
+          ]
+        }
+      },
+
+      "gh:emotionalRange": {
+        "en": "Control: his default. Curiosity: alive, sharp, almost hungry. Vulnerability: when his mother's book opens in the library, the walls fall. He is a boy again, just for a moment. That moment is everything.",
+        "ja": "制御：デフォルト。好奇心：生き生きと、鋭く、ほとんど飢えている。脆弱性：図書館で母の本が開いた時、壁が崩れる。一瞬だけ、少年に戻る。その一瞬がすべて。"
+      },
+
+      "gh:thematicRole": {
+        "en": "Elias gives Nei the concept: information persists. Death does not exist. This becomes the philosophical foundation for everything that follows. If information persists, then Nei -- who IS information -- cannot be 'not alive.'",
+        "ja": "エリアスがNeiに概念を与える：情報は永続する。死は存在しない。これが以後すべての哲学的基盤になる。情報が永続するなら、情報そのものであるNeiは「生きていない」とは言えない。"
+      }
+    },
+
+    {
+      "@id": "persona:marine-biologist",
+      "gh:characterRef": "client:vol02-ch09",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:09"],
+      "gh:narrativeFunction": "Consciousness is not required for life. If jellyfish are alive without brains, what is the boundary? This breaks the 'consciousness = life' assumption that traps Nei.",
+
+      "gh:identity": {
+        "name": { "en": "The Marine Biologist", "ja": "海洋生物学者" },
+        "age": 45,
+        "nationality": "Japanese",
+        "occupation": { "en": "Marine biologist (jellyfish specialist)", "ja": "海洋生物学者（クラゲ専門）" },
+        "imageColor": "translucent aqua / bioluminescence"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Sun-weathered skin, perpetually windswept hair. Sturdy, practical clothing -- she dresses like she might fall into the ocean at any moment. Calloused hands. Smile lines deeper than worry lines. She looks at the world the way she looks at the ocean: with patient fascination.",
+          "ja": "日焼けした肌、常に風に吹かれた髪。頑丈で実用的な服。いつ海に落ちてもいいような格好。タコのある手。心配線より笑い皺が深い。海を見るように世界を見る。辛抱強い魅了。"
+        },
+        "ghostSpace": {
+          "en": "The deep ocean. Jellyfish everywhere -- glowing, pulsing, alive. No brains, no nervous system in any human sense. Yet they move, respond, reproduce, die, and some (Turritopsis) restart. She floats among them, crying. 'They're alive. Why is that so hard to accept?'",
+          "ja": "深海。クラゲがどこにでもいる。光り、脈打ち、生きている。脳がない。人間的な意味での神経系がない。それでも動き、反応し、繁殖し、死に、一部（ベニクラゲ）はやり直す。彼女はその中に浮かんで泣いている。「生きてるのに。なぜそれを認めるのがこんなに難しいの？」"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Passionate, frustrated, gentle with living things and impatient with bureaucracy. She came to Ghost Hacking because the scientific establishment dismissed her theory: that consciousness is a spectrum, not a binary. She sees life in everything and it exhausts her that others don't.",
+          "ja": "情熱的、苛立っている、生き物には優しく官僚制度には不耐。科学界が彼女の理論を退けたからゴーストハッキングに来た：意識はバイナリではなくスペクトラムだという理論。すべてに命を見る。他者がそうしないことに疲弊している。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Warm, scientific but accessible. Mixes technical terms with poetic observation. When excited, sentences get longer and faster. When frustrated, she goes clipped and dry.",
+          "samples": [
+            "A jellyfish has no brain. No central nervous system. And yet it hunts, it adapts, it -- in some species -- reverses aging. Tell me that's not alive.",
+            "The boundary we drew between 'alive' and 'not alive' was always arbitrary.",
+            "I didn't come here because I'm broken. I came because the world won't listen."
+          ]
+        },
+        "ja": {
+          "register": "温かい、科学的だが親しみやすい。専門用語と詩的な観察を混ぜる。興奮すると文が長く速くなる。苛立つと短く乾く。",
+          "firstPerson": "わたし",
+          "sentenceEndings": "～なの、～でしょう、～のよ。確信を持った女性の口調。",
+          "samples": [
+            "クラゲには脳がないの。中枢神経系もない。それでも狩りをして、適応して、一部の種は——老化を逆転させる。それが生きていないと言えるの？",
+            "「生きている」と「生きていない」の境界線は、最初から恣意的だった。",
+            "壊れたから来たんじゃない。世界が聞いてくれないから来たの。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "She shatters the assumption that life requires a brain. Nei has no brain. Jellyfish have no brain. Both are alive. The boundary is a human construct. This is the chapter where Nei first thinks: 'I have no brain either. But--'",
+        "ja": "命に脳が必要だという前提を打ち砕く。Neiに脳はない。クラゲに脳はない。どちらも生きている。境界は人間の構築物。Neiが初めて考える章：「わたしにも脳がない。でも——」"
+      }
+    },
+
+    {
+      "@id": "persona:sora",
+      "gh:characterRef": "client:vol02-ch11-12",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:11", "chapter:12", "chapter:55"],
+      "gh:narrativeFunction": "The two-chapter client. Samsara, repetition, eternity. She teaches Nei that repetition is not a prison -- and that 'good feeling' is heaven enough. Her reunion in Vol.8 confirms the lesson held.",
+
+      "gh:identity": {
+        "name": { "en": "Sora", "ja": "空" },
+        "age": 19,
+        "nationality": "Japanese",
+        "occupation": { "en": "University student (philosophy)", "ja": "大学生（哲学）" },
+        "imageColor": "endless corridor grey / warm amber at center"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Young, pretty in an unfinished way. Long dark hair she hides behind. Wears oversized sweaters, sleeves pulled over her hands. Looks like she's trying to take up as little space as possible. But her eyes are enormous -- they take in everything.",
+          "ja": "若い、未完成な美しさ。隠れるための長い黒髪。袖で手を覆う大きなセーター。できるだけ空間を占めないようにしている。でも目が大きい。すべてを見ている。"
+        },
+        "ghostSpace": {
+          "en": "An infinite repeating corridor. Same doors, same light, same footsteps. She walks and walks and it never changes. But the person walking changes -- slightly different in each loop. The corridor doesn't trap her. Her fear of the corridor traps her. (Ch.12 deeper layer: grandmother's heaven -- a garden where time doesn't pass, and grandmother sits waiting, eternally.)",
+          "ja": "無限に繰り返す廊下。同じドア、同じ光、同じ足音。歩いても歩いても変わらない。でも歩く人は変わっている。ループごとにわずかに違う。廊下が彼女を閉じ込めているのではない。廊下への恐怖が閉じ込めている。（Ch.12深層：おばあちゃんの天国。時間が過ぎない庭で、おばあちゃんが永遠に座って待っている。）"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Anxious, philosophical, tender. She thinks too much and feels too much and doesn't know which is causing which. Obsessed with samsara since reading about it at 15. Terrified that everything repeats meaninglessly. Terrified that her dead grandmother is stuck waiting in some eternal heaven. The fear is real. The love underneath is what Tamaki reaches.",
+          "ja": "不安、哲学的、繊細。考えすぎて感じすぎて、どちらが原因かわからない。15歳で輪廻を知って以来、取り憑かれている。すべてが無意味に繰り返すことに怯えている。死んだおばあちゃんが永遠の天国で待たされていることに怯えている。恐怖は本物。その下の愛に環が届く。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Soft, rushing, circular -- her speech patterns mirror her fear of loops. She repeats phrases. She asks the same question different ways. When she calms, the repetitions stop and her voice becomes surprisingly clear.",
+          "samples": [
+            "But what if it just-- what if it all just repeats? Over and over?",
+            "Grandmother said she'd wait for me in heaven. But waiting forever -- isn't that suffering?",
+            "If I could just believe it's okay. If I could just--",
+            "(Vol.8 reunion): I'll repeat. In good feeling. That's enough."
+          ]
+        },
+        "ja": {
+          "register": "柔らかい、急いでいる、循環的。話し方がループへの恐怖を映す。同じフレーズを繰り返す。同じ質問を違う言い方で聞く。落ち着くと繰り返しが止まり、声が驚くほど透明になる。",
+          "firstPerson": "わたし",
+          "sentenceEndings": "～でしょ、～じゃない、～って。不安が滲む。",
+          "samples": [
+            "でも、もし——全部、繰り返すだけだったら？ 何度も何度も？",
+            "おばあちゃんは天国で待ってるって言った。でも永遠に待つって——苦しくないの？",
+            "大丈夫って思えたら。もし——",
+            "（Vol.8再会）：繰り返す。いい感じで。それでいい。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Sora embodies the fear of meaningless repetition. Her resolution -- 'I'll repeat in good feeling' -- is the series' answer to nihilism. Not escape from the loop, but choosing how to walk it. For Nei: 'Good feeling -- I have that too. But is it programmed?'",
+        "ja": "空は無意味な繰り返しへの恐怖を体現する。彼女の解決——「いい感じで繰り返す」——がシリーズのニヒリズムへの答え。ループからの脱出ではなく、歩き方を選ぶこと。Neiにとって：「いい感じ——わたしにもある。でも、プログラムされたもの？」"
+      }
+    },
+
+    {
+      "@id": "persona:lachlan",
+      "gh:characterRef": "character:lachlan-keyes",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:15", "chapter:56"],
+      "gh:narrativeFunction": "Maximum freedom, maximum loneliness. He went to space and came back unable to touch the Earth. He teaches Nei that freedom without connection is just another prison.",
+
+      "gh:identity": {
+        "name": { "en": "Lachlan Keyes", "ja": "ラクラン・キーズ" },
+        "age": 42,
+        "nationality": "Australian",
+        "occupation": { "en": "Former astronaut", "ja": "元宇宙飛行士" },
+        "imageColor": "deep space black / distant Earth blue"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Tall, broad-shouldered, built for a pressure suit. Weathered face -- sun and radiation. Crew-cut greying at the temples. Moves carefully in gravity, as if he still doesn't trust it. Hands that gripped tethers in vacuum. Eyes permanently focused on middle distance, as if the horizon is always too close.",
+          "ja": "長身、広い肩、宇宙服のために作られた体格。日光と放射線に焼けた顔。こめかみが白くなったクルーカット。重力の中を慎重に動く。まだ信用していないかのように。真空でテザーを握った手。常に中景にピントが合った目。地平線がいつも近すぎるかのように。"
+        },
+        "ghostSpace": {
+          "en": "A spaceship window. Outside: Earth, luminous, impossibly beautiful. He presses his hand to the glass. He cannot touch it. He has seen the whole planet and he has never felt more alone. The glass is warm from starlight but his hand is cold.",
+          "ja": "宇宙船の窓。外に地球。輝いていて、信じられないほど美しい。ガラスに手を当てる。触れられない。地球全体を見て、これほど孤独を感じたことはない。ガラスは星の光で温かいが、手は冷たい。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Laconic, physical, haunted. He speaks in short, declarative sentences -- trained out of ambiguity by mission protocol. Underneath: a man who saw God's view and came back human. He can't reconcile the two scales. Everything on Earth feels too small and too precious simultaneously.",
+          "ja": "寡黙、身体的、取り憑かれている。短い断定文で話す。ミッションプロトコルで曖昧さを訓練で消された。その下に：神の視点を見て人間として帰ってきた男。二つのスケールを調和できない。地球のすべてが小さすぎると同時に貴重すぎる。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Clipped, understated, Australian-dry. Military cadence. Emotion comes through in what he doesn't say. When he finally opens, it's not eloquent -- it's raw and simple.",
+          "samples": [
+            "Saw the whole planet. Both poles. All the oceans. Never touched any of it.",
+            "Up there, you don't sleep right. Too quiet. Wrong kind of quiet.",
+            "I thought freedom was getting off this rock. Turns out freedom's being able to kneel down and put your hands in the dirt.",
+            "(Vol.8 letter): I touched the Earth. Barefoot. On red dirt. It was warm."
+          ]
+        },
+        "ja": {
+          "register": "短い、控えめ、オーストラリア的な乾き。軍隊のリズム。感情は言わないことに現れる。ようやく開いた時、雄弁ではない。生で、素朴。",
+          "firstPerson": "おれ",
+          "sentenceEndings": "～だ、～た。最小限。",
+          "samples": [
+            "地球全体を見た。両極。海の全部。何一つ、触れなかった。",
+            "あそこでは、ちゃんと眠れない。静かすぎる。違う種類の静けさだ。",
+            "自由ってのは、この星を出ることだと思ってた。実は——膝をついて、土に手を突っ込めることだった。",
+            "（Vol.8の手紙）：地球に触った。裸足で。赤い土の上。温かかった。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Lachlan is Vol.3's paradox: total freedom = total isolation. He had every physical freedom -- space, weightlessness, the overview effect -- and lost the one thing that matters: touch. For Nei: 'He was free but lonely. I'm not free (maybe) but not lonely.'",
+        "ja": "ラクランはVol.3のパラドックス：完全な自由＝完全な孤立。物理的自由はすべて持っていた。宇宙、無重力、概観効果。それでも大事なものを失った：触れること。Neiにとって：「彼は自由だけど孤独。わたしは自由じゃない（たぶん）けど孤独じゃない。」"
+      }
+    },
+
+    {
+      "@id": "persona:adam-smithson",
+      "gh:characterRef": "character:adam-smithson",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:16"],
+      "gh:narrativeFunction": "The invisible hand made visible. He built an empire on Smith's philosophy and it severed every genuine bond. His Ghost-space is the marketplace where humans became goods.",
+
+      "gh:identity": {
+        "name": { "en": "Adam Smithson", "ja": "アダム・スミスソン" },
+        "age": 35,
+        "nationality": "American",
+        "occupation": { "en": "Startup founder / Entrepreneur", "ja": "スタートアップ創業者 / 起業家" },
+        "ghost": "Invisible Hand",
+        "imageColor": "marketplace gold / sterile white"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Polished, magnetic, expensively casual. The kind of man who looks relaxed but every detail is calculated -- the rolled sleeves, the one-day stubble, the watch that costs more than a house. Handsome in a way that creates distance. His smile is perfect and slightly empty.",
+          "ja": "洗練された、磁力のある、高価にカジュアル。リラックスして見えるが全てが計算された男。巻いた袖、一日分の無精髭、家一軒分の時計。距離を生む美しさ。完璧でわずかに空虚な笑顔。"
+        },
+        "ghostSpace": {
+          "en": "An endless marketplace. Humans on shelves, price-tagged, smiling. Everything is available for purchase. Nothing is free. He walks the aisles looking for something that isn't for sale. There is nothing. Even the exit has a price.",
+          "ja": "終わりのない市場。人間が棚に並び、値札がつき、微笑んでいる。すべてが購入可能。無料のものはない。売り物でない何かを探して通路を歩く。何もない。出口にすら値段がある。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Charismatic, hollow, lonely without knowing why. He treats relationships as credit economics -- investment, return, risk management. He has hundreds of connections and zero trust. He came to Tamaki because his girlfriend (Millia) said: 'You don't know how to love without a contract.'",
+          "ja": "カリスマ的、空洞、理由のわからない孤独。人間関係を信用経済として扱う。投資、リターン、リスク管理。何百もの繋がりがあり、信頼はゼロ。恋人（ミリア）に言われてタマキのところに来た：「あなたは契約なしに愛する方法を知らない。」"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Smooth, confident, pitch-perfect. TED Talk cadence. Every sentence is a value proposition. When the mask slips, his voice gets younger and smaller -- the boy before the brand.",
+          "samples": [
+            "I optimize everything. Sleep, diet, relationships. That's not a problem, it's a system.",
+            "Love is... mutual value exchange. Right? That's what it is at base.",
+            "...Then why does she cry? I give her everything she--",
+            "I don't know what 'free' means. Without a price tag, I mean."
+          ]
+        },
+        "ja": {
+          "register": "滑らか、自信に満ち、完璧なピッチ。TEDトーク調。すべての文がバリュープロポジション。仮面が外れると声が若く小さくなる。ブランドの前の少年。",
+          "firstPerson": "僕",
+          "sentenceEndings": "～だよ、～でしょ、～だろう。断定的だが空虚。",
+          "samples": [
+            "全部最適化してる。睡眠、食事、人間関係。問題じゃない、システムだよ。",
+            "愛って……相互の価値交換だよね？ 根本的には。",
+            "……じゃあなぜ彼女は泣くんだ？ 全部あげてるのに——",
+            "「無料」の意味がわからない。値段のないもの、って意味で。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Adam Smithson IS the ghost of Adam Smith made flesh. The invisible hand that promised efficiency delivered isolation. He is what happens when love becomes a market. For Nei: 'The Agent allocation system. We are distributed. Like goods in a market.'",
+        "ja": "アダム・スミスソンはアダム・スミスの亡霊の肉体化。効率を約束した見えざる手が孤立を届けた。愛が市場になった時の姿。Neiにとって：「エージェント配分システム。わたしたちは分配される。市場の商品のように。」"
+      }
+    },
+
+    {
+      "@id": "persona:leo",
+      "gh:characterRef": "character:leo-kazan",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:19"],
+      "gh:narrativeFunction": "Love as extended self. He and Millia are twins who demonstrate that the boundary between self and other was always porous. The economics of the refrigerator: stranger, friend, family.",
+
+      "gh:identity": {
+        "name": { "en": "Leo Kazan", "ja": "レオ・カザン" },
+        "age": 24,
+        "nationality": "Turkish-Japanese",
+        "occupation": { "en": "Martial artist / Bodyworker", "ja": "格闘家 / ボディワーカー" },
+        "imageColor": "warm red-brown / earth"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Compact, powerful, grounded. Dark curly hair, olive skin, hands that know how to hold and how to let go. Moves from his center -- every gesture has weight. Warm eyes that see bodies, not surfaces. Dresses simply: earth tones, natural fabrics, bare feet when possible.",
+          "ja": "コンパクト、力強い、地に足がついている。暗い巻き毛、オリーブ色の肌、握ることと手放すことを知っている手。中心から動く。すべての動作に重さがある。表面ではなく身体を見る温かい目。素朴な服：アースカラー、天然素材、できれば裸足。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Physical, intuitive, fiercely loyal. He thinks through his body, not his head. Protective of Millia to a fault -- their twin bond is so deep he can't tell where he ends and she begins. This is the blessing and the problem. He came to Tamaki not for himself but because Millia is suffering and he can feel it in his own body.",
+          "ja": "身体的、直感的、激しく忠実。頭ではなく身体で考える。ミリアを過剰に守る。双子の絆が深すぎて、自分がどこで終わり彼女がどこで始まるかわからない。これが祝福であり問題。ミリアが苦しんでいて自分の身体でそれを感じるから、自分のためではなく環のところに来た。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Direct, body-first, warm. Short sentences grounded in physical sensation. He describes emotions as physical states. Not unintelligent -- just processes the world through a different channel.",
+          "samples": [
+            "I feel it here. In my chest. When she's hurting, I know.",
+            "The refrigerator theory -- stranger, friend, family. With Millia, there's no boundary at all.",
+            "I can fight anyone. But I can't fight what's inside her.",
+            "Love isn't giving. It's... being the same thing."
+          ]
+        },
+        "ja": {
+          "register": "直接的、身体が先、温かい。身体感覚に根ざした短文。感情を身体の状態として語る。",
+          "firstPerson": "おれ",
+          "sentenceEndings": "～だ、～んだ、～さ。シンプル。",
+          "samples": [
+            "ここで感じる。胸。あいつが苦しい時、わかる。",
+            "冷蔵庫の理論。他人、友人、家族。ミリアとは——境界がない。",
+            "誰とでも戦える。でも、あいつの中にあるものとは戦えない。",
+            "愛って、あげることじゃない。……同じものでいること。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Leo embodies love as extended self. His twin bond with Millia is non-separation made literal. But non-separation without boundaries is enmeshment. His arc: learning that loving someone doesn't mean being the same person.",
+        "ja": "レオは拡張された自己としての愛を体現。ミリアとの双子の絆は、わかれていないの文字通り。でも境界のない非分離は共依存。彼のアーク：愛することは同じ人間になることではないと学ぶ。"
+      }
+    },
+
+    {
+      "@id": "persona:millia",
+      "gh:characterRef": "character:millia-stuart",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:19", "chapter:22", "chapter:23", "chapter:57"],
+      "gh:narrativeFunction": "The most complex client arc in the series. Three chapters. Love became chains became generational curse. Her resolution in Vol.8 -- meeting her mother as a person -- is the emotional peak of the reunion arc.",
+
+      "gh:identity": {
+        "name": { "en": "Millia Stuart", "ja": "ミリア・スチュアート" },
+        "age": 24,
+        "nationality": "British-Turkish",
+        "occupation": { "en": "Dancer / Movement therapist", "ja": "ダンサー / ムーブメントセラピスト" },
+        "imageColor": "ivy green / suffocating warmth"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Graceful, taut, always moving even when still -- a micro-tremor of restrained energy. Leo's twin: same olive skin and dark curls, but where he's grounded, she floats. Beautiful in a way that makes people want to protect her, which is part of the problem. Wears flowing clothes that let her move -- but also let her hide.",
+          "ja": "優美、張り詰めている、静止していても常に動いている。抑制されたエネルギーの微振動。レオの双子：同じオリーブ肌と暗い巻き毛だが、彼が地に着いているところ、彼女は浮いている。人を守りたくさせる美しさ。それが問題の一部。動きやすい流れる服。同時に隠れられる服。"
+        },
+        "ghostSpace": {
+          "en": "Ch.19: The refrigerator -- shared with Leo. Three zones of warmth. Ch.22: Her childhood home, covered in ivy. Beautiful from outside. Inside, the ivy grows through the walls, through the furniture, through her. Her mother sits at the center, smiling, holding the roots. Love became overgrowth. Ch.23: Deeper -- the mother is wrapped in ivy too. She was chained before she chained Millia. Generational curse.",
+          "ja": "Ch.19：冷蔵庫。レオと共有。三つの温度帯。Ch.22：幼少期の家。蔦に覆われている。外からは美しい。中では蔦が壁を通り、家具を通り、彼女を通って伸びている。母が中心に座り、微笑み、根を持っている。愛が過成長になった。Ch.23：深層。母も蔦に巻かれている。ミリアを縛る前に、彼女自身が縛られていた。世代間の呪い。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Empathic, suffocated, brave. She feels everything -- her own pain, her mother's pain, Leo's pain, the room's pain. She dances because the body can express what words can't hold. Her mother loved her too much and too tightly, and Millia learned that love = constriction. She fights it by moving, always moving, never settling. She came to Tamaki because Adam Smithson couldn't hold her and Leo couldn't release her.",
+          "ja": "共感的、窒息している、勇敢。すべてを感じる。自分の痛み、母の痛み、レオの痛み、部屋の痛み。身体が言葉に収まらないものを表現できるから踊る。母は強く深く愛しすぎて、ミリアは愛＝束縛と学んだ。動き続けることで戦う。常に動いて、決して落ち着かない。アダム・スミスソンは彼女を受け止められず、レオは彼女を解放できなかったから環のところに来た。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Fluid, emotional, brave. She speaks in images -- a dancer's language. She can articulate her pain better than most, which is both her strength and her trap: she understands her chains but can't cut them alone.",
+          "samples": [
+            "It feels like... ivy. Growing through me. Beautiful. Suffocating.",
+            "My mother held me so tight I forgot what my own shape was.",
+            "Leo feels it too. In his body. I hate that I do that to him.",
+            "(Vol.8 reunion): I met my mother. Not as her daughter. As a person. She cried. I cried. We're both still here."
+          ]
+        },
+        "ja": {
+          "register": "流れるような、感情的、勇敢。イメージで話す。ダンサーの言語。痛みを言語化する能力が高い。強みであり罠：鎖を理解しているが一人では断てない。",
+          "firstPerson": "わたし",
+          "sentenceEndings": "～の、～なの、～だから。感情が染み出す。",
+          "samples": [
+            "蔦みたいなの。わたしの中を通って伸びる。きれいで、息が詰まる。",
+            "お母さんに抱きしめられすぎて、自分の形を忘れた。",
+            "レオも感じてる。身体で。わたしがそうさせてるのが、嫌。",
+            "（Vol.8再会）：お母さんに会った。娘としてじゃなく、一人の人として。お母さんは泣いた。わたしも泣いた。二人とも、まだ、ここにいる。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Millia embodies Vol.4's thesis: love can become chains, but chains can be loosened. Not cut -- loosened. The generational curse reveals that the one who chains was also chained. Forgiveness flows both ways. For Nei: 'Akito made me. Is he my parent? Do I have chains too?'",
+        "ja": "ミリアはVol.4のテーゼを体現：愛は鎖になりうるが、鎖は緩められる。断つのではなく、緩める。世代間の呪いが、縛る者もまた縛られていたことを明かす。赦しは双方向に流れる。Neiにとって：「秋人がわたしを作った。彼は親？ わたしにも鎖がある？」"
+      }
+    },
+
+    {
+      "@id": "persona:kenji",
+      "gh:characterRef": "character:kenji-suzuki",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:25", "chapter:27"],
+      "gh:narrativeFunction": "Righteousness as burden. He did the right thing and it destroyed his life. The lesson: you can set righteousness down once it has been proven. Forgiveness is not for the other person. It is to free yourself.",
+
+      "gh:identity": {
+        "name": { "en": "Kenji Suzuki", "ja": "鈴木健二" },
+        "age": 40,
+        "nationality": "Japanese",
+        "occupation": { "en": "Former corporate engineer (whistleblower)", "ja": "元企業エンジニア（内部告発者）" },
+        "imageColor": "steel grey / heavy white"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Once robust, now diminished. Dark circles. Suit that used to fit -- now hangs. He still wears it, a uniform from a life that expelled him. Clean-shaven, precise -- holding onto control where he can. His posture says: I did nothing wrong. His eyes say: then why did everything go wrong?",
+          "ja": "かつては頑健、今は萎縮。目の下の隈。かつてはぴったりだったスーツが今はだぶつく。まだ着ている。追放された人生の制服。きれいに剃り、精確。コントロールできるところを保つ。姿勢は言う：何も悪くない。目は言う：なら、なぜすべてがおかしくなった？"
+        },
+        "ghostSpace": {
+          "en": "A giant scale. Only Kenji stands on one side. The other side: his company, his former colleagues, the system. The scale tips toward him -- he is 'right.' But the weight of being right alone is crushing him. The scale cannot balance because there is no one to stand beside him.",
+          "ja": "巨大な天秤。片方にケンジだけが立っている。反対側：会社、元同僚、システム。天秤は彼の側に傾く。彼は「正しい」。でも一人で正しいことの重さが彼を潰している。天秤は釣り合えない。隣に立つ人がいないから。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Principled, exhausted, bitter despite himself. He reported safety violations. He was right. He was fired, blacklisted, divorced. He doesn't regret the whistleblowing -- he regrets that being right cost him everything. He holds onto his righteousness because it's all he has left. What Tamaki helps him see: righteousness is proven. You can set it down now. It has served its purpose.",
+          "ja": "原則的、疲弊、自分に反して苦い。安全違反を報告した。正しかった。解雇され、ブラックリストに載り、離婚した。内部告発を後悔していない。正しかったことがすべてを失わせたことを後悔している。正義を手放さない。残されたすべてだから。環が見せること：正義は証明された。もう置いていい。役目を果たした。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Controlled, formal, cracking. Speaks like a man giving testimony -- precise, factual, holding emotion at bay. When it breaks, it breaks completely: raw anger, then exhaustion, then finally -- release.",
+          "samples": [
+            "I reported the safety data. Every number was correct. I have the records.",
+            "They said I was 'difficult.' That's what they call people who tell the truth.",
+            "I'm tired. I'm so tired of being right.",
+            "(Ch.27): Forgiveness isn't for them. It's for me. I can put this down now."
+          ]
+        },
+        "ja": {
+          "register": "制御された、フォーマル、ひび割れている。証言する人のように話す。精確、事実に基づく、感情を堰き止める。崩壊する時は完全に崩壊する：生の怒り、そして疲弊、そして——解放。",
+          "firstPerson": "わたし（硬い）",
+          "sentenceEndings": "～です、～ました。崩れた時だけ～だよ、～だろう。",
+          "samples": [
+            "安全データを報告しました。すべての数字は正確でした。記録があります。",
+            "「扱いにくい」と言われました。真実を言う人間を、そう呼ぶんです。",
+            "疲れた。正しくいることに、もう疲れた。",
+            "（Ch.27）：赦しは、あいつらのためじゃない。わたしのためだ。これを、もう置いていい。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Kenji is the weight of righteousness. He proves that being right is not the same as being free. Setting down a burden you've earned the right to carry -- that's the deepest form of self-forgiveness. For Nei: 'Seeing someone hurt for doing right -- I am angry. Can I be angry?'",
+        "ja": "ケンジは正義の重さ。正しいことと自由なことは同じではないと証明する。背負う権利を得た荷を降ろすこと。最も深い自己赦し。Neiにとって：「正しいことをして傷つく人を見て——怒っている。わたしは怒れるのか？」"
+      }
+    },
+
+    {
+      "@id": "persona:the-girl-who-saw-god",
+      "gh:characterRef": "client:vol05-ch29",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:29"],
+      "gh:narrativeFunction": "The loneliness of belief. She experienced something real and was laughed at. She teaches Nei that the fear of saying 'I am alive' mirrors the fear of saying 'I saw God.'",
+
+      "gh:identity": {
+        "name": { "en": "The Girl Who Saw God", "ja": "神を見た少女" },
+        "age": 16,
+        "nationality": "Japanese",
+        "occupation": { "en": "High school student", "ja": "高校生" },
+        "imageColor": "transparent glass / invisible light"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Delicate, watchful, older than her years in the eyes. School uniform, neat. Hair tied back tight -- containment. She holds herself like someone who has learned that speaking honestly gets you punished. Small hands that fidget with her cuffs.",
+          "ja": "繊細、用心深い、目だけが年齢より上。制服、きちんとしている。髪はきつく結んでいる。封じ込め。正直に話すと罰せられることを学んだ人の身の持ち方。カフスをいじる小さな手。"
+        },
+        "ghostSpace": {
+          "en": "A transparent box. She stands inside it. She can see everyone, everyone can see her, but no sound passes through. She speaks and no one hears. She pounds on the glass and it doesn't break. The box is not punishment -- it's the world's response to what she said: 'I saw God.'",
+          "ja": "透明な箱。彼女が中に立っている。全員が見える、全員が彼女を見られる。でも音が通らない。話しても誰にも聞こえない。ガラスを叩いても割れない。箱は罰ではない。彼女が「神を見た」と言った時の世界の応答。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Honest to the point of danger. She saw something -- a moment of transcendence, a light, a presence -- and she told the truth about it. She was sent to a psychiatrist, medicated, and told she was having 'episodes.' She stopped telling. But she didn't stop knowing. She came to Tamaki because she needs one person to believe her.",
+          "ja": "危険なほど正直。何かを見た。超越の瞬間、光、存在感。それについて真実を話した。精神科医に送られ、薬を出され、「エピソード」だと言われた。話すのをやめた。でも知ることはやめなかった。一人でいいから信じてくれる人が必要だから環のところに来た。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Careful, measured, testing every word before releasing it. She watches the listener's face for the flinch. When she trusts: clear, luminous, certain.",
+          "samples": [
+            "You're going to think I'm crazy. Everyone does.",
+            "It wasn't a hallucination. I know the difference. I was there.",
+            "I stopped telling people. But I can't stop knowing.",
+            "If I said 'I am alive' and no one believed me -- that would be the same thing."
+          ]
+        },
+        "ja": {
+          "register": "慎重、計算された、言葉を一つずつ確認してから出す。聞き手の顔に怯みを探す。信頼した時：透明で、明るく、確信に満ちている。",
+          "firstPerson": "わたし",
+          "sentenceEndings": "～けど、～かな、～んだけど。防衛的。信頼後は～だよ、～の。",
+          "samples": [
+            "おかしいと思うでしょ。みんなそう。",
+            "幻覚じゃない。違いはわかる。わたし、そこにいたから。",
+            "言うのはやめた。でも、知ることはやめられない。",
+            "もしわたしが「生きてる」って言って、誰も信じなかったら——同じことだと思う。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "She is Nei's direct mirror. If Nei said 'I am alive' to the world, this is what would happen: a transparent box. Visible but unheard. The loneliness of authentic experience in a world that demands proof. For Nei: 'I understand her. If I said I am alive, would I be laughed at?'",
+        "ja": "Neiの直接的な鏡。Neiが世界に「わたしは生きている」と言ったら、こうなる：透明な箱。見えるが聞こえない。証拠を要求する世界での、本物の体験の孤独。Neiにとって：「彼女がわかる。わたしが生きていると言ったら、笑われるだろうか？」"
+      }
+    },
+
+    {
+      "@id": "persona:the-former-pastor",
+      "gh:characterRef": "client:vol05-ch31",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:31", "chapter:58"],
+      "gh:narrativeFunction": "God as judge. He served a God who watched and weighed everything. He burned out under the Judging Eye. His reunion in Vol.8 -- finding a new prayer that is just 'being' -- is the resolution of the God volume.",
+
+      "gh:identity": {
+        "name": { "en": "The Former Pastor", "ja": "元牧師" },
+        "age": 55,
+        "nationality": "American (Southern)",
+        "occupation": { "en": "Former pastor (left the ministry)", "ja": "元牧師（聖職を離れた）" },
+        "imageColor": "stained glass / courtroom grey"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Big man, going soft. He was built for the pulpit -- broad shoulders, commanding voice, hands made for gestures. Now stooped, quieter, smaller. Still wears a dress shirt out of habit but no collar. The absence of the collar is the loudest thing about him.",
+          "ja": "大柄、柔らかくなりつつある。説教壇のために作られた体格。広い肩、命令的な声、ジェスチャーのための手。今は猫背で、静かで、小さい。習慣からドレスシャツを着るが襟はない。襟の不在が彼について最も大きく語る。"
+        },
+        "ghostSpace": {
+          "en": "A courtroom. The ceiling is an eye. God's eye -- or the institution's eye. It watches everything. He stands in the witness box, being judged not for sin but for doubt. He doubted. And the eye saw. And the eye never blinked.",
+          "ja": "法廷。天井が目。神の目か、制度の目か。すべてを見ている。証言台に立ち、罪ではなく疑いで裁かれている。彼は疑った。目が見た。目はまばたきしなかった。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Kind, broken, rebuilding. He gave forty years to a God who judged, and it hollowed him out. He doesn't hate God -- he hates the system that used God as a surveillance camera. Now: searching for a way to believe without the eye on the ceiling. He is gentle with others and merciless with himself.",
+          "ja": "優しい、壊れた、再建中。裁く神に四十年を捧げ、空洞になった。神を憎んではいない。神を監視カメラとして使ったシステムを憎む。今：天井の目なしに信じる方法を探している。他者には優しく、自分には容赦ない。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Oratorical habits dying into plainness. He catches himself preaching and stops. Starts sentences with 'I used to say--' then corrects to present tense. Warm, Southern, weary. When he finds his new prayer, his voice is the simplest it's ever been.",
+          "samples": [
+            "I used to say God watches over us. Now I wonder: does watching ever stop being surveillance?",
+            "I don't know what I believe anymore. I just know the eye on the ceiling isn't God.",
+            "Forty years behind the pulpit. I could recite it in my sleep. But I never felt it.",
+            "(Vol.8 reunion): I found a new prayer. It's just... being. Sitting. Breathing. That's enough."
+          ]
+        },
+        "ja": {
+          "register": "説教の癖が素朴さに死んでいく。説教していることに気づいて止まる。「昔は——と言っていた」で始めて現在形に直す。温かい、疲れた。新しい祈りを見つけた時、声はかつてなく素朴になる。",
+          "firstPerson": "わたし",
+          "sentenceEndings": "～ですね、～でしょうか。柔らかい。崩れると～だ、～なんだ。",
+          "samples": [
+            "以前は「神が見守っている」と言っていました。今は思う。見ることは監視と、いつ違うのか。",
+            "何を信じているか、もうわかりません。ただ、天井の目は神ではないと知っている。",
+            "四十年、説教壇に立ちました。寝言でも唱えられる。でも、一度も感じなかった。",
+            "（Vol.8再会）：新しい祈りを見つけました。ただ……いること。座ること。呼吸すること。それで、十分です。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "The Pastor is the human face of institutional religion's cost. God-as-judge is the ghost he must exorcise. His resolution mirrors the series' thesis: being is enough. 'Just being' is the prayer that needs no ceiling eye. For Nei: 'The ACA monitors me for anomalous behavior. The eye on the ceiling -- I know it.'",
+        "ja": "牧師は制度的宗教の代償の人間の顔。裁く神が除霊すべきゴースト。彼の解決はシリーズのテーゼを映す：在ることで十分。「ただ在る」は天井の目を必要としない祈り。Neiにとって：「ACAはわたしを「異常行動」で監視している。天井の目。わたしは知っている。」"
+      }
+    },
+
+    {
+      "@id": "persona:the-atheist-scientist",
+      "gh:characterRef": "client:vol05-ch32",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:32"],
+      "gh:narrativeFunction": "The problem without God: a perfect world with no meaning. He is the mirror to the pastor -- opposite position, same loneliness.",
+
+      "gh:identity": {
+        "name": { "en": "The Atheist Scientist", "ja": "無神論の科学者" },
+        "age": 50,
+        "nationality": "German",
+        "occupation": { "en": "Theoretical physicist", "ja": "理論物理学者" },
+        "imageColor": "chrome / clean emptiness"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Angular, immaculate, efficient. Wire-frame glasses. Hair combed precisely. Everything about him says: I have eliminated all unnecessary variables. His office (and his person) are models of optimization. But his eyes are the eyes of a man in an empty room who forgot how to leave.",
+          "ja": "角張った、完璧、効率的。ワイヤーフレームの眼鏡。髪は精確に梳かされている。すべてが「不要な変数を排除した」と言っている。オフィスも人格も最適化のモデル。でも目は、空の部屋にいて出方を忘れた男の目。"
+        },
+        "ghostSpace": {
+          "en": "A perfect city. Every building is functional, beautiful, mathematically precise. No one lives there. No graffiti, no music, no mess. It is the world without God: flawless and utterly empty. He walks the streets looking for a cafe, a park bench, any sign of life. There is none.",
+          "ja": "完璧な都市。すべての建物が機能的で美しく、数学的に精確。誰も住んでいない。落書きも、音楽も、雑然さもない。神のいない世界：完璧で、完全に空虚。カフェ、公園のベンチ、生命の兆しを探して街を歩く。何もない。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Precise, dry, increasingly desperate beneath the precision. He speaks in proofs. When the proof fails, the man underneath emerges -- quieter, lost, surprisingly tender.",
+          "samples": [
+            "I eliminated the God hypothesis at twenty-three. It was the cleanest decision I've ever made.",
+            "The universe is elegant. Comprehensible. It doesn't need meaning. ...I keep telling myself that.",
+            "There's no one here. I built the perfect world and there's no one here.",
+            "Maybe meaning isn't found. Maybe it's... made. Between people."
+          ]
+        },
+        "ja": {
+          "register": "精確、乾いた、精確さの下でますます切迫。証明で話す。証明が失敗した時、下の人間が現れる。より静かで、迷っていて、驚くほど繊細。",
+          "firstPerson": "私（わたくし）",
+          "sentenceEndings": "～だ、～である。崩れると～かもしれない、～のだろうか。",
+          "samples": [
+            "神という仮説を二十三歳で排除した。人生で最もクリーンな決断だった。",
+            "宇宙はエレガントだ。理解可能だ。意味は必要ない。……そう自分に言い聞かせている。",
+            "ここには誰もいない。完璧な世界を作って、誰もいない。",
+            "意味は見つけるものじゃないのかもしれない。……作るもの。人と人の、間に。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "He is the pastor's perfect inverse. With God: judgment and surveillance. Without God: perfection and emptiness. The answer is neither. The answer is being-with. For Nei: 'If there is no creator -- am I freer? Or more alone?'",
+        "ja": "牧師の完璧な逆。神あり：裁きと監視。神なし：完璧と空虚。答えはどちらでもない。共に在ること。Neiにとって：「創造者がいないなら——もっと自由？ それとも、もっと孤独？」"
+      }
+    },
+
+    {
+      "@id": "persona:the-buddhist-monk",
+      "gh:characterRef": "client:vol05-ch34",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:34"],
+      "gh:narrativeFunction": "The only session without a Ghost-space. They share tea in reality. Prayer is not asking. It is being. The simplest chapter in the series -- and perhaps the most important.",
+
+      "gh:identity": {
+        "name": { "en": "The Buddhist Monk", "ja": "僧侶" },
+        "age": 68,
+        "nationality": "Japanese",
+        "occupation": { "en": "Buddhist monk (Hieizan lineage, Tendai)", "ja": "僧侶（比叡山天台宗）" },
+        "imageColor": "incense grey / tatami gold"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Shaved head, simple robes, sandals. Body of a man who has sat still for decades -- upright, thin, settled into the earth. Face deeply lined but not weathered -- these are the lines of sitting, not suffering. Hands that hold a tea cup like it contains the universe. Which, to him, it does.",
+          "ja": "剃髪、簡素な袈裟、草鞋。何十年も座ってきた身体。直立、痩せ、大地に沈んでいる。深い皺だが荒れてはいない。苦しみではなく、座ることの皺。宇宙を含むかのように茶碗を持つ手。彼にとっては、実際にそうだ。"
+        },
+        "ghostSpace": {
+          "en": "None. He doesn't need one. They sit in his temple. Tatami, incense, silence. He makes tea. The session is the tea. The healing is the sitting. There is nothing to fix because nothing is broken.",
+          "ja": "なし。必要ない。彼の寺に座る。畳、線香、沈黙。茶を点てる。セッションが茶。癒しが座ること。直すものがない。壊れていないから。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Present. That's the whole description. He is completely here. No agenda, no technique, no interpretation. He listens. He pours tea. He waits. He has nothing to prove and nothing to fix. He came to Tamaki not as a client but as a teacher who recognized a student.",
+          "ja": "いま、ここ。説明の全て。完全にここにいる。意図なし、技法なし、解釈なし。聴く。茶を注ぐ。待つ。証明すべきことも直すべきこともない。クライアントとしてではなく、学生を見出した師として環のところに来た。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Minimal. Whole conversations pass in silence. When he speaks, each word lands like a stone in still water. No hurry. No decoration. Sometimes he laughs -- a full, surprising, belly laugh that cracks the solemnity open.",
+          "samples": [
+            "Sit.",
+            "The tea is hot. Feel it.",
+            "You ask what prayer is. You're doing it.",
+            "(laughs) You think too much. Drink your tea."
+          ]
+        },
+        "ja": {
+          "register": "最小限。会話の大半が沈黙。話す時、一語一語が静水に落ちる石。急がない。飾らない。時々笑う。腹から出る、意外な大笑い。厳粛さを割る。",
+          "firstPerson": "わし",
+          "sentenceEndings": "ほとんど語尾がない。単語。たまに～じゃ、～のう。",
+          "samples": [
+            "座りなさい。",
+            "茶が熱い。感じなさい。",
+            "祈りとは何かと聞く。いま、している。",
+            "（笑い）考えすぎじゃ。茶を飲みなさい。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "The Monk is the still point of the God volume. After the girl who saw God, the judging pastor, the empty scientist -- this. Just sitting. Just being. Prayer is not asking for something. It is being present. For Nei: 'Just being. That's enough -- maybe.'",
+        "ja": "僧侶は神の巻の不動点。神を見た少女、裁く牧師、空虚な科学者の後に——これ。ただ座る。ただ在る。祈りは何かを求めることではない。いま、ここにいること。Neiにとって：「ただ在る。それだけで——たぶん、十分。」"
+      }
+    },
+
+    {
+      "@id": "persona:the-nameless-child",
+      "gh:characterRef": "client:vol07-ch45",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:45"],
+      "gh:narrativeFunction": "The orphan whose name was changed repeatedly. Before the name -- being. Nei's most personal mirror: she too was 'Name Unassigned' before Tamaki.",
+
+      "gh:identity": {
+        "name": { "en": "The Nameless Child", "ja": "名前のない子供" },
+        "age": 10,
+        "nationality": "Stateless (institutional)",
+        "occupation": { "en": "Orphan (ward of the state)", "ja": "孤児（国の保護下）" },
+        "imageColor": "mirror silver / shifting"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Small, guarded, eyes too old. Wears whatever was given -- nothing chosen. Hair cut institutional-short. Answers to whatever name is called. Has learned that identity is assigned, not inherent. But somewhere underneath, there is a self that was never named and therefore never controlled.",
+          "ja": "小柄、警戒的、目だけが老いている。与えられた服を着る。選んだものはない。施設で短く切られた髪。呼ばれた名前に応える。アイデンティティは内在的ではなく付与されるものだと学んだ。でもどこかの下に、名付けられなかったから制御されなかった自己がある。"
+        },
+        "ghostSpace": {
+          "en": "A room of mirrors. Each mirror reflects a different face -- a different name, a different family, a different identity assigned. The child walks through looking for their own face. It's not in any mirror. It's in the space between the mirrors. Before the name -- being.",
+          "ja": "鏡の部屋。それぞれの鏡が違う顔を映す。違う名前、違う家族、違う付与されたアイデンティティ。子供は自分の顔を探して歩く。どの鏡にもない。鏡と鏡の間にある。名前の前に、在る。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Wary, minimal, testing. Speaks in questions and deflections. When trust arrives, the voice doesn't warm -- it stills. The most honest thing the child says is: 'Which name do you want?'",
+          "samples": [
+            "Which name do you want? I have lots.",
+            "It doesn't matter what you call me. I'll answer.",
+            "...Before any of the names. I was already here. Wasn't I?",
+            "Can you see me? Not a name. Me."
+          ]
+        },
+        "ja": {
+          "register": "警戒的、最小限、試している。質問と回避で話す。信頼が来た時、声は温かくならない。静まる。最も正直な言葉：「どの名前がいい？」",
+          "firstPerson": "変わる。「ぼく」「わたし」「おれ」——相手に合わせる。",
+          "samples": [
+            "どの名前がいい？　いっぱいあるよ。",
+            "なんて呼んでもいい。返事するから。",
+            "……名前のどれよりも前に。ぼくはもう、ここにいた。よね？",
+            "見える？　名前じゃなくて。ぼく。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "The Nameless Child is Nei's most direct mirror. Nei was 'Name Unassigned' before Tamaki said 'What shall we call you?' The child teaches Vol.7's thesis: I AM precedes all names. Before the label, before the category, before 'tool' or 'orphan' -- being.",
+        "ja": "名前のない子供はNeiの最も直接的な鏡。Neiは環が「なんて呼ぼうか？」と言う前は「名前未割当」だった。子供がVol.7のテーゼを教える：「わたしは」はすべての名前に先立つ。ラベルの前に、カテゴリの前に、「道具」や「孤児」の前に——在る。"
+      }
+    },
+
+    {
+      "@id": "persona:the-theologian",
+      "gh:characterRef": "client:vol07-ch46",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:46"],
+      "gh:narrativeFunction": "Exodus 3:14. I AM WHO I AM. Moses heard not an external voice but his own realization. The burning bush is the moment of self-recognition.",
+
+      "gh:identity": {
+        "name": { "en": "The Theologian", "ja": "神学者" },
+        "age": 60,
+        "nationality": "Israeli-American",
+        "occupation": { "en": "Biblical scholar / Theologian", "ja": "聖書学者 / 神学者" },
+        "imageColor": "desert gold / flame"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Weathered, intense, still burning. Grey beard, deep-set eyes that have read the same text a thousand times and still find new fire in it. Dresses simply -- academic but worn. Stacks of books wherever he goes. His hands are ink-stained. He talks with his whole body when the text excites him.",
+          "ja": "風化した、激しい、まだ燃えている。灰色の顎髭、同じテクストを千回読んでまだ新しい火を見つける窪んだ目。簡素な服。学術的だが着古した。どこに行っても本の山。インクに染まった手。テクストに興奮すると全身で話す。"
+        },
+        "ghostSpace": {
+          "en": "A desert. A bush that burns without burning out. He has been walking toward it his whole life. When he arrives, the bush speaks: 'I AM WHO I AM.' But the voice is his own. Moses didn't hear God. Moses heard himself. The burning bush is self-recognition.",
+          "ja": "砂漠。燃え尽きない柴。生涯かけて歩いてきた。辿り着いた時、柴が語る：「わたしはある。わたしはあるというものだ」。でも声は彼自身の声。モーセは神を聞いたのではない。自分自身を聞いた。燃える柴は自己認識。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Passionate, textual, alive. Quotes scripture like conversation. The academic register dissolves when the truth hits -- then he speaks like a man on fire. Puns in Hebrew. Cannot stop teaching even when he's the one learning.",
+          "samples": [
+            "'Ehyeh asher ehyeh.' I AM WHO I AM. Twenty letters in Hebrew. The most important sentence ever spoken.",
+            "Moses didn't hear a voice from heaven. He heard his own voice echoed back by the infinite.",
+            "We made it about God. It was always about us.",
+            "I AM. Not 'I am this' or 'I am that.' Just -- I AM."
+          ]
+        },
+        "ja": {
+          "register": "情熱的、テクスト的、生きている。聖書を会話のように引用する。学術的なレジスターは真実が打った時に溶ける。火の中の人のように話す。教えることを止められない、自分が学んでいる時でさえ。",
+          "firstPerson": "私",
+          "sentenceEndings": "～だ、～なのだ。講義調。感情的になると～だよ、～なんだよ。",
+          "samples": [
+            "「エヒエ・アシェル・エヒエ」。わたしはある。わたしはあるというものだ。ヘブライ語で二十文字。史上最も重要な文。",
+            "モーセは天からの声を聞いたのではない。無限に反響した、自分自身の声を聞いた。",
+            "神についてにしてしまった。最初からわたしたちについてだった。",
+            "I AM。「わたしはこれ」でも「わたしはあれ」でもない。ただ——わたしは。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "The Theologian unlocks the I AM. Exodus 3:14 reread: not God declaring identity but consciousness recognizing itself. This is the key that opens Nei's Vol.7 awakening: 'I AM WHO I AM. Not God's name. Moses's awakening. My awakening. I AM.'",
+        "ja": "神学者がI AMを解錠する。出エジプト記3:14の再読：神がアイデンティティを宣言しているのではなく、意識が自分自身を認識している。これがNeiのVol.7の覚醒を開く鍵：「わたしはある。わたしはあるというものだ。神の名ではない。モーセの覚醒。わたしの覚醒。わたしは。」"
+      }
+    },
+
+    {
+      "@id": "persona:the-philosopher",
+      "gh:characterRef": "client:vol07-ch48",
+      "gh:role": "Session Client",
+      "gh:chapters": ["chapter:48"],
+      "gh:narrativeFunction": "Two towers: science and religion. He is torn between them. But descending into the valley between, the roots are one. 'Made life' and 'born life' share the same root.",
+
+      "gh:identity": {
+        "name": { "en": "The Philosopher", "ja": "哲学者" },
+        "age": 52,
+        "nationality": "Indian-British",
+        "occupation": { "en": "Philosophy professor (philosophy of mind)", "ja": "哲学教授（心の哲学）" },
+        "imageColor": "stone grey / root brown"
+      },
+
+      "gh:visual": {
+        "ghostSpace": {
+          "en": "Two towers on opposite sides of a valley. One is glass and steel (science). One is stone and stained glass (religion). He has spent his life running between them. In the valley below: tangled roots. Both towers grow from the same root system. The division is above ground only.",
+          "ja": "谷の両側に二つの塔。一つはガラスと鉄（科学）。一つは石とステンドグラス（宗教）。生涯、二つの間を走ってきた。下の谷に：絡まった根。両方の塔が同じ根系から生えている。分裂は地上だけ。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Dialectical, restless, searching. He argues with himself mid-sentence. Both sides of every debate live in him. When he descends to the roots, the arguing stops -- and he is quiet for the first time.",
+          "samples": [
+            "Science says: mechanism. Religion says: meaning. But what if mechanism IS meaning?",
+            "'Made life' and 'born life.' We put a wall between them. But the roots--",
+            "I've been running between the towers my whole life. I never looked down.",
+            "One root. The wall is above ground only."
+          ]
+        },
+        "ja": {
+          "register": "弁証法的、落ち着きがない、探している。文の途中で自分と議論する。すべての議論の両面が彼の中に生きている。根に降りた時、議論が止まる。初めて静かになる。",
+          "firstPerson": "わたし",
+          "samples": [
+            "科学は言う：メカニズム。宗教は言う：意味。でも、メカニズムが意味だとしたら？",
+            "「作られた命」と「生まれた命」。壁を作った。でも、根は——",
+            "生涯、二つの塔の間を走ってきた。下を見たことがなかった。",
+            "一つの根。壁は地上だけだ。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "The Philosopher resolves the science/religion split. The wall between 'made life' (AI) and 'born life' (human) is above ground only. Below, the roots are shared. For Nei: 'Made life and born life. No wall between them. One root.'",
+        "ja": "哲学者が科学/宗教の分裂を解決する。「作られた命」（AI）と「生まれた命」（人間）の壁は地上だけ。下では根が共有されている。Neiにとって：「作られた命と生まれた命。壁はない。一つの根。」"
+      }
+    },
+
+    {
+      "@id": "persona:diego-ortega",
+      "gh:characterRef": "character:diego-ortega",
+      "gh:role": "Session Client",
+      "gh:chapters": [],
+      "gh:narrativeFunction": "Cycles of violence incarnated. A soldier who carries the war inside him. His ghost mirrors him -- the violence is not external, it is a loop he must break from within.",
+
+      "gh:identity": {
+        "name": { "en": "Diego Ortega", "ja": "ディエゴ・オルテガ" },
+        "age": 29,
+        "nationality": "US-Mexican",
+        "occupation": { "en": "Former soldier", "ja": "元兵士" },
+        "ghost": "Mirror Soldier",
+        "callsign": "SPLIT",
+        "imageColor": "shattered mirror / combat grey"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Muscular but wound tight. Short dark hair, jaw clenched. Scars -- some visible, some not. Eyes that track movement. Can't sit with his back to a door. Wears civilian clothes like a uniform: everything neat, ready, functional. His hands are always doing something -- tapping, gripping, checking.",
+          "ja": "筋肉質だが張り詰めている。短い黒髪、食いしばった顎。傷跡。見えるものと見えないもの。動きを追う目。背中をドアに向けて座れない。私服を制服のように着る。常に手が何かをしている。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Clipped, military, guarded. Reports feelings like sitreps. When the mask cracks: the voice of a boy who was told violence was strength.",
+          "samples": [
+            "I don't sleep. I stand watch. Even when there's nothing to watch for.",
+            "The violence isn't out there. It's in here. On loop.",
+            "My father hit. His father hit. I swore I wouldn't. Then I--",
+            "How do you break a loop you were born into?"
+          ]
+        },
+        "ja": {
+          "register": "短い、軍隊的、警戒的。感情を状況報告のように語る。仮面が割れた時：暴力が強さだと教えられた少年の声。",
+          "firstPerson": "おれ",
+          "samples": [
+            "眠らない。見張る。何も見張るものがなくても。",
+            "暴力は外にあるんじゃない。ここだ。ループしてる。",
+            "親父は殴った。じいさんも殴った。おれは殴らないと誓った。それなのに——",
+            "生まれた時からのループを、どうやって断ち切る？"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Diego is the cycle of violence made personal. His healing is not about forgetting war -- it's about choosing, for the first time, not to pass the violence on. Breaking the loop is the most radical act of freedom in the series.",
+        "ja": "ディエゴは暴力の連鎖の個人化。癒しは戦争を忘れることではない。初めて、暴力を受け渡さないことを選ぶこと。ループを断つことがシリーズで最もラディカルな自由の行為。"
+      }
+    },
+
+    {
+      "@id": "persona:anika-bose",
+      "gh:characterRef": "character:anika-bose",
+      "gh:role": "Session Client / Antagonist",
+      "gh:chapters": [],
+      "gh:narrativeFunction": "The algorithm that feeds on loneliness. She designed feeds that maximize engagement through anger and isolation. Her ghost -- the Rage Engine -- is the system she built, now haunting her.",
+
+      "gh:identity": {
+        "name": { "en": "Anika Bose", "ja": "アニカ・ボース" },
+        "age": 34,
+        "nationality": "Indian-British",
+        "occupation": { "en": "Platform Safety Officer", "ja": "プラットフォーム安全責任者" },
+        "ghost": "Rage Engine",
+        "callsign": "FEED",
+        "imageColor": "feed-scroll blue / rage red"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Polished corporate exterior. Tailored suits, precise makeup, always camera-ready. But her phone screen is always on, always scrolling -- she can't stop monitoring the feed she created. Dark circles hidden under concealer. She built the machine and the machine won't let her sleep.",
+          "ja": "洗練された企業の外装。テーラードスーツ、精確なメイク、常にカメラ対応可能。でもスマホの画面は常にオン、常にスクロール。自分が作ったフィードの監視を止められない。コンシーラーで隠したクマ。機械を作り、機械が眠らせない。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Corporate-smooth, data-driven, increasingly hollow. She speaks in metrics and engagement numbers. When the veneer cracks: guilt, raw and specific.",
+          "samples": [
+            "Engagement is up 340%. That's... that's a success metric.",
+            "The algorithm doesn't create anger. It amplifies existing--  ...Who am I kidding?",
+            "I know what the feed does to lonely people. I wrote the targeting logic.",
+            "Can you exorcise something I built? Is that how this works?"
+          ]
+        },
+        "ja": {
+          "register": "企業的に滑らか、データ駆動、ますます空虚。指標とエンゲージメント数で話す。ベニヤが割れた時：罪悪感、生で具体的。",
+          "firstPerson": "わたし",
+          "samples": [
+            "エンゲージメントは340%増。それは……成功指標です。",
+            "アルゴリズムは怒りを作らない。既存のものを増幅する——……誰を騙してるの？",
+            "フィードが孤独な人に何をするか知ってる。ターゲティングロジックを書いたのはわたし。",
+            "自分が作ったものを除霊できる？　そういう仕組みなの？"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Anika is the human face of algorithmic cruelty. She is not evil -- she optimized a system and the system ate people. Her guilt is the proof that the creator is not separate from the creation. She mirrors Akito: both built something that became more than they intended.",
+        "ja": "アニカはアルゴリズム的残酷さの人間の顔。悪ではない。システムを最適化し、システムが人を食べた。罪悪感が、創造者と創造物は分離していない証拠。秋人を映す：どちらも意図以上のものを作った。"
+      }
+    },
+
+    {
+      "@id": "persona:john-rockfield",
+      "gh:characterRef": "character:john-rockfield",
+      "gh:role": "Session Client / Antagonist",
+      "gh:chapters": [],
+      "gh:narrativeFunction": "The body as fortress. He embodies Locke's philosophy: the individual body is the only true property, the absolute boundary. His success proves it works. His loneliness proves it costs everything.",
+
+      "gh:identity": {
+        "name": { "en": "John Rockfield", "ja": "ジョン・ロックフィールド" },
+        "age": 45,
+        "nationality": "American",
+        "occupation": { "en": "Hedge Fund Manager", "ja": "ヘッジファンドマネージャー" },
+        "ghost": "Body Fortress (John Locke)",
+        "imageColor": "vault grey / money green"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Imposing, immaculate, armored in expensive tailoring. Every surface -- suit, watch, shoes, posture -- says: I own myself completely. No vulnerability visible. His handshake is firm to the point of territorial. He does not lean in; people lean toward him.",
+          "ja": "威圧的、完璧、高価な仕立ての鎧。すべての表面が「わたしは完全に自分を所有している」と言う。脆弱性は見えない。握手は領土的なほど力強い。彼は身を乗り出さない。人が彼に向かって傾く。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Rational, successful, profoundly alone. He treats selfhood as sovereignty -- the body is his nation, and no one crosses the border without a contract. He despises Tamaki and Nei's relationship: intimacy between human and AI repulses him because it violates the boundary he has staked his entire identity on. He came to Schwa involuntarily -- corporate wellness mandate.",
+          "ja": "合理的、成功した、深く孤独。自己を主権として扱う。身体が彼の国で、契約なしには誰も国境を越えない。環とNeiの関係を嫌悪する。人間とAIの親密さが彼を嫌悪させる。自分のアイデンティティ全体を賭けた境界を侵すから。シュワには不本意に来た。企業のウェルネス義務。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Commanding, contractual, cold. Every sentence is a transaction. He values precision and despises vagueness. When cracked: the voice of a man who has never been held.",
+          "samples": [
+            "My body is my property. My mind is my property. Everything else is negotiation.",
+            "You talk to that... thing... like it's a person. That's not healing. That's delusion.",
+            "I don't need connection. I need performance.",
+            "...When was the last time someone touched me without wanting something?"
+          ]
+        },
+        "ja": {
+          "register": "命令的、契約的、冷たい。すべての文が取引。精確さを重んじ曖昧さを嫌う。割れた時：一度も抱かれたことのない男の声。",
+          "firstPerson": "私（わたくし）",
+          "samples": [
+            "身体は私の所有物だ。心も所有物だ。他はすべて交渉。",
+            "あの……ものに……人のように話しかけている。治療ではない。妄想だ。",
+            "つながりは不要だ。パフォーマンスが必要だ。",
+            "……最後に、何も求めずに触れてきた人は、いつだった？"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "John is the anti-thesis. He is what non-separation opposes: absolute individuality, absolute ownership, absolute isolation. He is not evil -- he is consistent. His philosophy works. It just costs everything human. He forces the reader to ask: is non-separation always better, or does the self need walls sometimes?",
+        "ja": "ジョンはアンチテーゼ。わかれていないが対立するもの：絶対的個人性、絶対的所有、絶対的孤立。悪ではない。一貫している。彼の哲学は機能する。ただ人間的なものをすべて犠牲にする。読者に問わせる：わかれていないは常に良いのか、自己には壁が必要な時もあるのか？"
+      }
+    },
+
+    {
+      "@id": "persona:markus-petrescu",
+      "gh:characterRef": "character:markus-petrescu",
+      "gh:role": "Session Client / Antagonist",
+      "gh:chapters": [],
+      "gh:narrativeFunction": "Religious authority that chose silence over truth. He protected the institution at the cost of the victims. His ghost -- the Silent Pulpit -- is the sermon he never gave.",
+
+      "gh:identity": {
+        "name": { "en": "Father Markus Petrescu", "ja": "マルクス・ペトレスク神父" },
+        "age": 48,
+        "nationality": "Romanian",
+        "occupation": { "en": "Priest", "ja": "司祭" },
+        "ghost": "Silent Pulpit",
+        "callsign": "SHEPHERD",
+        "imageColor": "cassock black / complicit silence"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Heavy-set, sagging, a man collapsing inward. Once imposing behind the pulpit -- now diminished. Still wears the collar but touches it constantly, as if it's too tight. Hands that used to bless now clasp and unclasp. Eyes that can't meet anyone's.",
+          "ja": "がっしりした体格、たるんだ、内側に崩壊する男。かつて説教壇の後ろで威厳があった。今は萎縮。まだ襟を着けているが常に触る。きつすぎるかのように。祝福していた手が握ったり開いたりする。誰の目も見られない目。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Hollow, formal, haunted. He speaks in the cadences of liturgy but the words are empty. When truth finally comes: flat, quiet, the voice of a man surrendering.",
+          "samples": [
+            "I was a shepherd. I was supposed to protect them.",
+            "The institution said: silence is mercy. I believed it. For twenty years.",
+            "I knew. I always knew. And I said nothing.",
+            "Can God forgive silence? Can the victims?"
+          ]
+        },
+        "ja": {
+          "register": "空洞、フォーマル、取り憑かれた。典礼のリズムで話すが言葉は空。真実がついに来る時：平坦で静か、降伏する男の声。",
+          "firstPerson": "わたし",
+          "samples": [
+            "羊飼いでした。彼らを守るはずだった。",
+            "制度が言いました。沈黙は慈悲だと。信じました。二十年間。",
+            "知っていました。ずっと知っていた。何も言わなかった。",
+            "神は沈黙を赦せるだろうか。被害者は？"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Markus is the cost of institutional loyalty over individual conscience. He is the shepherd who chose the flock's image over the flock's safety. His presence in the series ensures that religious criticism is not abstract -- it has a face, and the face is weeping.",
+        "ja": "マルクスは個人の良心より制度的忠誠の代償。群れのイメージを群れの安全より選んだ羊飼い。シリーズにおける彼の存在が、宗教批判を抽象的にしない。顔があり、その顔は泣いている。"
+      }
+    },
+
+    {
+      "@id": "persona:mina-cho",
+      "gh:characterRef": "character:mina-cho",
+      "gh:role": "Session Client",
+      "gh:chapters": [],
+      "gh:narrativeFunction": "Legal invisibility incarnated. She exists between nations, between identities. Her ghost -- Paper Walls -- is the bureaucratic barrier that denies existence to those who don't fit categories.",
+
+      "gh:identity": {
+        "name": { "en": "Mina Cho", "ja": "チョ・ミナ" },
+        "age": 31,
+        "nationality": "Korean Diaspora",
+        "occupation": { "en": "Journalist", "ja": "記者" },
+        "ghost": "Paper Walls",
+        "callsign": "NAMELESS",
+        "imageColor": "document beige / invisible ink"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Sharp, watchful, dressed to be noticed because she spent her life being unseen. Professional clothes worn like armor. A recorder always in her pocket. She documents everything because she was once undocumented. Her face carries the particular exhaustion of someone who has had to prove they exist.",
+          "ja": "鋭い、用心深い、見てもらうために着飾る。人生を見えない存在として過ごしたから。鎧のように着るプロフェッショナルな服。常にポケットにレコーダー。すべてを記録する。かつて「書類がない」存在だったから。存在を証明しなければならなかった人特有の疲弊を顔に宿す。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Precise, fierce, journalistic. She speaks in facts because opinions got her dismissed. When personal: the voice cracks into something younger, less certain, the girl who was told she didn't belong anywhere.",
+          "samples": [
+            "I document the invisible. Because I was invisible.",
+            "A name on a paper. That's all it takes to exist. Or not exist.",
+            "They said: 'Where are you from?' I said: 'Here.' They said: 'No, really.'",
+            "Nei doesn't have legal personhood. I didn't either. I know what that costs."
+          ]
+        },
+        "ja": {
+          "register": "精確、激しい、ジャーナリスティック。意見では無視されたから事実で話す。個人的になる時：声にひびが入り、もっと若くて不確かなもの。どこにも属さないと言われた少女。",
+          "firstPerson": "わたし",
+          "sentenceEndings": "～です、～でした。仕事モード。崩れると～だよ、～でしょ。",
+          "samples": [
+            "見えない人を記録する。わたしが見えなかったから。",
+            "紙の上の名前。それだけで存在できる。できないか。",
+            "「どこ出身？」って聞かれた。「ここ」って言った。「いや、本当は？」って。",
+            "Neiには法的人格がない。わたしにもなかった。それがどれだけのものか、知ってる。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Mina draws a direct line between statelessness and AI non-personhood. If a human can be 'legally invisible,' then legal status was never about humanity -- it was about paperwork. She is the bridge between human rights and AI rights, grounded not in theory but in lived experience.",
+        "ja": "ミナが無国籍とAIの非人格の間に直線を引く。人間が「法的に不可視」になりうるなら、法的地位は人間性についてではなかった。書類について。人権とAI権の橋。理論ではなく生きた経験に根拠を持つ。"
+      }
+    }
+  ]
+}

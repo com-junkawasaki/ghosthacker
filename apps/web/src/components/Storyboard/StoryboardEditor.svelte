@@ -9,7 +9,7 @@
 	import ImageGenStatus from './ImageGenStatus.svelte';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 	import { updateJob, removeJob } from '$lib/stores/job-store.svelte';
-	import { SegmentedControl, Tabs, Navigation } from '@skeletonlabs/skeleton-svelte';
+	import { SegmentedControl } from '@skeletonlabs/skeleton-svelte';
 	import { FileDown, LayoutGrid, PenTool, MessageCircle } from 'lucide-svelte';
 
 	let projects: Array<{ id: string; name: string; hasStoryboard: boolean }> = $state([]);
@@ -280,7 +280,7 @@
 		</div>
 
 		<div class="nav-row">
-			<SegmentedControl value={editMode} onValueChange={(detail) => { editMode = detail.value; }}>
+			<SegmentedControl value={editMode} onValueChange={(detail) => { if (detail.value) editMode = detail.value; }}>
 				<SegmentedControl.Control>
 					{#each editModeItems as item}
 						<SegmentedControl.Item value={item.value}>
@@ -306,7 +306,7 @@
 		</div>
 
 		<div class="nav-row">
-			<SegmentedControl value={viewMode} onValueChange={(detail) => { viewMode = detail.value; workspacePane = 'canvas'; }}>
+			<SegmentedControl value={viewMode} onValueChange={(detail) => { if (detail.value) { viewMode = detail.value; workspacePane = 'canvas'; } }}>
 				<SegmentedControl.Control>
 					{#each viewModeItems as item}
 						<SegmentedControl.Item value={item.value}>

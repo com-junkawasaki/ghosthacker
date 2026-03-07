@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Panel } from '$lib/gen/proto/storyboard_pb';
-	import { Navigation, Avatar } from '@skeletonlabs/skeleton-svelte';
 	import { FolderOpen, Users, FileText, Film } from 'lucide-svelte';
 
 	let { panels = [], characterIds = [], selectedId = '', onSelect, onContextAdd } = $props<{

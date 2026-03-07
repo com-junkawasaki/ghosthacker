@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "@skeletonlabs/skeleton";
-@import "@skeletonlabs/skeleton/themes/nouveau.css";
+@import "skeleton-base";
+@import "skeleton-theme";
 
 @layer base {
 	* {

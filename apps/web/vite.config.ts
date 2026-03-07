@@ -2,6 +2,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import { validateApiClient } from './vite-plugin-validate-api';
 import tailwindcss from '@tailwindcss/vite';
+import { resolve } from 'path';
 
 export default defineConfig({
 	plugins: [
@@ -9,6 +10,12 @@ export default defineConfig({
 		sveltekit(),
 		validateApiClient()
 	],
+	resolve: {
+		alias: {
+			'skeleton-base': resolve('node_modules/@skeletonlabs/skeleton/src/index.css'),
+			'skeleton-theme': resolve('node_modules/@skeletonlabs/skeleton/src/themes/nouveau.css'),
+		}
+	},
 	server: {
 		port: 1421,
 		strictPort: true,
@@ -25,8 +32,14 @@ export default defineConfig({
 		noExternal: [
 			'@bufbuild/protobuf',
 			'@connectrpc/connect',
-			'@connectrpc/connect-web'
-		]
+			'@connectrpc/connect-web',
+			'@skeletonlabs/skeleton-svelte',
+			'@zag-js/svelte',
+			/^@zag-js\//,
+		],
+		resolve: {
+			conditions: ['svelte', 'import', 'module', 'browser', 'default'],
+		}
 	},
 	envPrefix: ['VITE_'],
 	build: {

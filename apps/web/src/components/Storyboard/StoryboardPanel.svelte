@@ -5,7 +5,7 @@
 	import { create } from '@bufbuild/protobuf';
 	import { generatePanelDialogue, submitGenerationJob, cancelGenerationJob, storyboardClient } from '$lib/client/storyboard-client';
 	import { getJobForPanel } from '$lib/stores/job-store.svelte';
-	import { Dialog, Progress } from '@skeletonlabs/skeleton-svelte';
+	import { Progress } from '@skeletonlabs/skeleton-svelte';
 	import { ChevronLeft, ChevronRight, Wand2, Pencil, MessageSquare, Sparkles, X } from 'lucide-svelte';
 
 	export let panel: Panel;
@@ -203,6 +203,9 @@
 			</button>
 			<button type="button" class="btn btn-sm preset-outlined-surface-200-800 text-[11px]" onclick={() => dispatch('agentTrigger', { agent: 'dialogue' })}>
 				<MessageSquare size={14} /> Dialogue AI
+			</button>
+			<button type="button" class="btn btn-sm preset-outlined-surface-200-800 text-[11px]" onclick={handleGenerateDialogue} disabled={generatingDialogue}>
+				<Sparkles size={14} /> Quick Dialogue
 			</button>
 			<button type="button" class="btn btn-sm preset-outlined-surface-200-800 text-[11px]" onclick={startEdit}>
 				<Pencil size={14} /> Edit Panel
