@@ -24,6 +24,11 @@ import (
 const (
 	openRouterAPIURL = "https://openrouter.ai/api/v1/chat/completions"
 	defaultModel     = "bytedance-seed/seedream-4.5"
+
+	// Shared world-building prefix for all cinematic generation prompts.
+	// Anchors every panel to the same visual universe: future Tokyo canal city.
+	cinematicWorldPrefix = "near-future Tokyo 2040s, canal city, organic flowing architecture with traditional Japanese wood and glass elements, warm amber and soft blue color palette, clean modernist lines, vegetation integrated into buildings, water canals reflecting light, "
+	cinematicWorldSuffix = ", photorealistic, cinematic, 8k, film grain, shallow depth of field"
 )
 
 type OpenRouterImageResponse struct {
@@ -649,8 +654,11 @@ func (s *StoryboardService) callLocalCinematicGen(ctx context.Context, prompt, o
 		baseURL = "http://localhost:8100"
 	}
 
+	// Prepend world-building context for visual consistency across all panels
+	fullPrompt := cinematicWorldPrefix + prompt + cinematicWorldSuffix
+
 	requestBody := map[string]interface{}{
-		"prompt":       prompt,
+		"prompt":       fullPrompt,
 		"aspect_ratio": "16:9",
 		"output_path":  outputPath,
 	}
@@ -669,7 +677,7 @@ func (s *StoryboardService) callLocalCinematicGen(ctx context.Context, prompt, o
 		}
 		if len(refPaths) > 0 {
 			requestBody["reference_image_paths"] = refPaths
-			requestBody["ip_adapter_scale"] = 0.5
+			requestBody["ip_adapter_scale"] = 0.35
 		}
 	}
 
