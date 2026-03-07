@@ -1,27 +1,17 @@
 <script lang="ts">
 	import { listGenerationJobs } from '$lib/client/storyboard-client';
 	import { getActiveJobCount } from '$lib/stores/job-store.svelte';
+	import { Tooltip } from '@skeletonlabs/skeleton-svelte';
+	import { Zap } from 'lucide-svelte';
 
 	let health = $state<{
-		status: string;
-		model: string;
-		device: string;
-		model_loaded: boolean;
-		load_time_ms: number;
+		status: string; model: string; device: string; model_loaded: boolean; load_time_ms: number;
 	}>({ status: 'loading', model: '', device: '', model_loaded: false, load_time_ms: 0 });
-
-	let showTooltip = $state(false);
 
 	async function checkHealth() {
 		try {
 			await listGenerationJobs();
-			health = {
-				status: 'ok',
-				model: 'via connect',
-				device: '-',
-				model_loaded: true,
-				load_time_ms: 0
-			};
+			health = { status: 'ok', model: 'via connect', device: '-', model_loaded: true, load_time_ms: 0 };
 		} catch {
 			health = { status: 'unavailable', model: '', device: '', model_loaded: false, load_time_ms: 0 };
 		}
@@ -36,137 +26,66 @@
 		return () => clearInterval(interval);
 	});
 
-	let statusClass = $derived(
-		health.status === 'ok' && health.model_loaded ? 'healthy' :
-		health.status === 'ok' && !health.model_loaded ? 'loading-model' :
-		'down'
+	let statusColor = $derived(
+		health.status === 'ok' && health.model_loaded ? '#34c759' :
+		health.status === 'ok' && !health.model_loaded ? '#ff9f0a' : '#ff3b30'
 	);
 
 	let statusLabel = $derived(
-		health.status === 'ok' && health.model_loaded ? 'Image Gen' :
-		health.status === 'ok' && !health.model_loaded ? 'Loading...' :
-		'Offline'
+		health.status === 'ok' && health.model_loaded ? 'Ready' :
+		health.status === 'ok' && !health.model_loaded ? 'Loading...' : 'Offline'
 	);
 
 	let activeCount = $derived(getActiveJobCount());
 </script>
 
-<div
-	class="image-gen-status"
-	role="status"
-	onmouseenter={() => showTooltip = true}
-	onmouseleave={() => showTooltip = false}
->
-	<span class="status-dot {statusClass}"></span>
-	<span class="status-label">{statusLabel}</span>
-	{#if activeCount > 0}
-		<span class="job-badge">{activeCount}</span>
-	{/if}
-
-	{#if showTooltip}
-		<div class="tooltip">
-			{#if health.status === 'ok'}
-				<div class="tooltip-row"><strong>Model:</strong> {health.model}</div>
-				<div class="tooltip-row"><strong>Device:</strong> {health.device}</div>
-				<div class="tooltip-row"><strong>Status:</strong> {health.model_loaded ? 'Ready' : 'Loading model...'}</div>
-				{#if health.load_time_ms > 0}
-					<div class="tooltip-row"><strong>Load time:</strong> {(health.load_time_ms / 1000).toFixed(1)}s</div>
+<div class="relative" role="status" aria-live="polite">
+	<Tooltip positioning={{ placement: 'bottom' }}>
+		<Tooltip.Trigger>
+			<button type="button" class="status-btn" aria-label="Image generation: {statusLabel}">
+				<Zap size={14} />
+				<span class="status-dot" style="background: {statusColor};{health.status === 'ok' && !health.model_loaded ? 'animation: pulse 1.5s infinite;' : ''}"></span>
+				{#if activeCount > 0}
+					<span class="job-badge">{activeCount}</span>
 				{/if}
-			{:else}
-				<div class="tooltip-row">Image generation service is not running.</div>
-				<div class="tooltip-row" style="font-size: 0.7rem; color: #999;">Run: <code>mise run image-gen</code></div>
-			{/if}
-		</div>
-	{/if}
+			</button>
+		</Tooltip.Trigger>
+		<Tooltip.Content>
+			<div class="tooltip-content">
+				{#if health.status === 'ok'}
+					<div class="font-semibold">{statusLabel}</div>
+					<div class="text-zinc-400">Model: {health.model}</div>
+					{#if health.load_time_ms > 0}
+						<div class="text-zinc-400">Load: {(health.load_time_ms / 1000).toFixed(1)}s</div>
+					{/if}
+				{:else}
+					<div class="font-semibold">Offline</div>
+					<div class="text-zinc-400">Image gen not running</div>
+					<div class="text-zinc-500 text-[11px]">Run: mise run image-gen</div>
+				{/if}
+			</div>
+		</Tooltip.Content>
+	</Tooltip>
 </div>
 
 <style>
-	.image-gen-status {
-		display: flex;
-		align-items: center;
-		gap: 0.4rem;
-		padding: 0.3rem 0.6rem;
-		border-radius: 6px;
-		background: #f5f5f5;
-		cursor: default;
-		position: relative;
-		font-size: 0.75rem;
-		user-select: none;
+	@reference "tailwindcss";
+
+	.status-btn {
+		@apply flex h-[36px] items-center gap-1 rounded-full px-2.5 text-[12px] text-zinc-600 transition active:scale-95;
+		background: rgba(118, 118, 128, 0.12);
 	}
 
 	.status-dot {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		flex-shrink: 0;
-	}
-
-	.status-dot.healthy {
-		background: #4caf50;
-		box-shadow: 0 0 4px rgba(76, 175, 80, 0.5);
-	}
-
-	.status-dot.loading-model {
-		background: #ff9800;
-		animation: pulse 1.5s infinite;
-	}
-
-	.status-dot.down {
-		background: #f44336;
-	}
-
-	.status-label {
-		color: #555;
-		font-weight: 500;
-		white-space: nowrap;
+		@apply h-[7px] w-[7px] shrink-0 rounded-full;
 	}
 
 	.job-badge {
-		background: #4a90e2;
-		color: white;
-		font-size: 0.65rem;
-		font-weight: 700;
-		padding: 0 0.35rem;
-		border-radius: 8px;
-		min-width: 16px;
-		text-align: center;
-		line-height: 16px;
+		@apply min-w-[16px] rounded-full bg-[#007aff] px-1 text-center text-[10px] font-bold leading-[16px] text-white;
 	}
 
-	.tooltip {
-		position: absolute;
-		top: calc(100% + 6px);
-		right: 0;
-		background: #333;
-		color: #eee;
-		padding: 0.5rem 0.75rem;
-		border-radius: 6px;
-		font-size: 0.72rem;
-		white-space: nowrap;
-		z-index: 1000;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-	}
-
-	.tooltip::before {
-		content: '';
-		position: absolute;
-		top: -4px;
-		right: 12px;
-		width: 8px;
-		height: 8px;
-		background: #333;
-		transform: rotate(45deg);
-	}
-
-	.tooltip-row {
-		line-height: 1.6;
-	}
-
-	.tooltip code {
-		background: #555;
-		padding: 0.1rem 0.3rem;
-		border-radius: 3px;
-		font-family: monospace;
+	.tooltip-content {
+		@apply space-y-0.5 text-[12px];
 	}
 
 	@keyframes pulse {

@@ -9,109 +9,75 @@
 
 	function getAvatarUrl(speaker: string) {
 		if (!speaker || speaker === 'Narration' || speaker === 'NewsHacker') return '';
-		const id = speaker;
-		const baseUrl = typeof window !== 'undefined' 
-			? (window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin)
-			: 'http://localhost:8081';
-		return `${baseUrl}/images/characters/${id}.png`;
+		const baseUrl = typeof window !== 'undefined' ? (window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin) : 'http://localhost:8081';
+		return `${baseUrl}/images/characters/${speaker}.png`;
 	}
 </script>
 
-<div class="shooting-view">
-	<div class="shooting-container">
-		<header class="shooting-header">
-			<h1>SHOOTING SCRIPT: {episodeId}</h1>
-		</header>
+<div class="shooting-scroll">
+	<div class="shooting-header">
+		<h1 class="text-[15px] font-black uppercase tracking-[0.1em] text-zinc-900">Shooting Script: {episodeId}</h1>
+	</div>
 
-		<table class="shooting-table">
-			<thead>
-				<tr>
-					<th class="col-num">#</th>
-					<th class="col-shot">SHOT / CAMERA</th>
-					<th class="col-action">ACTION / VISUAL</th>
-					<th class="col-dialogue">DIALOGUE / SOUND</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#each panels as panel}
-					<tr class="panel-row">
-						<td class="col-num">
-							<div class="panel-id">P{panel.pageNumber}-{panel.panel}</div>
-							{#if panel.cutNumber}
-								<div class="cut-id">CUT {panel.cutNumber}</div>
-							{/if}
-						</td>
-						<td class="col-shot">
-							<div class="shot-type">{panel.data?.shot || '---'}</div>
-							<div class="camera-dir">{panel.data?.cameraDirection || ''}</div>
-							{#if panel.data?.durationSeconds}
-								<div class="duration">{panel.data.durationSeconds}s</div>
-							{/if}
-						</td>
-						<td class="col-action">
-							<div class="visual-note">{panel.data?.visualNote || '---'}</div>
-							{#if panel.data?.environment}
-								<div class="env-tag">ENV: {panel.data.environment}</div>
-							{/if}
-						</td>
-						<td class="col-dialogue">
-							{#each panel.data?.dialogue ?? [] as d}
-								<div class="dialogue-line">
-									<div class="speaker">
-										{#if getAvatarUrl(d.speaker)}
-											<img src={getAvatarUrl(d.speaker)} alt={d.speaker} class="mini-avatar" />
-										{/if}
-										{d.speaker}:
-									</div>
-									<div class="text">「{d.text}」</div>
-									{#if d.delivery}
-										<div class="delivery">({d.delivery})</div>
+	<div class="card-list">
+		{#each panels as panel}
+			<div class="card preset-surface-50-950 rounded-2xl shadow-sm">
+				<!-- Panel ID + Shot Info -->
+				<div class="flex items-start gap-3 px-4 pt-3 pb-2">
+					<div class="shrink-0">
+						<div class="text-[13px] font-bold text-zinc-900">P{panel.pageNumber}-{panel.panel}</div>
+						{#if panel.cutNumber}<div class="text-[11px] text-zinc-400">CUT {panel.cutNumber}</div>{/if}
+					</div>
+					<div class="min-w-0 flex-1">
+						<div class="text-[12px] font-bold uppercase text-zinc-900">{panel.data?.shot || '---'}</div>
+						{#if panel.data?.cameraDirection}<div class="text-[12px] italic text-amber-600">{panel.data.cameraDirection}</div>{/if}
+						{#if panel.data?.durationSeconds}<div class="text-[11px] text-zinc-400">{panel.data.durationSeconds}s</div>{/if}
+					</div>
+				</div>
+
+				<!-- Action / Visual -->
+				<div class="px-4 pb-2">
+					<div class="text-[13px] leading-relaxed text-zinc-700">{panel.data?.visualNote || '---'}</div>
+					{#if panel.data?.environment}
+						<div class="mt-1 text-[11px] text-zinc-400">ENV: {panel.data.environment}</div>
+					{/if}
+				</div>
+
+				<!-- Dialogue -->
+				{#if (panel.data?.dialogue ?? []).length > 0}
+					<div class="border-t border-zinc-100 px-4 py-2">
+						{#each panel.data?.dialogue ?? [] as d}
+							<div class="mb-2 last:mb-0">
+								<div class="mb-0.5 flex items-center gap-1.5 text-[12px] font-bold text-zinc-800">
+									{#if getAvatarUrl(d.speaker)}
+										<img src={getAvatarUrl(d.speaker)} alt={d.speaker} class="h-4 w-4 rounded-full" />
 									{/if}
+									{d.speaker}:
 								</div>
-							{/each}
-						</td>
-					</tr>
-				{/each}
-			</tbody>
-		</table>
+								<div class="text-[13px] text-zinc-700">{d.text}</div>
+								{#if d.delivery}<div class="text-[11px] italic text-emerald-600">({d.delivery})</div>{/if}
+							</div>
+						{/each}
+					</div>
+				{/if}
+			</div>
+		{/each}
 	</div>
 </div>
 
 <style>
 	@reference "tailwindcss";
 
-	.shooting-view { @apply flex-1 overflow-y-auto bg-zinc-50 p-2 md:p-6; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
-	.shooting-container { @apply mx-auto w-full max-w-[1200px] overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm; }
-	.shooting-header { @apply border-b-2 border-zinc-900 px-4 py-3 md:px-6 md:py-4; }
-	.shooting-header h1 { @apply text-base font-black uppercase tracking-widest text-zinc-900 md:text-2xl; }
-	.shooting-table { @apply w-full border-collapse; }
-	.shooting-table th { @apply border border-zinc-200 bg-zinc-100 px-3 py-2 text-left text-[11px] font-bold uppercase tracking-widest text-zinc-600; }
-	.panel-row { @apply border-b border-zinc-100; }
-	.panel-row:hover { @apply bg-zinc-50; }
-	.panel-row td { @apply border border-zinc-100 px-3 py-3 align-top text-sm; }
-	.col-num { width: 80px; }
-	.col-shot { width: 200px; }
-	.col-action { width: 400px; }
-	.col-dialogue { width: auto; }
-	.panel-id { @apply text-xs font-bold text-zinc-900; }
-	.cut-id { @apply text-[11px] text-zinc-500; }
-	.shot-type { @apply text-xs font-bold uppercase text-zinc-900; }
-	.camera-dir { @apply text-xs italic text-amber-600; }
-	.duration { @apply mt-1 text-[11px] text-zinc-500; }
-	.visual-note { @apply text-sm leading-relaxed text-zinc-800; }
-	.env-tag { @apply mt-2 text-[11px] text-zinc-500; }
-	.dialogue-line { @apply mb-3; }
-	.speaker { @apply mb-1 flex items-center gap-1.5 text-xs font-bold text-zinc-800; }
-	.mini-avatar { @apply h-4.5 w-4.5 rounded-full; }
-	.text { @apply text-sm leading-relaxed text-zinc-800; }
-	.delivery { @apply text-xs italic text-emerald-600; }
+	.shooting-scroll {
+		@apply flex-1 overflow-y-auto px-4 py-3;
+		-webkit-overflow-scrolling: touch;
+	}
 
-	.shooting-container { @apply rounded-lg; }
-	.shooting-header h1 { @apply text-sm tracking-[0.12em]; }
-	.shooting-table th { @apply hidden; }
-	.shooting-table, .shooting-table tbody, .shooting-table tr, .shooting-table td { @apply block w-full; }
-	.panel-row { @apply mb-3 rounded-lg border border-zinc-200 bg-white; }
-	.panel-row td { @apply border-0 border-b border-zinc-100; }
-	.panel-row td:last-child { @apply border-b-0; }
-	.col-num, .col-shot, .col-action, .col-dialogue { width: auto; }
+	.shooting-header {
+		@apply mb-4 border-b-2 border-zinc-900 pb-3;
+	}
+
+	.card-list {
+		@apply flex flex-col gap-3;
+	}
 </style>

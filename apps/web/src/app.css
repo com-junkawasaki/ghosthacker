@@ -1,13 +1,37 @@
 @import "tailwindcss";
+@import "@skeletonlabs/skeleton";
+@import "@skeletonlabs/skeleton/themes/nouveau.css";
 
 @layer base {
 	* {
 		@apply box-border;
+		-webkit-tap-highlight-color: transparent;
 	}
 
 	html,
 	body {
-		@apply m-0 h-full bg-zinc-50 text-zinc-900;
+		@apply m-0 h-full text-zinc-900;
 		font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		background: var(--color-surface-50, #f2f2f7);
 	}
+
+	::selection {
+		background: rgba(0, 122, 255, 0.2);
+	}
+
+	::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+	}
+}
+
+/* Apple HIG theme overrides on top of Skeleton nouveau */
+:root, [data-theme='nouveau'] {
+	--color-primary-500: oklch(58.87% 0.24 264deg); /* #007AFF */
+	--radius-base: 0.5rem;
+	--radius-container: 0.75rem;
+	--spacing: 0.25rem;
+	--body-background-color: #f2f2f7;
 }

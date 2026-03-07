@@ -10,130 +10,108 @@
 	}>();
 
 	const dispatch = createEventDispatcher();
-
 	let container = $state<HTMLElement | null>(null);
 
-	// Derived states
 	let pagesMap = $derived(panels.reduce((acc: Record<number, Panel[]>, panel: Panel) => {
 		const pageNum = panel.pageNumber;
-		if (!acc[pageNum]) {
-			acc[pageNum] = [];
-		}
+		if (!acc[pageNum]) acc[pageNum] = [];
 		acc[pageNum].push(panel);
 		return acc;
 	}, {} as Record<number, Panel[]>));
 
-	let pageNumbers = $derived(Object.keys(pagesMap)
-		.map(Number)
-		.sort((a, b) => a - b));
+	let pageNumbers = $derived(Object.keys(pagesMap).map(Number).sort((a, b) => a - b));
 
 	function handlePanelUpdate(pageNumber: number, panel: number, data: PanelData) {
-		dispatch('update', {
-			pageNumber,
-			panel,
-			data,
-		});
+		dispatch('update', { pageNumber, panel, data });
 	}
 
 	function handleAgentTrigger(agent: string) {
 		dispatch('agentTrigger', { agent });
 	}
 
+	let lastDispatchedPage = $state(1);
+
 	function handleScroll() {
 		if (!container) return;
-
 		const sections = container.querySelectorAll('.page-section');
 		let currentVisiblePage = 1;
 		const containerRect = container.getBoundingClientRect();
 		const threshold = containerRect.top + containerRect.height / 3;
-
 		for (const section of sections) {
 			const rect = section.getBoundingClientRect();
 			if (rect.top <= threshold) {
 				const pageNumAttr = section.getAttribute('data-page');
-				if (pageNumAttr) {
-					currentVisiblePage = Number(pageNumAttr);
-				}
-			} else {
-				break;
-			}
+				if (pageNumAttr) currentVisiblePage = Number(pageNumAttr);
+			} else break;
 		}
-
 		if (currentVisiblePage !== lastDispatchedPage) {
 			lastDispatchedPage = currentVisiblePage;
 			dispatch('pageChange', currentVisiblePage);
 		}
 	}
-
-	let lastDispatchedPage = $state(1);
 </script>
 
-<div class="storyboard-page" bind:this={container} onscroll={handleScroll}>
-	<div class="storyboard-container">
-		<!-- Ghibli-style 5-column layout: カット | 画 | 生成画 | 内容 | 秒 -->
-		<div class="grid-header">
-			<div class="col-cut">カット</div>
-			<div class="col-picture">画</div>
-			<div class="col-picture-generated">生成画</div>
-			<div class="col-content">内容</div>
-			<div class="col-seconds">秒</div>
-		</div>
+<div class="storyboard-scroll" bind:this={container} onscroll={handleScroll}>
+	{#each pageNumbers as pageNum}
+		<div class="page-section" data-page={pageNum}>
+			<button type="button" class="page-header" onclick={() => {
+				dispatch('pageChange', pageNum);
+				dispatch('contextAdd', { type: 'page', data: { pageNumber: pageNum } });
+			}}>
+				Page {pageNum}
+			</button>
 
-		{#each pageNumbers as pageNum}
-			<div class="page-section" data-page={pageNum}>
-				<button type="button" class="page-header" onclick={() => {
-					dispatch('pageChange', pageNum);
-					dispatch('contextAdd', { type: 'page', data: { pageNumber: pageNum } });
-				}}>
-					<div class="page-number">Page {pageNum}</div>
-				</button>
-				
-				<div class="panels-container">
-					{#each pagesMap[pageNum] as panel, i (panel.panel + '-' + i)}
-						<div 
-							class="panel-wrapper" 
-							onclick={() => {
-								dispatch('panelSelect', panel);
-								dispatch('contextAdd', { type: 'panel', data: panel });
-							}}
-							onkeydown={(e) => e.key === 'Enter' && dispatch('panelSelect', panel)}
-							role="button"
-							tabindex="0"
-						>
-							<StoryboardPanel
-								{panel}
-								episodeId={episodeId}
-								storyboardPath={storyboardPath}
-								on:update={(e) => handlePanelUpdate(e.detail.pageNumber, e.detail.panel, e.detail.data)}
-								on:agentTrigger={(e) => handleAgentTrigger(e.detail.agent)}
-							/>
-						</div>
-					{/each}
-				</div>
-
-				{#if pageNum < (pageNumbers[pageNumbers.length - 1] ?? 0)}
-					<hr class="page-divider" />
-				{/if}
+			<div class="panels-list">
+				{#each pagesMap[pageNum] as panel, i (panel.panel + '-' + i)}
+					<div
+						class="panel-tap-area"
+						onclick={() => {
+							dispatch('panelSelect', panel);
+							dispatch('contextAdd', { type: 'panel', data: panel });
+						}}
+						onkeydown={(e) => e.key === 'Enter' && dispatch('panelSelect', panel)}
+						role="button"
+						tabindex="0"
+					>
+						<StoryboardPanel
+							{panel}
+							{episodeId}
+							{storyboardPath}
+							on:update={(e) => handlePanelUpdate(e.detail.pageNumber, e.detail.panel, e.detail.data)}
+							on:agentTrigger={(e) => handleAgentTrigger(e.detail.agent)}
+						/>
+					</div>
+				{/each}
 			</div>
-		{/each}
-	</div>
+		</div>
+	{/each}
 </div>
 
 <style>
 	@reference "tailwindcss";
 
-	.storyboard-page { @apply flex-1 overflow-y-auto bg-zinc-50 p-2; }
-	.storyboard-container { @apply mx-auto w-full max-w-[1400px] overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm; }
-	.page-section { @apply relative; }
-	.page-header { @apply cursor-pointer border-b border-zinc-200 bg-zinc-100/80 px-4 py-4 text-center transition hover:bg-zinc-100; }
-	.page-number { @apply text-base font-semibold tracking-wide text-zinc-700; }
-	.page-divider { @apply my-5 h-0 border-0 border-t-2 border-zinc-300; }
-	.grid-header {
-		@apply hidden;
-		grid-template-columns: 80px 1fr 1fr 400px 60px;
+	.storyboard-scroll {
+		@apply flex-1 overflow-y-auto px-4 py-3;
+		-webkit-overflow-scrolling: touch;
 	}
-	.col-cut, .col-picture, .col-picture-generated, .col-content, .col-seconds { @apply border-r border-zinc-300 px-3 py-3 text-center; }
-	.col-cut:last-child, .col-picture:last-child, .col-picture-generated:last-child, .col-content:last-child, .col-seconds:last-child { @apply border-r-0; }
-	.panels-container { @apply flex flex-col; }
-	.panel-wrapper { @apply cursor-pointer transition hover:bg-sky-50/60 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-0; }
+
+	.page-section {
+		@apply mb-6;
+	}
+
+	.page-header {
+		@apply mb-3 w-full text-left text-[13px] font-semibold uppercase tracking-wider text-zinc-400;
+	}
+
+	.panels-list {
+		@apply flex flex-col gap-3;
+	}
+
+	.panel-tap-area {
+		@apply cursor-pointer rounded-2xl transition active:scale-[0.98];
+	}
+	.panel-tap-area:focus-visible {
+		outline: 2px solid #007aff;
+		outline-offset: 2px;
+	}
 </style>

@@ -5,6 +5,8 @@
 	import { create } from '@bufbuild/protobuf';
 	import { generatePanelDialogue, submitGenerationJob, cancelGenerationJob, storyboardClient } from '$lib/client/storyboard-client';
 	import { getJobForPanel } from '$lib/stores/job-store.svelte';
+	import { Dialog, Progress } from '@skeletonlabs/skeleton-svelte';
+	import { ChevronLeft, ChevronRight, Wand2, Pencil, MessageSquare, Sparkles, X } from 'lucide-svelte';
 
 	export let panel: Panel;
 	export let episodeId: string = '';
@@ -27,264 +29,110 @@
 	let imageLoadFailed = false;
 	let generatingImage = false;
 	let imageError = '';
-	let selectedModel = 'local'; // 'openrouter' or 'local' (default: animage/animagine local)
+	let selectedModel = 'local';
 	let activeJobId = '';
 	let generatingDialogue = false;
 	let dialogueError = '';
 	let generatingCinematic = false;
 	let cinematicError = '';
 	let fieldPrefix = '';
+	let showActions = false;
 	$: fieldPrefix = `panel-${panel.pageNumber}-${panel.panel}`;
 
-	// Reactive: update when panel prop changes (important for initial data load)
 	$: if (panel.data?.generatedImages) {
 		generatedImages = panel.data.generatedImages;
 		currentImageIndex = panel.data.currentImageIndex ?? (generatedImages.length > 0 ? generatedImages.length - 1 : -1);
 	}
 
 	function getBackendBaseUrl(): string {
-		if (typeof window !== 'undefined') {
-			return window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin;
-		}
+		if (typeof window !== 'undefined') return window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin;
 		return 'http://localhost:8081';
 	}
 
 	function resolveImageUrl(rawUrl: string): string {
 		const url = (rawUrl ?? '').trim();
 		if (!url) return '';
-		if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
-			return url;
-		}
-
-		// Handle accidental absolute local filesystem path.
+		if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) return url;
 		const marker = '/resources/images/';
 		const markerIndex = url.indexOf(marker);
-		if (markerIndex >= 0) {
-			const rel = url.slice(markerIndex + marker.length);
-			return `${getBackendBaseUrl()}/images/${rel}`;
-		}
-
-		if (url.startsWith('/')) {
-			return `${getBackendBaseUrl()}${url}`;
-		}
+		if (markerIndex >= 0) return `${getBackendBaseUrl()}/images/${url.slice(markerIndex + marker.length)}`;
+		if (url.startsWith('/')) return `${getBackendBaseUrl()}${url}`;
 		return `${getBackendBaseUrl()}/${url}`;
 	}
 
-	// Computed: current image URL (convert relative path to full URL)
-	$: currentImageUrl = currentImageIndex >= 0 && currentImageIndex < generatedImages.length 
-		? (() => {
-			const url = generatedImages[currentImageIndex]?.imageUrl ?? '';
-			return resolveImageUrl(url);
-		})()
+	$: currentImageUrl = currentImageIndex >= 0 && currentImageIndex < generatedImages.length
+		? resolveImageUrl(generatedImages[currentImageIndex]?.imageUrl ?? '')
 		: '';
 
-	$: if (currentImageUrl) {
-		imageLoadFailed = false;
-	}
+	$: if (currentImageUrl) imageLoadFailed = false;
 
-	function startEdit() {
-		editing = true;
-	}
+	function startEdit() { editing = true; showActions = false; }
 
 	function saveEdit() {
-		console.log('[StoryboardPanel] saveEdit: saving data', {
-			generatedImages: generatedImages.map(img => ({
-				imageUrl: img.imageUrl,
-				imagePrompt: img.imagePrompt,
-				generatedAt: img.generatedAt?.toString(),
-				model: img.model
-			})),
-			currentImageIndex,
-			panelNumber: panel.panel,
-			pageNumber: panel.pageNumber,
-			generatedImagesCount: generatedImages.length
-		});
-		
-		// Ensure all GeneratedImage objects are properly created with schema
-		const serializedImages = generatedImages.map((img, idx) => {
-			// If already a GeneratedImage type, use as is, otherwise create from schema
+		const serializedImages = generatedImages.map((img) => {
 			if (img && typeof img === 'object' && 'imageUrl' in img) {
-				const serialized = create(GeneratedImageSchema, {
-					imageUrl: img.imageUrl || '',
-					imagePrompt: img.imagePrompt || '',
+				return create(GeneratedImageSchema, {
+					imageUrl: img.imageUrl || '', imagePrompt: img.imagePrompt || '',
 					generatedAt: typeof img.generatedAt === 'bigint' ? img.generatedAt : BigInt(img.generatedAt || Date.now()),
 					model: img.model || 'google/gemini-3-pro-image-preview'
 				});
-				console.log(`[StoryboardPanel] saveEdit: serialized image ${idx}`, {
-					imageUrl: serialized.imageUrl,
-					imagePrompt: serialized.imagePrompt,
-					generatedAt: serialized.generatedAt?.toString(),
-					model: serialized.model
-				});
-				return serialized;
 			}
-			console.warn(`[StoryboardPanel] saveEdit: image ${idx} is not a valid GeneratedImage`, img);
 			return img;
 		});
-		
-		const updatedData = create(PanelDataSchema, {
-			characters: characters,
-			dialogue: dialogues,
-			environment: environment,
-			visualNote: visualNote,
-			cameraDirection: cameraDirection,
-			durationSeconds: durationSeconds,
-			cutNumber: cutNumber,
-			shot: shot,
-			runwayPrompt: runwayPrompt,
-			generatedImages: serializedImages,
-			currentImageIndex: currentImageIndex,
-		});
 
-		console.log('[StoryboardPanel] saveEdit: created PanelData', {
-			generatedImagesCount: updatedData.generatedImages?.length || 0,
-			currentImageIndex: updatedData.currentImageIndex,
-			generatedImages: updatedData.generatedImages?.map(img => ({
-				imageUrl: img.imageUrl,
-				imagePrompt: img.imagePrompt?.substring(0, 50) + '...',
-				generatedAt: img.generatedAt?.toString(),
-				model: img.model
-			}))
+		const updatedData = create(PanelDataSchema, {
+			characters, dialogue: dialogues, environment, visualNote, cameraDirection, durationSeconds,
+			cutNumber, shot, runwayPrompt, generatedImages: serializedImages, currentImageIndex,
 		});
 		dispatch('update', updatedData);
-		editing = false;
+		editing = false; showActions = false;
 	}
 
 	function cancelEdit() {
 		editing = false;
-		// Reset to original values
-		cutNumber = panel.cutNumber ?? '';
-		visualNote = panel.data?.visualNote ?? '';
-		cameraDirection = panel.data?.cameraDirection ?? '';
-		durationSeconds = panel.data?.durationSeconds ?? 0;
-		dialogues = panel.data?.dialogue ?? [];
-		characters = panel.data?.characters ?? [];
-		environment = panel.data?.environment ?? '';
-		shot = panel.data?.shot ?? '';
-		runwayPrompt = panel.data?.runwayPrompt ?? '';
-		generatedImages = panel.data?.generatedImages ?? [];
+		cutNumber = panel.cutNumber ?? ''; visualNote = panel.data?.visualNote ?? '';
+		cameraDirection = panel.data?.cameraDirection ?? ''; durationSeconds = panel.data?.durationSeconds ?? 0;
+		dialogues = panel.data?.dialogue ?? []; characters = panel.data?.characters ?? [];
+		environment = panel.data?.environment ?? ''; shot = panel.data?.shot ?? '';
+		runwayPrompt = panel.data?.runwayPrompt ?? ''; generatedImages = panel.data?.generatedImages ?? [];
 		currentImageIndex = panel.data?.currentImageIndex ?? (generatedImages.length > 0 ? generatedImages.length - 1 : -1);
-		imageError = '';
-		dialogueError = '';
+		imageError = ''; dialogueError = ''; showActions = false;
 	}
 
 	async function handleGenerateDialogue() {
 		if (generatingDialogue || !episodeId) return;
-
-		generatingDialogue = true;
-		dialogueError = '';
-
+		generatingDialogue = true; dialogueError = '';
 		try {
-			const panelData = create(PanelDataSchema, {
-				characters: characters,
-				dialogue: dialogues,
-				environment: environment,
-				visualNote: visualNote,
-				cameraDirection: cameraDirection,
-				durationSeconds: durationSeconds,
-				cutNumber: cutNumber,
-				shot: shot,
-				runwayPrompt: runwayPrompt,
-			});
-
-			const result = await generatePanelDialogue(storyboardPath, episodeId, panel.pageNumber, panel.panel, panelData, {
-				// "dialogue に対して生成" を優先、短いドラマ調
-				maxLines: dialogues.length > 0 ? dialogues.length : 0,
-				style: 'cinematic drama, Japanese, short lines, actor-friendly delivery',
-				strictKnownFacts: true,
-			});
-
+			const panelData = create(PanelDataSchema, { characters, dialogue: dialogues, environment, visualNote, cameraDirection, durationSeconds, cutNumber, shot, runwayPrompt });
+			const result = await generatePanelDialogue(storyboardPath, episodeId, panel.pageNumber, panel.panel, panelData, { maxLines: dialogues.length > 0 ? dialogues.length : 0, style: 'cinematic drama, Japanese, short lines, actor-friendly delivery', strictKnownFacts: true });
 			if (result.success && result.dialogue) {
-				// Replace dialogue lines with generated ones (keep schema)
-				dialogues = result.dialogue.map((d) =>
-					create(DialogueSchema, {
-						speaker: d.speaker ?? '',
-						text: d.text ?? '',
-						delivery: d.delivery ?? '',
-						subtext: d.subtext ?? '',
-						emotion: d.emotion ?? '',
-						pauseBeforeMs: d.pauseBeforeMs ?? 0,
-						pauseAfterMs: d.pauseAfterMs ?? 0,
-					})
-				);
-				// Auto-save after generation
+				dialogues = result.dialogue.map((d) => create(DialogueSchema, { speaker: d.speaker ?? '', text: d.text ?? '', delivery: d.delivery ?? '', subtext: d.subtext ?? '', emotion: d.emotion ?? '', pauseBeforeMs: d.pauseBeforeMs ?? 0, pauseAfterMs: d.pauseAfterMs ?? 0 }));
 				saveEdit();
-			} else {
-				dialogueError = result.message || 'Failed to generate dialogue';
-			}
-		} catch (err) {
-			dialogueError = err instanceof Error ? err.message : 'Unknown error';
-			console.error('[StoryboardPanel] Error generating dialogue:', err);
-		} finally {
-			generatingDialogue = false;
-		}
+			} else dialogueError = result.message || 'Failed to generate dialogue';
+		} catch (err) { dialogueError = err instanceof Error ? err.message : 'Unknown error'; } finally { generatingDialogue = false; }
 	}
 
 	function getAvatarUrl(speaker: string) {
 		if (!speaker || speaker === 'Narration' || speaker === 'NewsHacker') return '';
-		
-		// Map speaker names to IDs if necessary
-		const id = speaker;
-		const baseUrl = typeof window !== 'undefined' 
-			? (window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin)
-			: 'http://localhost:8081';
-		return `${baseUrl}/images/characters/${id}.png`;
+		const baseUrl = typeof window !== 'undefined' ? (window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin) : 'http://localhost:8081';
+		return `${baseUrl}/images/characters/${speaker}.png`;
 	}
 
 	async function handleGenerateImage() {
 		if (generatingImage || !episodeId) return;
-
-		generatingImage = true;
-		imageError = '';
-
+		generatingImage = true; imageError = '';
 		try {
-			const panelData = create(PanelDataSchema, {
-				characters: characters,
-				dialogue: dialogues,
-				environment: environment,
-				visualNote: visualNote,
-				cameraDirection: cameraDirection,
-				durationSeconds: durationSeconds,
-				cutNumber: cutNumber,
-				shot: shot,
-				runwayPrompt: runwayPrompt,
-			});
-
-			console.log('[StoryboardPanel] Submitting generation job');
-
-			const result = await submitGenerationJob(
-				storyboardPath,
-				episodeId,
-				panel.pageNumber,
-				panel.panel,
-				panelData,
-				selectedModel
-			);
-
-			if (result.success && result.jobId) {
-				activeJobId = result.jobId;
-				// Progress will be updated via StreamUpdates -> job-store
-				// generatingImage stays true until job completes
-			} else {
-				imageError = result.message || 'Failed to submit job';
-				generatingImage = false;
-			}
-		} catch (err) {
-			imageError = err instanceof Error ? err.message : 'Unknown error';
-			console.error('[StoryboardPanel] Error submitting generation job:', err);
-			generatingImage = false;
-		}
+			const panelData = create(PanelDataSchema, { characters, dialogue: dialogues, environment, visualNote, cameraDirection, durationSeconds, cutNumber, shot, runwayPrompt });
+			const result = await submitGenerationJob(storyboardPath, episodeId, panel.pageNumber, panel.panel, panelData, selectedModel);
+			if (result.success && result.jobId) { activeJobId = result.jobId; }
+			else { imageError = result.message || 'Failed to submit job'; generatingImage = false; }
+		} catch (err) { imageError = err instanceof Error ? err.message : 'Unknown error'; generatingImage = false; }
 	}
 
 	async function handleCancelGeneration() {
 		if (!activeJobId) return;
-		try {
-			await cancelGenerationJob(activeJobId);
-		} catch (err) {
-			console.error('[StoryboardPanel] Error cancelling job:', err);
-		}
-		generatingImage = false;
-		activeJobId = '';
+		try { await cancelGenerationJob(activeJobId); } catch (err) { console.error('Cancel error:', err); }
+		generatingImage = false; activeJobId = '';
 	}
 
 	function formatEta(ms: number): string {
@@ -295,945 +143,233 @@
 		return `${secs}s`;
 	}
 
-	// Watch for job completion from store
 	$: {
 		const job = getJobForPanel(episodeId, panel.pageNumber, panel.panel);
-		if (!job && activeJobId && generatingImage) {
-			// Job was removed from store (completed/failed/cancelled)
-			generatingImage = false;
-			activeJobId = '';
-		}
+		if (!job && activeJobId && generatingImage) { generatingImage = false; activeJobId = ''; }
 	}
 
 	async function handleGenerateCinematic() {
 		if (generatingCinematic || !episodeId) return;
-		generatingCinematic = true;
-		cinematicError = '';
+		generatingCinematic = true; cinematicError = '';
 		try {
-			const res = await storyboardClient.generateCinematicSketch({
-				filePath: storyboardPath,
-				episodeId: episodeId,
-				pageNumber: panel.pageNumber,
-				panel: panel.panel
-			});
-			if (!res.success) {
-				cinematicError = res.message;
-			}
-		} catch (err) {
-			cinematicError = err instanceof Error ? err.message : String(err);
-		} finally {
-			generatingCinematic = false;
-		}
+			const res = await storyboardClient.generateCinematicSketch({ filePath: storyboardPath, episodeId, pageNumber: panel.pageNumber, panel: panel.panel });
+			if (!res.success) cinematicError = res.message;
+		} catch (err) { cinematicError = err instanceof Error ? err.message : String(err); } finally { generatingCinematic = false; }
 	}
 
 	function navigateImage(direction: 'prev' | 'next') {
 		if (generatedImages.length === 0) return;
-
-		if (direction === 'prev') {
-			currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : generatedImages.length - 1;
-		} else {
-			currentImageIndex = currentImageIndex < generatedImages.length - 1 ? currentImageIndex + 1 : 0;
-		}
+		if (direction === 'prev') currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : generatedImages.length - 1;
+		else currentImageIndex = currentImageIndex < generatedImages.length - 1 ? currentImageIndex + 1 : 0;
 		saveEdit();
 	}
 
-	function addDialogue() {
-		const newDialogue = create(DialogueSchema, { speaker: '', text: '' });
-		dialogues = [...dialogues, newDialogue];
-	}
+	function addDialogue() { dialogues = [...dialogues, create(DialogueSchema, { speaker: '', text: '' })]; }
+	function removeDialogue(index: number) { dialogues = dialogues.filter((_, i) => i !== index); }
 
-	function removeDialogue(index: number) {
-		dialogues = dialogues.filter((_, i) => i !== index);
+	function summaryNarration(): string {
+		if (visualNote && visualNote.trim().length > 0) return visualNote.trim();
+		if (dialogues.length > 0) { const first = dialogues.find((d) => d.text && d.text.trim().length > 0); if (first?.text) return first.text.trim(); }
+		return 'No narration yet.';
 	}
 </script>
 
-<div class="storyboard-panel-row">
-	<!-- カット列 -->
-	<div class="col-cut">
-		{#if editing}
-			<input
-				type="text"
-				bind:value={cutNumber}
-				placeholder="76"
-				class="cut-input"
-			/>
+<!-- Card -->
+<div class="card preset-surface-50-950 rounded-2xl shadow-sm">
+	<!-- Top Meta Row -->
+	<div class="flex items-center gap-2 px-4 pt-3 pb-2">
+		<span class="inline-flex items-center justify-center rounded-full bg-zinc-900 px-2 py-0.5 text-[11px] font-bold text-white">
+			#{cutNumber || panel.panel}
+		</span>
+		<span class="chip preset-outlined-surface-200-800 text-[11px]">{shot || 'Shot TBD'}</span>
+		{#if durationSeconds > 0}
+			<span class="text-[11px] text-zinc-400">{durationSeconds.toFixed(1)}s</span>
+		{/if}
+		<div class="ml-auto">
+			<button type="button" class="btn btn-sm preset-outlined-surface-200-800 text-[12px] font-semibold" onclick={() => (showActions = !showActions)}>
+				Actions
+			</button>
+		</div>
+	</div>
+
+	<!-- Actions Menu (expandable) -->
+	{#if showActions}
+		<div class="mx-4 mb-2 grid grid-cols-2 gap-1.5 rounded-xl bg-zinc-50 p-2">
+			<button type="button" class="btn btn-sm preset-outlined-surface-200-800 text-[11px]" onclick={handleGenerateImage} disabled={generatingImage}>
+				<Wand2 size={14} /> Generate Image
+			</button>
+			<button type="button" class="btn btn-sm preset-outlined-surface-200-800 text-[11px]" onclick={handleGenerateCinematic} disabled={generatingCinematic}>
+				<Sparkles size={14} /> Sketch AI
+			</button>
+			<button type="button" class="btn btn-sm preset-outlined-surface-200-800 text-[11px]" onclick={() => dispatch('agentTrigger', { agent: 'dialogue' })}>
+				<MessageSquare size={14} /> Dialogue AI
+			</button>
+			<button type="button" class="btn btn-sm preset-outlined-surface-200-800 text-[11px]" onclick={startEdit}>
+				<Pencil size={14} /> Edit Panel
+			</button>
+		</div>
+	{/if}
+
+	<!-- Image Block -->
+	<div class="px-4">
+		<div class="mb-2">
+			<select bind:value={selectedModel} class="w-full appearance-none rounded-lg border border-zinc-200 bg-white px-3 py-2 text-[12px] outline-none" disabled={generatingImage}>
+				<option value="local">Animage / AnimagineXL 4.0 (Local)</option>
+				<option value="openrouter">SeedReam 4.5 (API)</option>
+			</select>
+		</div>
+
+		{#if currentImageUrl && !imageLoadFailed}
+			<div class="relative overflow-hidden rounded-xl bg-zinc-100">
+				{#if generatedImages.length > 1}
+					<button type="button" onclick={() => navigateImage('prev')} class="absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm">
+						<ChevronLeft size={18} />
+					</button>
+				{/if}
+				<img src={currentImageUrl} alt="Generated panel" class="w-full object-contain" style="max-height: 280px;"
+					onerror={() => { imageLoadFailed = true; imageError = `Image could not be loaded`; }} />
+				{#if generatedImages.length > 1}
+					<button type="button" onclick={() => navigateImage('next')} class="absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm">
+						<ChevronRight size={18} />
+					</button>
+					<div class="absolute bottom-2 right-2 rounded-full bg-black/50 px-2 py-0.5 text-[11px] text-white backdrop-blur-sm">
+						{currentImageIndex + 1} / {generatedImages.length}
+					</div>
+				{/if}
+			</div>
 		{:else}
-			<div class="cut-number" onclick={startEdit} onkeydown={(e) => e.key === 'Enter' && startEdit()} role="button" tabindex="0">
-				{cutNumber || panel.panel}
+			<div class="flex min-h-[160px] items-center justify-center rounded-xl bg-zinc-100">
+				<span class="text-3xl font-light text-zinc-300">No Image</span>
 			</div>
 		{/if}
-	</div>
 
-	<!-- 画列（元の画） -->
-	<div class="col-picture">
-		<div class="picture-frame">
-			{#if editing}
-				<div class="cinematic-generation-controls">
-					<button
-						type="button"
-						onclick={handleGenerateCinematic}
-						disabled={generatingCinematic}
-						class="generate-cinematic-btn"
-						title="Generate cinematic sketch and visual prompts"
-					>
-						{generatingCinematic ? '...' : 'Sketch AI'}
-					</button>
-					{#if cinematicError}
-						<div class="cinematic-error">{cinematicError}</div>
-					{/if}
+		{#if generatingImage && activeJobId}
+			{@const job = getJobForPanel(episodeId, panel.pageNumber, panel.panel)}
+			<div class="mt-2 rounded-xl bg-zinc-50 p-3">
+				<Progress value={job && job.totalSteps > 0 ? (job.currentStep / job.totalSteps) * 100 : 0} max={100} />
+				<div class="mt-1 flex items-center justify-between text-[11px] text-zinc-500">
+					<span class="font-semibold">{job?.currentStep ?? 0}/{job?.totalSteps ?? 28}</span>
+					{#if job && job.etaMs > 0}<span>{formatEta(job.etaMs)}</span>{/if}
 				</div>
-				<textarea
-					bind:value={visualNote}
-					placeholder="Visual description..."
-					class="visual-note-input"
-				></textarea>
-				{#if cameraDirection}
-					<div class="camera-note">{cameraDirection}</div>
-				{/if}
-				<input
-					type="text"
-					bind:value={cameraDirection}
-					placeholder="Camera direction (e.g., Followカメラ)"
-					class="camera-input"
-				/>
-			{:else}
-				<div class="visual-placeholder">
-					{#if visualNote}
-						<div class="visual-note">{visualNote}</div>
-					{:else}
-						<div class="placeholder-text">画</div>
-					{/if}
-					{#if cameraDirection}
-						<div class="camera-note">{cameraDirection}</div>
-					{/if}
-				</div>
-			{/if}
-		</div>
-	</div>
-
-	<!-- 画列（生成画像） -->
-	<div class="col-picture-generated">
-		<div class="picture-frame">
-			<div class="image-generation-controls">
-				<select bind:value={selectedModel} class="model-select" disabled={generatingImage}>
-					<option value="local">Animage / AnimagineXL 4.0 (Local)</option>
-					<option value="openrouter">SeedReam 4.5 (API)</option>
-				</select>
-				{#if generatingImage && activeJobId}
-					{@const job = getJobForPanel(episodeId, panel.pageNumber, panel.panel)}
-					<div class="generation-progress">
-						<div class="progress-bar-container">
-							<div class="progress-bar-fill" style="width: {job && job.totalSteps > 0 ? (job.currentStep / job.totalSteps) * 100 : 0}%"></div>
-						</div>
-						<div class="progress-info">
-							<span class="progress-step">{job?.currentStep ?? 0}/{job?.totalSteps ?? 28}</span>
-							{#if job && job.etaMs > 0}
-								<span class="progress-eta">{formatEta(job.etaMs)}</span>
-							{/if}
-						</div>
-						<button type="button" onclick={handleCancelGeneration} class="cancel-btn">Cancel</button>
-					</div>
-				{:else}
-					<button
-						type="button"
-						onclick={handleGenerateImage}
-						disabled={generatingImage}
-						class="generate-btn"
-					>
-						{generatingImage ? 'Submitting...' : 'Generate'}
-					</button>
-				{/if}
-				{#if imageError}
-					<div class="image-error">{imageError}</div>
-				{/if}
+				<button type="button" class="btn btn-sm preset-outlined-error-500 mt-2 w-full text-[11px]" onclick={handleCancelGeneration}>Cancel</button>
 			</div>
-			{#if currentImageUrl && !imageLoadFailed}
-				<div class="generated-image-container">
-					{#if generatedImages.length > 1}
-						<button
-							type="button"
-							onclick={() => navigateImage('prev')}
-							class="image-nav-btn image-nav-prev"
-							title="Previous image"
-						>
-							←
-						</button>
-					{/if}
-					<img
-						src={currentImageUrl}
-						alt="Generated panel preview"
-						class="generated-image"
-						onerror={() => {
-							imageLoadFailed = true;
-							imageError = `Image could not be loaded: ${currentImageUrl}`;
-						}}
-					/>
-					{#if generatedImages.length > 1}
-						<button
-							type="button"
-							onclick={() => navigateImage('next')}
-							class="image-nav-btn image-nav-next"
-							title="Next image"
-						>
-							→
-						</button>
-						<div class="image-counter">
-							{currentImageIndex + 1} / {generatedImages.length}
-						</div>
-					{/if}
-				</div>
-			{:else}
-				<div class="visual-placeholder">
-					<div class="placeholder-text">生成画</div>
-				</div>
-			{/if}
-		</div>
+		{/if}
+		{#if imageError}<div class="mt-2 rounded-lg bg-red-50 px-3 py-2 text-[12px] text-red-600">{imageError}</div>{/if}
+		{#if cinematicError}<div class="mt-2 rounded-lg bg-red-50 px-3 py-2 text-[12px] text-red-600">{cinematicError}</div>{/if}
 	</div>
 
-	<!-- 内容列 -->
-	<div class="col-content">
-		{#if editing}
-			<div class="content-editor">
-				<div class="characters-section">
-					<label for={`${fieldPrefix}-characters`}>Characters:</label>
-					<input
-						id={`${fieldPrefix}-characters`}
-						type="text"
-						value={characters.join(', ')}
-						oninput={(e) => {
-							characters = (e.currentTarget as HTMLInputElement).value
-								.split(',')
-								.map((s) => s.trim())
-								.filter((s) => s);
-						}}
-						placeholder="character:Ren, character:Nei"
-					/>
-				</div>
-				<div class="environment-section">
-					<label for={`${fieldPrefix}-environment`}>Environment:</label>
-					<input
-						id={`${fieldPrefix}-environment`}
-						type="text"
-						bind:value={environment}
-						placeholder="env:ren-office"
-					/>
-				</div>
-				<div class="shot-section">
-					<label for={`${fieldPrefix}-shot`}>Shot Type:</label>
-					<input
-						id={`${fieldPrefix}-shot`}
-						type="text"
-						bind:value={shot}
-						placeholder="Close-up, Wide Shot, etc."
-					/>
-				</div>
-				<div class="prompt-section">
-					<label for={`${fieldPrefix}-prompt`}>Runway Prompt:</label>
-					<textarea
-						id={`${fieldPrefix}-prompt`}
-						bind:value={runwayPrompt}
-						placeholder="Runway base prompt..."
-						class="prompt-input"
-					></textarea>
-				</div>
-				<div class="dialogue-section">
-					<div class="dialogue-label" id={`${fieldPrefix}-dialogue-label`}>Dialogue:</div>
-					<div class="dialogue-generation-controls">
-						<button
-							type="button"
-							onclick={() => dispatch('agentTrigger', { agent: 'dialogue' })}
-							class="generate-dialogue-btn"
-							title="Open Dialogue Agent"
-						>
-							Dialogue AI
-						</button>
-						<button
-							type="button"
-							onclick={handleGenerateDialogue}
-							disabled={generatingDialogue}
-							class="generate-dialogue-btn-legacy"
-						>
-							{generatingDialogue ? 'Generating...' : 'Quick Gen'}
-						</button>
-						{#if dialogueError}
-							<div class="dialogue-error">{dialogueError}</div>
-						{/if}
-					</div>
-					{#each dialogues as dialogue, index}
-						<div class="dialogue-item">
-							<input
-								id={index === 0 ? `${fieldPrefix}-dialogue-first-speaker` : undefined}
-								type="text"
-								bind:value={dialogue.speaker}
-								placeholder="Speaker"
-							/>
-							<input
-								type="text"
-								bind:value={dialogue.text}
-								placeholder="Text"
-							/>
-							<button
-								type="button"
-								onclick={() => removeDialogue(index)}
-								class="remove-btn"
-							>
-								×
-							</button>
+	<!-- Narration Summary -->
+	<div class="mx-4 mt-3 rounded-xl bg-zinc-50 px-3 py-2.5">
+		<div class="mb-0.5 text-[10px] font-semibold uppercase tracking-wider text-zinc-400">Narration</div>
+		<div class="line-clamp-2 text-[13px] leading-relaxed text-zinc-700">{summaryNarration()}</div>
+	</div>
+
+	<!-- Details (collapsible) -->
+	<details class="group mx-4 mt-2 mb-3">
+		<summary class="cursor-pointer py-2 text-[13px] font-semibold text-[#007aff]">Details</summary>
+		<div class="space-y-2 pb-2 text-[12px] text-zinc-600">
+			<div><span class="font-semibold text-zinc-800">Environment:</span> {environment || '-'}</div>
+			<div><span class="font-semibold text-zinc-800">Camera:</span> {cameraDirection || '-'}</div>
+			<div><span class="font-semibold text-zinc-800">Characters:</span> {characters.length ? characters.join(', ') : '-'}</div>
+			{#if runwayPrompt}<div><span class="font-semibold text-zinc-800">Prompt:</span> {runwayPrompt}</div>{/if}
+			{#if dialogues.length > 0}
+				<div class="space-y-2 pt-1">
+					{#each dialogues as dialogue}
+						<div class="border-l-2 border-zinc-200 pl-3">
+							<div class="mb-0.5 flex items-center gap-2">
+								{#if getAvatarUrl(dialogue.speaker)}
+									<img src={getAvatarUrl(dialogue.speaker)} alt={dialogue.speaker} class="h-5 w-5 rounded-full border border-zinc-200 object-cover" onerror={(e) => (e.currentTarget as HTMLImageElement).style.display='none'} />
+								{/if}
+								<strong class="text-zinc-800">{dialogue.speaker}:</strong>
+							</div>
+							<div class="text-zinc-700">{dialogue.text}</div>
 						</div>
 					{/each}
-					<button type="button" onclick={addDialogue} class="add-btn">
-						+ Add Dialogue
-					</button>
 				</div>
-				<div class="actions">
-					<button onclick={saveEdit} class="save-btn">Save</button>
-					<button onclick={cancelEdit} class="cancel-btn">Cancel</button>
-				</div>
-			</div>
-		{:else}
-			<div class="content-display" ondblclick={startEdit} role="button" tabindex="0">
-				{#if characters.length > 0}
-					<div class="characters">
-						Characters: {characters.join(', ')}
-					</div>
-				{/if}
-				{#if environment}
-					<div class="environment">Env: {environment}</div>
-				{/if}
-				{#if shot}
-					<div class="shot">Shot: {shot}</div>
-				{/if}
-				{#if runwayPrompt}
-					<div class="runway-prompt">Prompt: {runwayPrompt}</div>
-				{/if}
-				{#if dialogues.length > 0}
-					<div class="dialogue">
-						{#each dialogues as dialogue}
-							<div class="dialogue-line">
-								<div class="speaker-info">
-									{#if getAvatarUrl(dialogue.speaker)}
-										<img src={getAvatarUrl(dialogue.speaker)} alt={dialogue.speaker} class="speaker-avatar" onerror={(e) => (e.currentTarget as HTMLImageElement).style.display='none'} />
-									{/if}
-									<strong>{dialogue.speaker}:</strong>
-								</div>
-								<div class="dialogue-text-content">
-									{dialogue.text}
-								</div>
-							</div>
-						{/each}
-					</div>
-				{/if}
-				{#if visualNote}
-					<div class="visual-note-text">{visualNote}</div>
-				{/if}
-			</div>
-		{/if}
-	</div>
-
-	<!-- 秒列 -->
-	<div class="col-seconds">
-		{#if editing}
-			<input
-				type="number"
-				bind:value={durationSeconds}
-				step="0.1"
-				min="0"
-				class="duration-input"
-			/>
-		{:else}
-			<div class="duration" onclick={startEdit} onkeydown={(e) => e.key === 'Enter' && startEdit()} role="button" tabindex="0">
-				{durationSeconds > 0 ? durationSeconds.toFixed(1) : '-'}
-			</div>
-		{/if}
-	</div>
+			{/if}
+			{#if dialogueError}<div class="rounded-lg bg-red-50 px-3 py-2 text-red-600">{dialogueError}</div>{/if}
+		</div>
+	</details>
 </div>
+
+<!-- Edit Sheet (iOS Bottom Sheet via Dialog) -->
+{#if editing}
+	<div
+		class="fixed inset-0 z-50 flex items-end bg-black/40"
+		onclick={(e) => e.target === e.currentTarget && cancelEdit()}
+		role="button"
+		tabindex="0"
+		onkeydown={(e) => e.key === 'Escape' && cancelEdit()}
+	>
+		<div class="edit-sheet" role="dialog" aria-modal="true" aria-label="Edit panel" tabindex="-1">
+			<div class="mx-auto mb-3 h-1.5 w-10 rounded-full bg-zinc-300"></div>
+			<div class="flex items-center justify-between pb-3">
+				<h4 class="text-[17px] font-semibold text-zinc-900">Edit Panel {panel.panel}</h4>
+				<div class="flex gap-2">
+					<button class="btn btn-sm preset-filled-primary-500 text-[13px] font-semibold" onclick={saveEdit}>Save</button>
+					<button class="btn btn-sm preset-outlined-surface-200-800 text-[13px]" onclick={cancelEdit}>Cancel</button>
+				</div>
+			</div>
+			<div class="edit-fields">
+				<label class="field-label" for={`${fieldPrefix}-characters`}>Characters</label>
+				<input id={`${fieldPrefix}-characters`} type="text" class="field-input" value={characters.join(', ')}
+					oninput={(e) => { characters = (e.currentTarget as HTMLInputElement).value.split(',').map((s) => s.trim()).filter((s) => s); }}
+					placeholder="character:Ren, character:Nei" />
+
+				<label class="field-label" for={`${fieldPrefix}-environment`}>Environment</label>
+				<input id={`${fieldPrefix}-environment`} type="text" class="field-input" bind:value={environment} placeholder="env:ren-office" />
+
+				<label class="field-label" for={`${fieldPrefix}-shot`}>Shot Type</label>
+				<input id={`${fieldPrefix}-shot`} type="text" class="field-input" bind:value={shot} placeholder="Close-up, Wide Shot..." />
+
+				<label class="field-label" for={`${fieldPrefix}-prompt`}>Runway Prompt</label>
+				<textarea id={`${fieldPrefix}-prompt`} class="field-input min-h-[80px] resize-y" bind:value={runwayPrompt} placeholder="Runway prompt..."></textarea>
+
+				<label class="field-label" for={`${fieldPrefix}-visual`}>Narration / Visual note</label>
+				<textarea id={`${fieldPrefix}-visual`} class="field-input min-h-[80px] resize-y" bind:value={visualNote} placeholder="Visual description..."></textarea>
+				<input type="text" class="field-input mt-1" bind:value={cameraDirection} placeholder="Camera direction" />
+
+				<label class="field-label" for={`${fieldPrefix}-duration`}>Duration (s)</label>
+				<input id={`${fieldPrefix}-duration`} type="number" class="field-input w-24" bind:value={durationSeconds} step="0.1" min="0" />
+
+				<div class="field-label">Dialogue</div>
+				{#each dialogues as dialogue, index}
+					<div class="flex items-center gap-2 mb-2">
+						<input type="text" class="field-input flex-1" bind:value={dialogue.speaker} placeholder="Speaker" />
+						<input type="text" class="field-input flex-[2]" bind:value={dialogue.text} placeholder="Text" />
+						<button type="button" class="btn-icon btn-sm preset-outlined-error-500" onclick={() => removeDialogue(index)}>
+							<X size={14} />
+						</button>
+					</div>
+				{/each}
+				<button type="button" class="btn btn-sm preset-outlined-success-500 text-[12px]" onclick={addDialogue}>+ Add Dialogue</button>
+			</div>
+		</div>
+	</div>
+{/if}
 
 <style>
 	@reference "tailwindcss";
 
-	.storyboard-panel-row {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 0;
-		border-bottom: 1px solid #d4d4d8;
-		min-height: auto;
-		background: #fff;
+	.edit-sheet {
+		@apply max-h-[85dvh] w-full overflow-y-auto rounded-t-[20px] bg-white px-5 pb-8 pt-3;
+		padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+		box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.12);
 	}
 
-	.storyboard-panel-row:hover {
-		background: #fafafa;
+	.edit-fields {
+		@apply flex flex-col;
 	}
 
-	.col-cut,
-	.col-picture,
-	.col-picture-generated,
-	.col-content,
-	.col-seconds {
-		padding: 0.75rem;
-		border-right: none;
-		border-bottom: 1px solid #ececf0;
-		display: flex;
-		align-items: flex-start;
-		min-width: 0;
+	.field-label {
+		@apply mb-1 mt-3 text-[12px] font-semibold text-zinc-500;
 	}
 
-	.col-seconds {
-		border-bottom: none;
+	.field-input {
+		@apply w-full rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2.5 text-[14px] text-zinc-900 outline-none transition;
 	}
-
-	/* カット列 */
-	.cut-number {
-		font-size: 1.2rem;
-		font-weight: 600;
-		color: #333;
-		cursor: pointer;
-		text-align: left;
-		width: 100%;
-	}
-
-	.cut-input {
-		width: 100%;
-		padding: 0.5rem;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		font-size: 1rem;
-		text-align: center;
-	}
-
-	/* 画列 */
-	.picture-frame {
-		width: 100%;
-		min-height: 150px;
-		border: 2px solid #ccc;
-		border-radius: 4px;
-		background: #f9f9f9;
-		position: relative;
-		padding: 0.5rem;
-		overflow: hidden;
-	}
-
-	.visual-placeholder {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.placeholder-text {
-		font-size: 2rem;
-		color: #ccc;
-		font-weight: 300;
-	}
-
-	.visual-note {
-		font-size: 0.85rem;
-		color: #555;
-		line-height: 1.4;
-		margin-bottom: 0.5rem;
-	}
-
-	.visual-note-input {
-		width: 100%;
-		min-height: 100px;
-		padding: 0.5rem;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		font-size: 0.85rem;
-		resize: vertical;
-		font-family: inherit;
-	}
-
-	.camera-note {
-		font-size: 0.75rem;
-		color: #888;
-		font-style: italic;
-		margin-top: 0.5rem;
-		padding: 0.25rem 0.5rem;
-		background: #fff3cd;
-		border-radius: 3px;
-	}
-
-	.camera-input {
-		width: 100%;
-		margin-top: 0.5rem;
-		padding: 0.5rem;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		font-size: 0.85rem;
-	}
-
-	/* 生成画像列 */
-	.col-picture-generated {
-		position: relative;
-	}
-
-	.generated-image {
-		width: 100%;
-		height: auto;
-		border-radius: 4px;
-		object-fit: contain;
-		max-height: 220px;
-	}
-
-	.image-generation-controls {
-		width: 100%;
-		margin-bottom: 0.5rem;
-		display: flex;
-		gap: 0.25rem;
-		flex-wrap: wrap;
-	}
-
-	.model-select {
-		flex: 1;
-		padding: 0.5rem 0.25rem;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		background: white;
-	}
-
-	.generate-btn {
-		flex: 0 0 auto;
-		padding: 0.5rem;
-		background: #4caf50;
-		color: white;
-		border: none;
-		border-radius: 4px;
-		cursor: pointer;
-		font-size: 0.85rem;
-		font-weight: 600;
-	}
-
-	.generate-btn:hover:not(:disabled) {
-		background: #45a049;
-	}
-
-	.generate-btn:disabled {
-		background: #ccc;
-		cursor: not-allowed;
-	}
-
-	.generation-progress {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		width: 100%;
-	}
-
-	.progress-bar-container {
-		width: 100%;
-		height: 6px;
-		background: #e0e0e0;
-		border-radius: 3px;
-		overflow: hidden;
-	}
-
-	.progress-bar-fill {
-		height: 100%;
-		background: #4caf50;
-		border-radius: 3px;
-		transition: width 0.5s ease;
-	}
-
-	.progress-info {
-		display: flex;
-		justify-content: space-between;
-		font-size: 0.7rem;
-		color: #666;
-	}
-
-	.progress-step {
-		font-weight: 600;
-	}
-
-	.progress-eta {
-		color: #999;
-	}
-
-	.cancel-btn {
-		padding: 0.25rem 0.5rem;
-		background: #f44336;
-		color: white;
-		border: none;
-		border-radius: 3px;
-		cursor: pointer;
-		font-size: 0.7rem;
-		font-weight: 600;
-	}
-
-	.cancel-btn:hover {
-		background: #d32f2f;
-	}
-
-	.image-error {
-		margin-top: 0.5rem;
-		padding: 0.5rem;
-		background: #fee;
-		color: #c00;
-		border: 1px solid #fcc;
-		border-radius: 4px;
-		font-size: 0.75rem;
-	}
-
-	.generated-image-container {
-		position: relative;
-		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.generated-image {
-		width: 100%;
-		height: auto;
-		border-radius: 4px;
-		object-fit: contain;
-		max-height: 300px;
-	}
-
-	.image-nav-btn {
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		background: rgba(0, 0, 0, 0.6);
-		color: white;
-		border: none;
-		border-radius: 50%;
-		width: 32px;
-		height: 32px;
-		cursor: pointer;
-		font-size: 1.2rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		z-index: 10;
-		transition: background 0.2s;
-	}
-
-	.image-nav-btn:hover {
-		background: rgba(0, 0, 0, 0.8);
-	}
-
-	.image-nav-prev {
-		left: 8px;
-	}
-
-	.image-nav-next {
-		right: 8px;
-	}
-
-	.image-counter {
-		position: absolute;
-		bottom: 8px;
-		right: 8px;
-		background: rgba(0, 0, 0, 0.6);
-		color: white;
-		padding: 4px 8px;
-		border-radius: 4px;
-		font-size: 0.75rem;
-		z-index: 10;
-	}
-
-	/* 内容列 */
-	.content-display {
-		width: 100%;
-		cursor: pointer;
-		font-size: 0.9rem;
-		line-height: 1.6;
-	}
-
-	.content-display:hover {
-		background: #f0f0f0;
-		padding: 0.5rem;
-		border-radius: 4px;
-	}
-
-	.characters {
-		font-weight: 600;
-		color: #555;
-		margin-bottom: 0.5rem;
-	}
-
-	.environment {
-		font-size: 0.85rem;
-		color: #777;
-		margin-bottom: 0.5rem;
-	}
-
-	.shot {
-		font-size: 0.85rem;
-		font-weight: 600;
-		color: #444;
-		margin-bottom: 0.5rem;
-	}
-
-	.runway-prompt {
-		font-size: 0.8rem;
-		color: #666;
-		background: #f0f0f0;
-		padding: 0.5rem;
-		border-radius: 4px;
-		margin-top: 0.5rem;
-		word-break: break-all;
-	}
-
-	.dialogue {
-		margin-top: 0.5rem;
-	}
-
-	.dialogue-line {
-		margin-bottom: 0.5rem;
-		padding-left: 1rem;
-		border-left: 2px solid #ddd;
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-	}
-
-	.speaker-info {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-	}
-
-	.speaker-avatar {
-		width: 24px;
-		height: 24px;
-		border-radius: 50%;
-		object-fit: cover;
-		border: 1px solid #ddd;
-		background: #eee;
-	}
-
-	.dialogue-text-content {
-		padding-left: 0;
-	}
-
-	.dialogue-line strong {
-		color: #333;
-	}
-
-	.visual-note-text {
-		margin-top: 0.5rem;
-		font-size: 0.85rem;
-		color: #666;
-		font-style: italic;
-	}
-
-	.content-editor {
-		width: 100%;
-	}
-
-	.content-editor label {
-		display: block;
-		font-weight: 600;
-		margin-top: 0.75rem;
-		margin-bottom: 0.25rem;
-		font-size: 0.85rem;
-		color: #555;
-	}
-
-	.dialogue-label {
-		display: block;
-		font-weight: 600;
-		margin-top: 0.75rem;
-		margin-bottom: 0.25rem;
-		font-size: 0.85rem;
-		color: #555;
-	}
-
-	.content-editor input[type='text'],
-	.content-editor textarea {
-		width: 100%;
-		padding: 0.5rem;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		font-size: 0.9rem;
-		margin-bottom: 0.5rem;
-		font-family: inherit;
-	}
-
-	.content-editor textarea {
-		min-height: 80px;
-		resize: vertical;
-	}
-
-	.dialogue-item {
-		display: flex;
-		gap: 0.5rem;
-		margin-bottom: 0.5rem;
-		align-items: center;
-	}
-
-	.dialogue-item input {
-		flex: 1;
-	}
-
-	.remove-btn {
-		padding: 0.25rem 0.5rem;
-		background: #fee;
-		border: 1px solid #fcc;
-		border-radius: 4px;
-		cursor: pointer;
-		color: #c00;
-	}
-
-	.add-btn {
-		padding: 0.5rem 1rem;
-		background: #e8f5e9;
-		border: 1px solid #c8e6c9;
-		border-radius: 4px;
-		cursor: pointer;
-		color: #2e7d32;
-		font-size: 0.85rem;
-		margin-top: 0.5rem;
-	}
-
-	.actions {
-		display: flex;
-		gap: 0.5rem;
-		margin-top: 1rem;
-	}
-
-	.save-btn,
-	.cancel-btn {
-		padding: 0.5rem 1rem;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		cursor: pointer;
-		font-size: 0.9rem;
-	}
-
-	.save-btn {
-		background: #4caf50;
-		color: white;
-		border-color: #4caf50;
-	}
-
-	.cancel-btn {
-		background: #fff;
-		color: #666;
-	}
-
-	/* 秒列 */
-	.duration {
-		text-align: left;
-		font-size: 0.95rem;
-		color: #666;
-		cursor: pointer;
-		width: 100%;
-	}
-
-	.duration-input {
-		width: 100%;
-		padding: 0.5rem;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		font-size: 1rem;
-		text-align: center;
-	}
-
-	.dialogue-generation-controls {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		margin-bottom: 0.75rem;
-	}
-
-	.generate-dialogue-btn {
-		width: 100%;
-		padding: 0.5rem;
-		background: #e74c3c;
-		color: white;
-		border: none;
-		border-radius: 4px;
-		cursor: pointer;
-		font-size: 0.85rem;
-		font-weight: 600;
-		margin-bottom: 0.25rem;
-	}
-
-	.generate-dialogue-btn:hover {
-		background: #c0392b;
-	}
-
-	.generate-dialogue-btn-legacy {
-		width: 100%;
-		padding: 0.4rem;
-		background: #1976d2;
-		color: white;
-		border: none;
-		border-radius: 4px;
-		cursor: pointer;
-		font-size: 0.75rem;
-		font-weight: 600;
-	}
-
-	.generate-dialogue-btn-legacy:hover:not(:disabled) {
-		background: #1565c0;
-	}
-
-	.generate-dialogue-btn-legacy:disabled {
-		background: #ccc;
-		cursor: not-allowed;
-	}
-
-	.cinematic-generation-controls {
-		position: absolute;
-		top: 5px;
-		right: 5px;
-		z-index: 5;
-	}
-
-	.generate-cinematic-btn {
-		padding: 0.25rem 0.5rem;
-		background: #e67e22;
-		color: white;
-		border: none;
-		border-radius: 4px;
-		cursor: pointer;
-		font-size: 0.7rem;
-		font-weight: 600;
-	}
-
-	.generate-cinematic-btn:hover:not(:disabled) {
-		background: #d35400;
-	}
-
-	.cinematic-error {
-		position: absolute;
-		top: 100%;
-		right: 0;
-		background: #fee;
-		color: #c00;
-		font-size: 0.6rem;
-		padding: 2px 4px;
-		border-radius: 2px;
-		white-space: nowrap;
-	}
-
-	.dialogue-error {
-		padding: 0.5rem;
-		background: #fee;
-		color: #c00;
-		border: 1px solid #fcc;
-		border-radius: 4px;
-		font-size: 0.75rem;
-	}
-
-	.model-select,
-	.generate-btn,
-	.generate-dialogue-btn,
-	.generate-dialogue-btn-legacy,
-	.save-btn,
-	.cancel-btn {
-		min-height: 38px;
-	}
-
-	.content-display {
-		font-size: 0.85rem;
-		line-height: 1.5;
+	.field-input:focus {
+		@apply border-[#007aff] bg-white;
+		box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.12);
 	}
 </style>
