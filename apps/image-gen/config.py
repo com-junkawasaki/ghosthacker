@@ -3,6 +3,7 @@
 # Model settings
 MODEL_ID = "cagliostrolab/animagine-xl-4.0"
 PHOTOREALISTIC_MODEL_ID = "SG161222/RealVisXL_V4.0"
+LIGHTNING_MODEL_ID = "SG161222/RealVisXL_V4.0_Lightning"
 VAE_ID = "madebyollin/sdxl-vae-fp16-fix"
 
 # Default generation parameters
@@ -68,6 +69,17 @@ ASPECT_RATIOS = {
     "2:3": (768, 1152),
 }
 
+# Smaller aspect ratios for fast cinematic mode
+FAST_ASPECT_RATIOS = {
+    "16:9": (896, 512),
+    "9:16": (512, 896),
+    "1:1": (768, 768),
+    "4:3": (768, 576),
+    "3:4": (576, 768),
+    "3:2": (768, 512),
+    "2:3": (512, 768),
+}
+
 # Photorealistic negative prompt (for stage 1)
 PHOTOREALISTIC_NEGATIVE_PROMPT = (
     "lowres, bad anatomy, bad hands, text, error, missing finger, "
@@ -81,6 +93,12 @@ PHOTOREALISTIC_NEGATIVE_PROMPT = (
 STYLE_TRANSFER_DENOISING = 0.65
 STYLE_TRANSFER_STEPS = 28
 STYLE_TRANSFER_GUIDANCE = 7.0
+
+# Lightning fast settings (4 steps, low guidance)
+LIGHTNING_STEPS = 6
+LIGHTNING_GUIDANCE = 1.5
+LIGHTNING_STYLE_TRANSFER_STEPS = 8
+LIGHTNING_STYLE_TRANSFER_DENOISING = 0.6
 
 # LCM-LoRA acceleration settings
 LCM_LORA_ID = "latent-consistency/lcm-lora-sdxl"

@@ -8,7 +8,7 @@
 		storyboardPath?: string;
 	}>();
 
-	let selectedModel: 'local' | 'cinematic' = $state('local');
+	let selectedModel: 'local' | 'cinematic' | 'cinematic-fast' = $state('cinematic-fast');
 	let generatingPanels: Set<string> = $state(new Set());
 
 	function panelKey(panel: Panel): string {
@@ -80,8 +80,9 @@
 <div class="webtoon-scroll">
 	<div class="webtoon-controls">
 		<select bind:value={selectedModel} class="model-select">
-			<option value="local">AnimagineXL (local)</option>
-			<option value="cinematic">Cinematic (photo→anime)</option>
+			<option value="cinematic-fast">Cinematic Fast (~1min)</option>
+			<option value="cinematic">Cinematic HQ (~10min)</option>
+			<option value="local">AnimagineXL</option>
 		</select>
 	</div>
 	<div class="webtoon-strip">

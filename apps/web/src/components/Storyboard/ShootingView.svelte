@@ -8,7 +8,7 @@
 		storyboardPath?: string;
 	}>();
 
-	let selectedModel: 'local' | 'cinematic' = $state('cinematic');
+	let selectedModel: 'local' | 'cinematic' | 'cinematic-fast' = $state('cinematic-fast');
 	let generatingPanels: Set<string> = $state(new Set());
 
 	function panelKey(panel: Panel): string {
@@ -80,8 +80,9 @@
 		<div class="flex items-center justify-between">
 			<h1 class="text-[15px] font-black uppercase tracking-[0.1em] text-zinc-900">Shooting Script: {episodeId}</h1>
 			<select bind:value={selectedModel} class="model-select">
+				<option value="cinematic-fast">Cinematic Fast (~1min)</option>
+				<option value="cinematic">Cinematic HQ (~10min)</option>
 				<option value="local">AnimagineXL</option>
-				<option value="cinematic">Cinematic (photo→anime)</option>
 			</select>
 		</div>
 	</div>

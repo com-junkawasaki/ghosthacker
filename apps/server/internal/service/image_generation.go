@@ -103,14 +103,15 @@ func (s *StoryboardService) GeneratePanelImage(
 	s.preUpdateStoryboard(filePath, req.Msg.EpisodeId, req.Msg.PageNumber, req.Msg.Panel, urlPath, fullPrompt)
 
 	// Determine which model to use: request field > env var > default (openrouter)
-	useLocal := req.Msg.Model == "local" || req.Msg.Model == "cinematic" || (req.Msg.Model == "" && os.Getenv("USE_LOCAL_IMAGE_GEN") == "true")
+	useLocal := req.Msg.Model == "local" || req.Msg.Model == "cinematic" || req.Msg.Model == "cinematic-fast" || (req.Msg.Model == "" && os.Getenv("USE_LOCAL_IMAGE_GEN") == "true")
 
 	// Generate image via local Diffusers service or OpenRouter API
 	var imageBytes []byte
 	if useLocal {
-		if req.Msg.Model == "cinematic" {
-			// 2-stage: photorealistic → anime style transfer
-			imageBytes, err = s.callLocalCinematicGen(ctx, prompt, imagePath)
+		if req.Msg.Model == "cinematic-fast" {
+			imageBytes, err = s.callLocalCinematicGen(ctx, prompt, imagePath, true)
+		} else if req.Msg.Model == "cinematic" {
+			imageBytes, err = s.callLocalCinematicGen(ctx, prompt, imagePath, false)
 		} else {
 			style := "cinematic_sketch"
 			if strings.HasPrefix(req.Msg.PanelData.VisualNote, "CHARACTER_AVATAR:") {
@@ -168,8 +169,10 @@ func (s *StoryboardService) GeneratePanelImage(
 
 	// Create GeneratedImage
 	model := defaultModel
-	if req.Msg.Model == "cinematic" {
-		model = "cyberrealistic-xl + animagine-xl-4.0 (cinematic)"
+	if req.Msg.Model == "cinematic-fast" {
+		model = "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+	} else if req.Msg.Model == "cinematic" {
+		model = "realvisxl + animagine-xl-4.0 (cinematic)"
 	} else if useLocal {
 		model = "animagine-xl-4.0 (local)"
 	}
@@ -640,7 +643,7 @@ func (s *StoryboardService) callLocalImageGen(ctx context.Context, prompt, style
 
 // callLocalCinematicGen sends a request for 2-stage cinematic generation
 // (photorealistic → anime style transfer).
-func (s *StoryboardService) callLocalCinematicGen(ctx context.Context, prompt, outputPath string) ([]byte, error) {
+func (s *StoryboardService) callLocalCinematicGen(ctx context.Context, prompt, outputPath string, fast bool) ([]byte, error) {
 	baseURL := os.Getenv("IMAGE_GEN_URL")
 	if baseURL == "" {
 		baseURL = "http://localhost:8100"
@@ -657,14 +660,21 @@ func (s *StoryboardService) callLocalCinematicGen(ctx context.Context, prompt, o
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
 	}
 
-	httpReq, err := http.NewRequestWithContext(ctx, "POST", baseURL+"/generate-cinematic", strings.NewReader(string(jsonBody)))
+	endpoint := "/generate-cinematic"
+	if fast {
+		endpoint = "/generate-cinematic-fast"
+	}
+	httpReq, err := http.NewRequestWithContext(ctx, "POST", baseURL+endpoint, strings.NewReader(string(jsonBody)))
 	if err != nil {
 		return nil, fmt.Errorf("failed to create request: %w", err)
 	}
 	httpReq.Header.Set("Content-Type", "application/json")
 
-	// 2-stage takes roughly twice as long
-	client := &http.Client{Timeout: 1200 * time.Second}
+	timeout := 1200 * time.Second
+	if fast {
+		timeout = 300 * time.Second
+	}
+	client := &http.Client{Timeout: timeout}
 	resp, err := client.Do(httpReq)
 	if err != nil {
 		return nil, fmt.Errorf("failed to call cinematic gen: %w", err)

@@ -202,6 +202,40 @@ async def generate_panel(req: GeneratePanelRequest):
     )
 
 
+@app.post("/generate-cinematic-fast", response_model=GeneratePanelResponse)
+async def generate_cinematic_fast(req: GenerateCinematicRequest):
+    """Fast 2-stage: Lightning photorealistic (6 steps) → anime style transfer (8 steps)."""
+    if not gen.model_loaded:
+        raise HTTPException(status_code=503, detail="Model not loaded yet")
+
+    gen._current_job_id = str(uuid.uuid4())
+    try:
+        image, seed, gen_time = gen.generate_cinematic_fast(
+            prompt=req.prompt,
+            aspect_ratio=req.aspect_ratio,
+            seed=req.seed,
+        )
+    except InterruptedError:
+        gen._current_job_id = None
+        raise HTTPException(status_code=499, detail="Generation cancelled")
+    finally:
+        gen._current_job_id = None
+
+    saved_path = None
+    if req.output_path:
+        os.makedirs(os.path.dirname(req.output_path), exist_ok=True)
+        image.save(req.output_path, "PNG")
+        saved_path = req.output_path
+        logger.info("Saved fast cinematic image to: %s", saved_path)
+
+    return GeneratePanelResponse(
+        image_base64=image_to_base64(image),
+        seed=seed,
+        generation_time_ms=gen_time,
+        output_path=saved_path,
+    )
+
+
 @app.post("/generate-cinematic", response_model=GeneratePanelResponse)
 async def generate_cinematic(req: GenerateCinematicRequest):
     """2-stage generation: photorealistic → anime style transfer."""

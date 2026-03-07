@@ -370,6 +370,57 @@ class ImageGenerator:
 
         return final_image, seed, total_time_ms
 
+    def generate_cinematic_fast(
+        self,
+        prompt: str,
+        aspect_ratio: str = "16:9",
+        seed: int | None = None,
+    ) -> tuple[Image.Image, int, int]:
+        """Fast photorealistic generation using Lightning model (6 steps).
+
+        No anime conversion — produces cinematic/photographic output directly.
+        """
+        if seed is None:
+            seed = random.randint(0, 2**32 - 1)
+
+        dims = config.FAST_ASPECT_RATIOS.get(aspect_ratio, config.FAST_ASPECT_RATIOS["16:9"])
+
+        self._swap_model(config.LIGHTNING_MODEL_ID)
+
+        # Lightning works with Euler scheduler, trailing spacing
+        self.pipe.scheduler = EulerDiscreteScheduler.from_config(
+            self.pipe.scheduler.config,
+            timestep_spacing="trailing",
+        )
+
+        generator = torch.Generator(device="cpu").manual_seed(seed)
+
+        self._current_step = 0
+        self._total_steps = config.LIGHTNING_STEPS
+        self._avg_step_time_ms = 0
+        self._cancelled = False
+        self._step_start_time = time.time()
+
+        logger.info("Cinematic FAST: Lightning %dx%d steps=%d seed=%d",
+                     dims[0], dims[1], config.LIGHTNING_STEPS, seed)
+        start = time.time()
+        result = self.pipe(
+            prompt=prompt,
+            negative_prompt=config.PHOTOREALISTIC_NEGATIVE_PROMPT,
+            width=dims[0],
+            height=dims[1],
+            num_inference_steps=config.LIGHTNING_STEPS,
+            guidance_scale=config.LIGHTNING_GUIDANCE,
+            generator=generator,
+            callback_on_step_end=self._step_callback,
+        )
+        image = result.images[0]
+
+        gen_time_ms = int((time.time() - start) * 1000)
+        logger.info("Cinematic FAST complete in %d ms (seed=%d)", gen_time_ms, seed)
+
+        return image, seed, gen_time_ms
+
 
 def image_to_base64(image: Image.Image, fmt: str = "PNG") -> str:
     """Convert PIL Image to base64 data URL string."""
