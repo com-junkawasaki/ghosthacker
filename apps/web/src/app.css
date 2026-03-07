@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "skeleton-base";
-@import "skeleton-theme";
 
 @layer base {
 	* {
@@ -14,7 +12,7 @@
 		font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		background: var(--color-surface-50, #f2f2f7);
+		background: #f2f2f7;
 	}
 
 	::selection {
@@ -25,13 +23,4 @@
 		width: 0;
 		height: 0;
 	}
-}
-
-/* Apple HIG theme overrides on top of Skeleton nouveau */
-:root, [data-theme='nouveau'] {
-	--color-primary-500: oklch(58.87% 0.24 264deg); /* #007AFF */
-	--radius-base: 0.5rem;
-	--radius-container: 0.75rem;
-	--spacing: 0.25rem;
-	--body-background-color: #f2f2f7;
 }

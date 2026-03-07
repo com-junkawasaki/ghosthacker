@@ -2,6 +2,4 @@
 	import '../app.css';
 </script>
 
-<div data-theme="nouveau">
-	<slot />
-</div>
+<slot />

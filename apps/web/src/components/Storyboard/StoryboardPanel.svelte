@@ -5,7 +5,6 @@
 	import { create } from '@bufbuild/protobuf';
 	import { generatePanelDialogue, submitGenerationJob, cancelGenerationJob, storyboardClient } from '$lib/client/storyboard-client';
 	import { getJobForPanel } from '$lib/stores/job-store.svelte';
-	import { Progress } from '@skeletonlabs/skeleton-svelte';
 	import { ChevronLeft, ChevronRight, Wand2, Pencil, MessageSquare, Sparkles, X } from 'lucide-svelte';
 
 	export let panel: Panel;
@@ -175,18 +174,18 @@
 </script>
 
 <!-- Card -->
-<div class="card preset-surface-50-950 rounded-2xl shadow-sm">
+<div class="rounded-2xl border border-zinc-200 bg-white shadow-sm">
 	<!-- Top Meta Row -->
 	<div class="flex items-center gap-2 px-4 pt-3 pb-2">
 		<span class="inline-flex items-center justify-center rounded-full bg-zinc-900 px-2 py-0.5 text-[11px] font-bold text-white">
 			#{cutNumber || panel.panel}
 		</span>
-		<span class="chip preset-outlined-surface-200-800 text-[11px]">{shot || 'Shot TBD'}</span>
+		<span class="rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 text-[11px] font-medium text-zinc-600">{shot || 'Shot TBD'}</span>
 		{#if durationSeconds > 0}
 			<span class="text-[11px] text-zinc-400">{durationSeconds.toFixed(1)}s</span>
 		{/if}
 		<div class="ml-auto">
-			<button type="button" class="btn btn-sm preset-outlined-surface-200-800 text-[12px] font-semibold" onclick={() => (showActions = !showActions)}>
+			<button type="button" class="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-[12px] font-semibold text-zinc-700 active:bg-zinc-50" onclick={() => (showActions = !showActions)}>
 				Actions
 			</button>
 		</div>
@@ -195,19 +194,19 @@
 	<!-- Actions Menu (expandable) -->
 	{#if showActions}
 		<div class="mx-4 mb-2 grid grid-cols-2 gap-1.5 rounded-xl bg-zinc-50 p-2">
-			<button type="button" class="btn btn-sm preset-outlined-surface-200-800 text-[11px]" onclick={handleGenerateImage} disabled={generatingImage}>
+			<button type="button" class="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-[11px] font-semibold text-zinc-700 disabled:opacity-40 active:bg-zinc-50" onclick={handleGenerateImage} disabled={generatingImage}>
 				<Wand2 size={14} /> Generate Image
 			</button>
-			<button type="button" class="btn btn-sm preset-outlined-surface-200-800 text-[11px]" onclick={handleGenerateCinematic} disabled={generatingCinematic}>
+			<button type="button" class="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-[11px] font-semibold text-zinc-700 disabled:opacity-40 active:bg-zinc-50" onclick={handleGenerateCinematic} disabled={generatingCinematic}>
 				<Sparkles size={14} /> Sketch AI
 			</button>
-			<button type="button" class="btn btn-sm preset-outlined-surface-200-800 text-[11px]" onclick={() => dispatch('agentTrigger', { agent: 'dialogue' })}>
+			<button type="button" class="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-[11px] font-semibold text-zinc-700 disabled:opacity-40 active:bg-zinc-50" onclick={() => dispatch('agentTrigger', { agent: 'dialogue' })}>
 				<MessageSquare size={14} /> Dialogue AI
 			</button>
-			<button type="button" class="btn btn-sm preset-outlined-surface-200-800 text-[11px]" onclick={handleGenerateDialogue} disabled={generatingDialogue}>
+			<button type="button" class="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-[11px] font-semibold text-zinc-700 disabled:opacity-40 active:bg-zinc-50" onclick={handleGenerateDialogue} disabled={generatingDialogue}>
 				<Sparkles size={14} /> Quick Dialogue
 			</button>
-			<button type="button" class="btn btn-sm preset-outlined-surface-200-800 text-[11px]" onclick={startEdit}>
+			<button type="button" class="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-[11px] font-semibold text-zinc-700 disabled:opacity-40 active:bg-zinc-50" onclick={startEdit}>
 				<Pencil size={14} /> Edit Panel
 			</button>
 		</div>
@@ -249,12 +248,14 @@
 		{#if generatingImage && activeJobId}
 			{@const job = getJobForPanel(episodeId, panel.pageNumber, panel.panel)}
 			<div class="mt-2 rounded-xl bg-zinc-50 p-3">
-				<Progress value={job && job.totalSteps > 0 ? (job.currentStep / job.totalSteps) * 100 : 0} max={100} />
+				<div class="h-1.5 w-full overflow-hidden rounded-full bg-zinc-200">
+					<div class="h-full rounded-full bg-[#007aff] transition-all" style="width: {job && job.totalSteps > 0 ? (job.currentStep / job.totalSteps) * 100 : 0}%"></div>
+				</div>
 				<div class="mt-1 flex items-center justify-between text-[11px] text-zinc-500">
 					<span class="font-semibold">{job?.currentStep ?? 0}/{job?.totalSteps ?? 28}</span>
 					{#if job && job.etaMs > 0}<span>{formatEta(job.etaMs)}</span>{/if}
 				</div>
-				<button type="button" class="btn btn-sm preset-outlined-error-500 mt-2 w-full text-[11px]" onclick={handleCancelGeneration}>Cancel</button>
+				<button type="button" class="mt-2 w-full rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-[11px] font-semibold text-red-600 active:bg-red-100" onclick={handleCancelGeneration}>Cancel</button>
 			</div>
 		{/if}
 		{#if imageError}<div class="mt-2 rounded-lg bg-red-50 px-3 py-2 text-[12px] text-red-600">{imageError}</div>{/if}
@@ -309,8 +310,8 @@
 			<div class="flex items-center justify-between pb-3">
 				<h4 class="text-[17px] font-semibold text-zinc-900">Edit Panel {panel.panel}</h4>
 				<div class="flex gap-2">
-					<button class="btn btn-sm preset-filled-primary-500 text-[13px] font-semibold" onclick={saveEdit}>Save</button>
-					<button class="btn btn-sm preset-outlined-surface-200-800 text-[13px]" onclick={cancelEdit}>Cancel</button>
+					<button class="rounded-lg px-4 py-2 text-[13px] font-semibold text-white active:opacity-80" style="background:#007aff" onclick={saveEdit}>Save</button>
+					<button class="rounded-lg border border-zinc-200 px-4 py-2 text-[13px] text-zinc-600 active:bg-zinc-50" onclick={cancelEdit}>Cancel</button>
 				</div>
 			</div>
 			<div class="edit-fields">
@@ -340,12 +341,12 @@
 					<div class="flex items-center gap-2 mb-2">
 						<input type="text" class="field-input flex-1" bind:value={dialogue.speaker} placeholder="Speaker" />
 						<input type="text" class="field-input flex-[2]" bind:value={dialogue.text} placeholder="Text" />
-						<button type="button" class="btn-icon btn-sm preset-outlined-error-500" onclick={() => removeDialogue(index)}>
+						<button type="button" class="flex h-8 w-8 items-center justify-center rounded-lg border border-red-200 text-red-500" onclick={() => removeDialogue(index)}>
 							<X size={14} />
 						</button>
 					</div>
 				{/each}
-				<button type="button" class="btn btn-sm preset-outlined-success-500 text-[12px]" onclick={addDialogue}>+ Add Dialogue</button>
+				<button type="button" class="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-[12px] font-medium text-emerald-700 active:bg-emerald-100" onclick={addDialogue}>+ Add Dialogue</button>
 			</div>
 		</div>
 	</div>

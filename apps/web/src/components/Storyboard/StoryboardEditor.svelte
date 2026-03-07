@@ -3,13 +3,13 @@
 	import StoryboardPage from './StoryboardPage.svelte';
 	import MangaEditor from './MangaEditor.svelte';
 	import ScriptView from './ScriptView.svelte';
+	import WebtoonView from './WebtoonView.svelte';
 	import ShootingView from './ShootingView.svelte';
 	import NodeTree from './NodeTree.svelte';
 	import ChatPanel from './ChatPanel.svelte';
 	import ImageGenStatus from './ImageGenStatus.svelte';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 	import { updateJob, removeJob } from '$lib/stores/job-store.svelte';
-	import { SegmentedControl } from '@skeletonlabs/skeleton-svelte';
 	import { FileDown, LayoutGrid, PenTool, MessageCircle } from 'lucide-svelte';
 
 	let projects: Array<{ id: string; name: string; hasStoryboard: boolean }> = $state([]);
@@ -224,6 +224,7 @@
 
 	const viewModeItems = [
 		{ value: 'storyboard', label: 'Storyboard' },
+		{ value: 'webtoon', label: 'Webtoon' },
 		{ value: 'manga', label: 'Manga' },
 		{ value: 'script', label: 'Script' },
 		{ value: 'shooting', label: 'Shooting' },
@@ -280,18 +281,11 @@
 		</div>
 
 		<div class="nav-row">
-			<SegmentedControl value={editMode} onValueChange={(detail) => { if (detail.value) editMode = detail.value; }}>
-				<SegmentedControl.Control>
-					{#each editModeItems as item}
-						<SegmentedControl.Item value={item.value}>
-							<SegmentedControl.ItemText>{item.label}</SegmentedControl.ItemText>
-							<SegmentedControl.ItemHiddenInput />
-						</SegmentedControl.Item>
-					{/each}
-					<SegmentedControl.Indicator />
-				</SegmentedControl.Control>
-			</SegmentedControl>
-
+			<div class="ios-segment shrink-0">
+				{#each editModeItems as item}
+					<button class:active={editMode === item.value} onclick={() => editMode = item.value}>{item.label}</button>
+				{/each}
+			</div>
 			{#if editMode === 'episode'}
 				<select class="content-select" bind:value={selectedEpisode}>
 					{#if episodes.length === 0}<option value="" disabled>No episodes</option>
@@ -306,17 +300,11 @@
 		</div>
 
 		<div class="nav-row">
-			<SegmentedControl value={viewMode} onValueChange={(detail) => { if (detail.value) { viewMode = detail.value; workspacePane = 'canvas'; } }}>
-				<SegmentedControl.Control>
-					{#each viewModeItems as item}
-						<SegmentedControl.Item value={item.value}>
-							<SegmentedControl.ItemText>{item.label}</SegmentedControl.ItemText>
-							<SegmentedControl.ItemHiddenInput />
-						</SegmentedControl.Item>
-					{/each}
-					<SegmentedControl.Indicator />
-				</SegmentedControl.Control>
-			</SegmentedControl>
+			<div class="ios-segment flex-1">
+				{#each viewModeItems as item}
+					<button class:active={viewMode === item.value} onclick={() => { viewMode = item.value; workspacePane = 'canvas'; }}>{item.label}</button>
+				{/each}
+			</div>
 		</div>
 	</header>
 
@@ -349,6 +337,8 @@
 						on:panelSelect={({ detail }) => { selectedPanelIndex = detail.panel; selectedPanelData = detail.data; addContextToChat('panel', detail); }}
 						on:contextAdd={({ detail }) => addContextToChat(detail.type, detail.data)}
 						on:agentTrigger={({ detail }) => openChatWithAgent(detail.agent)} />
+				{:else if viewMode === 'webtoon'}
+					<WebtoonView {panels} episodeId={editMode === 'episode' ? selectedEpisode : selectedArc} {storyboardPath} />
 				{:else if viewMode === 'manga'}
 					<MangaEditor {panels} episodeId={editMode === 'episode' ? selectedEpisode : selectedArc} {storyboardPath} bind:selectedPage
 						on:update={({ detail }) => handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
@@ -388,7 +378,7 @@
 		<div class="empty-state">
 			<p class="empty-title">No Episodes</p>
 			<p class="empty-desc">No episodes available. Check the project settings.</p>
-			<button class="btn preset-filled-primary-500" onclick={loadEpisodes}>Retry</button>
+			<button class="empty-retry" onclick={loadEpisodes}>Retry</button>
 		</div>
 	{/if}
 </div>
@@ -416,6 +406,20 @@
 
 	.nav-row {
 		@apply flex items-center gap-2;
+	}
+
+	/* iOS Segmented Control */
+	.ios-segment {
+		@apply flex rounded-[9px] p-[2px];
+		background: rgba(118, 118, 128, 0.12);
+	}
+	.ios-segment button {
+		@apply flex-1 rounded-[7px] px-3 py-[6px] text-[13px] font-semibold text-zinc-500 transition-all;
+	}
+	.ios-segment button.active {
+		@apply text-zinc-900;
+		background: white;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
 	}
 
 	.project-select {
@@ -469,6 +473,7 @@
 	}
 	.empty-title { @apply text-[20px] font-semibold text-zinc-900; }
 	.empty-desc { @apply text-[15px] text-zinc-500; }
+	.empty-retry { @apply mt-4 rounded-full px-6 py-2.5 text-[15px] font-semibold text-white active:opacity-80; background: #007aff; }
 
 	/* Editor Content - Pane system */
 	.editor-content {

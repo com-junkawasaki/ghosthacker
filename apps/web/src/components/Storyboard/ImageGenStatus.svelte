@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { listGenerationJobs } from '$lib/client/storyboard-client';
 	import { getActiveJobCount } from '$lib/stores/job-store.svelte';
-	import { Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import { Zap } from 'lucide-svelte';
 
 	let health = $state<{
 		status: string; model: string; device: string; model_loaded: boolean; load_time_ms: number;
 	}>({ status: 'loading', model: '', device: '', model_loaded: false, load_time_ms: 0 });
+
+	let showTooltip = $state(false);
 
 	async function checkHealth() {
 		try {
@@ -40,32 +41,38 @@
 </script>
 
 <div class="relative" role="status" aria-live="polite">
-	<Tooltip positioning={{ placement: 'bottom' }}>
-		<Tooltip.Trigger>
-			<button type="button" class="status-btn" aria-label="Image generation: {statusLabel}">
-				<Zap size={14} />
-				<span class="status-dot" style="background: {statusColor};{health.status === 'ok' && !health.model_loaded ? 'animation: pulse 1.5s infinite;' : ''}"></span>
-				{#if activeCount > 0}
-					<span class="job-badge">{activeCount}</span>
+	<button
+		type="button"
+		class="status-btn"
+		aria-label="Image generation: {statusLabel}"
+		onmouseenter={() => showTooltip = true}
+		onmouseleave={() => showTooltip = false}
+		onfocus={() => showTooltip = true}
+		onblur={() => showTooltip = false}
+		onclick={() => showTooltip = !showTooltip}
+	>
+		<Zap size={14} />
+		<span class="status-dot" style="background: {statusColor};{health.status === 'ok' && !health.model_loaded ? 'animation: pulse 1.5s infinite;' : ''}"></span>
+		{#if activeCount > 0}
+			<span class="job-badge">{activeCount}</span>
+		{/if}
+	</button>
+
+	{#if showTooltip}
+		<div class="tooltip-popup">
+			{#if health.status === 'ok'}
+				<div class="font-semibold">{statusLabel}</div>
+				<div class="text-zinc-400">Model: {health.model}</div>
+				{#if health.load_time_ms > 0}
+					<div class="text-zinc-400">Load: {(health.load_time_ms / 1000).toFixed(1)}s</div>
 				{/if}
-			</button>
-		</Tooltip.Trigger>
-		<Tooltip.Content>
-			<div class="tooltip-content">
-				{#if health.status === 'ok'}
-					<div class="font-semibold">{statusLabel}</div>
-					<div class="text-zinc-400">Model: {health.model}</div>
-					{#if health.load_time_ms > 0}
-						<div class="text-zinc-400">Load: {(health.load_time_ms / 1000).toFixed(1)}s</div>
-					{/if}
-				{:else}
-					<div class="font-semibold">Offline</div>
-					<div class="text-zinc-400">Image gen not running</div>
-					<div class="text-zinc-500 text-[11px]">Run: mise run image-gen</div>
-				{/if}
-			</div>
-		</Tooltip.Content>
-	</Tooltip>
+			{:else}
+				<div class="font-semibold">Offline</div>
+				<div class="text-zinc-400">Image gen not running</div>
+				<div class="text-[11px] text-zinc-500">Run: <code class="rounded bg-zinc-700 px-1">mise run image-gen</code></div>
+			{/if}
+		</div>
+	{/if}
 </div>
 
 <style>
@@ -84,8 +91,10 @@
 		@apply min-w-[16px] rounded-full bg-[#007aff] px-1 text-center text-[10px] font-bold leading-[16px] text-white;
 	}
 
-	.tooltip-content {
-		@apply space-y-0.5 text-[12px];
+	.tooltip-popup {
+		@apply absolute right-0 top-[calc(100%+8px)] z-50 space-y-0.5 whitespace-nowrap rounded-lg px-3 py-2 text-[12px] text-zinc-200 shadow-lg;
+		background: rgba(40, 40, 40, 0.95);
+		backdrop-filter: blur(10px);
 	}
 
 	@keyframes pulse {

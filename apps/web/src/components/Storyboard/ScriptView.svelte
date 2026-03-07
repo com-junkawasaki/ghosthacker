@@ -94,7 +94,7 @@
 										oninput={(e) => handleDialogueBufferUpdate(idx, 'text', e.currentTarget.value)}></textarea>
 								</div>
 							{/each}
-							<button class="btn btn-sm preset-filled-surface-900-50 mt-2 self-end text-[13px] font-semibold" onclick={() => saveAndStopEditing(panel)}>Done</button>
+							<button class="mt-2 self-end rounded-lg bg-zinc-900 px-5 py-2 text-[13px] font-semibold text-white active:bg-zinc-700" onclick={() => saveAndStopEditing(panel)}>Done</button>
 						</div>
 					{:else}
 						<div class="action-line">{panel.data?.visualNote || '---'}</div>

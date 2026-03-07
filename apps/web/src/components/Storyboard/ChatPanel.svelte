@@ -224,9 +224,9 @@
 					<Plus size={16} />
 				</button>
 				{#if isAutoPilot}
-					<button class="btn btn-sm preset-filled-error-500 text-[11px] font-bold" onclick={stopAutoPilot}>Stop</button>
+					<button class="rounded-lg bg-red-500 px-3 py-1.5 text-[11px] font-bold text-white active:bg-red-600" onclick={stopAutoPilot}>Stop</button>
 				{:else}
-					<button class="btn btn-sm preset-tonal-primary text-[11px] font-bold" onclick={startAutoPilot} disabled={!selectedEpisode}>Auto-Pilot</button>
+					<button class="rounded-lg px-3 py-1.5 text-[11px] font-bold text-white active:opacity-80" style="background:#007aff" onclick={startAutoPilot} disabled={!selectedEpisode}>Auto-Pilot</button>
 				{/if}
 			</div>
 		</div>
@@ -309,7 +309,7 @@
 				{/if}
 				{#if msg.patches && msg.patches.length > 0}
 					<div class="mt-2 flex justify-end">
-						<button class="btn btn-sm preset-filled-success-500 text-[12px] font-semibold" onclick={() => applyPatches(msg.patches!)}>
+						<button class="rounded-lg bg-emerald-500 px-3 py-1.5 text-[12px] font-semibold text-white active:bg-emerald-600" onclick={() => applyPatches(msg.patches!)}>
 							Apply {msg.patches.length} Changes
 						</button>
 					</div>

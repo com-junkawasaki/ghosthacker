@@ -21,7 +21,7 @@
 
 	<div class="card-list">
 		{#each panels as panel}
-			<div class="card preset-surface-50-950 rounded-2xl shadow-sm">
+			<div class="rounded-2xl border border-zinc-200 bg-white shadow-sm">
 				<!-- Panel ID + Shot Info -->
 				<div class="flex items-start gap-3 px-4 pt-3 pb-2">
 					<div class="shrink-0">
