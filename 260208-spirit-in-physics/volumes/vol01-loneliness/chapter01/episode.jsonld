@@ -180,7 +180,7 @@
       "gh:panels": [
         {
           "@id": "panel:A185PygmQxm7",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/A185PygmQxm7_v7.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/A185PygmQxm7_v8.png",
           "gh:caption": [
             {
               "en": "I passed the national exam last week. Ghost Hacker, certified.",
@@ -193,8 +193,8 @@
               "ja": "今日、初めて事務所に行く。"
             }
           ],
-          "gh:currentImageIndex": 6,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/A185PygmQxm7_v7.png",
+          "gh:currentImageIndex": 7,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/A185PygmQxm7_v8.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772866507,
@@ -237,9 +237,15 @@
               "gh:imagePrompt": "Canal-side path. Cherry trees. Tamaki walking toward us, small against the city.. Shot type: Wide",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/A185PygmQxm7_v7.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772974642,
+              "gh:imagePrompt": "wide cinematic, young woman age 22 with dark brown short bob hair lavender shirt black wide pants, walking alone along canal-side path, cherry blossoms falling, morning light, blue water beside, she looks small against vast city, spring solitude. Shot type: Wide",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/A185PygmQxm7_v8.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
-          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Canal-side path. Cherry trees. Tamaki walking toward us, small against the city.. Shot type: Wide. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. wide cinematic, young woman age 22 with dark brown short bob hair lavender shirt black wide pants, walking alone along canal-side path, cherry blossoms falling, morning light, blue water beside, she looks small against vast city, spring solitude. Shot type: Wide. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 1,
           "gh:shot": "Wide",
           "gh:visual": {
@@ -249,7 +255,7 @@
         },
         {
           "@id": "panel:0uwM6fVARikV",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/0uwM6fVARikV_v4.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/0uwM6fVARikV_v5.png",
           "gh:caption": [
             {
               "en": "Tokyo rebuilt itself around water. Nothing here pretends to be what it was.",
@@ -258,7 +264,7 @@
             }
           ],
           "gh:currentImageIndex": 3,
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/0uwM6fVARikV_v4.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/0uwM6fVARikV_v5.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772871892,
