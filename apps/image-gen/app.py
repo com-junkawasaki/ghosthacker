@@ -58,6 +58,7 @@ class GeneratePanelRequest(BaseModel):
     output_path: str | None = None
     reference_image_paths: list[str] = Field(default_factory=list)
     ip_adapter_scale: float = 0.4
+    grayscale: bool = False
 
 
 class GenerateCinematicRequest(BaseModel):
@@ -68,6 +69,19 @@ class GenerateCinematicRequest(BaseModel):
     output_path: str | None = None
     reference_image_paths: list[str] = Field(default_factory=list)
     ip_adapter_scale: float = 0.5
+
+
+class StyleTransferRequest(BaseModel):
+    source_image_path: str
+    prompt: str
+    style: str = "cinematic_sketch"
+    aspect_ratio: str | None = None
+    seed: int | None = None
+    denoising_strength: float = 0.55
+    num_inference_steps: int = 28
+    guidance_scale: float = 7.0
+    output_path: str | None = None
+    grayscale: bool = False
 
 
 class GeneratePanelResponse(BaseModel):
@@ -188,6 +202,11 @@ async def generate_panel(req: GeneratePanelRequest):
     finally:
         gen._current_job_id = None
 
+    # Post-process: convert to grayscale if requested
+    if req.grayscale:
+        image = image.convert("L").convert("RGB")
+        logger.info("Converted to grayscale")
+
     # Save to disk if output_path specified
     saved_path = None
     if req.output_path:
@@ -275,6 +294,57 @@ async def generate_cinematic(req: GenerateCinematicRequest):
         image.save(req.output_path, "PNG")
         saved_path = req.output_path
         logger.info("Saved cinematic image to: %s", saved_path)
+
+    return GeneratePanelResponse(
+        image_base64=image_to_base64(image),
+        seed=seed,
+        generation_time_ms=gen_time,
+        output_path=saved_path,
+    )
+
+
+@app.post("/style-transfer", response_model=GeneratePanelResponse)
+async def style_transfer(req: StyleTransferRequest):
+    """Apply img2img style transfer to an existing image."""
+    if not gen.model_loaded:
+        raise HTTPException(status_code=503, detail="Model not loaded yet")
+
+    # Load source image
+    try:
+        source_image = Image.open(req.source_image_path).convert("RGB")
+        logger.info("Loaded source image: %s (%dx%d)", req.source_image_path, source_image.width, source_image.height)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Failed to load source image: {e}")
+
+    gen._current_job_id = str(uuid.uuid4())
+    try:
+        image, seed, gen_time = gen.style_transfer(
+            source_image=source_image,
+            prompt=req.prompt,
+            style=req.style,
+            aspect_ratio=req.aspect_ratio,
+            seed=req.seed,
+            denoising_strength=req.denoising_strength,
+            num_inference_steps=req.num_inference_steps,
+            guidance_scale=req.guidance_scale,
+        )
+    except InterruptedError:
+        gen._current_job_id = None
+        raise HTTPException(status_code=499, detail="Generation cancelled")
+    finally:
+        gen._current_job_id = None
+
+    # Post-process: convert to grayscale if requested
+    if req.grayscale:
+        image = image.convert("L").convert("RGB")
+        logger.info("Converted to grayscale")
+
+    saved_path = None
+    if req.output_path:
+        os.makedirs(os.path.dirname(req.output_path), exist_ok=True)
+        image.save(req.output_path, "PNG")
+        saved_path = req.output_path
+        logger.info("Saved style-transferred image to: %s", saved_path)
 
     return GeneratePanelResponse(
         image_base64=image_to_base64(image),

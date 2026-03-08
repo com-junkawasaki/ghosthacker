@@ -44,6 +44,17 @@ STYLE_PRESETS = {
             "detailed face, soft shading, film grain"
         ),
     },
+    "mono_manga": {
+        "prefix": (
+            "monochrome manga, black and white, ink drawing, "
+            "screentone shading, detailed pen linework, "
+            "professional Japanese manga art, high contrast, "
+        ),
+        "suffix": (
+            ", masterpiece, best quality, absurdres, "
+            "clean lines, sharp ink strokes, no color, greyscale"
+        ),
+    },
     "character_avatar": {
         "prefix": (
             "manga illustration, anime style, character portrait, "

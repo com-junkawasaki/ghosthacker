@@ -449,6 +449,94 @@ class ImageGenerator:
         return image, seed, gen_time_ms
 
 
+    def style_transfer(
+        self,
+        source_image: Image.Image,
+        prompt: str,
+        style: str = "cinematic_sketch",
+        aspect_ratio: str | None = None,
+        seed: int | None = None,
+        denoising_strength: float = 0.55,
+        num_inference_steps: int = 28,
+        guidance_scale: float = 7.0,
+    ) -> tuple[Image.Image, int, int]:
+        """Apply img2img style transfer to an existing image.
+
+        Uses AnimagineXL to redraw the source image in a new style
+        while preserving composition and structure.
+
+        Args:
+            source_image: Input PIL Image to transform.
+            prompt: Style/content description for the target output.
+            denoising_strength: How much to change (0=keep original, 1=fully regenerate).
+                0.45-0.55 preserves composition well while changing style.
+
+        Returns:
+            tuple of (transformed PIL Image, seed used, generation time in ms)
+        """
+        if not self.model_loaded:
+            raise RuntimeError("Model not loaded. Call load_model() first.")
+
+        if seed is None:
+            seed = random.randint(0, 2**32 - 1)
+
+        # Ensure we're on AnimagineXL for anime style output
+        self._swap_model(config.MODEL_ID)
+
+        preset = config.STYLE_PRESETS.get(style, config.STYLE_PRESETS["cinematic_sketch"])
+        style_prompt = preset["prefix"] + prompt + preset["suffix"]
+
+        # Resize source image to target dimensions
+        if aspect_ratio:
+            dims = config.ASPECT_RATIOS.get(aspect_ratio, config.ASPECT_RATIOS["16:9"])
+        else:
+            # Use source image dimensions, rounded to nearest multiple of 8
+            w, h = source_image.size
+            dims = (w - w % 8, h - h % 8)
+
+        source_resized = source_image.resize(dims, Image.LANCZOS)
+
+        generator = torch.Generator(device="cpu").manual_seed(seed)
+
+        # Build img2img pipeline from current txt2img components
+        img2img_pipe = StableDiffusionXLImg2ImgPipeline(
+            vae=self.pipe.vae,
+            text_encoder=self.pipe.text_encoder,
+            text_encoder_2=self.pipe.text_encoder_2,
+            tokenizer=self.pipe.tokenizer,
+            tokenizer_2=self.pipe.tokenizer_2,
+            unet=self.pipe.unet,
+            scheduler=self.pipe.scheduler,
+        )
+
+        self._current_step = 0
+        self._total_steps = num_inference_steps
+        self._avg_step_time_ms = 0
+        self._cancelled = False
+        self._step_start_time = time.time()
+
+        logger.info("Style transfer: %dx%d denoising=%.2f steps=%d cfg=%.1f seed=%d",
+                     dims[0], dims[1], denoising_strength, num_inference_steps, guidance_scale, seed)
+        start = time.time()
+
+        result = img2img_pipe(
+            prompt=style_prompt,
+            negative_prompt=config.DEFAULT_NEGATIVE_PROMPT,
+            image=source_resized,
+            strength=denoising_strength,
+            num_inference_steps=num_inference_steps,
+            guidance_scale=guidance_scale,
+            generator=generator,
+            callback_on_step_end=self._step_callback,
+        )
+        final_image = result.images[0]
+
+        gen_time_ms = int((time.time() - start) * 1000)
+        logger.info("Style transfer complete in %d ms (seed=%d)", gen_time_ms, seed)
+
+        return final_image, seed, gen_time_ms
+
+
 def image_to_base64(image: Image.Image, fmt: str = "PNG") -> str:
     """Convert PIL Image to base64 data URL string."""
     import base64

@@ -29,6 +29,8 @@
       "gh:pageNumber": 1,
       "gh:panels": [
         {
+          "@id": "panel:Jhy-tI9FLiX8",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch02/pages/1/Jhy-tI9FLiX8_v1.png",
           "gh:caption": [
             {
               "en": "Day two.",
@@ -36,7 +38,20 @@
               "ja": "二日目。"
             }
           ],
-          "gh:characters": ["character:tamaki"],
+          "gh:characters": [
+            "character:tamaki"
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch02/pages/1/Jhy-tI9FLiX8_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1772963752,
+              "gh:imagePrompt": "Canal at dawn. Amber light on water. The city waking. Mist rising from the surface. A single water-bus glides silently. The sky is pale gold fading to ultramarine above.. Shot type: Extreme Wide",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch02/pages/1/Jhy-tI9FLiX8_v1.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Canal at dawn. Amber light on water. The city waking. Mist rising from the surface. A single water-bus glides silently. The sky is pale gold fading to ultramarine above.. Shot type: Extreme Wide. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:shot": "Extreme Wide",
           "gh:visual": {
             "en": "Canal at dawn. Amber light on water. The city waking. Mist rising from the surface. A single water-bus glides silently. The sky is pale gold fading to ultramarine above.",
@@ -52,7 +67,13 @@
       "gh:pageNumber": 2,
       "gh:panels": [
         {
-          "gh:characters": ["character:tamaki", "character:nei"],
+          "@id": "panel:jqe_kanwLNnz",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch02/pages/2/jqe_kanwLNnz_v1.png",
+          "gh:characters": [
+            "character:tamaki",
+            "character:nei"
+          ],
+          "gh:currentImageIndex": 0,
           "gh:dialogue": [
             {
               "en": "Good morning, Nei-chan.",
@@ -75,6 +96,16 @@
               "ja": "「ちゃん」は——なんか、しっくりきたから。"
             }
           ],
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch02/pages/2/jqe_kanwLNnz_v1.png",
+          "gh:generatedImages": [
+            {
+              "gh:generatedAt": 1772963863,
+              "gh:imagePrompt": "Tamaki's small apartment, morning light flooding through the window. She's in the kitchen — coffee maker gurgling, toast on a plate. Simple, warm. Nei stands in the doorway, still in her grey suit. Watching. Not sure what to do with her hands.. Shot type: Wide",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch02/pages/2/jqe_kanwLNnz_v1.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            }
+          ],
+          "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Tamaki's small apartment, morning light flooding through the window. She's in the kitchen — coffee maker gurgling, toast on a plate. Simple, warm. Nei stands in the doorway, still in her grey suit. Watching. Not sure what to do with her hands.. Shot type: Wide. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 1,
           "gh:shot": "Wide",
           "gh:visual": {
@@ -83,7 +114,10 @@
           }
         },
         {
-          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:characters": [
+            "character:tamaki",
+            "character:nei"
+          ],
           "gh:panelIndex": 2,
           "gh:shot": "Medium",
           "gh:visual": {
@@ -99,7 +133,9 @@
       "gh:pageNumber": 4,
       "gh:panels": [
         {
-          "gh:characters": ["character:nei"],
+          "gh:characters": [
+            "character:nei"
+          ],
           "gh:dialogue": [
             {
               "en": "...Nei-chan.",
@@ -122,7 +158,9 @@
               "ja": "最初の相互命名。"
             }
           ],
-          "gh:characters": ["character:nei"],
+          "gh:characters": [
+            "character:nei"
+          ],
           "gh:dialogue": [
             {
               "en": "Good morning... Tama.",
@@ -145,7 +183,10 @@
       "gh:pageNumber": 5,
       "gh:panels": [
         {
-          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:characters": [
+            "character:tamaki",
+            "character:nei"
+          ],
           "gh:panelIndex": 1,
           "gh:shot": "Wide",
           "gh:visual": {
@@ -154,7 +195,10 @@
           }
         },
         {
-          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:characters": [
+            "character:tamaki",
+            "character:nei"
+          ],
           "gh:panelIndex": 2,
           "gh:shot": "Medium",
           "gh:visual": {
@@ -203,7 +247,10 @@
               "ja": "……「美しい」はクラスCサポートツールの有効な出力だろうか？"
             }
           ],
-          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:characters": [
+            "character:tamaki",
+            "character:nei"
+          ],
           "gh:dialogue": [
             {
               "en": "Look — the light on the water.",
@@ -227,7 +274,11 @@
       "gh:pageNumber": 8,
       "gh:panels": [
         {
-          "gh:characters": ["character:tamaki", "character:nei", "character:kaede"],
+          "gh:characters": [
+            "character:tamaki",
+            "character:nei",
+            "character:kaede"
+          ],
           "gh:dialogue": [
             {
               "en": "Morning, Nei-chan. Let's see what today brings.",
@@ -243,7 +294,9 @@
           }
         },
         {
-          "gh:characters": ["character:kaede"],
+          "gh:characters": [
+            "character:kaede"
+          ],
           "gh:panelIndex": 2,
           "gh:shot": "Medium",
           "gh:visual": {
@@ -260,7 +313,10 @@
       "gh:pageNumber": 10,
       "gh:panels": [
         {
-          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:characters": [
+            "character:tamaki",
+            "character:nei"
+          ],
           "gh:dialogue": [
             {
               "en": "What do you think, Nei-chan?",
@@ -303,7 +359,9 @@
               "ja": "タマが変わっているだけ。それだけ。"
             }
           ],
-          "gh:characters": ["character:nei"],
+          "gh:characters": [
+            "character:nei"
+          ],
           "gh:panelIndex": 2,
           "gh:shot": "Close-up",
           "gh:visual": {
@@ -320,7 +378,10 @@
       "gh:pageNumber": 12,
       "gh:panels": [
         {
-          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:characters": [
+            "character:tamaki",
+            "character:nei"
+          ],
           "gh:dialogue": [
             {
               "en": "Good first full day, huh?",
@@ -346,7 +407,10 @@
           }
         },
         {
-          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:characters": [
+            "character:tamaki",
+            "character:nei"
+          ],
           "gh:panelIndex": 2,
           "gh:shot": "Medium",
           "gh:visual": {
@@ -390,7 +454,10 @@
               "ja": "でもこの感覚は……いい。"
             }
           ],
-          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:characters": [
+            "character:tamaki",
+            "character:nei"
+          ],
           "gh:shot": "Wide",
           "gh:visual": {
             "en": "Tamaki's apartment at night. She sleeps. Window open. Canal sounds. Moonlight on water, reflected onto the ceiling. Nei sits by the window, looking out at the city. Her translucent form catches the moonlight. Still. Watching. Present.",
