@@ -263,7 +263,7 @@
               "ja": "東京は水とともに生まれ変わった。ここでは何も、かつてのふりをしていない。"
             }
           ],
-          "gh:currentImageIndex": 3,
+          "gh:currentImageIndex": 4,
           "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/0uwM6fVARikV_v5.png",
           "gh:generatedImages": [
             {
@@ -289,6 +289,12 @@
               "gh:imagePrompt": "medium low angle, young woman age 22 short bob hair lavender shirt, looking upward at cherry blossoms with quiet wonder, morning light on face, organic architecture rising above. Shot type: Medium low angle",
               "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/0uwM6fVARikV_v4.png",
               "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
+            },
+            {
+              "gh:generatedAt": 1772974753,
+              "gh:imagePrompt": "medium low angle, young woman age 22 short bob hair lavender shirt, looking upward at cherry blossoms with quiet wonder, morning light on face, organic architecture rising above. Shot type: Medium low angle",
+              "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/0uwM6fVARikV_v5.png",
+              "gh:model": "realvisxl-lightning + animagine-xl-4.0 (cinematic-fast)"
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. medium low angle, young woman age 22 short bob hair lavender shirt, looking upward at cherry blossoms with quiet wonder, morning light on face, organic architecture rising above. Shot type: Medium low angle. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -301,7 +307,7 @@
         },
         {
           "@id": "panel:8gD5kW4VEoLz",
-          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/8gD5kW4VEoLz_v5.png",
+          "generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/8gD5kW4VEoLz_v6.png",
           "gh:currentImageIndex": 4,
           "gh:dialogue": [
             {
@@ -310,7 +316,7 @@
               "ja": "よし。行こう。"
             }
           ],
-          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/8gD5kW4VEoLz_v5.png",
+          "gh:generatedImageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/8gD5kW4VEoLz_v6.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1772867359,
