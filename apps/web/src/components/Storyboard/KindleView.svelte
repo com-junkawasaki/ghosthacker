@@ -5,12 +5,7 @@
 	 * All positions persisted to JSONLD via gRPC.
 	 */
 	import { storyboardClient } from '$lib/client/storyboard-client';
-	import { create } from '@bufbuild/protobuf';
-	import {
-		PanelDataSchema, DialogueSchema, MangaTextSchema,
-		MangaLayoutSchema, MangaPanelLayoutSchema
-	} from '$lib/gen/proto/storyboard_pb';
-	import type { Panel } from '$lib/gen/proto/storyboard_pb';
+	import type { Panel } from '$lib/types/storyboard';
 
 	let {
 		panels = [],
@@ -115,12 +110,6 @@
 
 	function pk(panel: Panel): string { return `${panel.pageNumber}-${panel.panel}`; }
 
-	function imgBase(): string {
-		if (typeof window !== 'undefined' && window.location.port === '1421')
-			return 'http://localhost:8081';
-		return typeof window !== 'undefined' ? window.location.origin : 'http://localhost:8081';
-	}
-
 	function panelImgUrl(panel: Panel): string {
 		const images = panel.data?.generatedImages ?? [];
 		if (images.length === 0) return '';
@@ -128,9 +117,12 @@
 		const raw = (images[Math.max(0, Math.min(idx, images.length - 1))]?.imageUrl ?? '').trim();
 		if (!raw) return '';
 		if (raw.startsWith('http') || raw.startsWith('data:')) return raw;
-		const m = raw.indexOf('/resources/images/');
-		if (m >= 0) return `${imgBase()}/images/${raw.slice(m + '/resources/images/'.length)}`;
-		return `${imgBase()}/${raw.startsWith('/') ? raw.slice(1) : raw}`;
+		// Route through SvelteKit API
+		const marker = '/resources/images/';
+		const m = raw.indexOf(marker);
+		if (m >= 0) return `/api/images/${raw.slice(m + marker.length)}`;
+		if (raw.startsWith('/')) return `/api/images${raw}`;
+		return `/api/images/${raw}`;
 	}
 
 	function findPanel(key: string): Panel | undefined {
@@ -259,21 +251,20 @@
 		isSyncing = true;
 		try {
 			await storyboardClient.updatePanel({
-				filePath: storyboardPath, episodeId,
-				pageNumber: panel.pageNumber, panel: panel.panel,
-				panelData: create(PanelDataSchema, {
+				episodeId, pageNumber: panel.pageNumber, panel: panel.panel,
+				panelData: {
 					...panel.data,
-					mangaLayout: create(MangaLayoutSchema, {
-						panels: [create(MangaPanelLayoutSchema, {
+					mangaLayout: {
+						panels: [{
 							panelIndex: panel.panel,
 							x: el?.panels?.[0]?.x ?? 0, y: el?.panels?.[0]?.y ?? 0,
 							width: el?.panels?.[0]?.width ?? 100, height: el?.panels?.[0]?.height ?? 100,
+							shape: '', zIndex: 0,
 							imageX: pos.x, imageY: pos.y, imageScale: pos.scale
-						})],
+						}],
 						texts: el?.texts ?? []
-					})
-				}),
-				sessionId
+					}
+				}
 			});
 		} catch (err) { console.error('[GN] img save error:', err); }
 		finally { isSyncing = false; }
@@ -284,13 +275,13 @@
 		const updated = dlgs.map((d, i) => {
 			const ml = d.mangaLayout;
 			const layout = i === di
-				? create(MangaTextSchema, { text: ml?.text ?? d.text, type: ml?.type ?? 'dialogue', x, y, fontSize: ml?.fontSize ?? 12, style: ml?.style ?? 'horizontal' })
-				: ml ? create(MangaTextSchema, { ...ml }) : undefined;
-			return create(DialogueSchema, { speaker: d.speaker, text: d.text, delivery: d.delivery, subtext: d.subtext, emotion: d.emotion, pauseBeforeMs: d.pauseBeforeMs, pauseAfterMs: d.pauseAfterMs, mangaLayout: layout });
+				? { text: ml?.text ?? d.text, type: ml?.type ?? 'dialogue', x, y, fontSize: ml?.fontSize ?? 12, style: ml?.style ?? 'horizontal' }
+				: ml ? { ...ml } : undefined;
+			return { ...d, mangaLayout: layout };
 		});
 		isSyncing = true;
 		try {
-			await storyboardClient.updatePanel({ filePath: storyboardPath, episodeId, pageNumber: panel.pageNumber, panel: panel.panel, panelData: create(PanelDataSchema, { ...panel.data, dialogue: updated }), sessionId });
+			await storyboardClient.updatePanel({ episodeId, pageNumber: panel.pageNumber, panel: panel.panel, panelData: { ...panel.data, dialogue: updated } });
 		} catch (err) { console.error('[GN] bubble save error:', err); }
 		finally { isSyncing = false; }
 	}
@@ -315,14 +306,14 @@
 			const el = els[i] as HTMLElement | undefined;
 			const raw = el ? el.innerText.trim() : `${d.speaker}: ${d.text}`;
 			const p = parseDialogue(raw);
-			return create(DialogueSchema, { speaker: p.speaker || d.speaker, text: p.text || d.text, delivery: d.delivery, subtext: d.subtext, emotion: d.emotion, pauseBeforeMs: d.pauseBeforeMs, pauseAfterMs: d.pauseAfterMs, mangaLayout: d.mangaLayout ? create(MangaTextSchema, { ...d.mangaLayout }) : undefined });
+			return { ...d, speaker: p.speaker || d.speaker, text: p.text || d.text };
 		});
 		const o = dlgs.map(d => `${d.speaker}:${d.text}`).join('|');
 		const n = updated.map(d => `${d.speaker}:${d.text}`).join('|');
 		if (o === n) return;
 		isSyncing = true;
 		try {
-			await storyboardClient.updatePanel({ filePath: storyboardPath, episodeId, pageNumber: panel.pageNumber, panel: panel.panel, panelData: create(PanelDataSchema, { ...panel.data, dialogue: updated }), sessionId });
+			await storyboardClient.updatePanel({ episodeId, pageNumber: panel.pageNumber, panel: panel.panel, panelData: { ...panel.data, dialogue: updated } });
 		} catch (err) { console.error('[GN] text save error:', err); }
 		finally { isSyncing = false; }
 	}
