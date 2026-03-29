@@ -1,15 +1,13 @@
 <script lang="ts">
 	import type { Panel } from '$lib/gen/proto/storyboard_pb';
-	import { storyboardClient } from '$lib/client/storyboard-client';
 	import { FolderOpen, Users, FileText, Film } from 'lucide-svelte';
 
-	let { panels = [], characterIds = [], selectedId = '', onSelect, onContextAdd, storyboardPath = '' } = $props<{
+	let { panels = [], characterIds = [], selectedId = '', onSelect, onContextAdd } = $props<{
 		panels: Panel[];
 		characterIds?: string[];
 		selectedId: string;
 		onSelect?: (panel: Panel) => void;
 		onContextAdd?: (type: string, data: any) => void;
-		storyboardPath?: string;
 	}>();
 
 	let pagesMap = $derived(panels.reduce((acc: Record<number, Panel[]>, panel: Panel) => {
@@ -61,7 +59,6 @@
 	// ---- Panel DnD between pages ----
 	let dropTargetPage = $state<number | null>(null);
 	let isMoving = $state(false);
-	const sessionId = Math.random().toString(36).slice(2, 12);
 
 	function onPageDragOver(e: DragEvent, pageNum: number) {
 		e.preventDefault();
@@ -89,15 +86,21 @@
 		const targetPanels = pagesMap[targetPageNum] ?? [];
 		isMoving = true;
 		try {
-			await storyboardClient.movePanel({
-				filePath: storyboardPath,
-				episodeId: selectedId,
-				sourcePage: data.pageNumber,
-				sourcePanel: data.panel,
-				targetPage: targetPageNum,
-				targetPanelIndex: targetPanels.length,
-				sessionId
+			const res = await fetch('/api/panels/move', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					episodeId: selectedId,
+					sourcePage: data.pageNumber,
+					sourcePanel: data.panel,
+					targetPage: targetPageNum,
+					targetPanelIndex: targetPanels.length
+				})
 			});
+			if (!res.ok) {
+				const err = await res.json().catch(() => ({ message: res.statusText }));
+				console.error('[NodeTree] move panel error:', err);
+			}
 		} catch (err) {
 			console.error('[NodeTree] move panel error:', err);
 		} finally {
