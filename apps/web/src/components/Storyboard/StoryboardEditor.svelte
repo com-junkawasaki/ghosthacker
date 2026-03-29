@@ -5,13 +5,14 @@
 	import ScriptView from './ScriptView.svelte';
 	import WebtoonView from './WebtoonView.svelte';
 	import ShootingView from './ShootingView.svelte';
+	import KindleView from './KindleView.svelte';
 	import NodeTree from './NodeTree.svelte';
 	import ChatPanel from './ChatPanel.svelte';
 	import ImageGenStatus from './ImageGenStatus.svelte';
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 	import { updateJob, removeJob } from '$lib/stores/job-store.svelte';
 	import { FileDown, LayoutGrid, PenTool, MessageCircle } from 'lucide-svelte';
-	const validViews = ['storyboard', 'webtoon', 'manga', 'script', 'shooting'];
+	const validViews = ['storyboard', 'webtoon', 'kindle', 'manga', 'script', 'shooting'];
 
 	// ---- URL ↔ State ----
 	// URL pattern: /{projectId}/episodes/{episodeId}/{view}
@@ -348,6 +349,7 @@
 	const viewModeItems = [
 		{ value: 'storyboard', label: 'Storyboard' },
 		{ value: 'webtoon', label: 'Webtoon' },
+		{ value: 'kindle', label: 'Kindle' },
 		{ value: 'manga', label: 'Manga' },
 		{ value: 'script', label: 'Script' },
 		{ value: 'shooting', label: 'Shooting' },
@@ -462,6 +464,8 @@
 						on:agentTrigger={({ detail }) => openChatWithAgent(detail.agent)} />
 				{:else if viewMode === 'webtoon'}
 					<WebtoonView {panels} episodeId={editMode === 'episode' ? selectedEpisode : selectedArc} {storyboardPath} />
+				{:else if viewMode === 'kindle'}
+					<KindleView {panels} episodeId={editMode === 'episode' ? selectedEpisode : selectedArc} {storyboardPath} />
 				{:else if viewMode === 'manga'}
 					<MangaEditor {panels} episodeId={editMode === 'episode' ? selectedEpisode : selectedArc} {storyboardPath} bind:selectedPage
 						on:update={({ detail }) => handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}

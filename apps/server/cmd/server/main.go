@@ -8,8 +8,10 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"net"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/dapr/go-sdk/workflow"
@@ -21,6 +23,28 @@ import (
 	"storyboard-editor/backend/internal/service"
 	"storyboard-editor/backend/proto/storyboardpbconnect"
 )
+
+func daprGRPCAddress() string {
+	port := os.Getenv("DAPR_GRPC_PORT")
+	if port == "" {
+		port = "50001"
+	}
+	return "127.0.0.1:" + port
+}
+
+func shouldEnableDapr() bool {
+	if os.Getenv("ENABLE_DAPR") == "1" {
+		return true
+	}
+
+	conn, err := net.DialTimeout("tcp", daprGRPCAddress(), 500*time.Millisecond)
+	if err != nil {
+		log.Printf("Dapr sidecar not reachable at %s; workflows disabled", daprGRPCAddress())
+		return false
+	}
+	_ = conn.Close()
+	return true
+}
 
 func main() {
 	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
@@ -41,32 +65,34 @@ func main() {
 
 	storyboardService := service.NewStoryboardService(storyboardPath, workspaceRoot, projectDir)
 
-	// Initialize Dapr workflow worker (in-process, no separate worker needed)
-	w, err := workflow.NewWorker()
-	if err != nil {
-		log.Printf("Warning: Failed to create Dapr workflow worker: %v (workflows disabled)", err)
-	} else {
-		if err := daprwf.RegisterWorkflows(w); err != nil {
-			log.Fatalf("Failed to register workflows: %v", err)
-		}
-		if err := daprwf.RegisterActivities(w); err != nil {
-			log.Fatalf("Failed to register activities: %v", err)
-		}
-
-		if err := w.Start(); err != nil {
-			log.Printf("Warning: Failed to start Dapr workflow worker: %v (workflows disabled)", err)
-		} else {
-			log.Printf("Dapr workflow worker started")
-			defer w.Shutdown()
-		}
-
-		// Create workflow client and inject into service
-		wfClient, err := workflow.NewClient()
+	if shouldEnableDapr() {
+		// Initialize Dapr workflow worker (in-process, no separate worker needed)
+		w, err := workflow.NewWorker()
 		if err != nil {
-			log.Printf("Warning: Failed to create Dapr workflow client: %v", err)
+			log.Printf("Warning: Failed to create Dapr workflow worker: %v (workflows disabled)", err)
 		} else {
-			storyboardService.SetWorkflowClient(wfClient)
-			log.Printf("Dapr workflow client connected")
+			if err := daprwf.RegisterWorkflows(w); err != nil {
+				log.Fatalf("Failed to register workflows: %v", err)
+			}
+			if err := daprwf.RegisterActivities(w); err != nil {
+				log.Fatalf("Failed to register activities: %v", err)
+			}
+
+			if err := w.Start(); err != nil {
+				log.Printf("Warning: Failed to start Dapr workflow worker: %v (workflows disabled)", err)
+			} else {
+				log.Printf("Dapr workflow worker started")
+				defer w.Shutdown()
+			}
+
+			// Create workflow client and inject into service
+			wfClient, err := workflow.NewClient()
+			if err != nil {
+				log.Printf("Warning: Failed to create Dapr workflow client: %v", err)
+			} else {
+				storyboardService.SetWorkflowClient(wfClient)
+				log.Printf("Dapr workflow client connected")
+			}
 		}
 	}
 
@@ -97,15 +123,17 @@ func main() {
 			proxyImageGenEndpoint(w, imageGenURL+"/progress")
 			return
 		}
+		if strings.HasPrefix(r.URL.Path, "/images/") {
+			imagesDir := storyboardService.CurrentImagesDir()
+			if _, err := os.Stat(imagesDir); err != nil {
+				http.NotFound(w, r)
+				return
+			}
+			http.StripPrefix("/images/", http.FileServer(http.Dir(imagesDir))).ServeHTTP(w, r)
+			return
+		}
 		mux.ServeHTTP(w, r)
 	})
-
-	// Serve static images
-	imagesDir := filepath.Join(workspaceRoot, projectDir, "resources/images")
-	if _, err := os.Stat(imagesDir); !os.IsNotExist(err) {
-		mux.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir(imagesDir))))
-		log.Printf("Serving images from: %s", imagesDir)
-	}
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -114,6 +142,7 @@ func main() {
 
 	log.Printf("Storyboard server starting on :%s", port)
 	log.Printf("Storyboard file: %s", storyboardPath)
+	log.Printf("Active project images: %s", storyboardService.CurrentImagesDir())
 
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"*"},

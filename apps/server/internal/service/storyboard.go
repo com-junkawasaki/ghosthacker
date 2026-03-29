@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"sync"
@@ -69,6 +70,13 @@ func (s *StoryboardService) projectResourcePath(relPath string) string {
 // projectBasePath returns the absolute path to the active project directory.
 func (s *StoryboardService) projectBasePath() string {
 	return filepath.Join(s.workspaceRoot, s.projectDir)
+}
+
+// CurrentImagesDir returns the active project's image directory.
+func (s *StoryboardService) CurrentImagesDir() string {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	return filepath.Join(s.workspaceRoot, s.projectDir, "resources", "images")
 }
 
 // SetWorkflowClient sets the Dapr workflow client (called from main after worker init)
@@ -917,7 +925,8 @@ func (s *StoryboardService) GetArcPanels(
 
 				pn := jsonld.Wrap(panel)
 				panelIndex, _ := pn.Int32("gh:panelIndex", "panel")
-				pObj := s.extractPanelData(panel, int32(pageNum), panelIndex)
+				episodeID, _ := jsonld.Wrap(targetEpisode).Str("gh:episodeId")
+				pObj := s.extractPanelData(panel, episodeID, int32(pageNum), panelIndex)
 				allPanels = append(allPanels, pObj)
 			}
 		}
@@ -929,7 +938,7 @@ func (s *StoryboardService) GetArcPanels(
 }
 
 // Helper to extract panel data (refactored from GetEpisodePanels)
-func (s *StoryboardService) extractPanelData(panel map[string]interface{}, pageNum int32, panelIndex int32) *storyboardpb.Panel {
+func (s *StoryboardService) extractPanelData(panel map[string]interface{}, episodeID string, pageNum int32, panelIndex int32) *storyboardpb.Panel {
 	n := jsonld.Wrap(panel)
 	panelData := &storyboardpb.PanelData{}
 
@@ -1058,6 +1067,10 @@ func (s *StoryboardService) extractPanelData(panel map[string]interface{}, pageN
 		panelData.GeneratedImages = append(panelData.GeneratedImages, generatedImg)
 	}
 
+	if len(panelData.GeneratedImages) == 0 {
+		panelData.GeneratedImages = s.inferGeneratedImagesFromFilesystem(episodeID, pageNum, panelIndex)
+	}
+
 	// Load current image index
 	if idx, ok := n.Int32("gh:currentImageIndex"); ok {
 		panelData.CurrentImageIndex = idx
@@ -1076,6 +1089,55 @@ func (s *StoryboardService) extractPanelData(panel map[string]interface{}, pageN
 		CutNumber:  panelData.CutNumber,
 		Data:       panelData,
 	}
+}
+
+func (s *StoryboardService) inferGeneratedImagesFromFilesystem(episodeID string, pageNum int32, panelIndex int32) []*storyboardpb.GeneratedImage {
+	if episodeID == "" {
+		return nil
+	}
+
+	pageDir := filepath.Join(s.CurrentImagesDir(), "episodes", episodeID, "pages", fmt.Sprintf("%d", pageNum))
+	entries, err := os.ReadDir(pageDir)
+	if err != nil {
+		return nil
+	}
+
+	patterns := []*regexp.Regexp{
+		regexp.MustCompile(fmt.Sprintf(`^cine_p%d_%d\.[A-Za-z0-9]+$`, pageNum, panelIndex)),
+		regexp.MustCompile(fmt.Sprintf(`^p%dn%d(?:[-_].*)?\.[A-Za-z0-9]+$`, pageNum, panelIndex)),
+	}
+
+	type match struct {
+		name string
+		url  string
+	}
+	matches := make([]match, 0)
+	for _, entry := range entries {
+		if entry.IsDir() {
+			continue
+		}
+		name := entry.Name()
+		for _, pattern := range patterns {
+			if pattern.MatchString(name) {
+				matches = append(matches, match{
+					name: name,
+					url:  fmt.Sprintf("/images/episodes/%s/pages/%d/%s", episodeID, pageNum, name),
+				})
+				break
+			}
+		}
+	}
+
+	sort.Slice(matches, func(i, j int) bool { return matches[i].name < matches[j].name })
+
+	images := make([]*storyboardpb.GeneratedImage, 0, len(matches))
+	for _, m := range matches {
+		images = append(images, &storyboardpb.GeneratedImage{
+			ImageUrl: m.url,
+			Model:    "filesystem-fallback",
+		})
+	}
+	return images
 }
 
 func (s *StoryboardService) GetEpisodePanels(
@@ -1156,7 +1218,7 @@ func (s *StoryboardService) GetEpisodePanels(
 
 			pn := jsonld.Wrap(panel)
 			panelIndex, _ := pn.Int32("gh:panelIndex", "panel")
-			pObj := s.extractPanelData(panel, int32(pageNum), panelIndex)
+			pObj := s.extractPanelData(panel, req.Msg.EpisodeId, int32(pageNum), panelIndex)
 			panels = append(panels, pObj)
 		}
 	}
