@@ -449,6 +449,7 @@
 					{panels}
 					characterIds={projectCharacterIds}
 					selectedId={editMode === 'episode' ? selectedEpisode : selectedArc}
+					{storyboardPath}
 					onSelect={(panel) => { selectedPanelIndex = panel.panel; selectedPanelData = panel.data; addContextToChat('panel', panel); }}
 					onContextAdd={(type, data) => addContextToChat(type, data)}
 				/>
