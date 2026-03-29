@@ -704,6 +704,171 @@ func (s *StoryboardService) UpdatePanel(
 	}), nil
 }
 
+// MovePanel moves a panel from one page to another (or reorders within a page).
+// It removes the panel from source page and inserts it at target page/index,
+// then saves the updated episode JSONLD.
+func (s *StoryboardService) MovePanel(
+	ctx context.Context,
+	req *connect.Request[storyboardpb.MovePanelRequest],
+) (*connect.Response[storyboardpb.MovePanelResponse], error) {
+	filePath := req.Msg.FilePath
+	if filePath == "" {
+		filePath = s.storyboardPath
+	}
+
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	storyboard, err := s.aggregateMaster(filePath)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInternal, fmt.Errorf("failed to load storyboard: %w", err))
+	}
+
+	episodes, ok := storyboard["gh:episodes"].([]interface{})
+	if !ok {
+		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("no episodes found"))
+	}
+
+	// Find the episode
+	var targetEpisode map[string]interface{}
+	for _, e := range episodes {
+		ep, ok := e.(map[string]interface{})
+		if !ok {
+			continue
+		}
+		if ep["gh:episodeId"] == req.Msg.EpisodeId {
+			targetEpisode = ep
+			break
+		}
+	}
+	if targetEpisode == nil {
+		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("episode not found: %s", req.Msg.EpisodeId))
+	}
+
+	pages, ok := targetEpisode["gh:pages"].([]interface{})
+	if !ok {
+		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("no pages found"))
+	}
+
+	// Find source page and remove the panel
+	var movedPanel interface{}
+	for _, pg := range pages {
+		page, ok := pg.(map[string]interface{})
+		if !ok {
+			continue
+		}
+		pageNum, _ := jsonld.Wrap(page).Int32("gh:pageNumber")
+		if pageNum != req.Msg.SourcePage {
+			continue
+		}
+		panels, ok := page["gh:panels"].([]interface{})
+		if !ok {
+			break
+		}
+		for i, pn := range panels {
+			pnMap, ok := pn.(map[string]interface{})
+			if !ok {
+				continue
+			}
+			pnIdx, _ := jsonld.Wrap(pnMap).Int32("gh:panelIndex", "panel")
+			if pnIdx == req.Msg.SourcePanel {
+				movedPanel = pn
+				page["gh:panels"] = append(panels[:i], panels[i+1:]...)
+				break
+			}
+		}
+		break
+	}
+	if movedPanel == nil {
+		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("source panel P%d-%d not found", req.Msg.SourcePage, req.Msg.SourcePanel))
+	}
+
+	// Find or create target page and insert the panel
+	var targetPage map[string]interface{}
+	for _, pg := range pages {
+		page, ok := pg.(map[string]interface{})
+		if !ok {
+			continue
+		}
+		pageNum, _ := jsonld.Wrap(page).Int32("gh:pageNumber")
+		if pageNum == req.Msg.TargetPage {
+			targetPage = page
+			break
+		}
+	}
+	if targetPage == nil {
+		// Create new page
+		targetPage = map[string]interface{}{
+			"gh:pageNumber": req.Msg.TargetPage,
+			"gh:layout":     "full",
+			"gh:panels":     []interface{}{},
+		}
+		targetEpisode["gh:pages"] = append(pages, targetPage)
+	}
+
+	// Update the panel index
+	if pm, ok := movedPanel.(map[string]interface{}); ok {
+		pm["gh:panelIndex"] = req.Msg.TargetPanelIndex
+	}
+
+	targetPanels, _ := targetPage["gh:panels"].([]interface{})
+	insertIdx := int(req.Msg.TargetPanelIndex)
+	if insertIdx > len(targetPanels) {
+		insertIdx = len(targetPanels)
+	}
+	// Insert at position
+	newPanels := make([]interface{}, 0, len(targetPanels)+1)
+	newPanels = append(newPanels, targetPanels[:insertIdx]...)
+	newPanels = append(newPanels, movedPanel)
+	newPanels = append(newPanels, targetPanels[insertIdx:]...)
+	targetPage["gh:panels"] = newPanels
+
+	// Renumber panel indices on target page
+	for i, pn := range newPanels {
+		if pm, ok := pn.(map[string]interface{}); ok {
+			pm["gh:panelIndex"] = int32(i + 1)
+		}
+	}
+
+	// Remove empty source pages
+	updatedPages := make([]interface{}, 0)
+	for _, pg := range targetEpisode["gh:pages"].([]interface{}) {
+		page, ok := pg.(map[string]interface{})
+		if !ok {
+			updatedPages = append(updatedPages, pg)
+			continue
+		}
+		panels, _ := page["gh:panels"].([]interface{})
+		if len(panels) > 0 {
+			updatedPages = append(updatedPages, pg)
+		}
+	}
+	targetEpisode["gh:pages"] = updatedPages
+
+	// Save episode file
+	workspaceRoot := os.Getenv("WORKSPACE_ROOT")
+	if workspaceRoot == "" {
+		workspaceRoot = filepath.Dir(filepath.Dir(filepath.Dir(filepath.Dir(filePath))))
+	}
+	epID := strings.TrimPrefix(req.Msg.EpisodeId, "episode:")
+	epPath := filepath.Join(workspaceRoot, s.projectDir, "resources/episodes", epID, "episode.jsonld")
+	epToSave := map[string]interface{}{"@context": storyboard["@context"]}
+	for k, v := range targetEpisode {
+		if k != "gh:sourceFile" {
+			epToSave[k] = v
+		}
+	}
+	epContent, _ := json.MarshalIndent(epToSave, "", "  ")
+	os.WriteFile(epPath, epContent, 0644)
+
+	log.Printf("MovePanel: moved P%d-%d → P%d (idx %d) in %s", req.Msg.SourcePage, req.Msg.SourcePanel, req.Msg.TargetPage, req.Msg.TargetPanelIndex, req.Msg.EpisodeId)
+
+	return connect.NewResponse(&storyboardpb.MovePanelResponse{
+		Success: true,
+		Message: fmt.Sprintf("Panel moved to page %d", req.Msg.TargetPage),
+	}), nil
+}
+
 func (s *StoryboardService) SaveStoryboard(
 	ctx context.Context,
 	req *connect.Request[storyboardpb.SaveStoryboardRequest],

@@ -114,6 +114,9 @@ const (
 	// StoryboardServiceListGenerationJobsProcedure is the fully-qualified name of the
 	// StoryboardService's ListGenerationJobs RPC.
 	StoryboardServiceListGenerationJobsProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/ListGenerationJobs"
+	// StoryboardServiceMovePanelProcedure is the fully-qualified name of the StoryboardService's
+	// MovePanel RPC.
+	StoryboardServiceMovePanelProcedure = "/gftd.ghosthacker.storyboard.v1.StoryboardService/MovePanel"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
@@ -146,6 +149,7 @@ var (
 	storyboardServiceSubmitGenerationJobMethodDescriptor           = storyboardServiceServiceDescriptor.Methods().ByName("SubmitGenerationJob")
 	storyboardServiceCancelGenerationJobMethodDescriptor           = storyboardServiceServiceDescriptor.Methods().ByName("CancelGenerationJob")
 	storyboardServiceListGenerationJobsMethodDescriptor            = storyboardServiceServiceDescriptor.Methods().ByName("ListGenerationJobs")
+	storyboardServiceMovePanelMethodDescriptor                     = storyboardServiceServiceDescriptor.Methods().ByName("MovePanel")
 )
 
 // StoryboardServiceClient is a client for the gftd.ghosthacker.storyboard.v1.StoryboardService
@@ -205,6 +209,8 @@ type StoryboardServiceClient interface {
 	CancelGenerationJob(context.Context, *connect.Request[proto.CancelGenerationJobRequest]) (*connect.Response[proto.CancelGenerationJobResponse], error)
 	// List all generation jobs (active and recent)
 	ListGenerationJobs(context.Context, *connect.Request[proto.ListGenerationJobsRequest]) (*connect.Response[proto.ListGenerationJobsResponse], error)
+	// Move a panel to a different page (reorder/merge panels between pages)
+	MovePanel(context.Context, *connect.Request[proto.MovePanelRequest]) (*connect.Response[proto.MovePanelResponse], error)
 }
 
 // NewStoryboardServiceClient constructs a client for the
@@ -380,6 +386,12 @@ func NewStoryboardServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(storyboardServiceListGenerationJobsMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		movePanel: connect.NewClient[proto.MovePanelRequest, proto.MovePanelResponse](
+			httpClient,
+			baseURL+StoryboardServiceMovePanelProcedure,
+			connect.WithSchema(storyboardServiceMovePanelMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -412,6 +424,7 @@ type storyboardServiceClient struct {
 	submitGenerationJob           *connect.Client[proto.SubmitGenerationJobRequest, proto.SubmitGenerationJobResponse]
 	cancelGenerationJob           *connect.Client[proto.CancelGenerationJobRequest, proto.CancelGenerationJobResponse]
 	listGenerationJobs            *connect.Client[proto.ListGenerationJobsRequest, proto.ListGenerationJobsResponse]
+	movePanel                     *connect.Client[proto.MovePanelRequest, proto.MovePanelResponse]
 }
 
 // LoadStoryboard calls gftd.ghosthacker.storyboard.v1.StoryboardService.LoadStoryboard.
@@ -553,6 +566,11 @@ func (c *storyboardServiceClient) ListGenerationJobs(ctx context.Context, req *c
 	return c.listGenerationJobs.CallUnary(ctx, req)
 }
 
+// MovePanel calls gftd.ghosthacker.storyboard.v1.StoryboardService.MovePanel.
+func (c *storyboardServiceClient) MovePanel(ctx context.Context, req *connect.Request[proto.MovePanelRequest]) (*connect.Response[proto.MovePanelResponse], error) {
+	return c.movePanel.CallUnary(ctx, req)
+}
+
 // StoryboardServiceHandler is an implementation of the
 // gftd.ghosthacker.storyboard.v1.StoryboardService service.
 type StoryboardServiceHandler interface {
@@ -610,6 +628,8 @@ type StoryboardServiceHandler interface {
 	CancelGenerationJob(context.Context, *connect.Request[proto.CancelGenerationJobRequest]) (*connect.Response[proto.CancelGenerationJobResponse], error)
 	// List all generation jobs (active and recent)
 	ListGenerationJobs(context.Context, *connect.Request[proto.ListGenerationJobsRequest]) (*connect.Response[proto.ListGenerationJobsResponse], error)
+	// Move a panel to a different page (reorder/merge panels between pages)
+	MovePanel(context.Context, *connect.Request[proto.MovePanelRequest]) (*connect.Response[proto.MovePanelResponse], error)
 }
 
 // NewStoryboardServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -780,6 +800,12 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 		connect.WithSchema(storyboardServiceListGenerationJobsMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	storyboardServiceMovePanelHandler := connect.NewUnaryHandler(
+		StoryboardServiceMovePanelProcedure,
+		svc.MovePanel,
+		connect.WithSchema(storyboardServiceMovePanelMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/gftd.ghosthacker.storyboard.v1.StoryboardService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case StoryboardServiceLoadStoryboardProcedure:
@@ -836,6 +862,8 @@ func NewStoryboardServiceHandler(svc StoryboardServiceHandler, opts ...connect.H
 			storyboardServiceCancelGenerationJobHandler.ServeHTTP(w, r)
 		case StoryboardServiceListGenerationJobsProcedure:
 			storyboardServiceListGenerationJobsHandler.ServeHTTP(w, r)
+		case StoryboardServiceMovePanelProcedure:
+			storyboardServiceMovePanelHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -951,4 +979,8 @@ func (UnimplementedStoryboardServiceHandler) CancelGenerationJob(context.Context
 
 func (UnimplementedStoryboardServiceHandler) ListGenerationJobs(context.Context, *connect.Request[proto.ListGenerationJobsRequest]) (*connect.Response[proto.ListGenerationJobsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.ListGenerationJobs is not implemented"))
+}
+
+func (UnimplementedStoryboardServiceHandler) MovePanel(context.Context, *connect.Request[proto.MovePanelRequest]) (*connect.Response[proto.MovePanelResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("gftd.ghosthacker.storyboard.v1.StoryboardService.MovePanel is not implemented"))
 }
