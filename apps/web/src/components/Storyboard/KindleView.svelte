@@ -138,19 +138,21 @@
 		return undefined;
 	}
 
-	// ---- Image position (transform-based pan + zoom) ----
+	// ---- Image position ----
+	// x,y = object-position (0-100%), scale = size multiplier (1=100%, 2=200%)
+	// Larger scale → image overflows cell → object-position pans within it
 
 	function getImgPos(panel: Panel): { x: number; y: number; scale: number } {
 		const ov = imgOverrides.get(pk(panel));
 		if (ov) return ov;
 		const ml = panel.data?.mangaLayout?.panels?.[0];
-		return { x: ml?.imageX ?? 0, y: ml?.imageY ?? 0, scale: ml?.imageScale || 1 };
+		return { x: ml?.imageX ?? 50, y: ml?.imageY ?? 50, scale: ml?.imageScale || 1 };
 	}
 
-	// x,y = translate offset in %, scale = zoom factor
 	function imgStyle(panel: Panel): string {
 		const { x, y, scale } = getImgPos(panel);
-		return `transform:translate(${x}%,${y}%) scale(${scale})`;
+		const pct = scale * 100;
+		return `width:${pct}%;height:${pct}%;object-position:${x}% ${y}%`;
 	}
 
 	// ---- Bubble position ----
@@ -183,8 +185,8 @@
 	function onWheel(e: WheelEvent, panel: Panel) {
 		e.preventDefault();
 		const pos = getImgPos(panel);
-		const d = e.deltaY > 0 ? -0.05 : 0.05;
-		const s = Math.max(0.5, Math.min(3, pos.scale + d));
+		const d = e.deltaY > 0 ? -0.1 : 0.1;
+		const s = Math.max(1, Math.min(4, pos.scale + d));
 		imgOverrides = new Map(imgOverrides).set(pk(panel), { ...pos, scale: s });
 		scheduleSave('img', panel);
 	}
@@ -212,7 +214,7 @@
 			const cell = document.querySelector(`[data-pk="${imgDrag.panelKey}"]`);
 			if (!cell) return;
 			const r = cell.getBoundingClientRect();
-			// Pan: move in drag direction (positive dx → image shifts right → translate increases)
+			// Pan: drag right → object-position x decreases (shows more of left side)
 			const dx = ((pt.clientX - imgDrag.startX) / r.width) * 100;
 			const dy = ((pt.clientY - imgDrag.startY) / r.height) * 100;
 			const panel = findPanel(imgDrag.panelKey);
@@ -220,8 +222,8 @@
 			const pos = getImgPos(panel);
 			imgOverrides = new Map(imgOverrides).set(imgDrag.panelKey, {
 				...pos,
-				x: imgDrag.origX + dx,
-				y: imgDrag.origY + dy
+				x: Math.max(0, Math.min(100, imgDrag.origX - dx)),
+				y: Math.max(0, Math.min(100, imgDrag.origY - dy))
 			});
 		}
 	}
@@ -457,9 +459,12 @@
 	.gn-drag-handle:active { cursor: grabbing; }
 
 	.gn-img {
-		width: 100%; height: 100%; display: block; object-fit: cover;
-		position: absolute; inset: 0;
-		transform-origin: center center;
+		/* width/height/object-position set by inline style */
+		min-width: 100%; min-height: 100%;
+		display: block; object-fit: cover;
+		position: absolute;
+		top: 50%; left: 50%;
+		transform: translate(-50%, -50%);
 		pointer-events: none;
 		user-select: none;
 	}

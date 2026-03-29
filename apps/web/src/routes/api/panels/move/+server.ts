@@ -1,6 +1,6 @@
 import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { findEpisode, saveEpisode } from '$lib/server/jsonld';
+import { findEpisode, loadJsonLd, saveJsonLd } from '$lib/server/jsonld';
 
 export const POST: RequestHandler = async ({ request }) => {
 	const body = await request.json();
@@ -14,11 +14,13 @@ export const POST: RequestHandler = async ({ request }) => {
 		return json({ success: true, message: 'Same page, no move needed' });
 	}
 
+	// Find episode to get the source file path
 	const result = await findEpisode(episodeId);
 	if (!result) throw error(404, `Episode not found: ${episodeId}`);
 
-	const { master, episode, sourcePath } = result;
-	const pages = episode['gh:pages'] as any[] ?? [];
+	// Load the ORIGINAL episode file (not the aggregated/merged version)
+	const original = await loadJsonLd(result.sourcePath);
+	const pages = original['gh:pages'] as any[] ?? [];
 
 	// Find source page and remove panel
 	let movedPanel: any = null;
@@ -64,13 +66,13 @@ export const POST: RequestHandler = async ({ request }) => {
 	}
 
 	// Remove empty pages
-	episode['gh:pages'] = pages.filter((p: any) => {
-		const panels = p['gh:panels'] as any[] ?? [];
-		return panels.length > 0;
+	original['gh:pages'] = pages.filter((p: any) => {
+		const pnls = p['gh:panels'] as any[] ?? [];
+		return pnls.length > 0;
 	});
 
-	// Save
-	await saveEpisode(episode, sourcePath, master['@context']);
+	// Save back to the same file (preserves original @context and all fields)
+	await saveJsonLd(result.sourcePath, original);
 
 	console.log(`[MovePanel] P${sourcePage}-${sourcePanel} → Page ${targetPage} (idx ${insertAt}) in ${episodeId}`);
 
