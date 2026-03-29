@@ -2,12 +2,13 @@
 	import type { Panel } from '$lib/gen/proto/storyboard_pb';
 	import { FolderOpen, Users, FileText, Film } from 'lucide-svelte';
 
-	let { panels = [], characterIds = [], selectedId = '', onSelect, onContextAdd } = $props<{
+	let { panels = [], characterIds = [], selectedId = '', onSelect, onContextAdd, onPanelsChanged } = $props<{
 		panels: Panel[];
 		characterIds?: string[];
 		selectedId: string;
 		onSelect?: (panel: Panel) => void;
 		onContextAdd?: (type: string, data: any) => void;
+		onPanelsChanged?: () => void;
 	}>();
 
 	let pagesMap = $derived(panels.reduce((acc: Record<number, Panel[]>, panel: Panel) => {
@@ -100,6 +101,9 @@
 			if (!res.ok) {
 				const err = await res.json().catch(() => ({ message: res.statusText }));
 				console.error('[NodeTree] move panel error:', err);
+			} else {
+				// Notify parent to reload panels
+				onPanelsChanged?.();
 			}
 		} catch (err) {
 			console.error('[NodeTree] move panel error:', err);

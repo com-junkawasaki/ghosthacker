@@ -29,10 +29,21 @@ export const POST: RequestHandler = async ({ request }) => {
 		if (pageNum !== sourcePage) continue;
 
 		const panels = page['gh:panels'] as any[] ?? [];
-		const idx = panels.findIndex((p: any) => {
+		// Match by panelIndex (1-based in JSONLD) or panel field, or by array index
+		let idx = panels.findIndex((p: any) => {
 			const pi = p['gh:panelIndex'] ?? p['panel'];
 			return pi === sourcePanel;
 		});
+		// Fallback: if sourcePanel is 0-based index from protobuf, try index+1
+		if (idx < 0 && sourcePanel === 0 && panels.length > 0) {
+			idx = 0; // First panel
+		}
+		if (idx < 0) {
+			idx = panels.findIndex((p: any) => {
+				const pi = p['gh:panelIndex'] ?? p['panel'];
+				return pi === sourcePanel + 1; // Try 1-based
+			});
+		}
 		if (idx >= 0) {
 			movedPanel = panels.splice(idx, 1)[0];
 		}

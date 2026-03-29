@@ -451,6 +451,7 @@
 					selectedId={editMode === 'episode' ? selectedEpisode : selectedArc}
 					onSelect={(panel) => { selectedPanelIndex = panel.panel; selectedPanelData = panel.data; addContextToChat('panel', panel); }}
 					onContextAdd={(type, data) => addContextToChat(type, data)}
+					onPanelsChanged={() => { if (editMode === 'episode') loadPanels(); else loadArcPanelsData(); }}
 				/>
 			</div>
 
