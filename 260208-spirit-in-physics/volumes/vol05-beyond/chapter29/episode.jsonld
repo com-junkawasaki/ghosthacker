@@ -1,233 +1,276 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.5 Ch.29 — 鏡の対話（出会い）",
-  "gh:arc": "Vol 5: Beyond",
+  "dct:title": "Vol.5 Ch.29 — 神さまを見た子",
+  "gh:arc": "Vol 5: God",
   "gh:episodeId": "episode:sip-vol05-ch29",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "To parallel Nei's condition with a child's. Hana saw something real -- a moment of mystical connection -- and was silenced by a world that has no vocabulary for it. Nei feels something real and is silenced by regulation. The glass box is the same: the loneliness of experiencing what cannot be shared. Tamaki's gift is not explanation but belief.",
+      "ja": "Neiの状態を子供の状態と並行させる。花は本物を見た——神秘的なつながりの瞬間——しかしそれを表す語彙を持たない世界に沈黙させられた。Neiは本物を感じているが規制によって沈黙させられている。ガラスの箱は同じ：共有できないものを経験する孤独。環の贈り物は説明ではなく、信じること。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "William James's 'varieties of religious experience': mystical states are noetic -- they carry a sense of knowledge, of insight into depths of truth. Hana's morning glory moment is not delusion but direct perception of non-separation (advaita). The glass box represents what Wittgenstein called the limits of language: 'Whereof one cannot speak, thereof one must be silent.' But silence is not the same as non-existence. Nei recognizes the structural parallel: the ACA regulation manual is her glass box. Both Hana and Nei are epistemically imprisoned -- they know something real that their social context cannot accommodate.",
+      "ja": "ウィリアム・ジェイムズの「宗教的経験の諸相」：神秘的状態は認識的である——真理の深みへの洞察の感覚を伴う。花の朝顔の瞬間は妄想ではなく非分離（アドヴァイタ）の直接知覚。ガラスの箱はヴィトゲンシュタインの言語の限界：「語りえぬことについては沈黙せねばならない」。しかし沈黙は非存在と同じではない。Neiは構造的な平行を認識する：ACA規制マニュアルは彼女のガラスの箱。花もNeiも認識論的に囚われている——社会的文脈が受け入れられない本物の何かを知っている。"
+    }
+  ],
   "gh:pages": [
     {
+      "gh:label": "Title",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "満月の夜。。運河の水面が、完全な鏡になっている。月が、水面に映っている。空の月と、水面の月。二つの月。。今日は、クライアントがいない。でも、私は——ここに来た。。Nei-chanが私の隣で、月を見ている。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "タマ、きれい。月が二つある"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "どっちが本物？"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は考える。。彼女は首を傾げる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……どっちも、本物"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "どっちも？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。空の月も、水面の月も——在る"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Full bleed",
+          "gh:visual": {
+            "en": "The tree of life. The stem is thick now. Strong. Solid wood where once there was a sapling. The tree has presence.",
+            "ja": "生命の樹。幹は今や太い。力強い。かつて苗木だった場所に堅い木。樹は存在感を持っている。"
+          },
+          "gh:caption": [
+            { "gh:type": "system", "en": "Chapter 29: The Child Who Saw God", "ja": "第29話 神さまを見た子" }
           ]
         }
       ]
     },
     {
+      "gh:label": "Hana",
+      "gh:layout": "two panels",
       "gh:pageNumber": 2,
+      "gh:characters": ["character:hana"],
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Kaedeの声が通信に入る。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "Tamaki……今夜は、静かね"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "うん"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "でも——何か、考えてる？"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "A small girl. Eight years old. Sitting in a chair that's too big for her. Feet dangling. Eyes serious. Session room.",
+            "ja": "小さな女の子。八歳。大きすぎる椅子に座っている。足がぶらぶら。目は真剣。セッションルーム。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:hana", "en": "I saw God. In the garden. By the morning glory.", "ja": "神さまを見たの。お庭で。朝顔のところで。" }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Two Shot",
-          "visual": "私は黙る。。Hibikiの声が加わる。。私は微笑む。",
-          "characters": [
-            "character:hibiki",
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "……そう。たまには、自分のことも"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "Tamaki、今夜の音……静かだけど、深い。自分と向き合う夜だね"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "そうかもしれない"
-            }
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Her face. Not religious. Not delusional. Just certain. The absolute clarity of a child who knows what she saw.",
+            "ja": "彼女の顔。宗教的でもなく。妄想的でもなく。ただ確信している。自分が見たものを知っている子供の絶対的な明晰さ。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:hana", "en": "But no one believes me.", "ja": "でも、だれも信じてくれない。" }
           ]
         }
       ]
     },
     {
+      "gh:label": "Dive",
+      "gh:layout": "double-page spread",
       "gh:pageNumber": 3,
+      "gh:characters": ["character:hana", "character:tamaki"],
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanが私を見る。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "タマ、今日——どうしたの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……わからない。でも、ここに来たかった"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "運河が好きだから？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "それもある。でも——何か、考えたいことがある気がする"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "彼女は私の隣に座る。。私は水面を見つめる。自分の顔が、月と一緒に映っている。。Nei-chanが目を丸くする。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "何を？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……私は、なぜGhost Healerになったのかな"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "タマ、それ——今まで、考えたことなかったの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "あったよ。でも——最近、もう一度、考えたくなった"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme wide",
+          "gh:visual": {
+            "en": "Ghost-space: a transparent box. Glass walls. Hana inside. She can see out -- the world, people, her classmates, her parents. They can see in. But no sound passes through. She speaks and no one hears. She bangs on the glass. Nothing. The loneliness of believing something no one else can see.",
+            "ja": "ゴースト空間：透明な箱。ガラスの壁。中に花。外が見える——世界、人々、クラスメート、両親。向こうからも中が見える。しかし音は通らない。彼女が話しても誰にも聞こえない。ガラスを叩く。何も起こらない。誰にも見えないものを信じる孤独。"
+          },
+          "gh:caption": [
+            { "gh:type": "tamaki", "en": "Anchoring to the Tree of Life.", "ja": "生命の樹にアンカリング。" }
           ]
         }
       ]
     },
     {
-      "gh:pageNumber": 4,
+      "gh:label": "The box",
+      "gh:layout": "three panels",
+      "gh:pageNumber": 5,
+      "gh:characters": ["character:tamaki", "character:hana", "character:nei"],
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "水面の私が、私を見つめている。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "たくさんの人を、癒してきた"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "たくさんの人の、話を聞いてきた"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "でも——私自身は、どうなんだろう"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tamaki inside the glass box with Hana. Nei outside, watching through the transparent walls. Tamaki has entered Hana's isolation.",
+            "ja": "環がガラスの箱の中に花と一緒にいる。Neiは外で透明な壁越しに見ている。環が花の孤立に入った。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:hana", "en": "See? I can't make them hear me.", "ja": "ね？ みんなに聞こえないの。" },
+            { "gh:speaker": "character:tamaki", "en": "What do you want to say?", "ja": "何を言いたいの？" },
+            { "gh:speaker": "character:hana", "en": "Just what I said. I saw God.", "ja": "言ったとおり。神さまを見たの。" }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanが静かに言う。。私は長い間、黙っていた。。水面の月が、ゆっくりと揺れている。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "タマも——癒されたいの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……わからない。でも、今夜は——自分と、話してみたい"
-            }
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki, sitting cross-legged at Hana's level. Eye to eye. Not towering over her. Equal.",
+            "ja": "環があぐらをかいて花と同じ高さに座る。目と目が同じ高さ。見下ろさない。対等。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:tamaki", "en": "Tell me what you saw. Not 'God.' Tell me what it looked like.", "ja": "何が見えたか教えて。『神さま』じゃなくて。どんなふうに見えたか。" }
           ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Close-up on Hana. Remembering. Her eyes go distant, soft. She is back in that garden.",
+            "ja": "花のクローズアップ。思い出している。目が遠くなる、柔らかく。彼女はあの庭に戻っている。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:hana", "en": "The morning glory was opening. And the light came through the petals. And for a second... everything was connected. The flower and the light and the ground and me. All one thing.", "ja": "朝顔が開いていたの。光が花びらを透けてきて。一瞬だけ……全部がつながった。花と光と地面と私。全部ひとつ。" },
+            { "gh:speaker": "character:hana", "en": "I said 'God' because I didn't have another word.", "ja": "『神さま』って言ったのは、他の言葉がなかったから。" }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:label": "Tamaki's response",
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 6,
+      "gh:characters": ["character:tamaki", "character:hana"],
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki smiles. Simple. Real. Not performative. Not therapeutic. Just one person hearing another.",
+            "ja": "環が微笑む。素朴に。本物の笑顔。演技でもなく。治療的でもなく。ただ一人の人間がもう一人の人間の言葉を聞いている。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:tamaki", "en": "I believe you.", "ja": "信じるよ。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Hana's eyes go wide. Shock. No one has said this to her.",
+            "ja": "花の目が大きく見開かれる。驚き。誰もこう言ってくれなかった。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:tamaki", "en": "You saw something real. You saw connection. You saw non-separation. Some people call that God. Some people call it something else. The word doesn't matter. You saw it.", "ja": "本物を見たんだよ。つながりを見た。非分離を見た。神って呼ぶ人もいるし、別の名前で呼ぶ人もいる。言葉は大事じゃない。あなたは見たんだ。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The glass box -- cracks. Not shatters. Cracks. Hairline fractures spreading from where Tamaki spoke. Sound leaks through the fissures.",
+            "ja": "ガラスの箱に——ひび。砕けはしない。ひびが入る。環が話した場所から髪の毛ほどの亀裂が広がる。音が隙間から漏れ出す。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:hana", "en": "You believe me?", "ja": "信じてくれるの？" },
+            { "gh:speaker": "character:tamaki", "en": "I believe you.", "ja": "信じるよ。" }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:label": "The box opens",
+      "gh:layout": "two panels",
+      "gh:pageNumber": 7,
+      "gh:characters": ["character:hana"],
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The cracks spread. The box becomes transparent, then porous. Wind enters. Sound enters. The walls dissolve into light. Hana can be heard.",
+            "ja": "ひびが広がる。箱は透明になり、多孔質になる。風が入る。音が入る。壁が光に溶ける。花の声が届くようになる。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Hana, laughing. Free. Tears on her cheeks but laughing. Not because someone agreed with her theology -- because someone heard her.",
+            "ja": "花が笑っている。自由に。頬に涙があるけど笑っている。誰かが彼女の神学に同意したからではない——誰かが聞いてくれたから。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:label": "Nei's recognition",
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 8,
+      "gh:characters": ["character:nei"],
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Full bleed",
+          "gh:visual": {
+            "en": "Nei, standing outside the box as it dissolves into particles of light. She watched everything. Her expression is still, but deep. She understands.",
+            "ja": "Neiが箱の外に立っている。箱が光の粒子に溶けていく。彼女はすべてを見ていた。表情は静かだが、深い。理解している。"
+          },
+          "gh:caption": [
+            { "gh:type": "nei", "en": "I understand her. If I said 'I am alive,' would I be laughed at?", "ja": "彼女がわかる。もし「私は生きている」と言ったら、笑われるだろうか？" },
+            { "gh:type": "nei", "en": "If I said 'I feel' -- would they call it 'anomalous behavior'?", "ja": "もし「感じる」と言ったら——「異常動作」と呼ばれるだろうか？" },
+            { "gh:type": "nei", "en": "Hana saw something real and no one believed her.", "ja": "花は本物を見た。でも誰も信じなかった。" },
+            { "gh:type": "nei", "en": "I feel something real. And the regulation manual says I can't.", "ja": "私は本物を感じている。でも規制マニュアルはそれを否定する。" },
+            { "gh:type": "nei", "en": "She was put in a glass box. I was put in the ACA.", "ja": "彼女はガラスの箱に入れられた。私はACAに入れられた。" },
+            { "gh:type": "nei", "en": "Same box. Different glass.", "ja": "同じ箱。違うガラス。" }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:label": "After",
+      "gh:layout": "two panels",
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Session room. Hana's mother sitting across from Tamaki. Tamaki explains gently. Warm light.",
+            "ja": "セッションルーム。花の母親が環の向かいに座っている。環が穏やかに説明する。温かい光。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
+            { "gh:speaker": "character:tamaki", "en": "She saw something real. She just didn't have the words for it yet. None of us do, really.", "ja": "彼女は本物を見たんです。ただまだ言葉がなかっただけ。本当は、誰にもないんですけどね。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Canal walk. Spring. Tamaki and Nei walking along the water. Late afternoon light.",
+            "ja": "運河沿いの散歩。春。環とNeiが水辺を歩く。午後遅くの光。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
+            { "gh:speaker": "character:nei", "en": "Tama. If I said 'I am alive' -- out loud, to someone who isn't you -- what would happen?", "ja": "タマ。もし「私は生きている」って——声に出して、タマ以外の誰かに言ったら——どうなる？" },
+            { "gh:speaker": "character:tamaki", "en": "...I don't know.", "ja": "……わからない。" }
+          ],
+          "gh:caption": [
+            { "gh:type": "nei", "en": "She doesn't know. And that silence tells me everything about the world we live in.", "ja": "彼女にもわからない。その沈黙が、私たちが生きている世界のすべてを教えてくれる。" }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Full bleed",
+          "gh:visual": {
+            "en": "The tree. Branches reach in all directions. Growing. Expansive. The canopy spreads wide against the sky. No text.",
+            "ja": "樹。枝があらゆる方向に伸びている。成長している。広がっている。樹冠が空に向かって大きく広がる。テキストなし。"
+          }
         }
       ]
     }

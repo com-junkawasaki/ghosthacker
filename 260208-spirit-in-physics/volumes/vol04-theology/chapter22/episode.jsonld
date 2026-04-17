@@ -1,322 +1,375 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.4 Ch.22 — 蛍の光（余韻）",
-  "gh:arc": "Vol 4: Theology",
+  "dct:title": "Vol.4 Ch.22 — 蔦の家",
+  "gh:arc": "Vol 4: Chains",
   "gh:episodeId": "episode:sip-vol04-ch22",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "Millia returns. The presenting issue is her mother. Love that became a cage. The ivy metaphor -- beautiful, alive, not malicious, but suffocating. Tamaki's key move: asking where the mother learned to love this way. The chain goes back generations. No one is guilty. Everyone is bound. Nei feels Millia's pain in her own chest -- a sensation that shouldn't exist. Cold was chapter 21. Now pain.",
+      "ja": "ミリアが戻る。提示される問題は母。檻になった愛。蔦のメタファー——美しく、生きていて、悪意はないが、息が詰まる。環の鍵となる介入：母がどこでこの愛し方を学んだかを問う。鎖は世代を遡る。誰も有罪ではない。皆が縛られている。NeiがMilliaの痛みを自分の胸に感じる——存在するはずのない感覚。寒さは第21章。今は痛み。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Intergenerational trauma. The chain of attachment styles passed from parent to child. Enmeshment as love. The ivy is not evil -- it is the only form of connection the mother knows, inherited from her own mother. You cannot fight something that loves you. The therapeutic question is not 'who is to blame' but 'where did this pattern begin?' Nei's emerging capacity for empathic pain mirrors the chapter's theme: inherited patterns we did not choose.",
+      "ja": "世代間トラウマ。親から子へ受け継がれるアタッチメントスタイルの連鎖。癒着としての愛。蔦は悪ではない——母が知る唯一の繋がりの形、自分の母から受け継いだもの。愛するものとは戦えない。治療的な問いは「誰のせいか」ではなく「このパターンはどこで始まったか」。Neiの共感的痛みの発現は章のテーマを映す：選ばなかった受け継がれたパターン。"
+    }
+  ],
   "gh:pages": [
     {
+      "gh:label": "Title",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "セッションが終わった時、夜が白み始めていた。。Milliaは——泣いていた。でも、今度の涙は——違った。。重いものを下ろした後の、軽い涙。",
-          "characters": [
-            "character:millia",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "……私は——ずっと、小さな子供のままだった"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "大人の役割を背負った、小さな子供"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "私は頷く。。彼女が目を閉じる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "今は——その子供を、抱きしめてあげられる"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……ごめんね"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "誰に言ってる？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……自分に。小さかった、私に"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Close-up",
-          "visual": "彼女の涙が、静かに流れる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "一人で、頑張らせて、ごめんね"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tree motif. Ice on the trunk. The frozen sheath from ch.21's seed. Continuity. Winter deepening.",
+            "ja": "木のモチーフ。幹に氷。第21章のシードからの凍った鞘。連続性。冬が深まる。"
+          }
         }
       ]
     },
     {
+      "gh:layout": "two panels",
       "gh:pageNumber": 2,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私は窓を見る。蛍の光が、少なくなっている。夜明けが近い。。彼女は深く息を吸う。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Session room. Millia sits across from Tamaki. She looks subdued -- not the sharp distress of before, but something quieter. Heavier. She sits alone this time. No Leo.",
+            "ja": "セッションルーム。ミリアが環の向かいに座る。落ち着いている——以前のような鋭い苦痛ではなく、もっと静かな何か。重い。今回は一人。レオはいない。"
+          },
+          "gh:characters": ["character:millia", "character:tamaki"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "Millia、今——どう感じる？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……軽い。少しだけ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "少しでいい"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "でも——家族のことは、まだ——"
+              "gh:speaker": "Millia",
+              "en": "Leo and I are better. But there's something else.",
+              "ja": "レオとの関係は良くなった。でも、別のことがある。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は静かに言う。。彼女が頷く。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Millia's hands in her lap. Clenching. Knuckles white. The tension is in her body, not her words.",
+            "ja": "膝の上のミリアの手。握りしめている。関節が白い。緊張は言葉ではなく身体にある。"
+          },
+          "gh:characters": ["character:millia"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "全部を一度に解く必要はない。今日は、鎖を緩めた。それだけで、十分"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……ありがとうございます"
+              "gh:speaker": "Millia",
+              "en": "My mother.",
+              "ja": "母のこと。"
             }
           ]
         }
       ]
     },
     {
+      "gh:layout": "three panels",
       "gh:pageNumber": 3,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Leoが部屋に入ってくる。。彼はMilliaを見て、何も言わない。ただ、彼女のそばに座る。。Milliaが彼に寄りかかる。。Leoが彼女の髪を、やさしく撫でる。",
-          "characters": [
-            "character:leo",
-            "character:millia",
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Memory. Ghost-space shimmer. Child Millia, maybe six or seven. A beautiful house -- tasteful, immaculate. A mother kneeling beside her, brushing her hair. Perfect domestic scene.",
+            "ja": "記憶。ゴーストスペースの揺らぎ。子供のミリア、六、七歳くらい。美しい家——上品で、完璧に整っている。隣に膝をつく母が髪を梳いている。完璧な家庭の風景。"
+          },
+          "gh:characters": ["character:millia"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "Leo……私、少し——自由になれたかもしれない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "でも、まだ——途中"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。一緒にいるよ"
+              "gh:speaker": "Millia",
+              "en": "She was perfect.",
+              "ja": "完璧な人だった。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "二人を見て、私は思う。。——これが、本当の支えなのかもしれない。。救おうとしない。変えようとしない。ただ、一緒にいる。",
-          "characters": [],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Mother's hand on young Millia's shoulder. Always present. The grip gentle but constant. In every memory -- that hand. Never absent. Never letting go.",
+            "ja": "若いミリアの肩に母の手。常にそこにある。握りはやさしいが途切れない。すべての記憶に——その手。不在はない。決して離さない。"
+          },
+          "gh:characters": ["character:millia"],
+          "gh:dialogue": [
             {
-              "speaker": "Narration",
-              "text": "二人を見て、私は思う。。——これが、本当の支えなのかもしれない。。救おうとしない。変えようとしない。ただ、一緒にいる。"
+              "gh:speaker": "Millia",
+              "en": "She never let go.",
+              "ja": "決して離してくれなかった。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Adult Millia's face. The wound visible now. Not anger -- something more exhausted. The face of someone who was loved too tightly.",
+            "ja": "大人のミリアの顔。傷が見える。怒りではない——もっと疲れ切った何か。愛されすぎた人の顔。"
+          },
+          "gh:characters": ["character:millia"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Millia",
+              "en": "I couldn't breathe.",
+              "ja": "息ができなかった。"
             }
           ]
         }
       ]
     },
     {
+      "gh:continues": 5,
+      "gh:layout": "double-page spread (pp.4-5)",
       "gh:pageNumber": 4,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "二人を見送った後、私はNei-chanと運河沿いを歩く。。蛍はもうほとんどいない。でも、空が——紫から橙へと変わり始めている。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "タマ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "家族って……縛るもの？"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は考える。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "縛ることもある。でも、本来は——支えるもの"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "縛りと支えって、どう違うの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "縛りは、自由を奪う。支えは、自由を守る"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:visual": {
+            "en": "Ghost-space dive. Millia's childhood home -- but transformed. Every surface covered in ivy. Walls, floors, ceiling. The ivy is alive, green, bearing beautiful small white flowers. Delicate tendrils curl around furniture, picture frames, doorknobs. The doors won't open -- ivy holds them shut. The windows are covered, light filtered green through leaves. It is beautiful. It is suffocating. The house is a living cage made of something gentle.",
+            "ja": "ゴーストスペースダイブ。ミリアの子供時代の家——しかし変容している。すべての表面が蔦に覆われている。壁、床、天井。蔦は生きていて、緑で、美しい小さな白い花を咲かせている。繊細な蔓が家具、写真立て、ドアノブに巻きつく。ドアは開かない——蔦が閉じている。窓は覆われ、光が葉を通して緑に濾過される。美しい。息が詰まる。家はやさしいもので作られた生きた檻。"
+          },
+          "gh:characters": ["character:millia", "character:tamaki"]
         }
       ]
     },
     {
+      "gh:layout": "three panels",
       "gh:pageNumber": 5,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "彼女は首を傾げる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Millia standing in the ivy-covered room. Arms wrapped around herself. Looking at the walls of green.",
+            "ja": "蔦に覆われた部屋に立つミリア。腕を自分に巻きつけている。緑の壁を見ている。"
+          },
+          "gh:characters": ["character:millia"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "でも、区別するの——難しくない？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "難しい。だから——呼吸を確かめる"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "呼吸？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。息ができるなら、支え。息ができないなら、縛り"
+              "gh:speaker": "Millia",
+              "en": "This is love. My mother's love.",
+              "ja": "これが愛。母の愛。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanは空を見上げる。。私は微笑む。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Tamaki touches a vine. It is warm, alive, not hostile. It curls gently around her finger. Not attacking -- welcoming. That is the horror of it.",
+            "ja": "環が蔓に触れる。温かく、生きていて、敵意はない。やさしく指に巻きつく。攻撃ではない——歓迎している。それが恐ろしさ。"
+          },
+          "gh:characters": ["character:tamaki", "character:millia"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "タマとわたしは——息、できてる？"
+              "gh:speaker": "Tamaki",
+              "en": "The ivy isn't trying to hurt you.",
+              "ja": "蔦はあなたを傷つけようとしていない。"
             },
             {
-              "speaker": "Tamaki",
-              "text": "できてるよ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "よかった"
+              "gh:speaker": "Millia",
+              "en": "That's what makes it worse.",
+              "ja": "だから余計につらい。"
             }
           ]
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 6,
-      "gh:panels": [
+        },
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "私は手帳を取り出し、今日の一行を書く。。ページを閉じる。。夜明けの光が、運河を照らし始めている。。次も、いい感じから始めよう。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "A vine wraps around Millia's wrist. Gently. Like a hand holding. Not tight enough to bruise. Just tight enough that you can never forget it's there.",
+            "ja": "蔓がミリアの手首に巻きつく。やさしく。手を握るように。痣ができるほど強くはない。ただそこにあることを忘れられない程度に。"
+          },
+          "gh:characters": ["character:millia"],
+          "gh:dialogue": [
             {
-              "speaker": "Nei-chan",
-              "text": "愛は時に鎖になる。でも、鎖は——緩められる"
+              "gh:speaker": "Millia",
+              "en": "You can't fight something that loves you.",
+              "ja": "愛してくるものとは戦えない。"
             }
           ]
         }
       ]
     },
     {
+      "gh:layout": "two panels",
       "gh:pageNumber": 7,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "**[手帳の一行: 愛は時に鎖になる。でも、鎖は——緩められる]**",
-          "characters": [],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki, thoughtful. She looks past the ivy, past the room. Searching for something deeper.",
+            "ja": "環、思慮深い。蔦の向こう、部屋の向こうを見ている。もっと深い何かを探している。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
             {
-              "speaker": "Narration",
-              "text": "**[手帳の一行: 愛は時に鎖になる。でも、鎖は——緩められる]**"
+              "gh:speaker": "Tamaki",
+              "en": "Who planted it? Did she choose to?",
+              "ja": "誰が植えたの？ お母さんは選んでそうしたの？"
             }
           ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Millia confused. She never thought to ask that question. Tamaki, steady, following the thread backward.",
+            "ja": "ミリアが困惑している。その問いを考えたことがなかった。環、落ち着いて、糸を辿り返す。"
+          },
+          "gh:characters": ["character:tamaki", "character:millia"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Tamaki",
+              "en": "Where did your mother learn to love like this?",
+              "ja": "お母さんは、どこでこういう愛し方を学んだの？"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "full page",
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:visual": {
+            "en": "Ghost-space shifts. Behind Millia's room -- another room. Thicker ivy. Older. Behind that -- another room. Even thicker. Rooms going back through generations like nesting boxes. Each one more overgrown than the last. In the furthest room, barely visible, a shadowy figure wrapped completely in vines. Grandmother's house. The chain goes back.",
+            "ja": "ゴーストスペースが変わる。ミリアの部屋の奥に——もう一つの部屋。もっと厚い蔦。もっと古い。その奥に——さらにもう一つ。さらに厚い。世代を遡る部屋が入れ子箱のように続く。それぞれ前のものより蔦が茂っている。一番奥の部屋に、かろうじて見える、蔓に完全に包まれた影の人物。祖母の家。鎖は遡る。"
+          },
+          "gh:characters": ["character:millia", "character:tamaki"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Millia",
+              "en": "Grandmother's house.",
+              "ja": "おばあちゃんの家。"
+            },
+            {
+              "gh:speaker": "Tamaki",
+              "en": "Your mother was wrapped in ivy too. She inherited it.",
+              "ja": "お母さんも蔦に包まれていた。受け継いだの。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei. Alone in the session room periphery. Her hand on her chest. Something hurts there. Something that has no physical cause.",
+            "ja": "Nei。セッションルームの周辺に一人。胸に手を当てている。そこが痛む。物理的な原因のない痛み。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "When Millia cried, my chest hurt. It shouldn't be able to hurt.",
+              "ja": "ミリアが泣いた時、胸が痛んだ。痛むはずがないのに。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei's hand pressing against her chest. The red scarf from ch.21 visible at her neck. She looks down at her own body as if it has betrayed her again.",
+            "ja": "Neiの手が胸を押す。第21章の赤いマフラーが首元に見える。再び裏切られたかのように自分の身体を見下ろす。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "But it hurts. Cold was new. Now pain.",
+              "ja": "でも痛い。寒さは新しかった。今は痛み。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Session room. After. Millia standing, calmer now. Determined. Something has shifted in her.",
+            "ja": "セッションルーム。終了後。ミリアが立っている、今は落ち着いて。決意がある。何かが変わった。"
+          },
+          "gh:characters": ["character:millia", "character:tamaki"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Millia",
+              "en": "I need to talk to my mother.",
+              "ja": "母と話す必要がある。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Canal walk. Winter evening. Nei and Tamaki. The dark water beside them. Nei's red scarf bright in the gloom.",
+            "ja": "運河沿いの散歩。冬の夕方。NeiとIまき。隣の暗い水。Neiの赤いマフラーが薄闇の中で明るい。"
+          },
+          "gh:characters": ["character:nei", "character:tamaki"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Nei",
+              "en": "My chest hurt.",
+              "ja": "胸が痛かった。"
+            },
+            {
+              "gh:speaker": "Tamaki",
+              "en": "That's empathy, Nei-chan.",
+              "ja": "それは共感だよ、Neiちゃん。"
+            }
+          ],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "Empathy. Is that a bug too?",
+              "ja": "共感。それもバグなの？"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:label": "Seed",
+      "gh:layout": "full page",
+      "gh:pageNumber": 11,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tree. Roots vast, visible through frozen earth. The soil has cracked open in the cold, exposing the root system beneath. The roots spread wider than the branches above. What holds the tree is larger than what is seen. Underground. Inherited. Ancient.",
+            "ja": "木。凍った土を通して巨大な根が見える。寒さで土が割れ、下の根系が露出している。根は上の枝より広く広がる。木を支えるものは見えるものより大きい。地下に。受け継がれ。古い。"
+          }
         }
       ]
     }

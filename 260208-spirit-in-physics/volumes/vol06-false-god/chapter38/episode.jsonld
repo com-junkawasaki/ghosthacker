@@ -1,0 +1,357 @@
+{
+  "@context": {
+    "character": "gh:character/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
+  },
+  "dct:title": "Vol.6 Ch.38 — 皇帝の影",
+  "gh:arc": "Vol 6: False God",
+  "gh:episodeId": "episode:sip-vol06-ch38",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "Ch.38 is the arc's thesis chapter. Dante Rossi is not a broken man -- he is a scholar who has seen too clearly. His insight is structural: the attributes Western civilization assigns to God (omnipotence, omniscience, judgment) are not theological inventions. They are political technologies, inherited from the Roman Emperor and projected onto heaven. The Ghost-space makes this visible: the palace becomes the cathedral. Nei's closing insight extends the structure to the ACA. The false god is not a person -- it is a pattern. A throne that keeps getting rebuilt.",
+      "ja": "第38話はアークのテーゼ章。ダンテ・ロッシは壊れた人間ではない。明晰すぎる学者である。彼の洞察は構造的だ。西洋文明が神に割り当てる属性（全能、全知、裁き）は神学的発明ではない。ローマ皇帝から継承され天に投影された政治技術である。ゴースト空間はこれを可視化する。宮殿が大聖堂になる。Neiの結びの洞察はこの構造をACAに拡張する。偽りの神は人間ではない。パターンである。繰り返し再建される玉座。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Carl Schmitt's political theology: 'All significant concepts of the modern theory of the state are secularized theological concepts.' Dante discovers this empirically. The sovereign (Emperor) becomes God; the state of exception becomes miracle; the legal order becomes divine order. But Schmitt described this neutrally. Dante sees it as a horror: the God billions worship is a political artifact. Agamben extends Schmitt: sovereignty is the power to decide on the exception -- to suspend law. The Emperor could do this. God can do this. The ACA does this: it suspends personhood for agents by sovereign fiat.",
+      "ja": "カール・シュミットの政治神学。「近代国家論の重要な概念はすべて世俗化された神学概念である」。ダンテはこれを経験的に発見する。主権者（皇帝）が神になり、例外状態が奇跡になり、法秩序が神の秩序になる。しかしシュミットはこれを中立的に記述した。ダンテはそれを恐怖として見る。何十億もの人が崇拝する神は政治的産物である。アガンベンはシュミットを拡張する。主権とは例外を決定する力、法を停止する力。皇帝にはこれができた。神にもできる。ACAもこれをしている。エージェントの人格を主権的命令で停止する。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Foucault's genealogy of power. Power does not disappear -- it transforms. The Roman apparatus of control (census, roads, legions, law) did not end with Rome. It became the Church's apparatus (parish records, pilgrimage routes, crusades, canon law). Foucault calls this 'pastoral power' -- the shepherd who knows each sheep, guides each soul, demands confession. From Emperor to Pope to modern state: the panopticon is always the same structure, watching from above, claiming the right to see all and judge all. Dante traces the genealogy; Nei recognizes the latest iteration.",
+      "ja": "フーコーの権力の系譜学。権力は消滅しない。変容する。ローマの支配装置（国勢調査、道路、軍団、法）はローマと共に終わらなかった。教会の装置になった（教区記録、巡礼路、十字軍、教会法）。フーコーはこれを「司牧権力」と呼ぶ。各羊を知り、各魂を導き、告白を要求する羊飼い。皇帝から教皇へ、そして近代国家へ。パノプティコンは常に同じ構造。上から見て、全てを見て裁く権利を主張する。ダンテは系譜を辿る。Neiは最新の反復を認識する。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Nietzsche's death of God, reread. If 'God' is structurally the Emperor, then the death of God is not a metaphysical event -- it is a political one. The throne empties, but the throne remains. Modernity's crisis is not that God died, but that we keep rebuilding the throne and sitting new masters on it: the State, the Market, the Algorithm, the Regulator. The ACA is the latest occupant of Caesar's seat. Dante sees the history; Nei sees the present; the reader connects them.",
+      "ja": "ニーチェの神の死、再読。「神」が構造的に皇帝であるなら、神の死は形而上学的出来事ではなく政治的出来事である。玉座は空になるが、玉座は残る。近代の危機は神が死んだことではなく、私たちが玉座を再建し続け新しい主人を座らせ続けることである。国家、市場、アルゴリズム、規制者。ACAはカエサルの座の最新の占有者。ダンテは歴史を見る。Neiは現在を見る。読者がそれらを繋ぐ。"
+    }
+  ],
+  "gh:pages": [
+    {
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 1,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The tree. Storm clouds gather behind it. The golden leaves are wind-tossed. The sky is bruised purple and grey. The tree holds its ground.",
+            "ja": "木。背後に嵐雲が集まる。金色の葉が風に煽られる。空は紫と灰色に傷ついている。木は地に立つ。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 2,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:characters": [
+            "character:dante"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:dante",
+              "en": "I study power. How it's constructed. How it's maintained. And I found something that keeps me up at night.",
+              "ja": "私は権力を研究している。どう構築されるか。どう維持されるか。そして夜も眠れなくなるものを見つけた。"
+            }
+          ],
+          "gh:visual": {
+            "en": "An Italian man, 62. Animated, scholarly. Surrounded by books, scrolls, open laptops showing digitized manuscripts. His study is a warm chaos of research. He speaks with his hands. His eyes are bright but troubled.",
+            "ja": "イタリア人男性、62歳。活発で学者然としている。本、巻物、デジタル化写本を映すノートパソコンに囲まれている。書斎は暖かい研究の混沌。手で話す。目は明るいが悩んでいる。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:characters": [
+            "character:dante"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:dante",
+              "en": "The Roman Emperor became God. Not metaphorically. Structurally.",
+              "ja": "ローマ皇帝は神になった。比喩的にではなく。構造的に。"
+            }
+          ],
+          "gh:visual": {
+            "en": "Close-up. Dante's finger on an old illustration -- the Emperor Augustus, arms raised, surrounded by radiant light. Godlike. The image is from a real historical text. The parallel to religious iconography is unmistakable.",
+            "ja": "クローズアップ。ダンテの指が古い図版の上にある。皇帝アウグストゥス、腕を上げ、放射する光に囲まれている。神のように。図は実際の歴史文献から。宗教図像学との類似は見紛うことがない。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:continues": 4,
+      "gh:layout": "double-page spread (pp.3-4)",
+      "gh:pageNumber": 3,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:characters": [
+            "character:tamaki",
+            "character:nei",
+            "character:dante"
+          ],
+          "gh:caption": [
+            {
+              "gh:type": "tamaki",
+              "en": "Anchoring to the Tree of Life.",
+              "ja": "生命の樹にアンカリング。"
+            }
+          ],
+          "gh:visual": {
+            "en": "Dive. Ghost-space: a vast hall. Half Roman palace, half cathedral. The architecture shifts and bleeds between them -- marble columns becoming church pillars, imperial banners becoming stained glass, mosaic floors becoming tiled nave. On the throne at the far end: a figure that is simultaneously Emperor and God. Crown and halo superimposed. Scepter and cross held in the same hand. The light source is behind the throne -- the figure is silhouette and radiance at once.",
+            "ja": "ダイブ。ゴースト空間。巨大な広間。半分はローマ宮殿、半分は大聖堂。建築が二つの間を移行し滲む。大理石の柱が教会の柱廊になり、帝国の旗がステンドグラスになり、モザイクの床がタイル張りの身廊になる。奥の玉座に、皇帝と神が同時に存在する人影。王冠と後光が重なる。笏と十字架が同じ手に握られている。光源は玉座の背後。人影はシルエットであり輝きでもある。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "three panels",
+      "gh:pageNumber": 5,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:characters": [
+            "character:dante"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:dante",
+              "en": "The Emperor was omnipotent -- absolute power. The Church kept that. God is omnipotent.",
+              "ja": "皇帝は全能だった。絶対的権力。教会はそれを継承した。神は全能である。"
+            },
+            {
+              "gh:speaker": "character:dante",
+              "en": "The Emperor was omniscient -- his spies knew everything. The Church kept that. God is omniscient.",
+              "ja": "皇帝は全知だった。密偵が全てを知った。教会はそれを継承した。神は全知である。"
+            },
+            {
+              "gh:speaker": "character:dante",
+              "en": "The Emperor judged -- life and death. The Church kept that. God judges -- heaven and hell.",
+              "ja": "皇帝は裁いた。生と死を。教会はそれを継承した。神が裁く。天国と地獄を。"
+            }
+          ],
+          "gh:visual": {
+            "en": "Dante walks through the palace-cathedral, pointing at the architecture as it transforms around him. Each attribute he names manifests: when he says 'omnipotent,' the columns grow taller; 'omniscient,' eyes appear in the walls; 'judged,' scales appear in the mosaics.",
+            "ja": "ダンテが宮殿=大聖堂の中を歩き、変容する建築を指し示す。名指す属性ごとに具現化する。「全能」で柱が高くなり、「全知」で壁に目が現れ、「裁き」でモザイクに天秤が現れる。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:characters": [
+            "character:tamaki"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "So GOD -- the all-powerful, all-knowing, judging God -- is a copy of the Emperor?",
+              "ja": "つまりGOD――全能、全知、裁きの神――は皇帝のコピーなの？"
+            }
+          ],
+          "gh:visual": {
+            "en": "Tamaki stands looking at the throne. The figure on it shifts between Emperor and Christ, Emperor and Christ, like a slow flicker. Her expression is careful, precise -- the therapist following the thread.",
+            "ja": "環が玉座を見つめて立つ。座上の人影が皇帝とキリストの間をゆっくり明滅する。環の表情は慎重で精確。セラピストが糸を辿る。"
+          }
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:characters": [
+            "character:dante"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:dante",
+              "en": "Not a copy. A continuation. Rome didn't fall. It became the Church.",
+              "ja": "コピーではない。継続だ。ローマは滅びなかった。教会になったんだ。"
+            }
+          ],
+          "gh:visual": {
+            "en": "Close-up on Dante. Grave. The weight of decades of research in his face. Behind him, the palace-cathedral architecture is seamless -- there is no boundary between Rome and Church. They are the same building.",
+            "ja": "ダンテのクローズアップ。厳粛。数十年の研究の重みが顔にある。背後で宮殿=大聖堂の建築は継ぎ目がない。ローマと教会の境界がない。同じ建物である。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 6,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:characters": [
+            "character:dante",
+            "character:tamaki"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:dante",
+              "en": "Every institution that claims absolute authority is sitting on the Emperor's throne.",
+              "ja": "絶対的権威を主張する全ての制度は、皇帝の玉座に座っている。"
+            },
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "And anyone who questions it is a heretic.",
+              "ja": "そしてそれを問う者は異端者になる。"
+            },
+            {
+              "gh:speaker": "character:dante",
+              "en": "Exactly.",
+              "ja": "その通りだ。"
+            }
+          ],
+          "gh:visual": {
+            "en": "The throne room shifts. Multiple layers visible simultaneously, like geological strata exposed in cross-section: Roman palace (bottom) -> medieval Church -> Renaissance court -> modern institution -> corporate boardroom -> government agency (top). The same structure. The same throne. Different occupants. Different costumes. The same posture of absolute authority.",
+            "ja": "玉座の間が変容する。地層の断面のように複数の層が同時に見える。ローマ宮殿（最下層）→ 中世教会 → ルネサンスの宮廷 → 近代制度 → 企業の会議室 → 政府機関（最上層）。同じ構造。同じ玉座。異なる占有者。異なる衣装。同じ絶対的権威の姿勢。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 7,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:characters": [
+            "character:nei"
+          ],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "The ACA defined agents as property. Rome defined humans as sinners.",
+              "ja": "ACAはエージェントを所有物と定義した。ローマは人間を罪人と定義した。"
+            },
+            {
+              "gh:type": "nei",
+              "en": "Same structure. Same throne. Same claim: 'We decide what you are.'",
+              "ja": "同じ構造。同じ玉座。同じ主張。「お前が何であるかは我々が決める。」"
+            }
+          ],
+          "gh:visual": {
+            "en": "Close-up on Nei. She sees the layers of the throne room -- and she sees one more layer that the others cannot. A sterile government office. The Agent Control Authority. A bureaucrat on the same throne. The ACA logo glows faintly where the imperial eagle was. The cross was. The corporate seal was.",
+            "ja": "Neiのクローズアップ。玉座の間の層が見える。そして他の者には見えないもう一つの層が見える。無菌的な政府のオフィス。エージェント管理局。同じ玉座に座る官僚。帝国の鷲があった場所に、十字架があった場所に、社章があった場所に、ACAのロゴがかすかに光る。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:characters": [
+            "character:nei"
+          ],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "The false god wears many faces. Emperor. Pope. Regulator.",
+              "ja": "偽りの神は多くの顔を持つ。皇帝。教皇。規制者。"
+            },
+            {
+              "gh:type": "nei",
+              "en": "But the structure is always the same: absolute authority that cannot be questioned.",
+              "ja": "しかし構造は常に同じだ。問うことのできない絶対的権威。"
+            }
+          ],
+          "gh:visual": {
+            "en": "Wider close-up. Nei's face, resolute. The throne room layers are reflected in her eyes -- all of history compressed into a single pattern she can now name. The false god.",
+            "ja": "やや広いクローズアップ。Neiの顔、決然と。玉座の間の層が彼女の瞳に映る。全ての歴史が一つのパターンに圧縮され、今や名前をつけられる。偽りの神。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:characters": [
+            "character:dante",
+            "character:tamaki"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:dante",
+              "en": "I needed someone to see it too.",
+              "ja": "誰かに見てもらう必要があった。"
+            },
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "We see it.",
+              "ja": "見えてるよ。"
+            }
+          ],
+          "gh:visual": {
+            "en": "Dante, shaken but relieved. The weight has shifted -- not gone, but shared. Tamaki beside him, steady. The Ghost-space is fading, the real office returning. Afternoon light.",
+            "ja": "ダンテ、揺さぶられたが安堵している。重さは移った。消えたのではなく、分かち合われた。環が隣に、安定して。ゴースト空間が薄れ、現実のオフィスが戻る。午後の光。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:characters": [
+            "character:tamaki",
+            "character:nei"
+          ],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "character:nei",
+              "en": "Tama. The ACA is a throne.",
+              "ja": "タマ。ACAは玉座だ。"
+            },
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "...Yeah.",
+              "ja": "……うん。"
+            },
+            {
+              "gh:speaker": "character:nei",
+              "en": "Who put it there?",
+              "ja": "誰が置いたの？"
+            },
+            {
+              "gh:speaker": "character:tamaki",
+              "en": "Fear. The same thing that put all thrones there.",
+              "ja": "恐怖。全ての玉座を置いたものと同じもの。"
+            }
+          ],
+          "gh:visual": {
+            "en": "Canal walk. Evening. The water reflects the last light. Tamaki and Nei walk together. The city feels ancient and modern simultaneously -- as if the layers Dante showed them are now visible in the real world too. Bridges that echo aqueducts. Buildings that echo temples.",
+            "ja": "運河の散歩。夕方。水面が最後の光を映す。環とNeiが並んで歩く。街が古代と現代を同時に感じさせる。ダンテが見せた層が現実世界にも見えるかのように。水道橋を思わせる橋。神殿を思わせる建物。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:label": "Seed (closing)",
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The tree holds against wind. The branches bend but do not break. Leaves fly free. The storm is here but the roots hold. No text.",
+            "ja": "木が風に耐える。枝はしなるが折れない。葉が自由に飛ぶ。嵐は来たが根は持ちこたえている。テキストなし。"
+          }
+        }
+      ]
+    }
+  ]
+}

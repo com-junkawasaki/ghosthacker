@@ -90,6 +90,9 @@ service StoryboardService {
 
   // List all generation jobs (active and recent)
   rpc ListGenerationJobs(ListGenerationJobsRequest) returns (ListGenerationJobsResponse);
+
+  // Move a panel to a different page (reorder/merge panels between pages)
+  rpc MovePanel(MovePanelRequest) returns (MovePanelResponse);
 }
 
 message ExportPdfRequest {
@@ -566,4 +569,20 @@ message GenerationJobInfo {
   int32 page_number = 9;
   int32 panel = 10;
   string model = 11;
+}
+
+// Move a panel from one page to another (or reorder within a page)
+message MovePanelRequest {
+  string file_path = 1;
+  string episode_id = 2;
+  int32 source_page = 3;       // Current page number
+  int32 source_panel = 4;      // Current panel index
+  int32 target_page = 5;       // Destination page number
+  int32 target_panel_index = 6; // Insert position on target page (0-based)
+  string session_id = 7;
+}
+
+message MovePanelResponse {
+  bool success = 1;
+  string message = 2;
 }

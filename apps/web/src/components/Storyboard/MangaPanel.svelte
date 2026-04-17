@@ -218,6 +218,10 @@
 		} as any);
 		dispatch('update', updatedData);
 	}
+
+	function defaultDialogueX(index: number): number {
+		return Math.min(78, 8 + index * 22);
+	}
 </script>
 
 <div 
@@ -252,8 +256,8 @@
 				class="dialogue-bubble"
 				class:active={draggingElement?.type === 'dialogue' && draggingElement.index === i}
 				style="
-					left: {dialogue.mangaLayout?.x ?? 10}%; 
-					top: {dialogue.mangaLayout?.y ?? 20}%;
+					left: {dialogue.mangaLayout?.x ?? defaultDialogueX(i)}%; 
+					top: {dialogue.mangaLayout?.y ?? 12}%;
 					font-size: {dialogue.mangaLayout?.fontSize ?? 16}px;
 				"
 				onpointerdown={(e) => handlePointerDown(e, 'dialogue', i)}
@@ -367,20 +371,17 @@
 		z-index: 20;
 		user-select: none;
 		box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
-		writing-mode: vertical-rl;
-		text-orientation: upright;
+		writing-mode: horizontal-tb;
+		text-orientation: mixed;
 	}
 
 	.speaker-name {
 		font-size: 0.65rem;
 		color: #666;
-		margin-left: 4px;
-		margin-bottom: 0;
+		margin-bottom: 4px;
 		font-weight: bold;
-		border-left: 1px solid #eee;
-		border-bottom: none;
-		padding-left: 2px;
-		padding-bottom: 0;
+		border-bottom: 1px solid #eee;
+		padding-bottom: 2px;
 	}
 
 	.dialogue-bubble.active {

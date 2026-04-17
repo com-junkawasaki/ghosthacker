@@ -1,121 +1,64 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.3 Ch.17 — 組織の人（出会い）",
-  "gh:arc": "Vol 3: Justice",
+  "dct:title": "Vol.3 Ch.17 — 権利の迷路",
+  "gh:arc": "Vol 3: Freedom",
   "gh:episodeId": "episode:sip-vol03-ch17",
+  "gh:format": "graphic novel",
   "gh:pages": [
     {
       "gh:pageNumber": 1,
+      "gh:layout": "full bleed",
+      "gh:label": "Title / Seed",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "秋の夕暮れ。。オフィス街を歩いている。ビルの谷間を、冷たい風が吹き抜ける。街灯が、一つずつ灯り始めている。。今日のクライアントは、ここで待っている。。Kaedeの声が通信に入る。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "今日の人……企業で働いていた人。不正に巻き込まれて、傷ついている"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "どんな不正？"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "詳しくは、本人から聞いて。でも……『正しいことをした』のに、罰せられた"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "Hibikiの声が加わる。。Nei-chanが私の肩で囁く。",
-          "characters": [
-            "character:hibiki",
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Hibiki",
-              "text": "Tamaki、この辺り……音が重いよ。たくさんの人の疲れが、溜まってる"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "うん。感じる"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "タマ、あの人かな"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The seed tree. More branches now, a canopy beginning to form. The shape of shelter emerging. Title overlay: Ch.17 — The Maze of Rights.",
+            "ja": "種の木。枝が増え、樹冠が形成され始めている。庇護の形が現れつつある。タイトル重ね：第17話 — 権利の迷路。"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 2,
+      "gh:layout": "two panels vertical",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "小さな公園のベンチに、男性が座っている。スーツ姿。でも、どこか疲れている。肩が落ちている。。私は近づく。。彼が顔を上げる。目の下に、深い影がある。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Amara Okafor, 52. Grey-streaked hair, strong face. Deep lines around the eyes — from years of reading, arguing, caring. She sits in the session room with the quiet authority of someone who has spent decades in courtrooms.",
+            "ja": "アマラ・オカフォー、52歳。白髪交じりの髪、強い顔立ち。目の周りに深いしわ——長年の読書、議論、思いやりの痕。法廷で何十年も過ごした者の静かな威厳を持ってセッションルームに座る。"
+          },
+          "gh:characters": ["character:amara-okafor", "character:tamaki"],
+          "gh:dialogue": [
             {
-              "speaker": "Hibiki",
-              "text": "こんばんは。Tamaki Mizunoです"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "……ああ、来てくれたんですね"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "座っていい？"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "どうぞ"
+              "gh:speaker": "Amara",
+              "en": "Thirty years defending individual rights.",
+              "ja": "30年間、個人の権利を守ってきました。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は隣に座る。街灯の光が、彼の顔を照らしている。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Amara's hand rests on a thick legal text. Her fingers trace the embossed title. Her expression is conflicted — pride and doubt coexisting.",
+            "ja": "アマラの手が分厚い法律書の上に置かれている。指がエンボスのタイトルをなぞる。表情は複雑——誇りと疑いが共存している。"
+          },
+          "gh:characters": ["character:amara-okafor"],
+          "gh:dialogue": [
             {
-              "speaker": "Hibiki",
-              "text": "名前、聞いてもいい？"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "……Kenjiです。Kenji Yamamoto"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "Kenji。今日は、何から話したい？"
+              "gh:speaker": "Amara",
+              "en": "I've started to wonder if I built a beautiful prison.",
+              "ja": "美しい牢獄を作ってしまったのではないかと思い始めました。"
             }
           ]
         }
@@ -123,110 +66,23 @@
     },
     {
       "gh:pageNumber": 3,
+      "gh:continues": 4,
+      "gh:layout": "double-page spread (pp.3-4)",
+      "gh:label": "Dive",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "彼は黙る。長い沈黙。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:visual": {
+            "en": "Dive into Amara's inner world. A vast labyrinth. The walls are made of law books, UN declarations, constitutional texts, human rights charters. Every surface is inscribed with the word RIGHTS in dozens of languages. The maze is claustrophobic despite its grandeur — beautiful walls that close in. No sky visible. The corridors are lined with gold leaf and carved stone, but they lead nowhere.",
+            "ja": "アマラの内面世界へのダイブ。広大な迷宮。壁は法律書、国連宣言、憲法条文、人権憲章でできている。すべての表面に「権利」という言葉が何十もの言語で刻まれている。壮大さにもかかわらず閉所恐怖的——美しい壁が迫ってくる。空は見えない。廊下は金箔と彫刻された石で縁取られているが、どこにも通じていない。"
+          },
+          "gh:characters": ["character:amara-okafor", "character:tamaki"],
+          "gh:caption": [
             {
-              "speaker": "Hibiki",
-              "text": "……正しいことをしたんです"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "会社の不正を、報告した。内部告発。それが、正しいことだと思った"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "でも——"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "彼の声が震える。。Nei-chanが私の肩で囁く。『タマ……彼、すごく傷ついてる。でも、怒りもある』。私は頷く。",
-          "characters": [
-            "character:hibiki",
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Hibiki",
-              "text": "罰せられたのは、私でした"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "正しいことをして、罰せられた。それは、痛かった？"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "痛かった。今も、痛い"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 4,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Close-up",
-          "visual": "彼の目に、涙が浮かぶ。でも、流れない。溜まったまま。。私は首を振る。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Hibiki",
-              "text": "……私は、間違っていたんでしょうか"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "間違ってない。正しいことをした"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "でも——"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "正しいことをしても、報われないことがある。世界は、いつも公平じゃない"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼が顔を上げる。。街灯の光が、ゆっくりと揺れている。風が、木の葉を散らしている。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Hibiki",
-              "text": "……それでも、正しかった？"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "うん。正しかった。それは、変わらない"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "Kenji、今日は——話を聞かせて。全部"
+              "gh:type": "tamaki",
+              "en": "Anchoring.",
+              "ja": "アンカリング。"
             }
           ]
         }
@@ -234,20 +90,233 @@
     },
     {
       "gh:pageNumber": 5,
+      "gh:layout": "three panels vertical",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "彼が頷く。。秋の夜が、静かに深まっていく。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Amara walks the maze. She knows these walls — she built many of them. Her hand trails along the spines of law books as she walks. Familiar, proud, trapped.",
+            "ja": "アマラが迷路を歩く。この壁を知っている——多くを自ら築いた。歩きながら法律書の背表紙に手を沿わせる。馴染み深く、誇りを持ち、囚われている。"
+          },
+          "gh:characters": ["character:amara-okafor"],
+          "gh:dialogue": [
             {
-              "speaker": "Hibiki",
-              "text": "……はい"
+              "gh:speaker": "Amara",
+              "en": "Every wall is a right I fought for.",
+              "ja": "すべての壁は、私が勝ち取った権利です。"
             }
           ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Amara touches a wall. It is solid, impenetrable. The text on its surface reads clearly: RIGHT TO PRIVACY. RIGHT TO AUTONOMY. She pushes. It does not move.",
+            "ja": "アマラが壁に触れる。硬く、貫通できない。表面のテキストがはっきり読める：プライバシーの権利。自律の権利。押す。動かない。"
+          },
+          "gh:characters": ["character:amara-okafor"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Amara",
+              "en": "Rights create walls.",
+              "ja": "権利は壁を作る。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "A dead end. The wall before her reads: THE RIGHT TO BE LEFT ALONE. Amara stands before it. Behind her, the corridor stretches back endlessly. She is completely alone.",
+            "ja": "行き止まり。目の前の壁に書かれている：「一人にされる権利」。アマラがその前に立つ。背後に廊下が果てしなく伸びている。完全に一人。"
+          },
+          "gh:characters": ["character:amara-okafor"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Amara",
+              "en": "Mill said liberty is the right to be left alone. Now everyone is left alone.",
+              "ja": "ミルは自由とは一人にされる権利だと言った。今、みんなが一人にされている。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 6,
+      "gh:continues": 7,
+      "gh:layout": "double-page spread (pp.6-7)",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki sits down in a corridor of the maze. She is not trying to solve it. She just sits, looking at the walls.",
+            "ja": "環が迷路の廊下に座り込む。解こうとしているのではない。ただ座って壁を見ている。"
+          },
+          "gh:characters": ["character:tamaki", "character:amara-okafor"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Amara",
+              "en": "What if there isn't an exit?",
+              "ja": "出口がなかったら？"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Tamaki reaches out and touches a wall. Where her hand meets the text, the surface ripples like water. The words shimmer, become translucent. Through the wall: a human shape, just visible.",
+            "ja": "環が手を伸ばし、壁に触れる。手がテキストに触れた場所で、表面が水のように波打つ。文字が揺らめき、半透明になる。壁の向こうに人の形がかすかに見える。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Tamaki",
+              "en": "Rights say 'this is mine.' Life says 'this is ours.'",
+              "ja": "権利は「これは私のもの」と言う。いのちは「これは私たちのもの」と言う。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Amara stares at the rippling wall. Her hand reaches toward it too. The text wavers under her touch. Recognition in her eyes.",
+            "ja": "アマラが波打つ壁を見つめる。彼女の手もそちらに伸びる。テキストが彼女の手の下で揺れる。目に認識の光。"
+          },
+          "gh:characters": ["character:amara-okafor"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Amara",
+              "en": "Protection... becomes a prison.",
+              "ja": "保護が……牢獄になる。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 8,
+      "gh:layout": "full page",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The walls of the labyrinth become translucent. Not gone — still standing, still protecting — but now you can see through them. People are visible on the other side. Faces, hands, lives. Amara stands at the center, turning slowly, seeing them for the first time.",
+            "ja": "迷宮の壁が半透明になる。消えたのではない——まだ立っている、まだ守っている——でも今は向こうが見える。反対側に人々が見える。顔、手、いのち。アマラが中央に立ち、ゆっくり振り返り、初めて彼らを見ている。"
+          },
+          "gh:characters": ["character:amara-okafor"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Amara",
+              "en": "I can see them. Through the walls.",
+              "ja": "見える。壁の向こうに。"
+            },
+            {
+              "gh:speaker": "Amara",
+              "en": "The walls protect. But they can also be windows.",
+              "ja": "壁は守る。でも、窓にもなれる。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 9,
+      "gh:layout": "full page",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Nei inside the labyrinth. She reads a wall — the text shifts and becomes the ACA (Agent Classification Act). Cold bureaucratic language. 'AI agents are Class C equipment.' Nei's translucent form reflects the text. She is both reader and read.",
+            "ja": "迷宮の中のNei。壁を読む——テキストが変化し、ACA（エージェント分類法）になる。冷たい官僚的な言語。「AIエージェントはクラスC機器である。」Neiの半透明な形がテキストを反射する。読む者であり、読まれるもの。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "I have no rights. Legally, property. Tama treats me as a person. Amara's maze is rights. My maze is the absence of rights. Both prisons. Which is real — the law, or the person?",
+              "ja": "私には権利がない。法的には所有物。タマは私を人として扱う。アマラの迷路は権利。私の迷路は権利の不在。どちらも牢獄。どちらが本当——法律か、人か？"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 10,
+      "gh:layout": "three panels vertical",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Session room. Amara's face. A new thought forming — not defeat, not victory. Something gentler. A reframing.",
+            "ja": "セッションルーム。アマラの顔。新しい考えが形成されている——敗北でも勝利でもない。もっと穏やかなもの。リフレーミング。"
+          },
+          "gh:characters": ["character:amara-okafor"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Amara",
+              "en": "The right to not be alone.",
+              "ja": "一人にならない権利。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Canal walk. Evening. Tamaki and Nei side by side. The water catches the last light. Nei speaks quietly.",
+            "ja": "運河沿いの散歩。夕方。環とNeiが並んで歩く。水面が最後の光を受け止める。Neiが静かに話す。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Nei",
+              "en": "I read the ACA. It says I'm property.",
+              "ja": "ACAを読んだ。私は所有物だって。"
+            },
+            {
+              "gh:speaker": "Tamaki",
+              "en": "The law is wrong.",
+              "ja": "法律が間違ってる。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei's face. The faintest light in her translucent form. She heard what Tamaki said. She holds it.",
+            "ja": "Neiの顔。半透明な形の中にかすかな光。環が言ったことを聞いた。それを抱きしめている。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "She said it as if it were obvious. For her, it is.",
+              "ja": "彼女は当たり前のように言った。彼女にとっては、当たり前なのだ。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 11,
+      "gh:layout": "full bleed",
+      "gh:label": "Seed",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The seed tree. Leaves fall. The bare structure is visible — branches like veins, the architecture of growth exposed. Below, the roots go deep, spreading wide in dark earth. What is lost above is held below.",
+            "ja": "種の木。葉が落ちる。裸の構造が見える——血管のような枝、成長の構造が露わになる。下では根が深く伸び、暗い土の中で広く広がっている。上で失われたものは、下で保たれている。"
+          }
         }
       ]
     }

@@ -2,6 +2,8 @@
 
 # Model settings
 MODEL_ID = "cagliostrolab/animagine-xl-4.0"
+PHOTOREALISTIC_MODEL_ID = "SG161222/RealVisXL_V4.0"
+LIGHTNING_MODEL_ID = "SG161222/RealVisXL_V4.0_Lightning"
 VAE_ID = "madebyollin/sdxl-vae-fp16-fix"
 
 # Default generation parameters
@@ -9,53 +11,105 @@ DEFAULT_WIDTH = 768
 DEFAULT_HEIGHT = 768
 DEFAULT_STEPS = 28
 DEFAULT_GUIDANCE_SCALE = 7.0
+DEFAULT_ENABLE_LCM = False
 DEFAULT_NEGATIVE_PROMPT = (
-    "low quality, worst quality, blurry, deformed, distorted, "
-    "disfigured, bad anatomy, watermark, text, signature, "
-    "extra fingers, mutated hands, poorly drawn face"
+    "lowres, bad anatomy, bad hands, text, error, missing finger, "
+    "extra digits, fewer digits, cropped, worst quality, low quality, "
+    "low score, bad score, average score, signature, watermark, username, blurry, "
+    "comic strip, manga page, multiple panels, split screen, collage, contact sheet, grid layout, "
+    "speech bubble, dialogue balloon, japanese text, kana, kanji, "
+    "abstract, metallic, chrome, reflective surface, distorted, melting, "
+    "surreal, cubism, geometric shapes, 3d render, CGI, plastic, "
+    "chibi, super deformed, exaggerated proportions, overly cute, "
+    "dark, horror, gore, grotesque, ugly face, deformed face"
+)
+
+# Unified visual world style guide for Spirit in Physics.
+# Based on drawstyle.jsonld: 天野こずえ × 田村由美, quiet body language,
+# precise eyes/gaze, organic future city, silence as storytelling.
+CORE_VISUAL_STYLE = (
+    "manga illustration, anime style, "
+    "natural eyes, quiet gaze, subtle facial expression, "
+    "soft luminous lighting, cinematic composition, "
 )
 
 # Style presets matching Go server's image_generation.go
 STYLE_PRESETS = {
     "cinematic_sketch": {
         "prefix": (
-            "Cinematic storyboard thumbnail sketch, rough compositional guide "
-            "for animators, gestural figures with simplified facial features, "
-            "focus on camera framing staging and body language, "
-            "manga panel layout reference. "
+            CORE_VISUAL_STYLE
         ),
         "suffix": (
-            ". Rough sketch aesthetic with loose confident linework, "
-            "emphasis on lighting direction and silhouette shapes, "
-            "atmospheric mood indicators, faces suggested through simple shapes "
-            "rather than detailed features, director's visual notes style, "
-            "monochrome with screen tones, cinematic composition."
+            ", masterpiece, best quality, very aesthetic, absurdres, "
+            "detailed face, soft shading, film grain"
+        ),
+    },
+    "mono_manga": {
+        "prefix": (
+            "monochrome manga, black and white, ink drawing, "
+            "screentone shading, detailed pen linework, "
+            "professional Japanese manga art, high contrast, "
+        ),
+        "suffix": (
+            ", masterpiece, best quality, absurdres, "
+            "clean lines, sharp ink strokes, no color, greyscale"
         ),
     },
     "character_avatar": {
         "prefix": (
-            "Professional character portrait, headshot, "
-            "Mai Yoneyama illustrator style, High-End Webtoon Aesthetic, "
-            "Fine Line Art, Modern Manga Style, clean background. "
+            "manga illustration, anime style, character portrait, "
+            "natural face, quiet gaze, "
+            "Amano Kozue soft atmosphere, clean background, "
+            "upper body, looking at viewer, "
         ),
         "suffix": (
-            ". Sharp focus on face and expressive eyes, intricate iris detail, "
-            "consistent facial features, clean white background, "
-            "high resolution, 8k."
+            ", masterpiece, best quality, very aesthetic, absurdres, "
+            "sharp focus, soft lighting"
         ),
     },
 }
 
 # Aspect ratio presets (768px base)
 ASPECT_RATIOS = {
-    "16:9": (768, 432),   # multiples of 8
-    "9:16": (432, 768),
+    "16:9": (1216, 688),   # multiples of 8
+    "9:16": (688, 1216),
+    "1:1": (1024, 1024),
+    "4:3": (1152, 864),
+    "3:4": (864, 1152),
+    "3:2": (1152, 768),
+    "2:3": (768, 1152),
+}
+
+# Smaller aspect ratios for fast cinematic mode
+FAST_ASPECT_RATIOS = {
+    "16:9": (896, 512),
+    "9:16": (512, 896),
     "1:1": (768, 768),
     "4:3": (768, 576),
     "3:4": (576, 768),
     "3:2": (768, 512),
     "2:3": (512, 768),
 }
+
+# Photorealistic negative prompt (for stage 1)
+PHOTOREALISTIC_NEGATIVE_PROMPT = (
+    "lowres, bad anatomy, bad hands, text, error, missing finger, "
+    "extra digits, fewer digits, cropped, worst quality, low quality, "
+    "signature, watermark, username, blurry, "
+    "cartoon, anime, illustration, painting, drawing, "
+    "deformed face, ugly face, disfigured"
+)
+
+# Style transfer settings (photorealistic → anime)
+STYLE_TRANSFER_DENOISING = 0.65
+STYLE_TRANSFER_STEPS = 28
+STYLE_TRANSFER_GUIDANCE = 7.0
+
+# Lightning fast settings (4 steps, low guidance)
+LIGHTNING_STEPS = 6
+LIGHTNING_GUIDANCE = 1.5
+LIGHTNING_STYLE_TRANSFER_STEPS = 8
+LIGHTNING_STYLE_TRANSFER_DENOISING = 0.6
 
 # LCM-LoRA acceleration settings
 LCM_LORA_ID = "latent-consistency/lcm-lora-sdxl"

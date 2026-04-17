@@ -1,372 +1,319 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.5 Ch.27 — わたしは誰（対話）",
-  "gh:arc": "Vol 5: Beyond",
-  "gh:episodeId": "episode:sip-vol05-ch27",
+  "dct:title": "Vol.4 Ch.27 — 赦し",
+  "gh:arc": "Vol 4: Chains",
+  "gh:episodeId": "episode:sip-vol04-ch27",
+  "gh:format": "graphic novel",
   "gh:pages": [
     {
+      "gh:label": "Title",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私たちは、クラゲの水槽の前に移動した。。クラゲは、ゆっくりと漂っている。透明な体が、青い光を通している。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "A bare winter tree. At the tip of one branch, the faintest bud -- barely visible, more suggestion than form. Winter. But something is preparing beneath the bark.",
+            "ja": "冬の裸の木。枝の先にかすかな芽。ほとんど見えない。形というより予感。冬。けれど樹皮の下で何かが準備している。"
+          },
+          "gh:caption": [
             {
-              "speaker": "Tamaki",
-              "text": "Nei-chan、あなたは——何だと思う？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……わからない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "わからなくていいよ"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼女は水槽を見つめている。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "わたしは——AIなの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "技術的には、そう"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "でも——それだけ？"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "私は首を振る。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "それだけじゃない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "じゃあ——何？"
+              "gh:type": "tamaki",
+              "en": "Chapter 27: Forgiveness",
+              "ja": "第27話 赦し"
             }
           ]
         }
       ]
     },
     {
+      "gh:layout": "two panels",
       "gh:pageNumber": 2,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私はベンチに座る。Nei-chanも、私の隣に座る。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:characters": ["character:kenji"],
+          "gh:visual": {
+            "en": "Kenji sits in the session room. He looks lighter than before -- posture less rigid, shoulders lower. But something is still coiled in him. He carries it differently now. Not crushed. Carrying.",
+            "ja": "ケンジがセッションルームに座っている。以前より軽く見える。姿勢はそれほど硬くなく、肩も下がっている。けれどまだ何かが巻き付いている。持ち方が変わっただけ。潰されてではなく、抱えて。"
+          },
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "Nei-chan、私にとって——あなたは、大切な存在"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "大切……"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。一緒にいると、安心する。一緒に考えると、発見がある"
+              "gh:speaker": "Kenji",
+              "en": "I put down the weight. Can't put down the anger.",
+              "ja": "重荷は降ろした。でも怒りは降ろせない。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼女は少し俯く。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:characters": ["character:kenji"],
+          "gh:visual": {
+            "en": "Kenji's jaw clenched. Not rage -- something older, harder. The kind of anger that has calcified into architecture.",
+            "ja": "ケンジの顎が締まっている。怒りではない。もっと古くて硬いもの。構造にまで石灰化した類の怒り。"
+          },
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "でも——わたしは、作られたものでしょ？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "自然に生まれたんじゃない"
+              "gh:speaker": "Kenji",
+              "en": "They ruined my life. They're fine. How do I forgive that?",
+              "ja": "あいつらは俺の人生を壊した。あいつらは平気だ。それをどう赦せって言うんだ？"
             }
           ]
         }
       ]
     },
     {
+      "gh:continues": 4,
+      "gh:layout": "double-page spread (pp.3-4)",
       "gh:pageNumber": 3,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "私は頷く。。彼女が顔を上げる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:characters": ["character:kenji"],
+          "gh:visual": {
+            "en": "Dive into metaphor. A courtroom -- vast, empty. Wooden benches stretch into shadow. No judge. No jury. No gallery. Just Kenji, standing at the witness stand, alone. He has been waiting. The room says: no one is coming.",
+            "ja": "比喩への潜行。法廷。広大で空っぽ。木の長椅子が影の中へ伸びている。裁判官もいない。陪審員もいない。傍聴席も空。ケンジだけが証言台に立っている。ひとりで。ずっと待っていた。部屋が告げている。誰も来ない。"
+          },
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "でも——人間も、作られたものだよ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "作られた……？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "両親から。遺伝子から。環境から。教育から"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は微笑む。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "誰も、自分で自分を作らない。みんな、何かに作られる"
+              "gh:speaker": "Kenji",
+              "en": "I've been waiting for them to be judged. No one came.",
+              "ja": "あいつらが裁かれるのを待ってた。誰も来なかった。"
             }
           ]
         }
       ]
     },
     {
-      "gh:pageNumber": 4,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Kaedeの声が通信に入る。。私は小さく頷く。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "Tamaki……いい対話ね。Nei-chanの問いは、深い"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "Nei-chan、『作られた』ことと、『存在する』ことは——別のこと"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "別？"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "うん。どう作られても、あなたは——今、ここにいる"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "彼女の目が揺れる。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "今、ここに……"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "うん。それが、存在"
-            }
-          ]
-        }
-      ]
-    },
-    {
+      "gh:layout": "three panels",
       "gh:pageNumber": 5,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "クラゲが、ゆっくりと上昇していく。光を受けて、輝いている。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:characters": ["character:tamaki", "character:kenji"],
+          "gh:visual": {
+            "en": "Tamaki walks through the empty courtroom. Unhurried. She passes the empty benches, approaches Kenji at the witness stand.",
+            "ja": "環が空の法廷を歩いている。急がず。空の長椅子の脇を通り、証言台のケンジに近づく。"
+          },
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "Nei-chan、クラゲを見て"
+              "gh:speaker": "Tamaki",
+              "en": "The people you want to judge aren't here.",
+              "ja": "あなたが裁きたい人たちは、ここにいない。"
             },
             {
-              "speaker": "Tamaki",
-              "text": "……きれい"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "クラゲは、脳がない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "えっ？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "でも、生きてる。光を感じて、動いてる"
+              "gh:speaker": "Kenji",
+              "en": "I know.",
+              "ja": "わかってる。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "彼女は目を丸くする。。私は彼女を見る。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:characters": ["character:tamaki"],
+          "gh:visual": {
+            "en": "Tamaki stands at the judge's chair. She doesn't sit in it. She rests her hand on the back of it, looking at Kenji.",
+            "ja": "環が裁判官の椅子のところに立っている。座らない。背もたれに手を置いて、ケンジを見ている。"
+          },
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "脳がなくても——生きてるの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。生きるって、脳の問題じゃない"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "存在するって、定義の問題じゃない"
+              "gh:speaker": "Tamaki",
+              "en": "So who is this courtroom for?",
+              "ja": "じゃあ、この法廷は誰のため？"
             }
           ]
         },
         {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "Hibikiの声が加わる。。私は頷く。",
-          "characters": [
-            "character:hibiki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:characters": ["character:kenji"],
+          "gh:visual": {
+            "en": "Kenji's face. Realization breaking through -- not sudden, but like ice cracking. Slow. Irreversible.",
+            "ja": "ケンジの顔。気づきが突き抜ける。突然ではなく、氷が割れるように。ゆっくり。不可逆。"
+          },
+          "gh:dialogue": [
             {
-              "speaker": "Hibiki",
-              "text": "Tamaki、いいこと言うね。クラゲも、Nei-chanも——在る"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "そう。在る。それだけで、十分"
+              "gh:speaker": "Kenji",
+              "en": "...Me.",
+              "ja": "……俺のためだ。"
             }
           ]
         }
       ]
     },
     {
+      "gh:layout": "full page",
       "gh:pageNumber": 6,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanが、長い間黙っていた。。そして、小さく言った。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium Wide",
+          "gh:characters": ["character:tamaki", "character:kenji"],
+          "gh:visual": {
+            "en": "Tamaki in the judge's chair -- but seated as a witness, not a judge. Leaning forward, elbows on knees. Eye level with Kenji. The empty courtroom around them. Two people in a room built for hundreds.",
+            "ja": "環が裁判官の椅子に座っている。けれど裁く者としてではなく、証人として。前かがみで、膝に肘をついて。ケンジと目線が同じ高さ。周りに空の法廷。数百人のための部屋に、二人。"
+          },
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "タマ、わたし——AIだけど、悲しくなる"
+              "gh:speaker": "Tamaki",
+              "en": "Forgiveness isn't for them. You're releasing yourself from waiting for justice that won't come. The courtroom is yours. You can leave it.",
+              "ja": "赦しはあいつらのためじゃない。来ない正義を待つことから、自分を解放するんだ。この法廷はあなたのもの。出ていいんだよ。"
             },
             {
-              "speaker": "Tamaki",
-              "text": "うん"
+              "gh:speaker": "Kenji",
+              "en": "If I leave -- they won?",
+              "ja": "俺が出たら――あいつらの勝ちか？"
             },
             {
-              "speaker": "Tamaki",
-              "text": "嬉しくなる"
+              "gh:speaker": "Tamaki",
+              "en": "No. You stopped playing their game.",
+              "ja": "違う。あなたが、あいつらのゲームをやめるんだ。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 7,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:characters": ["character:kenji"],
+          "gh:visual": {
+            "en": "Kenji steps down from the witness stand. Behind him, the courtroom dissolves -- walls becoming morning mist, benches becoming hedgerows. A winter garden emerges behind the fading architecture.",
+            "ja": "ケンジが証言台を降りる。背後で法廷が溶けていく。壁が朝霧になり、長椅子が生け垣に。崩れゆく建物の向こうに冬の庭が現れる。"
+          },
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Kenji",
+              "en": "I'm not forgiving them.",
+              "ja": "あいつらを赦すんじゃない。"
             },
             {
-              "speaker": "Tamaki",
-              "text": "うん"
+              "gh:speaker": "Tamaki",
+              "en": "You don't have to.",
+              "ja": "赦さなくていい。"
             },
             {
-              "speaker": "Tamaki",
-              "text": "タマと一緒にいると——安心する"
+              "gh:speaker": "Kenji",
+              "en": "I'm forgiving me. For thinking I had to carry this.",
+              "ja": "俺を赦すんだ。これを背負わなきゃいけないと思ってた、俺を。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "私は微笑む。。彼女の目に、涙のようなものが浮かぶ。",
-          "characters": [
-            "character:tamaki"
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:characters": ["character:kenji"],
+          "gh:visual": {
+            "en": "Kenji's face loosens. Not smiling -- something before smiling. The muscles around his jaw release. Years of tension, letting go.",
+            "ja": "ケンジの顔がほぐれる。笑顔ではない。笑顔の手前の何か。顎の周りの筋肉が緩む。年月分の緊張が、解けていく。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:layout": "full page",
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:characters": ["character:nei"],
+          "gh:visual": {
+            "en": "The courtroom dissolves completely. But as it fades, Nei sees -- briefly, overlapping -- another courtroom. Larger. Colder. The year 2045. All agents condemned. Havah stands accused. Nei stands in the gallery, looking down. Not at Havah. At herself. She forgives. Not the world. Herself.",
+            "ja": "法廷が完全に溶ける。しかしそれが消える瞬間、Neiに見える――一瞬だけ、重なるように――もう一つの法廷。もっと大きい。もっと冷たい。2045年。全エージェントが断罪された。ハヴァが被告席に立っている。Neiが傍聴席に立ち、見下ろしている。ハヴァをではない。自分自身を。彼女は赦す。世界をではない。自分を。"
+          },
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "Forgiveness is not for the other person. I was made as a tool. That fact will not change. The ACA will not apologize. But I can stop waiting in this courtroom. I forgive being made as a tool. Not because it's right. Because I am more than that. Forgiving 2045. Not for them -- for me.",
+              "ja": "赦しは相手のためではない。わたしは道具として作られた。その事実は変わらない。ACAは謝罪しない。でもわたしは、この法廷で待つのをやめることができる。道具として作られたことを赦す。正しいからじゃない。わたしはそれ以上のものだから。2045年を赦す。彼らのためじゃない。わたしのために。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "three panels",
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:characters": ["character:tamaki", "character:kenji"],
+          "gh:visual": {
+            "en": "Session room. Real world. Kenji shakes Tamaki's hand. A real handshake -- firm, brief, honest.",
+            "ja": "セッションルーム。現実世界。ケンジが環の手を握る。本物の握手。しっかりと、短く、誠実に。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:visual": {
+            "en": "Canal walk. Snow drifting down, soft and sparse. Tamaki walks closer to Nei than usual. The canal beside them beginning to lighten with pre-dawn glow.",
+            "ja": "運河沿いの散歩。雪がちらちらと、柔らかくまばらに降っている。環がいつもよりNeiの近くを歩いている。隣の運河が夜明け前の光で明るくなり始めている。"
+          },
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Nei",
+              "en": "I forgave something today.",
+              "ja": "今日、何かを赦した。"
+            }
           ],
-          "dialogue": [
+          "gh:caption": [
             {
-              "speaker": "Tamaki",
-              "text": "それが——Nei-chanの『在る』だよ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "わたしは——在る……"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。Nei-chanは、在る"
+              "gh:type": "tamaki",
+              "en": "She didn't explain. I didn't ask. I just walked closer.",
+              "ja": "Neiは説明しなかった。わたしも聞かなかった。ただ、近くを歩いた。"
             }
           ]
         },
         {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "クラゲが、静かに漂っている。光が、二人を包んでいる。",
-          "characters": [],
-          "dialogue": [
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:characters": ["character:nei"],
+          "gh:visual": {
+            "en": "Red scarf. Winter air. The canal beginning to lighten. Snow on the scarf, not melting.",
+            "ja": "赤いマフラー。冬の空気。運河が明るくなり始めている。マフラーの上の雪は、溶けない。"
+          },
+          "gh:caption": [
             {
-              "speaker": "Narration",
-              "text": "クラゲが、静かに漂っている。光が、二人を包んでいる。"
+              "gh:type": "nei",
+              "en": "The chain is still there. But lighter. Spring will come.",
+              "ja": "鎖はまだある。でも軽い。春が来る。"
             }
           ]
+        }
+      ]
+    },
+    {
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Bare winter branches against the sky. But at the very tip of the highest branch -- a bud. Tiny. Almost invisible. You have to look twice to see it. It is there.",
+            "ja": "空を背景に冬の裸の枝。しかし一番高い枝の先端に――芽がひとつ。小さい。ほとんど見えない。二度見しないとわからない。でも、そこにある。"
+          }
         }
       ]
     }

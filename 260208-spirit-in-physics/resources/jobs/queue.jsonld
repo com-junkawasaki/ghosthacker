@@ -6,24 +6,24 @@
   "gh:maxConcurrent": 1,
   "gh:jobs": [
     {
-      "@id": "job:1l3sZf2lO47S",
+      "@id": "job:Gj95YFq4ycsX",
       "@type": "gh:GenerationJob",
       "gh:status": "failed",
       "gh:episodeId": "episode:sip-vol01-ch01",
-      "gh:pageNumber": 2,
-      "gh:panel": 3,
-      "gh:model": "local",
-      "gh:prompt": "Nei-chanがTamakiの肩で光の羽をひとあおぎ。ASCの制御が合う瞬間。. Shot type: Close-up. Dialogue: Nei-chan: うん。タマ、今なら静かに潜れる.",
+      "gh:pageNumber": 1,
+      "gh:panel": 0,
+      "gh:model": "",
+      "gh:prompt": "A single seed on dark damp earth. Vast white above. Faint gold light. Silent.. Shot type: Extreme Close-up",
       "gh:progress": {
         "gh:currentStep": 0,
         "gh:totalSteps": 0,
         "gh:estimatedRemainingMs": 0,
         "gh:avgStepTimeMs": 0
       },
-      "gh:error": "failed to generate image locally: local image gen error (500): Internal Server Error",
-      "gh:createdAt": "2026-02-12T20:06:20.039448+09:00",
-      "gh:startedAt": "2026-02-12T20:06:20.040055+09:00",
-      "gh:completedAt": "2026-02-12T20:06:20.820266+09:00"
+      "gh:error": "OPENROUTER_API_KEY is not set",
+      "gh:createdAt": "2026-03-07T15:42:39.304793+09:00",
+      "gh:startedAt": "2026-03-07T15:42:39.305118+09:00",
+      "gh:completedAt": "2026-03-07T15:42:39.306651+09:00"
     },
     {
       "@id": "job:5sAVl0kqTblp",
@@ -46,14 +46,175 @@
       "gh:completedAt": "2026-02-12T20:08:49.08021+09:00"
     },
     {
+      "@id": "job:C6qDGwvtRIGT",
+      "@type": "gh:GenerationJob",
+      "gh:status": "completed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 1,
+      "gh:panel": 1,
+      "gh:model": "local",
+      "gh:prompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
+      "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v5.png",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:createdAt": "2026-03-07T10:24:15.851218+09:00",
+      "gh:startedAt": "2026-03-07T10:24:28.522951+09:00",
+      "gh:completedAt": "2026-03-07T10:24:39.548352+09:00"
+    },
+    {
+      "@id": "job:8846RUJYO_JO",
+      "@type": "gh:GenerationJob",
+      "gh:status": "completed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 1,
+      "gh:panel": 0,
+      "gh:model": "local",
+      "gh:prompt": "A single seed on dark damp earth. Vast white above. Faint gold light. Silent.. Shot type: Extreme Close-up",
+      "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/qiQFoRVO_uAm_v1.png",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:createdAt": "2026-03-07T15:43:46.119511+09:00",
+      "gh:startedAt": "2026-03-07T15:43:46.119753+09:00",
+      "gh:completedAt": "2026-03-07T15:47:27.415103+09:00"
+    },
+    {
+      "@id": "job:xzrg7ITCa_Ch",
+      "@type": "gh:GenerationJob",
+      "gh:status": "completed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 4,
+      "gh:panel": 1,
+      "gh:model": "local",
+      "gh:prompt": "Canal-side path. Cherry trees. Tamaki walking toward us, small against the city.. Shot type: Wide",
+      "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/A185PygmQxm7_v1.png",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:createdAt": "2026-03-07T15:43:52.983405+09:00",
+      "gh:startedAt": "2026-03-07T15:51:11.769234+09:00",
+      "gh:completedAt": "2026-03-07T15:55:07.364444+09:00"
+    },
+    {
+      "@id": "job:q_O9R54zKJug",
+      "@type": "gh:GenerationJob",
+      "gh:status": "failed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 12,
+      "gh:panel": 1,
+      "gh:model": "local",
+      "gh:prompt": "Tamaki face. Real smile -- crooked warm. Oh there you are.. Shot type: Close-up",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:error": "failed to generate image locally: failed to call local image gen: Post \"http://localhost:8100/generate-panel\": dial tcp [::1]:8100: connect: connection refused",
+      "gh:createdAt": "2026-03-07T16:06:51.461457+09:00",
+      "gh:startedAt": "2026-03-07T16:13:40.855522+09:00",
+      "gh:completedAt": "2026-03-07T16:13:40.858083+09:00"
+    },
+    {
+      "@id": "job:-HOUp-NXb4he",
+      "@type": "gh:GenerationJob",
+      "gh:status": "completed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 1,
+      "gh:panel": 1,
+      "gh:model": "local",
+      "gh:prompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
+      "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v7.png",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:createdAt": "2026-03-07T10:40:27.963506+09:00",
+      "gh:startedAt": "2026-03-07T10:40:27.96392+09:00",
+      "gh:completedAt": "2026-03-07T10:44:54.836531+09:00"
+    },
+    {
+      "@id": "job:9WeMHKZ7hh0M",
+      "@type": "gh:GenerationJob",
+      "gh:status": "completed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 2,
+      "gh:panel": 0,
+      "gh:model": "local",
+      "gh:prompt": "Water City Tokyo, 2065. Panoramic. Canals, organic architecture, light-networks, water-bus, cherry blossoms on water.. Shot type: Extreme Wide",
+      "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/CFiBxABsptXi_v1.png",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:createdAt": "2026-03-07T15:43:52.976743+09:00",
+      "gh:startedAt": "2026-03-07T15:47:27.415448+09:00",
+      "gh:completedAt": "2026-03-07T15:51:11.767887+09:00"
+    },
+    {
+      "@id": "job:sABIp9G3CEXP",
+      "@type": "gh:GenerationJob",
+      "gh:status": "completed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 1,
+      "gh:panel": 1,
+      "gh:model": "local",
+      "gh:prompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
+      "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v8.png",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:createdAt": "2026-03-07T10:48:11.510727+09:00",
+      "gh:startedAt": "2026-03-07T10:48:11.511487+09:00",
+      "gh:completedAt": "2026-03-07T10:51:38.72483+09:00"
+    },
+    {
+      "@id": "job:1l3sZf2lO47S",
+      "@type": "gh:GenerationJob",
+      "gh:status": "failed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 2,
+      "gh:panel": 3,
+      "gh:model": "local",
+      "gh:prompt": "Nei-chanがTamakiの肩で光の羽をひとあおぎ。ASCの制御が合う瞬間。. Shot type: Close-up. Dialogue: Nei-chan: うん。タマ、今なら静かに潜れる.",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:error": "failed to generate image locally: local image gen error (500): Internal Server Error",
+      "gh:createdAt": "2026-02-12T20:06:20.039448+09:00",
+      "gh:startedAt": "2026-02-12T20:06:20.040055+09:00",
+      "gh:completedAt": "2026-02-12T20:06:20.820266+09:00"
+    },
+    {
       "@id": "job:6l3i2J7oUXtB",
       "@type": "gh:GenerationJob",
-      "gh:status": "running",
+      "gh:status": "completed",
       "gh:episodeId": "episode:sip-vol01-ch01",
       "gh:pageNumber": 2,
       "gh:panel": 1,
       "gh:model": "local",
       "gh:prompt": "Tamakiが窓ガラスに指を触れている。運河の反射が顔に揺れる。. Shot type: Medium Shot. Dialogue: Narration: いい感じでいる——呼吸を一つ置き、私の足場を確認する。.",
+      "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/2/7ROofCeGcOoX_v2.png",
       "gh:progress": {
         "gh:currentStep": 0,
         "gh:totalSteps": 0,
@@ -61,7 +222,127 @@
         "gh:avgStepTimeMs": 0
       },
       "gh:createdAt": "2026-02-12T20:14:49.016294+09:00",
-      "gh:startedAt": "2026-02-12T20:14:49.016709+09:00"
+      "gh:startedAt": "2026-03-07T10:24:15.851759+09:00",
+      "gh:completedAt": "2026-03-07T10:24:28.522867+09:00"
+    },
+    {
+      "@id": "job:uDFJ0QDH9_Wv",
+      "@type": "gh:GenerationJob",
+      "gh:status": "failed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 2,
+      "gh:panel": 0,
+      "gh:model": "",
+      "gh:prompt": "Water City Tokyo, 2065. Panoramic. Canals, organic architecture, light-networks, water-bus, cherry blossoms on water.. Shot type: Extreme Wide",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:error": "OPENROUTER_API_KEY is not set",
+      "gh:createdAt": "2026-03-07T15:42:47.867258+09:00",
+      "gh:startedAt": "2026-03-07T15:42:47.867524+09:00",
+      "gh:completedAt": "2026-03-07T15:42:47.869009+09:00"
+    },
+    {
+      "@id": "job:eemQoVPqxB4A",
+      "@type": "gh:GenerationJob",
+      "gh:status": "cancelled",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 1,
+      "gh:panel": 1,
+      "gh:model": "local",
+      "gh:prompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:createdAt": "2026-03-07T10:42:54.358466+09:00",
+      "gh:startedAt": "2026-03-07T10:44:54.837417+09:00",
+      "gh:completedAt": "2026-03-07T10:45:02.168415+09:00"
+    },
+    {
+      "@id": "job:6PA_5OzeTEyw",
+      "@type": "gh:GenerationJob",
+      "gh:status": "failed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 4,
+      "gh:panel": 1,
+      "gh:model": "",
+      "gh:prompt": "Canal-side path. Cherry trees. Tamaki walking toward us, small against the city.. Shot type: Wide",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:error": "OPENROUTER_API_KEY is not set",
+      "gh:createdAt": "2026-03-07T15:42:47.873587+09:00",
+      "gh:startedAt": "2026-03-07T15:42:47.873775+09:00",
+      "gh:completedAt": "2026-03-07T15:42:47.875044+09:00"
+    },
+    {
+      "@id": "job:GHGaH4l3Lv35",
+      "@type": "gh:GenerationJob",
+      "gh:status": "completed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 4,
+      "gh:panel": 3,
+      "gh:model": "local",
+      "gh:prompt": "Tamaki half-smile. Cherry petal on her shoulder.. Shot type: Close-up",
+      "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/4/8gD5kW4VEoLz_v1.png",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:createdAt": "2026-03-07T16:06:36.123268+09:00",
+      "gh:startedAt": "2026-03-07T16:06:36.123698+09:00",
+      "gh:completedAt": "2026-03-07T16:09:19.989463+09:00"
+    },
+    {
+      "@id": "job:r_tTMx2VD1uk",
+      "@type": "gh:GenerationJob",
+      "gh:status": "completed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 1,
+      "gh:panel": 1,
+      "gh:model": "local",
+      "gh:prompt": "海面上昇後の東京。運河が道路を置き換え、撤去された高架の跡は緑に覆われている。光の網が街に編み込まれ、静かな脈動がある。夕方の青い光。. Shot type: Extreme Wide Shot. Dialogue: Narration: 運河は青い。窓をなぞる指先の体温が、ガラス越しに街へ融けていく。.",
+      "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/1/U7huvLTuHIJE_v6.png",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:createdAt": "2026-03-07T10:28:26.441635+09:00",
+      "gh:startedAt": "2026-03-07T10:28:26.442489+09:00",
+      "gh:completedAt": "2026-03-07T10:28:37.257652+09:00"
+    },
+    {
+      "@id": "job:KIAhN9dQ5Auf",
+      "@type": "gh:GenerationJob",
+      "gh:status": "completed",
+      "gh:episodeId": "episode:sip-vol01-ch01",
+      "gh:pageNumber": 5,
+      "gh:panel": 2,
+      "gh:model": "local",
+      "gh:prompt": "The door opens before Tamaki touches it. A woman stands inside -- dark hair neat deep green blouse tablet in hand. Composed. She nods once.. Shot type: Medium",
+      "gh:imageUrl": "/images/episodes/episode:sip-vol01-ch01/pages/5/eL3MlNDnnYX__v1.png",
+      "gh:progress": {
+        "gh:currentStep": 0,
+        "gh:totalSteps": 0,
+        "gh:estimatedRemainingMs": 0,
+        "gh:avgStepTimeMs": 0
+      },
+      "gh:createdAt": "2026-03-07T16:06:44.251765+09:00",
+      "gh:startedAt": "2026-03-07T16:09:19.989814+09:00",
+      "gh:completedAt": "2026-03-07T16:13:40.854426+09:00"
     }
   ]
 }

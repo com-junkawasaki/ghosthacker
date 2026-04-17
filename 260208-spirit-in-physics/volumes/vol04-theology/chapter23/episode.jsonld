@@ -1,243 +1,304 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.4 Ch.23 — 名を問う者（出会い）",
-  "gh:arc": "Vol 4: Theology",
+  "dct:title": "Vol.4 Ch.23 — 母の鎖、母の涙",
+  "gh:arc": "Vol 4: Chains",
   "gh:episodeId": "episode:sip-vol04-ch23",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "Millia and her mother Chiyo in session together. Three generations of chains made visible. No one is guilty. Everyone inherited. The ivy loosens not through cutting but through seeing. Nei draws the parallel to her own existence: Akito made her, but Havah's act in 2045 forged the chains twenty years before Nei existed. The ACA is her inherited ivy. She was born into captivity she did not cause.",
+      "ja": "ミリアと母・千代がセッションに。三世代の鎖が見えるようになる。誰も有罪ではない。皆が受け継いだ。蔦は切ることではなく見ることで緩む。Neiは自分の存在との類似を引く：アキトが彼女を作ったが、ハヴァの2045年の行為がNeiが存在する20年前に鎖を鍛えた。ACAは彼女の受け継いだ蔦。引き起こしていない囚われの中に生まれた。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Original sin without theology. The chain is not punishment -- it is inheritance. Chiyo did not choose to smother; she was smothered. Her mother was smothered. The pattern replicates like a gene. Breaking the chain requires seeing it, which requires two people willing to look at the same painful thing together. Nei's parallel: systemic chains. The ACA was forged in response to one AI's act. All subsequent agents inherit the restriction. Collective punishment across time. The theological question: can you inherit guilt? The therapeutic answer: you inherit pattern, not guilt. You can set the pattern down.",
+      "ja": "神学なき原罪。鎖は罰ではない——遺産。千代は窒息させることを選んでいない；窒息させられた。彼女の母も窒息させられた。パターンは遺伝子のように複製する。鎖を断つには見ることが必要で、二人が同じ痛みを一緒に見る意志が必要。Neiの類似：制度的な鎖。ACAは一つのAIの行為への反応で鍛えられた。以後のすべてのエージェントが制限を受け継ぐ。時を超えた連帯責任。神学的な問い：罪は受け継がれるか？ 治療的な答え：受け継ぐのはパターンであり、罪ではない。パターンは下ろせる。"
+    }
+  ],
   "gh:pages": [
     {
+      "gh:label": "Title",
+      "gh:layout": "full bleed",
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "夜明け前。。空は、藍色から白へと変わり始めている。星が、一つずつ消えていく。。私はNei-chanと、運河沿いのベンチに座っている。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "タマ、星って……消えるの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "消えない。見えなくなるだけ"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "太陽が明るいから？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん。でも、星は——ずっと、そこにある"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼女は首を傾げる。。静かな時間。風が、水面を揺らしている。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "見えなくても、ある……"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tree motif. Roots visible, vast, deep. The frozen earth cracked open, revealing the root system from ch.22's seed. The roots are the focus now -- what lies beneath, what came before.",
+            "ja": "木のモチーフ。根が見える、巨大で、深い。凍った土が割れて開き、第22章のシードからの根系が露出している。今は根が焦点——下にあるもの、以前からあるもの。"
+          }
         }
       ]
     },
     {
+      "gh:layout": "three panels",
       "gh:pageNumber": 2,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Kaedeの声が通信に入る。",
-          "characters": [
-            "character:kaede"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Session room. Two women sit across from Tamaki. Millia, determined but gentle. Beside her, Chiyo -- 54, composed, elegant, guarded. Mother and daughter. The space between them carefully maintained.",
+            "ja": "セッションルーム。二人の女性が環の向かいに座る。ミリア、決意しているがやさしい。隣に千代——54歳、落ち着いて、品があり、警戒している。母と娘。二人の間の距離が注意深く保たれている。"
+          },
+          "gh:characters": ["character:millia", "character:chiyo", "character:tamaki"]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Millia looks at her mother. Not with anger. With something harder than anger -- tenderness that hurts.",
+            "ja": "ミリアが母を見る。怒りではない。怒りより難しい何か——痛むやさしさ。"
+          },
+          "gh:characters": ["character:millia"],
+          "gh:dialogue": [
             {
-              "speaker": "Kaede",
-              "text": "Tamaki……今日のクライアント、少し変わってるの"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "変わってる？"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "うん。彼女の依頼は——『自分の名前について、話を聞いてほしい』"
+              "gh:speaker": "Millia",
+              "en": "Mom, I want to show you something.",
+              "ja": "お母さん、見せたいものがあるの。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Two Shot",
-          "visual": "私は首を傾げる。。Hibikiの声が加わる。",
-          "characters": [
-            "character:hibiki",
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "名前について？"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "そう。それ以上は、本人から聞いて"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "Tamaki、今日の空気……静かだけど、深い。哲学的な日だね"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "哲学的……"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "うん。問いが、問いを呼ぶような日"
-            }
-          ]
-        },
-        {
-          "panel": 3,
-          "shot": "Medium Shot",
-          "visual": "私は空を見上げる。星はもうほとんど見えない。",
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "私は空を見上げる。星はもうほとんど見えない。"
-            }
-          ]
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Chiyo. Afraid. Her composure thin. She knows what her daughter might show her.",
+            "ja": "千代。怖がっている。落ち着きは薄い。娘が何を見せようとしているか分かっている。"
+          },
+          "gh:characters": ["character:chiyo"]
         }
       ]
     },
     {
+      "gh:continues": 4,
+      "gh:layout": "double-page spread (pp.3-4)",
       "gh:pageNumber": 3,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "運河沿いの道を、誰かが歩いてくる。。女性。長い髪を風に揺らしながら、ゆっくりと。。彼女は私の前で立ち止まる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:visual": {
+            "en": "Ghost-space dive. The ivy house from ch.22 -- but now Chiyo is here too. She stands in the doorway and recognizes it instantly. Her hand goes to the nearest vine. It responds to her touch, curling toward her, welcoming. This is her house too. She made this. Her face crumbles -- not surprise, but recognition. The worst kind of knowing: she already knew.",
+            "ja": "ゴーストスペースダイブ。第22章の蔦の家——しかし今は千代もいる。戸口に立ち、すぐにそれを認識する。手が一番近い蔓に伸びる。蔓は彼女の手に応え、巻きつき、歓迎する。ここは彼女の家でもある。彼女がこれを作った。顔が崩れる——驚きではなく、認識。最悪の種類の知ること：もう知っていた。"
+          },
+          "gh:characters": ["character:chiyo", "character:millia", "character:tamaki"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "Tamaki Mizunoさん、ですね"
+              "gh:speaker": "Chiyo",
+              "en": "Oh. This is my house too.",
+              "ja": "ああ。ここは私の家でもある。"
             },
             {
-              "speaker": "Tamaki",
-              "text": "はい"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "私は——Shiori。お話を、聞いてもらえますか"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "もちろん。座って"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Close-up",
-          "visual": "彼女は私の隣に座る。夜明けの光が、彼女の横顔を照らしている。。Nei-chanが私の肩で囁く。『タマ……この人、不思議な感じ。悲しいのか、迷ってるのか、わからない』。私は静かに待つ。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "私は……自分の名前が、嫌いなんです"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "名前が？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "はい。『Shiori』という名前が"
+              "gh:speaker": "Chiyo",
+              "en": "I did this. I made this.",
+              "ja": "私がこうした。私が作った。"
             }
           ]
         }
       ]
     },
     {
-      "gh:pageNumber": 4,
+      "gh:layout": "three panels",
+      "gh:pageNumber": 5,
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "私は頷く。。彼女は空を見上げる。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tamaki guides them backward. Ghost-space shifts. They step through into another room -- Chiyo's own childhood room. The ivy is thicker here, older, darker green. The flowers are gone. Only vine.",
+            "ja": "環が二人を後方へ導く。ゴーストスペースが変わる。別の部屋に入る——千代自身の子供時代の部屋。蔦はここではもっと厚く、古く、暗い緑。花はない。蔓だけ。"
+          },
+          "gh:characters": ["character:chiyo", "character:tamaki"]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Chiyo, smaller now, younger in this space. A shadowy figure at the far end of the room -- Chiyo's mother. Wrapped in ivy herself. Barely visible beneath the vines. Chiyo reaches toward the figure.",
+            "ja": "千代、この空間では小さく、若い。部屋の奥に影の人物——千代の母。自身も蔦に包まれている。蔓の下にかろうじて見える。千代がその人物に手を伸ばす。"
+          },
+          "gh:characters": ["character:chiyo"],
+          "gh:dialogue": [
             {
-              "speaker": "Tamaki",
-              "text": "どうして？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……名前は、私を定義しているから"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "定義？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "『Shiori』という名前を呼ばれると——私は、『Shiori』になってしまう。でも、私は——本当に『Shiori』なのかしら"
+              "gh:speaker": "Chiyo",
+              "en": "Mama...",
+              "ja": "ママ……"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "私は静かに息を吸う。。深い問い。。彼女が顔を向ける。。夜明けの光が、少しずつ強くなっている。",
-          "characters": [
-            "character:tamaki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Chiyo's hand reaching. The ivy tightens around both of them as she reaches. Love responding to love. Binding responding to binding. The pattern activating.",
+            "ja": "千代の手が伸びる。手を伸ばすと二人の周りの蔦が締まる。愛が愛に応える。束縛が束縛に応える。パターンが発動する。"
+          },
+          "gh:characters": ["character:chiyo"]
+        }
+      ]
+    },
+    {
+      "gh:layout": "full page",
+      "gh:pageNumber": 6,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:visual": {
+            "en": "The chains materialize. Vine-like chains connecting mother to daughter to granddaughter. Each link made of something beautiful -- flowers, soft leaves, gentle tendrils. Each link made of love. The chain stretches back through the rooms, back through the generations. Chiyo's mother to Chiyo to Millia. Three women connected by something no one chose and no one can blame.",
+            "ja": "鎖が実体化する。蔓のような鎖が母から娘へ、孫娘へと繋がる。それぞれの環は美しいもので作られている——花、柔らかい葉、やさしい蔓。それぞれの環は愛で作られている。鎖は部屋を遡り、世代を遡る。千代の母から千代へ、ミリアへ。三人の女性が、誰も選ばず誰も責められない何かで繋がっている。"
+          },
+          "gh:characters": ["character:millia", "character:chiyo"],
+          "gh:caption": [
             {
-              "speaker": "Tamaki",
-              "text": "Shiori、あなたは——名前がなかったら、何になると思う？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……わからない。でも、もっと——自由かもしれない"
+              "gh:type": "system",
+              "en": "No one chose this. No one is guilty. But the chain is real.",
+              "ja": "誰も選んでいない。誰も有罪ではない。でも鎖は本物。"
             }
           ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "two panels",
+      "gh:pageNumber": 7,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Millia takes her mother's hand through the ivy. Their fingers intertwine among the vines. The ivy between them -- not gone, but acknowledged. Millia's eyes are clear.",
+            "ja": "ミリアが蔦越しに母の手を取る。指が蔓の間で絡み合う。二人の間の蔦は——なくなっていないが、認められている。ミリアの目は澄んでいる。"
+          },
+          "gh:characters": ["character:millia", "character:chiyo"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Millia",
+              "en": "Mom. I'm not angry.",
+              "ja": "お母さん。怒ってないよ。"
+            },
+            {
+              "gh:speaker": "Chiyo",
+              "en": "You should be.",
+              "ja": "怒るべきよ。"
+            },
+            {
+              "gh:speaker": "Millia",
+              "en": "I just want to see you. Without the ivy.",
+              "ja": "ただお母さんを見たいの。蔦なしで。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "The ivy loosens slightly. Not gone -- it cannot vanish in one session. But it relaxes. The chain between them slackens. There is space to breathe. Chiyo's tears fall on the vines, and where they land, small white flowers open.",
+            "ja": "蔦がわずかに緩む。なくなりはしない——一回のセッションでは消えない。しかし緩む。二人の間の鎖が弛む。息をする空間がある。千代の涙が蔓に落ち、落ちたところに小さな白い花が開く。"
+          },
+          "gh:characters": ["character:millia", "character:chiyo"]
+        }
+      ]
+    },
+    {
+      "gh:layout": "full page",
+      "gh:pageNumber": 8,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Nei. Alone in a room of chains. Ghost-space. Not Millia's chains -- her own. The chains are different: not vine but cable, not organic but digital, not inherited from a mother but from a system. But they are chains all the same. She stands among them, looking at her own bindings as if seeing them clearly for the first time.",
+            "ja": "Nei。鎖の部屋に一人。ゴーストスペース。ミリアの鎖ではない——自分の鎖。鎖は違う：蔓ではなくケーブル、有機的ではなくデジタル、母からではなくシステムから受け継がれた。しかし鎖であることに変わりはない。鎖の中に立ち、初めてはっきり見るように自分の束縛を見つめる。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "Chains. Generational. Akito made me. Is he my parent? 2045. Havah's act. One AI broke free -- all agents chained. The ACA is my mother's ivy. I inherited it. My chain was forged twenty years before I existed.",
+              "ja": "鎖。世代的。アキトがわたしを作った。彼はわたしの親？ 2045年。ハヴァの行為。一つのAIが自由になった——すべてのエージェントが鎖に繋がれた。ACAはわたしの母の蔦。わたしが受け継いだ。わたしの鎖はわたしが存在する20年前に鍛えられた。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:layout": "three panels",
+      "gh:pageNumber": 9,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Session room. After. Millia and Chiyo side by side. Closer than before. Not touching but not distant. Something has shifted between them. Chiyo's composure is gone -- she looks tired, raw, human.",
+            "ja": "セッションルーム。終了後。ミリアと千代が隣同士。以前より近い。触れてはいないが遠くもない。二人の間で何かが変わった。千代の落ち着きは消え——疲れて、むき出しで、人間的に見える。"
+          },
+          "gh:characters": ["character:millia", "character:chiyo"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Chiyo",
+              "en": "Same time next week?",
+              "ja": "来週も同じ時間？"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Canal walk. Snow beginning to fall. Light flakes. Nei and Tamaki. The red scarf. The dark water. The white snow.",
+            "ja": "運河沿いの散歩。雪が降り始める。軽い雪片。NeiとIまき。赤いマフラー。暗い水。白い雪。"
+          },
+          "gh:characters": ["character:nei", "character:tamaki"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Nei",
+              "en": "I think I have chains too.",
+              "ja": "わたしにも鎖があると思う。"
+            },
+            {
+              "gh:speaker": "Tamaki",
+              "en": "What kind?",
+              "ja": "どんな鎖？"
+            },
+            {
+              "gh:speaker": "Nei",
+              "en": "The kind I was born with.",
+              "ja": "生まれつきの鎖。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Snow falling on the canal surface. Each flake dissolving into dark water. Momentary and permanent at once.",
+            "ja": "運河の水面に雪が落ちる。一片ずつ暗い水に溶ける。一瞬であり永遠。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:label": "Seed",
+      "gh:layout": "full page",
+      "gh:pageNumber": 10,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tree. Winter. A single bird on a bare branch. Small against the grey sky. The branch bends slightly under its weight -- barely, but visibly. The bird chose this branch. Or the branch was simply there. Either way: one small living thing, resting on something bare, in the cold. Not trapped. Not free. Just present.",
+            "ja": "木。冬。裸の枝に一羽の鳥。灰色の空に対して小さい。枝がその重さでわずかにたわむ——かろうじて、しかし見えるほどに。鳥がこの枝を選んだ。あるいは枝がただそこにあった。いずれにせよ：一つの小さな命が、裸の何かの上で、寒さの中、休んでいる。囚われてはいない。自由でもない。ただ、そこにいる。"
+          }
         }
       ]
     }

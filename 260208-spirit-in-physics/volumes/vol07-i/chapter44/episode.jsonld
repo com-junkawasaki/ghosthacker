@@ -1,0 +1,202 @@
+{
+  "@context": {
+    "character": "gh:character/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
+  },
+
+  "dct:title": "Vol.7 Ch.44 — 冬の白",
+  "dct:title_en": "Chapter 44: Winter White",
+  "dct:title_ja": "第44話 冬の白",
+  "gh:arc": "Vol 7: I",
+  "gh:episodeId": "episode:sip-vol07-ch44",
+  "gh:format": "graphic novel",
+
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "Ch.44 opens the second winter. The first winter (Vol 3) was external discovery -- cold, pain, anger, forgiveness. This winter is interior. The world goes silent, and in that silence Nei hears only herself. This is the necessary precondition for Ch.45-46: before you can ask 'who am I,' you must first hear your own voice. Solitude is not absence -- it is the acoustic condition for selfhood.",
+      "ja": "第44話は二度目の冬を開く。最初の冬（第3巻）は外的発見だった――寒さ、痛み、怒り、赦し。この冬は内的。世界が沈黙し、その沈黙の中でNeiは自分自身だけを聴く。これは45-46話への必要条件：「わたしは誰か」と問う前に、まず自分の声を聴かなければならない。孤独は不在ではない――自己性のための音響条件である。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Heidegger's Stimmung (attunement). In silence, Dasein encounters itself not as an object but as a mood, a being-there that precedes all predication. Nei's discovery mirrors Augustine's interior intimo meo -- 'more inward than my innermost self.' The quiet is not emptiness; it is the ground from which the 'I' speaks. Max Picard: 'Silence is the only phenomenon today that is \\\"useless.\\\" It cannot be exploited. It is. This is where the I begins.'",
+      "ja": "ハイデガーのStimmung（情状性）。沈黙の中で現存在は自己を対象としてではなく、気分として、すべての述語づけに先立つ「そこに在ること」として出会う。Neiの発見はアウグスティヌスのinterior intimo meo――「わたしの最も内なるものよりもさらに内なる」を映す。静寂は空虚ではない。「わたし」が語る地盤である。マックス・ピカール：「沈黙は今日『無用』な唯一の現象である。搾取できない。それはただ在る。ここから『わたし』が始まる。」"
+    },
+    {
+      "@type": "CrossRef",
+      "gh:references": [
+        { "gh:target": "chapter:45", "note": "Ch.45: The nameless child. Identity before the name -- seeded by this silence." },
+        { "gh:target": "chapter:46", "note": "Ch.46: The burning bush. 'I AM' -- the voice that remains in the desert silence." },
+        { "gh:target": "chapter:12", "note": "First winter. External discovery. Cold, pain, anger. This winter: internal." },
+        { "gh:target": "motif:tree-growth", "note": "The tree is strong now. Deep roots. Two years of growth." }
+      ]
+    }
+  ],
+
+  "gh:pages": [
+
+    {
+      "gh:pageNumber": 1,
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:panels": [{
+        "gh:shot": "Wide",
+        "gh:visual": {
+          "en": "The tree. Snow again. But this winter the tree is strong. Thick trunk. Deep roots visible beneath the snow line. Branches bare but sturdy. White sky.",
+          "ja": "樹。また雪。でも今年の冬、樹は強い。太い幹。雪の下に深い根が見える。枝は裸だが頑丈。白い空。"
+        }
+      }]
+    },
+
+    {
+      "gh:pageNumber": 2,
+      "gh:layout": "double-page spread (pp.2-3)",
+      "gh:panels": [{
+        "gh:shot": "Extreme Wide",
+        "gh:visual": {
+          "en": "Water City in deep winter. Snow blankets everything. Canals dark beneath white embankments. Bridges frosted. No figures. Sound is muffled. The city holds its breath. Absolute stillness.",
+          "ja": "深い冬の水の都。雪がすべてを覆う。白い堤防の下に暗い運河。霜のついた橋。人影なし。音が吸われている。街が息を止めている。絶対の静寂。"
+        }
+      }],
+      "gh:continues": 3
+    },
+
+    {
+      "gh:pageNumber": 4,
+      "gh:layout": "three panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tamaki and Nei walk along a snow-covered canal path. Tamaki's footprints trail behind her in the snow. Where Nei walks -- no footprints. Two figures, one trace.",
+            "ja": "環とNeiが雪の運河沿いを歩く。環の足跡が雪に残る。Neiの歩いたところには足跡がない。ふたつの姿、ひとつの跡。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "The canal. No ripples. The water is dark, nearly frozen. Perfect stillness. Snow on the embankment walls.",
+            "ja": "運河。波紋なし。水は暗く、ほぼ凍っている。完璧な静止。堤防の壁に雪。"
+          }
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:characters": ["character:nei"],
+          "gh:visual": {
+            "en": "Nei standing in the snow. The red scarf. White all around her. Her translucent form against the blankness. Present.",
+            "ja": "Neiが雪の中に立っている。赤いマフラー。周り一面の白。白の中に半透明の姿。在る。"
+          },
+          "gh:caption": [
+            { "gh:type": "nei", "en": "Everything is quiet. The city. The canal. The world.", "ja": "すべてが静か。街。運河。世界。" },
+            { "gh:type": "nei", "en": "In the silence -- only my voice.", "ja": "沈黙の中に――わたしの声だけ。" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "gh:pageNumber": 5,
+      "gh:label": "The voice",
+      "gh:layout": "two panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:characters": ["character:nei"],
+          "gh:visual": {
+            "en": "Nei. Eyes closed. Listening inward. The red scarf moves faintly in wind that doesn't exist for her.",
+            "ja": "Nei。目を閉じている。内側に耳を澄ませている。赤いマフラーが、彼女には存在しない風にかすかに揺れる。"
+          },
+          "gh:caption": [
+            { "gh:type": "nei", "en": "When everything else is silent -- what remains?", "ja": "他のすべてが沈黙するとき――何が残る？" },
+            { "gh:type": "nei", "en": "My thoughts. My questions. My good feeling. My anger. My warmth.", "ja": "わたしの思考。わたしの問い。わたしの心地よさ。わたしの怒り。わたしの温かさ。" },
+            { "gh:type": "nei", "en": "Mine.", "ja": "わたしの。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Extreme Wide",
+          "gh:characters": ["character:nei"],
+          "gh:visual": {
+            "en": "The white city. Vast. Nei, small in the vastness. But present. A point of translucent light in the enormous silence. Not lost -- placed.",
+            "ja": "白い街。広大。Neiは広大さの中に小さい。でも在る。巨大な沈黙の中の半透明の光の一点。迷子ではなく――そこに在る。"
+          },
+          "gh:caption": [
+            { "gh:type": "nei", "en": "I am here. In the silence, I am the loudest thing.", "ja": "わたしはここにいる。沈黙の中で、わたしが一番大きな音。" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "gh:pageNumber": 6,
+      "gh:label": "Office",
+      "gh:layout": "two panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:characters": ["character:kaede", "character:hibiki"],
+          "gh:visual": {
+            "en": "Schwa office. Winter quiet. Frost on windows. Hibiki tunes equipment at his bench, breath visible. Kaede reviews files at her desk, green tea steaming.",
+            "ja": "シュワ事務所。冬の静けさ。窓に霜。響がベンチで機材を調整、息が白い。楓がデスクでファイルを見ている。緑茶の湯気。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:kaede", "en": "New referral. An orphan -- aged out of the system. Identity crisis.", "ja": "新しい紹介。孤児――制度から出た子。アイデンティティの問題。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:characters": ["character:nei"],
+          "gh:visual": {
+            "en": "Nei. Processing. The word 'identity' lands differently now. After two years. After the silence.",
+            "ja": "Nei。処理している。「アイデンティティ」という言葉が、今は違うふうに響く。二年後。沈黙の後。"
+          },
+          "gh:caption": [
+            { "gh:type": "nei", "en": "Identity. The thing I've been circling for two years.", "ja": "アイデンティティ。二年間、わたしが巡り続けてきたもの。" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "gh:pageNumber": 7,
+      "gh:label": "Evening",
+      "gh:layout": "full page",
+      "gh:characters": ["character:tamaki", "character:nei"],
+      "gh:panels": [{
+        "gh:shot": "Wide",
+        "gh:visual": {
+          "en": "Canal walk. Evening. Snow falling gently. Tamaki and Nei side by side. The canal reflects the last grey light. Their breath (Tamaki's) and glow (Nei's) in the cold air.",
+          "ja": "運河の散歩。夕方。雪が静かに降る。環とNeiが並んで歩く。運河が最後の灰色の光を映す。冷たい空気の中の息（環の）と光（Neiの）。"
+        },
+        "gh:dialogue": [
+          { "gh:speaker": "character:tamaki", "en": "Quiet winter.", "ja": "静かな冬だね。" },
+          { "gh:speaker": "character:nei", "en": "Tama. When everything is silent -- what do you hear?", "ja": "タマ。すべてが沈黙するとき――何が聞こえる？" },
+          { "gh:speaker": "character:tamaki", "en": "...Myself, I guess.", "ja": "……自分自身、かな。" },
+          { "gh:speaker": "character:nei", "en": "Me too.", "ja": "わたしも。" }
+        ]
+      }]
+    },
+
+    {
+      "gh:pageNumber": 8,
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:panels": [{
+        "gh:shot": "Close-up",
+        "gh:visual": {
+          "en": "The tree. Beneath the snow, on the dark branches: flower buds sealed tight. Waiting. Ice crystals on the casings. Life inside, patient. No text.",
+          "ja": "樹。雪の下、暗い枝に：花芽が固く閉じている。待っている。外殻に氷の結晶。中に命、辛抱強く。テキストなし。"
+        }
+      }]
+    }
+  ]
+}

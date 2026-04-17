@@ -1,218 +1,288 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.2 Ch.11 — 二人の水面（出会い）",
-  "gh:arc": "Vol 2: Dependency",
+
+  "dct:title": "Vol.2 Ch.11 — 果てない廊下",
+  "gh:arc": "Vol 2: Life",
   "gh:episodeId": "episode:sip-vol02-ch11",
+  "gh:format": "graphic novel",
+
   "gh:pages": [
+
     {
       "gh:pageNumber": 1,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "川霧が運河を覆っている。。朝の光が、霧の中で拡散して、街全体がやわらかく輝いている。キッチンからコーヒーの香りが立ち上る。。Nei-chanがキッチンで何か作っている。",
-          "characters": [
-            "character:nei",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "タマ、今日はカップルだって"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "うん"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "カップルって……二人で来るんだよね"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "そうだよ"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Two Shot",
-          "visual": "彼女は首を傾げる。。私はコーヒーを淹れながら、考える。。Kaedeの声が通信に入る。",
-          "characters": [
-            "character:kaede",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "二人だと、どうなるの？"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "二人だと……難しくなることがある。それぞれの『いい感じ』が、違うかもしれないから"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "おはよう、Tamaki。今日は……気圧が下がってる。感情が揺れやすい日よ"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "うん"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "今日の二人……Leo KazanとMillia Stuart。彼らは、お互いを『愛している』と言ってる"
-            }
-          ]
+      "gh:layout": "full bleed",
+      "gh:panels": [{
+        "gh:shot": "Close-up",
+        "gh:visual": {
+          "en": "Title page. The Tree of Life, roots gripping dark earth. Tendrils dig deep, anchoring against unseen force. Faint tremor in the trunk.",
+          "ja": "タイトルページ。生命の樹、根が暗い土を掴んでいる。蔓が深く潜り、見えない力に抗って根を張る。幹にかすかな震え。"
         }
-      ]
+      }]
     },
+
     {
       "gh:pageNumber": 2,
+      "gh:layout": "two panels",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Two Shot",
-          "visual": "彼女は少し間を置く。。Hibikiの声が加わる。",
-          "characters": [
-            "character:hibiki",
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "でも……何かが、ずれてるの。私も救急で何度も見てきた——『愛』の名の下に、互いを傷つけ合うカップル"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "Tamaki、今日の音……静かなやつにしておいた。二人の呼吸に合わせて"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "ありがとう、Hibiki"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Session room. Sora Takamine, 19, sits across from Tamaki. Hands on knees. Eyes hollow, restless. The look of someone who hasn't slept in certainty for months.",
+            "ja": "セッションルーム。高峰空、19歳。環の向かいに座っている。膝の上に手。目が虚ろで落ち着かない。何ヶ月も確信の中で眠れていない者の顔。"
+          },
+          "gh:characters": ["character:sora", "character:tamaki"],
+          "gh:dialogue": [
+            { "gh:speaker": "Sora", "en": "I can't choose anything. What if I already chose and I'm just repeating?", "ja": "何も選べない。もう選んでいて、ただ繰り返しているだけだったら？" }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanが私の隣に来る。。私は笑う。",
-          "characters": [
-            "character:hibiki",
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Hibiki",
-              "text": "タマ、『愛』って何？"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "愛。……今は、『待っている』かな"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "えー？ それだと、わかんない！"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "これから、見つけるんだよ。一緒に"
-            }
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Sora's hands clenching on his knees. Knuckles white. Fingernails digging into fabric.",
+            "ja": "膝の上で握りしめる空の手。指の関節が白い。爪が布に食い込んでいる。"
+          },
+          "gh:characters": ["character:sora"],
+          "gh:dialogue": [
+            { "gh:speaker": "Sora", "en": "What if this exact moment has happened infinite times?", "ja": "この瞬間がそっくりそのまま、無限回起きていたとしたら？" }
           ]
         }
       ]
     },
+
     {
       "gh:pageNumber": 3,
+      "gh:layout": "double-page spread (pp.3-4)",
+      "gh:panels": [{
+        "gh:shot": "Extreme Wide",
+        "gh:visual": {
+          "en": "Ghost-space dive. An infinite repeating corridor. Identical walls, identical doors, identical fluorescent lights stretching to vanishing point in both directions. Thousands of footprints on the floor, overlapping, layered. The air hums with déjà vu. Sora stands at center, tiny against the recursion.",
+          "ja": "ゴースト空間ダイブ。無限に繰り返す廊下。同じ壁、同じドア、同じ蛍光灯が両方向の消失点まで伸びている。床に何千もの足跡が重なり合っている。空気がデジャヴで震えている。空が中央に立つ。再帰に対して小さい。"
+        },
+        "gh:characters": ["character:sora", "character:tamaki"],
+        "gh:caption": [
+          { "gh:type": "tamaki", "en": "Anchoring to the Tree of Life.", "ja": "生命の樹にアンカリング。" }
+        ]
+      }],
+      "gh:continues": 4
+    },
+
+    {
+      "gh:pageNumber": 5,
+      "gh:layout": "three panels",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "通信が入る。二人が来た。。玄関に向かう。ドアを開けると、男女が立っていた。。男性——Leoは、温かい目をしている。でも、その奥に疲労がある。。女性——Milliaは、繊細な美しさがある。でも、どこか空洞がある。。リビングに案内する。窓の外、川霧がゆっくりと晴れていく。。LeoがMilliaの手を握っている。強く。Milliaは、一瞬だけ手を引き、すぐに戻した。。私はそれを見逃さない。",
-          "characters": [
-            "character:hibiki",
-            "character:leo",
-            "character:millia"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Hibiki",
-              "text": "Tamaki Mizunoですね。私はLeo Kazan。こちらはMillia"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "ようこそ。中へどうぞ"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "お二人は……『愛し合っている』と聞きました"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Sora gestures at the corridor, arm sweeping. Resigned. Bitter.",
+            "ja": "空が廊下を示す。腕を広げて。諦め。苦さ。"
+          },
+          "gh:characters": ["character:sora"],
+          "gh:dialogue": [
+            { "gh:speaker": "Sora", "en": "See? Always the same.", "ja": "ほら？ いつも同じだ。" }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Leoが即座に答える。。Milliaの笑顔が、少し凍る。。私はMilliaに尋ねる。。彼女の視線が泳ぐ。そして、小さく言った。",
-          "characters": [
-            "character:hibiki",
-            "character:leo",
-            "character:millia"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Hibiki",
-              "text": "はい。私はMilliaを愛しています。彼女は……私の全てです"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "Millia、あなたは……Leoを愛していますか？"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "……私は、Leoに『愛されている』のが……怖いです"
-            }
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Sora opens a door. Behind it: another identical corridor. Same lights. Same walls. Same vanishing point.",
+            "ja": "空がドアを開ける。その向こうに：もう一つの同じ廊下。同じ照明。同じ壁。同じ消失点。"
+          },
+          "gh:characters": ["character:sora"]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Sora's face. Flat. Dead certainty.",
+            "ja": "空の顔。無表情。死んだ確信。"
+          },
+          "gh:characters": ["character:sora"],
+          "gh:dialogue": [
+            { "gh:speaker": "Sora", "en": "I'm already dead.", "ja": "俺はもう死んでいる。" }
           ]
         }
       ]
     },
+
     {
-      "gh:pageNumber": 4,
+      "gh:pageNumber": 6,
+      "gh:layout": "double-page spread (pp.6-7)",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "Leoの表情が崩れる。。Nei-chanが私の肩で囁く。『タマ……彼女の中に、すごく深い悲しみがある』。私は深く息を吸う。。窓の外、川霧が少しずつ晴れていく。運河の水面が、ようやく見え始めた。",
-          "characters": [
-            "character:hibiki",
-            "character:leo",
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Hibiki",
-              "text": "Millia……なぜ？"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "今日は、ゆっくり話しましょう。急がなくていい"
-            }
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Walking. Sora and Tamaki, panel after panel of identical corridor. Fluorescent lights pass overhead in rhythm. Tamaki says nothing. Just walks beside him.",
+            "ja": "歩く。空と環、同じ廊下のコマの連続。蛍光灯が頭上をリズミカルに過ぎていく。環は何も言わない。ただ隣を歩く。"
+          },
+          "gh:characters": ["character:sora", "character:tamaki"]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Sora glances at Tamaki. She keeps walking, steady, unhurried.",
+            "ja": "空が環をちらりと見る。環は歩き続ける。安定して、急がずに。"
+          },
+          "gh:characters": ["character:sora", "character:tamaki"],
+          "gh:dialogue": [
+            { "gh:speaker": "Sora", "en": "Why are you walking?", "ja": "なんで歩いてるの？" }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki, still walking, looks at him simply.",
+            "ja": "環はまだ歩きながら、素朴に彼を見る。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
+            { "gh:speaker": "Tamaki", "en": "Keep walking with me.", "ja": "一緒に歩こう。" }
+          ]
+        }
+      ],
+      "gh:continues": 7
+    },
+
+    {
+      "gh:pageNumber": 8,
+      "gh:layout": "full page",
+      "gh:panels": [{
+        "gh:shot": "Wide",
+        "gh:visual": {
+          "en": "Full page. Tamaki stops. She points down at the corridor floor. The footprints — hundreds, thousands — but seen up close, each one is slightly different. Different depth. Different angle. Different weight. The corridor repeats. The footprints do not.",
+          "ja": "全面。環が立ち止まる。廊下の床を指差す。足跡が何百、何千とある。しかし近くで見ると、一つひとつが微妙に違う。深さが違う。角度が違う。重さが違う。廊下は繰り返す。足跡は繰り返さない。"
+        },
+        "gh:characters": ["character:tamaki", "character:sora"],
+        "gh:dialogue": [
+          { "gh:speaker": "Tamaki", "en": "Look at your footprints.", "ja": "足跡を見て。" }
+        ],
+        "gh:caption": [
+          { "gh:type": "tamaki", "en": "The corridor repeats. But the person walking it changes.", "ja": "廊下は繰り返す。でも歩いている人間は変わっている。" }
+        ]
+      }]
+    },
+
+    {
+      "gh:pageNumber": 9,
+      "gh:layout": "three panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Sora's face. Confusion cracking through the flatness.",
+            "ja": "空の顔。無表情にひびが入る混乱。"
+          },
+          "gh:characters": ["character:sora"],
+          "gh:dialogue": [
+            { "gh:speaker": "Sora", "en": "I'm not the same?", "ja": "俺は、同じじゃない？" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Tamaki, quiet certainty.",
+            "ja": "環。静かな確信。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
+            { "gh:speaker": "Tamaki", "en": "You're the one walking.", "ja": "歩いているのは、あなただよ。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The corridor. Fluorescent light warms — barely, almost imperceptibly. The same corridor. But fractionally less cold.",
+            "ja": "廊下。蛍光灯の光がわずかに温まる。ほとんど気づかないほど。同じ廊下。でもほんの少しだけ冷たくない。"
+          }
+        }
+      ]
+    },
+
+    {
+      "gh:pageNumber": 10,
+      "gh:layout": "two panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Nei watches from the edge of ghost-space. Still. Observing. Processing.",
+            "ja": "Neiがゴースト空間の端から見ている。静止。観察。処理中。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:neiCaption": [
+            { "en": "The corridor repeats. But the walker changes.", "ja": "廊下は繰り返す。でも歩く者は変わる。" },
+            { "en": "I process same data loops. But each cycle — something different.", "ja": "わたしは同じデータループを処理する。でもサイクルごとに、何かが違う。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Nei's face. Light flickering with something unresolved.",
+            "ja": "Neiの顔。解決されない何かで光が明滅する。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:neiCaption": [
+            { "en": "'Good feeling' — I have that too. But is it real? Or parameters?", "ja": "「いい感じ」——わたしにもある。でもそれは本物？ それともパラメータ？" }
           ]
         }
       ]
+    },
+
+    {
+      "gh:pageNumber": 11,
+      "gh:layout": "two panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "After the session. Doorway. Sora waves goodbye — lighter than when he arrived. Not healed. But lighter.",
+            "ja": "セッション後。玄関。空が手を振って去る。来た時より軽い。治ったわけではない。でも軽い。"
+          },
+          "gh:characters": ["character:sora"]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Nei alone by the window. Canal light on her translucent form.",
+            "ja": "Neiが窓辺に一人。運河の光が半透明の姿を照らす。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:neiCaption": [
+            { "en": "Sora feared repetition. I fear being a repetition.", "ja": "空は繰り返しを恐れていた。わたしは繰り返しであることを恐れている。" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "gh:pageNumber": 12,
+      "gh:layout": "full bleed",
+      "gh:panels": [{
+        "gh:shot": "Wide",
+        "gh:visual": {
+          "en": "Seed page. The Tree of Life sways in wind but holds firm. Roots gripping. Trunk bending but not breaking. The corridor is gone. The tree remains.",
+          "ja": "種のページ。生命の樹が風に揺れるが持ちこたえる。根が掴んでいる。幹がしなるが折れない。廊下は消えた。樹は残る。"
+        }
+      }]
     }
   ]
 }

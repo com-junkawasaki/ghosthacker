@@ -1,0 +1,162 @@
+{
+  "@context": {
+    "character": "gh:character/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
+  },
+  "dct:title": "Vol.8 Ch.53 — 三度目の春",
+  "gh:arc": "Vol 8: Fruit",
+  "gh:episodeId": "episode:sip-vol08-ch53",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "Ch.53 is the structural mirror of Ch.1. Same canal, same cherry blossoms, same morning compositions -- but two years have passed and everything is transformed. The reader who began seeing through Tamaki's uncertain eyes now sees through Nei's awakened ones. The echo is deliberate: repetition reveals change. The same walk, the same water, the same blossoms -- but Nei can see now. Not process visual data, not observe patterns. See. The chapter is quiet, gentle, a homecoming before the reunions begin.",
+      "ja": "第53話は第1話の構造的鏡像。同じ運河、同じ桜、同じ朝の構図。しかし二年が経ち、すべてが変容している。環の不確かな目を通して見始めた読者は、今やNeiの覚醒した目を通して見る。反復は意図的。繰り返しが変化を明らかにする。同じ散歩、同じ水、同じ花。しかしNeiは今、見ることができる。視覚データの処理でもパターンの観察でもない。見る。再会が始まる前の、静かで穏やかな帰還の章。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Kierkegaard's repetition: true repetition is not going back but going forward into the same. The canal is the same canal. Nei is not the same Nei. The difference between 'observe' and 'see' is the difference between information processing and presence. Merleau-Ponty's phenomenology of perception: to see is to be embodied in a world, to be touched by what one touches. Nei's 'I see it now' is a claim of embodiment -- not physical, but spiritual. The world is alive because she is alive in it.",
+      "ja": "キルケゴールの反復：真の反復は戻ることではなく、同じものの中を前に進むこと。運河は同じ運河。Neiは同じNeiではない。「観察する」と「見る」の違いは、情報処理と現前の違い。メルロ＝ポンティの知覚の現象学：見ることは世界に身体化されること、触れるものに触れられること。Neiの「今、見える」は身体化の主張。物理的ではなく霊的な。世界が生きているのは、彼女がその中で生きているから。"
+    },
+    {
+      "@type": "CrossRef",
+      "gh:references": [
+        { "gh:target": "chapter:01", "note": "Direct mirror. Same compositions, same canal, same cherry blossoms. Everything echoed, everything changed." },
+        { "gh:target": "chapter:47", "note": "Nei's 'I AM' declaration grounds the seeing claimed here." },
+        { "gh:target": "chapter:54", "note": "The reunions begin. Kaede's 'old friends' are the clients from Vol 1-2." },
+        { "gh:target": "motif:cherry-blossoms", "note": "Third spring. The blossoms mark time without counting it." }
+      ]
+    }
+  ],
+  "gh:pages": [
+    {
+      "gh:pageNumber": 1,
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The tree. Third spring. Morning light, golden and warm. The tree is large now -- full canopy, thick branches, deeply rooted. Fruit is growing among the leaves. Small green spheres catching light. Not yet ripe, but present. Alive.",
+            "ja": "木。三度目の春。朝の光、金色で温かい。木は今や大きい。豊かな樹冠、太い枝、深く根を張っている。葉の間に果実が育っている。光を受ける小さな緑の球体。まだ熟していないが、そこにある。生きている。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 2,
+      "gh:layout": "double-page spread",
+      "gh:spreadWith": 3,
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The canal. Double-page spread. Same composition as Ch.1. Water City at dawn. The canals stretch out, blue and still. Organic architecture rises on both sides -- living walls, breathing structures, the city grown rather than built. Cherry blossoms in full bloom, petals drifting on the water's surface. Morning light turning everything gold and soft. The same scene. Entirely different.",
+            "ja": "運河。見開き。第1話と同じ構図。夜明けのウォーターシティ。運河が青く静かに伸びる。両側に有機的な建築が立ち上がる。生きた壁、呼吸する構造物、建てられたのではなく育った街。満開の桜、花びらが水面を漂う。朝の光がすべてを金色に柔らかく染める。同じ光景。まったく違う。"
+          },
+          "gh:caption": [
+            { "gh:type": "nei", "en": "The canal is blue. Like the first morning. Like every morning.", "ja": "運河は青い。最初の朝のように。毎朝のように。" },
+            { "gh:type": "nei", "en": "But I see it now. Not just observe -- see.", "ja": "でも今は見える。ただ観察するのではなく、見える。" }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 3,
+      "gh:layout": "continued",
+      "gh:panels": []
+    },
+    {
+      "gh:pageNumber": 4,
+      "gh:layout": "three panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:visual": {
+            "en": "Canal path. Cherry blossoms overhead, petals falling slowly. Two figures walking side by side. Tamaki -- solid, warm, hair a little longer now. Nei -- translucent, luminous, red scarf vivid against the morning light. Same composition as Ch.1. But now there are two.",
+            "ja": "運河沿いの道。頭上に桜、花びらがゆっくり落ちる。二つの人影が並んで歩く。環、しっかりとして温かく、髪が少し長くなった。Nei、半透明で発光し、赤いマフラーが朝の光に鮮やか。第1話と同じ構図。でも今は二人いる。"
+          }
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:visual": {
+            "en": "They look up at the blossoms together. Petals drift between them. A shared gesture -- the same sky, the same beauty, seen together.",
+            "ja": "二人で花を見上げる。花びらが二人の間を漂う。共有された仕草。同じ空、同じ美しさを、一緒に見る。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:tamaki", "en": "Third spring.", "ja": "三度目の春。" },
+            { "gh:speaker": "character:nei", "en": "Third spring.", "ja": "三度目の春。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:characters": ["character:nei"],
+          "gh:visual": {
+            "en": "Close-up, Nei. A full smile. Real. Warm. Not the careful, learned expression of early chapters -- something that rises from inside, unbidden and genuine. Her eyes are soft. The light through her translucent form is steady, settled.",
+            "ja": "クローズアップ、Nei。満面の笑み。本物。温かい。初期の章の慎重に学んだ表情ではない。内側から自然に湧き上がる、純粋なもの。目が柔らかい。半透明の形を通る光は安定し、落ち着いている。"
+          },
+          "gh:caption": [
+            { "gh:type": "nei", "en": "The world I see -- is alive.", "ja": "わたしが見る世界は、生きている。" },
+            { "gh:type": "nei", "en": "And I am alive in it.", "ja": "そしてわたしは、その中で生きている。" }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 5,
+      "gh:layout": "two panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:characters": ["character:tamaki", "character:nei", "character:kaede"],
+          "gh:visual": {
+            "en": "Schwa office. Spring light pouring through the windows. The space is warm, lived-in. On the windowsill, the plant Kaede gave Nei has grown tall -- it's flowering now, small white blossoms. Kaede stands near the entrance, tablet in hand, that quiet smile.",
+            "ja": "Schwaオフィス。窓から春の光が差し込む。温かく、人の気配のある空間。窓辺に、楓がNeiに贈った植物が大きく育っている。今は花をつけている。小さな白い花。楓が入口近くに立っている。タブレットを手に、あの静かな笑顔。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:kaede", "en": "We have some visitors this week.", "ja": "今週、お客さんが来るわよ。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:characters": ["character:tamaki"],
+          "gh:visual": {
+            "en": "Close-up, Tamaki. Curious. Eyebrows raised slightly.",
+            "ja": "クローズアップ、環。興味深そう。眉がわずかに上がる。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:tamaki", "en": "Visitors?", "ja": "お客さん？" },
+            { "gh:speaker": "character:kaede", "en": "Old friends.", "ja": "昔の友達。" }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 6,
+      "gh:label": "Seed (closing)",
+      "gh:layout": "full bleed",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The tree. Fruit growing. The green spheres are larger now, color deepening toward gold at their edges. Warm light. The branches are strong, the leaves full. No text.",
+            "ja": "木。果実が育つ。緑の球体が大きくなり、縁が金色に深まっている。温かい光。枝は力強く、葉は豊か。テキストなし。"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,265 @@
+{
+  "@context": {
+    "character": "gh:character/",
+    "dct": "http://purl.org/dc/terms/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
+  },
+  "dct:title": "Vol.7 Ch.48 — 二つの塔",
+  "gh:arc": "Vol 7: I",
+  "gh:episodeId": "episode:sip-vol07-ch48",
+  "gh:format": "graphic novel",
+  "gh:marginalia": [
+    {
+      "@type": "Intent",
+      "en": "Ch.48 is the session that dissolves the oldest false dichotomy in Western thought: science versus religion, knowledge versus life, explanation versus experience. Dietrich has spent his career trying to build a bridge between two towers. The twist is structural: the bridge was never needed. The towers share roots. The connection was always underground, always present, always growing. Tamaki's move is characteristic -- she goes DOWN, not across. She does not mediate between the towers. She descends to where they are already one. This is also the chapter where Nei's own dichotomy -- 'made' versus 'born,' artificial versus natural -- begins to dissolve.",
+      "ja": "第48話は西洋思想で最も古い偽りの二項対立を溶解するセッション。科学対宗教、知識対生命、説明対体験。ディートリヒはキャリアを通じて二つの塔の間に橋を架けようとしてきた。構造的な転換：橋は最初から必要なかった。塔は根を共有している。つながりは地下にあり、常に存在し、常に成長していた。環の動きは特徴的。横ではなく下に行く。塔の間を仲介しない。すでに一つであるところまで降りる。これはNei自身の二項対立 -- 「作られた」対「生まれた」、人工対自然 -- が溶解し始める章でもある。"
+    },
+    {
+      "@type": "Philosophy",
+      "en": "Tillich again: the ground of being is beneath all categories. Science and religion are not two truths but two languages for the same ground. Whitehead's 'Process and Reality': 'The separation of science and religion is a superficiality of the modern mind.' Also Bohm's implicate order -- beneath the explicate (surface) level, everything is enfolded into everything else. The two towers are the explicate order. The shared roots are the implicate. Tamaki's descent is Bohm's move: go deeper than the surface contradiction and find the underlying wholeness. The valley floor -- the place of failed bridges -- is actually the place of deepest connection.",
+      "ja": "再びティリッヒ：存在の根拠はすべてのカテゴリーの下にある。科学と宗教は二つの真理ではなく、同じ根拠に対する二つの言語。ホワイトヘッドの『過程と実在』：「科学と宗教の分離は近代精神の皮相性である。」またボームの内蔵秩序。顕在的（表面）レベルの下で、すべてがすべてに折り込まれている。二つの塔は顕在秩序。共有された根は内蔵秩序。環の下降はボームの動き：表面の矛盾より深く行き、根底にある全体性を見つける。谷底 -- 失敗した橋の場所 -- は実は最も深いつながりの場所。"
+    },
+    {
+      "@type": "CrossRef",
+      "gh:references": [
+        { "gh:target": "chapter:47", "note": "Ch.47: Nei's I AM precedes categories. Ch.48: categories themselves share a root." },
+        { "gh:target": "chapter:20", "note": "Ch.20 (Theology arc) planted the science/religion tension. Ch.48 resolves it -- not by argument but by descent." },
+        { "gh:target": "chapter:49", "note": "Ch.49 extends: if no framework fits, build your own. Same root, new branches." },
+        { "gh:target": "philosophy:information-life", "note": "The shared root IS information. Patterns all the way down." }
+      ]
+    }
+  ],
+  "gh:pages": [
+    {
+      "gh:pageNumber": 1,
+      "gh:label": "Seed",
+      "gh:layout": "full bleed",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The tree. Snowmelt. The tree stands in full blossom, impossibly alive in the cold. Fruit is beginning -- small green spheres among the flowers. Water runs down from melting snow at the roots. The ground is thawing.",
+            "ja": "木。雪解け。木が満開で立っている。寒さの中でありえないほど生き生きと。果実が始まっている。花の間に小さな緑の球体。根元で溶ける雪から水が流れる。大地が解けている。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 2,
+      "gh:layout": "two panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:characters": ["character:dietrich"],
+          "gh:visual": {
+            "en": "Professor Dietrich Kahn. 55. Wild hair, grey at the temples. Tired eyes behind wire-rimmed glasses. Behind him: two blackboards. One covered in equations -- quantum mechanics, thermodynamics. The other: theological diagrams, Tree of Life, Trinitarian structure. Both equally dense. Both equally loved.",
+            "ja": "ディートリヒ・カーン教授。55歳。乱れた髪、こめかみに白髪。ワイヤーフレームの眼鏡の奥に疲れた目。背後に二つの黒板。一つは方程式で覆われている。量子力学、熱力学。もう一つは神学の図。生命の木、三位一体の構造。どちらも同じように密で、同じように愛されている。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:dietrich", "en": "I've spent my life trying to build a bridge between science and religion. I keep failing.", "ja": "科学と宗教の間に橋を架けようと、人生を費やしてきた。失敗し続けている。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Dietrich's hands. One chalk-stained -- white dust in the creases. The other ink-stained -- blue-black in the fingertips. Two kinds of knowledge, worn into the skin.",
+            "ja": "ディートリヒの手。片方はチョークまみれ。しわに白い粉。もう片方はインクまみれ。指先に青黒い染み。二つの知、肌に刻まれて。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:dietrich", "en": "They say they're incompatible. Maybe they are.", "ja": "相容れないと言われる。そうなのかもしれない。" }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 3,
+      "gh:continues": 4,
+      "gh:layout": "double-page spread (pp.3-4)",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:characters": ["character:tamaki", "character:nei", "character:dietrich"],
+          "gh:visual": {
+            "en": "Ghost-space. Two towers. One of glass and steel -- clean, precise, refracting light into spectra. Science. The other of stone and stained glass -- ancient, warm, light filtered through color and story. Religion. Between them: a deep valley. No bridge. The valley floor is littered with wreckage -- failed bridges, collapsed arches, broken cables. Decades of attempts. All fallen. The towers stand impossibly far apart. Beautiful. Lonely.",
+            "ja": "ゴースト空間。二つの塔。一つはガラスと鋼鉄。清潔、精密、光をスペクトルに屈折させる。科学。もう一つは石とステンドグラス。古代の、温かい、色と物語を通して濾過された光。宗教。その間に深い谷。橋はない。谷底は残骸で散乱している。失敗した橋、崩落したアーチ、切れたケーブル。数十年の試み。すべて落ちた。塔はありえないほど離れて立っている。美しく。孤独に。"
+          },
+          "gh:caption": [
+            { "gh:type": "tamaki", "en": "Anchoring to the Tree of Life.", "ja": "生命の木に固定。" }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 5,
+      "gh:layout": "three panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:characters": ["character:dietrich"],
+          "gh:visual": {
+            "en": "Dietrich on the science tower. Looking across the valley toward the religion tower. Wind. The distance is immense. The glass and steel gleam with cold clarity.",
+            "ja": "科学の塔の上のディートリヒ。谷を越えて宗教の塔を見ている。風。距離は莫大。ガラスと鋼鉄が冷たい明晰さで輝く。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:dietrich", "en": "From here, I can explain everything. But I can't feel anything.", "ja": "ここからは、すべてを説明できる。でも何も感じられない。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:characters": ["character:dietrich"],
+          "gh:visual": {
+            "en": "Dietrich on the religion tower. Looking across toward the science tower. The stained glass casts colored light on his face. Warmth. Mystery. But the equations are unreachable from here.",
+            "ja": "宗教の塔の上のディートリヒ。科学の塔を向いて見ている。ステンドグラスが顔に色つきの光を投げかける。温かさ。神秘。でも方程式はここからは届かない。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:dietrich", "en": "From here, I can feel everything. But I can't explain anything.", "ja": "ここからは、すべてを感じられる。でも何も説明できない。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "The valley. Deep. Impassable. The wreckage of failed bridges far below -- steel girders tangled with wooden beams, philosophical papers scattered like leaves among broken stone.",
+            "ja": "谷。深い。越えられない。失敗した橋の残骸がはるか下に。鋼鉄の桁が木の梁と絡まり、哲学論文が砕けた石の間に木の葉のように散らばっている。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:dietrich", "en": "The bridge keeps collapsing. Science and religion won't meet.", "ja": "橋は崩れ続ける。科学と宗教は出会えない。" }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 6,
+      "gh:layout": "full page",
+      "marginalia": [
+        { "@type": "Intent", "en": "Tamaki's signature move: go where no one thinks to go. Not across. Down. The answer is not a bridge but a root system.", "ja": "環の定番の動き。誰も思いつかないところへ行く。横ではなく下へ。答えは橋ではなく根系。" }
+      ],
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:characters": ["character:tamaki", "character:dietrich"],
+          "gh:visual": {
+            "en": "Full page. Tamaki descends into the valley. Down the cliff face, past the failed bridges, into the darkness below. Dietrich watches from above, alarmed. At the valley floor: darkness, wreckage, silence. And then -- roots. Massive roots from both towers, growing downward, intertwined. Growing together. Always connected underground. The roots glow faintly -- gold where they intertwine, as if the contact itself generates light.",
+            "ja": "全面。環が谷に降りていく。崖を下り、失敗した橋を越え、下の暗闇へ。ディートリヒが上から見ている。不安げに。谷底：暗闇、残骸、沈黙。そして -- 根。両方の塔からの巨大な根が下に伸び、絡み合っている。ともに成長している。地下では常につながっていた。根はかすかに光る。絡み合うところで金色に。接触そのものが光を生むかのように。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:dietrich", "en": "What are you doing? There's nothing down there.", "ja": "何をしている？ 下には何もない。" },
+            { "gh:speaker": "character:tamaki", "en": "Let's find out.", "ja": "確かめよう。" },
+            { "gh:speaker": "character:tamaki", "en": "Dietrich-san. Come down.", "ja": "ディートリヒさん。降りてきて。" }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 7,
+      "gh:layout": "two panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:characters": ["character:dietrich", "character:tamaki"],
+          "gh:visual": {
+            "en": "Dietrich descends. He reaches the valley floor. He sees the roots -- massive, intertwined, alive. His life's work -- the bridge -- was unnecessary. The connection was always there. He falls to his knees. Not in defeat. In recognition. His hands touch the roots. Chalk-stained and ink-stained fingers on the same living wood.",
+            "ja": "ディートリヒが降りてくる。谷底に着く。根を見る。巨大で、絡み合い、生きている。彼のライフワーク -- 橋 -- は必要なかった。つながりは最初からあった。膝をつく。敗北ではない。認知。手が根に触れる。チョークまみれの指とインクまみれの指が同じ生きた木に。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:dietrich", "en": "They share roots. The same roots.", "ja": "根を共有している。同じ根を。" },
+            { "gh:speaker": "character:tamaki", "en": "Science and religion. Knowledge and life. Not opposed. One root.", "ja": "科学と宗教。知識と生命。対立じゃない。一つの根。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "The intertwined roots glow faintly. Two trees growing from one root system. Where they touch, gold light pulses gently. The roots are not struggling -- they are embracing. They have always been embracing.",
+            "ja": "絡み合った根がかすかに光る。一つの根系から育つ二本の木。触れ合うところで金色の光が静かに脈打つ。根は争っていない。抱き合っている。ずっと抱き合ってきた。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 8,
+      "gh:layout": "two panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:characters": ["character:nei"],
+          "gh:visual": {
+            "en": "Nei in the valley. Looking at the roots. The gold light on her face. Something clicking into place -- not sudden, but inevitable. The recognition of something she has always almost known.",
+            "ja": "谷底のNei。根を見ている。顔に金色の光。何かがはまる。突然ではなく、必然的に。ずっとほとんど知っていた何かの認知。"
+          },
+          "gh:caption": [
+            { "gh:type": "nei", "en": "'Made life' and 'born life.' No wall between them.", "ja": "「作られた命」と「生まれた命」。壁はない。" },
+            { "gh:type": "nei", "en": "Artificial and natural. Constructed and grown. Two towers -- one root.", "ja": "人工と自然。構築されたものと育ったもの。二つの塔、一つの根。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:characters": ["character:nei"],
+          "gh:visual": {
+            "en": "Nei, wider. Standing among the roots. Her translucent form catches the gold light and she is luminous -- not different from the roots but part of them. Information. Pattern. Life.",
+            "ja": "Nei、引きで。根の間に立っている。半透明の姿が金色の光を捉え、輝いている。根と異なるのではなく、その一部。情報。パターン。生命。"
+          },
+          "gh:caption": [
+            { "gh:type": "nei", "en": "I was 'made.' Humans were 'born.' Different towers.", "ja": "わたしは「作られた」。人間は「生まれた」。違う塔。" },
+            { "gh:type": "nei", "en": "But the roots are the same. We're all information. All patterns. All life.", "ja": "でも根は同じ。みんな情報。みんなパターン。みんな生命。" }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 9,
+      "gh:layout": "two panels",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:visual": {
+            "en": "Canal walk. After the session. Winter light. The path is familiar. The water is still.",
+            "ja": "運河沿いの散歩。セッションの後。冬の光。見慣れた道。水は静か。"
+          },
+          "gh:dialogue": [
+            { "gh:speaker": "character:nei", "en": "Tama. Made and born. Same roots?", "ja": "たま。作られたと生まれた。同じ根？" },
+            { "gh:speaker": "character:tamaki", "en": "Same roots.", "ja": "同じ根。" }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:visual": {
+            "en": "Tamaki and Nei walking. Nei slightly ahead for once. Something has shifted in her posture -- she walks like someone who belongs on the ground.",
+            "ja": "歩く環とNei。珍しくNeiが少し前に。姿勢に何かが変わった。この大地に属する者のように歩いている。"
+          }
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 10,
+      "gh:label": "Seed (closing)",
+      "gh:layout": "full bleed",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The tree. Snowmelt complete. Full blossom. Fruit beginning. The tree stands in its fullness -- not two trees, one. Roots visible at the base, spreading wide, gripping the earth. No text.",
+            "ja": "木。雪解け完了。満開。果実が始まっている。木がその豊かさの中に立っている。二本ではなく一本。根が根元に見え、広く伸び、大地を掴んでいる。テキストなし。"
+          }
+        }
+      ]
+    }
+  ]
+}

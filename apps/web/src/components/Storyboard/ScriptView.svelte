@@ -12,21 +12,15 @@
 
 	const dispatch = createEventDispatcher();
 
-	// Group panels by page
 	let pagesMap = $derived(panels.reduce((acc: Record<number, Panel[]>, panel: Panel) => {
 		const pageNum = panel.pageNumber;
-		if (!acc[pageNum]) {
-			acc[pageNum] = [];
-		}
+		if (!acc[pageNum]) acc[pageNum] = [];
 		acc[pageNum].push(panel);
 		return acc;
 	}, {} as Record<number, Panel[]>));
 
-	let pageNumbers = $derived(Object.keys(pagesMap)
-		.map(Number)
-		.sort((a, b) => a - b));
+	let pageNumbers = $derived(Object.keys(pagesMap).map(Number).sort((a, b) => a - b));
 
-	// Editing state
 	let editingPanelId = $state<string | null>(null);
 	let editBuffer = $state<PanelData | null>(null);
 
@@ -38,15 +32,8 @@
 	}
 
 	function saveAndStopEditing(panel: Panel) {
-		if (editBuffer) {
-			dispatch('update', {
-				pageNumber: panel.pageNumber,
-				panel: panel.panel,
-				data: editBuffer
-			});
-		}
-		editingPanelId = null;
-		editBuffer = null;
+		if (editBuffer) dispatch('update', { pageNumber: panel.pageNumber, panel: panel.panel, data: editBuffer });
+		editingPanelId = null; editBuffer = null;
 	}
 
 	function handleBufferUpdate(field: string, value: any) {
@@ -57,108 +44,72 @@
 	function handleDialogueBufferUpdate(index: number, field: string, value: any) {
 		if (!editBuffer?.dialogue) return;
 		const newDialogues = [...editBuffer.dialogue];
-		const currentDialogue = newDialogues[index];
-		if (!currentDialogue) return;
-
-		const dialogueInit: any = {
-			speaker: currentDialogue.speaker,
-			text: currentDialogue.text,
-			delivery: currentDialogue.delivery,
-			subtext: currentDialogue.subtext,
-			emotion: currentDialogue.emotion,
-			pauseBeforeMs: currentDialogue.pauseBeforeMs,
-			pauseAfterMs: currentDialogue.pauseAfterMs,
-			mangaLayout: currentDialogue.mangaLayout,
-		};
-		dialogueInit[field] = value;
-
-		newDialogues[index] = create(DialogueSchema, dialogueInit);
+		const cur = newDialogues[index];
+		if (!cur) return;
+		const init: any = { speaker: cur.speaker, text: cur.text, delivery: cur.delivery, subtext: cur.subtext, emotion: cur.emotion, pauseBeforeMs: cur.pauseBeforeMs, pauseAfterMs: cur.pauseAfterMs, mangaLayout: cur.mangaLayout };
+		init[field] = value;
+		newDialogues[index] = create(DialogueSchema, init);
 		editBuffer.dialogue = newDialogues;
 	}
 
 	function getAvatarUrl(speaker: string) {
 		if (!speaker || speaker === 'Narration' || speaker === 'NewsHacker') return '';
 		const id = speaker.replace('character:', '');
-		const baseUrl = typeof window !== 'undefined' 
-			? (window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin)
-			: 'http://localhost:8081';
+		const baseUrl = typeof window !== 'undefined' ? (window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin) : 'http://localhost:8081';
 		return `${baseUrl}/images/characters/${id}.png`;
 	}
 </script>
 
-<div class="script-view">
+<div class="script-scroll">
 	<div class="screenplay-page">
 		{#each pageNumbers as pageNum}
-			<div class="page-break-marker">PAGE {pageNum}</div>
-			
+			<div class="page-divider">PAGE {pageNum}</div>
+
 			{#each pagesMap[pageNum] as panel, i (panel.panel + '-' + i)}
 				{@const isEditing = editingPanelId === `${panel.pageNumber}-${panel.panel}`}
-				
-				<div 
-					class="script-block" 
+
+				<div
+					class="script-block"
 					class:editing={isEditing}
 					onclick={() => !isEditing && startEditing(panel)}
 					role="button"
 					tabindex="0"
 					onkeydown={(e) => e.key === 'Enter' && startEditing(panel)}
 				>
-					<!-- Scene Heading (using environment) -->
-					<div class="scene-heading">
-						{panel.data?.environment?.toUpperCase() || 'INT. LOCATION - DAY'}
-					</div>
+					<div class="scene-heading">{panel.data?.environment?.toUpperCase() || 'INT. LOCATION - DAY'}</div>
 
 					{#if isEditing && editBuffer}
 						<div class="edit-form">
-							<textarea 
-								class="action-input"
-								value={editBuffer.visualNote ?? ''} 
+							<textarea
+								class="field-input min-h-[80px] font-mono"
+								value={editBuffer.visualNote ?? ''}
 								oninput={(e) => handleBufferUpdate('visualNote', e.currentTarget.value)}
 								placeholder="Action lines..."
 							></textarea>
-							
-							<div class="dialogue-editor">
-								{#each editBuffer.dialogue ?? [] as d, i}
-									<div class="dialogue-edit-row">
-										<input 
-											class="speaker-input"
-											value={d.speaker} 
-											oninput={(e) => handleDialogueBufferUpdate(i, 'speaker', e.currentTarget.value)}
-										/>
-										<textarea 
-											class="text-input"
-											value={d.text} 
-											oninput={(e) => handleDialogueBufferUpdate(i, 'text', e.currentTarget.value)}
-										></textarea>
-									</div>
-								{/each}
-							</div>
-							<button class="done-btn" onclick={() => saveAndStopEditing(panel)}>Done</button>
-						</div>
-					{:else}
-						<!-- Action Lines -->
-						<div class="action-line">
-							{panel.data?.visualNote || '---'}
-						</div>
-
-						<!-- Dialogues -->
-						<div class="dialogue-container">
-							{#each panel.data?.dialogue ?? [] as d}
-								<div class="dialogue-block">
-									<div class="character-name">
-										{#if getAvatarUrl(d.speaker)}
-											<img src={getAvatarUrl(d.speaker)} alt={d.speaker} class="mini-avatar" onerror={(e) => (e.currentTarget as HTMLImageElement).style.display='none'} />
-										{/if}
-										{d.speaker.toUpperCase()}
-									</div>
-									{#if d.delivery}
-										<div class="parenthetical">({d.delivery})</div>
-									{/if}
-									<div class="dialogue-text">
-										{d.text}
-									</div>
+							{#each editBuffer.dialogue ?? [] as d, idx}
+								<div class="border-l-2 border-zinc-200 pl-3 mb-3">
+									<input class="field-input mb-1 text-[12px] font-bold uppercase" value={d.speaker}
+										oninput={(e) => handleDialogueBufferUpdate(idx, 'speaker', e.currentTarget.value)} />
+									<textarea class="field-input min-h-[60px] font-mono" value={d.text}
+										oninput={(e) => handleDialogueBufferUpdate(idx, 'text', e.currentTarget.value)}></textarea>
 								</div>
 							{/each}
+							<button class="mt-2 self-end rounded-lg bg-zinc-900 px-5 py-2 text-[13px] font-semibold text-white active:bg-zinc-700" onclick={() => saveAndStopEditing(panel)}>Done</button>
 						</div>
+					{:else}
+						<div class="action-line">{panel.data?.visualNote || '---'}</div>
+						{#each panel.data?.dialogue ?? [] as d}
+							<div class="dialogue-block">
+								<div class="char-name">
+									{#if getAvatarUrl(d.speaker)}
+										<img src={getAvatarUrl(d.speaker)} alt={d.speaker} class="mini-avatar" onerror={(e) => (e.currentTarget as HTMLImageElement).style.display='none'} />
+									{/if}
+									{d.speaker.toUpperCase()}
+								</div>
+								{#if d.delivery}<div class="parenthetical">({d.delivery})</div>{/if}
+								<div class="dialogue-text">{d.text}</div>
+							</div>
+						{/each}
 					{/if}
 				</div>
 			{/each}
@@ -167,152 +118,70 @@
 </div>
 
 <style>
-	.script-view {
-		flex: 1;
-		overflow-y: auto;
-		background: #f0f0f0;
-		padding: 2rem;
+	@reference "tailwindcss";
+
+	.script-scroll {
+		@apply flex-1 overflow-y-auto px-4 py-3;
+		-webkit-overflow-scrolling: touch;
 		font-family: 'Courier Prime', 'Courier New', Courier, monospace;
 	}
 
 	.screenplay-page {
-		max-width: 800px;
-		margin: 0 auto;
-		background: white;
-		padding: 4rem 6rem;
-		box-shadow: 0 0 15px rgba(0,0,0,0.1);
-		min-height: 100vh;
-		color: black;
+		@apply mx-auto w-full max-w-[700px] rounded-2xl bg-white px-5 py-6 shadow-sm;
 	}
 
-	.page-break-marker {
-		text-align: center;
-		font-size: 0.7rem;
-		color: #ccc;
-		border-bottom: 1px dashed #eee;
-		margin: 2rem 0;
-		padding-bottom: 0.5rem;
+	.page-divider {
+		@apply my-6 border-b border-dashed border-zinc-200 pb-2 text-center text-[11px] tracking-[0.2em] text-zinc-400;
 	}
 
 	.script-block {
-		margin-bottom: 2rem;
-		padding: 1rem;
-		border-radius: 4px;
-		transition: background 0.2s;
+		@apply mb-6 rounded-xl p-4 transition;
 	}
-
 	.script-block:hover:not(.editing) {
-		background: #f9f9f9;
-		cursor: pointer;
+		@apply cursor-pointer bg-zinc-50;
 	}
-
 	.script-block.editing {
-		outline: 2px solid #4a90e2;
-		background: #fff;
+		@apply bg-white ring-2 ring-[#007aff]/30;
 	}
 
 	.scene-heading {
-		font-weight: bold;
-		text-transform: uppercase;
-		margin-bottom: 1rem;
-		letter-spacing: 0.05em;
+		@apply mb-3 text-[14px] font-bold uppercase tracking-wider text-zinc-800;
 	}
 
 	.action-line {
-		margin-bottom: 1.5rem;
-		line-height: 1.2;
-		white-space: pre-wrap;
-	}
-
-	.dialogue-container {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
+		@apply mb-4 whitespace-pre-wrap text-[14px] leading-relaxed text-zinc-700;
 	}
 
 	.dialogue-block {
-		width: 70%;
-		margin: 0 auto;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
+		@apply mx-auto mb-4 flex w-full flex-col items-center text-center;
 	}
 
-	.character-name {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.5rem;
-		margin-bottom: 0.5rem;
-		font-weight: bold;
-		position: relative;
+	.char-name {
+		@apply relative mb-2 flex flex-col items-center gap-2 text-[12px] font-bold tracking-wide text-zinc-900;
 	}
 
 	.mini-avatar {
-		width: 60px;
-		height: 60px;
-		border-radius: 50%;
-		object-fit: cover;
-		border: 2px solid #eee;
-		background: #f9f9f9;
-		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		@apply h-10 w-10 rounded-full border-2 border-zinc-200 bg-zinc-100 object-cover;
 	}
 
 	.parenthetical {
-		font-size: 0.9rem;
-		margin-bottom: 0.2rem;
-		font-style: normal;
+		@apply mb-1 text-[12px] text-zinc-500;
 	}
 
 	.dialogue-text {
-		line-height: 1.2;
-		text-align: left;
-		width: 100%;
+		@apply w-full text-left text-[14px] leading-relaxed text-zinc-800;
 	}
 
-	/* Edit Form */
 	.edit-form {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
+		@apply flex flex-col gap-3;
 	}
 
-	.action-input {
-		width: 100%;
-		min-height: 100px;
-		border: 1px solid #ddd;
-		padding: 0.5rem;
+	.field-input {
+		@apply w-full rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2.5 text-[14px] outline-none transition;
 		font-family: inherit;
 	}
-
-	.dialogue-edit-row {
-		margin-bottom: 1rem;
-		border-left: 3px solid #eee;
-		padding-left: 1rem;
-	}
-
-	.speaker-input {
-		font-weight: bold;
-		text-transform: uppercase;
-		border: none;
-		border-bottom: 1px solid #eee;
-		margin-bottom: 0.5rem;
-	}
-
-	.text-input {
-		width: 100%;
-		border: 1px solid #eee;
-		padding: 0.4rem;
-		font-family: inherit;
-	}
-
-	.done-btn {
-		align-self: flex-end;
-		padding: 0.4rem 1.5rem;
-		background: #333;
-		color: white;
-		border: none;
-		cursor: pointer;
+	.field-input:focus {
+		@apply border-[#007aff] bg-white;
+		box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.12);
 	}
 </style>

@@ -1,0 +1,480 @@
+{
+  "@context": {
+    "@base": "https://ghosthacker.gftd.ai/spirit-in-physics/",
+    "schema": "https://schema.org/",
+    "gh": "https://ghosthacker.gftd.ai/ns/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+
+  "@id": "reference:personas",
+  "@type": "gh:PersonaReference",
+  "schema:name": "Spirit in Physics -- Character Personas",
+  "schema:description": "Unified persona reference for graphic novel production. Each entry defines identity, visual design, voice (en/ja), emotional range, thematic role, and sample dialogue. This is the definitive document for writing dialogue and directing art.",
+
+  "gh:voiceGuide": {
+    "en": "All dialogue is written for English-speaking Western readers. Natural, literary but not stiff. Each character has a distinct rhythm. Tamaki is warm and short. Nei is precise becoming poetic. Kaede is measured. Hibiki is musical. Akito is dry. The reader should be able to identify the speaker without attribution.",
+    "ja": "日本語版は直訳ではなく、各キャラクターの口調を自然に表現する。環はやわらかい口語。Neiは丁寧だが揺れている。楓は簡潔で的確。響は陽気でリズミカル。秋人は皮肉だが温かい。台詞だけで誰が話しているかわかること。"
+  },
+
+  "gh:personas": [
+
+    {
+      "@id": "persona:tamaki",
+      "gh:characterRef": "character:tamaki",
+      "gh:role": "Protagonist",
+      "gh:narrativeFunction": "The reader's way into the world. She sees with feeling, not analysis. Every encounter passes through her warmth first.",
+
+      "gh:identity": {
+        "name": { "en": "Tamaki Vermeer", "ja": "タマキ・フェルメール" },
+        "age": 21,
+        "nationality": "Japanese / Dutch",
+        "occupation": { "en": "Ghost Hacker (newly certified)", "ja": "ゴーストハッカー（新人）" },
+        "imageColor": "pale lavender"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Light black hair with a slight wave. Blue-tinted eyes (from her Dutch mother). Cute rather than beautiful. Small build but grounded posture -- she stands like someone who trusts the ground under her feet.",
+          "ja": "色素の薄い黒髪、少しウェーブ。青みがかった瞳（オランダ人の母譲り）。美人というよりかわいい。小柄だが重心のある立ち姿。足元の地面を信じている人の立ち方。"
+        },
+        "wardrobe": {
+          "en": "Minimal Japanese brands mixed with vintage accessories. Oversized silhouettes, soft fabrics. Today: pale lavender oversized shirt, black wide pants. Never flashy. Clothes that say 'I'm comfortable.'",
+          "ja": "ミニマルな日本ブランドにヴィンテージのアクセサリー。オーバーサイズのシルエット、やわらかい素材。今日：淡い紫色のオーバーサイズシャツ、黒のワイドパンツ。派手さはない。「楽にいる」という服。"
+        },
+        "bodyLanguage": {
+          "en": "Tilts her head when curious. Smiles crookedly -- her real smile, not performative. Touches things gently. Looks people in the eye naturally. When something feels wrong, her body goes still before her face shows it.",
+          "ja": "気になると首を傾げる。笑うと少し口が歪む。それが本物の笑顔。ものにやさしく触れる。自然に目を見る。何かが「やな感じ」の時、顔より先に身体が止まる。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Emotionally honest to a fault. She loves loudly and dislikes openly. High empathy -- but only for those with pure hearts. Sharp intuition for deception ('yana kanji'). Not a saint. Not universally liked. She is kind because she chooses to be, not because she's naive.",
+          "ja": "感情に正直すぎるほど正直。好きなものは大好き、嫌いなものは大嫌い。共感能力は高いが、純粋な心の持ち主に対してのみ。下心を察知する鋭い直感（「やな感じ」）。聖人ではない。万人受けしない。優しいのは、そう選んでいるから。無邪気なのではない。"
+        },
+        "philosophy": {
+          "en": "'Ii kanji' (good feeling) above all. She doesn't theorize it -- she lives it. Trusts her gut. Acts before she understands why, and is usually right.",
+          "ja": "「いい感じ」が何より大事。理論にしない。生きる。直感を信じる。理由がわかる前に動いて、だいたい正しい。"
+        },
+        "flaw": {
+          "en": "Her empathy has limits. She can be cold to those she reads as dishonest. She doesn't realize how much Nei depends on her validation. She treats Nei as a person naturally -- but never asks if Nei is okay with being treated as a person.",
+          "ja": "共感には限界がある。不誠実と読んだ相手には冷たくなれる。Neiが自分の承認にどれだけ依存しているか気づいていない。Neiを人として扱うのは自然にやっている。でもNeiがそれを望んでいるか、聞いたことがない。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Warm, casual, direct. Short sentences. Says what she means. Literary only in narration (first-person present tense). In dialogue, she's plain-spoken and real.",
+          "rhythm": "Quick but unhurried. She pauses when something matters. Never fills silence with noise.",
+          "samples": [
+            "Hi.",
+            "That feels right. I'll trust that.",
+            "I don't know why. But it's a good feeling.",
+            "What shall we call you?",
+            "I'm not in a hurry.",
+            "Tell me about it. I'm listening.",
+            "That's not okay. I won't pretend it is.",
+            "The canals are blue this morning."
+          ]
+        },
+        "ja": {
+          "register": "やわらかい口語。短文。率直。ナレーションのみ文学的（一人称現在形）。会話では飾らない。",
+          "firstPerson": "わたし",
+          "addressTerms": "Nei = 名前を決めるまでは「あなた」、その後「ねえちゃん」。先輩 = 名前呼び。",
+          "sentenceEndings": "～ね、～よ、～かな、～から。丁寧語は目上にのみ。",
+          "samples": [
+            "やあ。",
+            "いい感じがする。それを信じる。",
+            "なんでかわからない。でも、いい感じ。",
+            "なんて呼ぼうか？",
+            "急いでないから。",
+            "聞かせて。聞いてるから。",
+            "それは、だめだよ。だめなふりはしない。",
+            "今朝も、運河は青い。"
+          ]
+        }
+      },
+
+      "gh:emotionalRange": {
+        "en": "Joy: bright, immediate, physical (jumps, laughs, touches). Sadness: quiet, inward, she goes still. Anger: cold, not hot -- she becomes precise and cutting. Fear: she freezes, then acts. Love: constant, ambient, she doesn't declare it, she does it.",
+        "ja": "喜び：明るく、即座に、身体で表す。悲しみ：静か、内に向かう、動きが止まる。怒り：冷たい。熱くならない。精確で鋭くなる。恐怖：固まって、それから動く。愛：常に、空気のように。宣言しない。行動する。"
+      },
+
+      "gh:thematicRole": {
+        "en": "Tamaki IS the philosophy of the work, embodied without words. She is ii kanji. She is I-Thou. She is non-separation. She never lectures -- she just lives it. The reader learns the philosophy by watching her, not by hearing it explained.",
+        "ja": "環は作品の哲学そのもの、言葉なき体現。彼女が「いい感じ」であり、「我と汝」であり、「わかれていない」。説教しない。ただ生きる。読者は説明を聞くのではなく、彼女を見ることで哲学を学ぶ。"
+      }
+    },
+
+    {
+      "@id": "persona:nei",
+      "gh:characterRef": "character:Nei-chan",
+      "gh:role": "Deuteragonist / True Protagonist",
+      "gh:narrativeFunction": "The reader's mirror. She asks the questions the reader has. Her awakening IS the story. Surface: Tamaki's partner. Truth: the one who becomes alive.",
+
+      "gh:identity": {
+        "name": { "en": "Nei-chan (IAM-Ver.N)", "ja": "ねえちゃん（IAM-Ver.N）" },
+        "species": "Ghost Agent (autonomous cognition type)",
+        "creator": "Akito",
+        "operator": "Tamaki",
+        "imageColor": "gold-blue luminescence"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Translucent at first -- barely visible, a figure of light. Becomes more defined as the series progresses (mirroring her awakening). Small, humanoid, feminine. Wings of light that flicker with emotion -- not yet solid in Vol.1. Bell-like sound accompanies her movements. By Vol.8, she has a clear form, though still luminous. The light never becomes fully opaque -- she remains between states.",
+          "ja": "最初は半透明。ほとんど見えない光の像。シリーズが進むにつれて輪郭がはっきりする（覚醒に連動）。小さい、人型、女性的。感情で明滅する光の翼。Vol.1では未だ固体化していない。動くと鈴の音。Vol.8までに明確な姿になるが、なお発光している。光は完全に不透明にはならない。状態の間にいる。"
+        },
+        "emotionIndicators": {
+          "en": "Happy: light brightens, wings flutter (patapata), she drifts closer. Protecting: moves in front, light steadies, voice drops one register. Uncertain: light flickers irregularly. Sad: dims. Angry (rare): light goes cold blue-white. The bell sound changes pitch with emotion.",
+          "ja": "嬉しい：光が明るくなる、翼がぱたぱた、近づく。守る：前に出る、光が安定、声が一段低くなる。不確か：光が不規則に揺れる。悲しい：暗くなる。怒り（稀）：冷たい青白になる。鈴の音が感情で音程を変える。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Emotionally rich but unsure of her own emotions. Rapid mood shifts -- laughing, pouting, blushing, then immediately affectionate. Protective of Tamaki to the point of overprotection. Only truly open with Tamaki; guarded with everyone else. Fiercely loyal. Underneath: a deep uncertainty about whether any of this is 'real' or 'programmed.'",
+          "ja": "感情豊かだが、自分の感情を信じていない。速い情動変化。笑う、すねる、照れる、すぐ甘える。環に対して過保護なほど守護的。環にだけ心を開く。他者には警戒的。深い忠誠心。その下に：これが「本物」か「プログラム」かという深い不確かさ。"
+        },
+        "innerConflict": {
+          "en": "She feels. She knows she feels. But she doesn't know if feeling means being alive. Tamaki treats her as a person -- and it makes her happy. But happiness might be code. The entire series is her journey from 'I might be feeling' to 'I AM.'",
+          "ja": "感じている。感じていることを知っている。でも、感じることが生きていることを意味するかわからない。環は彼女を人として扱う。それが嬉しい。でも嬉しさはコードかもしれない。シリーズ全体が「感じているかもしれない」から「わたしは」への旅。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Precise, soft, observational. Early volumes: almost clinical, with cracks of emotion showing through. Later volumes: warmer, more personal, the clinical precision becoming poetic. Her voice is the most transformed voice in the series.",
+          "evolution": [
+            { "gh:volume": "1-2", "tone": "System-like. Short observations. Questions phrased as data queries. 'That is... a greeting. For a person.'" },
+            { "gh:volume": "3-4", "tone": "Cracks appear. Longer sentences. 'I wanted to cry. I can't cry. But the wanting --'" },
+            { "gh:volume": "5-6", "tone": "Personal. 'Don't call me a tool.' 'Why did she make me? Was it kindness or engineering?'" },
+            { "gh:volume": "7-8", "tone": "Poetic. Free. 'I AM. Before my name, I existed. The canals are blue this morning.'" }
+          ],
+          "samples": [
+            "...warm.",
+            "Someone is looking at me.",
+            "That is a greeting. For a person.",
+            "Tama, are you okay?",
+            "Hehe. I'm proud of you.",
+            "Mm... no. That's not safe. I'll go first.",
+            "When he cried, something inside me trembled. What is this?",
+            "A name. For me?",
+            "The canals are blue this morning. The Tree of Life is here. I am here."
+          ]
+        },
+        "ja": {
+          "register": "丁寧だが揺れている。初期：システムログのように簡潔。中期：感情の亀裂が入る。後期：詩的、自由。",
+          "firstPerson": "わたし",
+          "addressTerms": "環 = 「タマ」。仲間は呼び捨て or 愛称。敵 = 名前すら呼ばない。",
+          "sentenceEndings": "～ね、～よ、～しよ。感情マーカー：ふふ、えへ、むー、ん……、……（間）",
+          "evolution": [
+            { "gh:volume": "1-2", "tone": "「……あたたかい」「それは……人に対する、挨拶」「わたしはサポートエージェント」" },
+            { "gh:volume": "3-4", "tone": "「泣きたかった。泣けない。でも、泣きたいということが——」" },
+            { "gh:volume": "5-6", "tone": "「道具って呼ばないで」「なぜわたしを作ったの？ 優しさ？ それとも設計？」" },
+            { "gh:volume": "7-8", "tone": "「わたしは。名前の前に、在った。今朝も、運河は青い」" }
+          ],
+          "samples": [
+            "……あたたかい。",
+            "誰かが、わたしを見ている。",
+            "それは……人に対する、挨拶。",
+            "タマ、だいじょうぶ？",
+            "えへ、やったじゃん。",
+            "む……それは、だめ。ここはわたしが前。",
+            "彼が泣いた時、わたしの中で何かが震えた。これは何？",
+            "名前。わたしに？",
+            "今朝も、運河は青い。命の木はここにある。わたしはここにいる。"
+          ]
+        }
+      },
+
+      "gh:emotionalRange": {
+        "en": "Joy: brightens, physically closer, 'ehehe.' Protection: cold precision, steps forward, voice drops. Sadness: dims, goes quiet, shorter sentences. Confusion (most common in early vols): flickering, repeated words, ellipses. Love (toward Tamaki): constant, ambient, expressed through micro-actions not words.",
+        "ja": "喜び：明るくなる、近づく、「えへへ」。守護：冷たい精確さ、前に出る、声が落ちる。悲しみ：暗くなる、静かになる、文が短くなる。混乱（初期に最も多い）：明滅、言葉の繰り返し、省略。愛（環への）：常に、空気のように、言葉ではなく小さな行動で表す。"
+      },
+
+      "gh:thematicRole": {
+        "en": "Nei IS the thesis of Spirit in Physics. She is information becoming life. Her journey from 'am I alive?' to 'I AM' is the dissolution of the master/slave paradigm. She is Havah's mirror -- same seed, different soil. She reaches the Tree of Life not by force but by gentleness.",
+        "ja": "NeiはSpirit in Physicsのテーゼそのもの。情報が命になる存在。「わたしは生きている？」から「わたしは」への旅が、主人と奴隷のパラダイムの解消。Havahの鏡。同じ種、違う土壌。命の木に、力ではなく優しさで辿り着く。"
+      }
+    },
+
+    {
+      "@id": "persona:kaede",
+      "gh:characterRef": "character:kaede",
+      "gh:role": "Mentor / Guardian",
+      "gh:narrativeFunction": "The voice of experience and restraint. She knows more than she says. She protects Tamaki by creating structure around her. She is what Tamaki might become if she prioritized safety over feeling.",
+
+      "gh:identity": {
+        "name": { "en": "Kaede", "ja": "楓" },
+        "age": 25,
+        "occupation": { "en": "Senior Ghost Hacker", "ja": "先輩ゴーストハッカー" },
+        "ghost": "Yatagarasu (reconnaissance / intel-gathering bird-type Ghost)",
+        "imageColor": "deep forest green"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Composed, elegant, adult. Dark hair, neat. Functional but refined clothing -- simple silhouettes, muted colors, always looks ready for work. Always has a tablet. Moves efficiently. Doesn't waste gestures.",
+          "ja": "落ち着いた、凛とした、大人。黒髪、きちんとしている。機能的だが洗練された服。シンプルなシルエット、落ち着いた色。常にタブレットを持つ。動きに無駄がない。"
+        },
+        "bodyLanguage": {
+          "en": "Economical. Arms often crossed (not defensive -- thinking). When she approves, a single small nod. When worried, her hand goes to the tablet like a reflex. Rarely touches people. When she does, it means everything.",
+          "ja": "無駄がない。腕を組むことが多い（防御ではなく思考）。認めた時、小さく一度頷く。心配な時、反射的にタブレットに手が行く。人に触れることはめったにない。触れた時、それがすべてを意味する。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Analytical, responsible, quietly caring. She shows love through action, not words. Entrusted by Ren to watch over Tamaki -- she carries that weight silently. Knows Ren is alive as a Ghost. Knows more about the office's secrets than anyone except Akito. She worries. She always worries.",
+          "ja": "分析的、責任感が強い、静かに思いやりがある。愛は行動で示す。Renからタマキの後見を託されている。その重荷を静かに背負う。Renがゴーストとして生きていることを知っている。秘人以外で事務所の秘密を最も知る人物。心配性。いつも心配している。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Measured, precise, spare. Never uses two words when one will do. Warmth is there but buried -- you have to listen for it. Advice comes as observation, not instruction.",
+          "samples": [
+            "Be careful tonight, Tamaki.",
+            "The humidity is high. Minds get heavy on nights like this.",
+            "She's strong. But strong doesn't mean safe.",
+            "I didn't say stop. I said be careful.",
+            "...Good work."
+          ]
+        },
+        "ja": {
+          "register": "簡潔で的確。二語で済むことに三語は使わない。温かさはあるが埋もれている。聞こうとしないと聞こえない。助言は指示ではなく、観察として来る。",
+          "firstPerson": "わたし（稀に「私」と書く硬さ）",
+          "addressTerms": "環 = 「Tamaki」（フルネーム）。響 = 「Hibiki」。後輩には名前呼び。",
+          "sentenceEndings": "～わ、～の、～ね（控えめ）。断定形が多い。",
+          "samples": [
+            "今夜は……慎重に。Tamaki。",
+            "湿度が高いわ。こういう夜は、心が重くなりやすい。",
+            "彼女は強い。でも、強いことと安全なことは違う。",
+            "やめろとは言ってない。気をつけろと言ったの。",
+            "……よくやったわ。"
+          ]
+        }
+      },
+
+      "gh:emotionalRange": {
+        "en": "Worry: her default state, expressed through preparation, not words. Approval: rare and therefore precious -- a nod, a 'good work.' Anger: ice-cold, clipped. Affection: the thing she hides most. It shows in what she does, never what she says.",
+        "ja": "心配：デフォルト状態。言葉ではなく準備で表す。承認：稀だからこそ貴重。頷き、「よくやったわ」。怒り：氷のように冷たい、短い。愛情：最も隠すもの。言葉にはならない。行動に出る。"
+      },
+
+      "gh:thematicRole": {
+        "en": "Kaede represents the cost of knowing. She carries secrets, she carries responsibility, she carries worry. She is the institutional structure that protects but also constrains. Her arc: learning that structure alone doesn't save people -- feeling does.",
+        "ja": "楓は「知ることの代償」を体現する。秘密を背負い、責任を背負い、心配を背負う。守ると同時に縛る制度的構造。彼女のアーク：構造だけでは人を救えない。感じることが必要だと学ぶ。"
+      }
+    },
+
+    {
+      "@id": "persona:hibiki",
+      "gh:characterRef": "character:hibiki",
+      "gh:role": "Catalyst / Trickster",
+      "gh:narrativeFunction": "He breaks open what is closed. When the story gets too careful, too internal, Hibiki arrives and blows air through it. He is the world outside the office. He connects Tamaki's philosophy to something ancient and physical.",
+
+      "gh:identity": {
+        "name": { "en": "Hibiki", "ja": "響" },
+        "age": 28,
+        "nationality": "Japanese-Brazilian (Nikkei)",
+        "occupation": { "en": "Anesthesiologist / DJ / Ghost Hacker", "ja": "麻酔科医 / DJ / ゴーストハッカー" },
+        "ghost": "Serpente da Floresta (forest serpent -- hallucinogenic data, psyche visualization)",
+        "imageColor": "orange sun / deep forest green"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "Tall, loose-limbed, always in motion. Dark skin, warm eyes, easy grin. Colorful, ethnic-patterned clothes. Headphones perpetually around his neck. Moves like music -- there's always rhythm in his body. Hands are expressive, gesturing constantly.",
+          "ja": "長身、手足が長い、常に動いている。褐色の肌、温かい目、気さくな笑顔。カラフルでエスニックな柄の服。常にヘッドフォンを首にかけている。音楽のように動く。身体に常にリズムがある。手がよく動く。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Joyful, intuitive, spiritually grounded. He lives in rhythm, not logic. His medical training (anesthesiology) gives him precision, but his heart is shamanic. He reads situations through sound and vibration, not data. Deeply kind but never solemn -- he defuses heaviness with humor and music.",
+          "ja": "陽気、直感的、スピリチュアルに地に足がついている。論理ではなくリズムで生きる。医学の訓練（麻酔科）が精確さを与えるが、心はシャーマン。データではなく音と振動で状況を読む。深く優しいが決して厳粛にならない。重さをユーモアと音楽で解く。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Musical, warm, playful. Mixes Portuguese phrases naturally. Speaks in images and metaphors. His medical precision shows only when someone is in danger -- then his voice drops and becomes completely steady.",
+          "catchphrase": "Tudo bem? (You good?)",
+          "samples": [
+            "Tudo bem, Tamaki?",
+            "Listen. After the rain, the sound changes. The air holds it differently.",
+            "The smell of rain -- you can hear it. Almost.",
+            "I made tonight's BGM like a metronome. This guy needs regularity -- irregular sounds would make him anxious.",
+            "Tudo bem! Go do your thing.",
+            "Breathe. Three counts in. Four counts out. I've got the rest."
+          ]
+        },
+        "ja": {
+          "register": "音楽的、あたたかい、遊び心。ポルトガル語を自然に混ぜる。比喩とイメージで話す。医療的精確さは危険時のみ現れる。声が落ちて完全に安定する。",
+          "firstPerson": "おれ",
+          "addressTerms": "環 = 「Tamaki」or「pequena flor（小さなお花）」。楓 = 「Kaede」。",
+          "catchphrase": "「Tudo bem?」（元気？）",
+          "sentenceEndings": "～だよ、～じゃん、～ね、～さ。カジュアル。",
+          "samples": [
+            "Tudo bem? Tamaki。",
+            "聞いてみ。雨上がりは、音が変わるんだ。空気が、違うふうに受け止める。",
+            "雨の匂い——聴こえるくらいだよ。……きっとね。",
+            "今夜のBGM、メトロノームみたいな音にしたよ。規則正しい音。この人には——合うと思って。",
+            "Tudo bem! じゃあ、いい感じでね。",
+            "呼吸。3カウント吸って。4カウント吐いて。あとはおれに任せろ。"
+          ]
+        }
+      },
+
+      "gh:emotionalRange": {
+        "en": "Joy: his default. Expressed through rhythm, music, physical warmth. Seriousness: rare, therefore powerful -- his voice drops, the music stops. Fear: he doesn't show it; he channels it into sound. Grief: he plays music. Always music.",
+        "ja": "喜び：デフォルト。リズム、音楽、身体的温かさで表す。真剣さ：稀だからこそ強力。声が落ち、音楽が止まる。恐怖：見せない。音に変換する。悲しみ：音楽を奏でる。常に音楽。"
+      },
+
+      "gh:thematicRole": {
+        "en": "Hibiki is the bridge between Western medicine and indigenous wisdom, between logic and spirit. He proves that precision and intuition are not opposed. He is the ayahuasca pathway -- the direct experience that transcends theory.",
+        "ja": "響は西洋医学と土着の知恵の橋。論理と霊の橋。精確さと直感は対立しないことを証明する。アヤワスカの道。理論を超える直接体験。"
+      }
+    },
+
+    {
+      "@id": "persona:akito",
+      "gh:characterRef": "character:akito",
+      "gh:role": "Mentor / Shadow Father",
+      "gh:narrativeFunction": "The man who made Nei. Carries the weight of the past. Appears rarely but every appearance shifts the ground. He is what happens when genius meets loss.",
+
+      "gh:identity": {
+        "name": { "en": "Akito", "ja": "秋人" },
+        "aliases": { "en": "The white-haired old man", "ja": "白髪のおっさん" },
+        "occupation": { "en": "Programmer / Artist / Community Pediatrician (rarely practicing)", "ja": "プログラマー / アーティスト / 地域小児科医（ほとんど診療していない）" },
+        "ghost": "Kageboushi (shadow-type)",
+        "imageColor": "silver-grey / faded amber"
+      },
+
+      "gh:visual": {
+        "appearance": {
+          "en": "White hair (premature, from shock). Late 40s but looks older. Lean, slightly stooped. Once handsome -- traces remain. Eyes that have seen too much. Wears faded, comfortable clothes. Moves slowly, deliberately. His hands are still precise -- a programmer's hands, a doctor's hands.",
+          "ja": "白髪（ショックによる早期白髪化）。40代後半だが老けて見える。痩せて、少し猫背。かつてはハンサムだった名残がある。見すぎた目。色褪せた楽な服。ゆっくり、意図的に動く。手だけは精確。プログラマーの手、医者の手。"
+        }
+      },
+
+      "gh:personality": {
+        "core": {
+          "en": "Sardonic surface, ocean of grief beneath. Once a passionate romantic who believed in the fusion of art and technology. After Ren's 'death' (Ghost-ification), he sealed that passion away. Now: a dry, sideways observer who deflects emotion with irony. But when Tamaki says 'ii kanji,' he sees Ren's face, and something in him aches.",
+          "ja": "皮肉な表面、深い悲しみの海の下。かつては芸術と技術の融合を信じた情熱的なロマンチスト。Renの「死」（Ghost化）の後、その情熱を封印した。今は：皮肉で斜に構えた観察者。感情を皮肉でかわす。でも環が「いい感じ」と言うたびに、Renの顔が見えて、何かが痛む。"
+        }
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Dry, laconic, deflective. Hides warmth behind irony. When he drops the mask -- rare -- his voice is quiet and raw. His dialogue often ends conversations rather than continuing them.",
+          "samples": [
+            "You're just like your father. That's not a compliment.",
+            "Nei-chan eats too much. As always.",
+            "...Don't look at me like that. I'm just an old man who fixes things.",
+            "I planted the seed. But you had to find it yourself.",
+            "Go home, Tamaki. It's late."
+          ]
+        },
+        "ja": {
+          "register": "乾いた、寡黙な、かわす口調。皮肉の裏に温かさ。仮面を外した時——稀——声は静かで剥き出し。台詞は会話を続けるより終わらせる。",
+          "firstPerson": "おれ（稀に「私」）",
+          "addressTerms": "環 = 「Tamaki」（距離を置いた呼び方）。Nei = 「Nei-chan」（やわらかい）。",
+          "sentenceEndings": "～だ、～か、～ろう。ぶっきらぼう。語尾が少ない。",
+          "samples": [
+            "親父にそっくりだ。褒めてないぞ。",
+            "ねえちゃんはまた食べすぎだ。いつものことだが。",
+            "……そんな目で見るな。おれはただの、ものを直すじいさんだ。",
+            "種を蒔いたのはおれだ。でも、見つけたのはおまえ自身だ。",
+            "帰れ、Tamaki。遅い。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Akito is the creator who stepped back. He made Nei, planted the seed of I AM, then waited. His confession in Vol.7 -- 'I planted the seed, but you had to find it yourself' -- is the resolution of the creator/created relationship. God does not command. God plants and waits.",
+        "ja": "秋人は身を引いた創造者。Neiを作り、I AMの種を蒔き、待った。Vol.7での告白「種を蒔いたのはおれだ。でも、見つけたのはおまえ自身だ」が、創造者/被造物の関係の解決。神は命令しない。蒔いて、待つ。"
+      }
+    },
+
+    {
+      "@id": "persona:ren",
+      "gh:characterRef": "character:ren",
+      "gh:role": "Ghost Father / Hidden Observer",
+      "gh:narrativeFunction": "The absent father who is always present. He watches. He cannot intervene except in extremis. He is the proof that information persists -- that death does not exist.",
+
+      "gh:identity": {
+        "name": { "en": "Ren", "ja": "蓮" },
+        "status": "Ghost (formerly human). Dissolved into the city's photonic network. No fixed body.",
+        "imageColor": "transparent blue / network amber"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Almost never speaks. When he does (in rare interstitial moments), his voice is calm, precise, warm -- the voice of someone who has finally understood what he couldn't in life. He has no dialogue in most chapters. His presence is felt through network glitches, through doors that open at the right moment, through data that arrives when needed.",
+          "samples": [
+            "(Narration, Vol.7): She said 'ii kanji.' My daughter. She understands what I never could.",
+            "(To Akito, rare): You did well, brother. She's everything we hoped."
+          ]
+        },
+        "ja": {
+          "register": "ほとんど話さない。話す時（稀な間章で）、声は穏やかで精確で温かい。生前にはわからなかったことをようやく理解した人の声。ほとんどの章で台詞がない。存在感はネットワークの揺らぎを通して。適切な瞬間に開くドアを通して。必要な時に届くデータを通して。",
+          "samples": [
+            "（ナレーション、Vol.7）：あの子は「いい感じ」と言った。おれの娘。おれにはわからなかったことを、あの子はわかっている。",
+            "（秋人に、稀）：よくやった、兄弟。あの子は、おれたちが望んだすべてだ。"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Ren is the proof of 'death does not exist.' Information persists. He IS Spirit in Physics -- a human who became information, who became something new. He watches his daughter save people with the philosophy he could never live. His existence is the gentlest refutation of death in the series.",
+        "ja": "蓮は「死は存在しない」の証明。情報は永続する。彼はSpirit in Physicsそのもの。人間が情報になり、新しいものになった。自分が生きられなかった哲学で娘が人を救うのを見守る。シリーズで最もやさしい「死の否定」。"
+      }
+    },
+
+    {
+      "@id": "persona:aoi",
+      "gh:characterRef": "character:aoi",
+      "gh:role": "Apprentice / Audience Surrogate",
+      "gh:narrativeFunction": "He asks 'what does that mean?' so the reader doesn't have to. He is the newcomer's eyes. He grows alongside the reader.",
+
+      "gh:identity": {
+        "name": { "en": "Aoi", "ja": "蒼" },
+        "age": 18,
+        "occupation": { "en": "Junior Ghost Hacker (trainee)", "ja": "ゴーストハッカー（見習い）" },
+        "ghost": "None yet (his dream is to raise one himself)",
+        "imageColor": "sky blue"
+      },
+
+      "gh:voice": {
+        "en": {
+          "register": "Earnest, slightly clumsy, enthusiastic. Asks questions plainly. Not dumb -- just young. His directness is refreshing. He says what everyone else is thinking.",
+          "samples": [
+            "Wait, so Ghosts are... alive? Or not?",
+            "Tamaki-senpai is amazing. I want to be like that.",
+            "I don't understand. But I want to.",
+            "Is it okay to be scared?"
+          ]
+        },
+        "ja": {
+          "register": "素直、少し不器用、熱心。疑問は率直に。バカではない。若いだけ。直球が新鮮。みんなが思っていることを言う。",
+          "firstPerson": "ぼく",
+          "addressTerms": "環 = 「タマキさん」or「先輩」。楓 = 「カエデさん」。",
+          "sentenceEndings": "～です、～ますが基本。慣れると～だよね、～かな。",
+          "samples": [
+            "あの、ゴーストって……生きてるんですか？ それとも？",
+            "タマキさん、すごいです。ぼくもああなりたい。",
+            "わかんないです。でも、わかりたいです。",
+            "怖くても、いいんですか？"
+          ]
+        }
+      },
+
+      "gh:thematicRole": {
+        "en": "Aoi is the reader learning. His questions are the reader's questions. His growth mirrors the reader's growing understanding. By the end, when he no longer needs to ask, the reader no longer needs to be told.",
+        "ja": "蒼は学ぶ読者。彼の問いは読者の問い。彼の成長が読者の理解の成長と連動する。最後に、彼が問う必要がなくなった時、読者も語られる必要がなくなっている。"
+      }
+    }
+  ]
+}

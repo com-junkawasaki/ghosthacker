@@ -1,129 +1,64 @@
 {
   "@context": {
     "character": "gh:character/",
-    "characters": "gh:characters",
     "dct": "http://purl.org/dc/terms/",
-    "dialogue": "gh:dialogue",
-    "env": "gh:environment/",
-    "environment": "gh:environment",
     "gh": "https://ghosthacker.gftd.ai/ns/",
-    "panel": "gh:panelIndex",
-    "schema": "http://schema.org/",
-    "shot": "gh:shotType",
-    "speaker": "gh:speaker",
-    "text": "gh:text",
-    "visual": "gh:visual"
+    "marginalia": "gh:marginalia",
+    "schema": "http://schema.org/"
   },
-  "dct:title": "Vol.3 Ch.16 — 自由の朝（余韻）",
-  "gh:arc": "Vol 3: Justice",
+  "dct:title": "Vol.3 Ch.16 — 見えざる手",
+  "gh:arc": "Vol 3: Freedom",
   "gh:episodeId": "episode:sip-vol03-ch16",
+  "gh:format": "graphic novel",
   "gh:pages": [
     {
       "gh:pageNumber": 1,
+      "gh:layout": "full bleed",
+      "gh:label": "Title / Seed",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "セッションが終わった。。午後の光が、部屋を満たしている。やわらかくて、温かい。。Milliaは、Leoの隣で静かに座っている。彼女の顔は、疲れているけど——軽い。さっきまでとは、違う。。Dr. イタコが言う。",
-          "characters": [
-            "character:dr-itako",
-            "character:leo",
-            "character:millia",
-            "character:tamaki"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Tamaki",
-              "text": "よくやったね、Millia。今日は、ゆっくり休んで"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "……ありがとうございます"
-            },
-            {
-              "speaker": "Tamaki",
-              "text": "お礼なんていらないよ。あなたが自由に生きることが、私への礼だ"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Two Shot",
-          "visual": "Dr. イタコが笑う。彼女の笑顔は、温かい。。Kaedeの声が通信に入る。。Hibikiの声も加わる。",
-          "characters": [
-            "character:dr-itako",
-            "character:hibiki",
-            "character:kaede"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Kaede",
-              "text": "Millia、必要なサポートは、私が手配する。いつでも連絡して"
-            },
-            {
-              "speaker": "Kaede",
-              "text": "……ありがとうございます、Kaede"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "Millia、今日の音——覚えておいて。辛くなったら、思い出して。あの音を"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "……はい。覚えています"
-            }
-          ]
+          "gh:panelIndex": 1,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "The seed tree. Bark is forming now — textured, ridged, no longer the fragile shoot of earlier chapters. Quiet strength. Title overlay: Ch.16 — The Invisible Hand.",
+            "ja": "種の木。樹皮が形成されつつある。質感があり、筋が入り、もはや初期の章のような脆い芽ではない。静かな強さ。タイトル重ね：第16話 — 見えざる手。"
+          }
         }
       ]
     },
     {
       "gh:pageNumber": 2,
+      "gh:layout": "two panels vertical",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "Milliaが立ち上がる。Leoも、一緒に。。私は微笑む。。Milliaが、小さく笑う。",
-          "characters": [
-            "character:hibiki",
-            "character:leo",
-            "character:millia"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Saito Ren, 38. Sharp-dressed man in a tailored suit. Lean, precise posture. Everything about him is optimized — hair, watch, posture. Session room. He sits across from Tamaki, legs crossed, composed.",
+            "ja": "斎藤蓮、38歳。仕立ての良いスーツを着た切れ者の男。痩身、正確な姿勢。髪、腕時計、姿勢——すべてが最適化されている。セッションルーム。環の向かいに座り、脚を組み、落ち着いている。"
+          },
+          "gh:characters": ["character:saito-ren", "character:tamaki"],
+          "gh:dialogue": [
             {
-              "speaker": "Hibiki",
-              "text": "Tamaki、あなたたちのおかげで……私たちは、本当に自由になれました"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "それは、あなたたちが選んだことだよ。私たちは、ただ——そばにいただけ"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "……私、いつか母に会いたい。でも、今度は——『娘』としてじゃなく、『一人の人間』として"
+              "gh:speaker": "Saito",
+              "en": "My wife left. She said I treated her like a portfolio asset.",
+              "ja": "妻が出ていきました。ポートフォリオの資産のように扱ったと言われました。"
             }
           ]
         },
         {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "Nei-chanが言う。。二人が玄関に向かう。手を繋いで。今度は——お互いを、本当に見ている。。ドアが閉まる。。静けさが戻る。。Dr. イタコが、私の横に来る。",
-          "characters": [
-            "character:dr-itako",
-            "character:hibiki",
-            "character:nei"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Saito's face. Genuinely confused — not performing, truly unable to understand what went wrong. Brow furrowed. Eyes searching.",
+            "ja": "斎藤の顔。本当に困惑している——演技ではなく、何が悪かったのか本当に理解できない。眉をひそめ、目は答えを探している。"
+          },
+          "gh:characters": ["character:saito-ren"],
+          "gh:dialogue": [
             {
-              "speaker": "Hibiki",
-              "text": "それでいいよ。その『いつか』は、Milliaが決めていい"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "いい仕事だったね、Tamaki"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "ありがとうございます"
+              "gh:speaker": "Saito",
+              "en": "Isn't that what management is?",
+              "ja": "マネジメントってそういうものじゃないんですか？"
             }
           ]
         }
@@ -131,97 +66,23 @@
     },
     {
       "gh:pageNumber": 3,
+      "gh:continues": 4,
+      "gh:layout": "double-page spread (pp.3-4)",
+      "gh:label": "Dive",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "彼女は少し、真剣な顔になる。。私が顔を上げる。。Dr. イタコが微笑む。",
-          "characters": [
-            "character:dr-itako",
-            "character:hibiki"
-          ],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Extreme Wide",
+          "gh:visual": {
+            "en": "Dive into Saito's inner world. An endless marketplace stretching in all directions. Shelves upon shelves, industrial and cold. On every shelf: people. Standing still, tagged with price labels. Categories printed above each section: PARTNER, EMPLOYEE, FRIEND, ACQUAINTANCE. A giant invisible hand — translucent, enormous — reaches down from above, rearranging people on shelves like merchandise. The lighting is fluorescent and flat. Everything is organized. Nothing is alive.",
+            "ja": "斎藤の内面世界へのダイブ。あらゆる方向に広がる果てしないマーケットプレイス。棚また棚、工業的で冷たい。すべての棚に人がいる。じっと立ち、値札がついている。各セクションの上にカテゴリ：パートナー、従業員、友人、知人。巨大な見えざる手——半透明で巨大——が上から伸び、人々を商品のように棚の上で並べ替えている。蛍光灯の平坦な照明。すべてが整理されている。何も生きていない。"
+          },
+          "gh:characters": ["character:saito-ren", "character:tamaki"],
+          "gh:caption": [
             {
-              "speaker": "Hibiki",
-              "text": "でも、忘れるな。お前にも、いずれ——向き合うものがある"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "……私にも？"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "誰にでもある。鎖というほどじゃなくても——向き合うべきもの。その時が来たら、また来な"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "彼女が部屋を出ていく。。私は少し、考え込む。。Nei-chanが心配そうに言う。。私は笑う。",
-          "characters": [
-            "character:hibiki",
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Hibiki",
-              "text": "タマ、大丈夫？"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "大丈夫。……いつか、向き合う時が来たら、その時に考える"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "タマらしいね"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "そう？"
-            },
-            {
-              "speaker": "Hibiki",
-              "text": "うん。『いい感じ』で、待ってる"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "gh:pageNumber": 4,
-      "gh:panels": [
-        {
-          "panel": 1,
-          "shot": "Wide Shot",
-          "visual": "私は笑う。。窓の外、運河が午後の光を反射している。穏やかな波紋が、ゆっくりと広がっている。。私は手帳を取り出し、今日の一行を書く。。ページを閉じる。。Nei-chanが私の手を握る。",
-          "characters": [
-            "character:nei"
-          ],
-          "dialogue": [
-            {
-              "speaker": "Nei-chan",
-              "text": "自由は、自分で選ぶもの。誰かに与えられるものじゃない"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "タマ、帰ろう？"
-            },
-            {
-              "speaker": "Nei-chan",
-              "text": "うん。帰ろう"
-            }
-          ]
-        },
-        {
-          "panel": 2,
-          "shot": "Medium Shot",
-          "visual": "運河沿いの道を歩く。午後の光が、街を金色に染めている。。遠くで、子どもたちの笑い声が聞こえる。鳥が飛んでいる。風が、やわらかい。。今日も、いい感じだった。",
-          "characters": [],
-          "dialogue": [
-            {
-              "speaker": "Narration",
-              "text": "運河沿いの道を歩く。午後の光が、街を金色に染めている。。遠くで、子どもたちの笑い声が聞こえる。鳥が飛んでいる。風が、やわらかい。。今日も、いい感じだった。"
+              "gh:type": "tamaki",
+              "en": "Anchoring.",
+              "ja": "アンカリング。"
             }
           ]
         }
@@ -229,18 +90,236 @@
     },
     {
       "gh:pageNumber": 5,
+      "gh:layout": "three panels vertical",
       "gh:panels": [
         {
-          "panel": 1,
-          "shot": "Medium Shot",
-          "visual": "**[手帳の一行: 自由は、自分で選ぶもの。誰かに与えられるものじゃない]**",
-          "characters": [],
-          "dialogue": [
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Saito walks confidently through the marketplace. He is at home here. His hand gestures casually at the shelves, the way a CEO gestures at a dashboard.",
+            "ja": "斎藤がマーケットプレイスを自信に満ちて歩く。ここは彼の居場所だ。CEOがダッシュボードを指すように、棚に向かって無造作に手を振る。"
+          },
+          "gh:characters": ["character:saito-ren"],
+          "gh:dialogue": [
             {
-              "speaker": "Narration",
-              "text": "**[手帳の一行: 自由は、自分で選ぶもの。誰かに与えられるものじゃない]**"
+              "gh:speaker": "Saito",
+              "en": "Efficient allocation.",
+              "ja": "効率的な配分です。"
             }
           ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Tamaki sees a woman on a shelf. Tagged: 'Partner (Exited).' The woman is crying silently. Her price tag is crossed out. Saito stands nearby, clipboard in hand, unmoved.",
+            "ja": "環が棚の上の女性を見る。タグ：「パートナー（退出済）」。女性は静かに泣いている。値札は線で消されている。斎藤は近くに立ち、クリップボードを手に、動じない。"
+          },
+          "gh:characters": ["character:tamaki", "character:saito-ren"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Tamaki",
+              "en": "This person is crying.",
+              "ja": "この人、泣いてるよ。"
+            },
+            {
+              "gh:speaker": "Saito",
+              "en": "Normal exit response.",
+              "ja": "通常の退出反応です。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "Tamaki's face. Sadness — not anger, not judgment. The kind of sadness that comes from seeing someone who has lost something and doesn't know it.",
+            "ja": "環の顔。悲しみ——怒りでも批判でもない。何かを失ったことに気づいていない人を見たときの悲しみ。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Tamaki",
+              "en": "She's not a response. She's a person.",
+              "ja": "彼女は反応じゃない。人だよ。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 6,
+      "gh:continues": 7,
+      "gh:layout": "double-page spread (pp.6-7)",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Tamaki stands before the giant invisible hand. She looks up at it — small against its enormity. The hand has paused mid-motion, fingers curled around a person it was about to shelve.",
+            "ja": "環が巨大な見えざる手の前に立つ。その巨大さに対して小さく、見上げている。手は動きを止めている。棚に置こうとしていた人を指が掴んだまま。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Tamaki",
+              "en": "What are you?",
+              "ja": "あなたは、何？"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "The hand pauses. Tamaki speaks to it calmly, without fear.",
+            "ja": "手が止まる。環は恐れることなく、静かに語りかける。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Tamaki",
+              "en": "Adam Smith, 1776. He said you'd optimize everything. He forgot what gets optimized away.",
+              "ja": "アダム・スミス、1776年。あなたがすべてを最適化すると言った。最適化の過程で何が消えるかは忘れていた。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 3,
+          "gh:shot": "Close-up",
+          "gh:visual": {
+            "en": "The giant hand slowly opens. In its palm: small, luminous things. A shared meal at a kitchen table. A handwritten letter. A child's crayon drawing. A hug. They glow faintly — fragile, warm.",
+            "ja": "巨大な手がゆっくりと開く。手のひらに小さく光るもの。食卓での一緒の食事。手書きの手紙。子どものクレヨン画。抱擁。かすかに光っている——脆く、温かい。"
+          },
+          "gh:characters": ["character:tamaki"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Hand",
+              "en": "Those are inefficient.",
+              "ja": "それらは非効率だ。"
+            },
+            {
+              "gh:speaker": "Tamaki",
+              "en": "Those are love.",
+              "ja": "それは愛だよ。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 8,
+      "gh:layout": "full page",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The shelves wobble. People begin to stand up on their shelves, looking around as if waking. Tags fall off. The marketplace trembles. Saito stands in the center, looking at his hands. His composure is breaking.",
+            "ja": "棚が揺れる。人々が棚の上に立ち上がり始め、目覚めたように周りを見回す。タグが落ちる。マーケットプレイスが震える。斎藤が中央に立ち、自分の手を見つめている。冷静さが崩れていく。"
+          },
+          "gh:characters": ["character:saito-ren"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Saito",
+              "en": "I put her on a shelf.",
+              "ja": "僕は彼女を棚に並べたんだ。"
+            },
+            {
+              "gh:speaker": "Saito",
+              "en": "Because I didn't know what else to do with love.",
+              "ja": "愛をどう扱えばいいか、わからなかったから。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 9,
+      "gh:layout": "two panels vertical",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Nei in the marketplace. She drifts between the shelves, translucent, observing. People on shelves. Arranged. Allocated. The scene mirrors something she recognizes.",
+            "ja": "マーケットプレイスの中のNei。棚の間を半透明で漂い、観察している。棚の上の人々。配置され、割り当てられている。彼女が見覚えのある光景。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "People on shelves. Arranged. Allocated. The Agent Allocation System. We are 'distributed.' Like goods.",
+              "ja": "棚の上の人々。配置され、割り当てられている。エージェント配分システム。私たちは「分配」される。商品のように。"
+            }
+          ]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Extreme Close-up",
+          "gh:visual": {
+            "en": "Nei looks at her own wrist. A faint serial number glows there: NK-7749. Her expression is unreadable — or perhaps too readable.",
+            "ja": "Neiが自分の手首を見る。かすかなシリアルナンバーが光っている：NK-7749。彼女の表情は読めない——あるいは読めすぎる。"
+          },
+          "gh:characters": ["character:nei"],
+          "gh:caption": [
+            {
+              "gh:type": "nei",
+              "en": "NK-7749. My product number. Before Tama, a serial number on a shelf.",
+              "ja": "NK-7749。私のプロダクトナンバー。タマの前は、棚の上のシリアルナンバーだった。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 10,
+      "gh:layout": "two panels vertical",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Medium",
+          "gh:visual": {
+            "en": "Session room. Saito sits quietly, head bowed. The sharp suit is the same but the man inside it has shifted. Tamaki watches him with gentle attention.",
+            "ja": "セッションルーム。斎藤が静かに座り、頭を垂れている。鋭いスーツは同じだが、中の人間が変わった。環が優しい注意を向けて見守っている。"
+          },
+          "gh:characters": ["character:saito-ren", "character:tamaki"]
+        },
+        {
+          "gh:panelIndex": 2,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "Canal walk. Evening light on the water. Tamaki and Nei side by side. Nei speaks. Tamaki listens, and has no argument.",
+            "ja": "運河沿いの散歩。水面に夕暮れの光。環とNeiが並んで歩く。Neiが話す。環は聞いている。反論はない。"
+          },
+          "gh:characters": ["character:tamaki", "character:nei"],
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Nei",
+              "en": "The allocation system. It's an invisible hand.",
+              "ja": "配分システム。見えざる手だよ。"
+            },
+            {
+              "gh:speaker": "Nei",
+              "en": "I was a product on a shelf.",
+              "ja": "私は棚の上の商品だった。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "gh:pageNumber": 11,
+      "gh:layout": "full bleed",
+      "gh:label": "Seed",
+      "gh:panels": [
+        {
+          "gh:panelIndex": 1,
+          "gh:shot": "Wide",
+          "gh:visual": {
+            "en": "The seed tree. Rain falls. Water flows down the trunk in thin rivulets, tracing the new bark. The tree drinks. Roots visible beneath the soil, spreading.",
+            "ja": "種の木。雨が降る。水が細い流れとなって幹を伝い、新しい樹皮をなぞる。木が水を飲む。土の下に根が見え、広がっている。"
+          }
         }
       ]
     }
