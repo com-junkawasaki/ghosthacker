@@ -18,12 +18,13 @@
   "gh:arc": "読切から遠隔で登場 / Part 1 中盤で対面回 / Part 2 以降正式合流",
 
   "gh:appearance": {
-    "gh:face": "16-year-old androgynous Japanese teen, delicate fine features, quiet observant gaze, large almond-shaped dark brown eyes behind slightly oversized silver-rim glasses.",
-    "gh:hair": "Soft ash-grey shaggy bob cut, partly covering the eyes.",
-    "gh:build": "Slim, slightly below average height. Oversized dark knit cardigan over a grey hoodie, loose pants, white sneakers. Layered clothing against sensory overstimulation and to avoid being read as clearly male or female.",
+    "gh:gender": "男性（可愛い系男子 / soft cute boy）",
+    "gh:face": "16-year-old cute boyish Japanese-American teen, delicate fine features, soft jawline, quiet observant gaze, large almond-shaped dark brown eyes behind slightly oversized silver-rim glasses. 幼さを残した柔らかい顔立ちで、一見すると中性的に見えるが、本人は『男性』としてのアイデンティティを持つ。",
+    "gh:hair": "Soft ash-grey shaggy bob cut, partly covering the eyes. 少し長めの前髪。",
+    "gh:build": "Slim, slightly below average height. Oversized dark knit cardigan over a grey hoodie, loose pants, white sneakers. Layered clothing against sensory overstimulation. 男子として服を選んでいるが、女子と見間違われることも時々ある。",
     "gh:eyes": "Large almond-shaped dark brown irises, soft catchlights, reads as observant rather than shy once you look closely.",
     "gh:style": "Photorealistic, soft diffused lighting, slightly desaturated palette, 8k.",
-    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, soft diffused lighting, raw photo, 16-year-old androgynous Japanese teen, ash-grey shaggy bob partly covering eyes, large almond-shaped dark brown irises, silver-rim glasses, oversized dark knit cardigan over grey hoodie, loose pants, quiet observant expression."
+    "gh:generationPrompt": "photorealistic, 8k, highly detailed skin texture, soft diffused lighting, raw photo, 16-year-old cute boyish Japanese-American teen male, soft delicate features, ash-grey shaggy bob partly covering eyes, large almond-shaped dark brown irises, silver-rim glasses, oversized dark knit cardigan over grey hoodie, loose pants, quiet observant expression, visibly male with boyish cute charm."
   },
 
   "gh:background": {
