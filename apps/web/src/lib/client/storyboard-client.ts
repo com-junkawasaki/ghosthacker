@@ -62,6 +62,28 @@ export function streamUpdates(
 	return () => {};
 }
 
+export async function listGenerationJobs() {
+	return { jobs: [] as unknown[] };
+}
+
+export async function generatePanelDialogue(
+	_filePath: string, _episodeId: string, _pageNumber: number, _panel: number,
+	_panelData: unknown, _opts?: { maxLines?: number; style?: string; strictKnownFacts?: boolean }
+) {
+	return { success: false, message: 'Not migrated', dialogues: [] as unknown[] };
+}
+
+export async function submitGenerationJob(
+	_filePath: string, _episodeId: string, _pageNumber: number, _panel: number,
+	_panelData: unknown, _model?: string
+) {
+	return { jobId: '', success: false };
+}
+
+export async function cancelGenerationJob(_jobId: string) {
+	return { success: false };
+}
+
 /** Proxy object for components that call storyboardClient.method() directly. */
 export const storyboardClient = {
 	updatePanel: (req: { episodeId: string; pageNumber: number; panel: number; panelData: unknown; [k: string]: unknown }) =>

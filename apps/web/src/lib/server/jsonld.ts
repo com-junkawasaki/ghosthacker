@@ -40,6 +40,22 @@ export async function loadAggregatedStoryboard(): Promise<Record<string, any>> {
 			console.warn(`[jsonld] Failed to load ${fullPath}:`, err);
 		}
 	}
+
+	// Resolve arcs sourceFile (gh:arcs is an object ref, not an array).
+	const arcRef = master['gh:arcs'];
+	if (arcRef && typeof arcRef === 'object' && !Array.isArray(arcRef) && typeof arcRef['gh:sourceFile'] === 'string') {
+		const fullPath = join(resourcesDir, arcRef['gh:sourceFile']);
+		if (existsSync(fullPath)) {
+			try {
+				const arcData = await loadJsonLd(fullPath);
+				delete arcData['@context'];
+				master['gh:arcs'] = arcData;
+			} catch (err) {
+				console.warn(`[jsonld] Failed to load arcs ${fullPath}:`, err);
+			}
+		}
+	}
+
 	return master;
 }
 
@@ -78,8 +94,16 @@ export async function getEpisodes(): Promise<Episode[]> {
 /** Extract arcs list from aggregated storyboard. */
 export async function getArcs(): Promise<Arc[]> {
 	const master = await loadAggregatedStoryboard();
-	const arcs = master['gh:arcs'] as any[] ?? [];
-	return arcs.map((a: any) => ({
+	const arcsNode = master['gh:arcs'];
+	// After aggregation, gh:arcs is the resolved knowledge-base object whose
+	// gh:episodes array holds the arc records.
+	let rawArcs: any[] = [];
+	if (Array.isArray(arcsNode)) {
+		rawArcs = arcsNode;
+	} else if (arcsNode && typeof arcsNode === 'object' && Array.isArray(arcsNode['gh:episodes'])) {
+		rawArcs = arcsNode['gh:episodes'];
+	}
+	return rawArcs.map((a: any) => ({
 		id: a['gh:arc'] ?? '',
 		title: a['gh:arc'] ?? '',
 		description: a['gh:description'] ?? '',
