@@ -9,11 +9,13 @@
     "schema": "http://schema.org/"
   },
   "@id": "character:NanaoAyumu",
-  "schema:name": "七尾 歩 (Nanao Ayumu)",
-  "schema:role": "News Hacker Regular / Cryptography & Forensics Specialist",
+  "schema:name": "七尾 歩 (Ayumu Nanao)",
+  "schema:role": "Teen Cybersecurity Researcher (US / Boston) / Ren の子供時代からの唯一の友人 / News Hacker 遠隔メンバー",
   "schema:age": 16,
+  "schema:nationality": "日本 / 米国永住権 (アクティブな日本国籍)",
+  "schema:residence": "米国マサチューセッツ州ボストン (Cambridge 近郊)",
   "gh:slug": "NanaoAyumu",
-  "gh:arc": "Arc 0 初期合流 / 以降レギュラー",
+  "gh:arc": "読切から遠隔で登場 / Part 1 中盤で対面回 / Part 2 以降正式合流",
 
   "gh:appearance": {
     "gh:face": "16-year-old androgynous Japanese teen, delicate fine features, quiet observant gaze, large almond-shaped dark brown eyes behind slightly oversized silver-rim glasses.",
