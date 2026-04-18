@@ -56,12 +56,19 @@
     "gh:fatherSIPDevice": {
       "gh:item": "父・信哉が個人的に持ち帰った SIP デバイス試作機 1 台（桐の小箱に入れて Ren の机の端に保管）",
       "gh:lock": "父が *中核アルゴリズム部分* を実装した上で、独自にロックをかけた状態。白瀬博士でも開けられない（白瀬は『工学・実装』担当、信哉は『量子・古典ハイブリッド計算 / 暗号コア』担当の役割分担だったため）",
-      "gh:lockProtocol": "信哉が考案した *Trust Network Proof + TOTP ハイブリッド方式*。(1) パスワード自体は *5 秒ごとに新しい量子乱数に切り替わる* (TOTP) ため、盗聴・総当たりは事実上不可能。(2) 解錠条件は *総当たり計算* ではなく、*ハッシュ難易度* を下げること。(3) 難易度は *Trust Network Proof*（信哉が 9 年前に論文として書いた、社会グラフ証明の理論）に基づき、*真の仲間（被害者と加害者の和解ペア）* が 1 つ確立されるたびに *指数関数的に低下* する",
-      "gh:unlockMechanism": "*Ghost Hack の解決を通じて、被害者と加害者（または巻き込まれ役同士）が *相互に許し合う* 状態が成立すると、SIP デバイスがそれを *Trust Network Proof* として記録。難易度が下がる。下がった分だけ *中核アルゴリズムの一部モジュール* が *部分復号* されて読めるようになる。完全解錠時には *父の遺した最終メッセージ + SIP コアの完全実装* がアンロックされる*",
-      "gh:visualization": "起動画面に常に表示される: (1) *Lock Difficulty: 2^N*（数値ゲージ・指数表示）、(2) *Trust Network Proof: M / ?*（増加カウンター、上限不明）、(3) *Decoded Modules: [list of unlocked algorithm fragments]*",
-      "gh:totalNetworkProofs": "*不明*。本話で初めて *1 つ目* の Trust Proof が確立され、難易度が *2^256 → 2^240* に低下、Module 1（Ghost 検出の入力前処理ステップ）が部分復号される。残り回数の推定不能（連載の長期フック）",
-      "gh:storyUse": "数話〜1 アークごとに 1 つの Trust Proof が確立される設計。難易度は *指数関数的* に下がるため、最終巻まで *完全解錠は持ち越し*。完全解錠時に何が起きるかは Ren も知らない（父の真意の最終リビールに繋がる）",
-      "gh:groundedReference": "実在する研究領域: Social Graph Proof / Web of Trust / Decentralized Trust Networks / Post-Quantum Cryptography / Verifiable Delay Functions などを引用可能。manga 的に *友情パワーアップ* に見えないよう、Nei が論文ベースの説明を 1 回入れる"
+      "gh:lockProtocol": "信哉が考案した *Vector Alignment Proof + TOTP ハイブリッド方式*。(1) パスワード自体は *5 秒ごとに新しい量子乱数に切り替わる* (TOTP) ため、盗聴・総当たりは事実上不可能。(2) 解錠条件は *総当たり計算* ではなく、*ハッシュ難易度* を下げること。(3) 難易度は *Vector Alignment Proof*（信哉が 9 年前に論文として書いた、人々が *同じベクトル* に向いたネットワークに加わることで *指数関数的に計算能力が向上する* 理論）に基づき、*ベクトルの揃ったネットワーク* が 1 つ拡大されるたびに *指数関数的に低下* する",
+      "gh:theoreticalFoundation": "信哉の論文 (9 年前) は 3 つの既存理論を統合: (1) *情報熱力学* (Landauer) — 揃ったベクトルのネットワークはエントロピーが低く、利用可能情報量が増える。(2) *量子コンピューティング・ネットワーク理論* (entanglement-based distributed computing) — N 個の量子ビットがアラインしたとき、状態空間は 2^N にスケール。N 人が同じベクトルに揃うと、共有計算能力が 2^N に増大する。(3) *ジャンプ三原則の方程式化* (信哉が密かにアニメ・漫画好きで、論文の付録に *『努力 + 友情 = 勝利の指数関数解』* を真面目に書いていた) — 個々の努力 (effort) が、相互認識 (friendship) を通じて、計算的勝利 (victory) として表出する数式モデル",
+      "gh:unlockMechanism": "*Ghost Hack の解決を通じて、人々が *同じベクトル* に向いた状態 (例: 被害者と加害者が共に『悪いのはアクター』と認識する / 仲間が同じ目的で動く / 観察者が証言する / 共通の敵を見出す等) が成立すると、SIP デバイスがそれを *Vector Alignment Proof* として記録。難易度が下がる。下がった分だけ *中核アルゴリズムの一部モジュール* が *部分復号* されて読めるようになる。完全解錠時には *父の遺した最終メッセージ + SIP コアの完全実装* がアンロックされる*",
+      "gh:proofExamples": [
+        "被害者と加害者が共通の敵 (アクター) を認識した瞬間 — 本話の Yuto / Saki / Mei / Akira 4 人連鎖",
+        "仲間が新たに加わって同じベクトルに揃った瞬間 — Chise / Kaname / Ayumu 合流時に各 1 つ",
+        "第三者の証言 / 観察 によってベクトルが整列した瞬間 — 警察・JPCERT・国際機関との協働",
+        "敵対関係だった者同士が、共通の敵を前に協働を選んだ瞬間 — Part 2 以降の元加害者の改心系"
+      ],
+      "gh:visualization": "起動画面に常に表示される: (1) *Lock Difficulty: 2^N*（数値ゲージ・指数表示）、(2) *Vector Alignment Proof: M / ?*（増加カウンター、上限不明）、(3) *Decoded Modules: [list of unlocked algorithm fragments]*、(4) *ベクトル場のリアルタイム可視化*（情報場のベクトル整列度合いを矢印密度で表示）",
+      "gh:totalProofs": "*不明*。本話で初めて *1 つ目* の Vector Alignment Proof が確立され、難易度が *2^256 → 2^240* に低下、Module 1（Ghost 検出の入力前処理ステップ）が部分復号される。残り回数の推定不能（連載の長期フック）",
+      "gh:storyUse": "数話〜1 アークごとに 1 つの Proof が確立される設計。難易度は *指数関数的* に下がるため、最終巻まで *完全解錠は持ち越し*。完全解錠時に何が起きるかは Ren も知らない（父の真意の最終リビールに繋がる）",
+      "gh:groundedReference": "実在する研究領域: 情報熱力学 (Landauer / Bennett) / 量子もつれ分散計算 / Bose-Einstein 凝縮 / Metcalfe 法則 / Web of Trust / Post-Quantum Cryptography / Verifiable Delay Functions / Coherence-driven computation。manga 的に *友情パワーアップ* に見えないよう、Nei が論文ベースの説明を 1 回入れる。同時に、信哉の *ジャンプ三原則の方程式化* という遊び心 (『努力 + 友情 = 勝利の指数関数解』) を、メタ的に作品全体のテーマと共鳴させる"
     },
     "gh:meaning": "Renの怒り・夜の追跡・Ghost Hackerとしての活動の全ての源泉。表向きは誰にも語らない。父の死は『個人の被害』ではなく『社会的責任の押し付け』だったため、Renの動機は *復讐* と *父の名誉回復* の両方を含む。",
     "gh:knownBy": ["character:Nei（幼馴染、事件を間近で共有）", "character:NeiFather（父の共同研究者・最も近い証人）"],
