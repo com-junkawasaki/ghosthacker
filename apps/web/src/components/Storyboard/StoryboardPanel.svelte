@@ -5,7 +5,8 @@
 	import { create } from '@bufbuild/protobuf';
 	import { generatePanelDialogue, submitGenerationJob, cancelGenerationJob, generateSdxlImage, storyboardClient } from '$lib/client/storyboard-client';
 	import { getJobForPanel } from '$lib/stores/job-store.svelte';
-	import { ChevronLeft, ChevronRight, Wand2, Pencil, MessageSquare, Sparkles, X } from 'lucide-svelte';
+	import { ChevronLeft, ChevronRight, Wand2, Pencil, MessageSquare, Sparkles, X, Brush } from 'lucide-svelte';
+	import SketchCanvas from './SketchCanvas.svelte';
 
 	export let panel: Panel;
 	export let episodeId: string = '';
@@ -27,6 +28,17 @@
 	$: sdxlNegative = (panel.data as any)?.sdxlNegative as string[] | undefined;
 	$: sdxlPrompt = (panel.data as any)?.sdxlPrompt as string | undefined;
 	let copiedSdxl = false;
+	let sketching = false;
+	function openSketch() { sketching = true; }
+	function closeSketch() { sketching = false; }
+	async function onSketchSaved(e: CustomEvent<{ imageUrl: string; index: number }>) {
+		const detail = e.detail;
+		const newImg = { imageUrl: detail.imageUrl, imagePrompt: 'sketch+ai', generatedAt: Math.floor(Date.now() / 1000), model: 'sdxl/animaginexl-4.0-img2img' } as GeneratedImage;
+		generatedImages = [...generatedImages, newImg];
+		currentImageIndex = detail.index ?? generatedImages.length - 1;
+		imageLoadFailed = false;
+		sketching = false;
+	}
 	async function copySdxl() {
 		const text = sdxlPrompt || (sdxlTags ?? []).join(', ');
 		if (!text) return;
@@ -220,8 +232,8 @@
 			<button type="button" class="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-[11px] font-semibold text-zinc-700 disabled:opacity-40 active:bg-zinc-50" onclick={handleGenerateImage} disabled={generatingImage}>
 				<Wand2 size={14} /> Generate Image
 			</button>
-			<button type="button" class="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-[11px] font-semibold text-zinc-700 disabled:opacity-40 active:bg-zinc-50" onclick={handleGenerateCinematic} disabled={generatingCinematic}>
-				<Sparkles size={14} /> Sketch AI
+			<button type="button" class="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-[11px] font-semibold text-zinc-700 disabled:opacity-40 active:bg-zinc-50" onclick={openSketch}>
+				<Brush size={14} /> Sketch AI
 			</button>
 			<button type="button" class="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-[11px] font-semibold text-zinc-700 disabled:opacity-40 active:bg-zinc-50" onclick={() => dispatch('agentTrigger', { agent: 'dialogue' })}>
 				<MessageSquare size={14} /> Dialogue AI
@@ -392,6 +404,18 @@
 			</div>
 		</div>
 	</div>
+{/if}
+
+{#if sketching}
+	<SketchCanvas
+		baseImageUrl={currentImageUrl}
+		{episodeId}
+		pageNumber={panel.pageNumber}
+		panelIndex={panel.panel}
+		tags={sdxlTags ?? []}
+		on:close={closeSketch}
+		on:saved={onSketchSaved}
+	/>
 {/if}
 
 <style>

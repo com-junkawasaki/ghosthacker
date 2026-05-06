@@ -220,8 +220,8 @@
           "dialogue": [],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n1-dark-room_v2.png",
-          "gh:currentImageIndex": 2,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n1-dark-room_sdxl_v3.png",
+          "gh:currentImageIndex": 3,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n1-dark-room_sketch_v4.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769352170,
@@ -247,6 +247,17 @@
               "gh:sdxlSteps": 28,
               "gh:sdxlCfg": 6,
               "gh:sdxlDurationMs": 63907
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n1-dark-room_sketch_v4.png",
+              "gh:imagePrompt": "anime style, cel shading, vibrant colors, manga aesthetic, 1boy, teen boy, yuto, covered in blanket, curled up, dark room, night, dim streetlight, wide shot, high angle, 24mm lens, oppressive mood, anime style, manga panel, cinematic, detailed background",
+              "gh:negativePrompt": "low quality, worst quality, blurry, deformed, extra fingers, bad anatomy, watermark",
+              "gh:generatedAt": 1778027004,
+              "gh:model": "sdxl/animaginexl-4.0-img2img",
+              "gh:seed": 748871998,
+              "gh:sdxlDenoise": 0.5,
+              "gh:sdxlStyle": "Anime",
+              "gh:sdxlDurationMs": 8971
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 夜。Yutoの部屋全景。暗い部屋でYutoが毛布を被って丸まっている。窓からわずかな街灯の光。重苦しい雰囲気。. Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
