@@ -301,6 +301,13 @@ export async function generateSdxlImg2Img(req: SdxlImg2ImgRequest): Promise<Sdxl
 		scribbleUploadedName = uploadedScribble.name;
 	}
 
+	let faceReferenceUploadedName: string | undefined;
+	const useFaceIPA = !!req.faceReferenceImage && (await isIPAdapterAvailable());
+	if (useFaceIPA) {
+		const uploadedFace = await uploadImage(req.faceReferenceImage!, `gh_face_${Date.now()}.png`);
+		faceReferenceUploadedName = uploadedFace.name;
+	}
+
 	// When ControlNet conditions composition, we want the AI to commit fully,
 	// so push denoise high (>=0.85) regardless of AI Strength (which becomes scribble strength).
 	const baseDenoise = Math.min(0.95, Math.max(0.1, req.denoise ?? 0.6));
@@ -322,7 +329,9 @@ export async function generateSdxlImg2Img(req: SdxlImg2ImgRequest): Promise<Sdxl
 		scribbleControlnet: useScribble ? scribbleCn : undefined,
 		scribbleUploadedName,
 		// AI Strength inverts to scribble adherence: high AI Strength = looser sketch following
-		scribbleStrength: req.scribbleStrength ?? Math.min(0.95, Math.max(0.4, 1.0 - (baseDenoise - 0.5) * 0.6))
+		scribbleStrength: req.scribbleStrength ?? Math.min(0.95, Math.max(0.4, 1.0 - (baseDenoise - 0.5) * 0.6)),
+		faceReferenceUploadedName,
+		faceReferenceWeight: req.faceReferenceWeight
 	};
 	const clientId = randomUUID();
 	const submitRes = await fetch(`${base}/prompt`, {
