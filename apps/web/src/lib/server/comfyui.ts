@@ -23,6 +23,7 @@ export interface SdxlImg2ImgRequest extends SdxlRequest {
 	scribbleImage?: Buffer;
 	scribbleStrength?: number;
 	faceReferenceImage?: Buffer;
+	faceReferenceImages?: Buffer[];
 	faceReferenceWeight?: number;
 }
 
@@ -177,19 +178,20 @@ async function uploadImage(bytes: Buffer, name = `gh_init_${Date.now()}.png`): P
 
 function buildImg2ImgWorkflow(
 	uploadedName: string,
-	req: Required<Omit<SdxlImg2ImgRequest, 'seed' | 'initImage' | 'scribbleImage' | 'scribbleStrength' | 'faceReferenceImage' | 'faceReferenceWeight'>> & {
+	req: Required<Omit<SdxlImg2ImgRequest, 'seed' | 'initImage' | 'scribbleImage' | 'scribbleStrength' | 'faceReferenceImage' | 'faceReferenceImages' | 'faceReferenceWeight'>> & {
 		seed: number;
 		lightningLora?: string;
 		scribbleControlnet?: string;
 		scribbleUploadedName?: string;
 		scribbleStrength?: number;
-		faceReferenceUploadedName?: string;
+		faceReferenceUploadedNames?: string[];
 		faceReferenceWeight?: number;
 	}
 ): Record<string, unknown> {
 	const useLightning = !!req.lightningLora;
 	const useScribble = !!req.scribbleControlnet && !!req.scribbleUploadedName;
-	const useFaceIPA = !!req.faceReferenceUploadedName;
+	const faceRefs = req.faceReferenceUploadedNames ?? [];
+	const useFaceIPA = faceRefs.length > 0;
 	let modelRef: [string, number] = useLightning ? ['12', 0] : ['4', 0];
 	const clipRef: [string, number] = useLightning ? ['12', 1] : ['4', 1];
 
@@ -238,32 +240,53 @@ function buildImg2ImgWorkflow(
 		negativeCond = ['22', 1];
 	}
 
-	// IP-Adapter Face: condition the model on a character reference image
-	// (preset 'PLUS FACE (portraits)' loads the face-tuned IPA + clip vision).
+	// IP-Adapter Face: condition the model on character reference images.
+	// 1 char  → IPAdapterAdvanced with the single image (simpler, slightly cleaner).
+	// 2+ char → encode each, combine via IPAdapterCombineEmbeds, apply via IPAdapterEmbeds.
 	if (useFaceIPA) {
 		wf['40'] = {
 			class_type: 'IPAdapterUnifiedLoader',
-			inputs: {
-				preset: 'PLUS FACE (portraits)',
-				model: modelRef
-			}
+			inputs: { preset: 'PLUS FACE (portraits)', model: modelRef }
 		};
-		wf['41'] = { class_type: 'LoadImage', inputs: { image: req.faceReferenceUploadedName } };
-		wf['42'] = {
-			class_type: 'IPAdapterAdvanced',
-			inputs: {
-				model: ['40', 0],
-				ipadapter: ['40', 1],
-				image: ['41', 0],
-				weight: req.faceReferenceWeight ?? 0.7,
-				weight_type: 'linear',
-				combine_embeds: 'concat',
-				start_at: 0,
-				end_at: 0.85,
-				embeds_scaling: 'V only'
-			}
-		};
-		modelRef = ['42', 0];
+		const refWeight = req.faceReferenceWeight ?? 0.7;
+		if (faceRefs.length === 1) {
+			wf['41'] = { class_type: 'LoadImage', inputs: { image: faceRefs[0] } };
+			wf['42'] = {
+				class_type: 'IPAdapterAdvanced',
+				inputs: {
+					model: ['40', 0], ipadapter: ['40', 1], image: ['41', 0],
+					weight: refWeight, weight_type: 'linear', combine_embeds: 'concat',
+					start_at: 0, end_at: 0.85, embeds_scaling: 'V only'
+				}
+			};
+			modelRef = ['42', 0];
+		} else {
+			// Stack IPAdapterAdvanced calls — each ref conditions the model in sequence.
+			// Per-ref weight is reduced because they compound.
+			const stackWeight = Math.min(0.7, refWeight) / Math.sqrt(faceRefs.length);
+			let prevModel: [string, number] = ['40', 0];
+			faceRefs.forEach((name, i) => {
+				const lid = `41_${i}`;
+				const aid = `42_${i}`;
+				wf[lid] = { class_type: 'LoadImage', inputs: { image: name } };
+				wf[aid] = {
+					class_type: 'IPAdapterAdvanced',
+					inputs: {
+						model: prevModel,
+						ipadapter: ['40', 1],
+						image: [lid, 0],
+						weight: stackWeight,
+						weight_type: 'linear',
+						combine_embeds: 'concat',
+						start_at: 0,
+						end_at: 0.85,
+						embeds_scaling: 'V only'
+					}
+				};
+				prevModel = [aid, 0];
+			});
+			modelRef = prevModel;
+		}
 	}
 
 	// With ControlNet active, start from empty latent for full T2I conditioned by scribble.
@@ -286,6 +309,150 @@ function buildImg2ImgWorkflow(
 	return wf;
 }
 
+export interface SdxlInpaintIPARequest {
+	initImage: Buffer;
+	maskImage: Buffer;
+	characterRefImage: Buffer;
+	positive: string;
+	negative?: string;
+	denoise?: number;
+	checkpoint?: string;
+	width?: number;
+	height?: number;
+	seed?: number;
+	ipaWeight?: number;
+}
+
+function buildInpaintIPAWorkflow(params: {
+	initName: string;
+	maskName: string;
+	refName: string;
+	positive: string;
+	negative: string;
+	checkpoint: string;
+	denoise: number;
+	steps: number;
+	cfg: number;
+	sampler: string;
+	scheduler: string;
+	seed: number;
+	ipaWeight: number;
+	lightningLora?: string;
+}): Record<string, unknown> {
+	const useLightning = !!params.lightningLora;
+	let modelRef: [string, number] = useLightning ? ['12', 0] : ['4', 0];
+	const clipRef: [string, number] = useLightning ? ['12', 1] : ['4', 1];
+
+	const wf: Record<string, unknown> = {
+		'4': { class_type: 'CheckpointLoaderSimple', inputs: { ckpt_name: params.checkpoint } },
+		'10': { class_type: 'LoadImage', inputs: { image: params.initName } },
+		'13': { class_type: 'LoadImage', inputs: { image: params.maskName } },
+		'14': { class_type: 'ImageToMask', inputs: { image: ['13', 0], channel: 'red' } },
+		'11': { class_type: 'VAEEncode', inputs: { pixels: ['10', 0], vae: ['4', 2] } },
+		'15': { class_type: 'SetLatentNoiseMask', inputs: { samples: ['11', 0], mask: ['14', 0] } },
+		'6': { class_type: 'CLIPTextEncode', inputs: { text: params.positive, clip: clipRef } },
+		'7': { class_type: 'CLIPTextEncode', inputs: { text: params.negative, clip: clipRef } },
+		'16': { class_type: 'LoadImage', inputs: { image: params.refName } }
+	};
+	if (useLightning) {
+		wf['12'] = {
+			class_type: 'LoraLoader',
+			inputs: {
+				lora_name: params.lightningLora,
+				strength_model: 1.0, strength_clip: 1.0,
+				model: ['4', 0], clip: ['4', 1]
+			}
+		};
+	}
+	wf['17'] = {
+		class_type: 'IPAdapterUnifiedLoader',
+		inputs: { preset: 'PLUS (high strength)', model: modelRef }
+	};
+	wf['18'] = {
+		class_type: 'IPAdapterAdvanced',
+		inputs: {
+			model: ['17', 0],
+			ipadapter: ['17', 1],
+			image: ['16', 0],
+			weight: params.ipaWeight,
+			weight_type: 'linear',
+			combine_embeds: 'concat',
+			start_at: 0,
+			end_at: 1.0,
+			embeds_scaling: 'V only'
+		}
+	};
+	wf['3'] = {
+		class_type: 'KSampler',
+		inputs: {
+			seed: params.seed, steps: params.steps, cfg: params.cfg,
+			sampler_name: params.sampler, scheduler: params.scheduler,
+			denoise: params.denoise,
+			model: ['18', 0], positive: ['6', 0], negative: ['7', 0],
+			latent_image: ['15', 0]
+		}
+	};
+	wf['8'] = { class_type: 'VAEDecode', inputs: { samples: ['3', 0], vae: ['4', 2] } };
+	wf['9'] = { class_type: 'SaveImage', inputs: { filename_prefix: 'gh_sdxl_swap', images: ['8', 0] } };
+	return wf;
+}
+
+export async function inpaintWithIPACharacter(req: SdxlInpaintIPARequest): Promise<SdxlResult> {
+	const base = podUrl();
+	const start = Date.now();
+	const ipaOk = await isIPAdapterAvailable();
+	if (!ipaOk) throw new Error('IP-Adapter not available on pod; cannot run 2-pass swap');
+	const lightningLora = process.env.SDXL_LIGHTNING_LORA || '';
+	const useLightning = !!lightningLora && (await isLightningAvailable(lightningLora));
+
+	const [uInit, uMask, uRef] = await Promise.all([
+		uploadImage(req.initImage, `gh_swap_init_${Date.now()}.png`),
+		uploadImage(req.maskImage, `gh_swap_mask_${Date.now()}.png`),
+		uploadImage(req.characterRefImage, `gh_swap_ref_${Date.now()}.png`)
+	]);
+
+	const params = {
+		initName: uInit.name,
+		maskName: uMask.name,
+		refName: uRef.name,
+		positive: req.positive,
+		negative: req.negative || 'low quality, worst quality, blurry, deformed, extra fingers, bad anatomy, watermark',
+		checkpoint: req.checkpoint || defaultCheckpoint(),
+		denoise: Math.min(0.85, Math.max(0.4, req.denoise ?? 0.65)),
+		steps: useLightning ? 8 : 22,
+		cfg: useLightning ? 2.5 : 5,
+		sampler: useLightning ? 'euler' : 'euler_ancestral',
+		scheduler: useLightning ? 'sgm_uniform' : 'normal',
+		seed: req.seed ?? Math.floor(Math.random() * 0xffffffff),
+		ipaWeight: req.ipaWeight ?? 0.65,
+		lightningLora: useLightning ? lightningLora : undefined
+	};
+
+	const submitRes = await fetch(`${base}/prompt`, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ prompt: buildInpaintIPAWorkflow(params), client_id: randomUUID() })
+	});
+	if (!submitRes.ok) throw new Error(`ComfyUI /prompt HTTP ${submitRes.status}: ${(await submitRes.text()).slice(0, 400)}`);
+	const { prompt_id: promptId } = (await submitRes.json()) as { prompt_id: string };
+	const history = await pollHistory(promptId, 180_000);
+	const outputs = history.outputs ?? {};
+	let imageMeta: { filename: string; subfolder: string; type: string } | undefined;
+	for (const node of Object.values<any>(outputs)) {
+		if (Array.isArray(node?.images) && node.images.length) { imageMeta = node.images[0]; break; }
+	}
+	if (!imageMeta) throw new Error('ComfyUI produced no image (inpaint)');
+	const params2 = new URLSearchParams({
+		filename: imageMeta.filename,
+		subfolder: imageMeta.subfolder ?? '',
+		type: imageMeta.type ?? 'output'
+	});
+	const imgRes = await fetch(`${base}/view?${params2.toString()}`);
+	if (!imgRes.ok) throw new Error(`ComfyUI /view HTTP ${imgRes.status}`);
+	const bytes = Buffer.from(await imgRes.arrayBuffer());
+	return { bytes, filename: imageMeta.filename, seed: params.seed, promptId, durationMs: Date.now() - start };
+}
+
 export async function generateSdxlImg2Img(req: SdxlImg2ImgRequest): Promise<SdxlResult> {
 	const base = podUrl();
 	const start = Date.now();
@@ -301,11 +468,15 @@ export async function generateSdxlImg2Img(req: SdxlImg2ImgRequest): Promise<Sdxl
 		scribbleUploadedName = uploadedScribble.name;
 	}
 
-	let faceReferenceUploadedName: string | undefined;
-	const useFaceIPA = !!req.faceReferenceImage && (await isIPAdapterAvailable());
+	const refImagesIn: Buffer[] = [];
+	if (req.faceReferenceImages && req.faceReferenceImages.length) refImagesIn.push(...req.faceReferenceImages);
+	else if (req.faceReferenceImage) refImagesIn.push(req.faceReferenceImage);
+	let faceReferenceUploadedNames: string[] | undefined;
+	const useFaceIPA = refImagesIn.length > 0 && (await isIPAdapterAvailable());
 	if (useFaceIPA) {
-		const uploadedFace = await uploadImage(req.faceReferenceImage!, `gh_face_${Date.now()}.png`);
-		faceReferenceUploadedName = uploadedFace.name;
+		faceReferenceUploadedNames = await Promise.all(
+			refImagesIn.map((buf, i) => uploadImage(buf, `gh_face_${Date.now()}_${i}.png`).then((r) => r.name))
+		);
 	}
 
 	// When ControlNet conditions composition, we want the AI to commit fully,
@@ -330,7 +501,7 @@ export async function generateSdxlImg2Img(req: SdxlImg2ImgRequest): Promise<Sdxl
 		scribbleUploadedName,
 		// AI Strength inverts to scribble adherence: high AI Strength = looser sketch following
 		scribbleStrength: req.scribbleStrength ?? Math.min(0.95, Math.max(0.4, 1.0 - (baseDenoise - 0.5) * 0.6)),
-		faceReferenceUploadedName,
+		faceReferenceUploadedNames,
 		faceReferenceWeight: req.faceReferenceWeight
 	};
 	const clientId = randomUUID();

@@ -4,8 +4,9 @@ import { mkdir, writeFile, readFile as fsReadFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { findEpisode, saveJsonLd } from '$lib/server/jsonld';
-import { generateSdxlImg2Img } from '$lib/server/comfyui';
+import { generateSdxlImg2Img, inpaintWithIPACharacter } from '$lib/server/comfyui';
 import { imagesDir, getActiveProject, projectRoot } from '$lib/server/state';
+import { verticalStrips, buildMaskPng, cropFaceRegion } from '$lib/server/mask';
 
 // Tags in the stored SDXL prompt that confuse SDXL into generating manga pages
 // (collage of panels) instead of a single illustration. Replace with safer aesthetic words.
@@ -123,18 +124,35 @@ export const POST: RequestHandler = async ({ request }) => {
 	const scribbleImage = scribble ? decodeBase64Png(scribble) : undefined;
 	const denoise = Math.min(0.95, Math.max(0.1, (aiStrength ?? 60) / 100));
 
-	// Look up character reference image for IP-Adapter face conditioning.
-	// Single character only for the simple path; multi-character → 2-pass swap (separate endpoint).
+	// Resolve characters → load reference images. Up to 5 supported by IPAdapterCombineEmbeds.
 	const characterIds: string[] = (panel['gh:characters'] ?? panel['characters'] ?? []).map((c: string) => String(c).replace(/^character:/, ''));
-	let faceReferenceImage: Buffer | undefined;
-	let faceReferenceCharacter: string | undefined;
-	if (characterIds.length === 1) {
-		const refPath = join(projectRoot(), 'resources', 'characters', characterIds[0], 'reference.png');
-		if (existsSync(refPath)) {
-			faceReferenceImage = await fsReadFile(refPath);
-			faceReferenceCharacter = characterIds[0];
+	const charsWithRefs: { name: string; ref: Buffer }[] = [];
+	for (const name of characterIds.slice(0, 5)) {
+		const refPath = join(projectRoot(), 'resources', 'characters', name, 'reference.png');
+		if (!existsSync(refPath)) continue;
+		// Cache face crops next to the source ref so we only crop once per character.
+		const facePath = join(projectRoot(), 'resources', 'characters', name, 'reference_face.png');
+		let faceBuf: Buffer;
+		if (existsSync(facePath)) {
+			faceBuf = await fsReadFile(facePath);
+		} else {
+			const full = await fsReadFile(refPath);
+			faceBuf = cropFaceRegion(full, 0.42);
+			await writeFile(facePath, faceBuf);
 		}
+		charsWithRefs.push({ name, ref: faceBuf });
 	}
+	const refBuffers = charsWithRefs.map((c) => c.ref);
+
+	// Single sketch pass with combined IPA-Face embeds. Trust the prompt + tags
+	// to place each character; no spatial detection needed.
+	// When IPA is active, dial the scribble down so the character refs aren't fighting
+	// the literal stroke shapes — the scribble becomes a soft composition hint.
+	const ipaActive = refBuffers.length > 0;
+	const baseScribbleStrength = scribbleImage ? Math.min(1, Math.max(0.3, denoise + 0.2)) : undefined;
+	const scribbleStrength = ipaActive && baseScribbleStrength
+		? Math.max(0.35, baseScribbleStrength * 0.55)
+		: baseScribbleStrength;
 
 	const result = await generateSdxlImg2Img({
 		positive,
@@ -143,10 +161,12 @@ export const POST: RequestHandler = async ({ request }) => {
 		denoise,
 		seed,
 		scribbleImage,
-		scribbleStrength: scribbleImage ? Math.min(1, Math.max(0.3, denoise + 0.2)) : undefined,
-		faceReferenceImage,
-		faceReferenceWeight: 0.7
+		scribbleStrength,
+		faceReferenceImages: refBuffers.length ? refBuffers : undefined,
+		faceReferenceWeight: charsWithRefs.length > 1 ? 0.55 : 0.7
 	});
+
+	const faceReferenceCharacter = charsWithRefs[0]?.name;
 
 	if (!persist) {
 		return new Response(result.bytes, {
@@ -172,7 +192,11 @@ export const POST: RequestHandler = async ({ request }) => {
 		'gh:imagePrompt': positive,
 		'gh:negativePrompt': negative,
 		'gh:generatedAt': Math.floor(Date.now() / 1000),
-		'gh:model': faceReferenceCharacter ? 'sdxl/animaginexl-4.0+ipa-face' : 'sdxl/animaginexl-4.0-img2img',
+		'gh:model': charsWithRefs.length > 1
+			? `sdxl/animaginexl-4.0+ipa-multi(${charsWithRefs.map((c) => c.name).join(',')})`
+			: faceReferenceCharacter
+				? `sdxl/animaginexl-4.0+ipa-face(${faceReferenceCharacter})`
+				: 'sdxl/animaginexl-4.0-img2img',
 		'gh:seed': result.seed,
 		'gh:sdxlDenoise': denoise,
 		'gh:sdxlStyle': style || 'default',

@@ -405,8 +405,8 @@
           "dialogue": [],
           "environment": "env:smartphone-screen",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n3-angry-notifications_v2.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n3-angry-notifications_v2.png",
+          "gh:currentImageIndex": 3,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n3-angry-notifications_sdxl_v4.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769353373,
@@ -419,6 +419,32 @@
               "gh:imagePrompt": "スマホ画面のアップ。大量の通知バッジ。SNSのDM通知「許さない」「なんで俺まで」「最低」の文字が見える。赤い通知アイコンが不吉に光る。. Shot type: Insert",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n3-angry-notifications_v2.png",
               "gh:model": "google/gemini-3-pro-image-preview"
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n3-angry-notifications_sdxl_v3.png",
+              "gh:imagePrompt": "1smartphone, notification badges, dm notifications, text 'you can't forgive', text 'why me', text 'the worst', unsettling red icon, insert shot, flat angle, anime style, anime illustration, single character focus, cinematic, detailed background",
+              "gh:negativePrompt": "low quality, worst quality, normal quality, blurry, deformed, extra fingers, bad anatomy, malformed hands, watermark, signature, text overlay, logo, multiple panels, comic page layout, tiled grid, collage, montage, multiple frames, split screen, wings, nsfw, low quality, worst quality, blurry, deformed, extra fingers, bad anatomy, watermark, text",
+              "gh:generatedAt": 1778064926,
+              "gh:model": "sdxl/animagine-xl-4.0",
+              "gh:seed": 1537582953,
+              "gh:sdxlSampler": "euler_ancestral",
+              "gh:sdxlScheduler": "normal",
+              "gh:sdxlSteps": 28,
+              "gh:sdxlCfg": 6,
+              "gh:sdxlDurationMs": 8525
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n3-angry-notifications_sdxl_v4.png",
+              "gh:imagePrompt": "1smartphone, notification badges, dm notifications, text 'you can't forgive', text 'why me', text 'the worst', unsettling red icon, insert shot, flat angle, anime style, anime illustration, single character focus, cinematic, detailed background",
+              "gh:negativePrompt": "low quality, worst quality, normal quality, blurry, deformed, extra fingers, bad anatomy, malformed hands, watermark, signature, text overlay, logo, multiple panels, comic page layout, tiled grid, collage, montage, multiple frames, split screen, wings, nsfw, low quality, worst quality, blurry, deformed, extra fingers, bad anatomy, watermark, text",
+              "gh:generatedAt": 1778065763,
+              "gh:model": "sdxl/animagine-xl-4.0",
+              "gh:seed": 4130358906,
+              "gh:sdxlSampler": "euler_ancestral",
+              "gh:sdxlScheduler": "normal",
+              "gh:sdxlSteps": 28,
+              "gh:sdxlCfg": 6,
+              "gh:sdxlDurationMs": 11453
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. スマホ画面のアップ。大量の通知バッジ。SNSのDM通知「許さない」「なんで俺まで」「最低」の文字が見える。赤い通知アイコンが不吉に光る。. Shot type: Insert. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
