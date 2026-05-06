@@ -148,6 +148,21 @@ async function isScribbleAvailable(cnName: string): Promise<boolean> {
 	}
 }
 
+let ipaCache: boolean | null = null;
+export async function isIPAdapterAvailable(): Promise<boolean> {
+	if (ipaCache !== null) return ipaCache;
+	try {
+		const res = await fetch(`${podUrl()}/object_info`);
+		const json = (await res.json()) as any;
+		const has = !!(json?.IPAdapterUnifiedLoader || json?.IPAdapterAdvanced);
+		ipaCache = has;
+		if (!has) console.warn('[comfyui] IP-Adapter nodes not registered; skipping face conditioning.');
+		return has;
+	} catch {
+		return false;
+	}
+}
+
 async function uploadImage(bytes: Buffer, name = `gh_init_${Date.now()}.png`): Promise<{ name: string; subfolder: string; type: string }> {
 	const base = podUrl();
 	const form = new FormData();
