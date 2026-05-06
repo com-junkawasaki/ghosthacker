@@ -177,17 +177,20 @@ async function uploadImage(bytes: Buffer, name = `gh_init_${Date.now()}.png`): P
 
 function buildImg2ImgWorkflow(
 	uploadedName: string,
-	req: Required<Omit<SdxlImg2ImgRequest, 'seed' | 'initImage' | 'scribbleImage' | 'scribbleStrength'>> & {
+	req: Required<Omit<SdxlImg2ImgRequest, 'seed' | 'initImage' | 'scribbleImage' | 'scribbleStrength' | 'faceReferenceImage' | 'faceReferenceWeight'>> & {
 		seed: number;
 		lightningLora?: string;
 		scribbleControlnet?: string;
 		scribbleUploadedName?: string;
 		scribbleStrength?: number;
+		faceReferenceUploadedName?: string;
+		faceReferenceWeight?: number;
 	}
 ): Record<string, unknown> {
 	const useLightning = !!req.lightningLora;
 	const useScribble = !!req.scribbleControlnet && !!req.scribbleUploadedName;
-	const modelRef: [string, number] = useLightning ? ['12', 0] : ['4', 0];
+	const useFaceIPA = !!req.faceReferenceUploadedName;
+	let modelRef: [string, number] = useLightning ? ['12', 0] : ['4', 0];
 	const clipRef: [string, number] = useLightning ? ['12', 1] : ['4', 1];
 
 	let positiveCond: [string, number] = ['6', 0];
@@ -233,6 +236,34 @@ function buildImg2ImgWorkflow(
 		};
 		positiveCond = ['22', 0];
 		negativeCond = ['22', 1];
+	}
+
+	// IP-Adapter Face: condition the model on a character reference image
+	// (preset 'PLUS FACE (portraits)' loads the face-tuned IPA + clip vision).
+	if (useFaceIPA) {
+		wf['40'] = {
+			class_type: 'IPAdapterUnifiedLoader',
+			inputs: {
+				preset: 'PLUS FACE (portraits)',
+				model: modelRef
+			}
+		};
+		wf['41'] = { class_type: 'LoadImage', inputs: { image: req.faceReferenceUploadedName } };
+		wf['42'] = {
+			class_type: 'IPAdapterAdvanced',
+			inputs: {
+				model: ['40', 0],
+				ipadapter: ['40', 1],
+				image: ['41', 0],
+				weight: req.faceReferenceWeight ?? 0.7,
+				weight_type: 'linear',
+				combine_embeds: 'concat',
+				start_at: 0,
+				end_at: 0.85,
+				embeds_scaling: 'V only'
+			}
+		};
+		modelRef = ['42', 0];
 	}
 
 	// With ControlNet active, start from empty latent for full T2I conditioned by scribble.
