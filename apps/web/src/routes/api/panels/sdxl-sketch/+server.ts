@@ -167,17 +167,18 @@ export const POST: RequestHandler = async ({ request }) => {
 	await writeFile(join(absDir, filename), result.bytes);
 
 	const imageUrl = `/images/${relDir}/${filename}`.replace(/\\/g, '/');
-	const newEntry = {
+	const newEntry: Record<string, unknown> = {
 		'gh:imageUrl': imageUrl,
 		'gh:imagePrompt': positive,
 		'gh:negativePrompt': negative,
 		'gh:generatedAt': Math.floor(Date.now() / 1000),
-		'gh:model': 'sdxl/animaginexl-4.0-img2img',
+		'gh:model': faceReferenceCharacter ? 'sdxl/animaginexl-4.0+ipa-face' : 'sdxl/animaginexl-4.0-img2img',
 		'gh:seed': result.seed,
 		'gh:sdxlDenoise': denoise,
 		'gh:sdxlStyle': style || 'default',
 		'gh:sdxlDurationMs': result.durationMs
 	};
+	if (faceReferenceCharacter) newEntry['gh:faceReference'] = faceReferenceCharacter;
 	panel['gh:generatedImages'] = [...existing, newEntry];
 	panel['gh:currentImageIndex'] = panel['gh:generatedImages'].length - 1;
 	panel['gh:generatedImageUrl'] = imageUrl;
