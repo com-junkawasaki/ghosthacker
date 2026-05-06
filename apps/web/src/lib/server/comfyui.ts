@@ -20,6 +20,8 @@ export interface SdxlRequest {
 export interface SdxlImg2ImgRequest extends SdxlRequest {
 	initImage: Buffer;
 	denoise?: number;
+	scribbleImage?: Buffer;
+	scribbleStrength?: number;
 }
 
 export interface SdxlResult {
@@ -104,6 +106,38 @@ async function pollHistory(promptId: string, timeoutMs: number): Promise<any> {
 	throw new Error(`ComfyUI timeout after ${timeoutMs}ms (prompt ${promptId})`);
 }
 
+let lightningCache: { name: string; available: true } | null = null;
+async function isLightningAvailable(loraName: string): Promise<boolean> {
+	if (lightningCache && lightningCache.name === loraName) return true;
+	try {
+		const res = await fetch(`${podUrl()}/object_info/LoraLoader`);
+		const json = (await res.json()) as any;
+		const list: string[] = json?.LoraLoader?.input?.required?.lora_name?.[0] ?? [];
+		if (list.includes(loraName)) { lightningCache = { name: loraName, available: true }; return true; }
+		console.warn(`[comfyui] Lightning LoRA "${loraName}" not on pod yet; using 20-step fallback.`);
+		return false;
+	} catch (err) {
+		console.warn('[comfyui] Failed to query LoraLoader:', err);
+		return false;
+	}
+}
+
+let scribbleCache: { name: string; available: true } | null = null;
+async function isScribbleAvailable(cnName: string): Promise<boolean> {
+	if (scribbleCache && scribbleCache.name === cnName) return true;
+	try {
+		const res = await fetch(`${podUrl()}/object_info/ControlNetLoader`);
+		const json = (await res.json()) as any;
+		const list: string[] = json?.ControlNetLoader?.input?.required?.control_net_name?.[0] ?? [];
+		if (list.includes(cnName)) { scribbleCache = { name: cnName, available: true }; return true; }
+		console.warn(`[comfyui] Scribble ControlNet "${cnName}" not on pod yet; using plain img2img.`);
+		return false;
+	} catch (err) {
+		console.warn('[comfyui] Failed to query ControlNetLoader:', err);
+		return false;
+	}
+}
+
 async function uploadImage(bytes: Buffer, name = `gh_init_${Date.now()}.png`): Promise<{ name: string; subfolder: string; type: string }> {
 	const base = podUrl();
 	const form = new FormData();
@@ -116,44 +150,117 @@ async function uploadImage(bytes: Buffer, name = `gh_init_${Date.now()}.png`): P
 	return (await res.json()) as { name: string; subfolder: string; type: string };
 }
 
-function buildImg2ImgWorkflow(uploadedName: string, req: Required<Omit<SdxlImg2ImgRequest, 'seed' | 'initImage'>> & { seed: number }): Record<string, unknown> {
-	return {
+function buildImg2ImgWorkflow(
+	uploadedName: string,
+	req: Required<Omit<SdxlImg2ImgRequest, 'seed' | 'initImage' | 'scribbleImage' | 'scribbleStrength'>> & {
+		seed: number;
+		lightningLora?: string;
+		scribbleControlnet?: string;
+		scribbleUploadedName?: string;
+		scribbleStrength?: number;
+	}
+): Record<string, unknown> {
+	const useLightning = !!req.lightningLora;
+	const useScribble = !!req.scribbleControlnet && !!req.scribbleUploadedName;
+	const modelRef: [string, number] = useLightning ? ['12', 0] : ['4', 0];
+	const clipRef: [string, number] = useLightning ? ['12', 1] : ['4', 1];
+
+	let positiveCond: [string, number] = ['6', 0];
+	let negativeCond: [string, number] = ['7', 0];
+
+	const wf: Record<string, unknown> = {
 		'4': { class_type: 'CheckpointLoaderSimple', inputs: { ckpt_name: req.checkpoint } },
 		'10': { class_type: 'LoadImage', inputs: { image: uploadedName } },
 		'11': { class_type: 'VAEEncode', inputs: { pixels: ['10', 0], vae: ['4', 2] } },
-		'6': { class_type: 'CLIPTextEncode', inputs: { text: req.positive, clip: ['4', 1] } },
-		'7': { class_type: 'CLIPTextEncode', inputs: { text: req.negative, clip: ['4', 1] } },
-		'3': {
-			class_type: 'KSampler',
-			inputs: {
-				seed: req.seed, steps: req.steps, cfg: req.cfg,
-				sampler_name: req.sampler, scheduler: req.scheduler,
-				denoise: req.denoise,
-				model: ['4', 0], positive: ['6', 0], negative: ['7', 0],
-				latent_image: ['11', 0]
-			}
-		},
-		'8': { class_type: 'VAEDecode', inputs: { samples: ['3', 0], vae: ['4', 2] } },
-		'9': { class_type: 'SaveImage', inputs: { filename_prefix: 'gh_sdxl_i2i', images: ['8', 0] } }
+		'6': { class_type: 'CLIPTextEncode', inputs: { text: req.positive, clip: clipRef } },
+		'7': { class_type: 'CLIPTextEncode', inputs: { text: req.negative, clip: clipRef } }
 	};
+
+	if (useLightning) {
+		wf['12'] = {
+			class_type: 'LoraLoader',
+			inputs: {
+				lora_name: req.lightningLora,
+				strength_model: 1.0,
+				strength_clip: 1.0,
+				model: ['4', 0],
+				clip: ['4', 1]
+			}
+		};
+	}
+
+	if (useScribble) {
+		wf['20'] = { class_type: 'ControlNetLoader', inputs: { control_net_name: req.scribbleControlnet } };
+		wf['21'] = { class_type: 'LoadImage', inputs: { image: req.scribbleUploadedName } };
+		wf['22'] = {
+			class_type: 'ControlNetApplyAdvanced',
+			inputs: {
+				strength: req.scribbleStrength ?? 0.85,
+				start_percent: 0,
+				end_percent: 1,
+				positive: ['6', 0],
+				negative: ['7', 0],
+				control_net: ['20', 0],
+				image: ['21', 0],
+				vae: ['4', 2]
+			}
+		};
+		positiveCond = ['22', 0];
+		negativeCond = ['22', 1];
+	}
+
+	wf['3'] = {
+		class_type: 'KSampler',
+		inputs: {
+			seed: req.seed, steps: req.steps, cfg: req.cfg,
+			sampler_name: req.sampler, scheduler: req.scheduler,
+			denoise: req.denoise,
+			model: modelRef, positive: positiveCond, negative: negativeCond,
+			latent_image: ['11', 0]
+		}
+	};
+	wf['8'] = { class_type: 'VAEDecode', inputs: { samples: ['3', 0], vae: ['4', 2] } };
+	wf['9'] = { class_type: 'SaveImage', inputs: { filename_prefix: 'gh_sdxl_i2i', images: ['8', 0] } };
+
+	return wf;
 }
 
 export async function generateSdxlImg2Img(req: SdxlImg2ImgRequest): Promise<SdxlResult> {
 	const base = podUrl();
 	const start = Date.now();
 	const uploaded = await uploadImage(req.initImage);
+	const lightningLora = process.env.SDXL_LIGHTNING_LORA || '';
+	const scribbleCn = process.env.SDXL_SCRIBBLE_CONTROLNET || '';
+	const useLightning = !!lightningLora && (await isLightningAvailable(lightningLora));
+	const useScribble = !!req.scribbleImage && !!scribbleCn && (await isScribbleAvailable(scribbleCn));
+
+	let scribbleUploadedName: string | undefined;
+	if (useScribble && req.scribbleImage) {
+		const uploadedScribble = await uploadImage(req.scribbleImage, `gh_scribble_${Date.now()}.png`);
+		scribbleUploadedName = uploadedScribble.name;
+	}
+
+	// When ControlNet conditions composition, we want the AI to commit fully,
+	// so push denoise high (>=0.85) regardless of AI Strength (which becomes scribble strength).
+	const baseDenoise = Math.min(0.95, Math.max(0.1, req.denoise ?? 0.6));
+	const effectiveDenoise = useScribble ? Math.max(0.85, baseDenoise) : baseDenoise;
+
 	const filled = {
 		positive: req.positive,
 		negative: req.negative || 'low quality, worst quality, blurry, deformed, extra fingers, bad anatomy, watermark',
 		checkpoint: req.checkpoint || defaultCheckpoint(),
 		width: req.width ?? 1024,
 		height: req.height ?? 1024,
-		steps: req.steps ?? 20,
-		cfg: req.cfg ?? 6,
-		sampler: req.sampler ?? 'euler_ancestral',
-		scheduler: req.scheduler ?? 'normal',
-		denoise: Math.min(0.95, Math.max(0.1, req.denoise ?? 0.6)),
-		seed: req.seed ?? Math.floor(Math.random() * 0xffffffff)
+		steps: req.steps ?? (useLightning ? 6 : 20),
+		cfg: req.cfg ?? (useLightning ? 1.5 : 6),
+		sampler: req.sampler ?? (useLightning ? 'euler' : 'euler_ancestral'),
+		scheduler: req.scheduler ?? (useLightning ? 'sgm_uniform' : 'normal'),
+		denoise: effectiveDenoise,
+		seed: req.seed ?? Math.floor(Math.random() * 0xffffffff),
+		lightningLora: useLightning ? lightningLora : undefined,
+		scribbleControlnet: useScribble ? scribbleCn : undefined,
+		scribbleUploadedName,
+		scribbleStrength: req.scribbleStrength ?? Math.min(1.0, Math.max(0.3, baseDenoise + 0.2))
 	};
 	const clientId = randomUUID();
 	const submitRes = await fetch(`${base}/prompt`, {

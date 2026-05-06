@@ -151,6 +151,25 @@
 		return new Promise((resolve, reject) => out.toBlob((b) => b ? resolve(b) : reject(new Error('toBlob failed')), 'image/png'));
 	}
 
+	function scribbleOnWhite(): Promise<Blob> {
+		const out = document.createElement('canvas');
+		out.width = RES; out.height = RES;
+		const ctx = out.getContext('2d')!;
+		ctx.fillStyle = '#ffffff';
+		ctx.fillRect(0, 0, RES, RES);
+		ctx.drawImage(drawCanvas, 0, 0);
+		return new Promise((resolve, reject) => out.toBlob((b) => b ? resolve(b) : reject(new Error('toBlob failed')), 'image/png'));
+	}
+
+	function hasStrokes(): boolean {
+		if (!drawCtx) return false;
+		try {
+			const data = drawCtx.getImageData(0, 0, RES, RES).data;
+			for (let i = 3; i < data.length; i += 4) if (data[i] > 0) return true;
+		} catch {}
+		return false;
+	}
+
 	async function blobToBase64(b: Blob): Promise<string> {
 		return new Promise((resolve, reject) => {
 			const r = new FileReader();
@@ -176,15 +195,21 @@
 		const mySeq = ++regenSeq;
 		busy = true; errMsg = '';
 		try {
-			const blob = await flatten();
-			const dataUrl = await blobToBase64(blob);
+			const flatBlob = await flatten();
+			const flatUrl = await blobToBase64(flatBlob);
+			let scribbleUrl: string | undefined;
+			if (hasStrokes()) {
+				const scribBlob = await scribbleOnWhite();
+				scribbleUrl = await blobToBase64(scribBlob);
+			}
 			const extra = currentTags.length ? currentTags.join(', ') : undefined;
 			const res = await fetch('/api/panels/sdxl-sketch', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					episodeId, pageNumber, panelIndex,
-					image: dataUrl,
+					image: flatUrl,
+					scribble: scribbleUrl,
 					aiStrength,
 					style,
 					extraPositive: extra,
@@ -212,15 +237,21 @@
 		if (busy) return;
 		busy = true; errMsg = '';
 		try {
-			const blob = await flatten();
-			const dataUrl = await blobToBase64(blob);
+			const flatBlob = await flatten();
+			const flatUrl = await blobToBase64(flatBlob);
+			let scribbleUrl: string | undefined;
+			if (hasStrokes()) {
+				const scribBlob = await scribbleOnWhite();
+				scribbleUrl = await blobToBase64(scribBlob);
+			}
 			const extra = currentTags.length ? currentTags.join(', ') : undefined;
 			const res = await fetch('/api/panels/sdxl-sketch', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					episodeId, pageNumber, panelIndex,
-					image: dataUrl,
+					image: flatUrl,
+					scribble: scribbleUrl,
 					aiStrength,
 					style,
 					extraPositive: extra,

@@ -36,6 +36,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		pageNumber,
 		panelIndex,
 		image,
+		scribble,
 		aiStrength,
 		style,
 		extraPositive,
@@ -46,6 +47,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		pageNumber?: number;
 		panelIndex?: number;
 		image?: string;
+		scribble?: string;
 		aiStrength?: number;
 		style?: string;
 		extraPositive?: string;
@@ -75,6 +77,7 @@ export const POST: RequestHandler = async ({ request }) => {
 	const negative = Array.isArray(panel['gh:sdxlNegative']) ? (panel['gh:sdxlNegative'] as string[]).join(', ') : '';
 
 	const initImage = decodeBase64Png(image);
+	const scribbleImage = scribble ? decodeBase64Png(scribble) : undefined;
 	const denoise = Math.min(0.95, Math.max(0.1, (aiStrength ?? 60) / 100));
 
 	const result = await generateSdxlImg2Img({
@@ -82,7 +85,9 @@ export const POST: RequestHandler = async ({ request }) => {
 		negative,
 		initImage,
 		denoise,
-		seed
+		seed,
+		scribbleImage,
+		scribbleStrength: scribbleImage ? Math.min(1, Math.max(0.3, denoise + 0.2)) : undefined
 	});
 
 	if (!persist) {

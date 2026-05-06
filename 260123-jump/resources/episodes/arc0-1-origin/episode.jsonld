@@ -318,8 +318,8 @@
               "gh:nameReading": "ふじさき ゆうと"
             }
           ],
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n2-fearful-yuto_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n2-fearful-yuto_sdxl_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769353386,
@@ -332,6 +332,19 @@
               "gh:imagePrompt": "ベッドで膝を抱えるYuto。恐怖の表情でスマホを見つめる。眠れない夜が続き、目の下にクマ。. Shot type: Medium Shot",
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n2-fearful-yuto_v2.png",
               "gh:model": "google/gemini-3-pro-image-preview"
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n2-fearful-yuto_sdxl_v3.png",
+              "gh:imagePrompt": "1boy, teen boy, Yuto, sitting on bed, fearful expression, bedroom, night, blue white light from smartphone, medium shot, eye level, 50mm lens, anime style, manga panel, cinematic, detailed background",
+              "gh:negativePrompt": "low quality, worst quality, blurry, deformed, extra fingers, bad anatomy, watermark",
+              "gh:generatedAt": 1778056082,
+              "gh:model": "sdxl/animagine-xl-4.0",
+              "gh:seed": 2944829087,
+              "gh:sdxlSampler": "euler_ancestral",
+              "gh:sdxlScheduler": "normal",
+              "gh:sdxlSteps": 28,
+              "gh:sdxlCfg": 6,
+              "gh:sdxlDurationMs": 8325
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. ベッドで膝を抱えるYuto。恐怖の表情でスマホを見つめる。眠れない夜が続き、目の下にクマ。. Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
