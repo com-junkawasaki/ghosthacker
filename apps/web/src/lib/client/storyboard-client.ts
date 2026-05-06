@@ -62,6 +62,41 @@ export function streamUpdates(
 	return () => {};
 }
 
+export async function generatePanelDialogue(
+	_filePath: string, _episodeId: string, _pageNumber: number, _panel: number,
+	_panelData: unknown, _opts: unknown
+): Promise<{ success: boolean; message?: string; dialogue?: any[] }> {
+	return { success: false, message: 'Not migrated' };
+}
+
+export async function submitGenerationJob(
+	_filePath: string, _episodeId: string, _pageNumber: number, _panel: number,
+	_panelData: unknown, _model: string
+): Promise<{ success: boolean; message?: string; jobId?: string }> {
+	return { success: false, message: 'Not migrated', jobId: '' };
+}
+
+export async function cancelGenerationJob(_jobId: string): Promise<{ success: boolean }> {
+	return { success: false };
+}
+
+export async function listGenerationJobs(): Promise<{ jobs: any[] }> {
+	return { jobs: [] };
+}
+
+export async function generateSdxlImage(
+	episodeId: string,
+	pageNumber: number,
+	panelIndex: number,
+	overrides?: Record<string, unknown>
+): Promise<{ success: boolean; imageUrl?: string; seed?: number; durationMs?: number; index?: number; message?: string }> {
+	try {
+		return await post('/api/panels/sdxl-generate', { episodeId, pageNumber, panelIndex, overrides });
+	} catch (err) {
+		return { success: false, message: err instanceof Error ? err.message : 'Unknown error' };
+	}
+}
+
 /** Proxy object for components that call storyboardClient.method() directly. */
 export const storyboardClient = {
 	updatePanel: (req: { episodeId: string; pageNumber: number; panel: number; panelData: unknown; [k: string]: unknown }) =>

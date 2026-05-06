@@ -3,7 +3,7 @@
 	import type { Panel, Dialogue, GeneratedImage } from '$lib/gen/proto/storyboard_pb';
 	import { PanelDataSchema, DialogueSchema, GeneratedImageSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
-	import { generatePanelDialogue, submitGenerationJob, cancelGenerationJob, storyboardClient } from '$lib/client/storyboard-client';
+	import { generatePanelDialogue, submitGenerationJob, cancelGenerationJob, generateSdxlImage, storyboardClient } from '$lib/client/storyboard-client';
 	import { getJobForPanel } from '$lib/stores/job-store.svelte';
 	import { ChevronLeft, ChevronRight, Wand2, Pencil, MessageSquare, Sparkles, X } from 'lucide-svelte';
 
@@ -23,6 +23,15 @@
 	let environment = panel.data?.environment ?? '';
 	let shot = panel.data?.shot ?? '';
 	let runwayPrompt = panel.data?.runwayPrompt ?? '';
+	$: sdxlTags = (panel.data as any)?.sdxlTags as string[] | undefined;
+	$: sdxlNegative = (panel.data as any)?.sdxlNegative as string[] | undefined;
+	$: sdxlPrompt = (panel.data as any)?.sdxlPrompt as string | undefined;
+	let copiedSdxl = false;
+	async function copySdxl() {
+		const text = sdxlPrompt || (sdxlTags ?? []).join(', ');
+		if (!text) return;
+		try { await navigator.clipboard.writeText(text); copiedSdxl = true; setTimeout(() => copiedSdxl = false, 1200); } catch {}
+	}
 	let generatedImages: GeneratedImage[] = panel.data?.generatedImages ?? [];
 	let currentImageIndex = panel.data?.currentImageIndex ?? (generatedImages.length > 0 ? generatedImages.length - 1 : -1);
 	let imageLoadFailed = false;
@@ -44,8 +53,8 @@
 	}
 
 	function getBackendBaseUrl(): string {
-		if (typeof window !== 'undefined') return window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin;
-		return 'http://localhost:8081';
+		if (typeof window !== 'undefined') return window.location.origin;
+		return '';
 	}
 
 	function resolveImageUrl(rawUrl: string): string {
@@ -54,9 +63,10 @@
 		if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) return url;
 		const marker = '/resources/images/';
 		const markerIndex = url.indexOf(marker);
-		if (markerIndex >= 0) return `${getBackendBaseUrl()}/images/${url.slice(markerIndex + marker.length)}`;
+		if (markerIndex >= 0) return `${getBackendBaseUrl()}/api/images/${url.slice(markerIndex + marker.length)}`;
+		if (url.startsWith('/images/')) return `${getBackendBaseUrl()}/api/images/${url.slice('/images/'.length)}`;
 		if (url.startsWith('/')) return `${getBackendBaseUrl()}${url}`;
-		return `${getBackendBaseUrl()}/${url}`;
+		return `${getBackendBaseUrl()}/api/images/${url}`;
 	}
 
 	$: currentImageUrl = currentImageIndex >= 0 && currentImageIndex < generatedImages.length
@@ -121,6 +131,19 @@
 		if (generatingImage || !episodeId) return;
 		generatingImage = true; imageError = '';
 		try {
+			if (selectedModel === 'local') {
+				const result = await generateSdxlImage(episodeId, panel.pageNumber, panel.panel);
+				if (result.success && result.imageUrl) {
+					const newImg = { imageUrl: result.imageUrl, imagePrompt: sdxlPrompt || (sdxlTags ?? []).join(', '), generatedAt: Math.floor(Date.now() / 1000), model: 'sdxl/animaginexl-4.0' } as GeneratedImage;
+					generatedImages = [...generatedImages, newImg];
+					currentImageIndex = result.index ?? generatedImages.length - 1;
+					imageLoadFailed = false;
+				} else {
+					imageError = result.message || 'Failed to generate';
+				}
+				generatingImage = false;
+				return;
+			}
 			const panelData = create(PanelDataSchema, { characters, dialogue: dialogues, environment, visualNote, cameraDirection, durationSeconds, cutNumber, shot, runwayPrompt });
 			const result = await submitGenerationJob(storyboardPath, episodeId, panel.pageNumber, panel.panel, panelData, selectedModel);
 			if (result.success && result.jobId) { activeJobId = result.jobId; }
@@ -276,6 +299,25 @@
 			<div><span class="font-semibold text-zinc-800">Camera:</span> {cameraDirection || '-'}</div>
 			<div><span class="font-semibold text-zinc-800">Characters:</span> {characters.length ? characters.join(', ') : '-'}</div>
 			{#if runwayPrompt}<div><span class="font-semibold text-zinc-800">Prompt:</span> {runwayPrompt}</div>{/if}
+			{#if sdxlTags && sdxlTags.length}
+				<div class="space-y-1.5 rounded-lg bg-purple-50/60 px-3 py-2">
+					<div class="flex items-center justify-between">
+						<span class="text-[11px] font-semibold uppercase tracking-wide text-purple-700">SDXL tags</span>
+						<button type="button" onclick={copySdxl} class="text-[11px] font-medium text-purple-700 hover:text-purple-900">{copiedSdxl ? 'Copied!' : 'Copy'}</button>
+					</div>
+					<div class="flex flex-wrap gap-1">
+						{#each sdxlTags as tag}<span class="rounded-full bg-purple-100 px-2 py-0.5 text-[11px] text-purple-800">{tag}</span>{/each}
+					</div>
+					{#if sdxlNegative && sdxlNegative.length}
+						<details class="pt-1">
+							<summary class="cursor-pointer text-[11px] text-purple-700">Negative ({sdxlNegative.length})</summary>
+							<div class="mt-1 flex flex-wrap gap-1">
+								{#each sdxlNegative as n}<span class="rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] text-zinc-600">{n}</span>{/each}
+							</div>
+						</details>
+					{/if}
+				</div>
+			{/if}
 			{#if dialogues.length > 0}
 				<div class="space-y-2 pt-1">
 					{#each dialogues as dialogue}

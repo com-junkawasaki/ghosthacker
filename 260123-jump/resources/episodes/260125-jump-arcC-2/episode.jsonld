@@ -43,7 +43,10 @@
       "gh:pageNumber": 1,
       "gh:panels": [
         {
-          "characters": ["character:Kaname", "character:ShiraishiYuko"],
+          "characters": [
+            "character:Kaname",
+            "character:ShiraishiYuko"
+          ],
           "dialogue": [
             {
               "speaker": "ShiraishiYuko",
@@ -69,10 +72,43 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "東海証券の小会議室。白石部長とKanameが向かい合う。窓から差し込む光。"
+          "visual": "東海証券の小会議室。白石部長とKanameが向かい合う。窓から差し込む光。",
+          "gh:sdxlTags": [
+            "2characters",
+            "Shiraishi Yuko",
+            "Kaname",
+            "sitting at conference table",
+            "neutral expression",
+            "finance office",
+            "day",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2characters, Shiraishi Yuko, Kaname, sitting at conference table, neutral expression, finance office, day, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:ShiraishiYuko"],
+          "characters": [
+            "character:ShiraishiYuko"
+          ],
           "dialogue": [
             {
               "speaker": "ShiraishiYuko",
@@ -94,10 +130,43 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "白石が初めて本音を見せる。元金融庁の目に、安堵が見える。"
+          "visual": "白石が初めて本音を見せる。元金融庁の目に、安堵が見える。",
+          "gh:sdxlTags": [
+            "1girl",
+            "young woman",
+            "business attire",
+            "showing honest feelings",
+            "relieved expression",
+            "finance headquarters",
+            "day",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, young woman, business attire, showing honest feelings, relieved expression, finance headquarters, day, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -120,7 +189,37 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Kanameの目。協力を求める目。でも命令ではなく、要請。"
+          "visual": "Kanameの目。協力を求める目。でも命令ではなく、要請。",
+          "gh:sdxlTags": [
+            "1boy",
+            "young boy",
+            "business attire",
+            "looking with pleading eyes",
+            "determined expression",
+            "finance headquarters",
+            "day",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm prime",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, young boy, business attire, looking with pleading eyes, determined expression, finance headquarters, day, soft diffused daylight, close-up, frontal, 85mm prime, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -128,7 +227,9 @@
       "gh:pageNumber": 2,
       "gh:panels": [
         {
-          "characters": ["character:ShiraishiYuko"],
+          "characters": [
+            "character:ShiraishiYuko"
+          ],
           "dialogue": [
             {
               "speaker": "ShiraishiYuko",
@@ -150,10 +251,39 @@
           },
           "panel": 1,
           "shot": "Insert Shot",
-          "visual": "ノートPCの画面。資産流出の時系列ログが表示されている。"
+          "visual": "ノートPCの画面。資産流出の時系列ログが表示されている。",
+          "gh:sdxlTags": [
+            "1computer",
+            "asset log",
+            "over-shoulder insert",
+            "soft diffused daylight",
+            "insert shot",
+            "high angle",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1computer, asset log, over-shoulder insert, soft diffused daylight, insert shot, high angle, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:Ren"],
+          "characters": [
+            "character:Ren"
+          ],
           "dialogue": [
             {
               "speaker": "Ren",
@@ -175,10 +305,43 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "Renが空中にデータを投影。分析結果。"
+          "visual": "Renが空中にデータを投影。分析結果。",
+          "gh:sdxlTags": [
+            "1boy",
+            "Ren",
+            "business attire",
+            "projecting data",
+            "analytical expression",
+            "finance headquarters",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, Ren, business attire, projecting data, analytical expression, finance headquarters, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -201,7 +364,36 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Kanameの目。問題の核心を見抜く目。"
+          "visual": "Kanameの目。問題の核心を見抜く目。",
+          "gh:sdxlTags": [
+            "1girl",
+            "Kaname",
+            "close-up expression",
+            "determined expression",
+            "finance headquarters",
+            "day",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, Kaname, close-up expression, determined expression, finance headquarters, day, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -209,7 +401,9 @@
       "gh:pageNumber": 3,
       "gh:panels": [
         {
-          "characters": ["character:ShiraishiYuko"],
+          "characters": [
+            "character:ShiraishiYuko"
+          ],
           "dialogue": [
             {
               "speaker": "ShiraishiYuko",
@@ -231,7 +425,38 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "白石がガイドラインの資料を広げる。元金融庁の知識。"
+          "visual": "白石がガイドラインの資料を広げる。元金融庁の知識。",
+          "gh:sdxlTags": [
+            "1girl",
+            "young woman",
+            "business attire",
+            "spreading documents",
+            "neutral expression",
+            "finance headquarters",
+            "daytime",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, young woman, business attire, spreading documents, neutral expression, finance headquarters, daytime, soft diffused daylight, wide shot, eye level, 35mm lens, luminous mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
           "characters": [],
@@ -256,10 +481,37 @@
           },
           "panel": 2,
           "shot": "Insert Shot",
-          "visual": "比較表。国内ガイドラインは最低限、国際標準はより厳格。"
+          "visual": "比較表。国内ガイドラインは最低限、国際標準はより厳格。",
+          "gh:sdxlTags": [
+            "finance_hq",
+            "insert_shot",
+            "over-shoulder_insert",
+            "50mm_lens",
+            "soft_diffused_daylight",
+            "luminous_atmosphere",
+            "anime_style",
+            "manga_panel",
+            "cinematic",
+            "detailed_background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "finance_hq, insert_shot, over-shoulder_insert, 50mm_lens, soft_diffused_daylight, luminous_atmosphere, anime_style, manga_panel, cinematic, detailed_background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -281,7 +533,37 @@
           },
           "panel": 3,
           "shot": "Medium Shot",
-          "visual": "Kanameが問題の本質を指摘する。"
+          "visual": "Kanameが問題の本質を指摘する。",
+          "gh:sdxlTags": [
+            "1boy",
+            "Kaname",
+            "formal attire",
+            "pointing",
+            "serious expression",
+            "finance headquarters",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, Kaname, formal attire, pointing, serious expression, finance headquarters, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -289,7 +571,10 @@
       "gh:pageNumber": 4,
       "gh:panels": [
         {
-          "characters": ["character:Kaname", "character:ShiraishiYuko"],
+          "characters": [
+            "character:Kaname",
+            "character:ShiraishiYuko"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -311,7 +596,38 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Kanameが立ち上がり、ホワイトボードに向かう。白石が見守る。"
+          "visual": "Kanameが立ち上がり、ホワイトボードに向かう。白石が見守る。",
+          "gh:sdxlTags": [
+            "2characters",
+            "man",
+            "woman",
+            "standing",
+            "approaching whiteboard",
+            "neutral expression",
+            "finance headquarters",
+            "daytime",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "2characters, man, woman, standing, approaching whiteboard, neutral expression, finance headquarters, daytime, soft diffused daylight, wide shot, eye level, 35mm lens, luminous mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
           "characters": [],
@@ -336,10 +652,40 @@
           },
           "panel": 2,
           "shot": "Insert Shot",
-          "visual": "ホワイトボードに描かれるゼロトラストの概念図。"
+          "visual": "ホワイトボードに描かれるゼロトラストの概念図。",
+          "gh:sdxlTags": [
+            "1board",
+            "zero trust concept",
+            "finance headquarters",
+            "over-shoulder insert",
+            "soft diffused daylight",
+            "insert shot",
+            "high angle",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1board, zero trust concept, finance headquarters, over-shoulder insert, soft diffused daylight, insert shot, high angle, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:ShiraishiYuko"],
+          "characters": [
+            "character:ShiraishiYuko"
+          ],
           "dialogue": [
             {
               "speaker": "ShiraishiYuko",
@@ -361,7 +707,37 @@
           },
           "panel": 3,
           "shot": "Medium Shot",
-          "visual": "白石が懸念を示す。現実的な視点。"
+          "visual": "白石が懸念を示す。現実的な視点。",
+          "gh:sdxlTags": [
+            "1girl",
+            "young woman",
+            "business attire",
+            "showing concern",
+            "finance headquarters",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, young woman, business attire, showing concern, finance headquarters, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -369,7 +745,9 @@
       "gh:pageNumber": 5,
       "gh:panels": [
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -391,7 +769,37 @@
           },
           "panel": 1,
           "shot": "Medium Shot",
-          "visual": "Kanameがホワイトボードに書きながら説明する。"
+          "visual": "Kanameがホワイトボードに書きながら説明する。",
+          "gh:sdxlTags": [
+            "1girl",
+            "kaname",
+            "professional attire",
+            "writing on whiteboard",
+            "explaining",
+            "finance headquarters",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, kaname, professional attire, writing on whiteboard, explaining, finance headquarters, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
           "characters": [],
@@ -416,10 +824,41 @@
           },
           "panel": 2,
           "shot": "Insert Shot",
-          "visual": "ホワイトボードに書かれた対策1。"
+          "visual": "ホワイトボードに書かれた対策1。",
+          "gh:sdxlTags": [
+            "1whiteboard",
+            "finance headquarters",
+            "insert shot",
+            "top-down insert",
+            "soft expression",
+            "day",
+            "soft diffused daylight",
+            "insert",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1whiteboard, finance headquarters, insert shot, top-down insert, soft expression, day, soft diffused daylight, insert, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:ShiraishiYuko"],
+          "characters": [
+            "character:ShiraishiYuko"
+          ],
           "dialogue": [
             {
               "speaker": "ShiraishiYuko",
@@ -442,7 +881,38 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "白石がメモを取りながら頷く。"
+          "visual": "白石がメモを取りながら頷く。",
+          "gh:sdxlTags": [
+            "1girl",
+            "Shiraishi Yuko",
+            "taking notes",
+            "nodding",
+            "focused expression",
+            "finance headquarters",
+            "day",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, Shiraishi Yuko, taking notes, nodding, focused expression, finance headquarters, day, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -450,7 +920,9 @@
       "gh:pageNumber": 6,
       "gh:panels": [
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -472,7 +944,37 @@
           },
           "panel": 1,
           "shot": "Medium Shot",
-          "visual": "Kanameが2つ目の対策を説明する。"
+          "visual": "Kanameが2つ目の対策を説明する。",
+          "gh:sdxlTags": [
+            "1girl",
+            "Kaname",
+            "formal attire",
+            "explaining strategy",
+            "neutral expression",
+            "finance headquarters",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, Kaname, formal attire, explaining strategy, neutral expression, finance headquarters, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
           "characters": [],
@@ -497,10 +999,38 @@
           },
           "panel": 2,
           "shot": "Insert Shot",
-          "visual": "ホワイトボードに書かれた対策2。タイムラインの図。"
+          "visual": "ホワイトボードに書かれた対策2。タイムラインの図。",
+          "gh:sdxlTags": [
+            "1whiteboard",
+            "finance-hq",
+            "written strategies",
+            "insert shot",
+            "over-shoulder",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1whiteboard, finance-hq, written strategies, insert shot, over-shoulder, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:Ren"],
+          "characters": [
+            "character:Ren"
+          ],
           "dialogue": [
             {
               "speaker": "Ren",
@@ -523,7 +1053,38 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Renが分析結果を補足する。"
+          "visual": "Renが分析結果を補足する。",
+          "gh:sdxlTags": [
+            "1boy",
+            "male character",
+            "suit",
+            "analyzing results",
+            "neutral expression",
+            "finance headquarters",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, male character, suit, analyzing results, neutral expression, finance headquarters, daytime, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -531,7 +1092,9 @@
       "gh:pageNumber": 7,
       "gh:panels": [
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -553,10 +1116,43 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Kanameが最後の対策を説明。3つの対策が並ぶホワイトボード。"
+          "visual": "Kanameが最後の対策を説明。3つの対策が並ぶホワイトボード。",
+          "gh:sdxlTags": [
+            "1boy",
+            "Kaname",
+            "business attire",
+            "explaining",
+            "serious expression",
+            "finance office",
+            "daytime",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, Kaname, business attire, explaining, serious expression, finance office, daytime, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:ShiraishiYuko"],
+          "characters": [
+            "character:ShiraishiYuko"
+          ],
           "dialogue": [
             {
               "speaker": "ShiraishiYuko",
@@ -578,10 +1174,42 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "白石が現実的な懸念を示す。"
+          "visual": "白石が現実的な懸念を示す。",
+          "gh:sdxlTags": [
+            "1girl",
+            "female character",
+            "business attire",
+            "showing concern",
+            "finance headquarters",
+            "day",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, female character, business attire, showing concern, finance headquarters, day, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -604,7 +1232,37 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Kanameの目。冷静な計算。感情ではなく数字で。"
+          "visual": "Kanameの目。冷静な計算。感情ではなく数字で。",
+          "gh:sdxlTags": [
+            "1girl",
+            "kaname",
+            "business attire",
+            "close-up expression",
+            "calm expression",
+            "finance headquarters",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, kaname, business attire, close-up expression, calm expression, finance headquarters, daytime, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -612,7 +1270,10 @@
       "gh:pageNumber": 8,
       "gh:panels": [
         {
-          "characters": ["character:Kaname", "character:KurodaMasahiko"],
+          "characters": [
+            "character:Kaname",
+            "character:KurodaMasahiko"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -634,10 +1295,42 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "黒田の執務室。再び対峙する二人。"
+          "visual": "黒田の執務室。再び対峙する二人。",
+          "gh:sdxlTags": [
+            "2characters",
+            "Kaname",
+            "KurodaMasahiko",
+            "standing in office",
+            "neutral expression",
+            "finance headquarters",
+            "day",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "2characters, Kaname, KurodaMasahiko, standing in office, neutral expression, finance headquarters, day, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:KurodaMasahiko"],
+          "characters": [
+            "character:KurodaMasahiko"
+          ],
           "dialogue": [
             {
               "speaker": "KurodaMasahiko",
@@ -659,10 +1352,42 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "黒田がまだ硬い表情。でも前回よりも動揺が見える。"
+          "visual": "黒田がまだ硬い表情。でも前回よりも動揺が見える。",
+          "gh:sdxlTags": [
+            "1boy",
+            "middle-aged man",
+            "business suit",
+            "neutral expression",
+            "finance headquarters",
+            "day",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, middle-aged man, business suit, neutral expression, finance headquarters, day, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -685,7 +1410,37 @@
           },
           "visual": "Kanameが資料を差し出す。静かな確信。",
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "gh:sdxlTags": [
+            "1character",
+            "kaname",
+            "formal attire",
+            "offering documents",
+            "calm confidence",
+            "finance headquarters",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1character, kaname, formal attire, offering documents, calm confidence, finance headquarters, daytime, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -693,7 +1448,9 @@
       "gh:pageNumber": 9,
       "gh:panels": [
         {
-          "characters": ["character:KurodaMasahiko"],
+          "characters": [
+            "character:KurodaMasahiko"
+          ],
           "dialogue": [
             {
               "speaker": "KurodaMasahiko",
@@ -715,10 +1472,42 @@
           },
           "panel": 1,
           "shot": "POV Shot",
-          "visual": "黒田の視点。対策案の資料。コスト試算も含まれている。"
+          "visual": "黒田の視点。対策案の資料。コスト試算も含まれている。",
+          "gh:sdxlTags": [
+            "1boy",
+            "male character",
+            "business attire",
+            "looking at documents",
+            "neutral expression",
+            "finance HQ",
+            "daytime",
+            "soft diffused daylight",
+            "POV shot",
+            "first-person POV",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, male character, business attire, looking at documents, neutral expression, finance HQ, daytime, soft diffused daylight, POV shot, first-person POV, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:KurodaMasahiko"],
+          "characters": [
+            "character:KurodaMasahiko"
+          ],
           "dialogue": [
             {
               "speaker": "KurodaMasahiko",
@@ -740,7 +1529,38 @@
           },
           "panel": 2,
           "shot": "Wide Shot",
-          "visual": "黒田がまだ抵抗。でも以前ほど強くない。"
+          "visual": "黒田がまだ抵抗。でも以前ほど強くない。",
+          "gh:sdxlTags": [
+            "1man",
+            "KurodaMasahiko",
+            "business suit",
+            "resisting",
+            "determined expression",
+            "finance headquarters",
+            "day",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1man, KurodaMasahiko, business suit, resisting, determined expression, finance headquarters, day, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
           "characters": [],
@@ -765,7 +1585,36 @@
           },
           "panel": 3,
           "shot": "Insert Shot",
-          "visual": "資料の数字。23億円の被害 vs 5000万円の対策コスト。"
+          "visual": "資料の数字。23億円の被害 vs 5000万円の対策コスト。",
+          "gh:sdxlTags": [
+            "insert shot",
+            "top-down insert",
+            "finance document",
+            "23 billion yen loss",
+            "50 million yen cost",
+            "finance headquarters",
+            "daytime",
+            "soft diffused daylight",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "insert shot, top-down insert, finance document, 23 billion yen loss, 50 million yen cost, finance headquarters, daytime, soft diffused daylight, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -773,7 +1622,9 @@
       "gh:pageNumber": 10,
       "gh:panels": [
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -795,10 +1646,42 @@
           },
           "panel": 1,
           "shot": "POV Shot",
-          "visual": "Kanameの視点。黒田の顔を見据える。"
+          "visual": "Kanameの視点。黒田の顔を見据える。",
+          "gh:sdxlTags": [
+            "1boy",
+            "young man",
+            "business attire",
+            "looking at someone",
+            "serious expression",
+            "finance headquarters",
+            "daytime",
+            "soft diffused daylight",
+            "POV shot",
+            "first-person angle",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, young man, business attire, looking at someone, serious expression, finance headquarters, daytime, soft diffused daylight, POV shot, first-person angle, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:KurodaMasahiko"],
+          "characters": [
+            "character:KurodaMasahiko"
+          ],
           "dialogue": [
             {
               "speaker": "KurodaMasahiko",
@@ -820,10 +1703,43 @@
           },
           "panel": 2,
           "shot": "Wide Shot",
-          "visual": "黒田が初めて言葉を失う。"
+          "visual": "黒田が初めて言葉を失う。",
+          "gh:sdxlTags": [
+            "1boy",
+            "male character",
+            "suit",
+            "standing",
+            "speechless expression",
+            "finance headquarters",
+            "day",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, male character, suit, standing, speechless expression, finance headquarters, day, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:GhostCastle"],
+          "characters": [
+            "character:GhostCastle"
+          ],
           "dialogue": [
             {
               "speaker": "SE",
@@ -845,7 +1761,37 @@
           },
           "panel": 3,
           "shot": "Insert Shot",
-          "visual": "Ghost「規程の城」が揺らぐ。黒田の傲慢に亀裂が入り始める。"
+          "visual": "Ghost「規程の城」が揺らぐ。黒田の傲慢に亀裂が入り始める。",
+          "gh:sdxlTags": [
+            "1ghost",
+            "ghost castle",
+            "no clothing",
+            "shaking castle",
+            "no expression",
+            "finance headquarters",
+            "day",
+            "soft diffused daylight",
+            "insert shot",
+            "over shoulder",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1ghost, ghost castle, no clothing, shaking castle, no expression, finance headquarters, day, soft diffused daylight, insert shot, over shoulder, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -853,7 +1799,9 @@
       "gh:pageNumber": 11,
       "gh:panels": [
         {
-          "characters": ["character:KurodaMasahiko"],
+          "characters": [
+            "character:KurodaMasahiko"
+          ],
           "dialogue": [
             {
               "speaker": "KurodaMasahiko",
@@ -875,10 +1823,43 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "黒田が初めて前向きな反応。でも組織の壁がある。"
+          "visual": "黒田が初めて前向きな反応。でも組織の壁がある。",
+          "gh:sdxlTags": [
+            "1boy",
+            "male character",
+            "business attire",
+            "standing in finance office",
+            "thoughtful expression",
+            "finance headquarters",
+            "day",
+            "soft daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, male character, business attire, standing in finance office, thoughtful expression, finance headquarters, day, soft daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -900,10 +1881,42 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "Kanameが次のステップを提案。"
+          "visual": "Kanameが次のステップを提案。",
+          "gh:sdxlTags": [
+            "1girl",
+            "Kaname",
+            "business attire",
+            "proposing next step",
+            "neutral expression",
+            "finance headquarters",
+            "day",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, Kaname, business attire, proposing next step, neutral expression, finance headquarters, day, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:KurodaMasahiko"],
+          "characters": [
+            "character:KurodaMasahiko"
+          ],
           "dialogue": [
             {
               "speaker": "KurodaMasahiko",
@@ -926,7 +1939,37 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "黒田の目。初めての譲歩。でもまだ完全には認めていない。"
+          "visual": "黒田の目。初めての譲歩。でもまだ完全には認めていない。",
+          "gh:sdxlTags": [
+            "1boy",
+            "man",
+            "formal attire",
+            "close-up on eye",
+            "uncertain expression",
+            "finance headquarters",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, man, formal attire, close-up on eye, uncertain expression, finance headquarters, daytime, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -934,7 +1977,10 @@
       "gh:pageNumber": 12,
       "gh:panels": [
         {
-          "characters": ["character:Kaname", "character:Ren"],
+          "characters": [
+            "character:Kaname",
+            "character:Ren"
+          ],
           "dialogue": [
             {
               "speaker": "Ren",
@@ -956,10 +2002,42 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "東海証券を出るKanameとRen。外の光。"
+          "visual": "東海証券を出るKanameとRen。外の光。",
+          "gh:sdxlTags": [
+            "2boys",
+            "Kaname",
+            "Ren",
+            "walking_outside",
+            "neutral expression",
+            "finance headquarters",
+            "day",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "2boys, Kaname, Ren, walking_outside, neutral expression, finance headquarters, day, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -981,10 +2059,43 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "Kanameが歩きながら話す。次の戦いを見据えている。"
+          "visual": "Kanameが歩きながら話す。次の戦いを見据えている。",
+          "gh:sdxlTags": [
+            "1boy",
+            "Kaname",
+            "business attire",
+            "walking and talking",
+            "determined expression",
+            "finance headquarters",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, Kaname, business attire, walking and talking, determined expression, finance headquarters, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:GhostCastle"],
+          "characters": [
+            "character:GhostCastle"
+          ],
           "dialogue": [
             {
               "speaker": "SE",
@@ -1007,7 +2118,38 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "東海証券ビルの影。Ghost「規程の城」がまだ健在。取締役会という新たな城壁を築いている。"
+          "visual": "東海証券ビルの影。Ghost「規程の城」がまだ健在。取締役会という新たな城壁を築いている。",
+          "gh:sdxlTags": [
+            "1ghost",
+            "ghost castle",
+            "no attire",
+            "frontal close-up",
+            "neutral expression",
+            "finance headquarters",
+            "day",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1ghost, ghost castle, no attire, frontal close-up, neutral expression, finance headquarters, day, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -1015,7 +2157,10 @@
       "gh:pageNumber": 13,
       "gh:panels": [
         {
-          "characters": ["character:MizukiShinji", "character:Kaname"],
+          "characters": [
+            "character:MizukiShinji",
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "MizukiShinji",
@@ -1042,10 +2187,42 @@
           },
           "panel": 1,
           "shot": "Action Shot",
-          "visual": "水木家の書斎。慎司とKanameが向かい合う。父子の静かな対話。"
+          "visual": "水木家の書斎。慎司とKanameが向かい合う。父子の静かな対話。",
+          "gh:sdxlTags": [
+            "2boy",
+            "Mizuki Shinji",
+            "Kaname",
+            "sitting at desk",
+            "quiet conversation",
+            "Mizuki estate",
+            "day",
+            "soft diffused daylight",
+            "medium shot",
+            "dynamic tracking",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "2boy, Mizuki Shinji, Kaname, sitting at desk, quiet conversation, Mizuki estate, day, soft diffused daylight, medium shot, dynamic tracking, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:MizukiShinji"],
+          "characters": [
+            "character:MizukiShinji"
+          ],
           "dialogue": [
             {
               "speaker": "MizukiShinji",
@@ -1067,7 +2244,38 @@
           },
           "panel": 2,
           "shot": "Full Page Splash",
-          "visual": "慎司がグラスを傾ける。フィクサーとしての経験から来る言葉。"
+          "visual": "慎司がグラスを傾ける。フィクサーとしての経験から来る言葉。",
+          "gh:sdxlTags": [
+            "1boy",
+            "young man",
+            "casual attire",
+            "holding a glass",
+            "thoughtful expression",
+            "mizuki estate",
+            "day",
+            "soft diffused daylight",
+            "full page splash",
+            "dynamic angle",
+            "28mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, young man, casual attire, holding a glass, thoughtful expression, mizuki estate, day, soft diffused daylight, full page splash, dynamic angle, 28mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -1075,7 +2283,9 @@
       "gh:pageNumber": 14,
       "gh:panels": [
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -1098,10 +2308,39 @@
           },
           "panel": 1,
           "shot": "Action Shot",
-          "visual": "Kanameの目。冷静な策略。"
+          "visual": "Kanameの目。冷静な策略。",
+          "gh:sdxlTags": [
+            "1girl",
+            "kaname",
+            "focused expression",
+            "eyes",
+            "medium shot",
+            "dynamic tracking",
+            "35mm lens",
+            "soft diffused daylight",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, kaname, focused expression, eyes, medium shot, dynamic tracking, 35mm lens, soft diffused daylight, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:MizukiShinji"],
+          "characters": [
+            "character:MizukiShinji"
+          ],
           "dialogue": [
             {
               "speaker": "MizukiShinji",
@@ -1127,7 +2366,37 @@
           },
           "panel": 2,
           "shot": "Full Page Splash",
-          "visual": "Kanameが静かに答える。傲慢な人は、失敗を恐れ、名誉を欲する。"
+          "visual": "Kanameが静かに答える。傲慢な人は、失敗を恐れ、名誉を欲する。",
+          "gh:sdxlTags": [
+            "1boy",
+            "medium build boy",
+            "suit",
+            "standing confidently",
+            "calm expression",
+            "mizuki estate",
+            "day",
+            "soft daylight",
+            "wide shot",
+            "dynamic angle",
+            "28mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, medium build boy, suit, standing confidently, calm expression, mizuki estate, day, soft daylight, wide shot, dynamic angle, 28mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -1135,7 +2404,9 @@
       "gh:pageNumber": 15,
       "gh:panels": [
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -1157,10 +2428,42 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Kanameが立ち上がり、窓の外を見る。戦略を説明する。"
+          "visual": "Kanameが立ち上がり、窓の外を見る。戦略を説明する。",
+          "gh:sdxlTags": [
+            "1boy",
+            "narrator",
+            "formal attire",
+            "standing by window",
+            "explaining strategy",
+            "mizuki estate",
+            "day",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, narrator, formal attire, standing by window, explaining strategy, mizuki estate, day, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:MizukiShinji"],
+          "characters": [
+            "character:MizukiShinji"
+          ],
           "dialogue": [
             {
               "speaker": "MizukiShinji",
@@ -1182,10 +2485,43 @@
           },
           "panel": 2,
           "shot": "Insert Shot",
-          "visual": "慎司が微かに笑う。息子の成長を認める目。"
+          "visual": "慎司が微かに笑う。息子の成長を認める目。",
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "suit",
+            "slightly smiling",
+            "acknowledging expression",
+            "Mizuki estate",
+            "daytime",
+            "soft diffused daylight",
+            "insert shot",
+            "over shoulder",
+            "50mm lens",
+            "calm mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, suit, slightly smiling, acknowledging expression, Mizuki estate, daytime, soft diffused daylight, insert shot, over shoulder, 50mm lens, calm mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname",
@@ -1208,7 +2544,33 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Kanameの目。黒曜石のような瞳に、決戦への覚悟。"
+          "visual": "Kanameの目。黒曜石のような瞳に、決戦への覚悟。",
+          "gh:sdxlTags": [
+            "1girl",
+            "kaname",
+            "determined expression",
+            "close-up",
+            "frontal",
+            "soft diffused daylight",
+            "mizuki estate",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, kaname, determined expression, close-up, frontal, soft diffused daylight, mizuki estate, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     },
@@ -1216,7 +2578,9 @@
       "gh:pageNumber": 16,
       "gh:panels": [
         {
-          "characters": ["character:GhostCastle"],
+          "characters": [
+            "character:GhostCastle"
+          ],
           "dialogue": [
             {
               "speaker": "SE",
@@ -1238,10 +2602,42 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "夜の東海証券ビル。Ghost「規程の城」が巨大化している。取締役会という最後の砦。"
+          "visual": "夜の東海証券ビル。Ghost「規程の城」が巨大化している。取締役会という最後の砦。",
+          "gh:sdxlTags": [
+            "1ghost",
+            "ghost castle",
+            "gigantic building",
+            "illuminated by moonlight",
+            "neutral expression",
+            "finance headquarters",
+            "night",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1ghost, ghost castle, gigantic building, illuminated by moonlight, neutral expression, finance headquarters, night, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Kaname (Monologue)",
@@ -1263,10 +2659,42 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "Kanameが窓から夜景を見る。東海証券ビルが遠くに見える。"
+          "visual": "Kanameが窓から夜景を見る。東海証券ビルが遠くに見える。",
+          "gh:sdxlTags": [
+            "1girl",
+            "kaname",
+            "dress",
+            "looking out window",
+            "thoughtful expression",
+            "mizuki estate",
+            "night",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, kaname, dress, looking out window, thoughtful expression, mizuki estate, night, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         },
         {
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "dialogue": [
             {
               "speaker": "Narration",
@@ -1289,7 +2717,38 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Kanameの目。決戦を前に、静かな炎。次は取締役会。Ghost Battle。"
+          "visual": "Kanameの目。決戦を前に、静かな炎。次は取締役会。Ghost Battle。",
+          "gh:sdxlTags": [
+            "1girl",
+            "kaname",
+            "quiet fire in eyes",
+            "close-up",
+            "determined expression",
+            "mizuki estate",
+            "day",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, kaname, quiet fire in eyes, close-up, determined expression, mizuki estate, day, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025416
         }
       ]
     }

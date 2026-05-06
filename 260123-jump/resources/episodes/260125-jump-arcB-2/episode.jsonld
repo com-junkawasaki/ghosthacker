@@ -65,7 +65,37 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "物流倉庫。止めて→動かして→また止まる。『直った』のたびに、現場の顔が削れていく。"
+          "visual": "物流倉庫。止めて→動かして→また止まる。『直った』のたびに、現場の顔が削れていく。",
+          "gh:sdxlTags": [
+            "1scene",
+            "logistics warehouse",
+            "wide shot",
+            "stopped and started motion",
+            "serious expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "calm mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1scene, logistics warehouse, wide shot, stopped and started motion, serious expression, logistics warehouse, daytime, soft diffused daylight, wide shot, eye level, 35mm lens, calm mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [
@@ -92,7 +122,38 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "猛が止まったラインを見渡す。バールじゃない。ストップウォッチと“DONE”の印だけが先に出る。"
+          "visual": "猛が止まったラインを見渡す。バールじゃない。ストップウォッチと“DONE”の印だけが先に出る。",
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "casual clothing",
+            "looking around",
+            "serious expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, casual clothing, looking around, serious expression, logistics warehouse, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [
@@ -120,7 +181,38 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "猛の目。怒りはある。でも先に“定義”を探している目。"
+          "visual": "猛の目。怒りはある。でも先に“定義”を探している目。",
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "Takeru",
+            "close-up expression",
+            "angry yet searching eyes",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, Takeru, close-up expression, angry yet searching eyes, logistics warehouse, daytime, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -150,7 +242,33 @@
           },
           "panel": 1,
           "shot": "Insert Shot",
-          "visual": "アラートがまた鳴る。“復旧済み”のはずの案件が、同じ症状で戻ってくる。"
+          "visual": "アラートがまた鳴る。“復旧済み”のはずの案件が、同じ症状で戻ってくる。",
+          "gh:sdxlTags": [
+            "1ui",
+            "warehouse",
+            "alert_notification",
+            "insert_shot",
+            "over-shoulder",
+            "50mm_lens",
+            "soft_diffused_light",
+            "anime style",
+            "manga_panel",
+            "cinematic",
+            "detailed_background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1ui, warehouse, alert_notification, insert_shot, over-shoulder, 50mm_lens, soft_diffused_light, anime style, manga_panel, cinematic, detailed_background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [
@@ -182,7 +300,38 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "猛とNeiがログを覗き込む。『直った』の直後に、同じ場所がまた咳き込む。"
+          "visual": "猛とNeiがログを覗き込む。『直った』の直後に、同じ場所がまた咳き込む。",
+          "gh:sdxlTags": [
+            "2characters",
+            "takeru",
+            "nei",
+            "looking at log",
+            "serious expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2characters, takeru, nei, looking at log, serious expression, logistics warehouse, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [
@@ -210,7 +359,37 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Neiの目が細くなる。原因は技術じゃなく“言葉の定義”にあると気づく。"
+          "visual": "Neiの目が細くなる。原因は技術じゃなく“言葉の定義”にあると気づく。",
+          "gh:sdxlTags": [
+            "1girl",
+            "Nei",
+            "casual outfit",
+            "close-up",
+            "frontal view",
+            "logistics warehouse",
+            "day",
+            "soft diffused daylight",
+            "close-up",
+            "85mm lens",
+            "calm mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, Nei, casual outfit, close-up, frontal view, logistics warehouse, day, soft diffused daylight, close-up, 85mm lens, calm mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -242,7 +421,37 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "現場が止まる。止めるのはラインじゃなく、“勝手な復旧”だ。"
+          "visual": "現場が止まる。止めるのはラインじゃなく、“勝手な復旧”だ。",
+          "gh:sdxlTags": [
+            "1boy",
+            "male character",
+            "work uniform",
+            "standing in warehouse",
+            "serious expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, male character, work uniform, standing in warehouse, serious expression, logistics warehouse, daytime, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [],
@@ -267,7 +476,38 @@
           },
           "panel": 2,
           "shot": "Insert Shot",
-          "visual": "封じ込めのチェックリスト。時刻だけが増えて、最後の欄に“DONE”が存在しない。"
+          "visual": "封じ込めのチェックリスト。時刻だけが増えて、最後の欄に“DONE”が存在しない。",
+          "gh:sdxlTags": [
+            "checklist",
+            "time",
+            "empty box",
+            "done",
+            "insert shot",
+            "over-shoulder",
+            "insert",
+            "50mm lens",
+            "soft atmosphere",
+            "warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "checklist, time, empty box, done, insert shot, over-shoulder, insert, 50mm lens, soft atmosphere, warehouse, daytime, soft diffused daylight, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [
@@ -298,7 +538,38 @@
           },
           "panel": 3,
           "shot": "Medium Shot",
-          "visual": "誰かが『とりあえず起動』へ手を伸ばす。猛が手のひらで止める。"
+          "visual": "誰かが『とりあえず起動』へ手を伸ばす。猛が手のひらで止める。",
+          "gh:sdxlTags": [
+            "1boy",
+            "Takeru",
+            "casual clothes",
+            "reaching hand",
+            "determined expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "focused mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, Takeru, casual clothes, reaching hand, determined expression, logistics warehouse, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, focused mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -328,7 +599,38 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "封じ込めが始まると、別部署から『こっちは動かしていい？』が飛んでくる。現場がまた分裂する。"
+          "visual": "封じ込めが始まると、別部署から『こっちは動かしていい？』が飛んでくる。現場がまた分裂する。",
+          "gh:sdxlTags": [
+            "1girl",
+            "staff member",
+            "working uniform",
+            "talking on radio",
+            "neutral expression",
+            "logistics warehouse",
+            "day",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, staff member, working uniform, talking on radio, neutral expression, logistics warehouse, day, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [],
@@ -353,7 +655,33 @@
           },
           "panel": 2,
           "shot": "Insert Shot",
-          "visual": "チェックは増える。でも“止めていい範囲”も“再開していい条件”も書かれていない。"
+          "visual": "チェックは増える。でも“止めていい範囲”も“再開していい条件”も書かれていない。",
+          "gh:sdxlTags": [
+            "1panel",
+            "logistics warehouse",
+            "soft natural light",
+            "insert shot",
+            "over-shoulder insert",
+            "50mm lens",
+            "calm mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1panel, logistics warehouse, soft natural light, insert shot, over-shoulder insert, 50mm lens, calm mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [
@@ -380,7 +708,38 @@
           },
           "panel": 3,
           "shot": "Medium Shot",
-          "visual": "猛が短く言い切る。『再開条件がない限り、再開しない』。"
+          "visual": "猛が短く言い切る。『再開条件がない限り、再開しない』。",
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "formal attire",
+            "standing in warehouse",
+            "serious expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, formal attire, standing in warehouse, serious expression, logistics warehouse, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -412,7 +771,37 @@
           },
           "panel": 1,
           "shot": "Medium Shot",
-          "visual": "猛がホワイトボードに“復旧の定義”を書き始める。『動く』じゃなく『終わる』を決める。"
+          "visual": "猛がホワイトボードに“復旧の定義”を書き始める。『動く』じゃなく『終わる』を決める。",
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "Takeru",
+            "writing on whiteboard",
+            "determined expression",
+            "logistics warehouse",
+            "day",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, Takeru, writing on whiteboard, determined expression, logistics warehouse, day, soft diffused daylight, medium shot, eye level, 50mm lens, luminous mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [],
@@ -437,7 +826,36 @@
           },
           "panel": 2,
           "shot": "Insert Shot",
-          "visual": "ストップウォッチ。焦りを“数”に落として、刃にしない。"
+          "visual": "ストップウォッチ。焦りを“数”に落として、刃にしない。",
+          "gh:sdxlTags": [
+            "stopwatch",
+            "time",
+            "logistics warehouse",
+            "insert shot",
+            "over shoulder",
+            "50mm lens",
+            "soft expression",
+            "daylight",
+            "soft shadows",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "stopwatch, time, logistics warehouse, insert shot, over shoulder, 50mm lens, soft expression, daylight, soft shadows, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [
@@ -465,7 +883,37 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "猛の目が“Done”に焦点を合わせる。"
+          "visual": "猛の目が“Done”に焦点を合わせる。",
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "Takeru",
+            "close-up on eyes",
+            "focused expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, Takeru, close-up on eyes, focused expression, logistics warehouse, daytime, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -502,7 +950,39 @@
           },
           "panel": 1,
           "shot": "Medium Shot",
-          "visual": "猛が“DONE条件”の欄を太線で囲む。ここが空欄の限り、地獄は終わらない。"
+          "visual": "猛が“DONE条件”の欄を太線で囲む。ここが空欄の限り、地獄は終わらない。",
+          "gh:sdxlTags": [
+            "2characters",
+            "boy",
+            "girl",
+            "casual clothes",
+            "writing on whiteboard",
+            "neutral expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2characters, boy, girl, casual clothes, writing on whiteboard, neutral expression, logistics warehouse, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [],
@@ -527,7 +1007,38 @@
           },
           "panel": 2,
           "shot": "Insert Shot",
-          "visual": "時計の横に、チェックボックスと『DONE』のスタンプが置かれる。"
+          "visual": "時計の横に、チェックボックスと『DONE』のスタンプが置かれる。",
+          "gh:sdxlTags": [
+            "1object",
+            "checkbox",
+            "done stamp",
+            "next to clock",
+            "none",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "insert shot",
+            "top-down",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1object, checkbox, done stamp, next to clock, none, logistics warehouse, daytime, soft diffused daylight, insert shot, top-down, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [
@@ -555,7 +1066,38 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "猛の瞳に、回り続けていた針が“止まる”イメージが映る（ミニ引き）。"
+          "visual": "猛の瞳に、回り続けていた針が“止まる”イメージが映る（ミニ引き）。",
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "Takeru",
+            "close-up on eyes",
+            "focused expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, Takeru, close-up on eyes, focused expression, logistics warehouse, daytime, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -563,7 +1105,10 @@
       "gh:pageNumber": 7,
       "gh:panels": [
         {
-          "characters": ["character:YamashitaTsuyoshi", "character:Takeru"],
+          "characters": [
+            "character:YamashitaTsuyoshi",
+            "character:Takeru"
+          ],
           "dialogue": [
             {
               "speaker": "YamashitaTsuyoshi",
@@ -589,10 +1134,43 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "管制室で山下本部長が声を荒げる。48歳、グレーの作業ポロシャツ、現場叩き上げの目。Takeruが手順書を盾に冷静に対峙する。"
+          "visual": "管制室で山下本部長が声を荒げる。48歳、グレーの作業ポロシャツ、現場叩き上げの目。Takeruが手順書を盾に冷静に対峙する。",
+          "gh:sdxlTags": [
+            "2characters",
+            "48 year old man",
+            "gray work polo shirt",
+            "calm pose",
+            "stern expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2characters, 48 year old man, gray work polo shirt, calm pose, stern expression, logistics warehouse, daytime, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
-          "characters": ["character:TamuraSeiichi"],
+          "characters": [
+            "character:TamuraSeiichi"
+          ],
           "dialogue": [
             {
               "speaker": "TamuraSeiichi",
@@ -614,10 +1192,43 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "田村IT部長が眼鏡を直しながら間に入る。42歳、温厚そうだが今日は腰が据わっている。"
+          "visual": "田村IT部長が眼鏡を直しながら間に入る。42歳、温厚そうだが今日は腰が据わっている。",
+          "gh:sdxlTags": [
+            "1man",
+            "middle aged man",
+            "glasses",
+            "adjusting glasses",
+            "serious expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1man, middle aged man, glasses, adjusting glasses, serious expression, logistics warehouse, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
-          "characters": ["character:YamashitaTsuyoshi"],
+          "characters": [
+            "character:YamashitaTsuyoshi"
+          ],
           "dialogue": [
             {
               "speaker": "YamashitaTsuyoshi",
@@ -640,7 +1251,38 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "山下の目。焦りと怒りが混ざっている。でもどこかで田村の言葉が刺さっている。"
+          "visual": "山下の目。焦りと怒りが混ざっている。でもどこかで田村の言葉が刺さっている。",
+          "gh:sdxlTags": [
+            "1boy",
+            "YamashitaTsuyoshi",
+            "frontal view",
+            "close-up",
+            "angry expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, YamashitaTsuyoshi, frontal view, close-up, angry expression, logistics warehouse, daytime, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -648,7 +1290,9 @@
       "gh:pageNumber": 8,
       "gh:panels": [
         {
-          "characters": ["character:SasakiKenta"],
+          "characters": [
+            "character:SasakiKenta"
+          ],
           "dialogue": [
             {
               "speaker": "SasakiKenta",
@@ -670,10 +1314,43 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "佐々木センター長が安全ベストを着たまま管制室に入ってくる。35歳、熱血漢だが今は板挟みで疲弊している。"
+          "visual": "佐々木センター長が安全ベストを着たまま管制室に入ってくる。35歳、熱血漢だが今は板挟みで疲弊している。",
+          "gh:sdxlTags": [
+            "1man",
+            "35 years old",
+            "safety vest",
+            "entering control room",
+            "exhausted expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1man, 35 years old, safety vest, entering control room, exhausted expression, logistics warehouse, daytime, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
-          "characters": ["character:Takeru", "character:SasakiKenta"],
+          "characters": [
+            "character:Takeru",
+            "character:SasakiKenta"
+          ],
           "dialogue": [
             {
               "speaker": "Takeru",
@@ -699,10 +1376,39 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "Takeruと佐々木が対峙する。二人とも目が真剣。でも怒りの質が違う。"
+          "visual": "Takeruと佐々木が対峙する。二人とも目が真剣。でも怒りの質が違う。",
+          "gh:sdxlTags": [
+            "2boys",
+            "serious expression",
+            "logistics warehouse",
+            "confronting each other",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "tense atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2boys, serious expression, logistics warehouse, confronting each other, medium shot, eye level, 50mm lens, tense atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
-          "characters": ["character:Takeru"],
+          "characters": [
+            "character:Takeru"
+          ],
           "dialogue": [
             {
               "speaker": "Takeru",
@@ -725,7 +1431,38 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Takeruの目。怒りはあるけど、それを『定義』に変える目。"
+          "visual": "Takeruの目。怒りはあるけど、それを『定義』に変える目。",
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "Takeru",
+            "close-up",
+            "angry expression",
+            "logistics warehouse",
+            "day",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, Takeru, close-up, angry expression, logistics warehouse, day, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -733,7 +1470,9 @@
       "gh:pageNumber": 9,
       "gh:panels": [
         {
-          "characters": ["character:GhostClock"],
+          "characters": [
+            "character:GhostClock"
+          ],
           "dialogue": [
             {
               "speaker": "SE",
@@ -755,10 +1494,44 @@
           },
           "panel": 1,
           "shot": "POV Shot",
-          "visual": "空気が歪む。倉庫の奥から、秒針の刃が再び動き出す。「始業の鐘」が戻ってきた。"
+          "visual": "空気が歪む。倉庫の奥から、秒針の刃が再び動き出す。「始業の鐘」が戻ってきた。",
+          "gh:sdxlTags": [
+            "1ghost",
+            "ghost clock",
+            "none",
+            "moving clock hands",
+            "focused expression",
+            "warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "POV shot",
+            "first-person POV",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1ghost, ghost clock, none, moving clock hands, focused expression, warehouse, daytime, soft diffused daylight, POV shot, first-person POV, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
-          "characters": ["character:Nei", "character:Takeru"],
+          "characters": [
+            "character:Nei",
+            "character:Takeru"
+          ],
           "dialogue": [
             {
               "speaker": "Nei",
@@ -784,7 +1557,38 @@
           },
           "panel": 2,
           "shot": "Wide Shot",
-          "visual": "Ghost「始業の鐘」が再出現。秒針の刃が複数に分裂し、現場の人々の首元に迫る。"
+          "visual": "Ghost「始業の鐘」が再出現。秒針の刃が複数に分裂し、現場の人々の首元に迫る。",
+          "gh:sdxlTags": [
+            "2characters",
+            "Nei",
+            "Takeru",
+            "ghost",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "tense expression",
+            "logistics warehouse",
+            "day",
+            "soft diffused daylight",
+            "wide shot",
+            "normal mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "2characters, Nei, Takeru, ghost, wide shot, eye level, 35mm lens, tense expression, logistics warehouse, day, soft diffused daylight, wide shot, normal mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [],
@@ -809,7 +1613,34 @@
           },
           "panel": 3,
           "shot": "Insert Shot",
-          "visual": "モニター画面。『復旧済み』のステータスが赤く点滅して『再発』に変わる。DONEの定義がないから、終わらない。"
+          "visual": "モニター画面。『復旧済み』のステータスが赤く点滅して『再発』に変わる。DONEの定義がないから、終わらない。",
+          "gh:sdxlTags": [
+            "monitor",
+            "status alert",
+            "flashing red",
+            "insert shot",
+            "over-shoulder",
+            "close-up",
+            "soft diffused daylight",
+            "gentle shadows",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "monitor, status alert, flashing red, insert shot, over-shoulder, close-up, soft diffused daylight, gentle shadows, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -817,7 +1648,10 @@
       "gh:pageNumber": 10,
       "gh:panels": [
         {
-          "characters": ["character:YamashitaTsuyoshi", "character:GhostClock"],
+          "characters": [
+            "character:YamashitaTsuyoshi",
+            "character:GhostClock"
+          ],
           "dialogue": [
             {
               "speaker": "YamashitaTsuyoshi",
@@ -843,10 +1677,45 @@
           },
           "panel": 1,
           "shot": "POV Shot",
-          "visual": "山下本部長の視界。Ghostの刃が自分の首元にも迫っているのを初めて見る。自分の『短気』が生んだ怪物。"
+          "visual": "山下本部長の視界。Ghostの刃が自分の首元にも迫っているのを初めて見る。自分の『短気』が生んだ怪物。",
+          "gh:sdxlTags": [
+            "2characters",
+            "YamashitaTsuyoshi",
+            "GhostClock",
+            "POV shot",
+            "looking at blade",
+            "surprised expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "first-person POV",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2characters, YamashitaTsuyoshi, GhostClock, POV shot, looking at blade, surprised expression, logistics warehouse, daytime, soft diffused daylight, close-up, first-person POV, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
-          "characters": ["character:Takeru", "character:YamashitaTsuyoshi"],
+          "characters": [
+            "character:Takeru",
+            "character:YamashitaTsuyoshi"
+          ],
           "dialogue": [
             {
               "speaker": "Takeru",
@@ -868,7 +1737,38 @@
           },
           "panel": 2,
           "shot": "Wide Shot",
-          "visual": "Takeruが山下の前に立つ。守るためじゃない。「見せる」ため。"
+          "visual": "Takeruが山下の前に立つ。守るためじゃない。「見せる」ため。",
+          "gh:sdxlTags": [
+            "2characters",
+            "1boy",
+            "1boy",
+            "casual clothing",
+            "standing in front of each other",
+            "serious expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "2characters, 1boy, 1boy, casual clothing, standing in front of each other, serious expression, logistics warehouse, daytime, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [],
@@ -893,7 +1793,37 @@
           },
           "panel": 3,
           "shot": "Insert Shot",
-          "visual": "NeiがSIPを起動。Ghostの動きが鈍る。時間稼ぎ。"
+          "visual": "NeiがSIPを起動。Ghostの動きが鈍る。時間稼ぎ。",
+          "gh:sdxlTags": [
+            "1girl",
+            "Nei",
+            "casual outfit",
+            "activating SIP",
+            "focused expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "insert shot",
+            "over-shoulder angle",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, Nei, casual outfit, activating SIP, focused expression, logistics warehouse, daytime, soft diffused daylight, insert shot, over-shoulder angle, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -901,7 +1831,11 @@
       "gh:pageNumber": 11,
       "gh:panels": [
         {
-          "characters": ["character:GhostClock", "character:Takeru", "character:Nei"],
+          "characters": [
+            "character:GhostClock",
+            "character:Takeru",
+            "character:Nei"
+          ],
           "dialogue": [
             {
               "speaker": "GhostClock",
@@ -927,10 +1861,45 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "Ghost Battle開始。秒針の刃が四方から迫る。Takeruが怒りを込めて構える。"
+          "visual": "Ghost Battle開始。秒針の刃が四方から迫る。Takeruが怒りを込めて構える。",
+          "gh:sdxlTags": [
+            "3characters",
+            "Takeru",
+            "angry expression",
+            "preparing stance",
+            "GhostClock",
+            "Nei",
+            "logistics warehouse",
+            "day",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "3characters, Takeru, angry expression, preparing stance, GhostClock, Nei, logistics warehouse, day, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
-          "characters": ["character:Takeru", "character:Nei"],
+          "characters": [
+            "character:Takeru",
+            "character:Nei"
+          ],
           "dialogue": [
             {
               "speaker": "Nei",
@@ -956,10 +1925,43 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "TakeruとNeiが背中合わせ。Ghostと戦いながら、『DONE』を定義していく。"
+          "visual": "TakeruとNeiが背中合わせ。Ghostと戦いながら、『DONE』を定義していく。",
+          "gh:sdxlTags": [
+            "2characters",
+            "male character",
+            "female character",
+            "back to back",
+            "fighting ghost",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2characters, male character, female character, back to back, fighting ghost, logistics warehouse, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
-          "characters": ["character:Takeru"],
+          "characters": [
+            "character:Takeru"
+          ],
           "dialogue": [
             {
               "speaker": "Takeru",
@@ -982,7 +1984,37 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Takeruの目に炎。怒りを『定義』の力に変える瞬間。"
+          "visual": "Takeruの目に炎。怒りを『定義』の力に変える瞬間。",
+          "gh:sdxlTags": [
+            "1boy",
+            "young man",
+            "casual clothing",
+            "close-up on eyes",
+            "angry expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, young man, casual clothing, close-up on eyes, angry expression, logistics warehouse, daytime, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -990,7 +2022,10 @@
       "gh:pageNumber": 12,
       "gh:panels": [
         {
-          "characters": ["character:GhostClock", "character:TamuraSeiichi"],
+          "characters": [
+            "character:GhostClock",
+            "character:TamuraSeiichi"
+          ],
           "dialogue": [
             {
               "speaker": "TamuraSeiichi",
@@ -1016,10 +2051,43 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "田村IT部長がサーバールームから叫ぶ。Ghost弱体化の第一条件クリア。"
+          "visual": "田村IT部長がサーバールームから叫ぶ。Ghost弱体化の第一条件クリア。",
+          "gh:sdxlTags": [
+            "2characters",
+            "Tamura Seiichi",
+            "Ghost Clock",
+            "shouting from server room",
+            "excited expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2characters, Tamura Seiichi, Ghost Clock, shouting from server room, excited expression, logistics warehouse, daytime, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
-          "characters": ["character:SasakiKenta"],
+          "characters": [
+            "character:SasakiKenta"
+          ],
           "dialogue": [
             {
               "speaker": "SasakiKenta",
@@ -1041,10 +2109,42 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "佐々木がコンベヤの稼働を確認。第二条件クリア。Ghostの刃が一本消える。"
+          "visual": "佐々木がコンベヤの稼働を確認。第二条件クリア。Ghostの刃が一本消える。",
+          "gh:sdxlTags": [
+            "1boy",
+            "young man",
+            "casual attire",
+            "checking conveyor",
+            "neutral expression",
+            "warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, young man, casual attire, checking conveyor, neutral expression, warehouse, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
-          "characters": ["character:Nei"],
+          "characters": [
+            "character:Nei"
+          ],
           "dialogue": [
             {
               "speaker": "Nei",
@@ -1067,7 +2167,36 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Neiの目。条件の残りを冷静に読み上げる。"
+          "visual": "Neiの目。条件の残りを冷静に読み上げる。",
+          "gh:sdxlTags": [
+            "1girl",
+            "Nei",
+            "neutral expression",
+            "reading conditions",
+            "logistics warehouse",
+            "day",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, Nei, neutral expression, reading conditions, logistics warehouse, day, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -1075,7 +2204,10 @@
       "gh:pageNumber": 13,
       "gh:panels": [
         {
-          "characters": ["character:Takeru", "character:GhostClock"],
+          "characters": [
+            "character:Takeru",
+            "character:GhostClock"
+          ],
           "dialogue": [
             {
               "speaker": "SE",
@@ -1102,10 +2234,44 @@
           },
           "panel": 1,
           "shot": "Action Shot",
-          "visual": "Takeruが最後の刃を砕く。『DONE』のスタンプを押すように。"
+          "visual": "Takeruが最後の刃を砕く。『DONE』のスタンプを押すように。",
+          "gh:sdxlTags": [
+            "2characters",
+            "boy",
+            "Takeru",
+            "GhostClock",
+            "breaking blade",
+            "determined expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused light",
+            "medium shot",
+            "dynamic tracking",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2characters, boy, Takeru, GhostClock, breaking blade, determined expression, logistics warehouse, daytime, soft diffused light, medium shot, dynamic tracking, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
-          "characters": ["character:GhostClock"],
+          "characters": [
+            "character:GhostClock"
+          ],
           "dialogue": [
             {
               "speaker": "SE",
@@ -1127,7 +2293,37 @@
           },
           "panel": 2,
           "shot": "Full Page Splash",
-          "visual": "Ghost「始業の鐘」が砕け散る。『DONE』の定義が刻まれた瞬間、怪物は存在理由を失う。"
+          "visual": "Ghost「始業の鐘」が砕け散る。『DONE』の定義が刻まれた瞬間、怪物は存在理由を失う。",
+          "gh:sdxlTags": [
+            "1ghost",
+            "ghost clock",
+            "broken clock",
+            "exploding",
+            "dynamic angle",
+            "logistics warehouse",
+            "daylight",
+            "soft diffused daylight",
+            "full page splash",
+            "wide shot",
+            "28mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1ghost, ghost clock, broken clock, exploding, dynamic angle, logistics warehouse, daylight, soft diffused daylight, full page splash, wide shot, 28mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -1135,7 +2331,10 @@
       "gh:pageNumber": 14,
       "gh:panels": [
         {
-          "characters": ["character:YamashitaTsuyoshi", "character:Takeru"],
+          "characters": [
+            "character:YamashitaTsuyoshi",
+            "character:Takeru"
+          ],
           "dialogue": [
             {
               "speaker": "YamashitaTsuyoshi",
@@ -1162,7 +2361,38 @@
           },
           "panel": 1,
           "shot": "Action Shot",
-          "visual": "静寂が戻る。山下が呆然とTakeruを見る。初めて「敵」じゃなく「味方」として。"
+          "visual": "静寂が戻る。山下が呆然とTakeruを見る。初めて「敵」じゃなく「味方」として。",
+          "gh:sdxlTags": [
+            "2characters",
+            "YamashitaTsuyoshi",
+            "Takeru",
+            "looking at each other",
+            "confused expression",
+            "logistics warehouse",
+            "day",
+            "soft diffused daylight",
+            "medium shot",
+            "dynamic tracking",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2characters, YamashitaTsuyoshi, Takeru, looking at each other, confused expression, logistics warehouse, day, soft diffused daylight, medium shot, dynamic tracking, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [],
@@ -1187,7 +2417,32 @@
           },
           "panel": 2,
           "shot": "Full Page Splash",
-          "visual": "コンベヤが再び動き出す。今度は「急げ」の焦りじゃなく、「手順」の上で回っている。"
+          "visual": "コンベヤが再び動き出す。今度は「急げ」の焦りじゃなく、「手順」の上で回っている。",
+          "gh:sdxlTags": [
+            "1conveyor",
+            "logistics warehouse",
+            "moving conveyor",
+            "wide shot",
+            "dynamic angle",
+            "soft diffused daylight",
+            "gentle shadows",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1conveyor, logistics warehouse, moving conveyor, wide shot, dynamic angle, soft diffused daylight, gentle shadows, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -1195,7 +2450,11 @@
       "gh:pageNumber": 15,
       "gh:panels": [
         {
-          "characters": ["character:YamashitaTsuyoshi", "character:TamuraSeiichi", "character:SasakiKenta"],
+          "characters": [
+            "character:YamashitaTsuyoshi",
+            "character:TamuraSeiichi",
+            "character:SasakiKenta"
+          ],
           "dialogue": [
             {
               "speaker": "YamashitaTsuyoshi",
@@ -1221,7 +2480,38 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "山下が初めて「待つ」を選ぶ。田村と佐々木が驚いた顔で見つめる。"
+          "visual": "山下が初めて「待つ」を選ぶ。田村と佐々木が驚いた顔で見つめる。",
+          "gh:sdxlTags": [
+            "3boys",
+            "Yamashita",
+            "Tamura",
+            "Sasaki",
+            "standing in warehouse",
+            "surprised expression",
+            "logistics warehouse",
+            "day",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "3boys, Yamashita, Tamura, Sasaki, standing in warehouse, surprised expression, logistics warehouse, day, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
           "characters": [],
@@ -1246,10 +2536,40 @@
           },
           "panel": 2,
           "shot": "Insert Shot",
-          "visual": "ホワイトボードのDONE条件。残り一つにチェックが入るのを待つ。"
+          "visual": "ホワイトボードのDONE条件。残り一つにチェックが入るのを待つ。",
+          "gh:sdxlTags": [
+            "1board",
+            "logistics warehouse",
+            "waiting for check",
+            "insert shot",
+            "over shoulder",
+            "50mm lens",
+            "soft gentle expression",
+            "daytime",
+            "soft diffused light",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1board, logistics warehouse, waiting for check, insert shot, over shoulder, 50mm lens, soft gentle expression, daytime, soft diffused light, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
-          "characters": ["character:SasakiKenta"],
+          "characters": [
+            "character:SasakiKenta"
+          ],
           "dialogue": [
             {
               "speaker": "SasakiKenta",
@@ -1272,7 +2592,38 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "佐々木の目。組織が変わり始める瞬間を見ている。"
+          "visual": "佐々木の目。組織が変わり始める瞬間を見ている。",
+          "gh:sdxlTags": [
+            "1boy",
+            "young man",
+            "casual attire",
+            "close-up of eye",
+            "observing change",
+            "logistics warehouse",
+            "day",
+            "soft diffused daylight",
+            "close-up",
+            "frontal angle",
+            "85mm lens",
+            "luminous mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, young man, casual attire, close-up of eye, observing change, logistics warehouse, day, soft diffused daylight, close-up, frontal angle, 85mm lens, luminous mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     },
@@ -1280,7 +2631,10 @@
       "gh:pageNumber": 16,
       "gh:panels": [
         {
-          "characters": ["character:Takeru", "character:Nei"],
+          "characters": [
+            "character:Takeru",
+            "character:Nei"
+          ],
           "dialogue": [
             {
               "speaker": "Nei",
@@ -1306,10 +2660,44 @@
           },
           "panel": 1,
           "shot": "Wide Shot",
-          "visual": "TakeruとNeiが倉庫を出る。夕暮れの光。まだ終わっていないけど、終わりが見えている。"
+          "visual": "TakeruとNeiが倉庫を出る。夕暮れの光。まだ終わっていないけど、終わりが見えている。",
+          "gh:sdxlTags": [
+            "2characters",
+            "boy",
+            "girl",
+            "casual clothing",
+            "walking out of warehouse",
+            "determined expression",
+            "logistics warehouse",
+            "evening",
+            "soft diffused daylight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2characters, boy, girl, casual clothing, walking out of warehouse, determined expression, logistics warehouse, evening, soft diffused daylight, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
-          "characters": ["character:YamashitaTsuyoshi"],
+          "characters": [
+            "character:YamashitaTsuyoshi"
+          ],
           "dialogue": [
             {
               "speaker": "YamashitaTsuyoshi",
@@ -1335,10 +2723,42 @@
           },
           "panel": 2,
           "shot": "Medium Shot",
-          "visual": "山下が窓から二人を見送る。複雑な表情。でも敵意はもうない。"
+          "visual": "山下が窓から二人を見送る。複雑な表情。でも敵意はもうない。",
+          "gh:sdxlTags": [
+            "1boy",
+            "YamashitaTsuyoshi",
+            "casual clothing",
+            "looking out window",
+            "complex expression",
+            "logistics warehouse",
+            "day",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, YamashitaTsuyoshi, casual clothing, looking out window, complex expression, logistics warehouse, day, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         },
         {
-          "characters": ["character:Takeru"],
+          "characters": [
+            "character:Takeru"
+          ],
           "dialogue": [
             {
               "speaker": "Takeru",
@@ -1361,7 +2781,38 @@
           },
           "panel": 3,
           "shot": "Close-up",
-          "visual": "Takeruの目。怒りはまだある。でもそれを『終わらせる力』に変える術を知っている。"
+          "visual": "Takeruの目。怒りはまだある。でもそれを『終わらせる力』に変える術を知っている。",
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "Takeru",
+            "close-up expression",
+            "angry expression",
+            "logistics warehouse",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminescent mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, Takeru, close-up expression, angry expression, logistics warehouse, daytime, soft diffused daylight, close-up, frontal, 85mm lens, luminescent mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025378
         }
       ]
     }

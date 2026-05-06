@@ -21,8 +21,12 @@ export async function saveJsonLd(path: string, data: Record<string, any>): Promi
 
 /** Load the master storyboard and resolve all episode sourceFiles. */
 export async function loadAggregatedStoryboard(): Promise<Record<string, any>> {
-	const master = await loadJsonLd(storyboardPath());
-	const episodes = master['gh:episodes'] as any[] ?? [];
+	const sbPath = storyboardPath();
+	if (!existsSync(sbPath)) {
+		return { '@context': {}, 'gh:episodes': [], 'gh:arcs': [] };
+	}
+	const master = await loadJsonLd(sbPath);
+	const episodes: any[] = Array.isArray(master['gh:episodes']) ? master['gh:episodes'] : [];
 	const resourcesDir = dirname(storyboardPath());
 
 	for (const ep of episodes) {
@@ -51,7 +55,7 @@ export async function findEpisode(episodeId: string): Promise<{
 	sourcePath: string;
 } | null> {
 	const master = await loadAggregatedStoryboard();
-	const episodes = master['gh:episodes'] as any[] ?? [];
+	const episodes: any[] = Array.isArray(master['gh:episodes']) ? master['gh:episodes'] : [];
 	const resourcesDir = dirname(storyboardPath());
 
 	for (const ep of episodes) {
@@ -67,18 +71,18 @@ export async function findEpisode(episodeId: string): Promise<{
 /** Extract episodes list from aggregated storyboard. */
 export async function getEpisodes(): Promise<Episode[]> {
 	const master = await loadAggregatedStoryboard();
-	const episodes = master['gh:episodes'] as any[] ?? [];
+	const episodes: any[] = Array.isArray(master['gh:episodes']) ? master['gh:episodes'] : [];
 	return episodes.map((ep: any) => ({
 		id: ep['gh:episodeId'] ?? '',
 		title: ep['dct:title'] ?? '',
-		totalPages: (ep['gh:pages'] as any[] ?? []).length
+		totalPages: (Array.isArray(ep['gh:pages']) ? ep['gh:pages'] : []).length
 	}));
 }
 
 /** Extract arcs list from aggregated storyboard. */
 export async function getArcs(): Promise<Arc[]> {
 	const master = await loadAggregatedStoryboard();
-	const arcs = master['gh:arcs'] as any[] ?? [];
+	const arcs: any[] = Array.isArray(master['gh:arcs']) ? master['gh:arcs'] : [];
 	return arcs.map((a: any) => ({
 		id: a['gh:arc'] ?? '',
 		title: a['gh:arc'] ?? '',
@@ -162,6 +166,9 @@ function extractPanel(raw: any, pageNum: number, panelIdx: number): Panel {
 		imagePrompt: str(raw, 'gh:imagePrompt'),
 		generatedImages: genImages,
 		currentImageIndex: raw['gh:currentImageIndex'] ?? (genImages.length > 0 ? genImages.length - 1 : 0),
+		sdxlTags: Array.isArray(raw['gh:sdxlTags']) ? raw['gh:sdxlTags'] : undefined,
+		sdxlNegative: Array.isArray(raw['gh:sdxlNegative']) ? raw['gh:sdxlNegative'] : undefined,
+		sdxlPrompt: typeof raw['gh:sdxlPrompt'] === 'string' ? raw['gh:sdxlPrompt'] : undefined,
 		mangaLayout: raw['gh:mangaLayout'] ? {
 			panels: (raw['gh:mangaLayout'].panels ?? []).map((p: any) => ({
 				panelIndex: p.panelIndex ?? 0, x: p.x ?? 0, y: p.y ?? 0,

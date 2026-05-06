@@ -70,12 +70,43 @@
             "gh:aperture": "f/2.8",
             "gh:focus": "deep focus",
             "gh:atmosphere": "ARIA-style: luminous atmosphere, soft diffused natural light, pristine clean air"
-          }
+          },
+          "gh:sdxlTags": [
+            "multiple students",
+            "student uniform",
+            "walking in campus",
+            "neutral expression",
+            "seiran academy campus",
+            "day",
+            "soft natural light",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "multiple students, student uniform, walking in campus, neutral expression, seiran academy campus, day, soft natural light, wide shot, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
           "shot": "Medium Shot",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:seiran-academy-campus",
           "visual": "青山ソラ（17歳）が図書館へ歩く。周囲の生徒が高級ブランドのバッグを持っている中、彼女のカバンは質素。",
           "dialogue": [
@@ -91,12 +122,44 @@
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8",
             "gh:focus": "subject focus, soft background"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "17 years old",
+            "simple bag",
+            "walking in library",
+            "neutral expression",
+            "seiran academy campus",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "calm mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, 17 years old, simple bag, walking in library, neutral expression, seiran academy campus, day, natural light, medium shot, eye level, 50mm lens, calm mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
           "shot": "Close-up",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:seiran-academy-campus",
           "visual": "ソラの表情。周囲との「違い」を意識しながら、それを隠そうとする強がり。",
           "dialogue": [
@@ -113,7 +176,35 @@
             "gh:aperture": "f/1.2",
             "gh:focus": "shallow depth of field",
             "gh:eyeDetail": "highly detailed expressive eyes"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "uniform",
+            "hiding expression",
+            "seiran academy campus",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "tense mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, uniform, hiding expression, seiran academy campus, close-up, frontal, 85mm lens, tense mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -125,7 +216,9 @@
         {
           "panel": 1,
           "shot": "Wide Shot",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:sora-apartment",
           "visual": "ソラの自宅マンション。清潔だが小さく、質素な家具。ソラが勉強机に向かっている。",
           "dialogue": [
@@ -140,7 +233,37 @@
             "gh:angle": "eye level",
             "gh:lens": "35mm",
             "gh:aperture": "f/2.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "sora aoyama",
+            "casual clothes",
+            "studying at desk",
+            "focused expression",
+            "apartment",
+            "day",
+            "natural light",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, sora aoyama, casual clothes, studying at desk, focused expression, apartment, day, natural light, wide shot, eye level, 35mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
@@ -160,12 +283,40 @@
             "gh:angle": "top-down insert",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "1sheet",
+            "desk",
+            "paper with cost notice",
+            "red circled amount",
+            "insert shot",
+            "top-down angle",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1sheet, desk, paper with cost notice, red circled amount, insert shot, top-down angle, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
           "shot": "Medium Shot",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:sora-apartment",
           "visual": "ソラがスマートフォンを手に取り、何かを検索し始める。",
           "dialogue": [
@@ -180,7 +331,38 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "teen girl",
+            "casual outfit",
+            "holding smartphone",
+            "thinking expression",
+            "apartment",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "contemplative mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, teen girl, casual outfit, holding smartphone, thinking expression, apartment, day, natural light, medium shot, eye level, 50mm lens, contemplative mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
@@ -200,7 +382,32 @@
             "gh:angle": "over-shoulder",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "smartphone",
+            "social media ad",
+            "high school student",
+            "insert shot",
+            "over-shoulder",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "smartphone, social media ad, high school student, insert shot, over-shoulder, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -227,12 +434,42 @@
             "gh:angle": "top-down",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "1unknown",
+            "smartphone screen",
+            "insert shot",
+            "top-down",
+            "neutral expression",
+            "undefined location",
+            "undefined time",
+            "undefined lighting",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1unknown, smartphone screen, insert shot, top-down, neutral expression, undefined location, undefined time, undefined lighting, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
           "shot": "Close-up",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:sora-apartment",
           "visual": "ソラの迷う表情。指がスマホ画面の上で止まっている。",
           "dialogue": [
@@ -247,7 +484,37 @@
             "gh:angle": "frontal",
             "gh:lens": "85mm prime",
             "gh:aperture": "f/1.2"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "sora aoyama",
+            "casual clothes",
+            "close-up on phone",
+            "conflicted expression",
+            "sora's apartment",
+            "day",
+            "soft lighting",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "tense mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, sora aoyama, casual clothes, close-up on phone, conflicted expression, sora's apartment, day, soft lighting, close-up, frontal, 85mm lens, tense mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
@@ -267,12 +534,40 @@
             "gh:angle": "top-down",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "notification screen",
+            "smartphone screen",
+            "money transfer",
+            "showing amount",
+            "top-down",
+            "insert shot",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "notification screen, smartphone screen, money transfer, showing amount, top-down, insert shot, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
           "shot": "Medium Shot",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:sora-apartment",
           "visual": "少し明るい表情のソラ。希望が見えた瞬間。",
           "dialogue": [
@@ -287,7 +582,32 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "teen girl",
+            "hopeful expression",
+            "sora apartment",
+            "eye level",
+            "medium shot",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, teen girl, hopeful expression, sora apartment, eye level, medium shot, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -314,12 +634,41 @@
             "gh:angle": "top-down",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "smartphone screen",
+            "money",
+            "5000 yen",
+            "10000 yen",
+            "30000 yen",
+            "insert shot",
+            "top-down",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "smartphone screen, money, 5000 yen, 10000 yen, 30000 yen, insert shot, top-down, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
           "shot": "Medium Shot",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:seiran-academy-classroom",
           "visual": "教室でスマホを気にするソラ。授業に集中できていない。",
           "dialogue": [
@@ -334,7 +683,37 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "schoolgirl",
+            "uniform",
+            "looking at smartphone",
+            "distracted expression",
+            "seiran academy classroom",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "contemplative mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, schoolgirl, uniform, looking at smartphone, distracted expression, seiran academy classroom, day, natural light, medium shot, eye level, 50mm lens, contemplative mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
@@ -354,12 +733,43 @@
             "gh:angle": "top-down",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "1smartphone",
+            "message",
+            "top-down shot",
+            "insert shot",
+            "neutral expression",
+            "smartphone screen",
+            "day",
+            "bright lighting",
+            "insert",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1smartphone, message, top-down shot, insert shot, neutral expression, smartphone screen, day, bright lighting, insert, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
           "shot": "Close-up",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:seiran-academy-classroom",
           "visual": "ソラの顔に恐怖が浮かぶ。何かがおかしいと気づき始める。",
           "dialogue": [
@@ -374,7 +784,38 @@
             "gh:angle": "frontal",
             "gh:lens": "85mm prime",
             "gh:aperture": "f/1.2"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "Sora Aoyama",
+            "close-up expression",
+            "fearful expression",
+            "Seiran Academy classroom",
+            "daytime",
+            "bright light",
+            "close-up",
+            "frontal angle",
+            "85mm lens",
+            "tense mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, Sora Aoyama, close-up expression, fearful expression, Seiran Academy classroom, daytime, bright light, close-up, frontal angle, 85mm lens, tense mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -401,7 +842,38 @@
             "gh:angle": "top-down",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "sora",
+            "smartphone",
+            "sending message",
+            "neutral expression",
+            "smartphone screen",
+            "day",
+            "natural light",
+            "insert shot",
+            "top-down",
+            "50mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, sora, smartphone, sending message, neutral expression, smartphone screen, day, natural light, insert shot, top-down, 50mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
@@ -421,12 +893,44 @@
             "gh:angle": "top-down",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "1unknown",
+            "smartphone screen",
+            "showing messages",
+            "thoughtful expression",
+            "none",
+            "none",
+            "none",
+            "insert shot",
+            "top-down",
+            "50mm lens",
+            "tense mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1unknown, smartphone screen, showing messages, thoughtful expression, none, none, none, insert shot, top-down, 50mm lens, tense mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
           "shot": "Close-up",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:station-night-street",
           "visual": "夜の駅前。ソラの震える手。顔は青ざめ、恐怖で固まっている。",
           "dialogue": [
@@ -441,12 +945,45 @@
             "gh:angle": "frontal",
             "gh:lens": "85mm prime",
             "gh:aperture": "f/1.2"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "SoraAoyama",
+            "trembling hands",
+            "pale face",
+            "frozen in fear",
+            "station night street",
+            "night",
+            "dim lighting",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "tense mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, SoraAoyama, trembling hands, pale face, frozen in fear, station night street, night, dim lighting, close-up, frontal, 85mm lens, tense mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
           "shot": "Wide Shot",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:station-night-street",
           "visual": "夜の街を一人で歩くソラ。周囲のネオンが冷たく光る。",
           "dialogue": [
@@ -461,7 +998,36 @@
             "gh:angle": "eye level",
             "gh:lens": "35mm",
             "gh:aperture": "f/2.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "SoraAoyama",
+            "walking alone",
+            "city street at night",
+            "worried expression",
+            "neon lights",
+            "night",
+            "eye level",
+            "wide shot",
+            "35mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, SoraAoyama, walking alone, city street at night, worried expression, neon lights, night, eye level, wide shot, 35mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -473,7 +1039,9 @@
         {
           "panel": 1,
           "shot": "Wide Shot",
-          "characters": ["character:RikaShirakawa"],
+          "characters": [
+            "character:RikaShirakawa"
+          ],
           "environment": "env:seiran-student-council",
           "visual": "星蘭学院の生徒会室。優雅な内装。生徒会長の白川理香が窓辺に立っている。",
           "dialogue": [
@@ -488,12 +1056,45 @@
             "gh:angle": "eye level",
             "gh:lens": "35mm",
             "gh:aperture": "f/2.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "student council president",
+            "elegant attire",
+            "standing by window",
+            "contemplative expression",
+            "student council room",
+            "day",
+            "natural light",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "calm mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, student council president, elegant attire, standing by window, contemplative expression, student council room, day, natural light, wide shot, eye level, 35mm lens, calm mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
           "shot": "Medium Shot",
-          "characters": ["character:RikaShirakawa", "character:Kaname"],
+          "characters": [
+            "character:RikaShirakawa",
+            "character:Kaname"
+          ],
           "environment": "env:seiran-student-council",
           "visual": "理香がKanameに話しかける。Kanameは白いスーツ姿で資料を見ている。",
           "dialogue": [
@@ -508,12 +1109,43 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "2girls",
+            "Rika_Shiraikawa",
+            "Kaname",
+            "white suit",
+            "talking to each other",
+            "seiran student council",
+            "day",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "2girls, Rika_Shiraikawa, Kaname, white suit, talking to each other, seiran student council, day, medium shot, eye level, 50mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
           "shot": "Close-up",
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "environment": "env:seiran-student-council",
           "visual": "Kanameの冷静な表情。しかし目には鋭い関心が浮かぶ。",
           "dialogue": [
@@ -528,12 +1160,44 @@
             "gh:angle": "frontal",
             "gh:lens": "85mm prime",
             "gh:aperture": "f/1.2"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "school uniform",
+            "close-up expression",
+            "calm expression",
+            "student council room",
+            "day",
+            "natural light",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "calm mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, school uniform, close-up expression, calm expression, student council room, day, natural light, close-up, frontal, 85mm lens, calm mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
           "shot": "Medium Shot",
-          "characters": ["character:RikaShirakawa"],
+          "characters": [
+            "character:RikaShirakawa"
+          ],
           "environment": "env:seiran-student-council",
           "visual": "心配そうな理香。ソラの状況を説明している。",
           "dialogue": [
@@ -548,7 +1212,37 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "teen girl",
+            "school uniform",
+            "worried expression",
+            "student council room",
+            "daytime",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, teen girl, school uniform, worried expression, student council room, daytime, natural light, medium shot, eye level, 50mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -560,7 +1254,9 @@
         {
           "panel": 1,
           "shot": "Wide Shot",
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "environment": "env:kaname-study",
           "visual": "Kanameの書斎。高級感のあるデスクで複数のモニターを見ている。",
           "dialogue": [
@@ -575,7 +1271,37 @@
             "gh:angle": "eye level",
             "gh:lens": "35mm",
             "gh:aperture": "f/2.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "kaname",
+            "formal clothes",
+            "looking at multiple monitors",
+            "pensive expression",
+            "study",
+            "day",
+            "even lighting",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, kaname, formal clothes, looking at multiple monitors, pensive expression, study, day, even lighting, wide shot, eye level, 35mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
@@ -595,7 +1321,35 @@
             "gh:angle": "over-shoulder",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "1monitor",
+            "over-shoulder",
+            "search results",
+            "dark sides job",
+            "information trading",
+            "targeting high school students",
+            "insert shot",
+            "high angle",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1monitor, over-shoulder, search results, dark sides job, information trading, targeting high school students, insert shot, high angle, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
@@ -615,12 +1369,40 @@
             "gh:angle": "over-shoulder",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "1person",
+            "over-shoulder angle",
+            "looking at board",
+            "analyzing patterns",
+            "news hacker board",
+            "insert shot",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1person, over-shoulder angle, looking at board, analyzing patterns, news hacker board, insert shot, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
           "shot": "Close-up",
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "environment": "env:kaname-study",
           "visual": "Kanameの目。確信を得た表情。",
           "dialogue": [
@@ -635,7 +1417,37 @@
             "gh:angle": "frontal",
             "gh:lens": "85mm prime",
             "gh:aperture": "f/1.2"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "kaname",
+            "close-up expression",
+            "determined expression",
+            "study room",
+            "indoor",
+            "soft lighting",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "intense mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, kaname, close-up expression, determined expression, study room, indoor, soft lighting, close-up, frontal, 85mm lens, intense mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -647,7 +1459,10 @@
         {
           "panel": 1,
           "shot": "Wide Shot",
-          "characters": ["character:Kaname", "character:SoraAoyama"],
+          "characters": [
+            "character:Kaname",
+            "character:SoraAoyama"
+          ],
           "environment": "env:seiran-academy-library",
           "visual": "星蘭学院の図書館。Kanameがソラの席に近づく。",
           "dialogue": [
@@ -662,12 +1477,45 @@
             "gh:angle": "eye level",
             "gh:lens": "35mm",
             "gh:aperture": "f/2.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "2characters",
+            "Kaname",
+            "Sora Aoyama",
+            "approaching",
+            "neutral expression",
+            "library",
+            "day",
+            "natural light",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "curious mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2characters, Kaname, Sora Aoyama, approaching, neutral expression, library, day, natural light, wide shot, eye level, 35mm lens, curious mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
           "shot": "Medium Shot",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:seiran-academy-library",
           "visual": "警戒するソラ。目が泳いでいる。",
           "dialogue": [
@@ -682,12 +1530,44 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "teen girl",
+            "school uniform",
+            "looking cautious",
+            "eye movement",
+            "library",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "tense mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, teen girl, school uniform, looking cautious, eye movement, library, day, natural light, medium shot, eye level, 50mm lens, tense mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
           "shot": "Close-up",
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "environment": "env:seiran-academy-library",
           "visual": "Kanameの表情。いつもの冷たさが少し和らいでいる。",
           "dialogue": [
@@ -702,12 +1582,45 @@
             "gh:angle": "frontal",
             "gh:lens": "85mm prime",
             "gh:aperture": "f/1.2"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "Kaname",
+            "close-up expression",
+            "slightly softened expression",
+            "seiran academy library",
+            "day",
+            "natural light",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "calm mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, Kaname, close-up expression, slightly softened expression, seiran academy library, day, natural light, close-up, frontal, 85mm lens, calm mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
           "shot": "Close-up",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:seiran-academy-library",
           "visual": "ソラの目に涙がにじむ。壁が少し崩れ始める。",
           "dialogue": [
@@ -722,7 +1635,38 @@
             "gh:angle": "frontal",
             "gh:lens": "85mm prime",
             "gh:aperture": "f/1.2"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "Sora Aoyama",
+            "tears",
+            "close-up",
+            "worried expression",
+            "Seiran Academy Library",
+            "day",
+            "bright light",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "sad mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, Sora Aoyama, tears, close-up, worried expression, Seiran Academy Library, day, bright light, close-up, frontal, 85mm lens, sad mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -734,7 +1678,10 @@
         {
           "panel": 1,
           "shot": "Wide Shot",
-          "characters": ["character:Kaname", "character:SoraAoyama"],
+          "characters": [
+            "character:Kaname",
+            "character:SoraAoyama"
+          ],
           "environment": "env:quiet-room",
           "visual": "人目のない部屋。ソラが座り、Kanameが向かいに座っている。",
           "dialogue": [
@@ -749,12 +1696,45 @@
             "gh:angle": "eye level",
             "gh:lens": "35mm",
             "gh:aperture": "f/2.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "2characters",
+            "boy",
+            "sitting",
+            "across from each other",
+            "neutral expression",
+            "quiet room",
+            "day",
+            "natural light",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "calm mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2characters, boy, sitting, across from each other, neutral expression, quiet room, day, natural light, wide shot, eye level, 35mm lens, calm mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
           "shot": "Medium Shot",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:quiet-room",
           "visual": "話し続けるソラ。声が震えている。",
           "dialogue": [
@@ -769,12 +1749,45 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "SoraAoyama",
+            "casual attire",
+            "talking",
+            "nervous expression",
+            "quiet room",
+            "day",
+            "soft lighting",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "tense mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, SoraAoyama, casual attire, talking, nervous expression, quiet room, day, soft lighting, medium shot, eye level, 50mm lens, tense mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
           "shot": "Medium Shot",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:quiet-room",
           "visual": "ソラが崩れ始める。堰を切ったように言葉が溢れる。",
           "dialogue": [
@@ -789,12 +1802,45 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "teen girl",
+            "casual clothes",
+            "breaking down",
+            "worried expression",
+            "quiet room",
+            "day",
+            "soft lighting",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "tense mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, teen girl, casual clothes, breaking down, worried expression, quiet room, day, soft lighting, medium shot, eye level, 50mm lens, tense mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
           "shot": "Close-up",
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "environment": "env:quiet-room",
           "visual": "Kanameの目。決意の色が浮かぶ。",
           "dialogue": [
@@ -809,7 +1855,31 @@
             "gh:angle": "frontal",
             "gh:lens": "85mm prime",
             "gh:aperture": "f/1.2"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "Kaname",
+            "close-up",
+            "determined expression",
+            "quiet room",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, Kaname, close-up, determined expression, quiet room, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -836,12 +1906,45 @@
             "gh:angle": "over-shoulder",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "hacker",
+            "posting on bulletin board",
+            "worried expression",
+            "news hacker board",
+            "daytime",
+            "soft lighting",
+            "insert shot",
+            "over-shoulder",
+            "50mm lens",
+            "serious mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, hacker, posting on bulletin board, worried expression, news hacker board, daytime, soft lighting, insert shot, over-shoulder, 50mm lens, serious mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
           "shot": "Medium Shot",
-          "characters": ["character:Ren"],
+          "characters": [
+            "character:Ren"
+          ],
           "environment": "env:ren-room",
           "visual": "自室でモニターを見るRen。気怠げだが、目は鋭い。",
           "dialogue": [
@@ -856,12 +1959,44 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "young adult",
+            "casual attire",
+            "looking at monitor",
+            "weary expression",
+            "bedroom",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, young adult, casual attire, looking at monitor, weary expression, bedroom, day, natural light, medium shot, eye level, 50mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
           "shot": "Medium Shot",
-          "characters": ["character:Nei"],
+          "characters": [
+            "character:Nei"
+          ],
           "environment": "env:ren-room",
           "visual": "Neiが画面を覗き込む。興味深そうな表情。",
           "dialogue": [
@@ -876,12 +2011,45 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "female character",
+            "casual clothing",
+            "leaning forward",
+            "curious expression",
+            "ren room",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, female character, casual clothing, leaning forward, curious expression, ren room, day, natural light, medium shot, eye level, 50mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
           "shot": "Medium Shot",
-          "characters": ["character:Ren", "character:Nei"],
+          "characters": [
+            "character:Ren",
+            "character:Nei"
+          ],
           "environment": "env:ren-room",
           "visual": "RenとNeiが顔を見合わせる。阿吽の呼吸。",
           "dialogue": [
@@ -900,7 +2068,37 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "2characters",
+            "Ren",
+            "Nei",
+            "face to face",
+            "serious expression",
+            "Ren's room",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "2characters, Ren, Nei, face to face, serious expression, Ren's room, day, natural light, medium shot, eye level, 50mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -912,7 +2110,11 @@
         {
           "panel": 1,
           "shot": "Wide Shot",
-          "characters": ["character:Kaname", "character:Ren", "character:Nei"],
+          "characters": [
+            "character:Kaname",
+            "character:Ren",
+            "character:Nei"
+          ],
           "environment": "env:meeting-neutral",
           "visual": "中立の場所（カフェの個室）。Kanameと、Ren・Neiが向かい合う。緊張感のある空気。",
           "dialogue": [
@@ -927,12 +2129,45 @@
             "gh:angle": "eye level",
             "gh:lens": "35mm",
             "gh:aperture": "f/2.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "3characters",
+            "Kaname",
+            "Ren",
+            "Nei",
+            "sitting at table",
+            "tense atmosphere",
+            "cafe private room",
+            "daytime",
+            "natural light",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "3characters, Kaname, Ren, Nei, sitting at table, tense atmosphere, cafe private room, daytime, natural light, wide shot, eye level, 35mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
           "shot": "Medium Shot",
-          "characters": ["character:Ren"],
+          "characters": [
+            "character:Ren"
+          ],
           "environment": "env:meeting-neutral",
           "visual": "Renの気怠げな表情。しかし目は相手を測っている。",
           "dialogue": [
@@ -947,12 +2182,45 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "suit",
+            "looking thoughtfully",
+            "neutral expression",
+            "meeting room",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "suspenseful mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, suit, looking thoughtfully, neutral expression, meeting room, day, natural light, medium shot, eye level, 50mm lens, suspenseful mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
           "shot": "Close-up",
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "environment": "env:meeting-neutral",
           "visual": "Kanameの冷たい目。しかし敵意ではない。",
           "dialogue": [
@@ -967,12 +2235,45 @@
             "gh:angle": "frontal",
             "gh:lens": "85mm prime",
             "gh:aperture": "f/1.2"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "Kaname",
+            "close-up",
+            "neutral expression",
+            "meeting room",
+            "day",
+            "soft lighting",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "serious mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, Kaname, close-up, neutral expression, meeting room, day, soft lighting, close-up, frontal, 85mm lens, serious mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
           "shot": "Medium Shot",
-          "characters": ["character:Ren", "character:Nei"],
+          "characters": [
+            "character:Ren",
+            "character:Nei"
+          ],
           "environment": "env:meeting-neutral",
           "visual": "Renが小さく頷く。Neiが微笑む。",
           "dialogue": [
@@ -991,7 +2292,37 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "2characters",
+            "boy",
+            "girl",
+            "smiling",
+            "nodding",
+            "meeting room",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "2characters, boy, girl, smiling, nodding, meeting room, day, natural light, medium shot, eye level, 50mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -1003,7 +2334,11 @@
         {
           "panel": 1,
           "shot": "Medium Shot",
-          "characters": ["character:SoraAoyama", "character:Kaname", "character:Nei"],
+          "characters": [
+            "character:SoraAoyama",
+            "character:Kaname",
+            "character:Nei"
+          ],
           "environment": "env:quiet-room",
           "visual": "ソラの前にKanameとNeiが座っている。ソラの表情はまだ怯えている。",
           "dialogue": [
@@ -1018,7 +2353,39 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "3characters",
+            "SoraAoyama",
+            "Kaname",
+            "Nei",
+            "sitting in quiet room",
+            "scared expression",
+            "quiet room",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "tense mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "3characters, SoraAoyama, Kaname, Nei, sitting in quiet room, scared expression, quiet room, day, natural light, medium shot, eye level, 50mm lens, tense mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
@@ -1038,7 +2405,32 @@
             "gh:angle": "top-down",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "smartphone screen",
+            "banking app",
+            "account frozen message",
+            "insert shot",
+            "top-down",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "smartphone screen, banking app, account frozen message, insert shot, top-down, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
@@ -1058,12 +2450,39 @@
             "gh:angle": "top-down",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "smartphone-screen",
+            "sim card",
+            "number change application",
+            "insert shot",
+            "top-down",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "smartphone-screen, sim card, number change application, insert shot, top-down, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
           "shot": "Medium Shot",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:quiet-room",
           "visual": "ソラの表情に少し安堵が浮かぶ。",
           "dialogue": [
@@ -1078,7 +2497,33 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "teen girl",
+            "relieved expression",
+            "quiet room",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, teen girl, relieved expression, quiet room, medium shot, eye level, 50mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -1090,7 +2535,9 @@
         {
           "panel": 1,
           "shot": "Medium Shot",
-          "characters": ["character:Ren"],
+          "characters": [
+            "character:Ren"
+          ],
           "environment": "env:quiet-room",
           "visual": "Renがノートパソコンを操作している。",
           "dialogue": [
@@ -1105,7 +2552,38 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "laptop",
+            "operating laptop",
+            "neutral expression",
+            "quiet room",
+            "day",
+            "even lighting",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "focused mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, laptop, operating laptop, neutral expression, quiet room, day, even lighting, medium shot, eye level, 50mm lens, focused mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
@@ -1125,12 +2603,41 @@
             "gh:angle": "top-down",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "screenshot",
+            "cyber threat",
+            "clearly visible date",
+            "clearly visible account name",
+            "smartphone screen",
+            "top-down",
+            "insert shot",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "screenshot, cyber threat, clearly visible date, clearly visible account name, smartphone screen, top-down, insert shot, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
           "shot": "Medium Shot",
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "environment": "env:quiet-room",
           "visual": "Kanameがスマートフォンで通話している。",
           "dialogue": [
@@ -1145,7 +2652,38 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "smartphone",
+            "talking on phone",
+            "concerned expression",
+            "quiet room",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "tense mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, smartphone, talking on phone, concerned expression, quiet room, day, natural light, medium shot, eye level, 50mm lens, tense mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
@@ -1165,7 +2703,30 @@
             "gh:angle": "top-down",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "1document",
+            "top-down",
+            "insert shot",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1document, top-down, insert shot, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -1177,7 +2738,9 @@
         {
           "panel": 1,
           "shot": "Medium Shot",
-          "characters": ["character:Ren"],
+          "characters": [
+            "character:Ren"
+          ],
           "environment": "env:ren-room",
           "visual": "自室でキーボードを叩くRen。複数のウィンドウが開いている。",
           "dialogue": [
@@ -1192,7 +2755,37 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "Ren",
+            "casual clothing",
+            "typing on keyboard",
+            "focused expression",
+            "room",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, Ren, casual clothing, typing on keyboard, focused expression, room, day, natural light, medium shot, eye level, 50mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
@@ -1212,12 +2805,45 @@
             "gh:angle": "over-shoulder",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "computer screen",
+            "over-shoulder",
+            "determined expression",
+            "office",
+            "day",
+            "soft lighting",
+            "insert shot",
+            "high angle",
+            "50mm lens",
+            "suspenseful mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, computer screen, over-shoulder, determined expression, office, day, soft lighting, insert shot, high angle, 50mm lens, suspenseful mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
           "shot": "Close-up",
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "environment": "env:meeting-neutral",
           "visual": "報告を受けるKanameの表情。苛立ちが一瞬だけ顔に出る。",
           "dialogue": [
@@ -1232,12 +2858,44 @@
             "gh:angle": "frontal",
             "gh:lens": "85mm prime",
             "gh:aperture": "f/1.2"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "Kaname",
+            "serious expression",
+            "meeting room",
+            "day",
+            "natural light",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, Kaname, serious expression, meeting room, day, natural light, close-up, frontal, 85mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
           "shot": "Medium Shot",
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "environment": "env:meeting-neutral",
           "visual": "決意を固めるKaname。",
           "dialogue": [
@@ -1252,7 +2910,37 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "suit",
+            "determined expression",
+            "meeting room",
+            "daytime",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "serious mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, suit, determined expression, meeting room, daytime, natural light, medium shot, eye level, 50mm lens, serious mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -1264,7 +2952,9 @@
         {
           "panel": 1,
           "shot": "Wide Shot",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:sora-apartment",
           "visual": "ソラの自宅。リビングでソラが母と向かい合っている。Neiが隣にいる。",
           "dialogue": [
@@ -1279,12 +2969,45 @@
             "gh:angle": "eye level",
             "gh:lens": "35mm",
             "gh:aperture": "f/2.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "2 characters",
+            "1girl",
+            "1mother",
+            "casual attire",
+            "facing each other",
+            "serious expression",
+            "living room",
+            "daytime",
+            "bright light",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "2 characters, 1girl, 1mother, casual attire, facing each other, serious expression, living room, daytime, bright light, wide shot, eye level, 35mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
           "shot": "Close-up",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:sora-apartment",
           "visual": "涙を流しながら話すソラ。",
           "dialogue": [
@@ -1299,12 +3022,39 @@
             "gh:angle": "frontal",
             "gh:lens": "85mm prime",
             "gh:aperture": "f/1.2"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "teen girl",
+            "casual clothing",
+            "close-up",
+            "frontal angle",
+            "sora apartment",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1girl, teen girl, casual clothing, close-up, frontal angle, sora apartment, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
           "shot": "Medium Shot",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:sora-apartment",
           "visual": "母がソラを抱きしめる。ソラの肩が震えている。",
           "dialogue": [
@@ -1319,12 +3069,45 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "2characters",
+            "mother",
+            "Sora Aoyama",
+            "hugging",
+            "shivering shoulders",
+            "apartment",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "moment of comfort",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2characters, mother, Sora Aoyama, hugging, shivering shoulders, apartment, day, natural light, medium shot, eye level, 50mm lens, moment of comfort, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
           "shot": "Medium Shot",
-          "characters": ["character:Nei"],
+          "characters": [
+            "character:Nei"
+          ],
           "environment": "env:sora-apartment",
           "visual": "少し離れた場所で見守るNei。穏やかな表情。",
           "dialogue": [
@@ -1339,7 +3122,37 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "teen girl",
+            "casual clothing",
+            "watching from a distance",
+            "calm expression",
+            "sora apartment",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "serene mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, teen girl, casual clothing, watching from a distance, calm expression, sora apartment, day, natural light, medium shot, eye level, 50mm lens, serene mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -1366,7 +3179,37 @@
             "gh:angle": "eye level",
             "gh:lens": "35mm",
             "gh:aperture": "f/2.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "2people",
+            "girl",
+            "woman",
+            "entering police station",
+            "serious expression",
+            "police station",
+            "day",
+            "natural light",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "2people, girl, woman, entering police station, serious expression, police station, day, natural light, wide shot, eye level, 35mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
@@ -1386,7 +3229,30 @@
             "gh:angle": "top-down",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "news-article",
+            "insert shot",
+            "top-down",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "news-article, insert shot, top-down, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
@@ -1406,7 +3272,38 @@
             "gh:angle": "over-shoulder",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "1panel",
+            "news board",
+            "news hacker",
+            "over-shoulder shot",
+            "neutral expression",
+            "news environment",
+            "day",
+            "soft lighting",
+            "insert shot",
+            "high angle",
+            "50mm lens",
+            "informative mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1panel, news board, news hacker, over-shoulder shot, neutral expression, news environment, day, soft lighting, insert shot, high angle, 50mm lens, informative mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
@@ -1426,7 +3323,38 @@
             "gh:angle": "over-shoulder",
             "gh:lens": "50mm",
             "gh:aperture": "f/2.0"
-          }
+          },
+          "gh:sdxlTags": [
+            "1user",
+            "news hacker",
+            "casual attire",
+            "response message",
+            "neutral expression",
+            "news hacker board",
+            "day",
+            "soft lighting",
+            "insert shot",
+            "over-shoulder",
+            "50mm lens",
+            "informative mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "1user, news hacker, casual attire, response message, neutral expression, news hacker board, day, soft lighting, insert shot, over-shoulder, 50mm lens, informative mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -1438,7 +3366,9 @@
         {
           "panel": 1,
           "shot": "Wide Shot",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:seiran-academy-campus",
           "visual": "星蘭学院のキャンパス。朝日の中を歩くソラ。",
           "dialogue": [
@@ -1453,12 +3383,45 @@
             "gh:angle": "eye level",
             "gh:lens": "35mm",
             "gh:aperture": "f/2.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "school uniform",
+            "walking",
+            "neutral expression",
+            "seiran academy campus",
+            "morning",
+            "soft sunlight",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "calm mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, school uniform, walking, neutral expression, seiran academy campus, morning, soft sunlight, wide shot, eye level, 35mm lens, calm mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
           "shot": "Medium Shot",
-          "characters": ["character:SoraAoyama", "character:Kaname"],
+          "characters": [
+            "character:SoraAoyama",
+            "character:Kaname"
+          ],
           "environment": "env:seiran-academy-campus",
           "visual": "ソラがKanameに会釈する。Kanameが軽く頷く。",
           "dialogue": [
@@ -1477,12 +3440,48 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "2characters",
+            "boy",
+            "Sora Aoyama",
+            "boy",
+            "Kaname",
+            "meeting",
+            "eye contact",
+            "neutral expression",
+            "seiran academy campus",
+            "day",
+            "natural light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "calm mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "2characters, boy, Sora Aoyama, boy, Kaname, meeting, eye contact, neutral expression, seiran academy campus, day, natural light, medium shot, eye level, 50mm lens, calm mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
           "shot": "Close-up",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:seiran-academy-campus",
           "visual": "ソラの表情。まだ完全ではないが、希望を取り戻した目。",
           "dialogue": [
@@ -1497,12 +3496,38 @@
             "gh:angle": "frontal",
             "gh:lens": "85mm prime",
             "gh:aperture": "f/1.2"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "Sora Aoyama",
+            "hopeful expression",
+            "close-up shot",
+            "frontal angle",
+            "85mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, Sora Aoyama, hopeful expression, close-up shot, frontal angle, 85mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
           "shot": "Wide Shot",
-          "characters": ["character:SoraAoyama"],
+          "characters": [
+            "character:SoraAoyama"
+          ],
           "environment": "env:seiran-academy-campus",
           "visual": "校舎へ向かうソラの後ろ姿。背中に貼り付いていた影が薄れていく。",
           "dialogue": [
@@ -1517,7 +3542,37 @@
             "gh:angle": "eye level",
             "gh:lens": "35mm",
             "gh:aperture": "f/2.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "teen girl",
+            "back_view",
+            "walking towards school",
+            "determined expression",
+            "seiran academy campus",
+            "daytime",
+            "natural lighting",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "neutral mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, teen girl, back_view, walking towards school, determined expression, seiran academy campus, daytime, natural lighting, wide shot, eye level, 35mm lens, neutral mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     },
@@ -1529,7 +3584,9 @@
         {
           "panel": 1,
           "shot": "Medium Shot",
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "environment": "env:seiran-student-council",
           "visual": "生徒会室の窓辺に立つKaname。夕日が差し込んでいる。",
           "dialogue": [
@@ -1544,12 +3601,43 @@
             "gh:angle": "eye level",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1girl",
+            "student council member",
+            "standing by window",
+            "thoughtful expression",
+            "student council room",
+            "evening",
+            "sunset light",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "contemplative mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, student council member, standing by window, thoughtful expression, student council room, evening, sunset light, medium shot, eye level, 50mm lens, contemplative mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 2,
           "shot": "Close-up",
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "environment": "env:seiran-student-council",
           "visual": "Kanameの目。いつもの冷たさに、何か新しいものが混じっている。",
           "dialogue": [
@@ -1564,12 +3652,43 @@
             "gh:angle": "frontal",
             "gh:lens": "85mm prime",
             "gh:aperture": "f/1.2"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "school uniform",
+            "close-up of eye",
+            "intense expression",
+            "seiran student council",
+            "dim light",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "serious mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, school uniform, close-up of eye, intense expression, seiran student council, dim light, close-up, frontal, 85mm lens, serious mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 3,
           "shot": "Wide Shot",
-          "characters": ["character:Kaname"],
+          "characters": [
+            "character:Kaname"
+          ],
           "environment": "env:street-day",
           "visual": "学校を出て歩き出すKaname。どこかへ向かっている。",
           "dialogue": [
@@ -1584,7 +3703,37 @@
             "gh:angle": "eye level",
             "gh:lens": "35mm",
             "gh:aperture": "f/2.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "1boy",
+            "character Kaname",
+            "school uniform",
+            "walking on street",
+            "determined expression",
+            "street",
+            "day",
+            "natural light",
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "hopeful mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, character Kaname, school uniform, walking on street, determined expression, street, day, natural light, wide shot, eye level, 35mm lens, hopeful mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         },
         {
           "panel": 4,
@@ -1608,7 +3757,33 @@
             "gh:angle": "frontal",
             "gh:lens": "50mm",
             "gh:aperture": "f/1.8"
-          }
+          },
+          "gh:sdxlTags": [
+            "intertitle",
+            "black background",
+            "white text",
+            "to be continued",
+            "medium shot",
+            "frontal angle",
+            "50mm lens",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "intertitle, black background, white text, to be continued, medium shot, frontal angle, 50mm lens, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025315
         }
       ]
     }
