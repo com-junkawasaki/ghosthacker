@@ -361,7 +361,7 @@
 			{#each STYLES as s}
 				<button
 					type="button"
-					onclick={() => style = s}
+					onclick={() => { style = s; onParamChange(); }}
 					class="rounded-full border px-3 py-1 text-[12px] {style === s ? 'border-purple-600 bg-purple-600 text-white' : 'border-zinc-200 bg-white text-zinc-700'}"
 				>{s}</button>
 			{/each}
