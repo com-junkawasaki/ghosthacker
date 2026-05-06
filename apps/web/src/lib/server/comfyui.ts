@@ -22,6 +22,16 @@ export interface SdxlImg2ImgRequest extends SdxlRequest {
 	denoise?: number;
 	scribbleImage?: Buffer;
 	scribbleStrength?: number;
+	faceReferenceImage?: Buffer;
+	faceReferenceWeight?: number;
+}
+
+export interface SdxlInpaintRequest extends SdxlRequest {
+	initImage: Buffer;
+	maskImage: Buffer;
+	denoise?: number;
+	faceReferenceImage?: Buffer;
+	faceReferenceWeight?: number;
 }
 
 export interface SdxlResult {
@@ -172,6 +182,7 @@ function buildImg2ImgWorkflow(
 		'4': { class_type: 'CheckpointLoaderSimple', inputs: { ckpt_name: req.checkpoint } },
 		'10': { class_type: 'LoadImage', inputs: { image: uploadedName } },
 		'11': { class_type: 'VAEEncode', inputs: { pixels: ['10', 0], vae: ['4', 2] } },
+		'5': { class_type: 'EmptyLatentImage', inputs: { width: req.width, height: req.height, batch_size: 1 } },
 		'6': { class_type: 'CLIPTextEncode', inputs: { text: req.positive, clip: clipRef } },
 		'7': { class_type: 'CLIPTextEncode', inputs: { text: req.negative, clip: clipRef } }
 	};
@@ -209,14 +220,18 @@ function buildImg2ImgWorkflow(
 		negativeCond = ['22', 1];
 	}
 
+	// With ControlNet active, start from empty latent for full T2I conditioned by scribble.
+	// Without ControlNet, use the encoded init image (img2img refinement).
+	const latentRef: [string, number] = useScribble ? ['5', 0] : ['11', 0];
+	const ksamplerDenoise = useScribble ? 1.0 : req.denoise;
 	wf['3'] = {
 		class_type: 'KSampler',
 		inputs: {
 			seed: req.seed, steps: req.steps, cfg: req.cfg,
 			sampler_name: req.sampler, scheduler: req.scheduler,
-			denoise: req.denoise,
+			denoise: ksamplerDenoise,
 			model: modelRef, positive: positiveCond, negative: negativeCond,
-			latent_image: ['11', 0]
+			latent_image: latentRef
 		}
 	};
 	wf['8'] = { class_type: 'VAEDecode', inputs: { samples: ['3', 0], vae: ['4', 2] } };
@@ -251,8 +266,8 @@ export async function generateSdxlImg2Img(req: SdxlImg2ImgRequest): Promise<Sdxl
 		checkpoint: req.checkpoint || defaultCheckpoint(),
 		width: req.width ?? 1024,
 		height: req.height ?? 1024,
-		steps: req.steps ?? (useLightning ? 6 : 20),
-		cfg: req.cfg ?? (useLightning ? 1.5 : 6),
+		steps: req.steps ?? (useLightning ? (useScribble ? 10 : 6) : 20),
+		cfg: req.cfg ?? (useLightning ? (useScribble ? 4 : 1.5) : 6),
 		sampler: req.sampler ?? (useLightning ? 'euler' : 'euler_ancestral'),
 		scheduler: req.scheduler ?? (useLightning ? 'sgm_uniform' : 'normal'),
 		denoise: effectiveDenoise,
@@ -260,7 +275,8 @@ export async function generateSdxlImg2Img(req: SdxlImg2ImgRequest): Promise<Sdxl
 		lightningLora: useLightning ? lightningLora : undefined,
 		scribbleControlnet: useScribble ? scribbleCn : undefined,
 		scribbleUploadedName,
-		scribbleStrength: req.scribbleStrength ?? Math.min(1.0, Math.max(0.3, baseDenoise + 0.2))
+		// AI Strength inverts to scribble adherence: high AI Strength = looser sketch following
+		scribbleStrength: req.scribbleStrength ?? Math.min(0.95, Math.max(0.4, 1.0 - (baseDenoise - 0.5) * 0.6))
 	};
 	const clientId = randomUUID();
 	const submitRes = await fetch(`${base}/prompt`, {

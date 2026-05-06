@@ -6,6 +6,36 @@ import { findEpisode, saveJsonLd } from '$lib/server/jsonld';
 import { generateSdxlImg2Img } from '$lib/server/comfyui';
 import { imagesDir, getActiveProject } from '$lib/server/state';
 
+// Tags in the stored SDXL prompt that confuse SDXL into generating manga pages
+// (collage of panels) instead of a single illustration. Replace with safer aesthetic words.
+const POSITIVE_REWRITES: Array<[RegExp, string]> = [
+	[/\bmanga panel\b/gi, 'anime illustration'],
+	[/\bmanga page\b/gi, 'anime illustration']
+];
+
+// Tags to drop when ControlNet handles composition — scribble defines framing,
+// these only fight against the user's actual sketch.
+const STRIP_WHEN_SCRIBBLE = [
+	/\b(wide|medium|close[-_ ]?up|extreme[-_ ]?wide|extreme[-_ ]?close[-_ ]?up|insert|establishing|long|full)[-_ ]?shot\b/gi,
+	/\b(high|low|eye[-_ ]?level|dutch|bird['s]*[-_ ]?eye|worm['s]*[-_ ]?eye|over[-_ ]?the[-_ ]?shoulder|flat)[-_ ]?angle\b/gi,
+	/\b\d+(\.\d+)?[-_ ]?mm[-_ ]?lens\b/gi,
+	/\b(dim|harsh|soft|dramatic|natural|warm|cool)[-_ ]?(light|lighting|streetlight)\b/gi,
+	/\b(oppressive|melancholy|melancholic|tense|cinematic)[-_ ]?(mood|atmosphere)?\b/gi
+];
+
+// AnimagineXL 4.0 quality boosters for proper anime illustration look
+const QUALITY_PREFIX = 'masterpiece, best quality, very aesthetic, anime illustration, ';
+
+const DEFAULT_NEGATIVE = [
+	'low quality', 'worst quality', 'normal quality', 'lowres', 'blurry',
+	'deformed', 'extra fingers', 'bad anatomy', 'malformed hands', 'bad proportions',
+	'watermark', 'signature', 'text overlay', 'logo', 'jpeg artifacts',
+	'multiple panels', 'comic page layout', 'tiled grid', 'collage', 'montage',
+	'multiple frames', 'split screen',
+	'photograph', 'photorealistic', '3d render', 'monochrome', 'grayscale',
+	'wings', 'nsfw'
+].join(', ');
+
 const STYLE_PRESETS: Record<string, { positive: string; negative?: string }> = {
 	default: { positive: '' },
 	none: { positive: '' },
@@ -73,8 +103,20 @@ export const POST: RequestHandler = async ({ request }) => {
 	const baseTags = Array.isArray(panel['gh:sdxlTags']) ? (panel['gh:sdxlTags'] as string[]).join(', ') : '';
 	const basePositive = (panel['gh:sdxlPrompt'] as string) || baseTags || '';
 	const styleAdd = STYLE_PRESETS[(style || 'default').toLowerCase()]?.positive ?? '';
-	const positive = [styleAdd, basePositive, extraPositive].filter(Boolean).join(', ');
-	const negative = Array.isArray(panel['gh:sdxlNegative']) ? (panel['gh:sdxlNegative'] as string[]).join(', ') : '';
+	let positive = [styleAdd, basePositive, extraPositive].filter(Boolean).join(', ');
+	for (const [pattern, replacement] of POSITIVE_REWRITES) positive = positive.replace(pattern, replacement);
+
+	// When user provides a scribble (ControlNet path), strip composition/lighting tags
+	// that compete with the sketch, and prepend AnimagineXL quality boosters.
+	const hasScribble = !!scribble;
+	if (hasScribble) {
+		for (const re of STRIP_WHEN_SCRIBBLE) positive = positive.replace(re, '');
+		positive = positive.replace(/,\s*,+/g, ',').replace(/^\s*,\s*|\s*,\s*$/g, '').trim();
+		positive = QUALITY_PREFIX + positive;
+	}
+
+	const panelNegative = Array.isArray(panel['gh:sdxlNegative']) ? (panel['gh:sdxlNegative'] as string[]).join(', ') : '';
+	const negative = [DEFAULT_NEGATIVE, panelNegative].filter(Boolean).join(', ');
 
 	const initImage = decodeBase64Png(image);
 	const scribbleImage = scribble ? decodeBase64Png(scribble) : undefined;

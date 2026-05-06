@@ -6,6 +6,19 @@ import { findEpisode, saveJsonLd } from '$lib/server/jsonld';
 import { generateSdxl } from '$lib/server/comfyui';
 import { imagesDir, getActiveProject } from '$lib/server/state';
 
+const POSITIVE_REWRITES: Array<[RegExp, string]> = [
+	[/\bmanga panel\b/gi, 'anime illustration, single character focus'],
+	[/\bmanga page\b/gi, 'anime illustration, single character focus']
+];
+const DEFAULT_NEGATIVE = [
+	'low quality', 'worst quality', 'normal quality', 'blurry',
+	'deformed', 'extra fingers', 'bad anatomy', 'malformed hands',
+	'watermark', 'signature', 'text overlay', 'logo',
+	'multiple panels', 'comic page layout', 'tiled grid', 'collage', 'montage',
+	'multiple frames', 'split screen',
+	'wings', 'nsfw'
+].join(', ');
+
 function safeFilename(panel: any, version: number): string {
 	const id = String(panel['@id'] || `p${panel.panel ?? '?'}`).replace(/[^a-zA-Z0-9_-]+/g, '_');
 	return `${id}_sdxl_v${version}.png`;
@@ -49,12 +62,13 @@ export const POST: RequestHandler = async ({ request }) => {
 	});
 	if (!panel) throw error(404, `Panel ${panelIndex} not found on page ${pageNumber}`);
 
-	const positive = overrides?.positive
+	let positive = overrides?.positive
 		?? panel['gh:sdxlPrompt']
 		?? (Array.isArray(panel['gh:sdxlTags']) ? panel['gh:sdxlTags'].join(', ') : '');
-	const negative = overrides?.negative
-		?? (Array.isArray(panel['gh:sdxlNegative']) ? panel['gh:sdxlNegative'].join(', ') : '');
 	if (!positive) throw error(400, 'Panel has no SDXL prompt or tags. Run the tag generator first.');
+	for (const [pattern, replacement] of POSITIVE_REWRITES) positive = positive.replace(pattern, replacement);
+	const panelNegative = Array.isArray(panel['gh:sdxlNegative']) ? panel['gh:sdxlNegative'].join(', ') : '';
+	const negative = overrides?.negative ?? [DEFAULT_NEGATIVE, panelNegative].filter(Boolean).join(', ');
 
 	const result = await generateSdxl({
 		positive,
