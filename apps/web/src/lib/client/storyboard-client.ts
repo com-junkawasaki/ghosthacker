@@ -62,26 +62,26 @@ export function streamUpdates(
 	return () => {};
 }
 
+export async function listGenerationJobs() {
+	return { jobs: [] as unknown[] };
+}
+
 export async function generatePanelDialogue(
 	_filePath: string, _episodeId: string, _pageNumber: number, _panel: number,
-	_panelData: unknown, _opts: unknown
-): Promise<{ success: boolean; message?: string; dialogue?: any[] }> {
-	return { success: false, message: 'Not migrated' };
+	_panelData: unknown, _opts?: { maxLines?: number; style?: string; strictKnownFacts?: boolean }
+) {
+	return { success: false, message: 'Not migrated', dialogues: [] as unknown[] };
 }
 
 export async function submitGenerationJob(
 	_filePath: string, _episodeId: string, _pageNumber: number, _panel: number,
-	_panelData: unknown, _model: string
-): Promise<{ success: boolean; message?: string; jobId?: string }> {
-	return { success: false, message: 'Not migrated', jobId: '' };
+	_panelData: unknown, _model?: string
+) {
+	return { jobId: '', success: false };
 }
 
-export async function cancelGenerationJob(_jobId: string): Promise<{ success: boolean }> {
+export async function cancelGenerationJob(_jobId: string) {
 	return { success: false };
-}
-
-export async function listGenerationJobs(): Promise<{ jobs: any[] }> {
-	return { jobs: [] };
 }
 
 export async function generateSdxlImage(

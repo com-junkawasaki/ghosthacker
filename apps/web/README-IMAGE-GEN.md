@@ -1,289 +1,295 @@
-# SDXL Image Generation Pipeline
+# Image Generation Pipeline
 
-SvelteKit → ComfyUI (RunPod) で動く storyboard panel image-gen 機構。
-AnimagineXL 4.0 + ControlNet Scribble + IP-Adapter Face で
-Anifusion ライクな realtime sketch + AI illustration を実現する。
-
-## アーキテクチャ
+Storyboard panel image generation with multiple engines and editing flows.
 
 ```
-Svelte UI (SketchCanvas)
-   │  ペン線 + 設定
+SvelteKit (browser)
+   │
    ▼
-SvelteKit /api/panels/sdxl-sketch
-   │  panel JSONLD から tags / 文脈読み込み
-   │  キャラリファレンスを ipa-face 用に crop / 添付
-   ▼
-ComfyUI HTTP API (RunPod proxy)
-   │  workflow JSON (img2img + ControlNet + IPAdapter stack)
-   ▼
-NVIDIA RTX 6000 Ada Generation (48 GB VRAM)
-   │  AnimagineXL 4.0 SDXL inference
-   ▼
-PNG returned → SvelteKit保存 → /api/images/* で配信 → Canvas overlay
+SvelteKit /api/panels/* routes
+   │
+   ├─ engine='openai' ──► OpenAI gpt-image-2 (→ gpt-image-1 fallback)
+   │
+   └─ engine='sdxl'  ──► ComfyUI HTTP (RunPod)
+                         │
+                         ▼
+                    NVIDIA RTX 6000 Ada (48 GB)
+                    9 anime SDXL checkpoints
+                    + IP-Adapter Plus Face / Plus
+                    + ControlNet Scribble SDXL
+                    + Lightning 4-step LoRA
+                    + (YOLOv8 person/face detector, unused)
 ```
 
-## RunPod セットアップ
+**Default engine = OpenAI gpt-image** (cloud, manga-style, ~$0.04/image).
+**SDXL** (free, faster, scribble + character-ref aware) is opt-in per panel.
 
-### 接続情報
+## Engines
 
-| 用途 | 値 |
+### OpenAI gpt-image (default)
+- Model: `gpt-image-2` requested first, falls back to `gpt-image-1` on `403` (organization not yet verified).
+- Single-pass cloud generation — no scribble / IPA / ControlNet, just prompt → image.
+- Used for: `Generate Image` button, default `Sketch AI` overlay engine, `Edit Image` modal.
+- Strips SDXL-specific scaffolding (`masterpiece, high score, …`, `solo`, Danbooru `1boy/1girl`) before sending.
+
+### SDXL (ComfyUI on RunPod)
+- 9 checkpoints installed on the pod (see Checkpoint Catalog below).
+- Per-checkpoint optimal config: steps / CFG / sampler / scheduler / Pony score tags / V-prediction handling — see `apps/web/src/lib/server/checkpoint-config.ts`.
+- Optional layers: ControlNet Scribble, IP-Adapter Plus Face (character consistency), Lightning LoRA (4-step fast preview), Canny preprocessor, refine pass.
+
+## RunPod setup
+
+| | |
 |---|---|
 | ComfyUI HTTP API | `https://vyp99t9px7h4dl-8188.proxy.runpod.net` |
 | Web terminal | `https://vyp99t9px7h4dl-19123.proxy.runpod.net/<secret>` |
-| SSH (operator only) | `ssh -tt -i ~/.ssh/id_ed25519 vyp99t9px7h4dl-64410aaa@ssh.runpod.io` |
-| ComfyUI 設置場所 | `/workspace/runpod-slim/ComfyUI` |
+| SSH | `ssh -tt -i ~/.ssh/id_ed25519 vyp99t9px7h4dl-64410aaa@ssh.runpod.io` |
+| ComfyUI install | `/workspace/runpod-slim/ComfyUI` |
+| Network volume | `comfyui-gftd-6000ada` (250 GB, extended via REST API) |
 
-### モデル / LoRA / ControlNet (pod 上)
+### Resizing the volume (if you hit `Disk quota exceeded`)
+```sh
+curl -X PATCH https://rest.runpod.io/v1/networkvolumes/p9riuzhrvf \
+  -H "Authorization: Bearer $RUNPOD_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"size":250}'
+```
+
+### Checkpoint catalog (`models/checkpoints/`)
+
+| File | Family | Steps | CFG | Sampler | Scheduler | Notes |
+|---|---|---|---|---|---|---|
+| `animagine-xl-4.0.safetensors` | animagine | 28 | 5 | euler_ancestral | karras | Default, latest Animagine |
+| `animagine-xl-3.1.safetensors` | animagine | 28 | 5 | euler_ancestral | karras | FP16 (1.7 GB), classic look |
+| `aamXL_AnyMix_v10.safetensors` | sdxl | 25 | 6 | dpmpp_2m | karras | Generic anime mix |
+| `BAXL_v3.safetensors` | animagine | 28 | 6 | euler_ancestral | karras | Blue Archive flat-cel style |
+| `hassakuXL_Illustrious_v34.safetensors` | illustrious | 28 | 5 | euler_ancestral | normal | Illustrious base |
+| `manmaruMixNoob.safetensors` | illustrious | 28 | 5 | euler_ancestral | normal | NoobAI/Illustrious mix |
+| `eponaMix_v3.safetensors` | pony | 25 | 7 | dpmpp_2m_sde | karras | **Pony**: auto-prepends `score_9, score_8_up, score_7_up, source_anime` to positive |
+| `anythingXL.safetensors` | sdxl | 25 | 6 | euler_ancestral | karras | "Anything XL" fork |
+| `noobaiXL_Vpred10.safetensors` | illustrious | 28 | 5 | euler_ancestral | normal | **V-prediction**: workflow auto-injects `ModelSamplingDiscrete(v_prediction)` |
+| `waiREALCN_v150.safetensors` | sdxl | – | – | – | – | Semi-real (legacy, not used in anime pipeline) |
+
+### Other models on pod
 
 ```
-models/checkpoints/
-  animagine-xl-4.0.safetensors         (6.5 GB, default)
-  animagine-xl-3.1.safetensors         (1.7 GB FP16, classic anime)
-  waiREALCN_v150.safetensors           (semi-real)
-
 models/loras/
-  sdxl_lightning_4step_lora.safetensors  (Lightning 4-step, 376 MB)
+  sdxl_lightning_4step_lora.safetensors          (4-step Lightning, 376 MB)
 
 models/controlnet/
-  controlnet-scribble-sdxl-1.0.safetensors  (scribble→composition, 2.4 GB)
+  controlnet-scribble-sdxl-1.0.safetensors        (xinsir scribble, 2.4 GB)
 
 models/ipadapter/
-  ip-adapter-plus-face_sdxl_vit-h.safetensors  (face conditioning, 860 MB)
-  ip-adapter-plus_sdxl_vit-h.safetensors       (general/style, 860 MB)
+  ip-adapter-plus-face_sdxl_vit-h.safetensors     (face conditioning, 860 MB)
+  ip-adapter-plus_sdxl_vit-h.safetensors          (general/style, 860 MB)
 
 models/clip_vision/
-  CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors  (image encoder, 3.4 GB)
+  CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors     (encoder for IP-Adapter, 3.4 GB)
 
-models/ultralytics/bbox/face_yolov8m.pt        (50 MB, 未使用)
-models/ultralytics/segm/person_yolov8m-seg.pt  (53 MB, 未使用)
+models/ultralytics/
+  bbox/face_yolov8m.pt                            (50 MB, currently unused)
+  segm/person_yolov8m-seg.pt                      (53 MB, currently unused)
 
 custom_nodes/
-  ComfyUI_IPAdapter_plus       (IP-Adapter ノード一式)
-  ComfyUI-Impact-Pack          (YOLO detection 等、未使用)
+  ComfyUI_IPAdapter_plus
+  ComfyUI-Impact-Pack
   ComfyUI-Manager
   ComfyUI-RunpodDirect
 ```
 
-### env vars (`.envrc`)
+## Environment (`.envrc`)
 
 ```sh
+# RunPod ComfyUI proxy
 export SDXL_POD_URL=https://vyp99t9px7h4dl-8188.proxy.runpod.net
 export SDXL_DEFAULT_CHECKPOINT=animagine-xl-4.0.safetensors
+
+# Add-ons (auto-detected, optional)
 export SDXL_LIGHTNING_LORA=sdxl_lightning_4step_lora.safetensors
 export SDXL_SCRIBBLE_CONTROLNET=controlnet-scribble-sdxl-1.0.safetensors
 
-# OpenAI (SDXL タグ自動生成用、 Anthropic でなく OpenAI gpt-4o-mini を使用)
+# OpenAI image generation (default engine)
 export OPENAI_API_KEY=...
+export OPENAI_IMAGE_MODEL=gpt-image-2     # falls back to gpt-image-1 on 403
+
+# Civitai (for one-shot model downloads)
+export CIVITAI_TOKEN=...
+
+# RunPod REST API (volume resize, pod info)
+export RUNPOD_API_KEY=rpa_...
+
+# OpenRouter (for SDXL tag generation script)
+export OPENROUTER_APIKEY=...      # currently broken — script falls back to OpenAI
 ```
 
-## API エンドポイント
+## API endpoints
 
-### `POST /api/panels/sdxl-sketch` — リアルタイムスケッチ + AI
-
-**リクエスト**:
-```json
+### `POST /api/panels/sdxl-sketch` — main sketch / generate
+Body:
+```ts
 {
-  "episodeId": "episode:arc0-1-origin",
-  "pageNumber": 0,
-  "panelIndex": 1,
-  "image": "data:image/png;base64,...",        // 統合キャンバス (bg + 線)
-  "scribble": "data:image/png;base64,...",     // 線のみ (任意; ControlNet 入力)
-  "aiStrength": 70,                              // 10-95、denoise / scribble strength の元
-  "style": "Default" | "Lineart" | "Watercolor" | "Anime" | ...,
-  "extraPositive": "additional tags",            // 任意
-  "checkpoint": "animagine-xl-4.0.safetensors",  // 任意
-  "preprocessScribble": "canny" | "lineart" | "scribble" | false, // default canny
-  "persist": false,                              // false=preview bytes / true=save to JSONLD
-  "seed": 12345                                  // 任意
+  episodeId, pageNumber, panelIndex,
+  image: string,                    // base64 PNG (data URL or raw)
+  scribble?: string,                // separate strokes-only PNG (SDXL only)
+  engine?: 'openai' | 'sdxl',       // default 'openai'
+  aiStrength?: number,              // 10-95 (SDXL only); maps to denoise + scribble strength
+  style?: string,                   // 'Default' | 'Lineart' | 'Watercolor' | ... (SDXL style preset)
+  extraPositive?: string,
+  checkpoint?: string,              // SDXL only; defaults to env SDXL_DEFAULT_CHECKPOINT
+  preprocessScribble?: 'canny'|'lineart'|'scribble'|false,  // default 'canny'
+  refine?: boolean,                 // SDXL polish pass (low denoise + 30 steps)
+  refineDenoise?: number,           // 0.2-0.6
+  refineSteps?: number,
+  persist?: boolean,                // false = preview bytes; true = save to JSONLD
+  seed?: number
 }
 ```
 
-**レスポンス** (`persist=false`): 生 PNG バイト
-**レスポンス** (`persist=true`): `{ success, imageUrl, seed, durationMs, index }`
+#### Engine routing
+- `engine: 'openai'` → strip SDXL scaffolding → call OpenAI image generation → return PNG.
+- `engine: 'sdxl'` → ComfyUI img2img with optional ControlNet (scribble) + IP-Adapter Plus Face (character refs) + Lightning LoRA + per-checkpoint config.
 
-#### キャラ自動拡張
-パネルの `gh:characters` を読み、`260123-jump/resources/characters/<Name>/reference.png` を IP-Adapter に注入:
+#### Auto character handling (SDXL only)
+Reads `gh:characters` on the panel, loads `260123-jump/resources/characters/<Name>/reference.png` (auto-cropped to face square via `mask.ts:cropFaceRegion`, cached as `reference_face.png`):
+- 1 character → `IPAdapterAdvanced(face)` weight 0.7
+- 2-5 characters → chained `IPAdapterAdvanced` per ref, weight `0.55/√N`
 
-| 人数 | 動作 |
-|---|---|
-| 0 | プロンプトのみ |
-| 1 | `IPAdapterAdvanced(face)` 1段、weight 0.7 |
-| 2-5 | `IPAdapterAdvanced(face)` を chain で stack、weight `0.55/√N` |
+### `POST /api/panels/sdxl-generate` — pure SDXL text2img
+Plain `tags → 1024 image` via AnimagineXL native sampler (no scribble / no IPA). Used by the `AnimagineXL 4.0 (Local SDXL)` option in the panel dropdown.
 
-各リファレンスは初回ロード時に `cropFaceRegion(ratio=0.42)` で頭/肩部分のみに crop され、`reference_face.png` としてキャッシュされる。
+### `POST /api/panels/sdxl-compare` — checkpoint comparison
+Body: `{ episodeId, pageNumber, panelIndex, image, scribble?, aiStrength, checkpoints: string[] }`
+Sequentially generates the same panel through every checkpoint with each one's optimal config (per `checkpoint-config.ts`). External engines (`openai/gpt-image-1`) supported via the `/` prefix. Returns `{ results: [{ checkpoint, imageBase64, durationMs, error? }] }`.
 
-### `POST /api/panels/sdxl-generate` — 純 text2img (sketch なし)
+### `POST /api/panels/edit-image` — OpenAI image-edit
+Body: `{ episodeId, pageNumber, panelIndex, prompt, sourceImage?, sourceVersionIndex?, persist }`
+Loads the panel's current image (or `sourceVersionIndex` from `gh:generatedImages`, or inline `sourceImage` base64), sends to `https://api.openai.com/v1/images/edits` with the natural-language `prompt`, returns edited PNG. Same gpt-image-2 → gpt-image-1 fallback.
 
-パネルのタグから直接 1024x1024 を生成。AnimagineXL 4.0 native quality tag (`masterpiece, high score, great score, absurdres`) を末尾に付加し、anti-collage negatives を強制。
+### `POST /api/characters/generate-reference` — character portrait
+Generates `reference.png` for a character from `profile.jsonld` using AnimagineXL.
 
-### `POST /api/characters/generate-reference` — キャラクター参照画像生成
+### `GET /api/images/[...path]` — image serving
+Serves files under `<project>/resources/images/`.
 
-```json
-{ "character": "Yuto", "force": false, "seed": 12345 }
+## UI
+
+### Panel actions (`StoryboardPanel.svelte`)
+- **Generate Image** — uses the dropdown's selected engine (default: OpenAI gpt-image)
+- **Sketch AI** — opens the SketchCanvas overlay
+- **Edit Image** — text-prompt edit modal (left = source, right = preview, OpenAI)
+- **Dialogue AI / Quick Dialogue / Edit Panel** — existing flows
+
+Engine dropdown options:
+- `OpenAI gpt-image (cloud, default)` — default
+- `AnimagineXL 4.0 (Local SDXL)`
+- `SeedReam 4.5 (API)` — stub
+
+### SketchCanvas (`SketchCanvas.svelte`)
+- Engine selector at top — `OpenAI` or `SDXL`
+- AI Strength slider (SDXL only) + Overlay opacity
+- Brush / eraser / undo / clear / color picker / size
+- Style chips (SDXL): Default / None / Lineart / Watercolor / Oil painting / Anime / 3D render / Photoreal / Pencil sketch
+- Tag chips with × delete
+- Floating buttons on canvas:
+  - **Refine** — polish pass (30 steps, low denoise, ~30 s)
+  - **Compare** — runs all 9 SDXL checkpoints + OpenAI in a 3-column grid
+  - **Bake** — flatten preview into base, clear strokes
+- Auto-regenerate after each stroke (debounced 400 ms)
+- Save as new version → automatic refine pass before persisting
+
+### Compare modal
+3-column grid, each tile shows:
+- Image (click → set as new preview)
+- Top overlay: short label (`Animagine XL`, `Hassaku XL`, etc.)
+- Bottom overlay: full filename + duration
+
+External engines (`openai/gpt-image-1`) included as additional tiles.
+
+## Per-checkpoint configuration
+
+`apps/web/src/lib/server/checkpoint-config.ts` table:
+
+```ts
+{
+  steps, cfg, sampler, scheduler,
+  positivePrefix?,    // Pony score tags etc.
+  negativeAppend?,
+  isVpred?,           // adds ModelSamplingDiscrete(v_prediction)
+  family: 'animagine' | 'illustrious' | 'pony' | 'sdxl'
+}
 ```
 
-`260123-jump/resources/characters/<Name>/profile.jsonld` から AnimagineXL 用プロンプトを構築 → 768x1024 anime ポートレート生成 → `reference.png` 保存。
+Each generation pulls these defaults unless the request overrides. Compare runs use them automatically per tile.
 
-### `GET /api/characters/generate-reference` — キャラ一覧 + 状態
+## Bulk scripts
 
-各キャラの `hasProfile` / `hasAvatar` / `hasReference` を返す。
-
-### `GET /api/panels/move`, `GET /api/panels/update` 等
-
-storyboard data の CRUD (既存)。
-
-## ワークフロー詳細
-
-### img2img + ControlNet + IPA stack (sketch endpoint)
-
-```
-CheckpointLoaderSimple
-    ├─ MODEL ──→ [LoraLoader (Lightning, optional)] ──→
-    │             ├─ MODEL ──→ IPAdapterUnifiedLoader (PLUS FACE)
-    │             │                 ├─ MODEL ──→ IPAdapterAdvanced (ref1)
-    │             │                 │              └─ ... chain N times
-    │             │                 │              ──→ MODEL → KSampler
-    │             │                 └─ IPADAPTER ──┘
-    │             └─ CLIP ──→ CLIPTextEncode (positive/negative)
-    │                                  └─ CONDITIONING → ControlNetApplyAdvanced
-    ├─ VAE   ──→ VAEEncode (init image)
-    │             └─ LATENT ──→ KSampler (img2img path)
-    │             OR
-    │             EmptyLatentImage ──→ KSampler (T2I + CN path)
-    └─ ──→ ControlNetLoader (scribble) → ControlNetApplyAdvanced
-              └─ image: Canny preprocessor (デフォルト)
-                            ↑ LoadImage(scribble PNG)
-
-KSampler ──→ VAEDecode ──→ SaveImage
-```
-
-### Sampler / Steps 設定
-
-| モード | sampler | scheduler | steps | cfg | denoise |
-|---|---|---|---|---|---|
-| Lightning + ControlNet | euler | sgm_uniform | 10 | 4 | 1.0 |
-| Lightning + img2img | euler | sgm_uniform | 6 | 1.5 | aiStrength/100 |
-| Standard + ControlNet | euler_ancestral | karras | 26 | 6 | 1.0 |
-| Standard + img2img | euler_ancestral | karras | 25 | 7 | aiStrength/100 |
-
-Sketch endpoint は default で `disableLightning: true` (Standard モード) — Anifusion 同等の品質を優先。
-
-### Quality / Negative プロンプト整形
-
-- `manga panel` / `manga page` → `solo` (Danbooru) に rewrite (page-collage 防止)
-- ControlNet active 時は composition tag (`wide shot`, `high angle`, `24mm lens`, `dim streetlight`, `oppressive mood` 等) を strip
-- AnimagineXL 4.0 native quality suffix: `masterpiece, high score, great score, absurdres` を末尾に追加
-- Default negative (anti-collage 含む):
-  ```
-  lowres, worst quality, low quality, normal quality, bad anatomy, bad hands,
-  4koma, comic, greyscale, monochrome, watermark, signature, jpeg artifacts, logo,
-  multiple panels, comic page layout, tiled grid, collage, montage,
-  multiple frames, split screen, photograph, photorealistic, 3d render, wings, nsfw
-  ```
-
-### Scribble strength
-
-ユーザーの線が結果に literal に出ないよう調整:
-```
-baseScribbleStrength = 0.45
-scribbleStrength     = baseScribbleStrength × 0.6 if IPA active else 0.45
-```
-
-## 一括生成スクリプト
-
-### SDXL タグ自動生成
 ```sh
+# Generate SDXL tags for every panel in 260123-jump (idempotent, ~5 min, ~$0.40 via gpt-4o-mini)
 node apps/web/scripts/generate-sdxl-tags.mjs [--force] [--limit N] [--episode <id>]
-```
-全パネルから `gh:sdxlTags`, `gh:sdxlNegative`, `gh:sdxlPrompt` を生成し JSONLD に保存。
-初回実行 (260123-jump): 18 episodes × 平均 87 panels = 1560 panels, OpenAI gpt-4o-mini で約 5 分、$0.40 程度。
 
-### キャラリファレンス生成
-```sh
+# Generate AnimagineXL anime portraits for top-N characters (auto cache as reference.png)
 node apps/web/scripts/generate-character-references.mjs [--force] [--top N] [--only Yuto,Nei]
 ```
-出現頻度上位 N キャラの reference.png を生成。Top 15 で約 2 分。
 
-## ファイル構成
+## Troubleshooting
 
-```
-apps/web/
-├── src/
-│   ├── lib/
-│   │   ├── server/
-│   │   │   ├── comfyui.ts          # ComfyUI HTTP client + workflow builders
-│   │   │   ├── jsonld.ts           # storyboard JSONLD load/save + extract
-│   │   │   ├── state.ts            # active project / paths
-│   │   │   └── mask.ts             # 領域マスク + face crop (pngjs)
-│   │   ├── client/
-│   │   │   └── storyboard-client.ts  # browser → /api/* 呼出
-│   │   └── types/storyboard.ts
-│   ├── routes/
-│   │   ├── api/
-│   │   │   ├── panels/
-│   │   │   │   ├── sdxl-sketch/+server.ts    # メイン sketch + AI
-│   │   │   │   ├── sdxl-generate/+server.ts  # text2img
-│   │   │   │   ├── update/+server.ts
-│   │   │   │   └── move/+server.ts
-│   │   │   ├── characters/generate-reference/+server.ts
-│   │   │   ├── images/[...path]/+server.ts   # 画像配信
-│   │   │   ├── projects/                     # プロジェクト切替
-│   │   │   ├── episodes/                     # episode list, panels
-│   │   │   ├── arcs/
-│   │   │   └── storyboard/+server.ts         # 集約 JSONLD
-│   │   └── [...path]/+page.svelte
-│   └── components/Storyboard/
-│       ├── SketchCanvas.svelte     # ペンキャンバス + AI overlay UI
-│       ├── StoryboardPanel.svelte  # パネル表示 + Actions menu
-│       └── StoryboardEditor.svelte
-└── scripts/
-    ├── generate-sdxl-tags.mjs
-    └── generate-character-references.mjs
-```
+### `Disk quota exceeded` on the pod
+- Symptom: ComfyUI `/upload/image` returns 500, `OSError: [Errno 122]`.
+- Fix: extend the network volume via the REST API (see top), then verify with a `dd` write test from SSH.
 
-## トラブルシューティング
-
-### ComfyUI が立ち上がらない / 応答しない
-- 症状: HTTP 502 / タイムアウト
-- 原因 1: 起動中。 ComfyUI Manager の registry sync 完了まで 60-90 秒かかる
-- 原因 2: 重い custom node (例: `comfyui_controlnet_aux` の mediapipe import) が起動を block
-- 対策:
+### ComfyUI hung / proxy timing out
+- Symptom: `localhost:8188/system_stats` from inside pod returns 200 but the proxy URL times out, or both hang.
+- Fix:
   ```sh
-  # SSH login 後
   pkill -9 -f "python.*main.py"
   sleep 5
   cd /workspace/runpod-slim/ComfyUI
   nohup /usr/bin/python3 main.py --listen 0.0.0.0 --port 8188 --enable-cors-header > /tmp/comfy.log 2>&1 &
-  disown
-  tail -f /tmp/comfy.log
   ```
+  Wait 60-90 s for ComfyUI Manager registry sync, then poll `system_stats` until 200.
 
-### RunPod proxy がタイムアウト (内部は OK)
-- 症状: pod 内 `localhost:8188` は HTTP 200 だが proxy URL が 000/502
-- 原因: ComfyUI 再起動で RunPod proxy のコネクションが切れた
-- 対策: 数回 `curl https://...proxy.runpod.net/system_stats` を叩いて wake-up。1-2 分で復活する事が多い
+### `gpt-image-2` returns 403
+- Cause: organization not yet verified at OpenAI.
+- Fix: visit https://platform.openai.com/settings/organization/general → Verify Organization. Wait 15-60 min.
+- Until verified, all OpenAI generations fall back to `gpt-image-1` (logs `[openai] gpt-image-2 unavailable (403). Falling back to gpt-image-1.`).
 
-### Lightning LoRA の効果が見えない
-- env `SDXL_LIGHTNING_LORA` 設定済か確認
-- pod 上で `models/loras/sdxl_lightning_4step_lora.safetensors` 存在を確認
-- sketch endpoint は `disableLightning: true` を default で送るため、品質優先で Lightning は使われない仕様
+### Civitai partial downloads
+- Civitai sometimes truncates large checkpoint downloads at 1-3 GB.
+- Use `curl -L -f -C - --connect-timeout 30 --max-time 1800` and **download serially** (parallel downloads saturate the pod's bandwidth).
+- Wrap in a retry loop checking final size > 6000 MB.
 
-### IP-Adapter で character がキメラ化する (multi-char)
-- 既知制約: combined embeds は features を blend する → ハイブリッドキャラが出る
-- 対策候補:
-  - YOLO bbox 検出 → 領域別に inpaint (Impact-Pack + face_yolov8m が pod 上に揃っている)
-  - regional prompting (ConditioningSetArea) で文字通り左右に分割
-  - キャラ毎に LoRA を訓練し、prompt で `<lora:yuto:1>` 指定
+### Multi-character "chimera" output
+- IP-Adapter `combined embeds` blends features. `Yuto + Akira` may produce a hybrid face.
+- Mitigation paths (not yet implemented): YOLOv8 face detection (`face_yolov8m.pt` is on the pod) → per-bbox inpaint with each character ref. Or train per-character LoRAs.
 
-### 生成画像が manga page collage になる
-- 既に default で `manga panel` → `solo` に rewrite しているはず
-- それでも出る場合: negative に `multiple panels, tiled grid, collage` 等を強化
+## File structure
 
-## 既知の限界 / TODO
-
-- multi-character の正確な空間配置 (現在は features blend)
-- ControlNet Aux preprocessors (HED scribble / lineart) は ComfyUI 起動を hang させたため未導入
-- realtime (~1.5 s/regen) は Lightning ON 時のみ可能 — 品質と引き換え
-- 自動トレーニング pipeline (キャラ LoRA, project style LoRA) は未実装
-- 画像生成中は SketchCanvas が "generating" バッジ以外 UI 全体は使える状態だが、複数 panel 同時生成は GPU で直列化される
+```
+apps/web/
+├── src/
+│   ├── lib/server/
+│   │   ├── comfyui.ts                  # ComfyUI HTTP client + workflow builders
+│   │   ├── checkpoint-config.ts        # per-model defaults (steps, sampler, Pony tags, Vpred)
+│   │   ├── external-image-gen.ts       # OpenAI gpt-image generate + edit adapters
+│   │   ├── jsonld.ts                   # storyboard JSONLD I/O + extract
+│   │   ├── state.ts                    # active project / paths
+│   │   └── mask.ts                     # region masks + face crop (pngjs)
+│   ├── lib/client/storyboard-client.ts
+│   ├── routes/api/
+│   │   ├── panels/
+│   │   │   ├── sdxl-sketch/+server.ts        # main sketch + AI (engine routing)
+│   │   │   ├── sdxl-generate/+server.ts      # pure SDXL text2img
+│   │   │   ├── sdxl-compare/+server.ts       # multi-checkpoint comparison
+│   │   │   ├── edit-image/+server.ts         # OpenAI image-edit
+│   │   │   ├── update/+server.ts
+│   │   │   └── move/+server.ts
+│   │   ├── characters/generate-reference/+server.ts
+│   │   ├── images/[...path]/+server.ts
+│   │   ├── projects/, episodes/, arcs/, storyboard/
+│   └── components/Storyboard/
+│       ├── SketchCanvas.svelte         # canvas + AI overlay + Compare grid
+│       └── StoryboardPanel.svelte      # panel UI + Edit Image modal
+└── scripts/
+    ├── generate-sdxl-tags.mjs
+    └── generate-character-references.mjs
+```
