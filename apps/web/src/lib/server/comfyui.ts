@@ -3,6 +3,7 @@
  * and returns the resulting PNG bytes.
  */
 import { randomUUID } from 'node:crypto';
+import { getCheckpointConfig } from './checkpoint-config';
 
 export interface SdxlRequest {
 	positive: string;
@@ -25,6 +26,8 @@ export interface SdxlImg2ImgRequest extends SdxlRequest {
 	faceReferenceImage?: Buffer;
 	faceReferenceImages?: Buffer[];
 	faceReferenceWeight?: number;
+	disableLightning?: boolean;
+	preprocessScribble?: 'scribble' | 'lineart' | 'canny' | false;
 }
 
 export interface SdxlInpaintRequest extends SdxlRequest {
@@ -178,7 +181,7 @@ async function uploadImage(bytes: Buffer, name = `gh_init_${Date.now()}.png`): P
 
 function buildImg2ImgWorkflow(
 	uploadedName: string,
-	req: Required<Omit<SdxlImg2ImgRequest, 'seed' | 'initImage' | 'scribbleImage' | 'scribbleStrength' | 'faceReferenceImage' | 'faceReferenceImages' | 'faceReferenceWeight'>> & {
+	req: Required<Omit<SdxlImg2ImgRequest, 'seed' | 'initImage' | 'scribbleImage' | 'scribbleStrength' | 'faceReferenceImage' | 'faceReferenceImages' | 'faceReferenceWeight' | 'disableLightning'>> & {
 		seed: number;
 		lightningLora?: string;
 		scribbleControlnet?: string;
@@ -186,6 +189,8 @@ function buildImg2ImgWorkflow(
 		scribbleStrength?: number;
 		faceReferenceUploadedNames?: string[];
 		faceReferenceWeight?: number;
+		preprocessScribble?: 'scribble' | 'lineart' | 'canny' | false;
+		isVpred?: boolean;
 	}
 ): Record<string, unknown> {
 	const useLightning = !!req.lightningLora;
@@ -194,6 +199,7 @@ function buildImg2ImgWorkflow(
 	const useFaceIPA = faceRefs.length > 0;
 	let modelRef: [string, number] = useLightning ? ['12', 0] : ['4', 0];
 	const clipRef: [string, number] = useLightning ? ['12', 1] : ['4', 1];
+
 
 	let positiveCond: [string, number] = ['6', 0];
 	let negativeCond: [string, number] = ['7', 0];
@@ -220,9 +226,37 @@ function buildImg2ImgWorkflow(
 		};
 	}
 
+	// V-prediction models (NoobAI Vpred) need ModelSamplingDiscrete = v_prediction
+	// inserted between the model loader (or LoRA) and downstream nodes.
+	if (req.isVpred) {
+		wf['50'] = {
+			class_type: 'ModelSamplingDiscrete',
+			inputs: { model: modelRef, sampling: 'v_prediction', zsnr: false }
+		};
+		modelRef = ['50', 0];
+	}
+
 	if (useScribble) {
 		wf['20'] = { class_type: 'ControlNetLoader', inputs: { control_net_name: req.scribbleControlnet } };
 		wf['21'] = { class_type: 'LoadImage', inputs: { image: req.scribbleUploadedName } };
+		// Pre-process the raw user scribble. Built-in `Canny` works without extra installs;
+		// `lineart`/`scribble` need ComfyUI ControlNet Aux.
+		const cnImageRef: [string, number] = req.preprocessScribble
+			? (() => {
+				if (req.preprocessScribble === 'canny') {
+					wf['23'] = {
+						class_type: 'Canny',
+						inputs: { image: ['21', 0], low_threshold: 0.1, high_threshold: 0.3 }
+					};
+				} else {
+					wf['23'] = {
+						class_type: req.preprocessScribble === 'lineart' ? 'LineArtPreprocessor' : 'ScribblePreprocessor',
+						inputs: { image: ['21', 0], resolution: 1024 }
+					};
+				}
+				return ['23', 0];
+			})()
+			: ['21', 0];
 		wf['22'] = {
 			class_type: 'ControlNetApplyAdvanced',
 			inputs: {
@@ -232,7 +266,7 @@ function buildImg2ImgWorkflow(
 				positive: ['6', 0],
 				negative: ['7', 0],
 				control_net: ['20', 0],
-				image: ['21', 0],
+				image: cnImageRef,
 				vae: ['4', 2]
 			}
 		};
@@ -459,8 +493,9 @@ export async function generateSdxlImg2Img(req: SdxlImg2ImgRequest): Promise<Sdxl
 	const uploaded = await uploadImage(req.initImage);
 	const lightningLora = process.env.SDXL_LIGHTNING_LORA || '';
 	const scribbleCn = process.env.SDXL_SCRIBBLE_CONTROLNET || '';
-	const useLightning = !!lightningLora && (await isLightningAvailable(lightningLora));
+	const useLightning = !req.disableLightning && !!lightningLora && (await isLightningAvailable(lightningLora));
 	const useScribble = !!req.scribbleImage && !!scribbleCn && (await isScribbleAvailable(scribbleCn));
+	const ckptCfg = getCheckpointConfig(req.checkpoint || defaultCheckpoint());
 
 	let scribbleUploadedName: string | undefined;
 	if (useScribble && req.scribbleImage) {
@@ -490,10 +525,10 @@ export async function generateSdxlImg2Img(req: SdxlImg2ImgRequest): Promise<Sdxl
 		checkpoint: req.checkpoint || defaultCheckpoint(),
 		width: req.width ?? 1024,
 		height: req.height ?? 1024,
-		steps: req.steps ?? (useLightning ? (useScribble ? 10 : 6) : 20),
-		cfg: req.cfg ?? (useLightning ? (useScribble ? 4 : 1.5) : 6),
-		sampler: req.sampler ?? (useLightning ? 'euler' : 'euler_ancestral'),
-		scheduler: req.scheduler ?? (useLightning ? 'sgm_uniform' : 'normal'),
+		steps: req.steps ?? (useLightning ? (useScribble ? 10 : 6) : (useScribble ? ckptCfg.steps + 1 : ckptCfg.steps)),
+		cfg: req.cfg ?? (useLightning ? (useScribble ? 4 : 1.5) : ckptCfg.cfg),
+		sampler: req.sampler ?? (useLightning ? 'euler' : ckptCfg.sampler),
+		scheduler: req.scheduler ?? (useLightning ? 'sgm_uniform' : ckptCfg.scheduler),
 		denoise: effectiveDenoise,
 		seed: req.seed ?? Math.floor(Math.random() * 0xffffffff),
 		lightningLora: useLightning ? lightningLora : undefined,
@@ -502,7 +537,9 @@ export async function generateSdxlImg2Img(req: SdxlImg2ImgRequest): Promise<Sdxl
 		// AI Strength inverts to scribble adherence: high AI Strength = looser sketch following
 		scribbleStrength: req.scribbleStrength ?? Math.min(0.95, Math.max(0.4, 1.0 - (baseDenoise - 0.5) * 0.6)),
 		faceReferenceUploadedNames,
-		faceReferenceWeight: req.faceReferenceWeight
+		faceReferenceWeight: req.faceReferenceWeight,
+		preprocessScribble: req.preprocessScribble ?? 'scribble',
+		isVpred: ckptCfg.isVpred
 	};
 	const clientId = randomUUID();
 	const submitRes = await fetch(`${base}/prompt`, {

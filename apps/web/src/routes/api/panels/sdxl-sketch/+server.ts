@@ -7,12 +7,14 @@ import { findEpisode, saveJsonLd } from '$lib/server/jsonld';
 import { generateSdxlImg2Img, inpaintWithIPACharacter } from '$lib/server/comfyui';
 import { imagesDir, getActiveProject, projectRoot } from '$lib/server/state';
 import { verticalStrips, buildMaskPng, cropFaceRegion } from '$lib/server/mask';
+import { getCheckpointConfig } from '$lib/server/checkpoint-config';
+import { generateOpenAIImage } from '$lib/server/external-image-gen';
 
 // Tags in the stored SDXL prompt that confuse SDXL into generating manga pages
 // (collage of panels) instead of a single illustration. Replace with safer aesthetic words.
 const POSITIVE_REWRITES: Array<[RegExp, string]> = [
-	[/\bmanga panel\b/gi, 'anime illustration'],
-	[/\bmanga page\b/gi, 'anime illustration']
+	[/\bmanga panel\b/gi, 'solo'],
+	[/\bmanga page\b/gi, 'solo']
 ];
 
 // Tags to drop when ControlNet handles composition — scribble defines framing,
@@ -25,16 +27,18 @@ const STRIP_WHEN_SCRIBBLE = [
 	/\b(oppressive|melancholy|melancholic|tense|cinematic)[-_ ]?(mood|atmosphere)?\b/gi
 ];
 
-// AnimagineXL 4.0 quality boosters for proper anime illustration look
-const QUALITY_PREFIX = 'masterpiece, best quality, very aesthetic, anime illustration, ';
+// AnimagineXL 4.0 native quality booster format — appended at the END of positive.
+// Per official docs (Cagliostro Research Lab).
+const QUALITY_SUFFIX = ', masterpiece, high score, great score, absurdres';
 
+// AnimagineXL 4.0 native negative prompt + anti-collage extras for our use case.
 const DEFAULT_NEGATIVE = [
-	'low quality', 'worst quality', 'normal quality', 'lowres', 'blurry',
-	'deformed', 'extra fingers', 'bad anatomy', 'malformed hands', 'bad proportions',
-	'watermark', 'signature', 'text overlay', 'logo', 'jpeg artifacts',
+	'lowres', 'worst quality', 'low quality', 'normal quality', 'bad anatomy', 'bad hands',
+	'4koma', 'comic', 'greyscale', 'monochrome',
+	'watermark', 'signature', 'jpeg artifacts', 'logo',
 	'multiple panels', 'comic page layout', 'tiled grid', 'collage', 'montage',
 	'multiple frames', 'split screen',
-	'photograph', 'photorealistic', '3d render', 'monochrome', 'grayscale',
+	'photograph', 'photorealistic', '3d render',
 	'wings', 'nsfw'
 ].join(', ');
 
@@ -73,7 +77,13 @@ export const POST: RequestHandler = async ({ request }) => {
 		style,
 		extraPositive,
 		seed,
-		persist
+		persist,
+		checkpoint,
+		preprocessScribble,
+		refine,
+		refineDenoise,
+		refineSteps,
+		engine
 	} = body as {
 		episodeId?: string;
 		pageNumber?: number;
@@ -85,6 +95,12 @@ export const POST: RequestHandler = async ({ request }) => {
 		extraPositive?: string;
 		seed?: number;
 		persist?: boolean;
+		checkpoint?: string;
+		preprocessScribble?: 'scribble' | 'lineart' | 'canny' | false;
+		refine?: boolean;
+		refineDenoise?: number;
+		refineSteps?: number;
+		engine?: 'openai' | 'sdxl';
 	};
 	if (!episodeId || pageNumber == null || panelIndex == null || !image) {
 		throw error(400, 'episodeId, pageNumber, panelIndex, image required');
@@ -109,20 +125,85 @@ export const POST: RequestHandler = async ({ request }) => {
 	for (const [pattern, replacement] of POSITIVE_REWRITES) positive = positive.replace(pattern, replacement);
 
 	// When user provides a scribble (ControlNet path), strip composition/lighting tags
-	// that compete with the sketch, and prepend AnimagineXL quality boosters.
+	// that compete with the sketch.
 	const hasScribble = !!scribble;
 	if (hasScribble) {
 		for (const re of STRIP_WHEN_SCRIBBLE) positive = positive.replace(re, '');
-		positive = positive.replace(/,\s*,+/g, ',').replace(/^\s*,\s*|\s*,\s*$/g, '').trim();
-		positive = QUALITY_PREFIX + positive;
 	}
+	// Append AnimagineXL 4.0 native quality boosters at the END (per official spec).
+	positive = positive
+		.replace(/,\s*,+/g, ',')
+		.replace(/^\s*,\s*|\s*,\s*$/g, '')
+		.trim();
+	positive = positive + QUALITY_SUFFIX;
+
+	// Apply per-checkpoint prompt scaffolding (Pony score tags, etc.)
+	const ckptCfg = getCheckpointConfig(checkpoint);
+	if (ckptCfg.positivePrefix) positive = ckptCfg.positivePrefix + positive;
 
 	const panelNegative = Array.isArray(panel['gh:sdxlNegative']) ? (panel['gh:sdxlNegative'] as string[]).join(', ') : '';
-	const negative = [DEFAULT_NEGATIVE, panelNegative].filter(Boolean).join(', ');
+	const negative = [DEFAULT_NEGATIVE, panelNegative, ckptCfg.negativeAppend].filter(Boolean).join(', ');
 
+	// Engine selection: default = openai (cloud, high quality, manga-style).
+	// Override with engine: 'sdxl' to use the ComfyUI / AnimagineXL pipeline (free, faster, scribble-aware).
+	const useEngine: 'openai' | 'sdxl' = engine === 'sdxl' ? 'sdxl' : (engine === 'openai' ? 'openai' : 'openai');
+
+	if (useEngine === 'openai') {
+		// Strip SDXL-specific tag scaffolding for natural-language image-gen.
+		const cleanPrompt = positive
+			.replace(/, masterpiece, high score, great score, absurdres$/, '')
+			.replace(/\bsolo\b/g, '')
+			.replace(/\b1(boy|girl)\b/g, (_m, g) => g === 'boy' ? '1 male character' : '1 female character');
+		const prompt = `Anime / manga panel illustration. ${cleanPrompt}`;
+		const oai = await generateOpenAIImage({ prompt });
+
+		if (!persist) {
+			return new Response(oai.bytes, {
+				headers: {
+					'Content-Type': 'image/png',
+					'X-Engine': 'openai',
+					'X-Duration-Ms': String(oai.durationMs)
+				}
+			});
+		}
+
+		const existing: any[] = Array.isArray(panel['gh:generatedImages']) ? panel['gh:generatedImages'] : [];
+		const nextVersion = existing.length + 1;
+		const filename = safeFilename(panel, nextVersion);
+		const relDir = join('episodes', episodeId, 'pages', String(pageNumber));
+		const absDir = join(imagesDir(), relDir);
+		await mkdir(absDir, { recursive: true });
+		await writeFile(join(absDir, filename), oai.bytes);
+		const imageUrl = `/images/${relDir}/${filename}`.replace(/\\/g, '/');
+		const newEntry: Record<string, unknown> = {
+			'gh:imageUrl': imageUrl,
+			'gh:imagePrompt': prompt,
+			'gh:generatedAt': Math.floor(Date.now() / 1000),
+			'gh:model': `openai/${process.env.OPENAI_IMAGE_MODEL || 'gpt-image-2'}`,
+			'gh:durationMs': oai.durationMs
+		};
+		panel['gh:generatedImages'] = [...existing, newEntry];
+		panel['gh:currentImageIndex'] = panel['gh:generatedImages'].length - 1;
+		panel['gh:generatedImageUrl'] = imageUrl;
+		await saveJsonLd(found.sourcePath, sourceData);
+		return json({
+			success: true,
+			project: getActiveProject(),
+			imageUrl,
+			engine: 'openai',
+			durationMs: oai.durationMs,
+			index: panel['gh:currentImageIndex']
+		});
+	}
+
+	// SDXL / ComfyUI pipeline (engine: 'sdxl')
 	const initImage = decodeBase64Png(image);
-	const scribbleImage = scribble ? decodeBase64Png(scribble) : undefined;
-	const denoise = Math.min(0.95, Math.max(0.1, (aiStrength ?? 60) / 100));
+	// Refine mode: skip scribble entirely; use the supplied image (the realtime preview)
+	// as init for a high-quality polish pass with low denoise + more steps.
+	const scribbleImage = !refine && scribble ? decodeBase64Png(scribble) : undefined;
+	const denoise = refine
+		? Math.min(0.6, Math.max(0.2, refineDenoise ?? 0.35))
+		: Math.min(0.95, Math.max(0.1, (aiStrength ?? 60) / 100));
 
 	// Resolve characters → load reference images. Up to 5 supported by IPAdapterCombineEmbeds.
 	const characterIds: string[] = (panel['gh:characters'] ?? panel['characters'] ?? []).map((c: string) => String(c).replace(/^character:/, ''));
@@ -146,12 +227,13 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	// Single sketch pass with combined IPA-Face embeds. Trust the prompt + tags
 	// to place each character; no spatial detection needed.
-	// When IPA is active, dial the scribble down so the character refs aren't fighting
-	// the literal stroke shapes — the scribble becomes a soft composition hint.
+	// Quality-first defaults: skip Lightning LoRA so we get full 25-step AnimagineXL
+	// rendering, and dial the scribble down so it acts as a soft composition hint
+	// rather than literal pen strokes.
 	const ipaActive = refBuffers.length > 0;
-	const baseScribbleStrength = scribbleImage ? Math.min(1, Math.max(0.3, denoise + 0.2)) : undefined;
+	const baseScribbleStrength = scribbleImage ? 0.45 : undefined;
 	const scribbleStrength = ipaActive && baseScribbleStrength
-		? Math.max(0.35, baseScribbleStrength * 0.55)
+		? baseScribbleStrength * 0.6
 		: baseScribbleStrength;
 
 	const result = await generateSdxlImg2Img({
@@ -160,10 +242,14 @@ export const POST: RequestHandler = async ({ request }) => {
 		initImage,
 		denoise,
 		seed,
+		checkpoint,
 		scribbleImage,
 		scribbleStrength,
+		preprocessScribble: refine ? false : (preprocessScribble === undefined ? 'canny' : preprocessScribble),
+		steps: refine ? (refineSteps ?? 30) : undefined,
 		faceReferenceImages: refBuffers.length ? refBuffers : undefined,
-		faceReferenceWeight: charsWithRefs.length > 1 ? 0.55 : 0.7
+		faceReferenceWeight: charsWithRefs.length > 1 ? 0.55 : 0.7,
+		disableLightning: true
 	});
 
 	const faceReferenceCharacter = charsWithRefs[0]?.name;
@@ -192,11 +278,11 @@ export const POST: RequestHandler = async ({ request }) => {
 		'gh:imagePrompt': positive,
 		'gh:negativePrompt': negative,
 		'gh:generatedAt': Math.floor(Date.now() / 1000),
-		'gh:model': charsWithRefs.length > 1
+		'gh:model': (refine ? 'refined:' : '') + (charsWithRefs.length > 1
 			? `sdxl/animaginexl-4.0+ipa-multi(${charsWithRefs.map((c) => c.name).join(',')})`
 			: faceReferenceCharacter
 				? `sdxl/animaginexl-4.0+ipa-face(${faceReferenceCharacter})`
-				: 'sdxl/animaginexl-4.0-img2img',
+				: 'sdxl/animaginexl-4.0-img2img'),
 		'gh:seed': result.seed,
 		'gh:sdxlDenoise': denoise,
 		'gh:sdxlStyle': style || 'default',

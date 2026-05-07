@@ -7,15 +7,17 @@ import { generateSdxl } from '$lib/server/comfyui';
 import { imagesDir, getActiveProject } from '$lib/server/state';
 
 const POSITIVE_REWRITES: Array<[RegExp, string]> = [
-	[/\bmanga panel\b/gi, 'anime illustration, single character focus'],
-	[/\bmanga page\b/gi, 'anime illustration, single character focus']
+	[/\bmanga panel\b/gi, 'solo'],
+	[/\bmanga page\b/gi, 'solo']
 ];
+const QUALITY_SUFFIX = ', masterpiece, high score, great score, absurdres';
 const DEFAULT_NEGATIVE = [
-	'low quality', 'worst quality', 'normal quality', 'blurry',
-	'deformed', 'extra fingers', 'bad anatomy', 'malformed hands',
-	'watermark', 'signature', 'text overlay', 'logo',
+	'lowres', 'worst quality', 'low quality', 'normal quality', 'bad anatomy', 'bad hands',
+	'4koma', 'comic', 'greyscale', 'monochrome',
+	'watermark', 'signature', 'jpeg artifacts', 'logo',
 	'multiple panels', 'comic page layout', 'tiled grid', 'collage', 'montage',
 	'multiple frames', 'split screen',
+	'photograph', 'photorealistic', '3d render',
 	'wings', 'nsfw'
 ].join(', ');
 
@@ -67,6 +69,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		?? (Array.isArray(panel['gh:sdxlTags']) ? panel['gh:sdxlTags'].join(', ') : '');
 	if (!positive) throw error(400, 'Panel has no SDXL prompt or tags. Run the tag generator first.');
 	for (const [pattern, replacement] of POSITIVE_REWRITES) positive = positive.replace(pattern, replacement);
+	positive = positive.replace(/,\s*,+/g, ',').replace(/^\s*,\s*|\s*,\s*$/g, '').trim() + QUALITY_SUFFIX;
 	const panelNegative = Array.isArray(panel['gh:sdxlNegative']) ? panel['gh:sdxlNegative'].join(', ') : '';
 	const negative = overrides?.negative ?? [DEFAULT_NEGATIVE, panelNegative].filter(Boolean).join(', ');
 

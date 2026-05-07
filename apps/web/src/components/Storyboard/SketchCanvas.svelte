@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, createEventDispatcher } from 'svelte';
-	import { X, Brush, Eraser, Undo2, Trash2, Sparkles, Save } from 'lucide-svelte';
+	import { X, Brush, Eraser, Undo2, Trash2, Sparkles, Save, Wand2, LayoutGrid } from 'lucide-svelte';
 
 	export let baseImageUrl: string = '';
 	export let episodeId: string;
@@ -30,6 +30,7 @@
 
 	let aiStrength = initialAiStrength;
 	let overlayOpacity = 80;
+	let engine: 'openai' | 'sdxl' = 'openai';
 	let style = 'Default';
 	let tool: 'brush' | 'eraser' = 'brush';
 	let brushSize = 4;
@@ -213,6 +214,7 @@
 					aiStrength,
 					style,
 					extraPositive: extra,
+					engine,
 					persist: false
 				})
 			});
@@ -233,9 +235,25 @@
 		}
 	}
 
-	async function persistCurrent() {
+	let refining = false;
+	let comparing = false;
+	let compareResults: Array<{ checkpoint: string; imageBase64?: string; durationMs?: number; error?: string }> = [];
+	const COMPARE_CHECKPOINTS = [
+		'animagine-xl-4.0.safetensors',
+		'animagine-xl-3.1.safetensors',
+		'aamXL_AnyMix_v10.safetensors',
+		'BAXL_v3.safetensors',
+		'hassakuXL_Illustrious_v34.safetensors',
+		'manmaruMixNoob.safetensors',
+		'eponaMix_v3.safetensors',
+		'anythingXL.safetensors',
+		'noobaiXL_Vpred10.safetensors',
+		'openai/gpt-image-1'
+	];
+
+	async function runCompare(): Promise<void> {
 		if (busy) return;
-		busy = true; errMsg = '';
+		busy = true; comparing = true; errMsg = ''; compareResults = [];
 		try {
 			const flatBlob = await flatten();
 			const flatUrl = await blobToBase64(flatBlob);
@@ -244,8 +262,7 @@
 				const scribBlob = await scribbleOnWhite();
 				scribbleUrl = await blobToBase64(scribBlob);
 			}
-			const extra = currentTags.length ? currentTags.join(', ') : undefined;
-			const res = await fetch('/api/panels/sdxl-sketch', {
+			const res = await fetch('/api/panels/sdxl-compare', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -253,15 +270,120 @@
 					image: flatUrl,
 					scribble: scribbleUrl,
 					aiStrength,
-					style,
+					checkpoints: COMPARE_CHECKPOINTS
+				})
+			});
+			if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`);
+			const data = await res.json();
+			compareResults = data.results || [];
+		} catch (err) {
+			errMsg = err instanceof Error ? err.message : 'Unknown error';
+		} finally {
+			comparing = false; busy = false;
+		}
+	}
+
+	function pickComparedCheckpoint(ckpt: string, b64: string) {
+		// User selected one of the compared results; replace overlay with it.
+		const blob = b64ToBlob(b64);
+		if (aiPreviewUrl) URL.revokeObjectURL(aiPreviewUrl);
+		aiPreviewUrl = URL.createObjectURL(blob);
+		compareResults = [];
+	}
+
+	function b64ToBlob(b64: string): Blob {
+		const m = b64.match(/^data:image\/(?:png|jpeg|jpg);base64,(.*)$/);
+		const raw = m ? m[1] : b64;
+		const bytes = atob(raw);
+		const arr = new Uint8Array(bytes.length);
+		for (let i = 0; i < bytes.length; i++) arr[i] = bytes.charCodeAt(i);
+		return new Blob([arr], { type: 'image/png' });
+	}
+
+	async function previewToBase64(): Promise<string | null> {
+		if (!aiPreviewUrl) return null;
+		try {
+			const r = await fetch(aiPreviewUrl);
+			const b = await r.blob();
+			return await blobToBase64(b);
+		} catch {
+			return null;
+		}
+	}
+
+	async function runRefine(): Promise<void> {
+		if (busy || refining) return;
+		const previewB64 = await previewToBase64();
+		if (!previewB64) {
+			errMsg = 'Generate a preview first (draw to start)';
+			return;
+		}
+		refining = true; busy = true; errMsg = '';
+		const mySeq = ++regenSeq;
+		try {
+			const extra = currentTags.length ? currentTags.join(', ') : undefined;
+			const res = await fetch('/api/panels/sdxl-sketch', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					episodeId, pageNumber, panelIndex,
+					image: previewB64,
+					aiStrength, style,
 					extraPositive: extra,
+					engine,
+					refine: true,
+					persist: false
+				})
+			});
+			if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`);
+			const buf = await res.arrayBuffer();
+			if (mySeq !== regenSeq) return;
+			const blob = new Blob([buf], { type: 'image/png' });
+			if (aiPreviewUrl) URL.revokeObjectURL(aiPreviewUrl);
+			aiPreviewUrl = URL.createObjectURL(blob);
+		} catch (err) {
+			errMsg = err instanceof Error ? err.message : 'Unknown error';
+		} finally {
+			refining = false; busy = false;
+		}
+	}
+
+	async function persistCurrent() {
+		if (busy) return;
+		busy = true; errMsg = '';
+		try {
+			// Auto-refine before save: send the current preview as init for a polish pass,
+			// then persist that result. Falls back to flattened canvas if no preview yet.
+			const previewB64 = await previewToBase64();
+			const useRefine = !!previewB64;
+			let imageB64: string;
+			let scribbleUrl: string | undefined;
+			if (useRefine) {
+				imageB64 = previewB64;
+			} else {
+				const flatBlob = await flatten();
+				imageB64 = await blobToBase64(flatBlob);
+				if (hasStrokes()) {
+					const scribBlob = await scribbleOnWhite();
+					scribbleUrl = await blobToBase64(scribBlob);
+				}
+			}
+			const extra = currentTags.length ? currentTags.join(', ') : undefined;
+			const res = await fetch('/api/panels/sdxl-sketch', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					episodeId, pageNumber, panelIndex,
+					image: imageB64,
+					scribble: scribbleUrl,
+					aiStrength, style,
+					extraPositive: extra,
+					engine,
+					refine: useRefine,
 					persist: true
 				})
 			});
-			if (!res.ok) {
-				const t = await res.text();
-				throw new Error(`HTTP ${res.status}: ${t.slice(0, 300)}`);
-			}
+			if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`);
 			const data = await res.json();
 			if (!data.success) throw new Error(data.message || 'Generation failed');
 			dispatch('saved', data);
@@ -328,11 +450,20 @@
 		</div>
 
 		<div class="flex flex-wrap items-center gap-x-4 gap-y-1 border-b border-zinc-200 px-4 py-2 text-[12px] text-zinc-700">
-			<label class="flex flex-1 min-w-[180px] items-center gap-2">
-				<span class="font-semibold whitespace-nowrap">AI Strength</span>
-				<input type="range" min="10" max="95" bind:value={aiStrength} oninput={onParamChange} class="flex-1 accent-purple-600" />
-				<span class="w-10 text-right tabular-nums">{aiStrength}%</span>
+			<label class="flex items-center gap-2">
+				<span class="font-semibold whitespace-nowrap">Engine</span>
+				<select bind:value={engine} onchange={onParamChange} class="rounded border border-zinc-200 bg-white px-2 py-0.5 text-[12px]">
+					<option value="openai">OpenAI gpt-image (cloud)</option>
+					<option value="sdxl">SDXL / AnimagineXL (local)</option>
+				</select>
 			</label>
+			{#if engine === 'sdxl'}
+				<label class="flex flex-1 min-w-[180px] items-center gap-2">
+					<span class="font-semibold whitespace-nowrap">AI Strength</span>
+					<input type="range" min="10" max="95" bind:value={aiStrength} oninput={onParamChange} class="flex-1 accent-purple-600" />
+					<span class="w-10 text-right tabular-nums">{aiStrength}%</span>
+				</label>
+			{/if}
 			<label class="flex flex-1 min-w-[180px] items-center gap-2">
 				<span class="font-semibold whitespace-nowrap">Overlay</span>
 				<input type="range" min="0" max="100" bind:value={overlayOpacity} class="flex-1 accent-purple-600" />
@@ -361,14 +492,35 @@
 					onpointercancel={endStroke}
 				></canvas>
 				{#if aiPreviewUrl}
-					<button
-						type="button"
-						onclick={bakePreviewIntoBase}
-						class="absolute right-2 top-2 inline-flex items-center gap-1 rounded-lg bg-white/90 px-2 py-1 text-[11px] font-semibold text-purple-700 shadow"
-						title="Bake preview into base, clear strokes"
-					>
-						<Save size={12} /> Bake
-					</button>
+					<div class="absolute right-2 top-2 flex flex-col gap-1">
+						<button
+							type="button"
+							onclick={runRefine}
+							disabled={busy}
+							class="inline-flex items-center gap-1 rounded-lg bg-purple-600 px-2 py-1 text-[11px] font-semibold text-white shadow disabled:opacity-50"
+							title="Polish pass: 30 steps, low denoise (~25s)"
+						>
+							<Wand2 size={12} /> {refining ? 'Refining…' : 'Refine'}
+						</button>
+						<button
+							type="button"
+							onclick={runCompare}
+							disabled={busy}
+							class="inline-flex items-center gap-1 rounded-lg bg-white/90 px-2 py-1 text-[11px] font-semibold text-zinc-700 shadow disabled:opacity-50"
+							title="Run on all anime checkpoints (~3-5 min)"
+						>
+							<LayoutGrid size={12} /> {comparing ? 'Comparing…' : 'Compare'}
+						</button>
+						<button
+							type="button"
+							onclick={bakePreviewIntoBase}
+							disabled={busy}
+							class="inline-flex items-center gap-1 rounded-lg bg-white/90 px-2 py-1 text-[11px] font-semibold text-purple-700 shadow disabled:opacity-50"
+							title="Bake preview into base, clear strokes"
+						>
+							<Save size={12} /> Bake
+						</button>
+					</div>
 				{/if}
 			</div>
 		</div>
@@ -410,7 +562,7 @@
 
 		<div class="flex items-center justify-between gap-2 border-t border-zinc-200 px-4 py-3">
 			<span class="text-[11px] text-zinc-500">
-				{#if busy}Generating preview…{:else if aiPreviewUrl}Auto-updates after each stroke{:else}Draw to start{/if}
+				{#if refining}Refining (polish pass)…{:else if busy}Generating preview…{:else if aiPreviewUrl}Auto-updates after each stroke · Save runs a refine pass{:else}Draw to start{/if}
 			</span>
 			<div class="flex gap-2">
 				<button type="button" onclick={close} class="rounded-lg border border-zinc-200 px-3 py-2 text-[12px] font-semibold text-zinc-700">Cancel</button>
@@ -419,3 +571,38 @@
 		</div>
 	</div>
 </div>
+
+{#if compareResults.length > 0}
+	<div class="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 p-4" role="dialog" aria-modal="true">
+		<div class="flex max-h-[92vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+			<div class="flex items-center justify-between border-b border-zinc-200 px-4 py-3">
+				<div class="text-[14px] font-semibold text-zinc-800">Checkpoint Comparison</div>
+				<button type="button" onclick={() => (compareResults = [])} class="rounded-full p-1.5 text-zinc-500 hover:bg-zinc-100" aria-label="Close"><X size={18} /></button>
+			</div>
+			<div class="grid grid-cols-2 gap-3 overflow-auto p-4 sm:grid-cols-3">
+				{#each compareResults as r}
+					{@const label = r.checkpoint.replace(/\.safetensors$/, '').replace(/_v?\d+(\.\d+)?$/, '').replace(/[_-]+/g, ' ').replace(/\bxl\b/i, 'XL').trim()}
+					<div class="relative overflow-hidden rounded-lg border border-zinc-200">
+						{#if r.imageBase64}
+							<button type="button" onclick={() => pickComparedCheckpoint(r.checkpoint, r.imageBase64!)} class="block w-full bg-zinc-50">
+								<img src={r.imageBase64} alt={r.checkpoint} class="aspect-square w-full object-cover" />
+							</button>
+						{:else}
+							<div class="flex aspect-square w-full items-center justify-center bg-red-50 px-2 text-center text-[11px] text-red-600">{r.error?.slice(0, 80) || 'failed'}</div>
+						{/if}
+						<div class="pointer-events-none absolute inset-x-0 top-0 bg-gradient-to-b from-black/65 to-transparent px-2 py-1.5">
+							<span class="block truncate text-[12px] font-semibold leading-tight text-white drop-shadow" title={r.checkpoint}>{label}</span>
+						</div>
+						<div class="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between gap-1 bg-gradient-to-t from-black/70 to-transparent px-2 py-1">
+							<span class="truncate text-[10px] text-white/80">{r.checkpoint.replace(/\.safetensors$/, '').slice(0, 32)}</span>
+							{#if r.durationMs}<span class="text-[10px] tabular-nums text-white/70">{Math.round(r.durationMs / 1000)}s</span>{/if}
+						</div>
+					</div>
+				{/each}
+			</div>
+			<div class="flex items-center justify-end gap-2 border-t border-zinc-200 px-4 py-3 text-[11px] text-zinc-500">
+				Tap a thumbnail to use it as the new preview
+			</div>
+		</div>
+	</div>
+{/if}
