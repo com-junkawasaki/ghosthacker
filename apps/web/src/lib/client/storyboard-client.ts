@@ -84,6 +84,19 @@ export async function cancelGenerationJob(_jobId: string) {
 	return { success: false };
 }
 
+export async function generateSdxlImage(
+	episodeId: string,
+	pageNumber: number,
+	panelIndex: number,
+	overrides?: Record<string, unknown>
+): Promise<{ success: boolean; imageUrl?: string; seed?: number; durationMs?: number; index?: number; message?: string }> {
+	try {
+		return await post('/api/panels/sdxl-generate', { episodeId, pageNumber, panelIndex, overrides });
+	} catch (err) {
+		return { success: false, message: err instanceof Error ? err.message : 'Unknown error' };
+	}
+}
+
 /** Proxy object for components that call storyboardClient.method() directly. */
 export const storyboardClient = {
 	updatePanel: (req: { episodeId: string; pageNumber: number; panel: number; panelData: unknown; [k: string]: unknown }) =>

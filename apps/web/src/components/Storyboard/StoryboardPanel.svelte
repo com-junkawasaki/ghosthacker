@@ -3,9 +3,10 @@
 	import type { Panel, Dialogue, GeneratedImage } from '$lib/gen/proto/storyboard_pb';
 	import { PanelDataSchema, DialogueSchema, GeneratedImageSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
-	import { generatePanelDialogue, submitGenerationJob, cancelGenerationJob, storyboardClient } from '$lib/client/storyboard-client';
+	import { generatePanelDialogue, submitGenerationJob, cancelGenerationJob, generateSdxlImage, storyboardClient } from '$lib/client/storyboard-client';
 	import { getJobForPanel } from '$lib/stores/job-store.svelte';
-	import { ChevronLeft, ChevronRight, Wand2, Pencil, MessageSquare, Sparkles, X } from 'lucide-svelte';
+	import { ChevronLeft, ChevronRight, Wand2, Pencil, MessageSquare, Sparkles, X, Brush, Edit3 } from 'lucide-svelte';
+	import SketchCanvas from './SketchCanvas.svelte';
 
 	export let panel: Panel;
 	export let episodeId: string = '';
@@ -23,12 +24,82 @@
 	let environment = panel.data?.environment ?? '';
 	let shot = panel.data?.shot ?? '';
 	let runwayPrompt = panel.data?.runwayPrompt ?? '';
+	$: sdxlTags = (panel.data as any)?.sdxlTags as string[] | undefined;
+	$: sdxlNegative = (panel.data as any)?.sdxlNegative as string[] | undefined;
+	$: sdxlPrompt = (panel.data as any)?.sdxlPrompt as string | undefined;
+	let copiedSdxl = false;
+	let sketching = false;
+	function openSketch() { sketching = true; }
+	function closeSketch() { sketching = false; }
+
+	let editing2 = false;
+	let editPrompt = '';
+	let editBusy = false;
+	let editError = '';
+	let editPreviewUrl = '';
+	function openEditImage() {
+		editing2 = true;
+		editPrompt = '';
+		editError = '';
+		if (editPreviewUrl) { URL.revokeObjectURL(editPreviewUrl); editPreviewUrl = ''; }
+	}
+	function closeEditImage() {
+		editing2 = false;
+		if (editPreviewUrl) { URL.revokeObjectURL(editPreviewUrl); editPreviewUrl = ''; }
+	}
+	async function runEdit({ persist }: { persist: boolean }) {
+		if (!editPrompt.trim()) { editError = 'Enter a prompt'; return; }
+		if (editBusy) return;
+		editBusy = true; editError = '';
+		try {
+			const res = await fetch('/api/panels/edit-image', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					episodeId, pageNumber: panel.pageNumber, panelIndex: panel.panel,
+					prompt: editPrompt, persist
+				})
+			});
+			if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
+			if (persist) {
+				const data = await res.json();
+				if (!data.success) throw new Error(data.message || 'Failed');
+				const newImg = { imageUrl: data.imageUrl, imagePrompt: editPrompt, generatedAt: Math.floor(Date.now() / 1000), model: 'openai/gpt-image-edit' } as GeneratedImage;
+				generatedImages = [...generatedImages, newImg];
+				currentImageIndex = data.index ?? generatedImages.length - 1;
+				imageLoadFailed = false;
+				closeEditImage();
+			} else {
+				const buf = await res.arrayBuffer();
+				const blob = new Blob([buf], { type: 'image/png' });
+				if (editPreviewUrl) URL.revokeObjectURL(editPreviewUrl);
+				editPreviewUrl = URL.createObjectURL(blob);
+			}
+		} catch (err) {
+			editError = err instanceof Error ? err.message : 'Unknown error';
+		} finally {
+			editBusy = false;
+		}
+	}
+	async function onSketchSaved(e: CustomEvent<{ imageUrl: string; index: number }>) {
+		const detail = e.detail;
+		const newImg = { imageUrl: detail.imageUrl, imagePrompt: 'sketch+ai', generatedAt: Math.floor(Date.now() / 1000), model: 'sdxl/animaginexl-4.0-img2img' } as GeneratedImage;
+		generatedImages = [...generatedImages, newImg];
+		currentImageIndex = detail.index ?? generatedImages.length - 1;
+		imageLoadFailed = false;
+		sketching = false;
+	}
+	async function copySdxl() {
+		const text = sdxlPrompt || (sdxlTags ?? []).join(', ');
+		if (!text) return;
+		try { await navigator.clipboard.writeText(text); copiedSdxl = true; setTimeout(() => copiedSdxl = false, 1200); } catch {}
+	}
 	let generatedImages: GeneratedImage[] = panel.data?.generatedImages ?? [];
 	let currentImageIndex = panel.data?.currentImageIndex ?? (generatedImages.length > 0 ? generatedImages.length - 1 : -1);
 	let imageLoadFailed = false;
 	let generatingImage = false;
 	let imageError = '';
-	let selectedModel = 'local';
+	let selectedModel = 'openai';
 	let activeJobId = '';
 	let generatingDialogue = false;
 	let dialogueError = '';
@@ -44,8 +115,8 @@
 	}
 
 	function getBackendBaseUrl(): string {
-		if (typeof window !== 'undefined') return window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin;
-		return 'http://localhost:8081';
+		if (typeof window !== 'undefined') return window.location.origin;
+		return '';
 	}
 
 	function resolveImageUrl(rawUrl: string): string {
@@ -54,9 +125,10 @@
 		if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) return url;
 		const marker = '/resources/images/';
 		const markerIndex = url.indexOf(marker);
-		if (markerIndex >= 0) return `${getBackendBaseUrl()}/images/${url.slice(markerIndex + marker.length)}`;
+		if (markerIndex >= 0) return `${getBackendBaseUrl()}/api/images/${url.slice(markerIndex + marker.length)}`;
+		if (url.startsWith('/images/')) return `${getBackendBaseUrl()}/api/images/${url.slice('/images/'.length)}`;
 		if (url.startsWith('/')) return `${getBackendBaseUrl()}${url}`;
-		return `${getBackendBaseUrl()}/${url}`;
+		return `${getBackendBaseUrl()}/api/images/${url}`;
 	}
 
 	$: currentImageUrl = currentImageIndex >= 0 && currentImageIndex < generatedImages.length
@@ -121,6 +193,40 @@
 		if (generatingImage || !episodeId) return;
 		generatingImage = true; imageError = '';
 		try {
+			if (selectedModel === 'openai') {
+				const placeholder = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==';
+				const res = await fetch('/api/panels/sdxl-sketch', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						episodeId, pageNumber: panel.pageNumber, panelIndex: panel.panel,
+						image: placeholder, engine: 'openai', persist: true
+					})
+				});
+				if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
+				const data = await res.json();
+				if (!data.success) throw new Error(data.message || 'Failed to generate');
+				const newImg = { imageUrl: data.imageUrl, imagePrompt: '', generatedAt: Math.floor(Date.now() / 1000), model: 'openai/gpt-image' } as GeneratedImage;
+				generatedImages = [...generatedImages, newImg];
+				currentImageIndex = data.index ?? generatedImages.length - 1;
+				imageLoadFailed = false;
+				generatingImage = false;
+				return;
+			}
+			if (selectedModel === 'local') {
+				// Plain SDXL text2img via dedicated endpoint (no scribble/IPA/img2img).
+				const result = await generateSdxlImage(episodeId, panel.pageNumber, panel.panel);
+				if (result.success && result.imageUrl) {
+					const newImg = { imageUrl: result.imageUrl, imagePrompt: sdxlPrompt || (sdxlTags ?? []).join(', '), generatedAt: Math.floor(Date.now() / 1000), model: 'sdxl/animaginexl-4.0' } as GeneratedImage;
+					generatedImages = [...generatedImages, newImg];
+					currentImageIndex = result.index ?? generatedImages.length - 1;
+					imageLoadFailed = false;
+				} else {
+					imageError = result.message || 'Failed to generate';
+				}
+				generatingImage = false;
+				return;
+			}
 			const panelData = create(PanelDataSchema, { characters, dialogue: dialogues, environment, visualNote, cameraDirection, durationSeconds, cutNumber, shot, runwayPrompt });
 			const result = await submitGenerationJob(storyboardPath, episodeId, panel.pageNumber, panel.panel, panelData, selectedModel);
 			if (result.success && result.jobId) { activeJobId = result.jobId; }
@@ -197,8 +303,11 @@
 			<button type="button" class="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-[11px] font-semibold text-zinc-700 disabled:opacity-40 active:bg-zinc-50" onclick={handleGenerateImage} disabled={generatingImage}>
 				<Wand2 size={14} /> Generate Image
 			</button>
-			<button type="button" class="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-[11px] font-semibold text-zinc-700 disabled:opacity-40 active:bg-zinc-50" onclick={handleGenerateCinematic} disabled={generatingCinematic}>
-				<Sparkles size={14} /> Sketch AI
+			<button type="button" class="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-[11px] font-semibold text-zinc-700 disabled:opacity-40 active:bg-zinc-50" onclick={openSketch}>
+				<Brush size={14} /> Sketch AI
+			</button>
+			<button type="button" class="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-[11px] font-semibold text-zinc-700 disabled:opacity-40 active:bg-zinc-50" onclick={openEditImage} disabled={generatedImages.length === 0}>
+				<Edit3 size={14} /> Edit Image
 			</button>
 			<button type="button" class="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-[11px] font-semibold text-zinc-700 disabled:opacity-40 active:bg-zinc-50" onclick={() => dispatch('agentTrigger', { agent: 'dialogue' })}>
 				<MessageSquare size={14} /> Dialogue AI
@@ -216,7 +325,8 @@
 	<div class="px-4">
 		<div class="mb-2">
 			<select bind:value={selectedModel} class="w-full appearance-none rounded-lg border border-zinc-200 bg-white px-3 py-2 text-[12px] outline-none" disabled={generatingImage}>
-				<option value="local">Animage / AnimagineXL 4.0 (Local)</option>
+				<option value="openai">OpenAI gpt-image (cloud, default)</option>
+				<option value="local">AnimagineXL 4.0 (Local SDXL)</option>
 				<option value="openrouter">SeedReam 4.5 (API)</option>
 			</select>
 		</div>
@@ -276,6 +386,25 @@
 			<div><span class="font-semibold text-zinc-800">Camera:</span> {cameraDirection || '-'}</div>
 			<div><span class="font-semibold text-zinc-800">Characters:</span> {characters.length ? characters.join(', ') : '-'}</div>
 			{#if runwayPrompt}<div><span class="font-semibold text-zinc-800">Prompt:</span> {runwayPrompt}</div>{/if}
+			{#if sdxlTags && sdxlTags.length}
+				<div class="space-y-1.5 rounded-lg bg-purple-50/60 px-3 py-2">
+					<div class="flex items-center justify-between">
+						<span class="text-[11px] font-semibold uppercase tracking-wide text-purple-700">SDXL tags</span>
+						<button type="button" onclick={copySdxl} class="text-[11px] font-medium text-purple-700 hover:text-purple-900">{copiedSdxl ? 'Copied!' : 'Copy'}</button>
+					</div>
+					<div class="flex flex-wrap gap-1">
+						{#each sdxlTags as tag}<span class="rounded-full bg-purple-100 px-2 py-0.5 text-[11px] text-purple-800">{tag}</span>{/each}
+					</div>
+					{#if sdxlNegative && sdxlNegative.length}
+						<details class="pt-1">
+							<summary class="cursor-pointer text-[11px] text-purple-700">Negative ({sdxlNegative.length})</summary>
+							<div class="mt-1 flex flex-wrap gap-1">
+								{#each sdxlNegative as n}<span class="rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] text-zinc-600">{n}</span>{/each}
+							</div>
+						</details>
+					{/if}
+				</div>
+			{/if}
 			{#if dialogues.length > 0}
 				<div class="space-y-2 pt-1">
 					{#each dialogues as dialogue}
@@ -347,6 +476,57 @@
 					</div>
 				{/each}
 				<button type="button" class="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-[12px] font-medium text-emerald-700 active:bg-emerald-100" onclick={addDialogue}>+ Add Dialogue</button>
+			</div>
+		</div>
+	</div>
+{/if}
+
+{#if sketching}
+	<SketchCanvas
+		baseImageUrl={currentImageUrl}
+		{episodeId}
+		pageNumber={panel.pageNumber}
+		panelIndex={panel.panel}
+		tags={sdxlTags ?? []}
+		on:close={closeSketch}
+		on:saved={onSketchSaved}
+	/>
+{/if}
+
+{#if editing2}
+	<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3" role="dialog" aria-modal="true">
+		<div class="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+			<div class="flex items-center justify-between border-b border-zinc-200 px-4 py-3">
+				<div class="flex items-center gap-2 text-[14px] font-semibold text-zinc-800">
+					<Edit3 size={16} class="text-purple-600" /> Edit Image (OpenAI)
+				</div>
+				<button type="button" onclick={closeEditImage} class="rounded-full p-1.5 text-zinc-500 hover:bg-zinc-100" aria-label="Close"><X size={18} /></button>
+			</div>
+			<div class="grid grid-cols-2 gap-3 p-4">
+				<div class="flex flex-col gap-1">
+					<span class="text-[11px] font-semibold uppercase tracking-wide text-zinc-500">Source</span>
+					<img src={currentImageUrl} alt="source" class="aspect-square w-full rounded-lg border border-zinc-200 object-cover" />
+				</div>
+				<div class="flex flex-col gap-1">
+					<span class="text-[11px] font-semibold uppercase tracking-wide text-zinc-500">{editPreviewUrl ? 'Preview' : 'Result will appear here'}</span>
+					{#if editPreviewUrl}
+						<img src={editPreviewUrl} alt="preview" class="aspect-square w-full rounded-lg border border-purple-300 object-cover" />
+					{:else}
+						<div class="flex aspect-square w-full items-center justify-center rounded-lg border border-dashed border-zinc-300 bg-zinc-50 text-[11px] text-zinc-400">
+							{editBusy ? 'Generating…' : '(empty)'}
+						</div>
+					{/if}
+				</div>
+			</div>
+			<div class="border-t border-zinc-200 px-4 py-3">
+				<label class="block text-[11px] font-semibold uppercase tracking-wide text-zinc-500">What to change</label>
+				<textarea bind:value={editPrompt} placeholder='例: "背景を満開の桜に" / "Ren の表情をもっと驚いた感じに" / "Tokyo Tower を東京駅に"' rows="3" class="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-[13px] outline-none focus:border-purple-400" disabled={editBusy}></textarea>
+				{#if editError}<div class="mt-2 rounded-lg bg-red-50 px-3 py-2 text-[12px] text-red-600">{editError}</div>{/if}
+			</div>
+			<div class="flex items-center justify-end gap-2 border-t border-zinc-200 px-4 py-3">
+				<button type="button" onclick={closeEditImage} class="rounded-lg border border-zinc-200 px-3 py-2 text-[12px] font-semibold text-zinc-700">Cancel</button>
+				<button type="button" onclick={() => runEdit({ persist: false })} disabled={editBusy || !editPrompt.trim()} class="rounded-lg border border-purple-600 px-3 py-2 text-[12px] font-semibold text-purple-700 disabled:opacity-50">{editBusy ? 'Generating…' : 'Preview'}</button>
+				<button type="button" onclick={() => runEdit({ persist: true })} disabled={editBusy || !editPrompt.trim()} class="rounded-lg bg-purple-600 px-3 py-2 text-[12px] font-semibold text-white disabled:opacity-50">Save as new version</button>
 			</div>
 		</div>
 	</div>

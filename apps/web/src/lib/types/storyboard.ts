@@ -79,6 +79,9 @@ export interface PanelData {
 	generatedImages: GeneratedImage[];
 	currentImageIndex: number;
 	mangaLayout?: MangaLayout | undefined;
+	sdxlTags?: string[];
+	sdxlNegative?: string[];
+	sdxlPrompt?: string;
 }
 
 export interface Panel {

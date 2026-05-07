@@ -53,7 +53,36 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "gh:sdxlTags": [
+            "wide shot",
+            "1ghost",
+            "full body",
+            "standing",
+            "neutral expression",
+            "outdoor",
+            "daytime",
+            "soft diffused daylight",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "wide shot, 1ghost, full body, standing, neutral expression, outdoor, daytime, soft diffused daylight, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -69,7 +98,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "gh:sdxlTags": [
+            "1girl",
+            "young girl",
+            "casual clothes",
+            "standing",
+            "curious expression",
+            "open field",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, young girl, casual clothes, standing, curious expression, open field, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -86,7 +145,34 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "gh:sdxlTags": [
+            "close-up",
+            "frontal",
+            "1group",
+            "ghostly figures",
+            "ethereal appearance",
+            "soft diffused daylight",
+            "gentle shadows",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "close-up, frontal, 1group, ghostly figures, ethereal appearance, soft diffused daylight, gentle shadows, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -107,7 +193,31 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "gh:sdxlTags": [
+            "insert shot",
+            "over-shoulder",
+            "soft diffused daylight",
+            "gentle shadows",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "insert shot, over-shoulder, soft diffused daylight, gentle shadows, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -123,7 +233,36 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "gh:sdxlTags": [
+            "medium shot",
+            "eye level",
+            "1girl",
+            "dressed in white",
+            "standing",
+            "smiling expression",
+            "outdoor",
+            "day",
+            "soft diffused daylight",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "medium shot, eye level, 1girl, dressed in white, standing, smiling expression, outdoor, day, soft diffused daylight, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -140,7 +279,34 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "gh:sdxlTags": [
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "soft diffused daylight",
+            "gentle shadows",
+            "luminous atmosphere",
+            "1character",
+            "gender neutral",
+            "pristine environment",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "close-up, frontal, 85mm lens, soft diffused daylight, gentle shadows, luminous atmosphere, 1character, gender neutral, pristine environment, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -161,7 +327,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "gh:sdxlTags": [
+            "wide shot",
+            "eye level",
+            "1girl",
+            "female",
+            "casual attire",
+            "standing on street",
+            "neutral expression",
+            "cityscape",
+            "daytime",
+            "soft diffused daylight",
+            "35mm lens",
+            "airy mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "wide shot, eye level, 1girl, female, casual attire, standing on street, neutral expression, cityscape, daytime, soft diffused daylight, 35mm lens, airy mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -177,7 +373,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "gh:sdxlTags": [
+            "insert shot",
+            "over-shoulder view",
+            "1girl",
+            "casual outfit",
+            "looking thoughtfully",
+            "bright environment",
+            "daytime",
+            "soft diffused daylight",
+            "insert shot",
+            "top-down angle",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "insert shot, over-shoulder view, 1girl, casual outfit, looking thoughtfully, bright environment, daytime, soft diffused daylight, insert shot, top-down angle, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -193,7 +419,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "gh:sdxlTags": [
+            "medium shot",
+            "eye level",
+            "1girl",
+            "teen girl",
+            "casual outfit",
+            "standing",
+            "neutral expression",
+            "bright outdoor scene",
+            "day",
+            "soft diffused daylight",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "medium shot, eye level, 1girl, teen girl, casual outfit, standing, neutral expression, bright outdoor scene, day, soft diffused daylight, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -214,7 +470,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "gh:sdxlTags": [
+            "wide shot",
+            "eye level",
+            "1girl",
+            "teen girl",
+            "dress",
+            "standing",
+            "smiling expression",
+            "open field",
+            "day",
+            "soft diffused daylight",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "wide shot, eye level, 1girl, teen girl, dress, standing, smiling expression, open field, day, soft diffused daylight, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -230,7 +516,32 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "gh:sdxlTags": [
+            "insert shot",
+            "over-shoulder",
+            "insert",
+            "50mm lens",
+            "soft diffused daylight",
+            "gentle shadows",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "insert shot, over-shoulder, insert, 50mm lens, soft diffused daylight, gentle shadows, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -246,7 +557,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "gh:sdxlTags": [
+            "medium shot",
+            "eye level",
+            "1girl",
+            "teen girl",
+            "casual clothes",
+            "standing",
+            "thoughtful expression",
+            "outdoor",
+            "daytime",
+            "soft diffused daylight",
+            "50mm lens",
+            "luminous mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "medium shot, eye level, 1girl, teen girl, casual clothes, standing, thoughtful expression, outdoor, daytime, soft diffused daylight, 50mm lens, luminous mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -267,7 +608,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "gh:sdxlTags": [
+            "1character",
+            "female",
+            "casual dress",
+            "standing pose",
+            "neutral expression",
+            "bright outdoor",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1character, female, casual dress, standing pose, neutral expression, bright outdoor, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -283,7 +654,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "gh:sdxlTags": [
+            "insert shot",
+            "over shoulder",
+            "1girl",
+            "casual attire",
+            "looking at something",
+            "bright atmosphere",
+            "daytime",
+            "soft diffused daylight",
+            "insert",
+            "high angle",
+            "50mm lens",
+            "tranquil mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "insert shot, over shoulder, 1girl, casual attire, looking at something, bright atmosphere, daytime, soft diffused daylight, insert, high angle, 50mm lens, tranquil mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -300,7 +701,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "gh:sdxlTags": [
+            "close-up",
+            "frontal",
+            "soft_diffused_daylight",
+            "gently_shadows",
+            "1boy",
+            "teen_boy",
+            "casual_clothes",
+            "looking_away",
+            "thoughtful_expression",
+            "outdoor",
+            "daytime",
+            "luminous_atmosphere",
+            "anime_style",
+            "manga_panel",
+            "cinematic",
+            "detailed_background"
+          ],
+          "gh:sdxlNegative": [
+            "low_quality",
+            "worst_quality",
+            "blurry",
+            "deformed",
+            "extra_fingers",
+            "bad_anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "close-up, frontal, soft_diffused_daylight, gently_shadows, 1boy, teen_boy, casual_clothes, looking_away, thoughtful_expression, outdoor, daytime, luminous_atmosphere, anime_style, manga_panel, cinematic, detailed_background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -321,7 +752,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "gh:sdxlTags": [
+            "medium shot",
+            "eye level",
+            "1girl",
+            "young girl",
+            "casual dress",
+            "standing",
+            "neutral expression",
+            "outdoor",
+            "daytime",
+            "soft diffused daylight",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "medium shot, eye level, 1girl, young girl, casual dress, standing, neutral expression, outdoor, daytime, soft diffused daylight, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -337,7 +798,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "gh:sdxlTags": [
+            "1girl",
+            "young girl",
+            "casual attire",
+            "looking at something",
+            "curious expression",
+            "bright background",
+            "daytime",
+            "soft diffused daylight",
+            "insert shot",
+            "top-down",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, young girl, casual attire, looking at something, curious expression, bright background, daytime, soft diffused daylight, insert shot, top-down, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -354,7 +845,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "gh:sdxlTags": [
+            "close-up",
+            "frontal angle",
+            "1girl",
+            "female",
+            "clean outfit",
+            "smiling expression",
+            "outdoors",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "close-up, frontal angle, 1girl, female, clean outfit, smiling expression, outdoors, daytime, soft diffused daylight, close-up, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -375,7 +896,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "gh:sdxlTags": [
+            "wide shot",
+            "eye level",
+            "1boy",
+            "young boy",
+            "casual clothing",
+            "standing",
+            "neutral expression",
+            "park",
+            "daytime",
+            "soft diffused daylight",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "wide shot, eye level, 1boy, young boy, casual clothing, standing, neutral expression, park, daytime, soft diffused daylight, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -391,7 +942,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "gh:sdxlTags": [
+            "1girl",
+            "teen girl",
+            "casual clothing",
+            "standing pose",
+            "thoughtful expression",
+            "outdoor park",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, teen girl, casual clothing, standing pose, thoughtful expression, outdoor park, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -408,7 +989,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "gh:sdxlTags": [
+            "close-up",
+            "frontal angle",
+            "1character",
+            "female character",
+            "elegant dress",
+            "gazing softly",
+            "pristine background",
+            "daytime",
+            "soft diffused daylight",
+            "high angle",
+            "85mm lens",
+            "luminous mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "close-up, frontal angle, 1character, female character, elegant dress, gazing softly, pristine background, daytime, soft diffused daylight, high angle, 85mm lens, luminous mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -429,7 +1040,36 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "gh:sdxlTags": [
+            "wide shot",
+            "eye level",
+            "1girl",
+            "school uniform",
+            "standing outside",
+            "neutral expression",
+            "school yard",
+            "daytime",
+            "soft diffused daylight",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "wide shot, eye level, 1girl, school uniform, standing outside, neutral expression, school yard, daytime, soft diffused daylight, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -445,7 +1085,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "gh:sdxlTags": [
+            "medium shot",
+            "1girl",
+            "young woman",
+            "casual clothing",
+            "standing",
+            "neutral expression",
+            "outdoors",
+            "daytime",
+            "soft diffused daylight",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "medium shot, 1girl, young woman, casual clothing, standing, neutral expression, outdoors, daytime, soft diffused daylight, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -462,7 +1132,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "gh:sdxlTags": [
+            "1girl",
+            "young girl",
+            "dress",
+            "close-up",
+            "smiling expression",
+            "soft natural environment",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, young girl, dress, close-up, smiling expression, soft natural environment, daytime, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -483,7 +1183,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "POV Shot"
+          "shot": "POV Shot",
+          "gh:sdxlTags": [
+            "1person",
+            "young adult",
+            "casual attire",
+            "looking forward",
+            "neutral expression",
+            "outdoor setting",
+            "daytime",
+            "soft diffused daylight",
+            "pov shot",
+            "first-person angle",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1person, young adult, casual attire, looking forward, neutral expression, outdoor setting, daytime, soft diffused daylight, pov shot, first-person angle, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -499,7 +1229,38 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "gh:sdxlTags": [
+            "wide shot",
+            "2 characters",
+            "male",
+            "female",
+            "casual attire",
+            "standing together",
+            "happy expression",
+            "outdoor park",
+            "daytime",
+            "soft diffused daylight",
+            "eye level",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "wide shot, 2 characters, male, female, casual attire, standing together, happy expression, outdoor park, daytime, soft diffused daylight, eye level, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -515,7 +1276,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "gh:sdxlTags": [
+            "insert shot",
+            "over-shoulder view",
+            "1character",
+            "soft clothing",
+            "looking at something",
+            "bright atmosphere",
+            "daytime",
+            "soft daylight",
+            "insert",
+            "top-down angle",
+            "50mm lens",
+            "calm mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "insert shot, over-shoulder view, 1character, soft clothing, looking at something, bright atmosphere, daytime, soft daylight, insert, top-down angle, 50mm lens, calm mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -536,7 +1327,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "POV Shot"
+          "shot": "POV Shot",
+          "gh:sdxlTags": [
+            "1boy",
+            "teen boy",
+            "casual clothes",
+            "standing",
+            "neutral expression",
+            "outdoors",
+            "day",
+            "soft diffused daylight",
+            "POV shot",
+            "first-person POV",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1boy, teen boy, casual clothes, standing, neutral expression, outdoors, day, soft diffused daylight, POV shot, first-person POV, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Wide Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -552,7 +1373,33 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "gh:sdxlTags": [
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "soft diffused daylight",
+            "gentle shadows",
+            "luminous atmosphere",
+            "1group",
+            "pristine clean air",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "wide shot, eye level, 35mm lens, soft diffused daylight, gentle shadows, luminous atmosphere, 1group, pristine clean air, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -568,7 +1415,32 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "gh:sdxlTags": [
+            "insert shot",
+            "over-shoulder angle",
+            "top-down insert",
+            "soft diffused daylight",
+            "gentle shadows",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "insert shot, over-shoulder angle, top-down insert, soft diffused daylight, gentle shadows, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -589,7 +1461,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "gh:sdxlTags": [
+            "wide shot",
+            "eye level",
+            "1girl",
+            "teen girl",
+            "casual clothes",
+            "standing in a field",
+            "serene expression",
+            "open field",
+            "day",
+            "soft diffused daylight",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "wide shot, eye level, 1girl, teen girl, casual clothes, standing in a field, serene expression, open field, day, soft diffused daylight, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -605,7 +1507,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "gh:sdxlTags": [
+            "1girl",
+            "young girl",
+            "casual attire",
+            "sitting on grass",
+            "thoughtful expression",
+            "park",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, young girl, casual attire, sitting on grass, thoughtful expression, park, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -622,7 +1554,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "gh:sdxlTags": [
+            "1girl",
+            "teen girl",
+            "casual outfit",
+            "close-up",
+            "smiling expression",
+            "undefined location",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, teen girl, casual outfit, close-up, smiling expression, undefined location, daytime, soft diffused daylight, close-up, frontal, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -643,7 +1605,39 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "gh:sdxlTags": [
+            "wide shot",
+            "eye level",
+            "35mm lens",
+            "soft diffused daylight",
+            "gentle shadows",
+            "luminous atmosphere",
+            "1girl",
+            "young girl",
+            "casual attire",
+            "standing",
+            "serene expression",
+            "open field",
+            "daytime",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark",
+            "text"
+          ],
+          "gh:sdxlPrompt": "wide shot, eye level, 35mm lens, soft diffused daylight, gentle shadows, luminous atmosphere, 1girl, young girl, casual attire, standing, serene expression, open field, daytime, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -659,7 +1653,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "gh:sdxlTags": [
+            "2girls",
+            "young girls",
+            "casual attire",
+            "standing together",
+            "happy expression",
+            "outdoor park",
+            "daytime",
+            "soft diffused daylight",
+            "medium shot",
+            "eye level",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "2girls, young girls, casual attire, standing together, happy expression, outdoor park, daytime, soft diffused daylight, medium shot, eye level, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -676,7 +1700,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "gh:sdxlTags": [
+            "1girl",
+            "young woman",
+            "casual outfit",
+            "looking at viewer",
+            "surprised expression",
+            "bright environment",
+            "daytime",
+            "soft diffused daylight",
+            "close-up",
+            "frontal",
+            "85mm lens",
+            "luminous mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, young woman, casual outfit, looking at viewer, surprised expression, bright environment, daytime, soft diffused daylight, close-up, frontal, 85mm lens, luminous mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -698,7 +1752,37 @@
             "gh:movement": "handheld or tracking shot, subtle motion blur"
           },
           "panel": 1,
-          "shot": "Action Shot"
+          "shot": "Action Shot",
+          "gh:sdxlTags": [
+            "1girl",
+            "teen girl",
+            "casual clothes",
+            "running",
+            "determined expression",
+            "outdoor",
+            "daytime",
+            "soft_diffused_light",
+            "medium shot",
+            "dynamic tracking",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "1girl, teen girl, casual clothes, running, determined expression, outdoor, daytime, soft_diffused_light, medium shot, dynamic tracking, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Full Page Splash, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -714,7 +1798,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Full Page Splash"
+          "shot": "Full Page Splash",
+          "gh:sdxlTags": [
+            "wide shot",
+            "dynamic angle",
+            "1girl",
+            "light dress",
+            "standing on cliff",
+            "determined expression",
+            "cliffside",
+            "daytime",
+            "soft diffused daylight",
+            "full page splash",
+            "28mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "wide shot, dynamic angle, 1girl, light dress, standing on cliff, determined expression, cliffside, daytime, soft diffused daylight, full page splash, 28mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -736,7 +1850,32 @@
             "gh:movement": "handheld or tracking shot, subtle motion blur"
           },
           "panel": 1,
-          "shot": "Action Shot"
+          "shot": "Action Shot",
+          "gh:sdxlTags": [
+            "action shot",
+            "dynamic tracking",
+            "medium shot",
+            "soft diffused daylight",
+            "gentle shadows",
+            "luminous atmosphere",
+            "pristine clean air",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "action shot, dynamic tracking, medium shot, soft diffused daylight, gentle shadows, luminous atmosphere, pristine clean air, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Full Page Splash, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -752,7 +1891,38 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Full Page Splash"
+          "shot": "Full Page Splash",
+          "gh:sdxlTags": [
+            "wide shot",
+            "full page splash",
+            "dynamic angle",
+            "1girl",
+            "female",
+            "casual attire",
+            "standing",
+            "confident expression",
+            "urban landscape",
+            "day",
+            "soft diffused daylight",
+            "28mm lens",
+            "serene mood",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "wide shot, full page splash, dynamic angle, 1girl, female, casual attire, standing, confident expression, urban landscape, day, soft diffused daylight, 28mm lens, serene mood, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -773,7 +1943,37 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "gh:sdxlTags": [
+            "wide shot",
+            "eye level",
+            "1girl",
+            "teen girl",
+            "jacket",
+            "standing",
+            "neutral expression",
+            "outdoor",
+            "daytime",
+            "soft diffused daylight",
+            "35mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "wide shot, eye level, 1girl, teen girl, jacket, standing, neutral expression, outdoor, daytime, soft diffused daylight, 35mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Insert Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -789,7 +1989,32 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Insert Shot"
+          "shot": "Insert Shot",
+          "gh:sdxlTags": [
+            "insert shot",
+            "over-shoulder",
+            "insert",
+            "50mm lens",
+            "soft diffused daylight",
+            "gentle shadows",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "insert shot, over-shoulder, insert, 50mm lens, soft diffused daylight, gentle shadows, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -806,7 +2031,36 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "gh:sdxlTags": [
+            "close-up",
+            "frontal angle",
+            "1character",
+            "mysterious figure",
+            "elegant attire",
+            "intriguing gesture",
+            "neutral expression",
+            "soft diffused daylight",
+            "soft shadows",
+            "85mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "close-up, frontal angle, 1character, mysterious figure, elegant attire, intriguing gesture, neutral expression, soft diffused daylight, soft shadows, 85mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     },
@@ -827,7 +2081,38 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 1,
-          "shot": "Wide Shot"
+          "shot": "Wide Shot",
+          "gh:sdxlTags": [
+            "wide shot",
+            "eye level",
+            "1boy",
+            "teen boy",
+            "casual clothing",
+            "standing",
+            "neutral expression",
+            "luminous atmosphere",
+            "outdoors",
+            "daytime",
+            "soft diffused daylight",
+            "35mm lens",
+            "gentle shadows",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "wide shot, eye level, 1boy, teen boy, casual clothing, standing, neutral expression, luminous atmosphere, outdoors, daytime, soft diffused daylight, 35mm lens, gentle shadows, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Medium Shot, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -843,7 +2128,36 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 2,
-          "shot": "Medium Shot"
+          "shot": "Medium Shot",
+          "gh:sdxlTags": [
+            "medium shot",
+            "eye level",
+            "1girl",
+            "wearing a dress",
+            "standing",
+            "neutral expression",
+            "outdoor park",
+            "day",
+            "soft diffused daylight",
+            "50mm lens",
+            "luminous atmosphere",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "medium shot, eye level, 1girl, wearing a dress, standing, neutral expression, outdoor park, day, soft diffused daylight, 50mm lens, luminous atmosphere, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         },
         {
           "gh:imagePrompt": "Close-up, ARIA-style. . luminous atmosphere, soft diffused natural light, pristine clean air. shot on 35mm, f/2.8, cinematic live-action.",
@@ -860,7 +2174,32 @@
             "gh:lighting": "soft diffused daylight, gentle shadows"
           },
           "panel": 3,
-          "shot": "Close-up"
+          "shot": "Close-up",
+          "gh:sdxlTags": [
+            "close-up",
+            "frontal angle",
+            "85mm lens",
+            "soft diffused daylight",
+            "gentle shadows",
+            "luminous atmosphere",
+            "pristine clean air",
+            "anime style",
+            "manga panel",
+            "cinematic",
+            "detailed background"
+          ],
+          "gh:sdxlNegative": [
+            "low quality",
+            "worst quality",
+            "blurry",
+            "deformed",
+            "extra fingers",
+            "bad anatomy",
+            "watermark"
+          ],
+          "gh:sdxlPrompt": "close-up, frontal angle, 85mm lens, soft diffused daylight, gentle shadows, luminous atmosphere, pristine clean air, anime style, manga panel, cinematic, detailed background",
+          "gh:sdxlModel": "gpt-4o-mini",
+          "gh:sdxlGeneratedAt": 1778025438
         }
       ]
     }

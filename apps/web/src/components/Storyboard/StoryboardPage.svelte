@@ -108,7 +108,7 @@
 	}
 
 	.panel-tap-area {
-		@apply cursor-pointer rounded-2xl transition active:scale-[0.98];
+		@apply cursor-pointer rounded-2xl transition;
 	}
 	.panel-tap-area:focus-visible {
 		outline: 2px solid #007aff;
