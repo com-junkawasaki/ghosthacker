@@ -164,7 +164,15 @@ export const POST: RequestHandler = async ({ request }) => {
 		for (const name of characterIds.slice(0, 5)) {
 			const refPath = join(projectRoot(), 'resources', 'characters', name, 'reference.png');
 			if (!existsSync(refPath)) continue;
-			referenceImages.push(await fsReadFile(refPath));
+			const facePath = join(projectRoot(), 'resources', 'characters', name, 'reference_face.png');
+			if (existsSync(facePath)) {
+				referenceImages.push(await fsReadFile(facePath));
+			} else {
+				const full = await fsReadFile(refPath);
+				const faceBuf = cropFaceRegion(full, 0.42);
+				await writeFile(facePath, faceBuf);
+				referenceImages.push(faceBuf);
+			}
 		}
 		// Strip SDXL-specific tag scaffolding for natural-language image-gen.
 		const cleanPrompt = positive
@@ -175,7 +183,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			.replace(/\bsolo\b/g, '')
 			.replace(/\b1(boy|girl)\b/g, (_m, g) => g === 'boy' ? '1 male character' : '1 female character');
 		const referenceNote = referenceImages.length
-			? ' Use the supplied character reference image(s) to preserve the same character design, especially face shape, sleepy eyes, messy black hair, and black-and-white manga line style. Generate a new single-panel storyboard image for the described scene; do not copy the reference pose unless the scene asks for it.'
+			? ' Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.'
 			: '';
 		const prompt = `Anime / manga panel illustration. ${cleanPrompt}.${referenceNote}`;
 		const oai = await generateOpenAIImage({
