@@ -7,6 +7,7 @@ export interface ExternalImageRequest {
 	prompt: string;
 	negative?: string;
 	size?: '1024x1024' | '1024x1536' | '1536x1024';
+	quality?: 'low' | 'medium' | 'high' | 'auto';
 	seed?: number;
 	model?: string;
 }
@@ -22,11 +23,11 @@ const OPENAI_API_KEY = () => process.env.OPENAI_API_KEY || '';
  * OpenAI gpt-image-1: image generation via /v1/images/generations.
  * Returns base64 PNG.
  */
-async function callOpenAIGen(model: string, prompt: string, size: string, key: string): Promise<{ ok: true; b64: string } | { ok: false; status: number; error: string }> {
+async function callOpenAIGen(model: string, prompt: string, size: string, quality: string | undefined, key: string): Promise<{ ok: true; b64: string } | { ok: false; status: number; error: string }> {
 	const res = await fetch('https://api.openai.com/v1/images/generations', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
-		body: JSON.stringify({ model, prompt, size, n: 1 })
+		body: JSON.stringify({ model, prompt, size, n: 1, ...(quality ? { quality } : {}) })
 	});
 	const text = await res.text();
 	if (!res.ok) return { ok: false, status: res.status, error: text.slice(0, 400) };
@@ -41,13 +42,14 @@ export async function generateOpenAIImage(req: ExternalImageRequest): Promise<Ex
 	if (!key) throw new Error('OPENAI_API_KEY not set');
 	const start = Date.now();
 	const size = req.size ?? '1024x1024';
+	const quality = req.quality || process.env.OPENAI_IMAGE_QUALITY;
 	const requested = req.model || process.env.OPENAI_IMAGE_MODEL || 'gpt-image-2';
 
 	// Try the requested model; if 403 (org-verification needed), fall back to gpt-image-1.
-	let r = await callOpenAIGen(requested, req.prompt, size, key);
+	let r = await callOpenAIGen(requested, req.prompt, size, quality, key);
 	if (!r.ok && r.status === 403 && requested !== 'gpt-image-1') {
 		console.warn(`[openai] ${requested} unavailable (403). Falling back to gpt-image-1.`);
-		r = await callOpenAIGen('gpt-image-1', req.prompt, size, key);
+		r = await callOpenAIGen('gpt-image-1', req.prompt, size, quality, key);
 	}
 	if (!r.ok) throw new Error(`OpenAI HTTP ${r.status}: ${r.error}`);
 	return { bytes: Buffer.from(r.b64, 'base64'), durationMs: Date.now() - start };

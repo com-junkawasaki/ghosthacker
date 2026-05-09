@@ -83,11 +83,15 @@ export const POST: RequestHandler = async ({ request }) => {
 		refine,
 		refineDenoise,
 		refineSteps,
-		engine
+		engine,
+		panelArrayIndex,
+		imageQuality
 	} = body as {
 		episodeId?: string;
 		pageNumber?: number;
 		panelIndex?: number;
+		panelArrayIndex?: number;
+		imageQuality?: 'low' | 'medium' | 'high' | 'auto';
 		image?: string;
 		scribble?: string;
 		aiStrength?: number;
@@ -112,7 +116,10 @@ export const POST: RequestHandler = async ({ request }) => {
 	const pages = sourceData['gh:pages'] as any[] ?? [];
 	const page = pages.find((pg) => pg['gh:pageNumber'] === pageNumber);
 	if (!page) throw error(404, `Page ${pageNumber} not found`);
-	const panel = (page['gh:panels'] as any[] ?? []).find((pn) => {
+	const panels = page['gh:panels'] as any[] ?? [];
+	const panel = panelArrayIndex != null && panels[panelArrayIndex]
+		? panels[panelArrayIndex]
+		: panels.find((pn) => {
 		const pi = pn['gh:panelIndex'] ?? pn['panel'];
 		return pi === panelIndex || pi === panelIndex + 1;
 	});
@@ -151,11 +158,14 @@ export const POST: RequestHandler = async ({ request }) => {
 	if (useEngine === 'openai') {
 		// Strip SDXL-specific tag scaffolding for natural-language image-gen.
 		const cleanPrompt = positive
+			.replace(/\btext\s+['"][^'"]*['"]/gi, 'subtle unread message preview')
+			.replace(/\bteen\s+(boy|girl)\b/gi, (_m, g) => g.toLowerCase() === 'boy' ? 'male student' : 'female student')
+			.replace(/\bbedroom\b/gi, 'private room')
 			.replace(/, masterpiece, high score, great score, absurdres$/, '')
 			.replace(/\bsolo\b/g, '')
 			.replace(/\b1(boy|girl)\b/g, (_m, g) => g === 'boy' ? '1 male character' : '1 female character');
 		const prompt = `Anime / manga panel illustration. ${cleanPrompt}`;
-		const oai = await generateOpenAIImage({ prompt });
+		const oai = await generateOpenAIImage({ prompt, quality: imageQuality });
 
 		if (!persist) {
 			return new Response(oai.bytes, {
