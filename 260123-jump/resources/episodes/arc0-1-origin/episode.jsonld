@@ -4367,10 +4367,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/panel_p11-friend-list-download_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778315559,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 45936
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. モニター上でYutoの友達リストが全件ダウンロードされ、アクティブセッションが追加される。男の口元だけが薄く笑う。. Shot type: Insert. Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 10
+          "gh:panelIndex": 10,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/panel_p11-friend-list-download_sketch_v1.png"
         }
       ]
     },
@@ -5797,10 +5806,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/15/panel_p15-mother-gentle-card-check_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778315596,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 36298
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 夜のリビング。母の裕子がカード明細を見ながら、問い詰めるのではなく軽くYutoに声をかける。Yutoはソファの端でスマホを見るふりをしている。. Shot type: Medium Shot. Dialogue: Yuko: お母さんのカード、身に覚えのない請求が3日で10万入ってて、、、ギフトカードばっかり。心当たり、ない? / Yuto: ……知らない。俺じゃない Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 1
+          "gh:panelIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/15/panel_p15-mother-gentle-card-check_sketch_v1.png"
         },
         {
           "@id": "panel:p15-parents-message-card-stop",
@@ -5820,10 +5838,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/15/panel_p15-parents-message-card-stop_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778315638,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 40579
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 裕子のスマホ画面。父とのメッセージで「不正請求かも」「明日、カード止めよう」とやり取りしている。キッチンから弁当の下準備の音。. Shot type: Insert. Dialogue: Yuko: お父さん「明日、カード止めよう」って。不正請求かもね。続きは、明日。夜、ちゃんと寝な Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 2
+          "gh:panelIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/15/panel_p15-parents-message-card-stop_sketch_v1.png"
         },
         {
           "@id": "panel:4-vkALuzaJpb",
@@ -7169,10 +7196,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_p18-nei-sees-empty-posture_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778315681,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 42200
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 朝の廊下からNeiがB組を通りがかりに見る。Yutoは窓際の一番端で机に突っ伏し、周囲の誰も声をかけていない。. Shot type: Medium Wide Shot. Dialogue: Nei: 藤崎くん、座っていない。座ったまま、でも、いない。 Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 1
+          "gh:panelIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_p18-nei-sees-empty-posture_sketch_v1.png"
         },
         {
           "@id": "panel:FZXzPsEGmR1J",
@@ -8243,10 +8279,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/20/panel_p20-nei-grabs-ren-sleeve_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778315718,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 35866
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. Renが帰ろうとカバンを肩にかけた瞬間、Neiが袖をぎゅっと掴む。いつもの淡々とした顔ではなく、目だけが真っ直ぐにRenを見る。. Shot type: Close Up. Dialogue: Nei: 藤崎くん、昔の、わたしと、同じ目、してた / Ren: …… Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 7
+          "gh:panelIndex": 7,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/20/panel_p20-nei-grabs-ren-sleeve_sketch_v1.png"
         },
         {
           "@id": "panel:p20-ren-chooses-help",
@@ -8275,10 +8320,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/20/panel_p20-ren-chooses-help_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778315753,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 33766
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 3秒の沈黙のあと、Renがカバンを机に戻す。Neiは小さく頷く。. Shot type: Medium Shot. Dialogue: Ren: ……わかったよ / Ren: Nei。藤崎、呼んで来てくれ / Nei: はい Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 8
+          "gh:panelIndex": 8,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/20/panel_p20-ren-chooses-help_sketch_v1.png"
         }
       ]
     },
@@ -11966,10 +12020,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/31/panel_p31-nei-hands-beta-device_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778315796,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 41745
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. Neiが小型のクリスタルキューブ型デバイスをRenに渡す。デバイスには Holonium Vision: Projector beta の刻印がある。. Shot type: Close Up. Dialogue: Nei: パパがレンくんならこれで“ゴースト”もハックできるだろうって / Ren: ゴーストハック……情報場をハックするか Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 6
+          "gh:panelIndex": 6,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/31/panel_p31-nei-hands-beta-device_sketch_v1.png"
         }
       ]
     },
@@ -13055,10 +13118,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/35/panel_p35-null-axe-first-slash_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778315838,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 41016
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 情報場の中、Renが白いNULL AXEを振る。小さな人型のGhostが色とりどりの感情の霧になって散る。周囲のGhostが一斉にRenへ襲いかかる。. Shot type: Action Wide Shot. Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 6
+          "gh:panelIndex": 6,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/35/panel_p35-null-axe-first-slash_sketch_v1.png"
         },
         {
           "@id": "panel:p35-ghosts-scatter-color",
@@ -13078,10 +13150,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/35/panel_p35-ghosts-scatter-color_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778315877,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 38417
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. RenがGhostの群れをかわし、すれ違いざまに斧を振り下ろす。触れたGhostは形を維持できず、色の粒子となって霧散する。. Shot type: Dynamic Action Shot. Dialogue: Akira: うおぉ！斧!? どこから!? あぶなくね!? Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 7
+          "gh:panelIndex": 7,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/35/panel_p35-ghosts-scatter-color_sketch_v1.png"
         }
       ]
     },
@@ -15070,10 +15151,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/41/panel_p41-ren-asks-yuto-logs_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778315912,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 34077
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 和解の空気が戻り始めた教室で、RenがYutoに端末ログの共有を頼む。Yutoはまだ涙の跡を残したまま頷く。. Shot type: Medium Shot. Dialogue: Ren: Yuto、おまえの端末に残ってるアクターの情報、ログをもらってもいいか? / Yuto: え、うん。もちろん、いいけど、、 Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 7
+          "gh:panelIndex": 7,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/41/panel_p41-ren-asks-yuto-logs_sketch_v1.png"
         },
         {
           "@id": "panel:p41-nue-escalation-chat",
@@ -15097,10 +15187,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/41/panel_p41-nue-escalation-chat_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778315953,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 39551
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. Renの端末画面。詐欺サイトのロゴメタデータ、C2通信hash断片、Bot制御API署名、UTC+7の運用時間帯をnueへ送信する。. Shot type: Insert. Dialogue: Ren: ログ、4種、投げる。7年前と同じ系統に見える。確認してくれ。 / nue: 受信。hash、完全一致。FBI IC3 と Interpol にエスカレートする。 Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 8
+          "gh:panelIndex": 8,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/41/panel_p41-nue-escalation-chat_sketch_v1.png"
         },
         {
           "@id": "panel:p41-bangkok-probe-alert",
@@ -15120,10 +15219,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/41/panel_p41-bangkok-probe-alert_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778315996,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 41514
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. バンコクの雑居ビル。若い男がティーカップを取り落とす。画面端に Inbound probe / Source: nue (US) — Honeypot triggered の警告が点滅している。. Shot type: Medium Shot. Dialogue: operator: ……いや、まだ823件、動いてる……大丈夫 Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 9
+          "gh:panelIndex": 9,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/41/panel_p41-bangkok-probe-alert_sketch_v1.png"
         }
       ]
     },
@@ -15579,10 +15687,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/42/panel_p42-three-responsibilities_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778316033,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 36641
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 翌朝の教室。Mei、Saki、Yutoがそれぞれ自分の責任だけを言葉にし、Renが寝ながら整理する。空気が少しずつ戻っていく。. Shot type: Medium Wide Shot. Dialogue: Ren: 愚痴を書いたのはMei。リンクを広めたのはYuto。それを広めさせたのはアクター。——アクターだけが、まだ責任を取っていない。 Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 8
+          "gh:panelIndex": 8,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/42/panel_p42-three-responsibilities_sketch_v1.png"
         },
         {
           "@id": "panel:p42-classmates-offer-logs",
@@ -15609,10 +15726,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/42/panel_p42-classmates-offer-logs_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778316083,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 48631
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. Akiraたちがスクショやメッセージを差し出し、News Hackerへの協力を申し出る。Renは予想外の情報量に少しだけ目を開く。. Shot type: Medium Shot. Dialogue: Akira: スクショとか、メッセージとかは持っているんだけど、、 / Ren: あ、あぁ。多ければ多いほどもちろん助かる Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 9
+          "gh:panelIndex": 9,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/42/panel_p42-classmates-offer-logs_sketch_v1.png"
         }
       ]
     },
@@ -15688,10 +15814,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/43/panel_p43-ren-room-new-clues_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778316123,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 38841
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. Renの机にYuto事件から得た新しい手がかりが並ぶ。ロゴファイル、バンコクのIP範囲、Bot制御API署名、UTC+7の勤務シフト、日本語UIの癖。. Shot type: Insert Montage. Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 2
+          "gh:panelIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/43/panel_p43-ren-room-new-clues_sketch_v1.png"
         },
         {
           "@id": "panel:p43-victim-list-164",
@@ -15706,10 +15841,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/43/panel_p43-victim-list-164_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778316165,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 40724
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. Renが西壁の被害者リストに164番目として藤崎悠斗の名前を書き加える。同一系統、確認、と小さく記す。. Shot type: Close Up. Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 3
+          "gh:panelIndex": 3,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/43/panel_p43-victim-list-164_sketch_v1.png"
         },
         {
           "@id": "panel:p43-sip-lock-difficulty-drops",
@@ -15734,10 +15878,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/43/panel_p43-sip-lock-difficulty-drops_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778316191,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 25401
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 桐の小箱から青白い光が漏れる。SIPデバイスの画面で Lock Difficulty: 2^256 → 2^240、Vector Alignment Proof: 0 → 1、Vector Density: 12% と表示される。. Shot type: Insert. Dialogue: Nei: 難易度、下がった / Ren: 16ビット。7年間、0だった、のに Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 4
+          "gh:panelIndex": 4,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/43/panel_p43-sip-lock-difficulty-drops_sketch_v1.png"
         },
         {
           "@id": "panel:p43-vector-alignment-proof",
@@ -15762,10 +15915,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/43/panel_p43-vector-alignment-proof_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778316231,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 38766
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 父のHHKBの前でRenとNeiが画面を見つめる。Yuto、Saki、Mei、Akiraが「悪いのはアクター」という同じ方向に揃ったことを理解する。. Shot type: Medium Shot. Dialogue: Ren: N人が同じベクトルに揃えば、共有計算能力は2^Nに増える。今日、オレたちが実証したのか / Nei: うん。Vector Alignment Proof、1つ目 Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 5
+          "gh:panelIndex": 5,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/43/panel_p43-vector-alignment-proof_sketch_v1.png"
         },
         {
           "@id": "panel:wbyZ9XSD4njQ",
@@ -16323,10 +16485,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/44/panel_p44-ren-job-ghosthack_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778316280,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 47891
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. Renが父のHHKBの無刻印Jキーを軽く叩く。カチャ、という音。怠惰な表情の奥に決意がある。. Shot type: Medium Close Up. Dialogue: Ren: Nei。——俺、仕事にするよ / Nei: 仕事? / Ren: ゴーストハックを Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 4
+          "gh:panelIndex": 4,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/44/panel_p44-ren-job-ghosthack_sketch_v1.png"
         },
         {
           "@id": "panel:p44-one-case-at-a-time",
@@ -16351,10 +16522,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/44/panel_p44-one-case-at-a-time_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778316311,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 29802
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. Renが捜査壁とSIPデバイスを背に、1件ずつ人を助けることが犯人にも父のロックにも近づく最短路だと語る。. Shot type: Medium Shot. Dialogue: Ren: 1件ずつ、ベクトルを揃えてくと、父さんの犯人まで繋がるし、父さんが残したパスワードロックも開く / Nei: レンが、1件ずつって言うの、初めて Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 5
+          "gh:panelIndex": 5,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/44/panel_p44-one-case-at-a-time_sketch_v1.png"
         }
       ],
       "gh:spreadWith": 45
@@ -16568,10 +16748,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/45/panel_p45-agency-plan-file_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778316353,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 41274
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. ノートPCの画面に新しいファイル名 NewsHacker_Agency_Plan.md が表示される。父のHHKBとSIPデバイスの青い光が同じ机にある。. Shot type: Insert. Dialogue: Nei: ……事務所? / Ren: 仕事を、始める。サイバーセキュリティ。ゴーストハッカー事務所 Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 4
+          "gh:panelIndex": 4,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/45/panel_p45-agency-plan-file_sketch_v1.png"
         },
         {
           "@id": "panel:p45-nei-joins",
@@ -16600,10 +16789,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/45/panel_p45-nei-joins_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778316398,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 43762
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 隣家の窓にNeiの部屋の灯りが見える夜。RenとNeiが並び、これからの仕事を静かに始める。. Shot type: Two Shot. Dialogue: Nei: わたしも、手伝っていい? / Ren: いいのか? / Ren: やるか Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 5
+          "gh:panelIndex": 5,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/45/panel_p45-nei-joins_sketch_v1.png"
         }
       ],
       "gh:spreadWith": 44
