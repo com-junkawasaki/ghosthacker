@@ -336,7 +336,7 @@
               "gh:nameReading": "ふじさき ゆうと"
             }
           ],
-          "gh:currentImageIndex": 3,
+          "gh:currentImageIndex": 4,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n2-fearful-yuto_sketch_v5.png",
           "gh:generatedImages": [
             {
@@ -370,6 +370,16 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n2-fearful-yuto_sketch_v5.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n2-fearful-yuto_sketch_v5.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 1 male character, male student, Yuto, sitting on bed, fearful expression, private room, night, blue white light from smartphone, medium shot, eye level, 50mm lens, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778318383,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:durationMs": 38958
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. ベッドで膝を抱えるYuto。恐怖の表情でスマホを見つめる。眠れない夜が続き、目の下にクマ。. Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -494,8 +504,8 @@
           ],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/p0n4-terror-eyes_v2.png",
-          "gh:currentImageIndex": 2,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n4-terror-eyes_sketch_v6.png",
+          "gh:currentImageIndex": 3,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n4-terror-eyes_sketch_v4.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769353391,
@@ -515,6 +525,16 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n4-terror-eyes_sketch_v6.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_p0n4-terror-eyes_sketch_v4.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 1 male character, male student, yuto, extreme close up, fearful expression, private room, night, reflected smartphone light, eye level, 100mm macro lens, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778318413,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:durationMs": 28302
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Yutoの目だけのアップ。通知音に怯え、瞳孔が開いている。額に冷や汗。恐怖に支配された目。. Shot type: Extreme Close Up. Dialogue: Yuto: （また…通知…）.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -579,8 +599,8 @@
           "dialogue": [],
           "environment": "env:tokyo-skyline",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/8O_Ec3v5MRHx_v1.png",
-          "gh:currentImageIndex": 3,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_8O_Ec3v5MRHx_sketch_v4.png",
+          "gh:currentImageIndex": 4,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_8O_Ec3v5MRHx_sketch_v5.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769356775,
@@ -616,6 +636,17 @@
                 "Nei"
               ],
               "gh:durationMs": 32410
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_8O_Ec3v5MRHx_sketch_v5.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 2characters, boy, girl, jumping, dynamic pose, tokyo skyline, dusk, backlight, extreme wide shot, low angle, 24mm lens, dynamic mood, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778318446,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren",
+                "Nei"
+              ],
+              "gh:durationMs": 32257
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 東京の街並み、上空。RenとNeiがジャンプしている動的なシーン。タイトル「Ghost Hacker」が大きく入る。. Shot type: Extreme Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -684,8 +715,8 @@
           "dialogue": [],
           "environment": "env:tokyo-skyline",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/oFLWR9TcfBWC_v1.png",
-          "gh:currentImageIndex": 3,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_oFLWR9TcfBWC_sketch_v4.png",
+          "gh:currentImageIndex": 4,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_oFLWR9TcfBWC_sketch_v5.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769356772,
@@ -721,6 +752,17 @@
                 "Nei"
               ],
               "gh:durationMs": 27694
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_oFLWR9TcfBWC_sketch_v5.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 2 characters, boy, girl, landing, hopeful expression, tokyo skyline, dusk, golden hour, extreme wide shot, eye level, 24mm lens, grand mood, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778318488,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren",
+                "Nei"
+              ],
+              "gh:durationMs": 41371
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 見開き続き。東京タワーやビル群を背景に、二人が着地するシーン。. Shot type: Extreme Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -796,7 +838,7 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_p2-holonium-vision-rumor_sketch_v1.png",
@@ -804,11 +846,24 @@
               "gh:generatedAt": 1778315107,
               "gh:model": "openai/gpt-image-2",
               "gh:durationMs": 35079
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_p2-holonium-vision-rumor_sketch_v2.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778318524,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Akira",
+                "Mei",
+                "Saki",
+                "Yuto"
+              ],
+              "gh:durationMs": 34376
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. Akiraが限定スニーカーの箱を抱えたまま、未発売のHolonium Visionの噂を熱く語る。MeiとSakiは驚き、Yutoは少し離れて聞いている。. Shot type: Medium Shot. Dialogue: Mei: ねぇ、Akiraさあ、本当はスニーカーより、アレ欲しいんでしょ? / Akira: Holonium Vision。来年、コンシューマ版が出るって噂。100万らしい。 / Saki: 100万!? 高っ Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 2,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_p2-holonium-vision-rumor_sketch_v1.png"
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_p2-holonium-vision-rumor_sketch_v2.png"
         },
         {
           "@id": "panel:p2-ren-silver-eye",
@@ -828,7 +883,7 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": 2,
+          "gh:currentImageIndex": 3,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_p2-ren-silver-eye_sketch_v1.png",
@@ -856,11 +911,21 @@
                 "Ren"
               ],
               "gh:durationMs": 26053
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_p2-ren-silver-eye_sketch_v4.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778318553,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:durationMs": 28012
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 窓際で眠そうにドーナツを咀嚼する蓮。Holonium Visionという言葉にだけ反応し、薄目の奥が一瞬銀色に光る。. Shot type: Close Up. Dialogue: Ren: ……ねむい Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 3,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_p2-ren-silver-eye_sketch_v3.png"
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_p2-ren-silver-eye_sketch_v4.png"
         }
       ],
       "gh:spreadWith": 1,
