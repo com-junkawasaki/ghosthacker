@@ -4340,10 +4340,19 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": -1,
-          "gh:generatedImages": [],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/panel_p11-bangkok-operator-login_sketch_v1.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.",
+              "gh:generatedAt": 1778315512,
+              "gh:model": "openai/gpt-image-2",
+              "gh:durationMs": 29453
+            }
+          ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. バンコクの雑居ビルの一室。中東系の若い男がYutoから受け取った認証番号をNeliのログイン画面に打ち込み、ログイン成功の表示が出る。. Shot type: Medium Shot. Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
-          "gh:panelIndex": 9
+          "gh:panelIndex": 9,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/11/panel_p11-bangkok-operator-login_sketch_v1.png"
         },
         {
           "@id": "panel:p11-friend-list-download",
