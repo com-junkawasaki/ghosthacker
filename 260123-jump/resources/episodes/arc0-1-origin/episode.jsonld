@@ -1016,8 +1016,8 @@
           "dialogue": [],
           "environment": "env:middle-school-exterior",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/TsFzNph3jkdB_v1.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/panel_TsFzNph3jkdB_sketch_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/panel_TsFzNph3jkdB_sketch_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769354468,
@@ -1031,6 +1031,16 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/panel_TsFzNph3jkdB_sketch_v2.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/panel_TsFzNph3jkdB_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 1 male character, middle school student, school uniform, walking, bright expression, middle school exterior, daytime, natural light, wide shot, eye level, 35mm lens, lively mood, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778318589,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:durationMs": 35226
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 校舎の全景。玄関に向かう生徒たち。その中にYutoの姿。. Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
