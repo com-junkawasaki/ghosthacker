@@ -8,6 +8,8 @@ export interface ExternalImageRequest {
 	negative?: string;
 	size?: '1024x1024' | '1024x1536' | '1536x1024';
 	quality?: 'low' | 'medium' | 'high' | 'auto';
+	referenceImages?: Buffer[];
+	inputFidelity?: 'low' | 'high';
 	seed?: number;
 	model?: string;
 }
@@ -37,6 +39,39 @@ async function callOpenAIGen(model: string, prompt: string, size: string, qualit
 	return { ok: true, b64 };
 }
 
+async function callOpenAIReferenceEdit(
+	model: string,
+	prompt: string,
+	referenceImages: Buffer[],
+	size: string,
+	quality: string | undefined,
+	inputFidelity: string | undefined,
+	key: string
+): Promise<{ ok: true; b64: string } | { ok: false; status: number; error: string }> {
+	const form = new FormData();
+	form.append('model', model);
+	form.append('prompt', prompt);
+	form.append('size', size);
+	form.append('n', '1');
+	if (quality) form.append('quality', quality);
+	if (inputFidelity) form.append('input_fidelity', inputFidelity);
+	const imageField = referenceImages.length > 1 ? 'image[]' : 'image';
+	for (const [index, image] of referenceImages.slice(0, 16).entries()) {
+		form.append(imageField, new Blob([new Uint8Array(image)], { type: 'image/png' }), `reference-${index}.png`);
+	}
+	const res = await fetch('https://api.openai.com/v1/images/edits', {
+		method: 'POST',
+		headers: { Authorization: `Bearer ${key}` },
+		body: form
+	});
+	const text = await res.text();
+	if (!res.ok) return { ok: false, status: res.status, error: text.slice(0, 400) };
+	const json = JSON.parse(text);
+	const b64 = json.data?.[0]?.b64_json;
+	if (!b64) return { ok: false, status: 200, error: 'no image in response' };
+	return { ok: true, b64 };
+}
+
 export async function generateOpenAIImage(req: ExternalImageRequest): Promise<ExternalImageResult> {
 	const key = OPENAI_API_KEY();
 	if (!key) throw new Error('OPENAI_API_KEY not set');
@@ -46,10 +81,14 @@ export async function generateOpenAIImage(req: ExternalImageRequest): Promise<Ex
 	const requested = req.model || process.env.OPENAI_IMAGE_MODEL || 'gpt-image-2';
 
 	// Try the requested model; if 403 (org-verification needed), fall back to gpt-image-1.
-	let r = await callOpenAIGen(requested, req.prompt, size, quality, key);
+	let r = req.referenceImages?.length
+		? await callOpenAIReferenceEdit(requested, req.prompt, req.referenceImages, size, quality, req.inputFidelity, key)
+		: await callOpenAIGen(requested, req.prompt, size, quality, key);
 	if (!r.ok && r.status === 403 && requested !== 'gpt-image-1') {
 		console.warn(`[openai] ${requested} unavailable (403). Falling back to gpt-image-1.`);
-		r = await callOpenAIGen('gpt-image-1', req.prompt, size, quality, key);
+		r = req.referenceImages?.length
+			? await callOpenAIReferenceEdit('gpt-image-1', req.prompt, req.referenceImages, size, quality, req.inputFidelity, key)
+			: await callOpenAIGen('gpt-image-1', req.prompt, size, quality, key);
 	}
 	if (!r.ok) throw new Error(`OpenAI HTTP ${r.status}: ${r.error}`);
 	return { bytes: Buffer.from(r.b64, 'base64'), durationMs: Date.now() - start };

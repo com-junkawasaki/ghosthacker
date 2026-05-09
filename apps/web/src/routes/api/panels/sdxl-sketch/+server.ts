@@ -159,6 +159,13 @@ export const POST: RequestHandler = async ({ request }) => {
 	const useEngine: 'openai' | 'sdxl' = engine === 'sdxl' ? 'sdxl' : (engine === 'openai' ? 'openai' : 'openai');
 
 	if (useEngine === 'openai') {
+		const characterIds: string[] = (panel['gh:characters'] ?? panel['characters'] ?? []).map((c: string) => String(c).replace(/^character:/, ''));
+		const referenceImages: Buffer[] = [];
+		for (const name of characterIds.slice(0, 5)) {
+			const refPath = join(projectRoot(), 'resources', 'characters', name, 'reference.png');
+			if (!existsSync(refPath)) continue;
+			referenceImages.push(await fsReadFile(refPath));
+		}
 		// Strip SDXL-specific tag scaffolding for natural-language image-gen.
 		const cleanPrompt = positive
 			.replace(/\btext\s+['"][^'"]*['"]/gi, 'subtle unread message preview')
@@ -167,10 +174,14 @@ export const POST: RequestHandler = async ({ request }) => {
 			.replace(/, masterpiece, high score, great score, absurdres$/, '')
 			.replace(/\bsolo\b/g, '')
 			.replace(/\b1(boy|girl)\b/g, (_m, g) => g === 'boy' ? '1 male character' : '1 female character');
-		const prompt = `Anime / manga panel illustration. ${cleanPrompt}`;
+		const referenceNote = referenceImages.length
+			? ' Use the supplied character reference image(s) to preserve the same character design, especially face shape, sleepy eyes, messy black hair, and black-and-white manga line style. Generate a new single-panel storyboard image for the described scene; do not copy the reference pose unless the scene asks for it.'
+			: '';
+		const prompt = `Anime / manga panel illustration. ${cleanPrompt}.${referenceNote}`;
 		const oai = await generateOpenAIImage({
 			prompt,
-			...(imageQuality ? { quality: imageQuality } : {})
+			...(imageQuality ? { quality: imageQuality } : {}),
+			...(referenceImages.length ? { referenceImages } : {})
 		});
 
 		if (!persist) {
@@ -196,6 +207,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			'gh:imagePrompt': prompt,
 			'gh:generatedAt': Math.floor(Date.now() / 1000),
 			'gh:model': `openai/${process.env.OPENAI_IMAGE_MODEL || 'gpt-image-2'}`,
+			...(referenceImages.length ? { 'gh:referenceCharacters': characterIds.slice(0, 5) } : {}),
 			'gh:durationMs': oai.durationMs
 		};
 		panel['gh:generatedImages'] = [...existing, newEntry];

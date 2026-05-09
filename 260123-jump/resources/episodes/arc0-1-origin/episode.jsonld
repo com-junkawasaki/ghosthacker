@@ -579,7 +579,7 @@
           "dialogue": [],
           "environment": "env:tokyo-skyline",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/8O_Ec3v5MRHx_v1.png",
-          "gh:currentImageIndex": 1,
+          "gh:currentImageIndex": 2,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_8O_Ec3v5MRHx_sketch_v3.png",
           "gh:generatedImages": [
             {
@@ -594,6 +594,17 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_8O_Ec3v5MRHx_sketch_v3.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_8O_Ec3v5MRHx_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 2characters, boy, girl, jumping, dynamic pose, tokyo skyline, dusk, backlight, extreme wide shot, low angle, 24mm lens, dynamic mood, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied character reference image(s) to preserve the same character design, especially face shape, sleepy eyes, messy black hair, and black-and-white manga line style. Generate a new single-panel storyboard image for the described scene; do not copy the reference pose unless the scene asks for it.",
+              "gh:generatedAt": 1778317294,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren",
+                "Nei"
+              ],
+              "gh:durationMs": 43353
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 東京の街並み、上空。RenとNeiがジャンプしている動的なシーン。タイトル「Ghost Hacker」が大きく入る。. Shot type: Extreme Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -662,8 +673,8 @@
           "dialogue": [],
           "environment": "env:tokyo-skyline",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/oFLWR9TcfBWC_v1.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_oFLWR9TcfBWC_sketch_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_oFLWR9TcfBWC_sketch_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769356772,
@@ -677,6 +688,17 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_oFLWR9TcfBWC_sketch_v2.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_oFLWR9TcfBWC_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 2 characters, boy, girl, landing, hopeful expression, tokyo skyline, dusk, golden hour, extreme wide shot, eye level, 24mm lens, grand mood, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied character reference image(s) to preserve the same character design, especially face shape, sleepy eyes, messy black hair, and black-and-white manga line style. Generate a new single-panel storyboard image for the described scene; do not copy the reference pose unless the scene asks for it.",
+              "gh:generatedAt": 1778317318,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren",
+                "Nei"
+              ],
+              "gh:durationMs": 22993
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 見開き続き。東京タワーやビル群を背景に、二人が着地するシーン。. Shot type: Extreme Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -784,7 +806,7 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_p2-ren-silver-eye_sketch_v1.png",
@@ -792,11 +814,21 @@
               "gh:generatedAt": 1778315146,
               "gh:model": "openai/gpt-image-2",
               "gh:durationMs": 37669
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_p2-ren-silver-eye_sketch_v2.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.. Use the supplied character reference image(s) to preserve the same character design, especially face shape, sleepy eyes, messy black hair, and black-and-white manga line style. Generate a new single-panel storyboard image for the described scene; do not copy the reference pose unless the scene asks for it.",
+              "gh:generatedAt": 1778317345,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:durationMs": 25920
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 窓際で眠そうにドーナツを咀嚼する蓮。Holonium Visionという言葉にだけ反応し、薄目の奥が一瞬銀色に光る。. Shot type: Close Up. Dialogue: Ren: ……ねむい Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 3,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_p2-ren-silver-eye_sketch_v1.png"
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/2/panel_p2-ren-silver-eye_sketch_v2.png"
         }
       ],
       "gh:spreadWith": 1,
@@ -1404,8 +1436,8 @@
           "dialogue": [],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/6aRQ5MXxPcNL_v1.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_6aRQ5MXxPcNL_sketch_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_6aRQ5MXxPcNL_sketch_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769354475,
@@ -1419,6 +1451,17 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_6aRQ5MXxPcNL_sketch_v2.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_6aRQ5MXxPcNL_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 2boys, middle school students, casual clothes, one boy leaning on desk, one boy by the window, quiet classroom, daytime, natural light, wide shot, eye level, 35mm lens, serene mood, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied character reference image(s) to preserve the same character design, especially face shape, sleepy eyes, messy black hair, and black-and-white manga line style. Generate a new single-panel storyboard image for the described scene; do not copy the reference pose unless the scene asks for it.",
+              "gh:generatedAt": 1778317375,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "RenMiddleSchool",
+                "NeiMiddleSchool"
+              ],
+              "gh:durationMs": 29475
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 教室の隅。賑やかなグループとは離れた静かな空間。Renは机に突っ伏し、Neiは窓際。. Characters: 沼野 蓮 (Ren Numano) - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open., Nei - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -1481,8 +1524,8 @@
               "gh:subtitle": "好きな美徳：怠惰"
             }
           ],
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_giBULx0BO_4Y_sketch_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_giBULx0BO_4Y_sketch_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769356783,
@@ -1496,6 +1539,16 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_giBULx0BO_4Y_sketch_v2.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_giBULx0BO_4Y_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 1 male character, middle school student, sitting at desk, face down on desk, eyes open, middle school classroom, daytime, bright lighting, medium shot, low angle, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied character reference image(s) to preserve the same character design, especially face shape, sleepy eyes, messy black hair, and black-and-white manga line style. Generate a new single-panel storyboard image for the described scene; do not copy the reference pose unless the scene asks for it.",
+              "gh:generatedAt": 1778317405,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "RenMiddleSchool"
+              ],
+              "gh:durationMs": 28570
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 机に突っ伏したRen。目だけ開いている。. Characters: 沼野 蓮 (Ren Numano) - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -1620,8 +1673,8 @@
           ],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/tvYfmqSDRydk_v1.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_tvYfmqSDRydk_sketch_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_tvYfmqSDRydk_sketch_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769355135,
@@ -1635,6 +1688,16 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_tvYfmqSDRydk_sketch_v2.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_tvYfmqSDRydk_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 1 male character, middle school boy, school uniform, yawning, bored expression, middle school classroom, daytime, natural light, close-up, eye level, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied character reference image(s) to preserve the same character design, especially face shape, sleepy eyes, messy black hair, and black-and-white manga line style. Generate a new single-panel storyboard image for the described scene; do not copy the reference pose unless the scene asks for it.",
+              "gh:generatedAt": 1778317439,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "RenMiddleSchool"
+              ],
+              "gh:durationMs": 33437
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. Renが大きく欠伸をする。. Characters: 沼野 蓮 (Ren Numano) - 中学時代 Appearance: photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open.. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Dialogue: Ren: （あー、だりぃ…）.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -2165,7 +2228,7 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-investigation-wall-wide_sketch_v1.png",
@@ -2173,11 +2236,21 @@
               "gh:generatedAt": 1778315183,
               "gh:model": "openai/gpt-image-2",
               "gh:durationMs": 36329
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-investigation-wall-wide_sketch_v2.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.. Use the supplied character reference image(s) to preserve the same character design, especially face shape, sleepy eyes, messy black hair, and black-and-white manga line style. Generate a new single-panel storyboard image for the described scene; do not copy the reference pose unless the scene asks for it.",
+              "gh:generatedAt": 1778317468,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:durationMs": 27553
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. Renの部屋全景。四方の壁が7年分の捜査資料で埋まり、父の写真、年金流出事件のタイムライン、世界地図、被害者リストが赤い糸で繋がれている。. Shot type: Wide Shot. Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-investigation-wall-wide_sketch_v1.png"
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-investigation-wall-wide_sketch_v2.png"
         },
         {
           "@id": "panel:p6-father-note-sip-device",
@@ -2192,7 +2265,7 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-father-note-sip-device_sketch_v1.png",
@@ -2200,11 +2273,21 @@
               "gh:generatedAt": 1778315253,
               "gh:model": "openai/gpt-image-2",
               "gh:durationMs": 68381
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-father-note-sip-device_sketch_v2.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.. Use the supplied character reference image(s) to preserve the same character design, especially face shape, sleepy eyes, messy black hair, and black-and-white manga line style. Generate a new single-panel storyboard image for the described scene; do not copy the reference pose unless the scene asks for it.",
+              "gh:generatedAt": 1778317502,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:durationMs": 32766
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 机の端の桐の小箱と、青白く点滅する父のSIPデバイス。横に父のメモの複製。「情報は物理量だ。そして生きている。お前はゴーストをハックしろ」。. Shot type: Insert. Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 2,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-father-note-sip-device_sketch_v1.png"
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-father-note-sip-device_sketch_v2.png"
         },
         {
           "@id": "panel:p6-ren-seven-years-stalled",
@@ -2224,7 +2307,7 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-seven-years-stalled_sketch_v1.png",
@@ -2232,11 +2315,21 @@
               "gh:generatedAt": 1778315287,
               "gh:model": "openai/gpt-image-2",
               "gh:durationMs": 33396
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-seven-years-stalled_sketch_v2.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.. Use the supplied character reference image(s) to preserve the same character design, especially face shape, sleepy eyes, messy black hair, and black-and-white manga line style. Generate a new single-panel storyboard image for the described scene; do not copy the reference pose unless the scene asks for it.",
+              "gh:generatedAt": 1778317538,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:durationMs": 35103
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 捜査壁の前に立つRen。腕を組み、疲れた目で赤い糸の先を見つめる。情報は集まっているのに、最後の一点だけが空白のまま。. Shot type: Medium Close Up. Dialogue: Ren: 7年。集めた。繋いだ。辿った。——ここから先が、動かない。 Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 3,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-seven-years-stalled_sketch_v1.png"
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-seven-years-stalled_sketch_v2.png"
         },
         {
           "@id": "panel:p6-lock-difficulty-screen",
@@ -2629,7 +2722,7 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_p7-nue-dm-arrives_sketch_v1.png",
@@ -2637,11 +2730,21 @@
               "gh:generatedAt": 1778315365,
               "gh:model": "openai/gpt-image-2",
               "gh:durationMs": 27290
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_p7-nue-dm-arrives_sketch_v2.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.. Use the supplied character reference image(s) to preserve the same character design, especially face shape, sleepy eyes, messy black hair, and black-and-white manga line style. Generate a new single-panel storyboard image for the described scene; do not copy the reference pose unless the scene asks for it.",
+              "gh:generatedAt": 1778317567,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:durationMs": 27710
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. Renが父のHHKBの前に座った瞬間、右モニターにNew DM / from: nueの通知が光る。暗い部屋にモニター光だけが走る。. Shot type: Medium Shot. Dialogue: Ren: ……珍しく、向こうから、来た Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_p7-nue-dm-arrives_sketch_v1.png"
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_p7-nue-dm-arrives_sketch_v2.png"
         },
         {
           "@id": "panel:p7-hacker-nues-thread",
