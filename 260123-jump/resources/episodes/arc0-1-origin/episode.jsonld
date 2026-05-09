@@ -9421,8 +9421,8 @@
           ],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/T_hrhxR8CpNw_v1.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_T_hrhxR8CpNw_sketch_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_T_hrhxR8CpNw_sketch_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769356604,
@@ -9436,6 +9436,16 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_T_hrhxR8CpNw_sketch_v2.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_T_hrhxR8CpNw_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 1 male character, male student, Yuto, sitting alone, worried expression, dark room, night, dim lighting, medium close up, eye level, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778321331,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:durationMs": 27728
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 全てを理解してしまったYuto。不安の頂点。暗い部屋に一人。. Shot type: Medium Close Up. Dialogue: Yuto: もしかして…騙された…？.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
