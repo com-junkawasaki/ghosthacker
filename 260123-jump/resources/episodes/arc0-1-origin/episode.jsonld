@@ -2825,7 +2825,7 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": 1,
+          "gh:currentImageIndex": 2,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_p7-nue-dm-arrives_sketch_v1.png",
@@ -2843,11 +2843,21 @@
                 "Ren"
               ],
               "gh:durationMs": 27710
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_p7-nue-dm-arrives_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778318041,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:durationMs": 25632
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. Renが父のHHKBの前に座った瞬間、右モニターにNew DM / from: nueの通知が光る。暗い部屋にモニター光だけが走る。. Shot type: Medium Shot. Dialogue: Ren: ……珍しく、向こうから、来た Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_p7-nue-dm-arrives_sketch_v2.png"
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_p7-nue-dm-arrives_sketch_v3.png"
         },
         {
           "@id": "panel:p7-hacker-nues-thread",
