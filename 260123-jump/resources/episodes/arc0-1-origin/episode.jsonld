@@ -8933,8 +8933,8 @@
           ],
           "environment": "env:yuto-home-living",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/T_hrhxR8CpNw_v1.png",
-          "gh:currentImageIndex": 2,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/17/panel_VDz7Y-SZGjsD_sketch_v3.png",
+          "gh:currentImageIndex": 3,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/17/panel_VDz7Y-SZGjsD_sketch_v4.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769355380,
@@ -8954,6 +8954,16 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/17/panel_VDz7Y-SZGjsD_sketch_v3.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/17/panel_VDz7Y-SZGjsD_sketch_v4.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 1 male character, male student, school uniform, medium close up, defensive expression, living room, day, natural light, eye level, medium close up, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778321171,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:durationMs": 36756
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. パニック状態のYuto。必死に否定。. Shot type: Medium Close Up. Dialogue: Yuto: 俺、そんなの買ってない…！.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
