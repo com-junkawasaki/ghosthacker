@@ -8771,8 +8771,8 @@
           "dialogue": [],
           "environment": "env:yuto-home-living",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/14/0hmxsZf1RCRw_v1.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/17/panel_0hmxsZf1RCRw_sketch_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/17/panel_0hmxsZf1RCRw_sketch_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769355389,
@@ -8786,6 +8786,16 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/17/panel_0hmxsZf1RCRw_sketch_v2.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/17/panel_0hmxsZf1RCRw_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 1 male character, male student, casual clothing, looking at details, wide eyes, living room, day, natural light, close-up, eye level, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778321103,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:durationMs": 33442
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 明細を見るYuto。目が見開く。. Shot type: Close Up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
