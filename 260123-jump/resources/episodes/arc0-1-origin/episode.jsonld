@@ -2764,7 +2764,7 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_p7-hacker-nues-thread_sketch_v1.png",
@@ -2772,11 +2772,21 @@
               "gh:generatedAt": 1778315409,
               "gh:model": "openai/gpt-image-2",
               "gh:durationMs": 43672
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_p7-hacker-nues-thread_sketch_v2.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.. Use the supplied character reference image(s) to preserve the same character design, especially face shape, sleepy eyes, messy black hair, and black-and-white manga line style. Generate a new single-panel storyboard image for the described scene; do not copy the reference pose unless the scene asks for it.",
+              "gh:generatedAt": 1778317599,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:durationMs": 30987
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. Hacker Nuesのスレッド画面。black0awd actor family: renewed activity in APAC. Victims spiking. というタイトルと複数の投稿が並ぶ。. Shot type: Over the Shoulder. Dialogue: nue: 日本側の匿名2人が、同じ系統の被害と観測を報告している。やっと、向こう側が動いたな。 Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 2,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_p7-hacker-nues-thread_sketch_v1.png"
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_p7-hacker-nues-thread_sketch_v2.png"
         },
         {
           "@id": "panel:p7-ren-tags-allies",
