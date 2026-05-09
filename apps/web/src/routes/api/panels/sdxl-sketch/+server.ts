@@ -120,9 +120,12 @@ export const POST: RequestHandler = async ({ request }) => {
 	const panel = panelArrayIndex != null && panels[panelArrayIndex]
 		? panels[panelArrayIndex]
 		: panels.find((pn) => {
-		const pi = pn['gh:panelIndex'] ?? pn['panel'];
-		return pi === panelIndex || pi === panelIndex + 1;
-	});
+			const pi = pn['gh:panelIndex'] ?? pn['panel'];
+			return pi === panelIndex;
+		}) ?? panels.find((pn) => {
+			const pi = pn['gh:panelIndex'] ?? pn['panel'];
+			return pi === panelIndex + 1;
+		});
 	if (!panel) throw error(404, `Panel ${panelIndex} not found`);
 
 	const baseTags = Array.isArray(panel['gh:sdxlTags']) ? (panel['gh:sdxlTags'] as string[]).join(', ') : '';
@@ -165,7 +168,10 @@ export const POST: RequestHandler = async ({ request }) => {
 			.replace(/\bsolo\b/g, '')
 			.replace(/\b1(boy|girl)\b/g, (_m, g) => g === 'boy' ? '1 male character' : '1 female character');
 		const prompt = `Anime / manga panel illustration. ${cleanPrompt}`;
-		const oai = await generateOpenAIImage({ prompt, quality: imageQuality });
+		const oai = await generateOpenAIImage({
+			prompt,
+			...(imageQuality ? { quality: imageQuality } : {})
+		});
 
 		if (!persist) {
 			return new Response(oai.bytes, {

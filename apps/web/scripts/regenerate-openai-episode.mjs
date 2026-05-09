@@ -12,6 +12,29 @@ function sleep(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function normalizePrompt(value) {
+	return String(value || '')
+		.replace(/^Anime \/ manga panel illustration\.\s*/i, '')
+		.replace(/Fresh full-episode regeneration using gpt-image-2\.?/gi, '')
+		.replace(/\s+/g, ' ')
+		.trim()
+		.toLowerCase();
+}
+
+function currentImage(panel) {
+	const images = Array.isArray(panel['gh:generatedImages']) ? panel['gh:generatedImages'] : [];
+	const currentIndex = panel['gh:currentImageIndex'];
+	return Number.isInteger(currentIndex) ? images[currentIndex] : images.at(-1);
+}
+
+function promptChanged(panel) {
+	const target = normalizePrompt(panel['gh:imagePrompt'] || panel['gh:sdxlPrompt'] || panel.visual || panel['gh:visual']);
+	const current = normalizePrompt(currentImage(panel)?.['gh:imagePrompt']);
+	if (!target) return false;
+	if (!current) return true;
+	return !current.includes(target) && !target.includes(current);
+}
+
 async function loadProgress() {
 	try {
 		return JSON.parse(await readFile(progressPath, 'utf8'));
@@ -62,11 +85,19 @@ async function main() {
 	if (!episodeId) throw new Error(`No episode id in ${episodePath}`);
 
 	const jobs = [];
+	let skippedUnchanged = 0;
 	for (const page of episode['gh:pages'] || []) {
 		const pageNumber = page['gh:pageNumber'];
 		for (const [panelArrayIndex, panel] of (page['gh:panels'] || []).entries()) {
 			const panelIndex = panel['gh:panelIndex'] ?? panel.panel;
 			if (pageNumber == null || panelIndex == null) continue;
+			if (process.env.REGEN_INSERTED_ONLY === '1' && panel['gh:inserted'] !== true) {
+				continue;
+			}
+			if (process.env.REGEN_CHANGED_ONLY === '1' && !promptChanged(panel)) {
+				skippedUnchanged += 1;
+				continue;
+			}
 			jobs.push({
 				key: `${pageNumber}:${panelArrayIndex}:${panelIndex}`,
 				legacyKey: `${pageNumber}:${panelIndex}`,
@@ -94,6 +125,8 @@ async function main() {
 
 	console.log(`episode=${episodeId}`);
 	console.log(`jobs=${jobs.length}`);
+	if (process.env.REGEN_INSERTED_ONLY === '1') console.log('mode=inserted_only');
+	if (process.env.REGEN_CHANGED_ONLY === '1') console.log(`skipped_unchanged=${skippedUnchanged}`);
 	console.log(`already_completed=${completed.size}`);
 	console.log(`progress=${progressPath}`);
 
