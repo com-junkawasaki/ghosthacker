@@ -9142,8 +9142,8 @@
           "dialogue": [],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/15/EKnVq7X9ndTR_v1.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_EKnVq7X9ndTR_sketch_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_EKnVq7X9ndTR_sketch_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769355411,
@@ -9157,6 +9157,16 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_EKnVq7X9ndTR_sketch_v2.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_EKnVq7X9ndTR_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 1 male character, male student, casual clothes, using smartphone, worried expression, Yuto's private room, day, bright lighting, close-up, over shoulder, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778321276,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:durationMs": 29606
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 焦ってスマホを操作するYuto。履歴から「アクター通販」を探す。. Shot type: Close Up. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -9331,8 +9341,8 @@
           ],
           "environment": "env:yuto-bedroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/XwKeBPFzaOy7_v1.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_XwKeBPFzaOy7_sketch_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_XwKeBPFzaOy7_sketch_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769356591,
@@ -9346,6 +9356,16 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_XwKeBPFzaOy7_sketch_v2.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_XwKeBPFzaOy7_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 1 male character, male student, Yuto, wide eyes, scared expression, private room, night, dim light, close-up, eye level, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778321302,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:durationMs": 24851
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 目が見開き、恐怖に震えるYuto。. Shot type: Close Up. Dialogue: Yuto: サイトが…消えてる…？.. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
