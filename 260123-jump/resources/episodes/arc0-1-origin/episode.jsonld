@@ -2301,7 +2301,7 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": 1,
+          "gh:currentImageIndex": 2,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-investigation-wall-wide_sketch_v1.png",
@@ -2319,11 +2319,21 @@
                 "Ren"
               ],
               "gh:durationMs": 27553
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-investigation-wall-wide_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778317957,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:durationMs": 25653
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. Renの部屋全景。四方の壁が7年分の捜査資料で埋まり、父の写真、年金流出事件のタイムライン、世界地図、被害者リストが赤い糸で繋がれている。. Shot type: Wide Shot. Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-investigation-wall-wide_sketch_v2.png"
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-investigation-wall-wide_sketch_v3.png"
         },
         {
           "@id": "panel:p6-father-note-sip-device",
