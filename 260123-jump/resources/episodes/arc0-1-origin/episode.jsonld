@@ -9510,8 +9510,8 @@
           "dialogue": [],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/1azm0XiVJWPc_v1.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/panel_1azm0XiVJWPc_sketch_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/panel_1azm0XiVJWPc_sketch_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769352152,
@@ -9525,6 +9525,16 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/panel_1azm0XiVJWPc_sketch_v2.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/panel_1azm0XiVJWPc_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 1 male character, male student, school uniform, desperately using smartphone, medium shot, eye level, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778321366,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:durationMs": 34106
             }
           ],
           "gh:imagePrompt": "Single illustration, cinematic manga sketch style. 必死にスマホを操作するYuto。ログインを試みる。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Medium Shot. Monochrome with screen tones, gestural figures with simplified facial features, emphasis on lighting direction and silhouette shapes, cinematic composition.",
@@ -9742,8 +9752,8 @@
           ],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/3hEMtPGR1gWH_v1.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/panel_3hEMtPGR1gWH_sketch_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/panel_3hEMtPGR1gWH_sketch_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769355600,
@@ -9757,6 +9767,16 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/panel_3hEMtPGR1gWH_sketch_v2.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/panel_3hEMtPGR1gWH_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 1 male character, male student, school uniform, close up, despairing expression, middle school classroom, day, natural light, close-up, eye level, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778321406,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:durationMs": 39127
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 絶望するYuto。全てを失った表情。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Close Up. Dialogue: Yuto: 入れない…もう何もできない….. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
@@ -9805,8 +9825,8 @@
           "dialogue": [],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/mwpakEOJcf91_v1.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/panel_mwpakEOJcf91_sketch_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/panel_mwpakEOJcf91_sketch_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769355603,
@@ -9820,6 +9840,16 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/panel_mwpakEOJcf91_sketch_v2.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/19/panel_mwpakEOJcf91_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 1 male character, male student, school uniform, sitting alone, isolated expression, middle school classroom, day, bright light, wide shot, high angle, anime style, , cinematic, detailed background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778321435,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:durationMs": 28194
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 教室の隅で一人座るYuto。周囲は彼を避けて通る。完全な孤立。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
