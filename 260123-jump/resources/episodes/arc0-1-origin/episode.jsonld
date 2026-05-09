@@ -1097,8 +1097,8 @@
           "dialogue": [],
           "environment": "env:middle-school-classroom",
           "generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/5uBCJi-u3L45_v1.png",
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/panel_5uBCJi-u3L45_sketch_v2.png",
+          "gh:currentImageIndex": 2,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/panel_5uBCJi-u3L45_sketch_v3.png",
           "gh:generatedImages": [
             {
               "gh:generatedAt": 1769354343,
@@ -1112,6 +1112,19 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/panel_5uBCJi-u3L45_sketch_v2.png",
               "gh:model": "openai/gpt-image-2",
               "gh:restoredFromFile": true
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/panel_5uBCJi-u3L45_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. 4students, 1 male character, 3girls, casual_clothes, talking, middle_school_classroom, day, soft_diffused_light, wide_shot, slightly_high_angle, 24mm_lens, luminous, anime_style, manga_panel, cinematic, detailed_background, Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778318640,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Yuto",
+                "Mei",
+                "Saki",
+                "Akira"
+              ],
+              "gh:durationMs": 49499
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, gestural figures with simplified facial features, focus on camera framing staging and body language, manga panel layout reference. 休憩時間の教室全景。生徒たちが机を囲んで和やかに話している。MeiとSakiが隣同士で仲良さそう。窓から柔らかい光。. Environment: 港南第一中学校 2年B組 教室 (典型的な日本の公立中学校の教室。窓際の後ろの席でRenが寝ている。春の日差しが差し込む。). Shot type: Wide Shot. Rough sketch aesthetic with loose confident linework, emphasis on lighting direction and silhouette shapes, atmospheric mood indicators, faces suggested through simple shapes rather than detailed features, director's visual notes style, monochrome with screen tones, cinematic composition.",
