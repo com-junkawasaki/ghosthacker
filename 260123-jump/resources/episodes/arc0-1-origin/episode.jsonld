@@ -2348,7 +2348,7 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": 1,
+          "gh:currentImageIndex": 2,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-father-note-sip-device_sketch_v1.png",
@@ -2366,11 +2366,21 @@
                 "Ren"
               ],
               "gh:durationMs": 32766
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-father-note-sip-device_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778317985,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:durationMs": 27196
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 机の端の桐の小箱と、青白く点滅する父のSIPデバイス。横に父のメモの複製。「情報は物理量だ。そして生きている。お前はゴーストをハックしろ」。. Shot type: Insert. Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 2,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-father-note-sip-device_sketch_v2.png"
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-father-note-sip-device_sketch_v3.png"
         },
         {
           "@id": "panel:p6-ren-seven-years-stalled",
