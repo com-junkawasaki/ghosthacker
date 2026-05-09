@@ -2400,7 +2400,7 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": 1,
+          "gh:currentImageIndex": 2,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-seven-years-stalled_sketch_v1.png",
@@ -2418,11 +2418,21 @@
                 "Ren"
               ],
               "gh:durationMs": 35103
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-seven-years-stalled_sketch_v3.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778318014,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:durationMs": 27674
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 捜査壁の前に立つRen。腕を組み、疲れた目で赤い糸の先を見つめる。情報は集まっているのに、最後の一点だけが空白のまま。. Shot type: Medium Close Up. Dialogue: Ren: 7年。集めた。繋いだ。辿った。——ここから先が、動かない。 Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 3,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-seven-years-stalled_sketch_v2.png"
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_p6-ren-seven-years-stalled_sketch_v3.png"
         },
         {
           "@id": "panel:p6-lock-difficulty-screen",
