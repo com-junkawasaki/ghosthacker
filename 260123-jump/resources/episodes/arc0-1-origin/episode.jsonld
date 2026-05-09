@@ -9036,7 +9036,7 @@
           "gh:inserted": true,
           "gh:insertedRevision": "story-outline-v2-llm-diff",
           "gh:insertedSource": "story-outline.jsonld",
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_p18-nei-sees-empty-posture_sketch_v1.png",
@@ -9044,11 +9044,22 @@
               "gh:generatedAt": 1778315681,
               "gh:model": "openai/gpt-image-2",
               "gh:durationMs": 42200
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_p18-nei-sees-empty-posture_sketch_v2.png",
+              "gh:imagePrompt": "Anime / manga panel illustration. Fresh full-episode regeneration using gpt-image-2.. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, and manga line style. Do not preserve the reference outfit, clothing, pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+              "gh:generatedAt": 1778321209,
+              "gh:model": "openai/gpt-image-2",
+              "gh:referenceCharacters": [
+                "Nei",
+                "Yuto"
+              ],
+              "gh:durationMs": 37495
             }
           ],
           "gh:imagePrompt": "Cinematic storyboard thumbnail sketch, rough compositional guide for animators, manga panel layout reference. 朝の廊下からNeiがB組を通りがかりに見る。Yutoは窓際の一番端で机に突っ伏し、周囲の誰も声をかけていない。. Shot type: Medium Wide Shot. Dialogue: Nei: 藤崎くん、座っていない。座ったまま、でも、いない。 Rough sketch aesthetic, monochrome with screen tones, cinematic composition.",
           "gh:panelIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_p18-nei-sees-empty-posture_sketch_v1.png"
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/18/panel_p18-nei-sees-empty-posture_sketch_v2.png"
         },
         {
           "@id": "panel:FZXzPsEGmR1J",
