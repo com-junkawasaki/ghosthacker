@@ -92,11 +92,21 @@ async function main() {
 			.map((name) => name.trim().replace(/^character:/, ''))
 			.filter(Boolean)
 	);
+	const panelIdFilter = new Set(
+		String(process.env.REGEN_PANEL_IDS || '')
+			.split(',')
+			.map((id) => id.trim().replace(/^panel:/, ''))
+			.filter(Boolean)
+	);
 	for (const page of episode['gh:pages'] || []) {
 		const pageNumber = page['gh:pageNumber'];
 		for (const [panelArrayIndex, panel] of (page['gh:panels'] || []).entries()) {
 			const panelIndex = panel['gh:panelIndex'] ?? panel.panel;
 			if (pageNumber == null || panelIndex == null) continue;
+			if (panelIdFilter.size > 0) {
+				const panelId = String(panel['@id'] || panel.id || '').replace(/^panel:/, '');
+				if (!panelIdFilter.has(panelId)) continue;
+			}
 			if (characterFilter.size > 0) {
 				const panelCharacters = (panel['gh:characters'] ?? panel.characters ?? [])
 					.map((name) => String(name).replace(/^character:/, ''));
@@ -137,6 +147,7 @@ async function main() {
 	console.log(`episode=${episodeId}`);
 	console.log(`jobs=${jobs.length}`);
 	if (characterFilter.size > 0) console.log(`character_filter=${[...characterFilter].join(',')}`);
+	if (panelIdFilter.size > 0) console.log(`panel_id_filter=${[...panelIdFilter].join(',')}`);
 	if (process.env.REGEN_INSERTED_ONLY === '1') console.log('mode=inserted_only');
 	if (process.env.REGEN_CHANGED_ONLY === '1') console.log(`skipped_unchanged=${skippedUnchanged}`);
 	console.log(`already_completed=${completed.size}`);

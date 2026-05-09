@@ -78,3 +78,33 @@ export function buildMaskPng(region: Region, canvasW: number, canvasH: number, f
 	}
 	return PNG.sync.write(png);
 }
+
+/**
+ * OpenAI image edits use the mask alpha channel: transparent pixels are edited,
+ * opaque pixels are preserved. This builds a feathered alpha mask for one region.
+ */
+export function buildOpenAIAlphaMaskPng(region: Region, canvasW: number, canvasH: number, feather = 32): Buffer {
+	const png = new PNG({ width: canvasW, height: canvasH, colorType: 6 });
+	const { x, y, width, height } = region;
+	const x0 = x, y0 = y, x1 = x + width, y1 = y + height;
+	for (let py = 0; py < canvasH; py++) {
+		for (let px = 0; px < canvasW; px++) {
+			let edit = 0;
+			const inside = px >= x0 && px < x1 && py >= y0 && py < y1;
+			if (inside) {
+				if (feather > 0) {
+					const d = Math.min(px - x0, x1 - 1 - px, py - y0, y1 - 1 - py);
+					edit = d >= feather ? 255 : Math.round((d / feather) * 255);
+				} else {
+					edit = 255;
+				}
+			}
+			const idx = (canvasW * py + px) << 2;
+			png.data[idx] = 255;
+			png.data[idx + 1] = 255;
+			png.data[idx + 2] = 255;
+			png.data[idx + 3] = 255 - edit;
+		}
+	}
+	return PNG.sync.write(png);
+}

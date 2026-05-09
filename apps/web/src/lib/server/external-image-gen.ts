@@ -102,17 +102,36 @@ export interface ExternalImageEditRequest {
 	image: Buffer;
 	prompt: string;
 	mask?: Buffer;
+	referenceImages?: Buffer[];
 	size?: '1024x1024' | '1024x1536' | '1536x1024';
+	quality?: 'low' | 'medium' | 'high' | 'auto';
+	inputFidelity?: 'low' | 'high';
 	model?: string;
 }
 
-async function callOpenAIEdit(model: string, image: Buffer, prompt: string, size: string, key: string, mask?: Buffer): Promise<{ ok: true; b64: string } | { ok: false; status: number; error: string }> {
+async function callOpenAIEdit(
+	model: string,
+	image: Buffer,
+	prompt: string,
+	size: string,
+	key: string,
+	mask?: Buffer,
+	referenceImages?: Buffer[],
+	quality?: string,
+	inputFidelity?: string
+): Promise<{ ok: true; b64: string } | { ok: false; status: number; error: string }> {
 	const form = new FormData();
 	form.append('model', model);
 	form.append('prompt', prompt);
 	form.append('size', size);
 	form.append('n', '1');
-	form.append('image', new Blob([new Uint8Array(image)], { type: 'image/png' }), 'image.png');
+	if (quality) form.append('quality', quality);
+	if (inputFidelity) form.append('input_fidelity', inputFidelity);
+	const images = [image, ...(referenceImages || [])].slice(0, 16);
+	const imageField = images.length > 1 ? 'image[]' : 'image';
+	for (const [index, inputImage] of images.entries()) {
+		form.append(imageField, new Blob([new Uint8Array(inputImage)], { type: 'image/png' }), index === 0 ? 'base.png' : `reference-${index}.png`);
+	}
 	if (mask) form.append('mask', new Blob([new Uint8Array(mask)], { type: 'image/png' }), 'mask.png');
 	const res = await fetch('https://api.openai.com/v1/images/edits', {
 		method: 'POST',
@@ -132,12 +151,13 @@ export async function editOpenAIImage(req: ExternalImageEditRequest): Promise<Ex
 	if (!key) throw new Error('OPENAI_API_KEY not set');
 	const start = Date.now();
 	const size = req.size ?? '1024x1024';
+	const quality = req.quality || process.env.OPENAI_IMAGE_QUALITY;
 	const requested = req.model || process.env.OPENAI_IMAGE_MODEL || 'gpt-image-2';
 
-	let r = await callOpenAIEdit(requested, req.image, req.prompt, size, key, req.mask);
+	let r = await callOpenAIEdit(requested, req.image, req.prompt, size, key, req.mask, req.referenceImages, quality, req.inputFidelity);
 	if (!r.ok && r.status === 403 && requested !== 'gpt-image-1') {
 		console.warn(`[openai] ${requested} unavailable for edits (403). Falling back to gpt-image-1.`);
-		r = await callOpenAIEdit('gpt-image-1', req.image, req.prompt, size, key, req.mask);
+		r = await callOpenAIEdit('gpt-image-1', req.image, req.prompt, size, key, req.mask, req.referenceImages, quality, req.inputFidelity);
 	}
 	if (!r.ok) throw new Error(`OpenAI edit HTTP ${r.status}: ${r.error}`);
 	return { bytes: Buffer.from(r.b64, 'base64'), durationMs: Date.now() - start };
