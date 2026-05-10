@@ -60,9 +60,33 @@ interface RichPanel {
   followingBeat: string;
   shot: string;
   scriptEntryIndices: number[];
+  // Page layout fields (manga reading: right-to-left, top-to-bottom)
+  layout: {
+    row: number;          // 1-based row from top
+    colSpan: number;      // 1 = narrow, 2 = wide, 3 = full row
+    rowSpan: number;      // 1 = normal, 2 = double-height (spread vertically)
+    size: "small" | "medium" | "large" | "spread";
+    emphasis: "establish" | "beat" | "impact" | "transition" | "punchline";
+    readingOrder: number; // 1-based; manga right-to-left top-to-bottom
+  };
 }
 
-async function decomposePage(pageNum: number, pageData: any): Promise<RichPanel[]> {
+interface PageLayout {
+  templateName: string;       // e.g., "Jump 6-panel asymmetric", "Impact spread (見開き)", "9-panel grid"
+  totalRows: number;
+  gridDescription: string;
+  pageType: "single-page" | "double-page-spread";  // 見開き flag
+  spreadWith?: number;        // if double-page-spread, the adjacent page number it spans with
+  emotionalPeak: string;      // what the page builds to — informs panel size choices
+  notes: string;
+}
+
+interface DecompositionResult {
+  pageLayout: PageLayout;
+  panels: RichPanel[];
+}
+
+async function decomposePage(pageNum: number, pageData: any): Promise<DecompositionResult> {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error("OPENAI_API_KEY not set");
   const script = pageData["gh:script"] ?? [];
@@ -71,46 +95,84 @@ async function decomposePage(pageNum: number, pageData: any): Promise<RichPanel[
   const pov = pageData["gh:pov"] ?? "";
   const title = pageData["gh:pageTitle"] ?? "";
 
-  const sys = `You are a professional manga storyboarder. Decompose a manga page's full script into a SUFFICIENT number of panels (typically 6-10 for a dense page) following manga storyboarding conventions.
+  const sys = `You are a professional manga storyboarder for Weekly Shounen Jump (週刊少年ジャンプ). Decompose a manga page's full script into 6-10 panels with a Jump-style asymmetric layout.
 
-CRITICAL: cover ALL script entries. Every entry index must appear in some panel's scriptEntryIndices. Do not truncate.
+ABSOLUTE RULES (highest priority):
+1. PARTITION: every script entry index 0..N-1 must appear in EXACTLY ONE panel's scriptEntryIndices. No duplicates. No omissions. The union of all scriptEntryIndices must equal {0, 1, ..., N-1}.
+2. COMPRESS: consecutive entries describing the same beat (e.g., 3 entries about a character sleeping) MUST be merged into ONE panel. Do not make 3 panels of the same character sleeping in similar poses.
+3. DIVERSE FOCUS: do not bias toward one character. If the script shows Akira revealing sneakers, that gets its own panel WITH AKIRA as focus (not the sleeping character in the background).
+4. ACTIVE > PASSIVE: when a panel covers a beat, focus on the character TAKING ACTION (Akira showing sneakers > Ren sleeping at desk).
 
-Rules:
-- Group consecutive script entries by SCENE UNIT (same focus, same action), not by speaker change
-- Each panel has ONE focus character (or "shared" for ensemble shots) but lists ALL characters in frame (even silent observers)
-- Capture key PROPS (objects that drive the scene, e.g., shoes, donut, shoe box, smartphone)
-- Compose a vivid visualDescription (2-3 sentences) that includes: focus character's pose/expression, key objects, atmosphere, OTHER characters' positions if multiple — what the artist would actually draw
-- Identify precedingBeat (1 sentence: what just happened before this panel) and followingBeat (1 sentence: what comes next)
-- Choose a shot framing: "Wide Shot", "Medium Shot", "Close Up", "Extreme Close Up", "Insert", "Over the Shoulder", "POV"
-- Reference script entries by their numeric index in the input
-- Telop (キャラクター紹介テロップ) entries can be merged with the introduction panel they apply to
+PAGE LAYOUT (Jump-style):
+- Reading: right-to-left, top-to-bottom
+- Asymmetric grid; varied panel sizes for pacing
+- Sizes: small (col-span 1) / medium (col-span 2) / large (col-span 3 or row-span 2) / spread (full row)
+- 見開き (double-page-spread) for high-impact moments: climax, decisive choice, big reveal
+- Pacing: small panels build → 1 large/spread releases
 
-Respond with VALID JSON: { "panels": [<panel objects>] }`;
+PANEL FIELDS:
+- ONE focus character (or "shared" for ensemble) — but list ALL characters in frame
+- Capture key PROPS (objects that drive the scene)
+- visualDescription (2-3 sentences) describing what to DRAW — focus on the active character's action, key props, OTHER characters' positions
+- precedingBeat / followingBeat (1 sentence each)
+- shot: Wide / Medium / Close Up / Extreme Close Up / Insert / Over the Shoulder / POV
+- layout: row (1-based), colSpan (1-3), rowSpan (1-2), size, emphasis (establish/beat/impact/transition/punchline), readingOrder (1-based)
+
+PAGE-LEVEL:
+- pageType: "single-page" (default) or "double-page-spread" (only for climactic moments)
+- spreadWith: adjacent page number if 見開き
+- emotionalPeak: what the page builds to
+- templateName: e.g., "Jump 7-panel build-and-release"
+
+VALIDATION before responding: count entries vs panels' scriptEntryIndices — every index must be covered exactly once.
+
+Respond with VALID JSON: { "pageLayout": <PageLayout>, "panels": [<panel objects>] }`;
 
   const user = `Page ${pageNum} — "${title}"
 Setting: ${setting}
 Visual note: ${visualNote}
 POV: ${pov}
 
-Script entries:
+Script entries (must all be covered):
 ${script.map((e: any, i: number) => `[${i}] ${e["gh:type"]}${e["gh:speaker"] ? ` (${e["gh:speaker"]})` : ""}: ${(e["gh:text"] ?? e["gh:items"]?.join("; ") ?? "").slice(0, 200)}`).join("\n")}
 
-Decompose into a JSON array of panels. Schema per panel:
+Output JSON schema:
 {
-  "panelIndex": <1-based int>,
-  "sceneSubject": "<one-line topic>",
-  "focusCharacter": "<character name or 'shared'>",
-  "allCharacters": ["<names>"],
-  "props": ["<objects>"],
-  "visualDescription": "<vivid 1-2 sentence description of what to draw>",
-  "dialogues": [{"speaker": "<name>", "text": "<jp text>", "emotion": "<optional>"}],
-  "precedingBeat": "<1 sentence>",
-  "followingBeat": "<1 sentence>",
-  "shot": "<framing>",
-  "scriptEntryIndices": [<int>, ...]
+  "pageLayout": {
+    "templateName": "<short name>",
+    "totalRows": <int>,
+    "gridDescription": "<sentence>",
+    "pageType": "single-page" | "double-page-spread",
+    "spreadWith": <adjacent page number, only if pageType is double-page-spread>,
+    "emotionalPeak": "<what this page builds toward>",
+    "notes": "<any layout rationale>"
+  },
+  "panels": [
+    {
+      "panelIndex": <1-based int>,
+      "sceneSubject": "<one-line topic>",
+      "focusCharacter": "<character name or 'shared'>",
+      "allCharacters": ["<names>"],
+      "props": ["<objects>"],
+      "visualDescription": "<2-3 sentence vivid description>",
+      "dialogues": [{"speaker": "<name>", "text": "<jp text>", "emotion": "<optional>"}],
+      "precedingBeat": "<1 sentence>",
+      "followingBeat": "<1 sentence>",
+      "shot": "<framing>",
+      "scriptEntryIndices": [<int>, ...],
+      "layout": {
+        "row": <int>,
+        "colSpan": <int 1-3>,
+        "rowSpan": <int 1-2>,
+        "size": "small" | "medium" | "large" | "spread",
+        "emphasis": "establish" | "beat" | "impact" | "transition" | "punchline",
+        "readingOrder": <int>
+      }
+    }
+  ]
 }
 
-Return ONLY the JSON array, no prose.`;
+Return ONLY the JSON object, no prose.`;
 
   const r = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -128,13 +190,83 @@ Return ONLY the JSON array, no prose.`;
   if (!r.ok) throw new Error(`decompose HTTP ${r.status}: ${(await r.text()).slice(0, 400)}`);
   const j: any = await r.json();
   const txt = j.choices?.[0]?.message?.content ?? "{}";
-  // The model returns either {panels:[...]} or [...] depending on format quirks
   let parsed: any;
   try { parsed = JSON.parse(txt); }
   catch { throw new Error(`decompose parse fail: ${txt.slice(0, 200)}`); }
-  const arr = Array.isArray(parsed) ? parsed : (parsed.panels ?? parsed.result ?? Object.values(parsed)[0]);
-  if (!Array.isArray(arr)) throw new Error(`decompose did not return an array: ${JSON.stringify(parsed).slice(0, 200)}`);
-  return arr as RichPanel[];
+  const pageLayout: PageLayout = parsed.pageLayout ?? {
+    templateName: "auto",
+    totalRows: 0,
+    gridDescription: "",
+    pageType: "single-page",
+    emotionalPeak: "",
+    notes: "",
+  };
+  const panels: RichPanel[] = Array.isArray(parsed.panels) ? parsed.panels :
+    (Array.isArray(parsed) ? parsed : []);
+  if (!panels.length) throw new Error(`decompose returned no panels: ${JSON.stringify(parsed).slice(0, 200)}`);
+
+  // Coverage validation
+  const allIndices = new Set<number>(script.map((_: any, i: number) => i));
+  const covered = new Set<number>();
+  const duplicates: number[] = [];
+  for (const p of panels) {
+    for (const i of p.scriptEntryIndices ?? []) {
+      if (covered.has(i)) duplicates.push(i);
+      covered.add(i);
+    }
+  }
+  const missing = [...allIndices].filter((i) => !covered.has(i));
+
+  if (missing.length === 0 && duplicates.length === 0) {
+    return { pageLayout, panels };
+  }
+
+  console.warn(`  ⚠ coverage issues: missing=[${missing.join(",")}], duplicates=[${duplicates.join(",")}]`);
+  console.warn(`  → asking LLM to merge/extend with full PARTITION constraint`);
+
+  // Patch call: send the partial result + missing entries + dupe info, ask LLM to FIX (merge dupes, add missing)
+  const missingDetail = missing.map((i) => `[${i}] ${script[i]["gh:type"]}${script[i]["gh:speaker"] ? ` (${script[i]["gh:speaker"]})` : ""}: ${(script[i]["gh:text"] ?? "").slice(0, 200)}`).join("\n");
+  const patchUser = `${user}\n\nPrevious decomposition (NEEDS FIXING):\n${JSON.stringify({ pageLayout, panels }, null, 2).slice(0, 6000)}\n\nIssues:\n- Missing entries (not covered by any panel, must be added): [${missing.join(", ")}]\n${missingDetail ? "\nDetail:\n" + missingDetail : ""}\n- Duplicated entries (covered by multiple panels, must merge): [${duplicates.join(", ")}]\n\nReturn a CORRECTED full decomposition: same schema, ALL entries 0..${script.length - 1} covered EXACTLY ONCE. Merge duplicates by combining their panels. Insert new panels for missing entries WITHOUT reproducing existing scenes.`;
+
+  const r2 = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
+    body: JSON.stringify({
+      model: LLM_MODEL,
+      messages: [
+        { role: "system", content: sys },
+        { role: "user", content: patchUser },
+      ],
+      response_format: { type: "json_object" },
+      max_tokens: 16000,
+    }),
+  });
+  if (!r2.ok) {
+    console.warn(`  patch HTTP ${r2.status} — keeping original`);
+    return { pageLayout, panels };
+  }
+  const j2: any = await r2.json();
+  const txt2 = j2.choices?.[0]?.message?.content ?? "{}";
+  try {
+    const p2 = JSON.parse(txt2);
+    const panels2: RichPanel[] = Array.isArray(p2.panels) ? p2.panels : [];
+    const layout2: PageLayout = p2.pageLayout ?? pageLayout;
+    if (panels2.length > 0) {
+      // Re-validate the patch
+      const cov2 = new Set<number>();
+      const dup2: number[] = [];
+      for (const p of panels2) for (const i of p.scriptEntryIndices ?? []) {
+        if (cov2.has(i)) dup2.push(i);
+        cov2.add(i);
+      }
+      const miss2 = [...allIndices].filter((i) => !cov2.has(i));
+      console.warn(`  ↳ patched: ${panels2.length} panels, missing=${miss2.length}, dups=${dup2.length}`);
+      return { pageLayout: layout2, panels: panels2 };
+    }
+  } catch {
+    console.warn(`  patch parse failed`);
+  }
+  return { pageLayout, panels };
 }
 
 function buildPanelJsonld(rich: RichPanel, pageNum: number): any {
@@ -156,9 +288,17 @@ function buildPanelJsonld(rich: RichPanel, pageNum: number): any {
     "gh:precedingBeat": rich.precedingBeat,
     "gh:followingBeat": rich.followingBeat,
     "gh:scriptEntryIndices": rich.scriptEntryIndices,
+    "gh:panelLayout": rich.layout ? {
+      "gh:row": rich.layout.row,
+      "gh:colSpan": rich.layout.colSpan,
+      "gh:rowSpan": rich.layout.rowSpan,
+      "gh:size": rich.layout.size,
+      "gh:emphasis": rich.layout.emphasis,
+      "gh:readingOrder": rich.layout.readingOrder,
+    } : undefined,
     "gh:inserted": true,
     "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
-    "gh:insertedSource": "story-outline.jsonld + LLM decomposition",
+    "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
     "gh:needsImageGeneration": true,
   };
 }
@@ -182,11 +322,27 @@ async function main() {
     if (!epPage) { console.warn(`episode page ${pn} missing`); continue; }
     console.log(`\n=== Page ${pn} (${v2Page["gh:pageTitle"]}) ===`);
     try {
-      const richPanels = await decomposePage(pn, v2Page);
+      const result = await decomposePage(pn, v2Page);
+      const { pageLayout, panels: richPanels } = result;
+      console.log(`  pageLayout: ${pageLayout.templateName} | ${pageLayout.pageType}${pageLayout.spreadWith ? ` (with p${pageLayout.spreadWith})` : ""} | rows=${pageLayout.totalRows}`);
+      console.log(`  emotional peak: ${pageLayout.emotionalPeak}`);
       console.log(`  decomposed → ${richPanels.length} panel(s)`);
       for (const rp of richPanels) {
-        console.log(`    n${rp.panelIndex} (${rp.shot}, focus=${rp.focusCharacter}, props=${rp.props.join(", ")}): ${rp.visualDescription.slice(0, 80)}`);
+        const lo = rp.layout;
+        const layoutTag = lo ? `[r${lo.row} c${lo.colSpan}×${lo.rowSpan} ${lo.size}/${lo.emphasis}]` : "";
+        console.log(`    n${rp.panelIndex} ${layoutTag} (${rp.shot}, focus=${rp.focusCharacter}, props=${rp.props.join(", ")}): ${rp.visualDescription.slice(0, 80)}`);
       }
+
+      // Apply page-level layout
+      epPage["gh:pageLayoutV3"] = {
+        "gh:templateName": pageLayout.templateName,
+        "gh:totalRows": pageLayout.totalRows,
+        "gh:gridDescription": pageLayout.gridDescription,
+        "gh:pageType": pageLayout.pageType,
+        ...(pageLayout.spreadWith !== undefined ? { "gh:spreadWith": pageLayout.spreadWith } : {}),
+        "gh:emotionalPeak": pageLayout.emotionalPeak,
+        "gh:notes": pageLayout.notes,
+      };
 
       // Migrate existing image generation history
       const oldPanels = epPage["gh:panels"] ?? [];

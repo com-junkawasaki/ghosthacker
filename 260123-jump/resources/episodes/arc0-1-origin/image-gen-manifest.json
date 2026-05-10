@@ -1,9 +1,368 @@
 {
   "episode": "episode:arc0-1-origin",
   "generatedAt": "2026-05-10T11:31:58.629Z",
-  "totalPanels": 0,
+  "totalPanels": 8,
   "defaultModel": "openai/gpt-image-2",
-  "panels": [],
-  "regeneratedAt": "2026-05-10T14:54:44.577Z",
+  "panels": [
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n1-v3",
+      "panelIndex": 1,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Wide",
+      "visual": "Nei confidently strides into the classroom, a bag of コメッコンドーナツ in hand, drawing attention from students nearby.",
+      "sceneSubject": "Nei enters the classroom",
+      "focusCharacter": "Nei",
+      "allCharacters": [
+        "Nei"
+      ],
+      "focusedCharacters": [
+        "Nei"
+      ],
+      "props": [
+        "コメッコンのドーナツ袋"
+      ],
+      "precedingBeat": "Ren is peacefully sleeping.",
+      "followingBeat": "Nei addresses Ren.",
+      "characters": [
+        "Nei"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n1-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [
+        "Nei"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n2-v3",
+      "panelIndex": 2,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Medium",
+      "visual": "Nei leans over Ren's desk, determined, with a slight frown as she tries to wake him up. Ren is slumped at his desk, earbuds dangling, pencil on the floor.",
+      "sceneSubject": "Nei attempts to wake Ren",
+      "focusCharacter": "Nei",
+      "allCharacters": [
+        "Nei",
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Nei"
+      ],
+      "props": [
+        "イヤホン",
+        "シャーペン"
+      ],
+      "precedingBeat": "Nei enters the room.",
+      "followingBeat": "Ren refuses to wake up.",
+      "characters": [
+        "Nei",
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Nei",
+          "text": "レン",
+          "emotion": "firm"
+        },
+        {
+          "speaker": "Ren",
+          "text": "……",
+          "emotion": "sleepy"
+        },
+        {
+          "speaker": "Nei",
+          "text": "レン、起きろ",
+          "emotion": "insistent"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n2-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [
+        "Nei"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n3-v3",
+      "panelIndex": 3,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Close Up",
+      "visual": "Ren, eyes half-closed, mutters his refusal to wake as Nei stands over him, hands on hips.",
+      "sceneSubject": "Ren's sleepy refusal",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren",
+        "Nei"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [],
+      "precedingBeat": "Nei insists Ren wakes up.",
+      "followingBeat": "Nei threatens to eat the donuts.",
+      "characters": [
+        "Ren",
+        "Nei"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Ren",
+          "text": "……ねむい",
+          "emotion": "sleepy"
+        },
+        {
+          "speaker": "Nei",
+          "text": "ご飯",
+          "emotion": "teasing"
+        },
+        {
+          "speaker": "Ren",
+          "text": "……うーん。ねむい",
+          "emotion": "insistent"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n3-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n4-v3",
+      "panelIndex": 4,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Medium",
+      "visual": "Nei holds up Ren's donut bag threateningly as Ren continues to lie motionless, eyes closed.",
+      "sceneSubject": "Nei's ultimatum",
+      "focusCharacter": "Nei",
+      "allCharacters": [
+        "Nei",
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Nei"
+      ],
+      "props": [
+        "コメッコンのドーナツ袋"
+      ],
+      "precedingBeat": "Ren's sleepy refusal.",
+      "followingBeat": "Nei begins eating the donut.",
+      "characters": [
+        "Nei",
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Nei",
+          "text": "起きないと、コメッコンの米粉ドーナツ、わたしが、全部 食べるよ",
+          "emotion": "playful"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n4-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [
+        "Nei"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n5-v3",
+      "panelIndex": 5,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Close Up",
+      "visual": "Nei casually takes a bite from the donut, glancing at Ren with a mischievous smile. Ren is watching with mild surprise.",
+      "sceneSubject": "Nei eats the donut",
+      "focusCharacter": "Nei",
+      "allCharacters": [
+        "Nei",
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Nei"
+      ],
+      "props": [
+        "米粉ドーナツ"
+      ],
+      "precedingBeat": "Nei threatens to eat the donut.",
+      "followingBeat": "Ren reluctantly rises to the bait.",
+      "characters": [
+        "Nei",
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Ren",
+          "text": "それ俺の・・・なんだけど",
+          "emotion": "surprised"
+        },
+        {
+          "speaker": "Nei",
+          "text": "ちゃんと起きてお昼食べなよ",
+          "emotion": "encouraging"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n5-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [
+        "Nei"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n6-v3",
+      "panelIndex": 6,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Medium",
+      "visual": "Ren, still lying on his desk, one eye half-open, reaches out lazily toward Nei to take the offered donut.",
+      "sceneSubject": "Ren reluctantly reacts",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren",
+        "Nei"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [],
+      "precedingBeat": "Nei eats the donut.",
+      "followingBeat": "Akira reveals his new sneakers.",
+      "characters": [
+        "Ren",
+        "Nei"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Ren",
+          "text": "怠惰がおれの美徳なんだよ...",
+          "emotion": "resigned"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n6-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n7-v3",
+      "panelIndex": 7,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Over the Shoulder",
+      "visual": "Yuto looks on from a distance, reflecting on the oddity of Ren's behavior and his academic success.",
+      "sceneSubject": "Yuto observes the interaction",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto",
+        "Ren",
+        "Nei"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "米粉ドーナツ"
+      ],
+      "precedingBeat": "Ren reacts to Nei.",
+      "followingBeat": "Akira shows off his sneakers.",
+      "characters": [
+        "Yuto",
+        "Ren",
+        "Nei"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "沼野くん、今日も寝てた。いつも、隣のクラスの白瀬さんが、起こしに来る。授業は聞いてないのに、テストはいつも上位にいる。変な奴、だ。",
+          "emotion": "curious"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n7-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n8-v3",
+      "panelIndex": 8,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Wide",
+      "visual": "Akira pulls out a sleek, limited edition sneaker from a box, with an expression of triumph. Mei and Saki look on in admiration.",
+      "sceneSubject": "Akira's sneaker reveal",
+      "focusCharacter": "Akira",
+      "allCharacters": [
+        "Akira",
+        "Mei",
+        "Saki"
+      ],
+      "focusedCharacters": [
+        "Akira"
+      ],
+      "props": [
+        "新しいスニーカー"
+      ],
+      "precedingBeat": "Yuto observes Ren's interaction.",
+      "followingBeat": "Scene changes to different focus.",
+      "characters": [
+        "Akira",
+        "Mei",
+        "Saki"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Akira",
+          "text": "見てくれ。ついに、限定モデル",
+          "emotion": "proud"
+        },
+        {
+          "speaker": "Mei",
+          "text": "うわっ、即完売のやつ！",
+          "emotion": "impressed"
+        },
+        {
+          "speaker": "Saki",
+          "text": "えっ、本物？",
+          "emotion": "skeptical"
+        },
+        {
+          "speaker": "Akira",
+          "text": "本物。発売30秒で勝負ついた",
+          "emotion": "boastful"
+        },
+        {
+          "speaker": "Akira",
+          "text": "指の速さがモノを言うんだよ",
+          "emotion": "smug"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n8-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [
+        "Akira"
+      ],
+      "referenceSelections": []
+    }
+  ],
+  "regeneratedAt": "2026-05-10T15:10:57.770Z",
   "schema": "phase3.4-rich"
 }
