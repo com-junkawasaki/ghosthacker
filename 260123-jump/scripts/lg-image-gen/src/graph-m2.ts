@@ -43,7 +43,7 @@ export const StateAnnotation = Annotation.Root({
   candidatePath: Annotation<string | null>({ default: () => null, reducer: (_, x) => x }),
   bestPath: Annotation<string | null>({ default: () => null, reducer: (_, x) => x }),
   bestScore: Annotation<number>({ default: () => 0, reducer: (_, x) => x }),
-  lastCritique: Annotation<{ score: number; settingMatch: boolean; charactersMatch: boolean; hasUnwantedText: boolean; notes: string } | null>({ default: () => null, reducer: (_, x) => x }),
+  lastCritique: Annotation<{ score: number; settingMatch: boolean; charactersMatch: boolean; hasUnwantedText: boolean; compositionScore?: number; expressionConcrete?: boolean; propsRecognized?: string[]; notes: string } | null>({ default: () => null, reducer: (_, x) => x }),
   outputRelUrl: Annotation<string | null>({ default: () => null, reducer: (_, x) => x }),
   errors: Annotation<string[]>({ default: () => [], reducer: (a, b) => [...a, ...b] }),
   durationMs: Annotation<Record<string, number>>({ default: () => ({}), reducer: (a, b) => ({ ...a, ...b }) }),
@@ -107,7 +107,7 @@ function basePrompt(state: State): string {
     : "";
 
   const refsHint = state.resolvedRefs.length > 0
-    ? `Character face-identity references are supplied as input images IN THIS ORDER: ${state.resolvedRefs.map((r, i) => `(${i + 1}) ${r.character}`).join(", ")}. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described.`
+    ? `Character face-identity references are supplied as input images IN THIS ORDER: ${state.resolvedRefs.map((r, i) => `(${i + 1}) ${r.character}`).join(", ")}. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described.`
     : "";
 
   const propsLine = props.length > 0

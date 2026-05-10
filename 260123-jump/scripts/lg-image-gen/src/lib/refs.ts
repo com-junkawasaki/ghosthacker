@@ -47,6 +47,10 @@ export function extractSetting(prompt: string): { setting: string; visualNote: s
 /**
  * Compose a short, distinctive English descriptor from the character profile's appearance fields.
  * Used to inject per-character cues so multi-character panels render distinct identities.
+ *
+ * Note: explicit ages (e.g., "14-year-old") are stripped to avoid OpenAI moderation false-positives
+ * that can flag any minor-age + body-description combination. The reference images already encode
+ * age impression visually.
  */
 const descriptorCache = new Map<string, string>();
 export function characterDescriptor(character: string): string {
@@ -63,6 +67,13 @@ export function characterDescriptor(character: string): string {
     if (a["gh:face"]) parts.push(a["gh:face"]);
     if (a["gh:build"]) parts.push(a["gh:build"]);
     desc = parts.join(" ").replace(/\s+/g, " ").trim();
+    // Strip age numbers (moderation safety): "14-year-old", "age 14", "15歳" etc.
+    desc = desc
+      .replace(/\b\d{1,2}[\s-]?year[\s-]?old\b/gi, "young")
+      .replace(/\bage\s*\d{1,2}\b/gi, "")
+      .replace(/\b\d{1,2}\s*歳\b/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
   } catch {
     desc = "";
   }

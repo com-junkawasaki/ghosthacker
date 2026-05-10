@@ -19,6 +19,7 @@ import * as path from "node:path";
 import { buildGraph, type PanelManifestEntry, type PanelState } from "./graph.js";
 import { buildGraph3Stage, type PanelState as PanelState3 } from "./graph-3stage.js";
 import { buildGraphM2 } from "./graph-m2.js";
+import { computeQp, computeQi, combineQ, type RichCritique } from "./lib/openai.js";
 
 const REPO = "/Users/junkawasaki/github/ghosthacker/260123-jump";
 const MANIFEST_PATH = `${REPO}/resources/episodes/arc0-1-origin/image-gen-manifest.json`;
@@ -207,9 +208,30 @@ async function main() {
       } else {
         const merged = updateEpisodePanel(ep, versionedManifest, final, cli.pipeline);
         const total = Object.values((final as any).durationMs).reduce((a: number, b: any) => a + (Number(b) || 0), 0);
-        console.log(`OK ${total}ms → ${final.outputRelUrl} ${merged ? "[merged]" : "[merge-skipped]"}`);
+
+        // Q-score (only meaningful if critique was run, i.e., m2ref pipeline)
+        let qLine = "";
+        const critique = (final as any).lastCritique as RichCritique | null;
+        if (critique) {
+          const { Q_p } = computeQp(versionedManifest);
+          const { Q_i } = computeQi(critique, m.props ?? []);
+          const Q_total = combineQ(Q_p, Q_i);
+          const tier = Q_total >= 0.75 ? "ship" : Q_total >= 0.55 ? "review" : "regen";
+          qLine = ` Q_p=${Q_p.toFixed(2)} Q_i=${Q_i.toFixed(2)} Q_total=${Q_total.toFixed(2)} [${tier}]`;
+          // Persist Q-score on the panel's latest image entry
+          const page = ep["gh:pages"].find((p: any) => p["gh:pageNumber"] === m.pageNum);
+          const panel = page?.["gh:panels"]?.find((pn: any) => pn["@id"] === m.panelId);
+          const lastImg = panel?.["gh:generatedImages"]?.[panel["gh:generatedImages"].length - 1];
+          if (lastImg) {
+            lastImg["gh:Q_p"] = Q_p;
+            lastImg["gh:Q_i"] = Q_i;
+            lastImg["gh:Q_total"] = Q_total;
+            lastImg["gh:Q_tier"] = tier;
+          }
+        }
+
+        console.log(`OK ${total}ms → ${final.outputRelUrl} ${merged ? "[merged]" : "[merge-skipped]"}${qLine}`);
         results.push({ panelId: m.panelId, pageNum: m.pageNum, ok: true, durationMs: total, outputUrl: final.outputRelUrl ?? undefined });
-        // Save episode incrementally so partial progress is preserved
         saveEpisode(ep);
       }
     } catch (err) {
