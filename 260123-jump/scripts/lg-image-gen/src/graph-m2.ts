@@ -12,7 +12,7 @@ import { StateGraph, START, END, Annotation } from "@langchain/langgraph";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { generate, edit, critique, MODEL } from "./lib/openai.js";
-import { extractSetting, pickVariant, refPath, type Variant } from "./lib/refs.js";
+import { extractSetting, pickVariant, refPath, characterDescriptor, type Variant } from "./lib/refs.js";
 
 export interface PanelManifestEntry {
   pageNum: number;
@@ -52,17 +52,54 @@ export const StateAnnotation = Annotation.Root({
 export type State = typeof StateAnnotation.State;
 
 function basePrompt(state: State): string {
-  const m = state.manifest;
+  const m = state.manifest as any;
+
+  // Phase 3.4 rich-schema fields (fall back to old fields if not present)
+  const sceneSubject = m.sceneSubject ?? "";
+  const focusCharacter = m.focusCharacter ?? "";
+  const allChars: string[] = m.allCharacters ?? m.characters ?? [];
+  const props: string[] = m.props ?? [];
+  const visualDesc = m.gh_visualDescription ?? m.visualDescription ?? m.visual ?? "";
+  const precedingBeat = m.precedingBeat ?? "";
+  const followingBeat = m.followingBeat ?? "";
+
+  // Per-character descriptors
+  const charDescriptors = allChars
+    .map((c, i) => {
+      const desc = characterDescriptor(c);
+      const isFocus = c === focusCharacter ? " [FOCUS]" : "";
+      const positionHint = allChars.length > 1 ? ` (in-frame ${i + 1}/${allChars.length})` : "";
+      return desc ? `${c}${isFocus}${positionHint}: ${desc}` : `${c}${isFocus}${positionHint}`;
+    })
+    .join(" / ");
+
   const refsHint = state.resolvedRefs.length > 0
-    ? `Character face-identity references will be supplied as input images (one per character: ${state.resolvedRefs.map((r) => r.character).join(", ")}). Use them ONLY for face identity (face shape, eye design, hairstyle, age impression). Do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described in the scene.`
+    ? `Character face-identity references are supplied as input images IN THIS ORDER: ${state.resolvedRefs.map((r, i) => `(${i + 1}) ${r.character}`).join(", ")}. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described.`
     : "";
+
+  const propsLine = props.length > 0
+    ? `KEY PROPS in scene (must be visible and recognizable): ${props.join(", ")}.`
+    : "";
+
+  const subjectLine = sceneSubject
+    ? `SCENE SUBJECT (the panel's main beat): ${sceneSubject}.`
+    : "";
+
+  const continuityLine = (precedingBeat || followingBeat)
+    ? `Story continuity — preceding beat: ${precedingBeat || "(none)"} / following beat: ${followingBeat || "(none)"}. The panel must visually connect with these beats.`
+    : "";
+
   return [
     "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image.",
     state.setting ? `LOCATION (do not change): ${state.setting}.` : "",
     state.visualNote ? `Set dressing: ${state.visualNote}.` : "",
-    `Specific moment: ${m.visual}.`,
+    subjectLine,
+    `Visual to render: ${visualDesc}.`,
+    propsLine,
     `Shot framing: ${m.shot}.`,
-    m.characters.length > 0 ? `Characters present: ${m.characters.join(", ")}.` : "Empty scene.",
+    allChars.length > 0 ? `Characters in frame (each must be visually distinct): ${charDescriptors}.` : "Empty scene.",
+    focusCharacter && focusCharacter !== "shared" ? `Compositional focus is on ${focusCharacter}.` : "",
+    continuityLine,
     refsHint,
     "ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
   ].filter(Boolean).join(" ");
@@ -70,9 +107,18 @@ function basePrompt(state: State): string {
 
 async function planNode(state: State): Promise<Partial<State>> {
   const t0 = Date.now();
-  const { setting, visualNote } = extractSetting(state.manifest.prompt);
-  // Resolve character references
-  const resolvedRefs = state.manifest.characters
+  const m = state.manifest as any;
+  // Phase 3.4 rich schema: prefer top-level setting/visualNote from outline if injected by manifest
+  const fromPrompt = extractSetting(m.prompt ?? "");
+  const setting = m.setting ?? fromPrompt.setting;
+  const visualNote = m.visualNote ?? fromPrompt.visualNote;
+
+  // Reference characters: prefer focused (active subjects); fall back to all in-frame chars (capped at 3)
+  const focused: string[] = m.focusedCharacters ?? [];
+  const allChars: string[] = m.allCharacters ?? state.manifest.characters ?? [];
+  const refTargets = focused.length > 0 ? focused : allChars.slice(0, 3);
+
+  const resolvedRefs = refTargets
     .map((c) => {
       const v = pickVariant(c, state.manifest.dialogues, state.manifest.shot);
       const rp = refPath(c, v);
@@ -126,12 +172,15 @@ async function critiqueNode(state: State): Promise<Partial<State>> {
 
 async function refineNode(state: State): Promise<Partial<State>> {
   const t0 = Date.now();
-  // Build refined prompt addressing critic notes
   const c = state.lastCritique;
+  const m = state.manifest;
   const fixes: string[] = [];
   if (c) {
-    if (!c.settingMatch) fixes.push(`The previous attempt did NOT show the correct location. Strictly render: ${state.setting}. Do not drift to any other setting.`);
-    if (!c.charactersMatch) fixes.push(`The previous attempt did NOT show the expected characters: ${state.manifest.characters.join(", ")}. Render exactly these characters.`);
+    if (!c.settingMatch) fixes.push(`The previous attempt did NOT show the correct location. Strictly render: ${state.setting}. Do not drift to any other setting (no jewelry shop, no street, no home — only the school location specified).`);
+    if (!c.charactersMatch) {
+      const charDescs = m.characters.map((ch) => `${ch}: ${characterDescriptor(ch) || "as per reference"}`).join(" / ");
+      fixes.push(`The previous attempt did NOT differentiate or match the expected characters. Each character must be visually distinct: ${charDescs}. Use the supplied reference images strictly for face identity.`);
+    }
     if (c.hasUnwantedText) fixes.push("The previous attempt had unwanted text/speech bubbles. Remove ALL text, captions, labels, scene numbers, dialogue overlays.");
     if (c.notes) fixes.push(`Critic notes: ${c.notes}. Address these.`);
   }

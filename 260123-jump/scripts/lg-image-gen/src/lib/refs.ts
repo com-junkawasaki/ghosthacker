@@ -43,3 +43,29 @@ export function extractSetting(prompt: string): { setting: string; visualNote: s
   const v = prompt.match(/Visual note:\s*([^.]+(?:\.[^A-Z][^.]*)*)\./);
   return { setting: s?.[1]?.trim() ?? "", visualNote: v?.[1]?.trim() ?? "" };
 }
+
+/**
+ * Compose a short, distinctive English descriptor from the character profile's appearance fields.
+ * Used to inject per-character cues so multi-character panels render distinct identities.
+ */
+const descriptorCache = new Map<string, string>();
+export function characterDescriptor(character: string): string {
+  if (descriptorCache.has(character)) return descriptorCache.get(character)!;
+  const profilePath = `${REPO}/resources/characters/${character}/profile.jsonld`;
+  let desc = "";
+  try {
+    const fs = require("node:fs") as typeof import("node:fs");
+    const j = JSON.parse(fs.readFileSync(profilePath, "utf-8"));
+    const a = j["gh:appearance"] ?? {};
+    const parts: string[] = [];
+    if (a["gh:hair"]) parts.push(a["gh:hair"]);
+    if (a["gh:eyes"]) parts.push(a["gh:eyes"]);
+    if (a["gh:face"]) parts.push(a["gh:face"]);
+    if (a["gh:build"]) parts.push(a["gh:build"]);
+    desc = parts.join(" ").replace(/\s+/g, " ").trim();
+  } catch {
+    desc = "";
+  }
+  descriptorCache.set(character, desc);
+  return desc;
+}

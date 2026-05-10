@@ -64,7 +64,7 @@ function saveEpisode(ep: any) {
   fs.writeFileSync(EPISODE_PATH, JSON.stringify(ep, null, 2) + "\n");
 }
 
-function updateEpisodePanel(ep: any, manifest: PanelManifestEntry, finalState: PanelState | PanelState3, pipeline: "1-stage" | "3-stage") {
+function updateEpisodePanel(ep: any, manifest: PanelManifestEntry, finalState: any, pipeline: "1-stage" | "3-stage" | "m2ref") {
   const page = ep["gh:pages"].find((p: any) => p["gh:pageNumber"] === manifest.pageNum);
   if (!page) return false;
   const panel = (page["gh:panels"] ?? []).find((pn: any) => pn["@id"] === manifest.panelId);
@@ -89,6 +89,13 @@ function updateEpisodePanel(ep: any, manifest: PanelManifestEntry, finalState: P
     promptUsed = `BG: ${s.bgPrompt}\n\nCOMPOSITE: ${s.compositePrompt}`;
     pipelineLabel = "langgraph-ts-3stage-bg-composite";
     resolvedRefs = s.resolvedReferences.map((r) => ({ character: r.character, variant: r.variant, refPath: r.refPath }));
+  } else if (pipeline === "m2ref") {
+    const d = finalState.durationMs ?? {};
+    stages = Object.entries(d).map(([name, durationMs]) => ({ name, durationMs: durationMs as number }));
+    totalDur = stages.reduce((a, x) => a + x.durationMs, 0);
+    promptUsed = finalState.currentPrompt ?? "";
+    pipelineLabel = `langgraph-ts-m2ref-agent-loop (iter=${finalState.iter ?? 1}, score=${finalState.bestScore ?? 0})`;
+    resolvedRefs = (finalState.resolvedRefs ?? []).map((r: any) => ({ character: r.character, variant: r.variant, refPath: r.refPath }));
   } else {
     const s = finalState as PanelState;
     stages = [
@@ -157,7 +164,10 @@ async function main() {
   console.log(`LangGraph image gen — ${panels.length} panel(s) to process${cli.dryRun ? " [DRY RUN]" : ""}`);
   console.log(`Provider: ${provider} / Model: ${MODEL} / Quality: ${QUALITY} / Pipeline: ${cli.pipeline}`);
 
-  const graph = cli.pipeline === "3-stage" ? buildGraph3Stage() : buildGraph();
+  const graph =
+    cli.pipeline === "3-stage" ? buildGraph3Stage() :
+    cli.pipeline === "m2ref"   ? buildGraphM2() :
+                                  buildGraph();
   const results: Array<{ panelId: string; pageNum: number; ok: boolean; error?: string; durationMs?: number; outputUrl?: string }> = [];
   const ep = loadEpisode();
 
@@ -182,13 +192,20 @@ async function main() {
       continue;
     }
 
+    // Determine versioned output path: read panel's current image count, use _v{n+1}.png
+    const targetPage = ep["gh:pages"].find((p: any) => p["gh:pageNumber"] === m.pageNum);
+    const targetPanel = targetPage?.["gh:panels"]?.find((pn: any) => pn["@id"] === m.panelId);
+    const existingCount = targetPanel?.["gh:generatedImages"]?.length ?? 0;
+    const versionedOutputPath = m.outputPath.replace(/_v\d+\.png$|_sketch_v\d+\.png$|\.png$/, `_v${existingCount + 1}.png`);
+    const versionedManifest = { ...m, outputPath: versionedOutputPath };
+
     try {
-      const final = (await graph.invoke({ manifest: m })) as PanelState | PanelState3;
+      const final = (await graph.invoke({ manifest: versionedManifest })) as PanelState | PanelState3;
       if (final.errors.length > 0) {
         console.log(`FAIL: ${final.errors.join(" | ")}`);
         results.push({ panelId: m.panelId, pageNum: m.pageNum, ok: false, error: final.errors.join(" | ") });
       } else {
-        const merged = updateEpisodePanel(ep, m, final, cli.pipeline);
+        const merged = updateEpisodePanel(ep, versionedManifest, final, cli.pipeline);
         const total = Object.values((final as any).durationMs).reduce((a: number, b: any) => a + (Number(b) || 0), 0);
         console.log(`OK ${total}ms → ${final.outputRelUrl} ${merged ? "[merged]" : "[merge-skipped]"}`);
         results.push({ panelId: m.panelId, pageNum: m.pageNum, ok: true, durationMs: total, outputUrl: final.outputRelUrl ?? undefined });

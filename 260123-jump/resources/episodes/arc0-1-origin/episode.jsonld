@@ -860,11 +860,97 @@
                   "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n1-v2_sketch_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。. Shot type: Medium Shot. Dialogue: Nei: 「レン」 / Ren: 「……」 / Nei: 「レン、起きろ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。. Shot type: Medium Shot. Dialogue: Nei: 「レン」 / Ren: 「……」 / Nei: 「レン、起きろ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。. Shot framing: Medium Shot. Characters present: Nei, Ren. Character face-identity references will be supplied as input images (one per character: Nei, Ren). Use them ONLY for face identity (face shape, eye design, hairstyle, age impression). Do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described in the scene. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778422768,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 38895,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 31412
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 7462
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 21
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Nei",
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Nei",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n1-v2_v5.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。. Shot type: Medium Shot. Dialogue: Nei: 「レン」 / Ren: 「……」 / Nei: 「レン、起きろ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。. Shot type: Medium Shot. Dialogue: Nei: 「レン」 / Ren: 「……」 / Nei: 「レン、起きろ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。. Shot framing: Medium Shot. Characters present (each must be visually distinct from the others): Nei (position 1 in scene) / Ren (position 2 in scene). Character face-identity references are supplied as input images IN THIS ORDER: (1) Nei, (2) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778424346,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 42601,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 36726
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5871
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Nei",
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Nei",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 2,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n1-v2_sketch_v1.png",
-          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。 Characters present: Nei and Ren. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
+          "gh:currentImageIndex": 4,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n1-v2_v5.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。. Shot type: Medium Shot. Dialogue: Nei: 「レン」 / Ren: 「……」 / Nei: 「レン、起きろ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。. Shot type: Medium Shot. Dialogue: Nei: 「レン」 / Ren: 「……」 / Nei: 「レン、起きろ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。. Shot framing: Medium Shot. Characters present (each must be visually distinct from the others): Nei (position 1 in scene) / Ren (position 2 in scene). Character face-identity references are supplied as input images IN THIS ORDER: (1) Nei, (2) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p1n2-v2",
@@ -1008,11 +1094,97 @@
                   "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n2-v2_sketch_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Ren: 「……ねむい」 / Nei: 「ご飯」. Shot type: Medium Shot. Dialogue: Ren: 「……ねむい」 / Nei: 「ご飯」 / Ren: 「……うーん。ねむい」 / Nei: 「起きないと、コメッコンの米粉ドーナツ、わたしが、全部 食べるよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Ren: 「……ねむい」 / Nei: 「ご飯」. Shot type: Medium Shot. Dialogue: Ren: 「……ねむい」 / Nei: 「ご飯」 / Ren: 「……うーん。ねむい」 / Nei: 「起きないと、コメッコンの米粉ドーナツ、わたしが、全部 食べるよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: Ren: 「……ねむい」 / Nei: 「ご飯」. Shot framing: Medium Shot. Characters present: Ren, Nei. Character face-identity references will be supplied as input images (one per character: Ren, Nei). Use them ONLY for face identity (face shape, eye design, hairstyle, age impression). Do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described in the scene. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778422817,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 47123,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 39785
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 7331
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 6
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren",
+                "Nei"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Nei",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n2-v2_v4.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Ren: 「……ねむい」 / Nei: 「ご飯」. Shot type: Medium Shot. Dialogue: Ren: 「……ねむい」 / Nei: 「ご飯」 / Ren: 「……うーん。ねむい」 / Nei: 「起きないと、コメッコンの米粉ドーナツ、わたしが、全部 食べるよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Ren: 「……ねむい」 / Nei: 「ご飯」. Shot type: Medium Shot. Dialogue: Ren: 「……ねむい」 / Nei: 「ご飯」 / Ren: 「……うーん。ねむい」 / Nei: 「起きないと、コメッコンの米粉ドーナツ、わたしが、全部 食べるよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: Ren: 「……ねむい」 / Nei: 「ご飯」. Shot framing: Medium Shot. Characters present (each must be visually distinct from the others): Ren (position 1 in scene) / Nei (position 2 in scene). Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren, (2) Nei. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778424388,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 40559,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 32554
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 8002
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 3
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren",
+                "Nei"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Nei",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n2-v2_sketch_v1.png",
-          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: Ren: 「……ねむい」 / Nei: 「ご飯」 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: Ren: 「……ねむい」 / Nei: 「ご飯」 Characters present: Ren and Nei. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
+          "gh:currentImageIndex": 3,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n2-v2_v4.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Ren: 「……ねむい」 / Nei: 「ご飯」. Shot type: Medium Shot. Dialogue: Ren: 「……ねむい」 / Nei: 「ご飯」 / Ren: 「……うーん。ねむい」 / Nei: 「起きないと、コメッコンの米粉ドーナツ、わたしが、全部 食べるよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Ren: 「……ねむい」 / Nei: 「ご飯」. Shot type: Medium Shot. Dialogue: Ren: 「……ねむい」 / Nei: 「ご飯」 / Ren: 「……うーん。ねむい」 / Nei: 「起きないと、コメッコンの米粉ドーナツ、わたしが、全部 食べるよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: Ren: 「……ねむい」 / Nei: 「ご飯」. Shot framing: Medium Shot. Characters present (each must be visually distinct from the others): Ren (position 1 in scene) / Nei (position 2 in scene). Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren, (2) Nei. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p1n3-v2",
@@ -1093,11 +1265,69 @@
               ],
               "gh:referenceCharacters": [],
               "gh:referenceSelections": []
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n3-v2_sketch_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Shot type: Medium Shot. telop: 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Shot type: Medium Shot. telop: 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Shot framing: Medium Shot. Empty scene. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778422847,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 28664,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 22730
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5928
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [],
+              "gh:referenceSelections": []
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n3-v2_v4.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Shot type: Medium Shot. telop: 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Shot type: Medium Shot. telop: 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Shot framing: Medium Shot. Empty scene. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778424426,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 36856,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 28839
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 8014
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 3
+                }
+              ],
+              "gh:referenceCharacters": [],
+              "gh:referenceSelections": []
             }
           ],
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n3-v2_sketch_v1.png",
-          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学 Empty scene. Shot framing: Medium Shot. Empty scene mood. Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
+          "gh:currentImageIndex": 3,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n3-v2_v4.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Shot type: Medium Shot. telop: 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Shot type: Medium Shot. telop: 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Shot framing: Medium Shot. Empty scene. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p1n4-v2",
@@ -1236,11 +1466,97 @@
                   "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n4-v2_sketch_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Neiはおもむろに蓮の米粉ドーナツを食べ始めた。. Shot type: Medium Shot. Dialogue: Ren: 「それ俺の・・・なんだけど」 / Nei: 「ちゃんと起きてお昼食べなよ」 / Ren: 「怠惰がおれの美徳なんだよ...」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Neiはおもむろに蓮の米粉ドーナツを食べ始めた。. Shot type: Medium Shot. Dialogue: Ren: 「それ俺の・・・なんだけど」 / Nei: 「ちゃんと起きてお昼食べなよ」 / Ren: 「怠惰がおれの美徳なんだよ...」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: Neiはおもむろに蓮の米粉ドーナツを食べ始めた。. Shot framing: Medium Shot. Characters present: Ren, Nei. Character face-identity references will be supplied as input images (one per character: Ren, Nei). Use them ONLY for face identity (face shape, eye design, hairstyle, age impression). Do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described in the scene. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778422897,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 48435,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 41732
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 6697
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren",
+                "Nei"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Nei",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n4-v2_v4.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Neiはおもむろに蓮の米粉ドーナツを食べ始めた。. Shot type: Medium Shot. Dialogue: Ren: 「それ俺の・・・なんだけど」 / Nei: 「ちゃんと起きてお昼食べなよ」 / Ren: 「怠惰がおれの美徳なんだよ...」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Neiはおもむろに蓮の米粉ドーナツを食べ始めた。. Shot type: Medium Shot. Dialogue: Ren: 「それ俺の・・・なんだけど」 / Nei: 「ちゃんと起きてお昼食べなよ」 / Ren: 「怠惰がおれの美徳なんだよ...」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: Neiはおもむろに蓮の米粉ドーナツを食べ始めた。. Shot framing: Medium Shot. Characters present (each must be visually distinct from the others): Ren (position 1 in scene) / Nei (position 2 in scene). Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren, (2) Nei. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778424462,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 33891,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 28141
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5745
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren",
+                "Nei"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Nei",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n4-v2_sketch_v1.png",
-          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: Neiはおもむろに蓮の米粉ドーナツを食べ始めた。 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: Neiはおもむろに蓮の米粉ドーナツを食べ始めた。 Characters present: Ren and Nei. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
+          "gh:currentImageIndex": 3,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n4-v2_v4.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Neiはおもむろに蓮の米粉ドーナツを食べ始めた。. Shot type: Medium Shot. Dialogue: Ren: 「それ俺の・・・なんだけど」 / Nei: 「ちゃんと起きてお昼食べなよ」 / Ren: 「怠惰がおれの美徳なんだよ...」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Neiはおもむろに蓮の米粉ドーナツを食べ始めた。. Shot type: Medium Shot. Dialogue: Ren: 「それ俺の・・・なんだけど」 / Nei: 「ちゃんと起きてお昼食べなよ」 / Ren: 「怠惰がおれの美徳なんだよ...」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: Neiはおもむろに蓮の米粉ドーナツを食べ始めた。. Shot framing: Medium Shot. Characters present (each must be visually distinct from the others): Ren (position 1 in scene) / Nei (position 2 in scene). Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren, (2) Nei. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p1n5-v2",
@@ -1321,11 +1637,69 @@
               ],
               "gh:referenceCharacters": [],
               "gh:referenceSelections": []
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n5-v2_sketch_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Shot type: Medium Shot. telop: 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Shot type: Medium Shot. telop: 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Shot framing: Medium Shot. Empty scene. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778422933,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 34516,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 28444
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 6067
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [],
+              "gh:referenceSelections": []
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n5-v2_v4.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Shot type: Medium Shot. telop: 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Shot type: Medium Shot. telop: 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Shot framing: Medium Shot. Empty scene. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778424498,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 34157,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 27999
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 6147
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 11
+                }
+              ],
+              "gh:referenceCharacters": [],
+              "gh:referenceSelections": []
             }
           ],
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n5-v2_sketch_v1.png",
-          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッング Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング Empty scene. Shot framing: Medium Shot. Empty scene mood. Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
+          "gh:currentImageIndex": 3,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n5-v2_v4.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Shot type: Medium Shot. telop: 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Shot type: Medium Shot. telop: 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Shot framing: Medium Shot. Empty scene. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p1n6-v2",
@@ -1459,11 +1833,101 @@
                   "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Akira/reference_variants/three_quarter_right_neutral.png"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n6-v2_sketch_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。. Shot type: Medium Shot. Dialogue: Yuto: 「沼野くん、今日も寝てた。いつも、隣のクラスの白瀬さんが、起こしに来る。授業は聞いてないのに、テストはいつも上位にいる。変な奴、だ。」 / Akira: 「見てくれ。ついに、限定モデル」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。. Shot type: Medium Shot. Dialogue: Yuto: 「沼野くん、今日も寝てた。いつも、隣のクラスの白瀬さんが、起こしに来る。授業は聞いてないのに、テストはいつも上位にいる。変な奴、だ。」 / Akira: 「見てくれ。ついに、限定モデル」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。. Shot framing: Medium Shot. Characters present: Yuto, Akira. Character face-identity references will be supplied as input images (one per character: Yuto, Akira). Use them ONLY for face identity (face shape, eye design, hairstyle, age impression). Do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described in the scene. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt did NOT show the correct location. Strictly render: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。. Shot type: Medium Shot. Dialogue: Yuto: 「沼野くん、今日も寝てた。いつも、隣のクラスの白瀬さんが、起こしに来る。授業は聞いてないのに、テストはいつも上位にいる。変な奴、だ。」 / Akira: 「見てくれ。ついに、限定モデル」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Do not drift to any other setting. The previous attempt did NOT show the expected characters: Yuto, Akira. Render exactly these characters. Critic notes: The setting does not match as it's not explicitly C中学校3年B組 and the dialogue is absent. Character appearance and interactions partially align, but misalignment with the expected props and actions is noted.. Address these.",
+              "gh:generatedAt": 1778423079,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 144111,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=3, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 122811
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 21293
+                },
+                {
+                  "name": "refine",
+                  "durationMs": 0
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 6
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto",
+                "Akira"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Akira",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Akira/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n6-v2_v4.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。. Shot type: Medium Shot. Dialogue: Yuto: 「沼野くん、今日も寝てた。いつも、隣のクラスの白瀬さんが、起こしに来る。授業は聞いてないのに、テストはいつも上位にいる。変な奴、だ。」 / Akira: 「見てくれ。ついに、限定モデル」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。. Shot type: Medium Shot. Dialogue: Yuto: 「沼野くん、今日も寝てた。いつも、隣のクラスの白瀬さんが、起こしに来る。授業は聞いてないのに、テストはいつも上位にいる。変な奴、だ。」 / Akira: 「見てくれ。ついに、限定モデル」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。. Shot framing: Medium Shot. Characters present (each must be visually distinct from the others): Yuto (position 1 in scene) / Akira (position 2 in scene). Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto, (2) Akira. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778424557,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 58347,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 51287
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 7055
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto",
+                "Akira"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Akira",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Akira/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n6-v2_sketch_v1.png",
-          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（ア）が、真新しいスニーカーを箱から出した。 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。 Characters present: Yuto and Akira. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
+          "gh:currentImageIndex": 3,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n6-v2_v4.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。. Shot type: Medium Shot. Dialogue: Yuto: 「沼野くん、今日も寝てた。いつも、隣のクラスの白瀬さんが、起こしに来る。授業は聞いてないのに、テストはいつも上位にいる。変な奴、だ。」 / Akira: 「見てくれ。ついに、限定モデル」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。. Shot type: Medium Shot. Dialogue: Yuto: 「沼野くん、今日も寝てた。いつも、隣のクラスの白瀬さんが、起こしに来る。授業は聞いてないのに、テストはいつも上位にいる。変な奴、だ。」 / Akira: 「見てくれ。ついに、限定モデル」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。. Shot framing: Medium Shot. Characters present (each must be visually distinct from the others): Yuto (position 1 in scene) / Akira (position 2 in scene). Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto, (2) Akira. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p1n7-v2",
@@ -1589,11 +2053,199 @@
                   "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Saki/reference_variants/three_quarter_right_neutral.png"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n7-v2_sketch_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot framing: Medium Shot. Characters present: Mei, Saki. Character face-identity references will be supplied as input images (one per character: Mei, Saki). Use them ONLY for face identity (face shape, eye design, hairstyle, age impression). Do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described in the scene. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt did NOT show the correct location. Strictly render: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Do not drift to any other setting. The previous attempt did NOT show the expected characters: Mei, Saki. Render exactly these characters. The previous attempt had unwanted text/speech bubbles. Remove ALL text, captions, labels, scene numbers, dialogue overlays. Critic notes: The panel does not match the expected setting as it features a male character instead of Ran, who should be asleep. Additionally, the dialogue is visible in the image, contradicting the requirement for no text.. Address these.",
+              "gh:generatedAt": 1778423163,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 82964,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=2, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 2
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 69610
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 13348
+                },
+                {
+                  "name": "refine",
+                  "durationMs": 0
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Mei",
+                "Saki"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Mei",
+                  "variant": "action_shout",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Mei/reference_variants/action_shout.png"
+                },
+                {
+                  "character": "Saki",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Saki/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n7-v2_sketch_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot framing: Medium Shot. Characters present (each must be visually distinct from the others): Mei (position 1 in scene) / Saki (position 2 in scene). Character face-identity references are supplied as input images IN THIS ORDER: (1) Mei, (2) Saki. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt had unwanted text/speech bubbles. Remove ALL text, captions, labels, scene numbers, dialogue overlays. Critic notes: The scene captures the school setting and characters appropriately, but the dialogue is present in the image, which is not allowed. The facial expressions and actions are in line with the given instructions.. Address these.",
+              "gh:generatedAt": 1778423988,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 92699,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=2, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 77497
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 15199
+                },
+                {
+                  "name": "refine",
+                  "durationMs": 0
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 3
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Mei",
+                "Saki"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Mei",
+                  "variant": "action_shout",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Mei/reference_variants/action_shout.png"
+                },
+                {
+                  "character": "Saki",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Saki/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n7-v2_v5.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot framing: Medium Shot. Characters present (each must be visually distinct from the others): Mei (position 1 in scene) / Saki (position 2 in scene). Character face-identity references are supplied as input images IN THIS ORDER: (1) Mei, (2) Saki. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt did NOT show the correct location. Strictly render: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Do not drift to any other setting (no jewelry shop, no street, no home — only the school location specified). The previous attempt had unwanted text/speech bubbles. Remove ALL text, captions, labels, scene numbers, dialogue overlays. Critic notes: The characters are accurately represented, but the setting does not match the description provided. Unwanted text is present in the form of speech bubbles.. Address these.",
+              "gh:generatedAt": 1778424203,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 135559,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=3, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 103148
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 32405
+                },
+                {
+                  "name": "refine",
+                  "durationMs": 0
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 6
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Mei",
+                "Saki"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Mei",
+                  "variant": "action_shout",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Mei/reference_variants/action_shout.png"
+                },
+                {
+                  "character": "Saki",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Saki/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n7-v2_v6.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot framing: Medium Shot. Characters present (each must be visually distinct from the others): Mei (position 1 in scene) / Saki (position 2 in scene). Character face-identity references are supplied as input images IN THIS ORDER: (1) Mei, (2) Saki. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt did NOT show the correct location. Strictly render: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Do not drift to any other setting (no jewelry shop, no street, no home — only the school location specified). The previous attempt had unwanted text/speech bubbles. Remove ALL text, captions, labels, scene numbers, dialogue overlays. Critic notes: The panel does not depict the specified school setting as it shows a male character instead of Ren. The characters Mei and Saki are present, but the dialogue is not displayed in speech bubbles.. Address these.",
+              "gh:generatedAt": 1778424644,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 84854,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=2, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 72794
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 12054
+                },
+                {
+                  "name": "refine",
+                  "durationMs": 1
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Mei",
+                "Saki"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Mei",
+                  "variant": "action_shout",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Mei/reference_variants/action_shout.png"
+                },
+                {
+                  "character": "Saki",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Saki/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n7-v2_sketch_v1.png",
-          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」 Characters present: Mei and Saki. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
+          "gh:currentImageIndex": 5,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n7-v2_v6.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot framing: Medium Shot. Characters present (each must be visually distinct from the others): Mei (position 1 in scene) / Saki (position 2 in scene). Character face-identity references are supplied as input images IN THIS ORDER: (1) Mei, (2) Saki. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt did NOT show the correct location. Strictly render: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Do not drift to any other setting (no jewelry shop, no street, no home — only the school location specified). The previous attempt had unwanted text/speech bubbles. Remove ALL text, captions, labels, scene numbers, dialogue overlays. Critic notes: The panel does not depict the specified school setting as it shows a male character instead of Ren. The characters Mei and Saki are present, but the dialogue is not displayed in speech bubbles.. Address these."
         },
         {
           "@id": "panel:p1n8-v2",
@@ -1706,11 +2358,89 @@
                   "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Akira/reference_variants/neutral_front.png"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n8-v2_sketch_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Shot type: Close Up. Dialogue: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Shot type: Close Up. Dialogue: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Shot framing: Close Up. Characters present: Akira. Character face-identity references will be supplied as input images (one per character: Akira). Use them ONLY for face identity (face shape, eye design, hairstyle, age impression). Do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described in the scene. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778423199,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 34588,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 28455
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 6127
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Akira"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Akira",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Akira/reference_variants/neutral_front.png"
+                }
+              ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n8-v2_v4.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Shot type: Close Up. Dialogue: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Shot type: Close Up. Dialogue: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Shot framing: Close Up. Characters present (each must be visually distinct from the others): Akira. Character face-identity references are supplied as input images IN THIS ORDER: (1) Akira. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt did NOT differentiate or match the expected characters. Each character must be visually distinct: Akira: as per reference. Use the supplied reference images strictly for face identity. Critic notes: The setting matches well, with the school desk and donut correctly depicted. However, the character does not match the required identity and representation from references.. Address these.",
+              "gh:generatedAt": 1778424721,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 75575,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=2, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 61086
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 14484
+                },
+                {
+                  "name": "refine",
+                  "durationMs": 0
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Akira"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Akira",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Akira/reference_variants/neutral_front.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n8-v2_sketch_v1.png",
-          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」 Shot framing: Close Up. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」 Characters present: Akira. Shot framing: Close Up. 1 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
+          "gh:currentImageIndex": 3,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n8-v2_v4.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. LOCATION (do not change): C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Shot type: Close Up. Dialogue: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Set dressing: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Shot type: Close Up. Dialogue: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Specific moment: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Shot framing: Close Up. Characters present (each must be visually distinct from the others): Akira. Character face-identity references are supplied as input images IN THIS ORDER: (1) Akira. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt did NOT differentiate or match the expected characters. Each character must be visually distinct: Akira: as per reference. Use the supplied reference images strictly for face identity. Critic notes: The setting matches well, with the school desk and donut correctly depicted. However, the character does not match the required identity and representation from references.. Address these."
         }
       ],
       "gh:panelCount": 8,
