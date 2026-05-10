@@ -34,3 +34,6 @@ playwright/.cache/
 # Local backups and run artifacts
 *.bak.*
 lg-image-gen-runs/
+
+# Claude Code local config and worktrees
+.claude/
