@@ -2,6 +2,7 @@
 	import type { Panel, PanelData } from '$lib/gen/proto/storyboard_pb';
 	import MangaPanel from './MangaPanel.svelte';
 	import { createEventDispatcher } from 'svelte';
+	import type { LayoutStyle } from '$lib/manga-layouts';
 
 	interface PanelLayoutInfo {
 		x: number;
@@ -12,28 +13,49 @@
 		panelIndex?: number;
 	}
 
-	let { panels = [], pageNumber = 1, episodeId = '', storyboardPath = '' } = $props<{
+	let {
+		panels = [],
+		pageNumber = 1,
+		episodeId = '',
+		storyboardPath = '',
+		layoutStyle = 'jump-manga',
+		useStoredLayout = true
+	} = $props<{
 		panels: Panel[];
 		pageNumber: number;
 		episodeId?: string;
 		storyboardPath?: string;
+		layoutStyle?: LayoutStyle;
+		useStoredLayout?: boolean;
 	}>();
 
 	const dispatch = createEventDispatcher();
 
 	// Derived states
-	let sortedPanels = $derived([...panels].sort((a, b) => a.panel - b.panel));
+	let sortedPanels = $derived([...panels].sort((a, b) => {
+		if (a.pageNumber !== b.pageNumber) return a.pageNumber - b.pageNumber;
+		return a.panel - b.panel;
+	}));
 	let storedLayout = $derived(panels[0]?.data?.mangaLayout);
 	
 	// Generate fallback layout based on panel count if no stored layout
-	let pageLayout = $derived(storedLayout?.panels?.length > 0 ? storedLayout : generateDefaultLayout(sortedPanels.length));
+	let pageLayout = $derived(useStoredLayout && storedLayout?.panels?.length > 0 ? storedLayout : generateDefaultLayout(sortedPanels.length, layoutStyle));
 	
 	/**
 	 * Generate Jump manga-style default layout based on panel count
 	 * Japanese manga reading order: RIGHT to LEFT, TOP to BOTTOM
 	 * All layouts include small gaps between panels for authentic manga look
 	 */
-	function generateDefaultLayout(panelCount: number): { panels: PanelLayoutInfo[] } {
+	function generateDefaultLayout(panelCount: number, style: LayoutStyle): { panels: PanelLayoutInfo[] } {
+		if (style === 'jump-manga' && panelCount === 2) {
+			return {
+				panels: [
+					{ x: 0, y: 0, width: 49, height: 100, zIndex: 0, panelIndex: 1 },
+					{ x: 51, y: 0, width: 49, height: 100, zIndex: 1, panelIndex: 2 }
+				]
+			};
+		}
+
 		const layouts: Record<number, PanelLayoutInfo[]> = {
 			1: [{ x: 0, y: 0, width: 100, height: 100 }],
 			2: [
@@ -140,9 +162,9 @@
 		return { panels: gridPanels };
 	}
 
-	function handleUpdate(panelNumber: number, data: PanelData) {
+	function handleUpdate(sourcePageNumber: number, panelNumber: number, data: PanelData) {
 		dispatch('update', {
-			pageNumber,
+			pageNumber: sourcePageNumber,
 			panel: panelNumber,
 			data
 		});
@@ -175,7 +197,7 @@
 				panels: newPanels
 			}
 		};
-		handleUpdate(firstPanel.panel, updatedData as any);
+		handleUpdate(firstPanel.pageNumber, firstPanel.panel, updatedData as any);
 	}
 </script>
 
@@ -200,7 +222,7 @@
 						{panel}
 						{episodeId}
 						{storyboardPath}
-						on:update={(e) => handleUpdate(panel.panel, e.detail)}
+						on:update={(e) => handleUpdate(panel.pageNumber, panel.panel, e.detail)}
 					/>
 					<!-- svelte-ignore a11y_no_static_element_interactions -->
 					<div class="resize-handle" onmousedown={(e) => {

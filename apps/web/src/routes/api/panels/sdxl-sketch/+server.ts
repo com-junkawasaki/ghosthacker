@@ -182,6 +182,29 @@ function chooseReferenceVariant(panel: any, characterName: string, characterOrde
 	return { slug: fallback, note: `varied fallback angle: ${fallback}` };
 }
 
+function sceneControlPrompt(panel: any, characterCount: number): string {
+	const text = panelText(panel);
+	const shot = String(panel.shot || '').toLowerCase();
+	const notes: string[] = [];
+	if (/insert/i.test(shot)) {
+		notes.push('This is an INSERT shot. Make the described object, device screen, message, button, document, or prop the main subject. Do not turn this into a character portrait.');
+		if (characterCount === 0) notes.push('No people should appear unless the description explicitly asks for a hand.');
+	}
+	if (/wide|establishing/i.test(shot) || /全景|部屋全体|教室全体|下校路|廊下|壁/.test(text)) {
+		notes.push('Use a true wide spatial composition. Show the room or location clearly before any character close-up. Characters must be small enough that the setting remains readable.');
+	}
+	if (/screen|monitor|smartphone|phone|sms|dm|通知|画面|ログイン|認証番号|エラー|リンク|レビュー|チャット|端末|モニター|スマホ|メッセ|メール|リスト|ui|url/i.test(text)) {
+		notes.push('If a screen or UI is described, frame it clearly as the main visual element. Use simple readable Japanese labels when possible and avoid unrelated UI text.');
+	}
+	if (/ghost|daemon|null axe|slash|attack|battle|斧|ゴースト|デーモン|襲|戦|斬|一閃|鎖|消滅/i.test(text)) {
+		notes.push('For action or supernatural panels, prioritize full-body action, clear motion, Ghost/Daemon forms, energy effects, classroom scale, and the described attack. Avoid static bust portraits.');
+	}
+	if (/渡す|掴|逃げ|置く|送信|電話|指差|歩|倒|吹き飛|立ち上が|抱きしめ|食べ/.test(text)) {
+		notes.push('Depict the specified physical action clearly, with hands, props, and body language visible.');
+	}
+	return notes.join(' ');
+}
+
 export const POST: RequestHandler = async ({ request }) => {
 	const body = await request.json().catch(() => ({}));
 	const {
@@ -324,11 +347,12 @@ export const POST: RequestHandler = async ({ request }) => {
 		const referenceNote = referenceImages.length
 			? ` Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene. Reference selections: ${referenceSelections.map((r) => `${r.character}:${r.variant}`).join(', ')}.`
 			: '';
-		const prompt = `Anime / manga panel illustration. ${cleanPrompt}.${referenceNote}`;
+			const controlNote = sceneControlPrompt(panel, referenceImages.length);
+			const prompt = `Anime / manga panel illustration. ${cleanPrompt}. ${controlNote}${referenceNote}`;
 		const useLayeredGraph = referenceImages.length > 0 && process.env.OPENAI_IMAGE_PIPELINE !== 'single-pass-reference';
 		const oai = useLayeredGraph
 			? await generateLayeredStoryboardImage({
-				prompt: `Anime / manga panel illustration. ${cleanPrompt}.`,
+					prompt: `Anime / manga panel illustration. ${cleanPrompt}. ${controlNote}`,
 				characterPrompt: prompt,
 				referenceImages,
 				...(imageQuality ? { quality: imageQuality } : {}),

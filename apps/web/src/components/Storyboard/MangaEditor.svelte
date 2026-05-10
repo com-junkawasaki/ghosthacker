@@ -18,19 +18,25 @@
 		episodeId = '', 
 		storyboardPath = '', 
 		selectedPage = $bindable(1),
-		pageLayouts = {}
+		pageLayouts = {},
+		mode = 'manga'
 	} = $props<{
 		panels: Panel[];
 		episodeId?: string;
 		storyboardPath?: string;
 		selectedPage: number;
 		pageLayouts?: Record<number, PageLayoutInfo>;
+		mode?: 'manga' | 'graphic-novel';
 	}>();
 
 	const dispatch = createEventDispatcher();
 
-	// Derived states
-	let pagesMap = $derived(panels.reduce((acc: Record<number, Panel[]>, panel: Panel) => {
+	let sortedAllPanels = $derived([...panels].sort((a, b) => {
+		if (a.pageNumber !== b.pageNumber) return a.pageNumber - b.pageNumber;
+		return a.panel - b.panel;
+	}));
+
+	let episodePagesMap = $derived(sortedAllPanels.reduce((acc: Record<number, Panel[]>, panel: Panel) => {
 		const pageNum = panel.pageNumber;
 		if (!acc[pageNum]) {
 			acc[pageNum] = [];
@@ -39,16 +45,27 @@
 		return acc;
 	}, {} as Record<number, Panel[]>));
 
-	let pageNumbers = $derived(Object.keys(pagesMap)
+	let storyPageNumbers = $derived(Object.keys(episodePagesMap)
 		.map(Number)
+		.filter((pageNum) => pageNum > 0)
 		.sort((a, b) => a - b));
 
-	let currentPagePanels = $derived(pagesMap[selectedPage] || []);
-	let layoutStyle = $state<LayoutStyle>('graphic-novel');
+	let displayPages = $derived((storyPageNumbers.length > 0 ? storyPageNumbers : Object.keys(episodePagesMap).map(Number).sort((a, b) => a - b))
+		.map((pageNum) => ({
+			displayPage: pageNum,
+			sourcePage: pageNum,
+			panels: episodePagesMap[pageNum] ?? [],
+			label: `Page ${pageNum}`
+		}))
+	);
+
+	let currentDisplayPage = $derived(displayPages.find((p) => p.displayPage === selectedPage) ?? displayPages[0]);
+	let currentPagePanels = $derived(currentDisplayPage?.panels ?? []);
+	let layoutStyle = $derived<LayoutStyle>(mode === 'manga' ? 'jump-manga' : 'graphic-novel');
 	let templates = $derived(getTemplatesForStyle(currentPagePanels.length, layoutStyle));
 	
 	// Get the stored layout info for the current page
-	let currentPageLayoutInfo = $derived(pageLayouts[selectedPage]);
+	let currentPageLayoutInfo = $derived(pageLayouts[currentDisplayPage?.sourcePage ?? selectedPage]);
 	
 	// Check if current page already has layout applied
 	let hasAppliedLayout = $derived(
@@ -58,6 +75,11 @@
 
 	// Auto-apply layout when page changes and no layout is applied
 	$effect(() => {
+		if (selectedPage < 1 || (displayPages.length > 0 && !displayPages.some((p) => p.displayPage === selectedPage))) {
+			selectedPage = displayPages[0]?.displayPage ?? 1;
+			return;
+		}
+		if (mode === 'manga') return;
 		if (currentPagePanels.length > 0 && !hasAppliedLayout) {
 			autoApplyLayout();
 		}
@@ -66,6 +88,7 @@
 	// Re-apply best template when style changes to switch reading flow.
 	let appliedStyleForPage = $state<Record<number, LayoutStyle>>({});
 	$effect(() => {
+		if (mode === 'manga') return;
 		if (currentPagePanels.length === 0) return;
 		if (appliedStyleForPage[selectedPage] === layoutStyle) return;
 		autoApplyLayout();
@@ -143,20 +166,16 @@
 		<div class="page-nav">
 			<label for="manga-page-select">Page:</label>
 			<select id="manga-page-select" bind:value={selectedPage} onchange={() => dispatch('contextAdd', { type: 'page', data: { pageNumber: selectedPage } })}>
-				{#each pageNumbers as pageNum}
-					<option value={pageNum}>Page {pageNum}</option>
+				{#each displayPages as page}
+					<option value={page.displayPage}>{page.label}</option>
 				{/each}
 			</select>
 		</div>
 		<div class="tools">
 			<div class="layout-style-selector">
-				<span>Style:</span>
-				<select bind:value={layoutStyle}>
-					<option value="graphic-novel">Graphic Novel (L→R)</option>
-					<option value="jump-manga">Jump Manga</option>
-				</select>
+				<span>{mode === 'manga' ? 'Manga Style' : 'Graphic Novel Style'}</span>
 			</div>
-			{#if templates.length > 0}
+			{#if mode === 'graphic-novel' && templates.length > 0}
 				<div class="template-selector">
 					<span>Layout:</span>
 					{#each templates as template}
@@ -176,6 +195,8 @@
 				pageNumber={selectedPage}
 				{episodeId}
 				{storyboardPath}
+				{layoutStyle}
+				useStoredLayout={mode === 'graphic-novel'}
 				on:update={(e) => handlePanelUpdate(e.detail.pageNumber, e.detail.panel, e.detail.data)}
 				on:panelSelect={(e) => handlePanelSelect(e.detail)}
 			/>
@@ -220,14 +241,7 @@
 		margin-right: 1rem;
 		padding-right: 1rem;
 		border-right: 1px solid #444;
-	}
-
-	.layout-style-selector select {
-		background: #444;
-		color: #fff;
-		border: 1px solid #555;
-		padding: 0.25rem;
-		border-radius: 4px;
+		color: #ddd;
 	}
 
 	.template-selector span {

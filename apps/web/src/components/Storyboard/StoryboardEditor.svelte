@@ -12,7 +12,7 @@
 	import type { PanelData, Panel } from '$lib/gen/proto/storyboard_pb';
 	import { updateJob, removeJob } from '$lib/stores/job-store.svelte';
 	import { FileDown, LayoutGrid, PenTool, MessageCircle } from 'lucide-svelte';
-	const validViews = ['storyboard', 'webtoon', 'kindle', 'manga', 'script', 'shooting'];
+	const validViews = ['storyboard', 'webtoon', 'kindle', 'manga', 'graphic-novel', 'script', 'shooting'];
 
 	// ---- URL ↔ State ----
 	// URL pattern: /{projectId}/episodes/{episodeId}/{view}
@@ -351,6 +351,7 @@
 		{ value: 'webtoon', label: 'Webtoon' },
 		{ value: 'kindle', label: 'Kindle' },
 		{ value: 'manga', label: 'Manga' },
+		{ value: 'graphic-novel', label: 'Graphic Novel' },
 		{ value: 'script', label: 'Script' },
 		{ value: 'shooting', label: 'Shooting' },
 	];
@@ -468,7 +469,12 @@
 				{:else if viewMode === 'kindle'}
 					<KindleView {panels} episodeId={editMode === 'episode' ? selectedEpisode : selectedArc} {storyboardPath} />
 				{:else if viewMode === 'manga'}
-					<MangaEditor {panels} episodeId={editMode === 'episode' ? selectedEpisode : selectedArc} {storyboardPath} bind:selectedPage
+					<MangaEditor {panels} episodeId={editMode === 'episode' ? selectedEpisode : selectedArc} {storyboardPath} bind:selectedPage mode="manga"
+						on:update={({ detail }) => handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+						on:panelSelect={({ detail }) => { selectedPanelIndex = detail.panel; selectedPanelData = detail.data; addContextToChat('panel', detail); }}
+						on:contextAdd={({ detail }) => addContextToChat(detail.type, detail.data)} />
+				{:else if viewMode === 'graphic-novel'}
+					<MangaEditor {panels} episodeId={editMode === 'episode' ? selectedEpisode : selectedArc} {storyboardPath} bind:selectedPage mode="graphic-novel"
 						on:update={({ detail }) => handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
 						on:panelSelect={({ detail }) => { selectedPanelIndex = detail.panel; selectedPanelData = detail.data; addContextToChat('panel', detail); }}
 						on:contextAdd={({ detail }) => addContextToChat(detail.type, detail.data)} />
