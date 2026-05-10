@@ -813,11 +813,58 @@
                   "note": "default reference"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n1-v2_sketch_v1.png",
+              "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。 Characters present: Nei and Ren. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later.",
+              "gh:generatedAt": 1778420253,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 63318,
+              "gh:generationPipeline": "langgraph-ts-3stage-bg-composite",
+              "gh:generationStages": [
+                {
+                  "name": "buildPrompt",
+                  "durationMs": 0
+                },
+                {
+                  "name": "pickReferences",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generateBackground",
+                  "durationMs": 24446
+                },
+                {
+                  "name": "compositeCharacters",
+                  "durationMs": 38867
+                },
+                {
+                  "name": "persistImage",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Nei",
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Nei",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 1,
+          "gh:currentImageIndex": 2,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n1-v2_sketch_v1.png",
-          "gh:imagePrompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。. Shot type: Medium Shot. Dialogue: Nei: 「レン」 / Ren: 「……」 / Nei: 「レン、起きろ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Rough sketch aesthetic, monochrome with screen tones, cinematic composition, manga panel layout reference, no text or speech bubbles in the image (dialogue rendered separately). Character identity reference: face shape, eye design, hairstyle, age impression, manga line style. Do not preserve outfit, body pose, background, or props from any references — clothing and setting must follow the panel description (school setting, scene-specific). Generate a single-panel storyboard image for the described scene."
+          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。 Characters present: Nei and Ren. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
         },
         {
           "@id": "panel:p1n2-v2",
@@ -914,11 +961,58 @@
                   "note": "default reference"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n2-v2_sketch_v1.png",
+              "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: Ren: 「……ねむい」 / Nei: 「ご飯」 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: Ren: 「……ねむい」 / Nei: 「ご飯」 Characters present: Ren and Nei. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later.",
+              "gh:generatedAt": 1778420328,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 73591,
+              "gh:generationPipeline": "langgraph-ts-3stage-bg-composite",
+              "gh:generationStages": [
+                {
+                  "name": "buildPrompt",
+                  "durationMs": 0
+                },
+                {
+                  "name": "pickReferences",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generateBackground",
+                  "durationMs": 21508
+                },
+                {
+                  "name": "compositeCharacters",
+                  "durationMs": 52080
+                },
+                {
+                  "name": "persistImage",
+                  "durationMs": 3
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren",
+                "Nei"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Nei",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n2-v2_sketch_v1.png",
-          "gh:imagePrompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Ren: 「……ねむい」 / Nei: 「ご飯」. Shot type: Medium Shot. Dialogue: Ren: 「……ねむい」 / Nei: 「ご飯」 / Ren: 「……うーん。ねむい」 / Nei: 「起きないと、コメッコンの米粉ドーナツ、わたしが、全部 食べるよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Rough sketch aesthetic, monochrome with screen tones, cinematic composition, manga panel layout reference, no text or speech bubbles in the image (dialogue rendered separately). Character identity reference: face shape, eye design, hairstyle, age impression, manga line style. Do not preserve outfit, body pose, background, or props from any references — clothing and setting must follow the panel description (school setting, scene-specific). Generate a single-panel storyboard image for the described scene."
+          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: Ren: 「……ねむい」 / Nei: 「ご飯」 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: Ren: 「……ねむい」 / Nei: 「ご飯」 Characters present: Ren and Nei. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
         },
         {
           "@id": "panel:p1n3-v2",
@@ -966,11 +1060,44 @@
               ],
               "gh:referenceCharacters": [],
               "gh:referenceSelections": []
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n3-v2_sketch_v1.png",
+              "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学 Empty scene. Shot framing: Medium Shot. Empty scene mood. Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later.",
+              "gh:generatedAt": 1778420354,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 24375,
+              "gh:generationPipeline": "langgraph-ts-3stage-bg-composite",
+              "gh:generationStages": [
+                {
+                  "name": "buildPrompt",
+                  "durationMs": 0
+                },
+                {
+                  "name": "pickReferences",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generateBackground",
+                  "durationMs": 24370
+                },
+                {
+                  "name": "compositeCharacters",
+                  "durationMs": 0
+                },
+                {
+                  "name": "persistImage",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [],
+              "gh:referenceSelections": []
             }
           ],
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n3-v2_sketch_v1.png",
-          "gh:imagePrompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Shot type: Medium Shot. telop: 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Rough sketch aesthetic, monochrome with screen tones, cinematic composition, manga panel layout reference, no text or speech bubbles in the image (dialogue rendered separately). Character identity reference: face shape, eye design, hairstyle, age impression, manga line style. Do not preserve outfit, body pose, background, or props from any references — clothing and setting must follow the panel description (school setting, scene-specific). Generate a single-panel storyboard image for the described scene."
+          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学 Empty scene. Shot framing: Medium Shot. Empty scene mood. Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
         },
         {
           "@id": "panel:p1n4-v2",
@@ -1062,11 +1189,58 @@
                   "note": "default reference"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n4-v2_sketch_v1.png",
+              "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: Neiはおもむろに蓮の米粉ドーナツを食べ始めた。 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: Neiはおもむろに蓮の米粉ドーナツを食べ始めた。 Characters present: Ren and Nei. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later.",
+              "gh:generatedAt": 1778420420,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 64993,
+              "gh:generationPipeline": "langgraph-ts-3stage-bg-composite",
+              "gh:generationStages": [
+                {
+                  "name": "buildPrompt",
+                  "durationMs": 0
+                },
+                {
+                  "name": "pickReferences",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generateBackground",
+                  "durationMs": 23161
+                },
+                {
+                  "name": "compositeCharacters",
+                  "durationMs": 41827
+                },
+                {
+                  "name": "persistImage",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren",
+                "Nei"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Nei",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n4-v2_sketch_v1.png",
-          "gh:imagePrompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Neiはおもむろに蓮の米粉ドーナツを食べ始めた。. Shot type: Medium Shot. Dialogue: Ren: 「それ俺の・・・なんだけど」 / Nei: 「ちゃんと起きてお昼食べなよ」 / Ren: 「怠惰がおれの美徳なんだよ...」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Rough sketch aesthetic, monochrome with screen tones, cinematic composition, manga panel layout reference, no text or speech bubbles in the image (dialogue rendered separately). Character identity reference: face shape, eye design, hairstyle, age impression, manga line style. Do not preserve outfit, body pose, background, or props from any references — clothing and setting must follow the panel description (school setting, scene-specific). Generate a single-panel storyboard image for the described scene."
+          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: Neiはおもむろに蓮の米粉ドーナツを食べ始めた。 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: Neiはおもむろに蓮の米粉ドーナツを食べ始めた。 Characters present: Ren and Nei. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
         },
         {
           "@id": "panel:p1n5-v2",
@@ -1114,11 +1288,44 @@
               ],
               "gh:referenceCharacters": [],
               "gh:referenceSelections": []
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n5-v2_sketch_v1.png",
+              "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッング Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング Empty scene. Shot framing: Medium Shot. Empty scene mood. Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later.",
+              "gh:generatedAt": 1778420450,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 28750,
+              "gh:generationPipeline": "langgraph-ts-3stage-bg-composite",
+              "gh:generationStages": [
+                {
+                  "name": "buildPrompt",
+                  "durationMs": 0
+                },
+                {
+                  "name": "pickReferences",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generateBackground",
+                  "durationMs": 28744
+                },
+                {
+                  "name": "compositeCharacters",
+                  "durationMs": 0
+                },
+                {
+                  "name": "persistImage",
+                  "durationMs": 6
+                }
+              ],
+              "gh:referenceCharacters": [],
+              "gh:referenceSelections": []
             }
           ],
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n5-v2_sketch_v1.png",
-          "gh:imagePrompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Shot type: Medium Shot. telop: 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Rough sketch aesthetic, monochrome with screen tones, cinematic composition, manga panel layout reference, no text or speech bubbles in the image (dialogue rendered separately). Character identity reference: face shape, eye design, hairstyle, age impression, manga line style. Do not preserve outfit, body pose, background, or props from any references — clothing and setting must follow the panel description (school setting, scene-specific). Generate a single-panel storyboard image for the described scene."
+          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッング Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング Empty scene. Shot framing: Medium Shot. Empty scene mood. Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
         },
         {
           "@id": "panel:p1n6-v2",
@@ -1205,11 +1412,58 @@
                   "note": "default reference"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n6-v2_sketch_v1.png",
+              "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（ア）が、真新しいスニーカーを箱から出した。 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。 Characters present: Yuto and Akira. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later.",
+              "gh:generatedAt": 1778420508,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 55946,
+              "gh:generationPipeline": "langgraph-ts-3stage-bg-composite",
+              "gh:generationStages": [
+                {
+                  "name": "buildPrompt",
+                  "durationMs": 0
+                },
+                {
+                  "name": "pickReferences",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generateBackground",
+                  "durationMs": 24153
+                },
+                {
+                  "name": "compositeCharacters",
+                  "durationMs": 31788
+                },
+                {
+                  "name": "persistImage",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto",
+                "Akira"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Akira",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Akira/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n6-v2_sketch_v1.png",
-          "gh:imagePrompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。. Shot type: Medium Shot. Dialogue: Yuto: 「沼野くん、今日も寝てた。いつも、隣のクラスの白瀬さんが、起こしに来る。授業は聞いてないのに、テストはいつも上位にいる。変な奴、だ。」 / Akira: 「見てくれ。ついに、限定モデル」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Rough sketch aesthetic, monochrome with screen tones, cinematic composition, manga panel layout reference, no text or speech bubbles in the image (dialogue rendered separately). Character identity reference: face shape, eye design, hairstyle, age impression, manga line style. Do not preserve outfit, body pose, background, or props from any references — clothing and setting must follow the panel description (school setting, scene-specific). Generate a single-panel storyboard image for the described scene."
+          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（ア）が、真新しいスニーカーを箱から出した。 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。 Characters present: Yuto and Akira. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
         },
         {
           "@id": "panel:p1n7-v2",
@@ -1288,11 +1542,58 @@
                   "note": "default reference"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n7-v2_sketch_v1.png",
+              "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」 Characters present: Mei and Saki. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later.",
+              "gh:generatedAt": 1778420563,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 53904,
+              "gh:generationPipeline": "langgraph-ts-3stage-bg-composite",
+              "gh:generationStages": [
+                {
+                  "name": "buildPrompt",
+                  "durationMs": 0
+                },
+                {
+                  "name": "pickReferences",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generateBackground",
+                  "durationMs": 21836
+                },
+                {
+                  "name": "compositeCharacters",
+                  "durationMs": 32065
+                },
+                {
+                  "name": "persistImage",
+                  "durationMs": 2
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Mei",
+                "Saki"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Mei",
+                  "variant": "action_shout",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Mei/reference_variants/action_shout.png"
+                },
+                {
+                  "character": "Saki",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Saki/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n7-v2_sketch_v1.png",
-          "gh:imagePrompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Rough sketch aesthetic, monochrome with screen tones, cinematic composition, manga panel layout reference, no text or speech bubbles in the image (dialogue rendered separately). Character identity reference: face shape, eye design, hairstyle, age impression, manga line style. Do not preserve outfit, body pose, background, or props from any references — clothing and setting must follow the panel description (school setting, scene-specific). Generate a single-panel storyboard image for the described scene."
+          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」 Characters present: Mei and Saki. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
         },
         {
           "@id": "panel:p1n8-v2",
@@ -1364,11 +1665,52 @@
                   "note": "default reference"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n8-v2_sketch_v1.png",
+              "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」 Shot framing: Close Up. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」 Characters present: Akira. Shot framing: Close Up. 1 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later.",
+              "gh:generatedAt": 1778420627,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 61949,
+              "gh:generationPipeline": "langgraph-ts-3stage-bg-composite",
+              "gh:generationStages": [
+                {
+                  "name": "buildPrompt",
+                  "durationMs": 0
+                },
+                {
+                  "name": "pickReferences",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generateBackground",
+                  "durationMs": 22566
+                },
+                {
+                  "name": "compositeCharacters",
+                  "durationMs": 39379
+                },
+                {
+                  "name": "persistImage",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Akira"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Akira",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Akira/reference_variants/neutral_front.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 1,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n8-v2_sketch_v1.png",
-          "gh:imagePrompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Shot type: Close Up. Dialogue: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Rough sketch aesthetic, monochrome with screen tones, cinematic composition, manga panel layout reference, no text or speech bubbles in the image (dialogue rendered separately). Character identity reference: face shape, eye design, hairstyle, age impression, manga line style. Do not preserve outfit, body pose, background, or props from any references — clothing and setting must follow the panel description (school setting, scene-specific). Generate a single-panel storyboard image for the described scene."
+          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」 Shot framing: Close Up. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」 Characters present: Akira. Shot framing: Close Up. 1 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
         }
       ],
       "gh:panelCount": 8,
@@ -1967,11 +2309,105 @@
                   "note": "default reference"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n1-v2_sketch_v1.png",
+              "gh:imagePrompt": "BG: Manga storyboard panel — environment only. Scene: 教室を出る直前、Yutoの姿がNeiの視界の端に映っていた。15秒、右手の人差し指が机の端を、ずっと触っていた。. Shot type: Medium Shot. Important: do NOT draw any characters or people in this image. Render only the room, props, lighting, and atmosphere. Empty environment / scene only — no characters, no people in the frame. Manga panel layout, monochrome with screen tones, rough storyboard aesthetic. Cinematic composition with strong depth and atmosphere.\n\nCOMPOSITE: Composite the supplied character reference(s) into this scene as a single manga panel. Scene: 教室を出る直前、Yutoの姿がNeiの視界の端に映っていた。15秒、右手の人差し指が机の端を、ずっと触っていた。. Characters in scene: Nei, Ren. Shot type: Medium Shot. Dialogue beats: Nei: レン / Ren: ん / Nei: 3年B組の、藤崎くん. Each supplied reference image is FACE-IDENTITY only (face shape, eye design, hairstyle, age impression). Do not preserve their reference outfit or pose. Apply scene-appropriate clothing (Japanese middle-school uniform unless visual specifies otherwise) and the pose described in the scene. Composite the supplied character reference faces into this scene. Match the manga line style and screen-tone monochrome aesthetic of the background. Preserve scene lighting, depth, and props from the background. Do not change clothing pose to match references — apply the scene-specific outfit (school uniform, room clothes, etc) and pose described. References are face-identity only.",
+              "gh:generatedAt": 1778419833,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 77241,
+              "gh:generationPipeline": "langgraph-ts-3stage-bg-composite",
+              "gh:generationStages": [
+                {
+                  "name": "buildPrompt",
+                  "durationMs": 0
+                },
+                {
+                  "name": "pickReferences",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generateBackground",
+                  "durationMs": 32379
+                },
+                {
+                  "name": "compositeCharacters",
+                  "durationMs": 44857
+                },
+                {
+                  "name": "persistImage",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Nei",
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Nei",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n1-v2_sketch_v1.png",
+              "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: 教室を出る直前、Yutoの姿がNeiの視界の端に映っていた。15秒、右手の差し指が机の端を、ずっと触っていた。 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: 教室を出る直前、Yutoの姿がNeiの視界の端に映っていた。15秒、右手の人差し指が机の端を、ずっと触っていた。 Characters present: Nei and Ren. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later.",
+              "gh:generatedAt": 1778420083,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 61840,
+              "gh:generationPipeline": "langgraph-ts-3stage-bg-composite",
+              "gh:generationStages": [
+                {
+                  "name": "buildPrompt",
+                  "durationMs": 0
+                },
+                {
+                  "name": "pickReferences",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generateBackground",
+                  "durationMs": 27314
+                },
+                {
+                  "name": "compositeCharacters",
+                  "durationMs": 34521
+                },
+                {
+                  "name": "persistImage",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Nei",
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Nei",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
+          "gh:currentImageIndex": 2,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n1-v2_sketch_v1.png",
-          "gh:imagePrompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: 放課後の下校路。隣家同士の幼馴染であるNeiと蓮が並んで歩く。蓮はイヤホン、Neiはヘッドホン。. 教室を出る直前、Yutoの姿がNeiの視界の端に映っていた。15秒、右手の人差し指が机の端を、ずっと触っていた。. Shot type: Medium Shot. Dialogue: Nei: 「レン」 / Ren: 「ん」 / Nei: 「3年B組の、藤崎くん」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Rough sketch aesthetic, monochrome with screen tones, cinematic composition, manga panel layout reference, no text or speech bubbles in the image (dialogue rendered separately). Character identity reference: face shape, eye design, hairstyle, age impression, manga line style. Do not preserve outfit, body pose, background, or props from any references — clothing and setting must follow the panel description (school setting, scene-specific). Generate a single-panel storyboard image for the described scene."
+          "gh:imagePrompt": "BG: Generate a cinematic illustration of the following location. Scene description: 教室を出る直前、Yutoの姿がNeiの視界の端に映っていた。15秒、右手の差し指が机の端を、ずっと触っていた。 Shot framing: Medium Shot. ABSOLUTE: no people, no characters, no figures, no humans — empty location only. Cinematic scene-establishing illustration of an empty environment. NO characters, NO people, NO figures in the frame — just the location, props, lighting, and atmosphere. Monochrome black-and-white illustration with screen tones, anime-manga line style. NO text, NO labels, NO annotations, NO camera diagrams, NO scene numbers, NO grids, NO frames. Single full-bleed image only.\n\nCOMPOSITE: Edit the supplied background image: place the supplied character reference(s) naturally into the EXACT SAME location shown in the background. Do not change the location, lighting, props, or atmosphere of the background. Scene description: 教室を出る直前、Yutoの姿がNeiの視界の端に映っていた。15秒、右手の人差し指が机の端を、ずっと触っていた。 Characters present: Nei and Ren. Shot framing: Medium Shot. 2 character(s) interacting silently. The scene mood: . Each supplied reference image (after the first/background image) provides FACE-IDENTITY ONLY for one character: face shape, eye design, hairstyle, age. Do NOT copy the reference's clothing, pose, or background. Apply Japanese middle-school uniform unless the scene specifies different clothing. Maintain the existing scene location and atmosphere from the supplied background image. Place the supplied character(s) naturally within that exact same location — do not change the setting. Match the monochrome black-and-white illustration style with screen tones. Use the supplied references as FACE-IDENTITY ONLY (face shape, eye design, hairstyle, age impression). Apply scene-appropriate clothing and pose described in the scene description. CRITICAL: NO speech bubbles, NO dialogue text, NO captions, NO sound-effect text, NO labels, NO annotations, NO scene numbers anywhere in the image. Render the scene visually only — dialogue is for typesetting later."
         },
         {
           "@id": "panel:p3n2-v2",

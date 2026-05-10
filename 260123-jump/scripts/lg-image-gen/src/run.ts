@@ -17,6 +17,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { buildGraph, type PanelManifestEntry, type PanelState } from "./graph.js";
+import { buildGraph3Stage, type PanelState as PanelState3 } from "./graph-3stage.js";
 
 const REPO = "/Users/junkawasaki/github/ghosthacker/260123-jump";
 const MANIFEST_PATH = `${REPO}/resources/episodes/arc0-1-origin/image-gen-manifest.json`;
@@ -32,11 +33,12 @@ interface CliArgs {
   dryRun: boolean;
   delayMs: number;
   onlyPending: boolean;
+  pipeline: "1-stage" | "3-stage";
 }
 
 function parseArgs(): CliArgs {
   const args = process.argv.slice(2);
-  const out: CliArgs = { dryRun: false, delayMs: 1500, onlyPending: false };
+  const out: CliArgs = { dryRun: false, delayMs: 1500, onlyPending: false, pipeline: "1-stage" };
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--panel-id" && args[i + 1]) out.panelId = args[++i];
     else if (args[i] === "--page" && args[i + 1]) out.page = Number(args[++i]);
@@ -44,6 +46,7 @@ function parseArgs(): CliArgs {
     else if (args[i] === "--dry-run") out.dryRun = true;
     else if (args[i] === "--only-pending") out.onlyPending = true;
     else if (args[i] === "--delay-ms" && args[i + 1]) out.delayMs = Number(args[++i]);
+    else if (args[i] === "--pipeline" && args[i + 1]) out.pipeline = args[++i] as "1-stage" | "3-stage";
   }
   return out;
 }
@@ -60,34 +63,61 @@ function saveEpisode(ep: any) {
   fs.writeFileSync(EPISODE_PATH, JSON.stringify(ep, null, 2) + "\n");
 }
 
-function updateEpisodePanel(ep: any, manifest: PanelManifestEntry, finalState: PanelState) {
+function updateEpisodePanel(ep: any, manifest: PanelManifestEntry, finalState: PanelState | PanelState3, pipeline: "1-stage" | "3-stage") {
   const page = ep["gh:pages"].find((p: any) => p["gh:pageNumber"] === manifest.pageNum);
   if (!page) return false;
   const panel = (page["gh:panels"] ?? []).find((pn: any) => pn["@id"] === manifest.panelId);
   if (!panel) return false;
 
-  const totalDur = finalState.durationMs.build + finalState.durationMs.generate + finalState.durationMs.persist;
+  let stages: { name: string; durationMs: number }[];
+  let totalDur: number;
+  let promptUsed: string;
+  let pipelineLabel: string;
+  let resolvedRefs: any = manifest.referenceSelections;
+
+  if (pipeline === "3-stage") {
+    const s = finalState as PanelState3;
+    stages = [
+      { name: "buildPrompt",        durationMs: s.durationMs.build },
+      { name: "pickReferences",     durationMs: s.durationMs.pickRef },
+      { name: "generateBackground", durationMs: s.durationMs.bg },
+      { name: "compositeCharacters",durationMs: s.durationMs.composite },
+      { name: "persistImage",       durationMs: s.durationMs.persist },
+    ];
+    totalDur = stages.reduce((a, x) => a + x.durationMs, 0);
+    promptUsed = `BG: ${s.bgPrompt}\n\nCOMPOSITE: ${s.compositePrompt}`;
+    pipelineLabel = "langgraph-ts-3stage-bg-composite";
+    resolvedRefs = s.resolvedReferences.map((r) => ({ character: r.character, variant: r.variant, refPath: r.refPath }));
+  } else {
+    const s = finalState as PanelState;
+    stages = [
+      { name: "buildPrompt",  durationMs: s.durationMs.build },
+      { name: "generateImage",durationMs: s.durationMs.generate },
+      { name: "persistImage", durationMs: s.durationMs.persist },
+    ];
+    totalDur = stages.reduce((a, x) => a + x.durationMs, 0);
+    promptUsed = s.refinedPrompt;
+    pipelineLabel = "langgraph-ts-buildPrompt-generate-persist";
+  }
+
   const newImage = {
     "gh:imageUrl": finalState.outputRelUrl,
-    "gh:imagePrompt": finalState.refinedPrompt,
+    "gh:imagePrompt": promptUsed,
     "gh:generatedAt": Math.floor(Date.now() / 1000),
     "gh:model": MODEL,
+    "gh:quality": QUALITY,
     "gh:durationMs": totalDur,
-    "gh:generationPipeline": "langgraph-ts-buildPrompt-generate-persist",
-    "gh:generationStages": [
-      { name: "buildPrompt", durationMs: finalState.durationMs.build },
-      { name: "generateImage", durationMs: finalState.durationMs.generate },
-      { name: "persistImage", durationMs: finalState.durationMs.persist },
-    ],
+    "gh:generationPipeline": pipelineLabel,
+    "gh:generationStages": stages,
     "gh:referenceCharacters": manifest.referenceCharacters,
-    "gh:referenceSelections": manifest.referenceSelections,
+    "gh:referenceSelections": resolvedRefs,
   };
 
   if (!panel["gh:generatedImages"]) panel["gh:generatedImages"] = [];
   panel["gh:generatedImages"].push(newImage);
   panel["gh:currentImageIndex"] = panel["gh:generatedImages"].length - 1;
   panel["gh:generatedImageUrl"] = finalState.outputRelUrl;
-  panel["gh:imagePrompt"] = finalState.refinedPrompt;
+  panel["gh:imagePrompt"] = promptUsed;
   delete panel["gh:needsImageGeneration"];
   return true;
 }
@@ -124,9 +154,9 @@ async function main() {
   }
 
   console.log(`LangGraph image gen — ${panels.length} panel(s) to process${cli.dryRun ? " [DRY RUN]" : ""}`);
-  console.log(`Provider: ${provider} / Model: ${MODEL} / Quality: ${QUALITY}`);
+  console.log(`Provider: ${provider} / Model: ${MODEL} / Quality: ${QUALITY} / Pipeline: ${cli.pipeline}`);
 
-  const graph = buildGraph();
+  const graph = cli.pipeline === "3-stage" ? buildGraph3Stage() : buildGraph();
   const results: Array<{ panelId: string; pageNum: number; ok: boolean; error?: string; durationMs?: number; outputUrl?: string }> = [];
   const ep = loadEpisode();
 
@@ -152,13 +182,13 @@ async function main() {
     }
 
     try {
-      const final = (await graph.invoke({ manifest: m })) as PanelState;
+      const final = (await graph.invoke({ manifest: m })) as PanelState | PanelState3;
       if (final.errors.length > 0) {
         console.log(`FAIL: ${final.errors.join(" | ")}`);
         results.push({ panelId: m.panelId, pageNum: m.pageNum, ok: false, error: final.errors.join(" | ") });
       } else {
-        const merged = updateEpisodePanel(ep, m, final);
-        const total = final.durationMs.build + final.durationMs.generate + final.durationMs.persist;
+        const merged = updateEpisodePanel(ep, m, final, cli.pipeline);
+        const total = Object.values((final as any).durationMs).reduce((a: number, b: any) => a + (Number(b) || 0), 0);
         console.log(`OK ${total}ms → ${final.outputRelUrl} ${merged ? "[merged]" : "[merge-skipped]"}`);
         results.push({ panelId: m.panelId, pageNum: m.pageNum, ok: true, durationMs: total, outputUrl: final.outputRelUrl ?? undefined });
         // Save episode incrementally so partial progress is preserved
