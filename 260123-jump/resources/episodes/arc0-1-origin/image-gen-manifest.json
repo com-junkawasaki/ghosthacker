@@ -1,313 +1,311 @@
 {
   "episode": "episode:arc0-1-origin",
   "generatedAt": "2026-05-10T11:31:58.629Z",
-  "totalPanels": 8,
+  "totalPanels": 64,
   "defaultModel": "openai/gpt-image-2",
   "panels": [
     {
-      "pageNum": 1,
-      "panelId": "panel:p1n1-v3",
+      "pageNum": 2,
+      "panelId": "panel:p2n1-v3",
       "panelIndex": 1,
-      "pageTitle": "昼休み、3日前の教室",
-      "shot": "Wide",
-      "visual": "Nei confidently strides into the classroom, a bag of コメッコンドーナツ in hand, drawing attention from students nearby.",
-      "sceneSubject": "Nei enters the classroom",
-      "focusCharacter": "Nei",
+      "pageTitle": "誘惑の種",
+      "shot": "Medium",
+      "visual": "Saki leans forward, showing interest while asking Akira about the shoes. Akira responds with a proud expression, and Mei listens attentively, eyes slightly widened.",
+      "sceneSubject": "Shoe price discussion",
+      "focusCharacter": "Saki",
       "allCharacters": [
-        "Nei"
+        "Saki",
+        "Akira",
+        "Mei"
       ],
       "focusedCharacters": [
-        "Nei"
+        "Saki"
       ],
-      "props": [
-        "コメッコンのドーナツ袋"
-      ],
-      "precedingBeat": "Ren is peacefully sleeping.",
-      "followingBeat": "Nei addresses Ren.",
+      "props": [],
+      "precedingBeat": "",
+      "followingBeat": "Mei teases Akira about his spending.",
       "characters": [
-        "Nei"
+        "Saki",
+        "Akira",
+        "Mei"
       ],
-      "dialogues": [],
+      "dialogues": [
+        {
+          "speaker": "Saki",
+          "text": "いくら？"
+        },
+        {
+          "speaker": "Akira",
+          "text": "定価2万5千。転売だと5万超えてた"
+        }
+      ],
       "prompt": "",
-      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n1-v3_v1.png",
-      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2/panel_panel_p2n1-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2",
       "referenceCharacters": [
-        "Nei"
+        "Saki"
       ],
       "referenceSelections": []
     },
     {
-      "pageNum": 1,
-      "panelId": "panel:p1n2-v3",
+      "pageNum": 2,
+      "panelId": "panel:p2n2-v3",
       "panelIndex": 2,
-      "pageTitle": "昼休み、3日前の教室",
+      "pageTitle": "誘惑の種",
       "shot": "Medium",
-      "visual": "Nei leans over Ren's desk, determined, with a slight frown as she tries to wake him up. Ren is slumped at his desk, earbuds dangling, pencil on the floor.",
-      "sceneSubject": "Nei attempts to wake Ren",
-      "focusCharacter": "Nei",
+      "visual": "Mei smirks playfully at Akira, raising an eyebrow as she questions if his New Year's money is gone. Akira scratches his head, looking sheepish.",
+      "sceneSubject": "Mei teases Akira",
+      "focusCharacter": "Mei",
       "allCharacters": [
-        "Nei",
-        "Ren"
+        "Mei",
+        "Akira"
       ],
       "focusedCharacters": [
-        "Nei"
+        "Mei"
       ],
-      "props": [
-        "イヤホン",
-        "シャーペン"
-      ],
-      "precedingBeat": "Nei enters the room.",
-      "followingBeat": "Ren refuses to wake up.",
+      "props": [],
+      "precedingBeat": "Saki and Akira discuss shoe prices.",
+      "followingBeat": "Akira glances at Yuto with a knowing smile.",
       "characters": [
-        "Nei",
-        "Ren"
+        "Mei",
+        "Akira"
       ],
       "dialogues": [
         {
-          "speaker": "Nei",
-          "text": "レン",
-          "emotion": "firm"
+          "speaker": "Mei",
+          "text": "お年玉、吹っ飛んだ？"
         },
         {
-          "speaker": "Ren",
-          "text": "……",
-          "emotion": "sleepy"
-        },
-        {
-          "speaker": "Nei",
-          "text": "レン、起きろ",
-          "emotion": "insistent"
+          "speaker": "Akira",
+          "text": "来年の分も前借り"
         }
       ],
       "prompt": "",
-      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n2-v3_v1.png",
-      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2/panel_panel_p2n2-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2",
       "referenceCharacters": [
-        "Nei"
+        "Mei"
       ],
       "referenceSelections": []
     },
     {
-      "pageNum": 1,
-      "panelId": "panel:p1n3-v3",
+      "pageNum": 2,
+      "panelId": "panel:p2n3-v3",
       "panelIndex": 3,
-      "pageTitle": "昼休み、3日前の教室",
-      "shot": "Close Up",
-      "visual": "Ren, eyes half-closed, mutters his refusal to wake as Nei stands over him, hands on hips.",
-      "sceneSubject": "Ren's sleepy refusal",
-      "focusCharacter": "Ren",
+      "pageTitle": "誘惑の種",
+      "shot": "Medium",
+      "visual": "Akira glances over at Yuto with a teasing glint in his eye. Yuto looks caught, slightly embarrassed, as he tries to dismiss Akira’s comment casually.",
+      "sceneSubject": "Yuto's interest piqued",
+      "focusCharacter": "Akira",
       "allCharacters": [
-        "Ren",
-        "Nei"
+        "Akira",
+        "Yuto"
       ],
       "focusedCharacters": [
-        "Ren"
+        "Akira"
       ],
       "props": [],
-      "precedingBeat": "Nei insists Ren wakes up.",
-      "followingBeat": "Nei threatens to eat the donuts.",
+      "precedingBeat": "Mei teases Akira about his spending.",
+      "followingBeat": "Yuto contemplates the cost.",
       "characters": [
-        "Ren",
-        "Nei"
+        "Akira",
+        "Yuto"
       ],
       "dialogues": [
         {
-          "speaker": "Ren",
-          "text": "……ねむい",
-          "emotion": "sleepy"
+          "speaker": "Akira",
+          "text": "Yutoも欲しいんだろ？顔に書いてあるぞ"
         },
         {
-          "speaker": "Nei",
-          "text": "ご飯",
-          "emotion": "teasing"
-        },
-        {
-          "speaker": "Ren",
-          "text": "……うーん。ねむい",
-          "emotion": "insistent"
+          "speaker": "Yuto",
+          "text": "え、いや、まぁ……カッコいいなって……"
         }
       ],
       "prompt": "",
-      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n3-v3_v1.png",
-      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2/panel_panel_p2n3-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2",
       "referenceCharacters": [
-        "Ren"
+        "Akira"
       ],
       "referenceSelections": []
     },
     {
-      "pageNum": 1,
-      "panelId": "panel:p1n4-v3",
+      "pageNum": 2,
+      "panelId": "panel:p2n4-v3",
       "panelIndex": 4,
-      "pageTitle": "昼休み、3日前の教室",
-      "shot": "Medium",
-      "visual": "Nei holds up Ren's donut bag threateningly as Ren continues to lie motionless, eyes closed.",
-      "sceneSubject": "Nei's ultimatum",
-      "focusCharacter": "Nei",
-      "allCharacters": [
-        "Nei",
-        "Ren"
-      ],
-      "focusedCharacters": [
-        "Nei"
-      ],
-      "props": [
-        "コメッコンのドーナツ袋"
-      ],
-      "precedingBeat": "Ren's sleepy refusal.",
-      "followingBeat": "Nei begins eating the donut.",
-      "characters": [
-        "Nei",
-        "Ren"
-      ],
-      "dialogues": [
-        {
-          "speaker": "Nei",
-          "text": "起きないと、コメッコンの米粉ドーナツ、わたしが、全部 食べるよ",
-          "emotion": "playful"
-        }
-      ],
-      "prompt": "",
-      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n4-v3_v1.png",
-      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
-      "referenceCharacters": [
-        "Nei"
-      ],
-      "referenceSelections": []
-    },
-    {
-      "pageNum": 1,
-      "panelId": "panel:p1n5-v3",
-      "panelIndex": 5,
-      "pageTitle": "昼休み、3日前の教室",
+      "pageTitle": "誘惑の種",
       "shot": "Close Up",
-      "visual": "Nei casually takes a bite from the donut, glancing at Ren with a mischievous smile. Ren is watching with mild surprise.",
-      "sceneSubject": "Nei eats the donut",
-      "focusCharacter": "Nei",
-      "allCharacters": [
-        "Nei",
-        "Ren"
-      ],
-      "focusedCharacters": [
-        "Nei"
-      ],
-      "props": [
-        "米粉ドーナツ"
-      ],
-      "precedingBeat": "Nei threatens to eat the donut.",
-      "followingBeat": "Ren reluctantly rises to the bait.",
-      "characters": [
-        "Nei",
-        "Ren"
-      ],
-      "dialogues": [
-        {
-          "speaker": "Ren",
-          "text": "それ俺の・・・なんだけど",
-          "emotion": "surprised"
-        },
-        {
-          "speaker": "Nei",
-          "text": "ちゃんと起きてお昼食べなよ",
-          "emotion": "encouraging"
-        }
-      ],
-      "prompt": "",
-      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n5-v3_v1.png",
-      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
-      "referenceCharacters": [
-        "Nei"
-      ],
-      "referenceSelections": []
-    },
-    {
-      "pageNum": 1,
-      "panelId": "panel:p1n6-v3",
-      "panelIndex": 6,
-      "pageTitle": "昼休み、3日前の教室",
-      "shot": "Medium",
-      "visual": "Ren, still lying on his desk, one eye half-open, reaches out lazily toward Nei to take the offered donut.",
-      "sceneSubject": "Ren reluctantly reacts",
-      "focusCharacter": "Ren",
-      "allCharacters": [
-        "Ren",
-        "Nei"
-      ],
-      "focusedCharacters": [
-        "Ren"
-      ],
-      "props": [],
-      "precedingBeat": "Nei eats the donut.",
-      "followingBeat": "Akira reveals his new sneakers.",
-      "characters": [
-        "Ren",
-        "Nei"
-      ],
-      "dialogues": [
-        {
-          "speaker": "Ren",
-          "text": "怠惰がおれの美徳なんだよ...",
-          "emotion": "resigned"
-        }
-      ],
-      "prompt": "",
-      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n6-v3_v1.png",
-      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
-      "referenceCharacters": [
-        "Ren"
-      ],
-      "referenceSelections": []
-    },
-    {
-      "pageNum": 1,
-      "panelId": "panel:p1n7-v3",
-      "panelIndex": 7,
-      "pageTitle": "昼休み、3日前の教室",
-      "shot": "Over the Shoulder",
-      "visual": "Yuto looks on from a distance, reflecting on the oddity of Ren's behavior and his academic success.",
-      "sceneSubject": "Yuto observes the interaction",
+      "visual": "Yuto is deep in thought, eyes slightly downcast as he considers the costs, visualizing the potential of saving money.",
+      "sceneSubject": "Yuto's contemplation",
       "focusCharacter": "Yuto",
       "allCharacters": [
-        "Yuto",
-        "Ren",
-        "Nei"
+        "Yuto"
       ],
       "focusedCharacters": [
         "Yuto"
       ],
-      "props": [
-        "米粉ドーナツ"
-      ],
-      "precedingBeat": "Ren reacts to Nei.",
-      "followingBeat": "Akira shows off his sneakers.",
+      "props": [],
+      "precedingBeat": "Akira teases Yuto about wanting the sneakers.",
+      "followingBeat": "Mei shifts the topic to another item Akira might want.",
       "characters": [
-        "Yuto",
-        "Ren",
-        "Nei"
+        "Yuto"
       ],
       "dialogues": [
         {
           "speaker": "Yuto",
-          "text": "沼野くん、今日も寝てた。いつも、隣のクラスの白瀬さんが、起こしに来る。授業は聞いてないのに、テストはいつも上位にいる。変な奴、だ。",
-          "emotion": "curious"
+          "text": "……2万5千、か。お年玉、貯めれば……",
+          "emotion": "thoughtful"
         }
       ],
       "prompt": "",
-      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n7-v3_v1.png",
-      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2/panel_panel_p2n4-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2",
       "referenceCharacters": [
         "Yuto"
       ],
       "referenceSelections": []
     },
     {
-      "pageNum": 1,
-      "panelId": "panel:p1n8-v3",
+      "pageNum": 2,
+      "panelId": "panel:p2n5-v3",
+      "panelIndex": 5,
+      "pageTitle": "誘惑の種",
+      "shot": "Medium",
+      "visual": "Mei, wearing a sly grin, hints at Akira's true desires. Akira looks surprised, eyes wide, while Saki leans closer, intrigued.",
+      "sceneSubject": "Mei shifts the focus to Holonium Vision",
+      "focusCharacter": "Mei",
+      "allCharacters": [
+        "Mei",
+        "Akira",
+        "Saki"
+      ],
+      "focusedCharacters": [
+        "Mei"
+      ],
+      "props": [],
+      "precedingBeat": "Yuto contemplates saving money.",
+      "followingBeat": "Saki confirms what Holonium Vision is.",
+      "characters": [
+        "Mei",
+        "Akira",
+        "Saki"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Mei",
+          "text": "ねぇ、Akiraさあ、本当はスニーカーより、アレ欲しいんでしょ?"
+        },
+        {
+          "speaker": "Akira",
+          "text": "アレ?"
+        },
+        {
+          "speaker": "Mei",
+          "text": "Holonium Vision"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2/panel_panel_p2n5-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2",
+      "referenceCharacters": [
+        "Mei"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 2,
+      "panelId": "panel:p2n6-v3",
+      "panelIndex": 6,
+      "pageTitle": "誘惑の種",
+      "shot": "Medium",
+      "visual": "Saki, somewhat astonished, leans back, recalling Holonium Vision's features. Akira looks sheepish, while Mei nods, acknowledging Akira’s interest.",
+      "sceneSubject": "Details about Holonium Vision",
+      "focusCharacter": "Saki",
+      "allCharacters": [
+        "Saki",
+        "Akira",
+        "Mei"
+      ],
+      "focusedCharacters": [
+        "Saki"
+      ],
+      "props": [],
+      "precedingBeat": "Mei suggests Akira might want something else.",
+      "followingBeat": "Akira talks about Holonium Vision's release and cost.",
+      "characters": [
+        "Saki",
+        "Akira",
+        "Mei"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Saki",
+          "text": "あー、現実空間でゲームができるやつ?"
+        },
+        {
+          "speaker": "Akira",
+          "text": "うっ……バレた。本命はそっち"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2/panel_panel_p2n6-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2",
+      "referenceCharacters": [
+        "Saki"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 2,
+      "panelId": "panel:p2n7-v3",
+      "panelIndex": 7,
+      "pageTitle": "誘惑の種",
+      "shot": "Medium",
+      "visual": "With an appreciative nod, Mei comments on Akira's enthusiasm for the tech revolution, which seems to impress the whole group.",
+      "sceneSubject": "Conversation about technology",
+      "focusCharacter": "Mei",
+      "allCharacters": [
+        "Mei",
+        "Akira",
+        "Saki"
+      ],
+      "focusedCharacters": [
+        "Mei"
+      ],
+      "props": [],
+      "precedingBeat": "Saki describes Holonium Vision.",
+      "followingBeat": "Saki reacts to the cost.",
+      "characters": [
+        "Mei",
+        "Akira",
+        "Saki"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Mei",
+          "text": "でも、まだ市販されてないでしょ?"
+        },
+        {
+          "speaker": "Akira",
+          "text": "来年、コンシューマ版出るって噂。100万らしい"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2/panel_panel_p2n7-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2",
+      "referenceCharacters": [
+        "Mei"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 2,
+      "panelId": "panel:p2n8-v3",
       "panelIndex": 8,
-      "pageTitle": "昼休み、3日前の教室",
-      "shot": "Wide",
-      "visual": "Akira pulls out a sleek, limited edition sneaker from a box, with an expression of triumph. Mei and Saki look on in admiration.",
-      "sceneSubject": "Akira's sneaker reveal",
+      "pageTitle": "誘惑の種",
+      "shot": "Medium",
+      "visual": "Akira animatedly describes the groundbreaking aspects of Holonium Vision, eyes shining with excitement, while Mei and Saki listen intently.",
+      "sceneSubject": "Akira's enthusiasm",
       "focusCharacter": "Akira",
       "allCharacters": [
         "Akira",
@@ -317,11 +315,9 @@
       "focusedCharacters": [
         "Akira"
       ],
-      "props": [
-        "新しいスニーカー"
-      ],
-      "precedingBeat": "Yuto observes Ren's interaction.",
-      "followingBeat": "Scene changes to different focus.",
+      "props": [],
+      "precedingBeat": "Saki reacts to the price.",
+      "followingBeat": "Mei comments on Akira's genuine passion.",
       "characters": [
         "Akira",
         "Mei",
@@ -329,40 +325,2096 @@
       ],
       "dialogues": [
         {
-          "speaker": "Akira",
-          "text": "見てくれ。ついに、限定モデル",
-          "emotion": "proud"
-        },
-        {
-          "speaker": "Mei",
-          "text": "うわっ、即完売のやつ！",
-          "emotion": "impressed"
-        },
-        {
           "speaker": "Saki",
-          "text": "えっ、本物？",
-          "emotion": "skeptical"
+          "text": "100万!? 高っ"
         },
         {
           "speaker": "Akira",
-          "text": "本物。発売30秒で勝負ついた",
-          "emotion": "boastful"
-        },
-        {
-          "speaker": "Akira",
-          "text": "指の速さがモノを言うんだよ",
-          "emotion": "smug"
+          "text": "だってめちゃくちゃリアルな仮想世界で遊べるんだぞ。論文には10年前から書いてあるけど、実物が見られるのは、俺たちが最初の世代だ"
         }
       ],
       "prompt": "",
-      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n8-v3_v1.png",
-      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2/panel_panel_p2n8-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2",
       "referenceCharacters": [
         "Akira"
       ],
       "referenceSelections": []
+    },
+    {
+      "pageNum": 2,
+      "panelId": "panel:p2n9-v3",
+      "panelIndex": 9,
+      "pageTitle": "誘惑の種",
+      "shot": "Close Up",
+      "visual": "Ren sits near the window, chomping slowly on a 米粉 donut, his eyes half-open as a faint silver glow flickers momentarily in his pupils.",
+      "sceneSubject": "End discussion with glimpse of Ren",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "米粉ドーナツ"
+      ],
+      "precedingBeat": "Akira explains the reality of Holonium Vision.",
+      "followingBeat": "Ren goes back to resting.",
+      "characters": [
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Ren",
+          "text": "……ねむい"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2/panel_panel_p2n9-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/2",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 3,
+      "panelId": "panel:p3n1-v3",
+      "panelIndex": 1,
+      "pageTitle": "放課後、下校路",
+      "shot": "Close Up",
+      "visual": "Close-up of Nei's mind-eye view: Yuto seen from a distance, finger grazing the edge of the desk repeatedly.",
+      "sceneSubject": "Nei recalls Yuto's presence",
+      "focusCharacter": "Nei",
+      "allCharacters": [
+        "Nei",
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Nei"
+      ],
+      "props": [
+        "classroom desk"
+      ],
+      "precedingBeat": "Nei leaves the classroom.",
+      "followingBeat": "Nei talks to Ren.",
+      "characters": [
+        "Nei",
+        "Yuto"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n1-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3",
+      "referenceCharacters": [
+        "Nei"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 3,
+      "panelId": "panel:p3n2-v3",
+      "panelIndex": 2,
+      "pageTitle": "放課後、下校路",
+      "shot": "Medium",
+      "visual": "Nei, walking next to Ren, slightly turns her head toward him, headphones over her ears.",
+      "sceneSubject": "Nei calls Ren's attention",
+      "focusCharacter": "Nei",
+      "allCharacters": [
+        "Nei",
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Nei"
+      ],
+      "props": [
+        "headphones"
+      ],
+      "precedingBeat": "Nei ponders over Yuto's action.",
+      "followingBeat": "Ren responds to Nei.",
+      "characters": [
+        "Nei",
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Nei",
+          "text": "レン",
+          "emotion": "curious"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n2-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3",
+      "referenceCharacters": [
+        "Nei"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 3,
+      "panelId": "panel:p3n3-v3",
+      "panelIndex": 3,
+      "pageTitle": "放課後、下校路",
+      "shot": "Close Up",
+      "visual": "Ren, slightly distracted, has earphones in as he walks, casually responding to Nei.",
+      "sceneSubject": "Ren's subtle reaction",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Nei",
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "earphones"
+      ],
+      "precedingBeat": "Nei addresses Ren.",
+      "followingBeat": "Nei mentions Yuto.",
+      "characters": [
+        "Nei",
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Ren",
+          "text": "ん",
+          "emotion": "indifferent"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n3-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 3,
+      "panelId": "panel:p3n4-v3",
+      "panelIndex": 4,
+      "pageTitle": "放課後、下校路",
+      "shot": "Medium",
+      "visual": "Nei persists with a curious stance, looking ahead, as she mentions Fujisaki Yuto.",
+      "sceneSubject": "Nei mentions Yuto",
+      "focusCharacter": "Nei",
+      "allCharacters": [
+        "Nei",
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Nei"
+      ],
+      "props": [
+        "headphones"
+      ],
+      "precedingBeat": "Ren shows indifference.",
+      "followingBeat": "Ren doesn't recognize Yuto.",
+      "characters": [
+        "Nei",
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Nei",
+          "text": "3年B組の、藤崎くん",
+          "emotion": "curious"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n4-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3",
+      "referenceCharacters": [
+        "Nei"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 3,
+      "panelId": "panel:p3n5-v3",
+      "panelIndex": 5,
+      "pageTitle": "放課後、下校路",
+      "shot": "Close Up",
+      "visual": "Ren continues walking, expression unchanged.",
+      "sceneSubject": "Ren's indifference",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Nei",
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "earphones"
+      ],
+      "precedingBeat": "Nei mentions Yuto.",
+      "followingBeat": "Nei describes Yuto's gesture.",
+      "characters": [
+        "Nei",
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Ren",
+          "text": "知らん",
+          "emotion": "uninterested"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n5-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 3,
+      "panelId": "panel:p3n6-v3",
+      "panelIndex": 6,
+      "pageTitle": "放課後、下校路",
+      "shot": "Medium",
+      "visual": "Nei explains the detail, looking thoughtful while walking beside Ren.",
+      "sceneSubject": "Nei's unique observation",
+      "focusCharacter": "Nei",
+      "allCharacters": [
+        "Nei",
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Nei"
+      ],
+      "props": [
+        "headphones",
+        "road"
+      ],
+      "precedingBeat": "Ren expresses disinterest.",
+      "followingBeat": "Ren's nonchalant reaction continues.",
+      "characters": [
+        "Nei",
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Nei",
+          "text": "15秒、机の端を、指で触ってた",
+          "emotion": "analytical"
+        },
+        {
+          "speaker": "Ren",
+          "text": "それがどうしたんだ?",
+          "emotion": "curious"
+        },
+        {
+          "speaker": "Nei",
+          "text": "迷ってる時の、癖だね / 何かを、買いたがってる",
+          "emotion": "insightful"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n6-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3",
+      "referenceCharacters": [
+        "Nei"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 3,
+      "panelId": "panel:p3n7-v3",
+      "panelIndex": 7,
+      "pageTitle": "放課後、下校路",
+      "shot": "Close Up",
+      "visual": "Focus on Nei's thoughtful expression as her inner thoughts reveal her unique ability to decipher subtle gestures.",
+      "sceneSubject": "Nei's internal monologue",
+      "focusCharacter": "Nei",
+      "allCharacters": [
+        "Nei",
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Nei"
+      ],
+      "props": [
+        "headphones"
+      ],
+      "precedingBeat": "Nei shares an observation with Ren.",
+      "followingBeat": "Ren's casual response.",
+      "characters": [
+        "Nei",
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Nei",
+          "text": "わたしは、人の細かい動きを、数えてしまう。止められない。15秒以上、同じ場所を触る人は、何かを買いたがっている。",
+          "emotion": "introspective"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n7-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3",
+      "referenceCharacters": [
+        "Nei"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 4,
+      "panelId": "panel:p4n1-v3",
+      "panelIndex": 1,
+      "pageTitle": "Yutoの部屋、その夜",
+      "shot": "Medium",
+      "visual": "Yuto is staring at his laptop screen, a frown forming. The screen shows a cluttered sneaker resale site.",
+      "sceneSubject": "Yuto browsing sneaker site",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "ノートPC"
+      ],
+      "precedingBeat": "Yuto is searching for sneakers online.",
+      "followingBeat": "Yuto's frustration grows as he sees a common price theme.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "5万……高い……"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n1-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 4,
+      "panelId": "panel:p4n2-v3",
+      "panelIndex": 2,
+      "pageTitle": "Yutoの部屋、その夜",
+      "shot": "Close Up",
+      "visual": "The camera focuses on Yuto's crestfallen expression. In the background, Akira's image or sneaker is faintly visible.",
+      "sceneSubject": "Feeling left out by Akira",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "ノートPC"
+      ],
+      "precedingBeat": "Yuto's frustration with prices.",
+      "followingBeat": "Yuto spots a new listing.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "でも、Akiraだけ、ズルい……"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n2-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 4,
+      "panelId": "panel:p4n3-v3",
+      "panelIndex": 3,
+      "pageTitle": "Yutoの部屋、その夜",
+      "shot": "Medium",
+      "visual": "Yuto's attention sharpens as the screen lights up with a highlighted ad nestled among many others.",
+      "sceneSubject": "New listing found",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "ノートPC"
+      ],
+      "precedingBeat": "Yuto feels envious of Akira.",
+      "followingBeat": "Yuto reacts to the unusual price.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n3-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 4,
+      "panelId": "panel:p4n4-v3",
+      "panelIndex": 4,
+      "pageTitle": "Yutoの部屋、その夜",
+      "shot": "Insert",
+      "visual": "The screen displays a vibrant ad, showcasing a sneaker deal with prices slashed dramatically.",
+      "sceneSubject": "Ad Details",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "ノートPC"
+      ],
+      "precedingBeat": "A new listing appears on Yuto's screen.",
+      "followingBeat": "Yuto is surprised by the price reduction.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n4-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 4,
+      "panelId": "panel:p4n5-v3",
+      "panelIndex": 5,
+      "pageTitle": "Yutoの部屋、その夜",
+      "shot": "Extreme Close Up",
+      "visual": "Yuto's eyes widen, his reflection seen on the screen displaying the ad with bold, slashed prices.",
+      "sceneSubject": "Surprised by the price",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "ノートPC"
+      ],
+      "precedingBeat": "Yuto notices the price reduction on the ad.",
+      "followingBeat": "Time limit captures Yuto's focus.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "え、安……"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n5-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 4,
+      "panelId": "panel:p4n6-v3",
+      "panelIndex": 6,
+      "pageTitle": "Yutoの部屋、その夜",
+      "shot": "Close Up",
+      "visual": "The countdown timer ticks, reflecting Yuto's increased heartbeat portrayed by motion lines and sweat beads.",
+      "sceneSubject": "Time-limited offer",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "ノートPC"
+      ],
+      "precedingBeat": "Yuto is shocked by the low price.",
+      "followingBeat": "A sense of urgency takes over as time runs out.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "時間限定、マジか……"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n6-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 4,
+      "panelId": "panel:p4n7-v3",
+      "panelIndex": 7,
+      "pageTitle": "Yutoの部屋、その夜",
+      "shot": "Insert",
+      "visual": "The digital countdown visibly moves from 00:27:00 to 00:26:59, each second pressure building. Yuto's focus is solely on the screen.",
+      "sceneSubject": "Countdown to zero",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "ノートPC"
+      ],
+      "precedingBeat": "Yuto is startled by the time-limited offer.",
+      "followingBeat": "Yuto must decide quickly as the deal is time-sensitive.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n7-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 5,
+      "panelId": "panel:p5n1-v3",
+      "panelIndex": 1,
+      "pageTitle": "誘惑に負ける",
+      "shot": "Medium",
+      "visual": "Yuto is staring at a computer screen with a suspicious expression. The flashy logo catches his attention.",
+      "sceneSubject": "Tempting Logo",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [],
+      "precedingBeat": "Yuto begins browsing online.",
+      "followingBeat": "Yuto scrutinizes the reviews.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "怪しいけど……",
+          "emotion": "suspicious"
+        },
+        {
+          "speaker": "Yuto",
+          "text": "でも、大手っぽいロゴ……",
+          "emotion": "considering"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n1-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 5,
+      "panelId": "panel:p5n2-v3",
+      "panelIndex": 2,
+      "pageTitle": "誘惑に負ける",
+      "shot": "Close Up",
+      "visual": "Close-up of Yuto's face with an intrigued look as he reads positive reviews.",
+      "sceneSubject": "Reading Reviews",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [],
+      "precedingBeat": "Yuto turns his attention to reviews.",
+      "followingBeat": "Contemplates affordability next month.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "レビューも、いい感じ……",
+          "emotion": "interested"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n2-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 5,
+      "panelId": "panel:p5n3-v3",
+      "panelIndex": 3,
+      "pageTitle": "誘惑に負ける",
+      "shot": "Medium",
+      "visual": "Yuto relaxes in his chair, pondering his budget. The light from the screen glints off his glasses.",
+      "sceneSubject": "Decision Making",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [],
+      "precedingBeat": "Consideration of positive reviews.",
+      "followingBeat": "Secretly begins to act on his decision.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "来月のお小遣いでいけそうだし、、",
+          "emotion": "reasoning"
+        },
+        {
+          "speaker": "Yuto",
+          "text": "……買おう",
+          "emotion": "decided"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n3-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 5,
+      "panelId": "panel:p5n4-v3",
+      "panelIndex": 4,
+      "pageTitle": "誘惑に負ける",
+      "shot": "Extreme Close Up",
+      "visual": "Yuto's hand stealthily extracts his mother's credit card from his wallet.",
+      "sceneSubject": "The Wallet",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "wallet",
+        "credit card"
+      ],
+      "precedingBeat": "Yuto decides to purchase the item.",
+      "followingBeat": "Moment of hesitation about his actions.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "narration",
+          "text": "財布から、母のクレジットカードを、こっそり取り出す。",
+          "emotion": null
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n4-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 5,
+      "panelId": "panel:p5n5-v3",
+      "panelIndex": 5,
+      "pageTitle": "誘惑に負ける",
+      "shot": "Medium",
+      "visual": "Holding the credit card, Yuto pauses with a mixture of reluctance and resolve visible on his face.",
+      "sceneSubject": "Hesitation",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "credit card"
+      ],
+      "precedingBeat": "Yuto takes out the credit card.",
+      "followingBeat": "Moves forward with the purchase.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "ママのカード……ちょっとだけ……",
+          "emotion": "hesitant"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n5-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 5,
+      "panelId": "panel:p5n6-v3",
+      "panelIndex": 6,
+      "pageTitle": "誘惑に負ける",
+      "shot": "Insert",
+      "visual": "The '注文完了' message glows on the screen as Yuto reacts with an exhale of relief.",
+      "sceneSubject": "Order Confirmation",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "computer screen"
+      ],
+      "precedingBeat": "Yuto resolves to use the card.",
+      "followingBeat": "Feels a rush of satisfaction and anticipation.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "sfx",
+          "text": "（ポチッ）",
+          "emotion": null
+        },
+        {
+          "speaker": "screen",
+          "text": "注文完了",
+          "emotion": null
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n6-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 5,
+      "panelId": "panel:p5n7-v3",
+      "panelIndex": 7,
+      "pageTitle": "誘惑に負ける",
+      "shot": "Medium",
+      "visual": "Yuto's bright expression shows his excitement for the next day's delivery, a look of glee and anticipation.",
+      "sceneSubject": "Excitement of Delivery",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [],
+      "precedingBeat": "Yuto sees the order confirmation.",
+      "followingBeat": "Transitions to checking Akira's SNS.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "やった！明日、届く！",
+          "emotion": "excited"
+        },
+        {
+          "speaker": "Yuto",
+          "text": "Akiraに、自慢、してやる……",
+          "emotion": "smug"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n7-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 5,
+      "panelId": "panel:p5n8-v3",
+      "panelIndex": 8,
+      "pageTitle": "誘惑に負ける",
+      "shot": "Wide",
+      "visual": "Yuto is lying on his bed, phone in hand, scrolling through Akira's SNS with satisfaction and a plan to gloat.",
+      "sceneSubject": "Relaxed Anticipation",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "Yuto imagines bragging to Akira.",
+      "followingBeat": "Reflects on his actions with mixed feelings, but overall satisfaction.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n8-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/5",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 6,
+      "panelId": "panel:p6n1-v3",
+      "panelIndex": 1,
+      "pageTitle": "Renの部屋、事件の全体（捜査壁）",
+      "shot": "Wide",
+      "visual": "Ren stands before a vast wall filled with pins, photos, and paper scraps connected by red threads. He stands with his arms crossed, gazing intently at the wall, embodying determination and frustration.",
+      "sceneSubject": "Ren's Investigation Wall",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "investigation wall",
+        "pins",
+        "photos",
+        "papers",
+        "red threads"
+      ],
+      "precedingBeat": "A transitional view of Ren observing the culmination of seven years of work.",
+      "followingBeat": "Ren reflects deeply on his journey so far.",
+      "characters": [
+        "Ren"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n1-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/6",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 6,
+      "panelId": "panel:p6n2-v3",
+      "panelIndex": 2,
+      "pageTitle": "Renの部屋、事件の全体（捜査壁）",
+      "shot": "Close Up",
+      "visual": "Close-up of Ren's face as he reflects on his extensive investigation. Lines of determination etched on his face show the years of dedication and the current standstill he faces.",
+      "sceneSubject": "Ren's Monologue on the Investigation",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "computer"
+      ],
+      "precedingBeat": "Ren focuses on his investigation wall.",
+      "followingBeat": "Ren shifts his attention to a meaningful object in his narrative.",
+      "characters": [
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Ren",
+          "text": "7年。集めた。繋いだ。辿った。ここまでは、わかった。——ここから先が、動かない。",
+          "emotion": "determined"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n2-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/6",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 6,
+      "panelId": "panel:p6n3-v3",
+      "panelIndex": 3,
+      "pageTitle": "Renの部屋、事件の全体（捜査壁）",
+      "shot": "Medium",
+      "visual": "Ren moves toward his cluttered desk, his eyes briefly flicking to a small, dusty box and the faintly blinking SIP device left by his father, hinting at its long-standing operation.",
+      "sceneSubject": "Ren Approaches His Father's Device",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "desk",
+        "small box",
+        "SIP device"
+      ],
+      "precedingBeat": "Contemplation of the information shortage.",
+      "followingBeat": "Recognizes the potential within his father's device.",
+      "characters": [
+        "Ren"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n3-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/6",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 6,
+      "panelId": "panel:p6n4-v3",
+      "panelIndex": 4,
+      "pageTitle": "Renの部屋、事件の全体（捜査壁）",
+      "shot": "Medium",
+      "visual": "Details of Ren's intense concentration as he examines his father's Holonium device, speaking to its secrets hidden within and the challenge it presents.",
+      "sceneSubject": "Ren Deciphers the Device",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "Holonium device"
+      ],
+      "precedingBeat": "Ren acknowledges his father's legacy.",
+      "followingBeat": "He interacts with the old device.",
+      "characters": [
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Ren",
+          "text": "父さんのHolonium デバイス。中核アルゴリズムは、父さんが書いた...",
+          "emotion": "focused"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n4-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/6",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 6,
+      "panelId": "panel:p6n5-v3",
+      "panelIndex": 5,
+      "pageTitle": "Renの部屋、事件の全体（捜査壁）",
+      "shot": "Medium",
+      "visual": "Ren finally sits down at the keyboard his father used, fingers brushing over the keys as if trying to connect with the past and find a way forward.",
+      "sceneSubject": "Ren Sits Down",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "chair",
+        "HHKB keyboard"
+      ],
+      "precedingBeat": "Ren contemplates using the device.",
+      "followingBeat": "Resolves to act despite the challenge.",
+      "characters": [
+        "Ren"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n5-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/6",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 6,
+      "panelId": "panel:p6n6-v3",
+      "panelIndex": 6,
+      "pageTitle": "Renの部屋、事件の全体（捜査壁）",
+      "shot": "Close Up",
+      "visual": "Close-up on Ren's hand on the renegade keyboard, a visual pause capturing his whisper to the silent room, breaking the contemplation with the sheer weight of stagnation.",
+      "sceneSubject": "Ren's Frustration",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "Holonium device"
+      ],
+      "precedingBeat": "Ren prepares to invoke the device's power.",
+      "followingBeat": "The room remains silent.",
+      "characters": [
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Ren",
+          "text": "……動かねー、な",
+          "emotion": "frustrated"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n6-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/6",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 7,
+      "panelId": "panel:p7n1-v3",
+      "panelIndex": 1,
+      "pageTitle": "Hacker Nues、動く",
+      "shot": "Medium",
+      "visual": "Ren sits at his chair, eyes fixed on the right monitor displaying a new DM notification. His face shows a hint of surprise.",
+      "sceneSubject": "Incoming Message Notification",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "Monitor",
+        "Notification"
+      ],
+      "precedingBeat": "Ren settles into his chair.",
+      "followingBeat": "He acknowledges the sender of the message.",
+      "characters": [
+        "Ren"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n1-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 7,
+      "panelId": "panel:p7n2-v3",
+      "panelIndex": 2,
+      "pageTitle": "Hacker Nues、動く",
+      "shot": "Close Up",
+      "visual": "Close-up of Ren's thoughtful face as he reads the message, internalizing its significance.",
+      "sceneSubject": "Ren's Reaction",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "Computer"
+      ],
+      "precedingBeat": "The message alert shows up.",
+      "followingBeat": "The details of nue's message unfold.",
+      "characters": [
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Ren",
+          "text": "……珍しく、向こうから、来た",
+          "emotion": "thoughtful"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n2-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 7,
+      "panelId": "panel:p7n3-v3",
+      "panelIndex": 3,
+      "pageTitle": "Hacker Nues、動く",
+      "shot": "Wide",
+      "visual": "Wide shot of Ren's monitor displaying nue's urgent and complex message, detailed text filling the screen.",
+      "sceneSubject": "Message from Nue",
+      "focusCharacter": "nue",
+      "allCharacters": [
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "nue"
+      ],
+      "props": [
+        "DM"
+      ],
+      "precedingBeat": "Ren reacts to getting a message.",
+      "followingBeat": "He reflects on his relationship with nue.",
+      "characters": [
+        "Ren"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n3-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7",
+      "referenceCharacters": [
+        "nue"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 7,
+      "panelId": "panel:p7n4-v3",
+      "panelIndex": 4,
+      "pageTitle": "Hacker Nues、動く",
+      "shot": "Medium",
+      "visual": "Flashback insets of childhood memories with nue, overlaid with the present situation at the computer.",
+      "sceneSubject": "Ren Remembers Nue",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren",
+        "nue"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "Monitor"
+      ],
+      "precedingBeat": "Ren absorbs the DM's content.",
+      "followingBeat": "Ren decides to act.",
+      "characters": [
+        "Ren",
+        "nue"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n4-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 7,
+      "panelId": "panel:p7n5-v3",
+      "panelIndex": 5,
+      "pageTitle": "Hacker Nues、動く",
+      "shot": "Medium",
+      "visual": "Ren types swiftly on the HHKB, navigating to the 'Hacker Nues' platform. The logo is visible on the screen.",
+      "sceneSubject": "Engaging Hacker Nues",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "Keyboard",
+        "Browser"
+      ],
+      "precedingBeat": "Ren recalls the connection with nue.",
+      "followingBeat": "He reads through the tech forum threads.",
+      "characters": [
+        "Ren"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n5-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 7,
+      "panelId": "panel:p7n6-v3",
+      "panelIndex": 6,
+      "pageTitle": "Hacker Nues、動く",
+      "shot": "Close Up",
+      "visual": "Close-up of Ren's eyes glowing as he vigilantly scans the discussion threads, deciphering critical forum messages.",
+      "sceneSubject": "Forum Threads and Insight",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "Thread"
+      ],
+      "precedingBeat": "Ren opens the discussion platform.",
+      "followingBeat": "Analyzes posts from allies.",
+      "characters": [
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Ren",
+          "text": "……動いた",
+          "emotion": "determined"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n6-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 7,
+      "panelId": "panel:p7n7-v3",
+      "panelIndex": 7,
+      "pageTitle": "Hacker Nues、動く",
+      "shot": "Over the Shoulder",
+      "visual": "A composite of various forum posts detailing hacker activities. Key posts emphasized for Ren's attention.",
+      "sceneSubject": "Posts from Allies",
+      "focusCharacter": "shared",
+      "allCharacters": [
+        "Ren",
+        "aka_chise1",
+        "3pa11er3apiv0t",
+        "nue"
+      ],
+      "focusedCharacters": [],
+      "props": [
+        "Forum posts"
+      ],
+      "precedingBeat": "Ren reviews a spiking thread.",
+      "followingBeat": "Tags users as new allies.",
+      "characters": [
+        "Ren",
+        "aka_chise1",
+        "3pa11er3apiv0t",
+        "nue"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n7-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 7,
+      "panelId": "panel:p7n8-v3",
+      "panelIndex": 8,
+      "pageTitle": "Hacker Nues、動く",
+      "shot": "Medium",
+      "visual": "Ren pens his own post, identifying his handle as 'Ghost_Owl', contributing his observations. HHKB keys catch ambient light.",
+      "sceneSubject": "Ren's Contribution",
+      "focusCharacter": "Ren",
+      "allCharacters": [
+        "Ren"
+      ],
+      "focusedCharacters": [
+        "Ren"
+      ],
+      "props": [
+        "Keyboard"
+      ],
+      "precedingBeat": "Community posts indicate urgency.",
+      "followingBeat": "Ren adds to the intel pool.",
+      "characters": [
+        "Ren"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n8-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7",
+      "referenceCharacters": [
+        "Ren"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 7,
+      "panelId": "panel:p7n9-v3",
+      "panelIndex": 9,
+      "pageTitle": "Hacker Nues、動く",
+      "shot": "Medium",
+      "visual": "Nei watches from her window, observing Ren’s room light and fast-typing fingers, her face a mixture of intrigue and relief.",
+      "sceneSubject": "Watching Neighbors",
+      "focusCharacter": "Nei",
+      "allCharacters": [
+        "Ren",
+        "Nei"
+      ],
+      "focusedCharacters": [
+        "Nei"
+      ],
+      "props": [
+        "Window"
+      ],
+      "precedingBeat": "Ren identifies and allies digitally.",
+      "followingBeat": "Silent observation from a friend.",
+      "characters": [
+        "Ren",
+        "Nei"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n9-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7",
+      "referenceCharacters": [
+        "Nei"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 7,
+      "panelId": "panel:p7n10-v3",
+      "panelIndex": 10,
+      "pageTitle": "Hacker Nues、動く",
+      "shot": "Over the Shoulder",
+      "visual": "Ren and Nei exchange brief but meaningful DMs, while Ren lightly taps on a memorized key on the HHKB with introspection.",
+      "sceneSubject": "Neighborly Exchange",
+      "focusCharacter": "shared",
+      "allCharacters": [
+        "Ren",
+        "Nei"
+      ],
+      "focusedCharacters": [],
+      "props": [
+        "Mobile",
+        "HHKB"
+      ],
+      "precedingBeat": "Nei observes Ren's fast actions.",
+      "followingBeat": "Ren taps a key, deep in thought.",
+      "characters": [
+        "Ren",
+        "Nei"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Nei",
+          "text": "レン",
+          "emotion": "curious"
+        },
+        {
+          "speaker": "Ren",
+          "text": "ん",
+          "emotion": "calm"
+        },
+        {
+          "speaker": "Nei",
+          "text": "今日、動いた?",
+          "emotion": "inquisitive"
+        },
+        {
+          "speaker": "Ren",
+          "text": "ちょっと、動いた",
+          "emotion": "affirmative"
+        },
+        {
+          "speaker": "Nei",
+          "text": "nueから?",
+          "emotion": "hopeful"
+        },
+        {
+          "speaker": "Ren",
+          "text": "nueから",
+          "emotion": "confirming"
+        },
+        {
+          "speaker": "Nei",
+          "text": "……やっと、だね",
+          "emotion": "relief"
+        },
+        {
+          "speaker": "Ren",
+          "text": "ああ",
+          "emotion": "concur"
+        },
+        {
+          "speaker": "Nei",
+          "text": "レン",
+          "emotion": "concerned"
+        },
+        {
+          "speaker": "Ren",
+          "text": "なに",
+          "emotion": "curious"
+        },
+        {
+          "speaker": "Nei",
+          "text": "1人では、届かないんじゃない?",
+          "emotion": "worried"
+        },
+        {
+          "speaker": "Ren",
+          "text": "……",
+          "emotion": "thoughtful"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n10-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/7",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 8,
+      "panelId": "panel:p8n1-v3",
+      "panelIndex": 1,
+      "pageTitle": "Yuto、3日の待機",
+      "shot": "Close Up",
+      "visual": "Yuto sits on his bed, holding his smartphone, with a look of frustration and impatience. The screen displays the package tracking app.",
+      "sceneSubject": "Yuto checks his smartphone",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "Yuto waiting, checking repeatedly.",
+      "followingBeat": "He expresses his frustration aloud.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n1-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/8",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 8,
+      "panelId": "panel:p8n2-v3",
+      "panelIndex": 2,
+      "pageTitle": "Yuto、3日の待機",
+      "shot": "Extreme Close Up",
+      "visual": "A close-up of Yuto's face, capturing his annoyance and restlessness.",
+      "sceneSubject": "Yuto's frustration",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [],
+      "precedingBeat": "Yuto checking the screen multiple times.",
+      "followingBeat": "Sudden noise breaks his focus.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "……まだ、来ない",
+          "emotion": "frustrated"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n2-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/8",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 8,
+      "panelId": "panel:p8n3-v3",
+      "panelIndex": 3,
+      "pageTitle": "Yuto、3日の待機",
+      "shot": "Over the Shoulder",
+      "visual": "From Yuto's perspective, the focus is on the door opening and the shopping bag being set down, partially revealing his mother.",
+      "sceneSubject": "Mother arrives",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto",
+        "Mother"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "shopping bag"
+      ],
+      "precedingBeat": "Yuto expressing frustration.",
+      "followingBeat": "Yuto hides the smartphone.",
+      "characters": [
+        "Yuto",
+        "Mother"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n3-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/8",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 8,
+      "panelId": "panel:p8n4-v3",
+      "panelIndex": 4,
+      "pageTitle": "Yuto、3日の待機",
+      "shot": "Medium",
+      "visual": "A medium shot of Yuto now sitting on the edge of his bed with a resigned expression, the smartphone forgotten beside him.",
+      "sceneSubject": "Yuto's realization",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "Yuto hides his smartphone as his mother arrives.",
+      "followingBeat": "Yuto absorbs the situation's reality.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "3日経った。何も、来ない。",
+          "emotion": "resigned"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n4-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/8",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 9,
+      "panelId": "panel:p9n1-v3",
+      "panelIndex": 1,
+      "pageTitle": "問い合わせ",
+      "shot": "Medium",
+      "visual": "Yuto holds his phone, fingers typing on the screen as he nervously composes a DM on a sneaker resale site. His brow is furrowed in concentration.",
+      "sceneSubject": "Sending Inquiry",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "Yuto has been anxious about his order.",
+      "followingBeat": "He sends the DM.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n1-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 9,
+      "panelId": "panel:p9n2-v3",
+      "panelIndex": 2,
+      "pageTitle": "問い合わせ",
+      "shot": "Close Up",
+      "visual": "Close-up of the phone screen as the DM bubble appears, text reads 'すみません、まだ届かないんですが……' sent to the resale site.",
+      "sceneSubject": "DM Sent",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "Yuto composes a message.",
+      "followingBeat": "The message is sent.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "すみません、まだ届かないんですが……"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n2-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 9,
+      "panelId": "panel:p9n3-v3",
+      "panelIndex": 3,
+      "pageTitle": "問い合わせ",
+      "shot": "Insert",
+      "visual": "The phone buzzes almost instantly in Yuto's hand. The screen lights up with a new message notification.",
+      "sceneSubject": "Quick Response",
+      "focusCharacter": "shared",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "Yuto sends his DM.",
+      "followingBeat": "Yuto reads the response.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": null,
+          "text": "1分で返信。"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n3-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 9,
+      "panelId": "panel:p9n4-v3",
+      "panelIndex": 4,
+      "pageTitle": "問い合わせ",
+      "shot": "Medium",
+      "visual": "Yuto looks relieved as he reads the message. The text from 'TokyoSneaker-Premium.shop' is visible: 'お問い合わせありがとうございます！確認させてください (^^)'",
+      "sceneSubject": "Reading Response",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "Yuto receives the reply.",
+      "followingBeat": "Yuto feels assured by the response.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "TokyoSneaker-Premium.shop",
+          "text": "お問い合わせありがとうございます！確認させてください (^^)"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n4-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 9,
+      "panelId": "panel:p9n5-v3",
+      "panelIndex": 5,
+      "pageTitle": "問い合わせ",
+      "shot": "Close Up",
+      "visual": "Close-up of Yuto's face, a sense of relief washing over him as he softly says, 'あ、返事、くれた'. His features relax visibly.",
+      "sceneSubject": "Expressing Relief",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "The response confirms a positive interaction.",
+      "followingBeat": "Yuto processes the relief of having his issue acknowledged.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "あ、返事、くれた",
+          "emotion": "relief"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n5-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 9,
+      "panelId": "panel:p9n6-v3",
+      "panelIndex": 6,
+      "pageTitle": "問い合わせ",
+      "shot": "Wide",
+      "visual": "Wide view of Yuto sitting back on his chair with a calm smile, clutching his phone as if it's a lifeline, his posture relaxed.",
+      "sceneSubject": "Contentment",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [],
+      "precedingBeat": "Yuto feels reassured.",
+      "followingBeat": "The moment of tension has subsided.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "ちゃんと対応してくれる人で、よかった……",
+          "emotion": "content"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n6-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 10,
+      "panelId": "panel:p10n1-v3",
+      "panelIndex": 1,
+      "pageTitle": "SMSの罠",
+      "shot": "Medium",
+      "visual": "Yuto gazes at his smartphone, displaying a DM from the purported sneaker shop. The DM text facing the reader provides instructions requesting a verification number.",
+      "sceneSubject": "DM from TokyoSneaker-Premium.shop",
+      "focusCharacter": "shared",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "Yuto receives a notification on his phone.",
+      "followingBeat": "A new SMS notification pops up.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n1-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/10",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 10,
+      "panelId": "panel:p10n2-v3",
+      "panelIndex": 2,
+      "pageTitle": "SMSの罠",
+      "shot": "Extreme Close Up",
+      "visual": "A close-up of the smartphone screen shows the SMS notification from Neli, capturing the moment the notification sound 'ピン' is emitted.",
+      "sceneSubject": "SMS notification sound",
+      "focusCharacter": "shared",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "Yuto looks at the DM.",
+      "followingBeat": "Yuto reads the SMS message.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n2-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/10",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 10,
+      "panelId": "panel:p10n3-v3",
+      "panelIndex": 3,
+      "pageTitle": "SMSの罠",
+      "shot": "Close Up",
+      "visual": "Focus on the smartphone screen showing the SMS from Neli: '【Neli】認証番号：847293 この番号は他人に教えないでください.'",
+      "sceneSubject": "SMS from Neli",
+      "focusCharacter": "shared",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "A notification sound rings.",
+      "followingBeat": "Yuto hesitates, contemplating the message.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n3-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/10",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 10,
+      "panelId": "panel:p10n4-v3",
+      "panelIndex": 4,
+      "pageTitle": "SMSの罠",
+      "shot": "Close Up",
+      "visual": "Yuto's confused expression, eyebrows furrowed as he reads the cautionary message. His fingers hover tentatively over the screen.",
+      "sceneSubject": "Yuto's confusion",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "The SMS warns not to share the verification code.",
+      "followingBeat": "Yuto justifies sending the code to himself.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "……え？",
+          "emotion": "confused"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n4-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/10",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 10,
+      "panelId": "panel:p10n5-v3",
+      "panelIndex": 5,
+      "pageTitle": "SMSの罠",
+      "shot": "Medium",
+      "visual": "Yuto rationalizes internally, his finger decisively hovering near the 'send' button on his device.",
+      "sceneSubject": "Yuto deciding",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "Yuto's confusion peaks.",
+      "followingBeat": "Yuto sends the verification code.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "でも、配送会社の確認、なら……",
+          "emotion": "uncertain"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n5-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/10",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 10,
+      "panelId": "panel:p10n6-v3",
+      "panelIndex": 6,
+      "pageTitle": "SMSの罠",
+      "shot": "Close Up",
+      "visual": "Close-up of Yuto's hand as he sends the DM containing the code. The message '847293です！' appears on screen.",
+      "sceneSubject": "Sending the verification code",
+      "focusCharacter": "Yuto",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [
+        "Yuto"
+      ],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "Yuto thinks and decides to send the code.",
+      "followingBeat": "DM confirms the verification.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n6-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/10",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 10,
+      "panelId": "panel:p10n7-v3",
+      "panelIndex": 7,
+      "pageTitle": "SMSの罠",
+      "shot": "Wide",
+      "visual": "On-screen, the DM from TokyoSneaker-Premium confirms receipt of the verification code with enthusiastic emojis.",
+      "sceneSubject": "Receiving confirmation",
+      "focusCharacter": "shared",
+      "allCharacters": [
+        "Yuto"
+      ],
+      "focusedCharacters": [],
+      "props": [
+        "smartphone"
+      ],
+      "precedingBeat": "Yuto sends the verification code.",
+      "followingBeat": "Yuto feels assured, unaware of the trap.",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "よかった……これで、届くはず",
+          "emotion": "relieved"
+        }
+      ],
+      "prompt": "",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n7-v3_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/10",
+      "referenceCharacters": [],
+      "referenceSelections": []
     }
   ],
-  "regeneratedAt": "2026-05-10T15:10:57.770Z",
+  "regeneratedAt": "2026-05-10T15:24:59.892Z",
   "schema": "phase3.4-rich"
 }

@@ -1603,18 +1603,19 @@ func (s *StoryboardService) ExportPdf(
 		return nil, connect.NewError(connect.CodeNotFound, fmt.Errorf("no panels found to export"))
 	}
 
-	// Manga page dimensions in pixels (B5 portrait aspect ratio: 176mm x 250mm ≈ 7:10)
-	const pageWidth = 1200
-	const pageHeight = 1714 // 1200 * 250 / 176
+	// Jump-style B4 manuscript paper dimensions
+	// Paper: B4 (257 x 364 mm), rendered at ~200 DPI for crisp print output
+	const pageWidth = 2024  // 257mm * 200dpi / 25.4
+	const pageHeight = 2866 // 364mm * 200dpi / 25.4
 
-	// Generate PDF with manga page size (B5 portrait)
+	// Generate PDF at B4 paper size with no margins so the manuscript frame
+	// occupies the full sheet just like an authentic Jump manga 原稿用紙.
 	cfg := config.NewBuilder().
-		WithPageNumber().
-		WithDimensions(176, 250).
-		WithLeftMargin(2).
-		WithTopMargin(2).
-		WithRightMargin(2).
-		WithBottomMargin(5).
+		WithDimensions(257, 364).
+		WithLeftMargin(0).
+		WithTopMargin(0).
+		WithRightMargin(0).
+		WithBottomMargin(0).
 		Build()
 
 	m := maroto.New(cfg)
@@ -1625,8 +1626,9 @@ func (s *StoryboardService) ExportPdf(
 		// Load and add cover image
 		coverImgBytes, err := os.ReadFile(coverImagePath)
 		if err == nil {
+			// Fill the entire B4 page with the cover image
 			m.AddRows(
-				row.New(240).Add(
+				row.New(364).Add(
 					col.New(12).Add(
 						image.NewFromBytes(coverImgBytes, extension.Jpeg, props.Rect{
 							Center:  true,
@@ -1635,8 +1637,6 @@ func (s *StoryboardService) ExportPdf(
 					),
 				),
 			)
-			// Add new page after cover
-			m.AddRow(1)
 		} else {
 			log.Printf("Warning: could not read cover image: %v", err)
 		}
@@ -1644,26 +1644,28 @@ func (s *StoryboardService) ExportPdf(
 		log.Printf("Warning: cover image not found at %s", coverImagePath)
 	}
 
-	// Title Page
+	// Title Page (full B4 page so it sits on its own sheet before the manga pages)
 	m.AddRows(
 		row.New(25).Add(
 			col.New(12).Add(
 				text.New(fmt.Sprintf("Storyboard: %s", title), props.Text{
-					Top:   8,
-					Size:  14,
+					Top:   16,
+					Size:  18,
 					Style: fontstyle.Bold,
 					Align: align.Center,
 				}),
 			),
 		),
-		row.New(10).Add(
+		row.New(15).Add(
 			col.New(12).Add(
 				text.New(fmt.Sprintf("Mode: %s | Generated: %s", req.Msg.Mode, time.Now().Format("2006-01-02 15:04")), props.Text{
-					Size:  8,
+					Size:  10,
 					Align: align.Center,
 				}),
 			),
 		),
+		// Spacer to push subsequent rows onto the next page
+		row.New(324),
 	)
 
 	// Group panels by page
@@ -1689,24 +1691,20 @@ func (s *StoryboardService) ExportPdf(
 		compositeData, err := s.createMangaPageImage(pagePanels, workspaceRoot, pageWidth, pageHeight)
 		if err != nil {
 			log.Printf("Warning: could not create manga page %d: %v", pageNum, err)
-			// Add placeholder text for failed pages
-			m.AddRows(row.New(200).Add(col.New(12).Add(
+			// Add placeholder text for failed pages, sized to fill the B4 sheet
+			m.AddRows(row.New(364).Add(col.New(12).Add(
 				text.New(fmt.Sprintf("Page %d - Failed to render", pageNum), props.Text{
-					Size:  12,
+					Top:   180,
+					Size:  16,
 					Align: align.Center,
 				}),
 			)))
 			continue
 		}
 		
-		// Add page number header
-		m.AddRows(row.New(5).Add(col.New(12).Add(text.New(fmt.Sprintf("Page %d", pageNum), props.Text{
-			Size:  8,
-			Align: align.Center,
-		}))))
-		
-		// Add the composite manga page image - fills the page
-		m.AddRows(row.New(225).Add(col.New(12).Add(
+		// One full B4 sheet per manga page; the composite image already
+		// includes the Jump 原稿用紙 frame guides and corner marks.
+		m.AddRows(row.New(364).Add(col.New(12).Add(
 			image.NewFromBytes(compositeData, extension.Jpg, props.Rect{
 				Center:  true,
 				Percent: 100,
@@ -1943,34 +1941,38 @@ func getJumpMangaLayout(panelCount int) []panelLayoutDef {
 func (s *StoryboardService) createMangaPageImage(panels []*storyboardpb.Panel, workspaceRoot string, pageWidth, pageHeight int) ([]byte, error) {
 	// Create a white background canvas
 	canvas := goimage.NewRGBA(goimage.Rect(0, 0, pageWidth, pageHeight))
-	
+
 	// Fill with white background
 	white := goimage.NewUniform(goimage.White)
 	draw.Draw(canvas, canvas.Bounds(), white, goimage.Point{}, draw.Src)
-	
+
+	// Draw the Jump-style B4 manuscript paper frame guides (基本枠 + 裁ち落とし)
+	// before any panels so the guides sit underneath the artwork.
+	innerX, innerY, innerW, innerH := drawJumpManuscriptFrame(canvas, pageWidth, pageHeight)
+
 	// Get layout from the first panel (layouts are stored on first panel)
 	var mangaLayout *storyboardpb.MangaLayout
 	if len(panels) > 0 && panels[0].Data != nil {
 		mangaLayout = panels[0].Data.MangaLayout
 	}
-	
+
 	// Sort panels by panel number
 	sortedPanels := make([]*storyboardpb.Panel, len(panels))
 	copy(sortedPanels, panels)
 	sort.Slice(sortedPanels, func(i, j int) bool {
 		return sortedPanels[i].Panel < sortedPanels[j].Panel
 	})
-	
+
 	// Get default Jump manga layout based on panel count
 	defaultLayouts := getJumpMangaLayout(len(sortedPanels))
-	
+
 	// Draw each panel
 	for i, p := range sortedPanels {
 		// Get layout for this panel - prefer stored layout, fall back to default
 		var x, y, w, h float64
 		var imgX, imgY float64 = 50, 50
 		var imgScale float64 = 1.0
-		
+
 		if mangaLayout != nil && i < len(mangaLayout.Panels) {
 			layout := mangaLayout.Panels[i]
 			x = float64(layout.X)
@@ -2002,15 +2004,16 @@ func (s *StoryboardService) createMangaPageImage(panels []*storyboardpb.Panel, w
 			x = float64(col) * w
 			y = float64(row) * h
 		}
-		
-		// Convert percentage to pixels
-		destX := int(x * float64(pageWidth) / 100)
-		destY := int(y * float64(pageHeight) / 100)
-		destW := int(w * float64(pageWidth) / 100)
-		destH := int(h * float64(pageHeight) / 100)
-		
-		// Add small gap between panels (1% of page)
-		gap := pageWidth / 100
+
+		// Convert percentage to pixels relative to the inner frame (基本枠),
+		// so that critical content stays inside the safe area like real Jump paper.
+		destX := innerX + int(x*float64(innerW)/100)
+		destY := innerY + int(y*float64(innerH)/100)
+		destW := int(w * float64(innerW) / 100)
+		destH := int(h * float64(innerH) / 100)
+
+		// Add small gap between panels (1% of inner frame width)
+		gap := innerW / 100
 		destX += gap / 2
 		destY += gap / 2
 		destW -= gap
@@ -2135,6 +2138,100 @@ func drawPanelImage(canvas *goimage.RGBA, img goimage.Image, destX, destY, destW
 	
 	// Draw with high-quality scaling
 	draw.CatmullRom.Scale(canvas, destRect, img, srcRect, draw.Over, nil)
+}
+
+// drawJumpManuscriptFrame draws the Jump-style B4 manga 原稿用紙 guide lines
+// onto the canvas and returns the inner-frame (基本枠) rectangle in pixels so
+// callers can place panel content inside the safe area.
+//
+// Jump manuscript paper standard (paper = B4, 257x364mm):
+//   - 内枠 / 基本枠 (inner / basic frame, safe area for dialogue & key art): 180 x 270 mm
+//   - 裁ち落とし (bleed / trim line, magazine print area):                    220 x 310 mm
+//
+// All guide lines are drawn in a light cyan reminiscent of the official
+// "特製漫画原稿用紙 週刊少年ジャンプ" sheet, and short L-shaped corner marks
+// (トンボ) are added at each corner of the bleed line.
+func drawJumpManuscriptFrame(canvas *goimage.RGBA, pageWidth, pageHeight int) (innerX, innerY, innerW, innerH int) {
+	const (
+		paperWMM = 257.0
+		paperHMM = 364.0
+		innerWMM = 180.0
+		innerHMM = 270.0
+		bleedWMM = 220.0
+		bleedHMM = 310.0
+	)
+
+	pxPerMMx := float64(pageWidth) / paperWMM
+	pxPerMMy := float64(pageHeight) / paperHMM
+
+	innerW = int(innerWMM * pxPerMMx)
+	innerH = int(innerHMM * pxPerMMy)
+	innerX = (pageWidth - innerW) / 2
+	innerY = (pageHeight - innerH) / 2
+
+	bleedW := int(bleedWMM * pxPerMMx)
+	bleedH := int(bleedHMM * pxPerMMy)
+	bleedX := (pageWidth - bleedW) / 2
+	bleedY := (pageHeight - bleedH) / 2
+
+	// Light cyan, as on the actual Jump 特製漫画原稿用紙 sheet.
+	guide := color.RGBA{R: 125, G: 200, B: 217, A: 255}
+
+	// Stroke widths scale with DPI so the guides print crisply at any size.
+	thin := max(1, int(0.30*pxPerMMx)) // ~0.30 mm — 内枠 / 基本枠
+	bold := max(2, int(0.50*pxPerMMx)) // ~0.50 mm — 裁ち落とし line
+	mark := max(3, int(0.80*pxPerMMx)) // ~0.80 mm — corner registration marks
+
+	// Inner frame (基本枠) — thin outline.
+	drawRectOutline(canvas, innerX, innerY, innerW, innerH, thin, guide)
+	// Bleed / trim line (裁ち落とし) — bolder outline.
+	drawRectOutline(canvas, bleedX, bleedY, bleedW, bleedH, bold, guide)
+
+	// L-shaped corner registration marks at the bleed corners (~10mm legs).
+	armLen := int(10.0 * pxPerMMx)
+	drawCornerMarks(canvas, bleedX, bleedY, bleedW, bleedH, armLen, mark, guide)
+
+	return innerX, innerY, innerW, innerH
+}
+
+// drawRectOutline draws an outlined rectangle of the given stroke width.
+func drawRectOutline(canvas *goimage.RGBA, x, y, w, h, stroke int, c color.RGBA) {
+	bounds := canvas.Bounds()
+	uniform := goimage.NewUniform(c)
+	// Top
+	r := goimage.Rect(x, y, x+w, y+stroke).Intersect(bounds)
+	draw.Draw(canvas, r, uniform, goimage.Point{}, draw.Src)
+	// Bottom
+	r = goimage.Rect(x, y+h-stroke, x+w, y+h).Intersect(bounds)
+	draw.Draw(canvas, r, uniform, goimage.Point{}, draw.Src)
+	// Left
+	r = goimage.Rect(x, y, x+stroke, y+h).Intersect(bounds)
+	draw.Draw(canvas, r, uniform, goimage.Point{}, draw.Src)
+	// Right
+	r = goimage.Rect(x+w-stroke, y, x+w, y+h).Intersect(bounds)
+	draw.Draw(canvas, r, uniform, goimage.Point{}, draw.Src)
+}
+
+// drawCornerMarks paints L-shaped registration marks (トンボ) at each corner of
+// the given rectangle. Each arm is `arm` pixels long and `stroke` pixels thick.
+func drawCornerMarks(canvas *goimage.RGBA, x, y, w, h, arm, stroke int, c color.RGBA) {
+	bounds := canvas.Bounds()
+	uniform := goimage.NewUniform(c)
+	paint := func(r goimage.Rectangle) {
+		draw.Draw(canvas, r.Intersect(bounds), uniform, goimage.Point{}, draw.Src)
+	}
+	// Top-left
+	paint(goimage.Rect(x, y, x+arm, y+stroke))
+	paint(goimage.Rect(x, y, x+stroke, y+arm))
+	// Top-right
+	paint(goimage.Rect(x+w-arm, y, x+w, y+stroke))
+	paint(goimage.Rect(x+w-stroke, y, x+w, y+arm))
+	// Bottom-left
+	paint(goimage.Rect(x, y+h-stroke, x+arm, y+h))
+	paint(goimage.Rect(x, y+h-arm, x+stroke, y+h))
+	// Bottom-right
+	paint(goimage.Rect(x+w-arm, y+h-stroke, x+w, y+h))
+	paint(goimage.Rect(x+w-stroke, y+h-arm, x+w, y+h))
 }
 
 // drawPanelPlaceholder draws a placeholder rectangle for missing images
