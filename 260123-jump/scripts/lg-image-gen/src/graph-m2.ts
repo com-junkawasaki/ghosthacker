@@ -51,10 +51,35 @@ export const StateAnnotation = Annotation.Root({
 });
 export type State = typeof StateAnnotation.State;
 
+// Visual-style suffixes — drive the panel's artistic treatment
+const VISUAL_STYLE_SUFFIX: Record<string, string> = {
+  "cinematic-close": "Style: cinematic emotional close-up — extreme depth of field, rim lighting carving the focal character's silhouette, dramatic chiaroscuro shadow play, eyes as the dominant focal element with sharp catchlights, atmospheric particles. Inspired by 攻殻機動隊 (士郎正宗) quiet contemplation panels and One Piece emotional close-ups.",
+  "anime-action":     "Style: dynamic shounen action — exaggerated foreshortening, motion lines streaking from the focal character, speed effects, Dutch angle, impact stars/burst effects, halftone speed dust. Inspired by 岸本斉史 Naruto fight panels and 尾田栄一郎 One Piece battle compositions.",
+  "film-medium":      "Style: cinematic film-like medium shot — rule-of-thirds composition, layered foreground/midground/background with depth of field, set dressing visible, characters staged with intentional spacing, soft tonal gradients. Inspired by 攻殻機動隊 (押井守 film aesthetics) calm dialogue scenes and Aria's tonal medium shots.",
+  "establishing-illustration": "Style: detailed atmospheric establishing illustration — full environmental detail with weather/light condition, scenic depth, architectural specificity, texture-rich screen tones. Inspired by 天野こずえ Aria's establishing pages — peaceful, world-grounding detail.",
+};
+
+// Shot-type composition requirements (Naruto/OP/GitS quality)
+const SHOT_REQUIREMENTS: Record<string, string> = {
+  "Extreme Close Up": "Composition: eyes occupy at least 30% of frame area; pupils, irises, and catchlights must be sharply rendered; at least one physical signal (sweat, tear, blush, biting lip, dilated pupils) must be visible; rim light or reflected light source on face indicating story motivation.",
+  "Close Up":         "Composition: head and shoulders frame; expression-driving features (eyes + mouth) sharply rendered; subtle background bokeh; one expressive physical signal required; lighting indicates the emotional motivation.",
+  "Medium Shot":      "Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background.",
+  "Wide Shot":        "Composition: foreground / midground / background three-layer depth; focal character silhouette readable; environmental anchor (window light, doorway, key prop) clearly placed; rule of thirds.",
+  "Insert":           "Composition: single object filling 60-80% of frame; strong directional lighting with cast shadow; texture and material precisely rendered; surrounding context softened or framed.",
+  "Over the Shoulder": "Composition: foreground character's shoulder/back as silhouette occupying 30-40% of frame edge; focal character at golden ratio; depth of field separating layers.",
+  "POV":              "Composition: first-person view from one character; subject framed as if seen through their eyes; perspective lines driving toward what they're looking at.",
+};
+
+function shotRequirements(shot: string): string {
+  // Match by case-insensitive starts-with
+  const key = Object.keys(SHOT_REQUIREMENTS).find((k) => shot.toLowerCase().startsWith(k.toLowerCase().slice(0, 5)));
+  return key ? SHOT_REQUIREMENTS[key] : SHOT_REQUIREMENTS["Medium Shot"];
+}
+
 function basePrompt(state: State): string {
   const m = state.manifest as any;
 
-  // Phase 3.4 rich-schema fields (fall back to old fields if not present)
+  // Phase 3.4 rich-schema fields
   const sceneSubject = m.sceneSubject ?? "";
   const focusCharacter = m.focusCharacter ?? "";
   const allChars: string[] = m.allCharacters ?? m.characters ?? [];
@@ -62,6 +87,9 @@ function basePrompt(state: State): string {
   const visualDesc = m.gh_visualDescription ?? m.visualDescription ?? m.visual ?? "";
   const precedingBeat = m.precedingBeat ?? "";
   const followingBeat = m.followingBeat ?? "";
+  const visualStyle = m.visualStyle ?? "film-medium";
+  const tone = m.tone ?? "quiet";
+  const emotionSignals: { character: string; signals: string[] }[] = m.emotionPhysicalSignals ?? [];
 
   // Per-character descriptors
   const charDescriptors = allChars
@@ -73,12 +101,17 @@ function basePrompt(state: State): string {
     })
     .join(" / ");
 
+  // Emotion signals — concrete physical indicators
+  const signalsLine = emotionSignals.length > 0
+    ? `Required physical signals (must be visible in the rendered image): ${emotionSignals.map((s) => `${s.character}: ${s.signals.join(", ")}`).join(" / ")}.`
+    : "";
+
   const refsHint = state.resolvedRefs.length > 0
     ? `Character face-identity references are supplied as input images IN THIS ORDER: ${state.resolvedRefs.map((r, i) => `(${i + 1}) ${r.character}`).join(", ")}. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described.`
     : "";
 
   const propsLine = props.length > 0
-    ? `KEY PROPS in scene (must be visible and recognizable): ${props.join(", ")}.`
+    ? `KEY PROPS in scene (must be visible and recognizable, integrated into the composition): ${props.join(", ")}.`
     : "";
 
   const subjectLine = sceneSubject
@@ -89,16 +122,24 @@ function basePrompt(state: State): string {
     ? `Story continuity — preceding beat: ${precedingBeat || "(none)"} / following beat: ${followingBeat || "(none)"}. The panel must visually connect with these beats.`
     : "";
 
+  const styleLine = VISUAL_STYLE_SUFFIX[visualStyle] ?? VISUAL_STYLE_SUFFIX["film-medium"];
+  const toneLine = `Emotional tone: ${tone}.`;
+  const shotReqLine = shotRequirements(m.shot ?? "Medium Shot");
+
   return [
-    "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image.",
+    "Manga panel illustration to be published in Weekly Shounen Jump (週刊少年ジャンプ) — each panel must read as a STANDALONE artwork, monochrome with screen tones, single full-bleed image.",
     state.setting ? `LOCATION (do not change): ${state.setting}.` : "",
     state.visualNote ? `Set dressing: ${state.visualNote}.` : "",
     subjectLine,
     `Visual to render: ${visualDesc}.`,
     propsLine,
     `Shot framing: ${m.shot}.`,
+    shotReqLine,
     allChars.length > 0 ? `Characters in frame (each must be visually distinct): ${charDescriptors}.` : "Empty scene.",
     focusCharacter && focusCharacter !== "shared" ? `Compositional focus is on ${focusCharacter}.` : "",
+    signalsLine,
+    toneLine,
+    styleLine,
     continuityLine,
     refsHint,
     "ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
@@ -155,7 +196,16 @@ async function critiqueNode(state: State): Promise<Partial<State>> {
   const t0 = Date.now();
   if (!state.candidatePath) return { errors: ["no candidate"] };
   try {
-    const c = await critique(state.candidatePath, state.setting || state.manifest.visual, state.manifest.characters, state.manifest.shot);
+    const m = state.manifest as any;
+    const c = await critique(
+      state.candidatePath,
+      state.setting || m.visual,
+      m.allCharacters ?? state.manifest.characters,
+      state.manifest.shot,
+      m.props ?? [],
+      m.emotionPhysicalSignals ?? [],
+      m.visualStyle ?? "",
+    );
     const better = c.score > state.bestScore;
     const dur = state.durationMs.critique ?? 0;
     return {

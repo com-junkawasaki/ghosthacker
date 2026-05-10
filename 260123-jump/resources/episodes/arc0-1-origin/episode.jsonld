@@ -8897,7 +8897,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n1-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Tempting Logo. Visual to render: Yuto is staring at a computer screen with a suspicious expression. The flashy logo catches his attention.. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto begins browsing online. / following beat: Yuto scrutinizes the reviews.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778427721,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 32678,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=9)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 27443
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5232
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 3
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n1-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Tempting Logo. Visual to render: Yuto is staring at a computer screen with a suspicious expression. The flashy logo catches his attention.. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto begins browsing online. / following beat: Yuto scrutinizes the reviews.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p5n2-v3",
@@ -8941,7 +8982,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n2-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Reading Reviews. Visual to render: Close-up of Yuto's face with an intrigued look as he reads positive reviews.. Shot framing: Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto turns his attention to reviews. / following beat: Contemplates affordability next month.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778427752,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 29352,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=9)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 24221
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5128
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 3
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/neutral_front.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n2-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Reading Reviews. Visual to render: Close-up of Yuto's face with an intrigued look as he reads positive reviews.. Shot framing: Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto turns his attention to reviews. / following beat: Contemplates affordability next month.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p5n3-v3",
@@ -8991,7 +9073,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n3-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Decision Making. Visual to render: Yuto relaxes in his chair, pondering his budget. The light from the screen glints off his glasses.. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Consideration of positive reviews. / following beat: Secretly begins to act on his decision.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778427787,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 33581,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 28186
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5390
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n3-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Decision Making. Visual to render: Yuto relaxes in his chair, pondering his budget. The light from the screen glints off his glasses.. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Consideration of positive reviews. / following beat: Secretly begins to act on his decision.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p5n4-v3",
@@ -9038,7 +9161,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n4-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): The Wallet. Visual to render: Yuto's hand stealthily extracts his mother's credit card from his wallet.. KEY PROPS in scene (must be visible and recognizable): wallet, credit card. Shot framing: Extreme Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto decides to purchase the item. / following beat: Moment of hesitation about his actions.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778427821,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 32464,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 27515
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4945
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/neutral_front.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n4-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): The Wallet. Visual to render: Yuto's hand stealthily extracts his mother's credit card from his wallet.. KEY PROPS in scene (must be visible and recognizable): wallet, credit card. Shot framing: Extreme Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto decides to purchase the item. / following beat: Moment of hesitation about his actions.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p5n5-v3",
@@ -9084,7 +9248,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n5-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Hesitation. Visual to render: Holding the credit card, Yuto pauses with a mixture of reluctance and resolve visible on his face.. KEY PROPS in scene (must be visible and recognizable): credit card. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto takes out the credit card. / following beat: Moves forward with the purchase.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778427857,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 35088,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 30172
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4915
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 1
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n5-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Hesitation. Visual to render: Holding the credit card, Yuto pauses with a mixture of reluctance and resolve visible on his face.. KEY PROPS in scene (must be visible and recognizable): credit card. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto takes out the credit card. / following beat: Moves forward with the purchase.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p5n6-v3",
@@ -9136,7 +9341,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n6-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Order Confirmation. Visual to render: The '注文完了' message glows on the screen as Yuto reacts with an exhale of relief.. KEY PROPS in scene (must be visible and recognizable): computer screen. Shot framing: Insert. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto resolves to use the card. / following beat: Feels a rush of satisfaction and anticipation.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778427902,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 43234,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 38561
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4667
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n6-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Order Confirmation. Visual to render: The '注文完了' message glows on the screen as Yuto reacts with an exhale of relief.. KEY PROPS in scene (must be visible and recognizable): computer screen. Shot framing: Insert. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto resolves to use the card. / following beat: Feels a rush of satisfaction and anticipation.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p5n7-v3",
@@ -9186,7 +9432,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n7-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Excitement of Delivery. Visual to render: Yuto's bright expression shows his excitement for the next day's delivery, a look of glee and anticipation.. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto sees the order confirmation. / following beat: Transitions to checking Akira's SNS.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778427939,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 34828,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=9)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 29047
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5774
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 7
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "action_shout",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/action_shout.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n7-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Excitement of Delivery. Visual to render: Yuto's bright expression shows his excitement for the next day's delivery, a look of glee and anticipation.. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto sees the order confirmation. / following beat: Transitions to checking Akira's SNS.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p5n8-v3",
@@ -9226,7 +9513,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n8-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Relaxed Anticipation. Visual to render: Yuto is lying on his bed, phone in hand, scrolling through Akira's SNS with satisfaction and a plan to gloat.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Wide. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto imagines bragging to Akira. / following beat: Reflects on his actions with mixed feelings, but overall satisfaction.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778427977,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 36442,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 30204
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 6233
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/5/panel_panel_p5n8-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Relaxed Anticipation. Visual to render: Yuto is lying on his bed, phone in hand, scrolling through Akira's SNS with satisfaction and a plan to gloat.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Wide. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto imagines bragging to Akira. / following beat: Reflects on his actions with mixed feelings, but overall satisfaction.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         }
       ],
       "gh:v2Migration": {
@@ -10539,7 +10867,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n1-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren's Investigation Wall. Visual to render: Ren stands before a vast wall filled with pins, photos, and paper scraps connected by red threads. He stands with his arms crossed, gazing intently at the wall, embodying determination and frustration.. KEY PROPS in scene (must be visible and recognizable): investigation wall, pins, photos, papers, red threads. Shot framing: Wide. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: A transitional view of Ren observing the culmination of seven years of work. / following beat: Ren reflects deeply on his journey so far.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428012,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 34072,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 28495
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5573
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n1-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren's Investigation Wall. Visual to render: Ren stands before a vast wall filled with pins, photos, and paper scraps connected by red threads. He stands with his arms crossed, gazing intently at the wall, embodying determination and frustration.. KEY PROPS in scene (must be visible and recognizable): investigation wall, pins, photos, papers, red threads. Shot framing: Wide. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: A transitional view of Ren observing the culmination of seven years of work. / following beat: Ren reflects deeply on his journey so far.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p6n2-v3",
@@ -10585,7 +10954,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n2-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren's Monologue on the Investigation. Visual to render: Close-up of Ren's face as he reflects on his extensive investigation. Lines of determination etched on his face show the years of dedication and the current standstill he faces.. KEY PROPS in scene (must be visible and recognizable): computer. Shot framing: Close Up. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Ren focuses on his investigation wall. / following beat: Ren shifts his attention to a meaningful object in his narrative.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428049,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 35351,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 30120
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5226
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/neutral_front.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n2-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren's Monologue on the Investigation. Visual to render: Close-up of Ren's face as he reflects on his extensive investigation. Lines of determination etched on his face show the years of dedication and the current standstill he faces.. KEY PROPS in scene (must be visible and recognizable): computer. Shot framing: Close Up. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Ren focuses on his investigation wall. / following beat: Ren shifts his attention to a meaningful object in his narrative.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p6n3-v3",
@@ -10627,7 +11037,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n3-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren Approaches His Father's Device. Visual to render: Ren moves toward his cluttered desk, his eyes briefly flicking to a small, dusty box and the faintly blinking SIP device left by his father, hinting at its long-standing operation.. KEY PROPS in scene (must be visible and recognizable): desk, small box, SIP device. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Contemplation of the information shortage. / following beat: Recognizes the potential within his father's device.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428101,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 50797,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 45460
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5334
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 3
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n3-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren Approaches His Father's Device. Visual to render: Ren moves toward his cluttered desk, his eyes briefly flicking to a small, dusty box and the faintly blinking SIP device left by his father, hinting at its long-standing operation.. KEY PROPS in scene (must be visible and recognizable): desk, small box, SIP device. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Contemplation of the information shortage. / following beat: Recognizes the potential within his father's device.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p6n4-v3",
@@ -10673,7 +11124,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n4-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren Deciphers the Device. Visual to render: Details of Ren's intense concentration as he examines his father's Holonium device, speaking to its secrets hidden within and the challenge it presents.. KEY PROPS in scene (must be visible and recognizable): Holonium device. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Ren acknowledges his father's legacy. / following beat: He interacts with the old device.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428137,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 33821,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 28981
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4836
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 3
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "focused_3q_right",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/focused_3q_right.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n4-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren Deciphers the Device. Visual to render: Details of Ren's intense concentration as he examines his father's Holonium device, speaking to its secrets hidden within and the challenge it presents.. KEY PROPS in scene (must be visible and recognizable): Holonium device. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Ren acknowledges his father's legacy. / following beat: He interacts with the old device.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p6n5-v3",
@@ -10714,7 +11206,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n5-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren Sits Down. Visual to render: Ren finally sits down at the keyboard his father used, fingers brushing over the keys as if trying to connect with the past and find a way forward.. KEY PROPS in scene (must be visible and recognizable): chair, HHKB keyboard. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Ren contemplates using the device. / following beat: Resolves to act despite the challenge.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428171,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 32466,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 26333
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 6129
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 3
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n5-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren Sits Down. Visual to render: Ren finally sits down at the keyboard his father used, fingers brushing over the keys as if trying to connect with the past and find a way forward.. KEY PROPS in scene (must be visible and recognizable): chair, HHKB keyboard. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Ren contemplates using the device. / following beat: Resolves to act despite the challenge.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p6n6-v3",
@@ -10760,7 +11293,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n6-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren's Frustration. Visual to render: Close-up on Ren's hand on the renegade keyboard, a visual pause capturing his whisper to the silent room, breaking the contemplation with the sheer weight of stagnation.. KEY PROPS in scene (must be visible and recognizable): Holonium device. Shot framing: Close Up. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Ren prepares to invoke the device's power. / following beat: The room remains silent.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428225,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 52389,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 47655
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4729
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/neutral_front.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/6/panel_panel_p6n6-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren's Frustration. Visual to render: Close-up on Ren's hand on the renegade keyboard, a visual pause capturing his whisper to the silent room, breaking the contemplation with the sheer weight of stagnation.. KEY PROPS in scene (must be visible and recognizable): Holonium device. Shot framing: Close Up. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Ren prepares to invoke the device's power. / following beat: The room remains silent.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         }
       ],
       "gh:v2Migration": {
@@ -11843,7 +12417,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n1-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Incoming Message Notification. Visual to render: Ren sits at his chair, eyes fixed on the right monitor displaying a new DM notification. His face shows a hint of surprise.. KEY PROPS in scene (must be visible and recognizable): Monitor, Notification. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Ren settles into his chair. / following beat: He acknowledges the sender of the message.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428254,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 27705,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 22971
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4730
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n1-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Incoming Message Notification. Visual to render: Ren sits at his chair, eyes fixed on the right monitor displaying a new DM notification. His face shows a hint of surprise.. KEY PROPS in scene (must be visible and recognizable): Monitor, Notification. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Ren settles into his chair. / following beat: He acknowledges the sender of the message.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p7n2-v3",
@@ -11889,7 +12504,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n2-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren's Reaction. Visual to render: Close-up of Ren's thoughtful face as he reads the message, internalizing its significance.. KEY PROPS in scene (must be visible and recognizable): Computer. Shot framing: Close Up. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: The message alert shows up. / following beat: The details of nue's message unfold.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428291,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 35866,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 30624
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5237
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/neutral_front.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n2-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren's Reaction. Visual to render: Close-up of Ren's thoughtful face as he reads the message, internalizing its significance.. KEY PROPS in scene (must be visible and recognizable): Computer. Shot framing: Close Up. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: The message alert shows up. / following beat: The details of nue's message unfold.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p7n3-v3",
@@ -11929,7 +12585,46 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n3-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Message from Nue. Visual to render: Wide shot of Ren's monitor displaying nue's urgent and complex message, detailed text filling the screen.. KEY PROPS in scene (must be visible and recognizable): DM. Shot framing: Wide. Characters in frame (each must be visually distinct): Ren. Compositional focus is on nue. Story continuity — preceding beat: Ren reacts to getting a message. / following beat: He reflects on his relationship with nue.. The panel must visually connect with these beats. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt did NOT show the correct location. Strictly render: . Do not drift to any other setting (no jewelry shop, no street, no home — only the school location specified). Critic notes: The monitor does not display Ren's urgent and complex message clearly, as it shows various images rather than detailed text. Ren is present, but the setting is not as specified.. Address these.",
+              "gh:generatedAt": 1778428363,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 69767,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=2, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 2
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 60624
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 9138
+                },
+                {
+                  "name": "refine",
+                  "durationMs": 0
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 3
+                }
+              ],
+              "gh:referenceCharacters": [
+                "nue"
+              ],
+              "gh:referenceSelections": []
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n3-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Message from Nue. Visual to render: Wide shot of Ren's monitor displaying nue's urgent and complex message, detailed text filling the screen.. KEY PROPS in scene (must be visible and recognizable): DM. Shot framing: Wide. Characters in frame (each must be visually distinct): Ren. Compositional focus is on nue. Story continuity — preceding beat: Ren reacts to getting a message. / following beat: He reflects on his relationship with nue.. The panel must visually connect with these beats. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt did NOT show the correct location. Strictly render: . Do not drift to any other setting (no jewelry shop, no street, no home — only the school location specified). Critic notes: The monitor does not display Ren's urgent and complex message clearly, as it shows various images rather than detailed text. Ren is present, but the setting is not as specified.. Address these."
         },
         {
           "@id": "panel:p7n4-v3",
@@ -11971,7 +12666,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n4-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren Remembers Nue. Visual to render: Flashback insets of childhood memories with nue, overlaid with the present situation at the computer.. KEY PROPS in scene (must be visible and recognizable): Monitor. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren [FOCUS] (in-frame 1/2) / nue (in-frame 2/2). Compositional focus is on Ren. Story continuity — preceding beat: Ren absorbs the DM's content. / following beat: Ren decides to act.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428406,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 41914,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 35782
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 6128
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n4-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren Remembers Nue. Visual to render: Flashback insets of childhood memories with nue, overlaid with the present situation at the computer.. KEY PROPS in scene (must be visible and recognizable): Monitor. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren [FOCUS] (in-frame 1/2) / nue (in-frame 2/2). Compositional focus is on Ren. Story continuity — preceding beat: Ren absorbs the DM's content. / following beat: Ren decides to act.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p7n5-v3",
@@ -12012,7 +12748,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n5-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Engaging Hacker Nues. Visual to render: Ren types swiftly on the HHKB, navigating to the 'Hacker Nues' platform. The logo is visible on the screen.. KEY PROPS in scene (must be visible and recognizable): Keyboard, Browser. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Ren recalls the connection with nue. / following beat: He reads through the tech forum threads.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428444,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 36994,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 31817
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5173
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n5-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Engaging Hacker Nues. Visual to render: Ren types swiftly on the HHKB, navigating to the 'Hacker Nues' platform. The logo is visible on the screen.. KEY PROPS in scene (must be visible and recognizable): Keyboard, Browser. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Ren recalls the connection with nue. / following beat: He reads through the tech forum threads.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p7n6-v3",
@@ -12060,7 +12837,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n6-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Forum Threads and Insight. Visual to render: Close-up of Ren's eyes glowing as he vigilantly scans the discussion threads, deciphering critical forum messages.. KEY PROPS in scene (must be visible and recognizable): Thread. Shot framing: Close Up. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Ren opens the discussion platform. / following beat: Analyzes posts from allies.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428478,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 32411,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=9)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 27840
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4567
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/neutral_front.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n6-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Forum Threads and Insight. Visual to render: Close-up of Ren's eyes glowing as he vigilantly scans the discussion threads, deciphering critical forum messages.. KEY PROPS in scene (must be visible and recognizable): Thread. Shot framing: Close Up. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Ren opens the discussion platform. / following beat: Analyzes posts from allies.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p7n7-v3",
@@ -12106,7 +12924,46 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n7-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Posts from Allies. Visual to render: A composite of various forum posts detailing hacker activities. Key posts emphasized for Ren's attention.. KEY PROPS in scene (must be visible and recognizable): Forum posts. Shot framing: Over the Shoulder. Characters in frame (each must be visually distinct): Ren (in-frame 1/4) / aka_chise1 (in-frame 2/4) / 3pa11er3apiv0t (in-frame 3/4) / nue (in-frame 4/4). Story continuity — preceding beat: Ren reviews a spiking thread. / following beat: Tags users as new allies.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428522,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 42273,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 2
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 37157
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5110
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n7-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Posts from Allies. Visual to render: A composite of various forum posts detailing hacker activities. Key posts emphasized for Ren's attention.. KEY PROPS in scene (must be visible and recognizable): Forum posts. Shot framing: Over the Shoulder. Characters in frame (each must be visually distinct): Ren (in-frame 1/4) / aka_chise1 (in-frame 2/4) / 3pa11er3apiv0t (in-frame 3/4) / nue (in-frame 4/4). Story continuity — preceding beat: Ren reviews a spiking thread. / following beat: Tags users as new allies.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p7n8-v3",
@@ -12150,7 +13007,52 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n8-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren's Contribution. Visual to render: Ren pens his own post, identifying his handle as 'Ghost_Owl', contributing his observations. HHKB keys catch ambient light.. KEY PROPS in scene (must be visible and recognizable): Keyboard. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Community posts indicate urgency. / following beat: Ren adds to the intel pool.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt did NOT show the correct location. Strictly render: . Do not drift to any other setting (no jewelry shop, no street, no home — only the school location specified). Critic notes: The panel depicts Ren typing, but there is no clear indication that he is identifying his handle as 'Ghost_Owl' or contributing observations. The ambient light on the HHKB keys is present but lacks focus on the setting elements described.. Address these.",
+              "gh:generatedAt": 1778428597,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 73357,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=2, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 1
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 65008
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 8344
+                },
+                {
+                  "name": "refine",
+                  "durationMs": 0
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Ren"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n8-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Ren's Contribution. Visual to render: Ren pens his own post, identifying his handle as 'Ghost_Owl', contributing his observations. HHKB keys catch ambient light.. KEY PROPS in scene (must be visible and recognizable): Keyboard. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren [FOCUS]. Compositional focus is on Ren. Story continuity — preceding beat: Community posts indicate urgency. / following beat: Ren adds to the intel pool.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt did NOT show the correct location. Strictly render: . Do not drift to any other setting (no jewelry shop, no street, no home — only the school location specified). Critic notes: The panel depicts Ren typing, but there is no clear indication that he is identifying his handle as 'Ghost_Owl' or contributing observations. The ambient light on the HHKB keys is present but lacks focus on the setting elements described.. Address these."
         },
         {
           "@id": "panel:p7n9-v3",
@@ -12193,7 +13095,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n9-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Watching Neighbors. Visual to render: Nei watches from her window, observing Ren’s room light and fast-typing fingers, her face a mixture of intrigue and relief.. KEY PROPS in scene (must be visible and recognizable): Window. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren (in-frame 1/2) / Nei [FOCUS] (in-frame 2/2). Compositional focus is on Nei. Story continuity — preceding beat: Ren identifies and allies digitally. / following beat: Silent observation from a friend.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Nei. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428637,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 38189,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=9)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 33996
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4189
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Nei"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Nei",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n9-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Watching Neighbors. Visual to render: Nei watches from her window, observing Ren’s room light and fast-typing fingers, her face a mixture of intrigue and relief.. KEY PROPS in scene (must be visible and recognizable): Window. Shot framing: Medium. Characters in frame (each must be visually distinct): Ren (in-frame 1/2) / Nei [FOCUS] (in-frame 2/2). Compositional focus is on Nei. Story continuity — preceding beat: Ren identifies and allies digitally. / following beat: Silent observation from a friend.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Nei. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p7n10-v3",
@@ -12307,7 +13250,51 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n10-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Neighborly Exchange. Visual to render: Ren and Nei exchange brief but meaningful DMs, while Ren lightly taps on a memorized key on the HHKB with introspection.. KEY PROPS in scene (must be visible and recognizable): Mobile, HHKB. Shot framing: Over the Shoulder. Characters in frame (each must be visually distinct): Ren (in-frame 1/2) / Nei (in-frame 2/2). Story continuity — preceding beat: Nei observes Ren's fast actions. / following beat: Ren taps a key, deep in thought.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren, (2) Nei. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428677,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 38533,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 33426
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5102
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [],
+              "gh:referenceSelections": [
+                {
+                  "character": "Ren",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
+                },
+                {
+                  "character": "Nei",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/7/panel_panel_p7n10-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Neighborly Exchange. Visual to render: Ren and Nei exchange brief but meaningful DMs, while Ren lightly taps on a memorized key on the HHKB with introspection.. KEY PROPS in scene (must be visible and recognizable): Mobile, HHKB. Shot framing: Over the Shoulder. Characters in frame (each must be visually distinct): Ren (in-frame 1/2) / Nei (in-frame 2/2). Story continuity — preceding beat: Nei observes Ren's fast actions. / following beat: Ren taps a key, deep in thought.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren, (2) Nei. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         }
       ],
       "gh:v2Migration": {
@@ -12920,7 +13907,6 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n1-v2_sketch_v1.png",
@@ -12953,11 +13939,49 @@
                   "note": "default reference"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n1-v3_v2.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Yuto checks his smartphone. Visual to render: Yuto sits on his bed, holding his smartphone, with a look of frustration and impatience. The screen displays the package tracking app.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto waiting, checking repeatedly. / following beat: He expresses his frustration aloud.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428709,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 31051,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 26423
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4624
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/neutral_front.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n1-v2_sketch_v1.png",
-          "gh:migratedFromPanel": "panel:p8n1-v2"
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n1-v3_v2.png",
+          "gh:migratedFromPanel": "panel:p8n1-v2",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Yuto checks his smartphone. Visual to render: Yuto sits on his bed, holding his smartphone, with a look of frustration and impatience. The screen displays the package tracking app.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto waiting, checking repeatedly. / following beat: He expresses his frustration aloud.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p8n2-v3",
@@ -13001,7 +14025,6 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n1-v2_sketch_v1.png",
@@ -13034,11 +14057,49 @@
                   "note": "default reference"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n2-v3_v2.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Yuto's frustration. Visual to render: A close-up of Yuto's face, capturing his annoyance and restlessness.. Shot framing: Extreme Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto checking the screen multiple times. / following beat: Sudden noise breaks his focus.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428739,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 28472,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=9)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 24639
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 3830
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 3
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/neutral_front.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n1-v2_sketch_v1.png",
-          "gh:migratedFromPanel": "panel:p8n1-v2"
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n2-v3_v2.png",
+          "gh:migratedFromPanel": "panel:p8n1-v2",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Yuto's frustration. Visual to render: A close-up of Yuto's face, capturing his annoyance and restlessness.. Shot framing: Extreme Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto checking the screen multiple times. / following beat: Sudden noise breaks his focus.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p8n3-v3",
@@ -13080,7 +14141,6 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n1-v2_sketch_v1.png",
@@ -13113,11 +14173,49 @@
                   "note": "default reference"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n3-v3_v2.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Mother arrives. Visual to render: From Yuto's perspective, the focus is on the door opening and the shopping bag being set down, partially revealing his mother.. KEY PROPS in scene (must be visible and recognizable): shopping bag. Shot framing: Over the Shoulder. Characters in frame (each must be visually distinct): Yuto [FOCUS] (in-frame 1/2) / Mother (in-frame 2/2). Compositional focus is on Yuto. Story continuity — preceding beat: Yuto expressing frustration. / following beat: Yuto hides the smartphone.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428796,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 55124,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 49856
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5264
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n1-v2_sketch_v1.png",
-          "gh:migratedFromPanel": "panel:p8n1-v2"
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n3-v3_v2.png",
+          "gh:migratedFromPanel": "panel:p8n1-v2",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Mother arrives. Visual to render: From Yuto's perspective, the focus is on the door opening and the shopping bag being set down, partially revealing his mother.. KEY PROPS in scene (must be visible and recognizable): shopping bag. Shot framing: Over the Shoulder. Characters in frame (each must be visually distinct): Yuto [FOCUS] (in-frame 1/2) / Mother (in-frame 2/2). Compositional focus is on Yuto. Story continuity — preceding beat: Yuto expressing frustration. / following beat: Yuto hides the smartphone.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p8n4-v3",
@@ -13163,7 +14261,6 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n1-v2_sketch_v1.png",
@@ -13196,11 +14293,49 @@
                   "note": "default reference"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n4-v3_v2.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Yuto's realization. Visual to render: A medium shot of Yuto now sitting on the edge of his bed with a resigned expression, the smartphone forgotten beside him.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto hides his smartphone as his mother arrives. / following beat: Yuto absorbs the situation's reality.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428834,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 36520,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 30761
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5753
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 6
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n1-v2_sketch_v1.png",
-          "gh:migratedFromPanel": "panel:p8n1-v2"
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n4-v3_v2.png",
+          "gh:migratedFromPanel": "panel:p8n1-v2",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Yuto's realization. Visual to render: A medium shot of Yuto now sitting on the edge of his bed with a resigned expression, the smartphone forgotten beside him.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto hides his smartphone as his mother arrives. / following beat: Yuto absorbs the situation's reality.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         }
       ],
       "gh:v2Migration": {
@@ -13740,7 +14875,6 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n1-v2_sketch_v1.png",
@@ -13765,11 +14899,49 @@
               ],
               "gh:referenceCharacters": [],
               "gh:referenceSelections": []
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n1-v3_v2.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Sending Inquiry. Visual to render: Yuto holds his phone, fingers typing on the screen as he nervously composes a DM on a sneaker resale site. His brow is furrowed in concentration.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto has been anxious about his order. / following beat: He sends the DM.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428873,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 36944,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 32124
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4814
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 6
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n1-v2_sketch_v1.png",
-          "gh:migratedFromPanel": "panel:p9n1-v2"
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n1-v3_v2.png",
+          "gh:migratedFromPanel": "panel:p9n1-v2",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Sending Inquiry. Visual to render: Yuto holds his phone, fingers typing on the screen as he nervously composes a DM on a sneaker resale site. His brow is furrowed in concentration.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto has been anxious about his order. / following beat: He sends the DM.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p9n2-v3",
@@ -13814,7 +14986,6 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n2-v2_sketch_v1.png",
@@ -13839,11 +15010,49 @@
               ],
               "gh:referenceCharacters": [],
               "gh:referenceSelections": []
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n2-v3_v2.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): DM Sent. Visual to render: Close-up of the phone screen as the DM bubble appears, text reads 'すみません、まだ届かないんですが……' sent to the resale site.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto composes a message. / following beat: The message is sent.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428904,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 29917,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=9)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 25776
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4136
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/neutral_front.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n2-v2_sketch_v1.png",
-          "gh:migratedFromPanel": "panel:p9n2-v2"
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n2-v3_v2.png",
+          "gh:migratedFromPanel": "panel:p9n2-v2",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): DM Sent. Visual to render: Close-up of the phone screen as the DM bubble appears, text reads 'すみません、まだ届かないんですが……' sent to the resale site.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto composes a message. / following beat: The message is sent.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p9n3-v3",
@@ -13886,7 +15095,6 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n3-v2_sketch_v1.png",
@@ -13911,11 +15119,47 @@
               ],
               "gh:referenceCharacters": [],
               "gh:referenceSelections": []
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n3-v3_v2.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Quick Response. Visual to render: The phone buzzes almost instantly in Yuto's hand. The screen lights up with a new message notification.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Insert. Characters in frame (each must be visually distinct): Yuto. Story continuity — preceding beat: Yuto sends his DM. / following beat: Yuto reads the response.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428935,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 29296,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 24578
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4713
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n3-v2_sketch_v1.png",
-          "gh:migratedFromPanel": "panel:p9n3-v2"
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n3-v3_v2.png",
+          "gh:migratedFromPanel": "panel:p9n3-v2",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Quick Response. Visual to render: The phone buzzes almost instantly in Yuto's hand. The screen lights up with a new message notification.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Insert. Characters in frame (each must be visually distinct): Yuto. Story continuity — preceding beat: Yuto sends his DM. / following beat: Yuto reads the response.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p9n4-v3",
@@ -13960,7 +15204,6 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n4-v2_sketch_v1.png",
@@ -13985,11 +15228,49 @@
               ],
               "gh:referenceCharacters": [],
               "gh:referenceSelections": []
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n4-v3_v2.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Reading Response. Visual to render: Yuto looks relieved as he reads the message. The text from 'TokyoSneaker-Premium.shop' is visible: 'お問い合わせありがとうございます！確認させてください (^^)'. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto receives the reply. / following beat: Yuto feels assured by the response.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778428976,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 39094,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 34225
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4865
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n4-v2_sketch_v1.png",
-          "gh:migratedFromPanel": "panel:p9n4-v2"
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n4-v3_v2.png",
+          "gh:migratedFromPanel": "panel:p9n4-v2",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Reading Response. Visual to render: Yuto looks relieved as he reads the message. The text from 'TokyoSneaker-Premium.shop' is visible: 'お問い合わせありがとうございます！確認させてください (^^)'. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto receives the reply. / following beat: Yuto feels assured by the response.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p9n5-v3",
@@ -14035,7 +15316,6 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n5-v2_sketch_v1.png",
@@ -14068,11 +15348,49 @@
                   "note": "default reference"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n5-v3_v2.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Expressing Relief. Visual to render: Close-up of Yuto's face, a sense of relief washing over him as he softly says, 'あ、返事、くれた'. His features relax visibly.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: The response confirms a positive interaction. / following beat: Yuto processes the relief of having his issue acknowledged.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778429013,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 36282,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 30863
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5415
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/neutral_front.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n5-v2_sketch_v1.png",
-          "gh:migratedFromPanel": "panel:p9n5-v2"
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n5-v3_v2.png",
+          "gh:migratedFromPanel": "panel:p9n5-v2",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Expressing Relief. Visual to render: Close-up of Yuto's face, a sense of relief washing over him as he softly says, 'あ、返事、くれた'. His features relax visibly.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: The response confirms a positive interaction. / following beat: Yuto processes the relief of having his issue acknowledged.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p9n6-v3",
@@ -14116,7 +15434,6 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true,
           "gh:generatedImages": [
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n5-v2_sketch_v1.png",
@@ -14149,11 +15466,49 @@
                   "note": "default reference"
                 }
               ]
+            },
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n6-v3_v2.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Contentment. Visual to render: Wide view of Yuto sitting back on his chair with a calm smile, clutching his phone as if it's a lifeline, his posture relaxed.. Shot framing: Wide. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto feels reassured. / following beat: The moment of tension has subsided.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778429054,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 38859,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 34291
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4564
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
             }
           ],
-          "gh:currentImageIndex": 0,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n5-v2_sketch_v1.png",
-          "gh:migratedFromPanel": "panel:p9n5-v2"
+          "gh:currentImageIndex": 1,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n6-v3_v2.png",
+          "gh:migratedFromPanel": "panel:p9n5-v2",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Contentment. Visual to render: Wide view of Yuto sitting back on his chair with a calm smile, clutching his phone as if it's a lifeline, his posture relaxed.. Shot framing: Wide. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto feels reassured. / following beat: The moment of tension has subsided.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         }
       ],
       "gh:v2Migration": {
@@ -14783,7 +16138,46 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n1-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): DM from TokyoSneaker-Premium.shop. Visual to render: Yuto gazes at his smartphone, displaying a DM from the purported sneaker shop. The DM text facing the reader provides instructions requesting a verification number.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto. Story continuity — preceding beat: Yuto receives a notification on his phone. / following beat: A new SMS notification pops up.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778429087,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 31859,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=9)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 26914
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4941
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n1-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): DM from TokyoSneaker-Premium.shop. Visual to render: Yuto gazes at his smartphone, displaying a DM from the purported sneaker shop. The DM text facing the reader provides instructions requesting a verification number.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto. Story continuity — preceding beat: Yuto receives a notification on his phone. / following beat: A new SMS notification pops up.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p10n2-v3",
@@ -14821,7 +16215,46 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n2-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): SMS notification sound. Visual to render: A close-up of the smartphone screen shows the SMS notification from Neli, capturing the moment the notification sound 'ピン' is emitted.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Extreme Close Up. Characters in frame (each must be visually distinct): Yuto. Story continuity — preceding beat: Yuto looks at the DM. / following beat: Yuto reads the SMS message.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778429119,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 30517,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 26328
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4185
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/neutral_front.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n2-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): SMS notification sound. Visual to render: A close-up of the smartphone screen shows the SMS notification from Neli, capturing the moment the notification sound 'ピン' is emitted.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Extreme Close Up. Characters in frame (each must be visually distinct): Yuto. Story continuity — preceding beat: Yuto looks at the DM. / following beat: Yuto reads the SMS message.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p10n3-v3",
@@ -14859,7 +16292,46 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n3-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): SMS from Neli. Visual to render: Focus on the smartphone screen showing the SMS from Neli: '【Neli】認証番号：847293 この番号は他人に教えないでください.'. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Close Up. Characters in frame (each must be visually distinct): Yuto. Story continuity — preceding beat: A notification sound rings. / following beat: Yuto hesitates, contemplating the message.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778429150,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 29108,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=9)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 24289
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4815
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/neutral_front.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n3-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): SMS from Neli. Visual to render: Focus on the smartphone screen showing the SMS from Neli: '【Neli】認証番号：847293 この番号は他人に教えないでください.'. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Close Up. Characters in frame (each must be visually distinct): Yuto. Story continuity — preceding beat: A notification sound rings. / following beat: Yuto hesitates, contemplating the message.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p10n4-v3",
@@ -14905,7 +16377,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n4-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Yuto's confusion. Visual to render: Yuto's confused expression, eyebrows furrowed as he reads the cautionary message. His fingers hover tentatively over the screen.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: The SMS warns not to share the verification code. / following beat: Yuto justifies sending the code to himself.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778429182,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 30145,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=9)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 25474
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 4666
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/neutral_front.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n4-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Yuto's confusion. Visual to render: Yuto's confused expression, eyebrows furrowed as he reads the cautionary message. His fingers hover tentatively over the screen.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: The SMS warns not to share the verification code. / following beat: Yuto justifies sending the code to himself.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p10n5-v3",
@@ -14951,7 +16464,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n5-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Yuto deciding. Visual to render: Yuto rationalizes internally, his finger decisively hovering near the 'send' button on his device.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto's confusion peaks. / following beat: Yuto sends the verification code.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778429212,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 29257,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=9)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 24076
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5176
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 5
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n5-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Yuto deciding. Visual to render: Yuto rationalizes internally, his finger decisively hovering near the 'send' button on his device.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Medium. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto's confusion peaks. / following beat: Yuto sends the verification code.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p10n6-v3",
@@ -14991,7 +16545,48 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n6-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Sending the verification code. Visual to render: Close-up of Yuto's hand as he sends the DM containing the code. The message '847293です！' appears on screen.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto thinks and decides to send the code. / following beat: DM confirms the verification.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+              "gh:generatedAt": 1778429248,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 34343,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 29109
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 5230
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [
+                "Yuto"
+              ],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "neutral_front",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/neutral_front.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n6-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Sending the verification code. Visual to render: Close-up of Yuto's hand as he sends the DM containing the code. The message '847293です！' appears on screen.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Close Up. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Story continuity — preceding beat: Yuto thinks and decides to send the code. / following beat: DM confirms the verification.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image."
         },
         {
           "@id": "panel:p10n7-v3",
@@ -15036,7 +16631,50 @@
           "gh:inserted": true,
           "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
           "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
-          "gh:needsImageGeneration": true
+          "gh:generatedImages": [
+            {
+              "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n7-v3_v1.png",
+              "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Receiving confirmation. Visual to render: On-screen, the DM from TokyoSneaker-Premium confirms receipt of the verification code with enthusiastic emojis.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Wide. Characters in frame (each must be visually distinct): Yuto. Story continuity — preceding beat: Yuto sends the verification code. / following beat: Yuto feels assured, unaware of the trap.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt did NOT show the correct location. Strictly render: . Do not drift to any other setting (no jewelry shop, no street, no home — only the school location specified). The previous attempt had unwanted text/speech bubbles. Remove ALL text, captions, labels, scene numbers, dialogue overlays. Critic notes: The setting does not match as it is a sneaker store instead of a digital interface. The character Yuto is present, but the emojis are illustrated rather than in a speech bubble.. Address these.",
+              "gh:generatedAt": 1778429354,
+              "gh:model": "gpt-image-2",
+              "gh:quality": "low",
+              "gh:durationMs": 103939,
+              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=3, score=7)",
+              "gh:generationStages": [
+                {
+                  "name": "plan",
+                  "durationMs": 0
+                },
+                {
+                  "name": "generate",
+                  "durationMs": 89290
+                },
+                {
+                  "name": "critique",
+                  "durationMs": 14645
+                },
+                {
+                  "name": "refine",
+                  "durationMs": 0
+                },
+                {
+                  "name": "persist",
+                  "durationMs": 4
+                }
+              ],
+              "gh:referenceCharacters": [],
+              "gh:referenceSelections": [
+                {
+                  "character": "Yuto",
+                  "variant": "three_quarter_right_neutral",
+                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
+                }
+              ]
+            }
+          ],
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/10/panel_panel_p10n7-v3_v1.png",
+          "gh:imagePrompt": "Cinematic manga panel illustration, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Receiving confirmation. Visual to render: On-screen, the DM from TokyoSneaker-Premium confirms receipt of the verification code with enthusiastic emojis.. KEY PROPS in scene (must be visible and recognizable): smartphone. Shot framing: Wide. Characters in frame (each must be visually distinct): Yuto. Story continuity — preceding beat: Yuto sends the verification code. / following beat: Yuto feels assured, unaware of the trap.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply Japanese middle-school uniform (gakuran for boys, sailor uniform for girls) and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt did NOT show the correct location. Strictly render: . Do not drift to any other setting (no jewelry shop, no street, no home — only the school location specified). The previous attempt had unwanted text/speech bubbles. Remove ALL text, captions, labels, scene numbers, dialogue overlays. Critic notes: The setting does not match as it is a sneaker store instead of a digital interface. The character Yuto is present, but the emojis are illustrated rather than in a speech bubble.. Address these."
         }
       ],
       "gh:v2Migration": {

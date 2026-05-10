@@ -60,6 +60,11 @@ interface RichPanel {
   followingBeat: string;
   shot: string;
   scriptEntryIndices: number[];
+  // Visual style classification (drives prompt suffix + reference-work anchoring)
+  visualStyle: "cinematic-close" | "anime-action" | "film-medium" | "establishing-illustration";
+  tone: "action" | "emotional" | "quiet" | "triumph" | "tense" | "comedic" | "ominous" | "contemplative";
+  // Emotion concretization — physical signals per focused character
+  emotionPhysicalSignals: { character: string; signals: string[] }[];
   // Page layout fields (manga reading: right-to-left, top-to-bottom)
   layout: {
     row: number;          // 1-based row from top
@@ -95,13 +100,14 @@ async function decomposePage(pageNum: number, pageData: any): Promise<Decomposit
   const pov = pageData["gh:pov"] ?? "";
   const title = pageData["gh:pageTitle"] ?? "";
 
-  const sys = `You are a professional manga storyboarder for Weekly Shounen Jump (週刊少年ジャンプ). Decompose a manga page's full script into 6-10 panels with a Jump-style asymmetric layout.
+  const sys = `You are a professional manga storyboarder for Weekly Shounen Jump (週刊少年ジャンプ). Each panel must read as a STANDALONE artwork worthy of Naruto / One Piece / Aria / 攻殻機動隊 quality — strong cinematic composition, expressive character signals, atmospheric depth.
 
 ABSOLUTE RULES (highest priority):
 1. PARTITION: every script entry index 0..N-1 must appear in EXACTLY ONE panel's scriptEntryIndices. No duplicates. No omissions. The union of all scriptEntryIndices must equal {0, 1, ..., N-1}.
 2. COMPRESS: consecutive entries describing the same beat (e.g., 3 entries about a character sleeping) MUST be merged into ONE panel. Do not make 3 panels of the same character sleeping in similar poses.
 3. DIVERSE FOCUS: do not bias toward one character. If the script shows Akira revealing sneakers, that gets its own panel WITH AKIRA as focus (not the sleeping character in the background).
 4. ACTIVE > PASSIVE: when a panel covers a beat, focus on the character TAKING ACTION (Akira showing sneakers > Ren sleeping at desk).
+5. EXPRESSIVE BODY SIGNALS: every focused character must have CONCRETE physical signals (not template emotions). "afraid" → ["dilated pupils", "sweat on forehead", "trembling lips"]. "excited" → ["raised fist", "open mouth wide", "flushed cheeks"]. NO generic emotion words alone.
 
 PAGE LAYOUT (Jump-style):
 - Reading: right-to-left, top-to-bottom
@@ -117,6 +123,15 @@ PANEL FIELDS:
 - precedingBeat / followingBeat (1 sentence each)
 - shot: Wide / Medium / Close Up / Extreme Close Up / Insert / Over the Shoulder / POV
 - layout: row (1-based), colSpan (1-3), rowSpan (1-2), size, emphasis (establish/beat/impact/transition/punchline), readingOrder (1-based)
+- visualStyle: classify the panel's VISUAL TREATMENT
+  - "cinematic-close" — emotional impact, XCU eyes, rim lighting, depth of field (use for impact/punchline emotional beats)
+  - "anime-action" — dynamic poses, motion lines, exaggerated foreshortening, speed effects (use for action/movement beats)
+  - "film-medium" — composed shot, depth, set dressing, multi-character staging (use for dialogue beats with 2+ chars)
+  - "establishing-illustration" — detailed environment, atmospheric, scenic (use for establish beats)
+- tone: "action" | "emotional" | "quiet" | "triumph" | "tense" | "comedic" | "ominous" | "contemplative"
+- emotionPhysicalSignals: array of {character, signals[]} — concrete physical indicators per focused character
+  - Example: [{character: "Yuto", signals: ["dilated pupils", "sweat on forehead", "trembling lips", "phone-glow rim light on face"]}]
+  - REQUIRED: every focused/named character must have at least 2 specific signals (not just emotion words)
 
 PAGE-LEVEL:
 - pageType: "single-page" (default) or "double-page-spread" (only for climactic moments)
@@ -160,6 +175,11 @@ Output JSON schema:
       "followingBeat": "<1 sentence>",
       "shot": "<framing>",
       "scriptEntryIndices": [<int>, ...],
+      "visualStyle": "cinematic-close" | "anime-action" | "film-medium" | "establishing-illustration",
+      "tone": "action" | "emotional" | "quiet" | "triumph" | "tense" | "comedic" | "ominous" | "contemplative",
+      "emotionPhysicalSignals": [
+        {"character": "<name>", "signals": ["<specific physical signal>", ...]}
+      ],
       "layout": {
         "row": <int>,
         "colSpan": <int 1-3>,
@@ -296,6 +316,9 @@ function buildPanelJsonld(rich: RichPanel, pageNum: number): any {
       "gh:emphasis": rich.layout.emphasis,
       "gh:readingOrder": rich.layout.readingOrder,
     } : undefined,
+    "gh:visualStyle": rich.visualStyle,
+    "gh:tone": rich.tone,
+    "gh:emotionPhysicalSignals": rich.emotionPhysicalSignals,
     "gh:inserted": true,
     "gh:insertedRevision": "phase3.4-semantic-decompose-v3",
     "gh:insertedSource": "story-outline.jsonld + LLM decomposition (Jump-style + 見開き-aware)",
@@ -416,9 +439,13 @@ async function main() {
         props: panel["gh:props"] ?? [],
         precedingBeat: panel["gh:precedingBeat"],
         followingBeat: panel["gh:followingBeat"],
+        visualStyle: panel["gh:visualStyle"] ?? "film-medium",
+        tone: panel["gh:tone"] ?? "quiet",
+        emotionPhysicalSignals: panel["gh:emotionPhysicalSignals"] ?? [],
+        panelLayout: panel["gh:panelLayout"] ?? null,
         characters: panel["gh:allCharacters"] ?? panel["characters"]?.map((c: string) => c.replace("character:", "")) ?? [],
         dialogues: panel["dialogue"] ?? [],
-        prompt: "",  // built fresh by graph from rich fields
+        prompt: "",
         outputPath: outputFile,
         outputDir,
         referenceCharacters: panel["gh:focusedCharacters"] ?? panel["gh:allCharacters"] ?? [],

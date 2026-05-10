@@ -309,3 +309,48 @@ USBにKnowledge のロゴ。
 おう。
 いいよ。
 
+---
+
+## Project tooling
+
+### Storyboard SSoT
+- `260419-GH-jump.md` — Arc 0-1 v2 ネーム (45 page + pretitle、Jump 投稿仕様)
+- `resources/episodes/arc0-1-origin/story-outline.jsonld` — script entries の構造化版
+- `resources/episodes/arc0-1-origin/episode.jsonld` — panel jsonld (Phase 3.4 rich schema)
+
+### Image generation pipeline
+- `scripts/lg-image-gen/` — LangGraph TS pipeline (M2+ref + Phase 3.4 + Q-score)
+- `scripts/lg-image-gen/README.md` — 使い方・schema・トラブルシューティング
+- `docs/adr/2026-05-11-langgraph-image-pipeline.md` — 設計判断 (3 method 比較、Q-score 計算式)
+
+### Manga production schema (Phase 3.4)
+
+Panel jsonld に rich semantic + Jump-style layout fields を持つ:
+
+| field | 用途 |
+|---|---|
+| `gh:sceneSubject` / `gh:focusCharacter` / `gh:allCharacters` / `gh:focusedCharacters` | 意味単位 |
+| `gh:props` / `gh:visualDescription` | 描く内容 |
+| `gh:precedingBeat` / `gh:followingBeat` / `gh:scriptEntryIndices` | 連続性 |
+| `gh:visualStyle` (`cinematic-close` / `anime-action` / `film-medium` / `establishing-illustration`) | 表現スタイル |
+| `gh:tone` (`action`/`emotional`/`quiet`/...) | 感情調 |
+| `gh:emotionPhysicalSignals` (`[{character, signals[]}]`) | 身体信号 (汗・涙・瞳孔等) |
+| `gh:panelLayout` (`row, colSpan, rowSpan, size, emphasis, readingOrder`) | Jump-style asymmetric grid |
+
+page jsonld には `gh:pageLayoutV3` で `pageType` (single-page / **double-page-spread**) と `spreadWith` を保持 (見開き対応)。
+
+### 実行例
+
+```bash
+# secret 準備 (一度だけ)
+security add-generic-password -s "gftd.openai" -a "OPENAI_API_KEY" -w "sk-..."
+
+# 単一 page を Phase 3.4 で decompose
+export OPENAI_API_KEY=$(security find-generic-password -s "gftd.openai" -a "OPENAI_API_KEY" -w)
+cd scripts/lg-image-gen
+npx tsx src/phase3-4-semantic-panels.ts --page 1
+
+# M2+ref で画像生成
+npx tsx src/run.ts --pipeline m2ref --page 1
+```
+
