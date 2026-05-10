@@ -1,17 +1,27 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { Panel } from '$lib/gen/proto/storyboard_pb';
+	import type { Panel, PanelData } from '$lib/gen/proto/storyboard_pb';
 	import { MangaTextSchema, PanelDataSchema, DialogueSchema, MangaLayoutSchema } from '$lib/gen/proto/storyboard_pb';
 	import { create } from '@bufbuild/protobuf';
 
 	// Svelte 5 props
-	let { panel } = $props<{
+	let { panel, onupdate, onpanelSelect } = $props<{
 		panel: Panel;
 		episodeId?: string;
 		storyboardPath?: string;
+		onupdate?: (data: PanelData) => void;
+		onpanelSelect?: (panel: Panel) => void;
 	}>();
 
 	const dispatch = createEventDispatcher();
+	function emitUpdate(data: PanelData) {
+		if (onupdate) onupdate(data);
+		else dispatch('update', data);
+	}
+	function emitPanelSelect(p: Panel) {
+		if (onpanelSelect) onpanelSelect(p);
+		else dispatch('panelSelect', p);
+	}
 
 	// Derived states for easy access
 	let generatedImages = $derived(panel.data?.generatedImages ?? []);
@@ -126,7 +136,7 @@
 			})
 		} as any);
 		
-		dispatch('update', updatedData);
+		emitUpdate(updatedData);
 	}
 
 	function updateDialoguePositionLocal(index: number, x: number, y: number) {
@@ -144,13 +154,12 @@
 				} as any)
 			});
 		}
-		
-		const updatedData = create(PanelDataSchema, { 
-			...panel.data, 
+
+		const updatedData = create(PanelDataSchema, {
+			...panel.data,
 			dialogue: newDialogues as any[]
 		} as any);
-		
-		dispatch('update', updatedData);
+		emitUpdate(updatedData);
 	}
 
 	function updateSFXPositionLocal(index: number, x: number, y: number) {
@@ -172,11 +181,11 @@
 			})
 		} as any);
 		
-		dispatch('update', updatedData);
+		emitUpdate(updatedData);
 	}
 
 	function saveCurrentState() {
-		dispatch('update', panel.data);
+		emitUpdate(panel.data);
 	}
 
 	function handleZoom(event: WheelEvent) {
@@ -200,7 +209,7 @@
 			})
 		} as any);
 		
-		dispatch('update', updatedData);
+		emitUpdate(updatedData);
 	}
 
 	function addSFX() {
@@ -216,7 +225,7 @@
 				texts: newTexts as any[]
 			})
 		} as any);
-		dispatch('update', updatedData);
+		emitUpdate(updatedData);
 	}
 
 	function defaultDialogueX(index: number): number {

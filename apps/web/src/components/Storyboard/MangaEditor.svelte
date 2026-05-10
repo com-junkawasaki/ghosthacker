@@ -13,13 +13,14 @@
 		layoutNote?: string;
 	}
 
-	let { 
-		panels = [], 
-		episodeId = '', 
-		storyboardPath = '', 
+	let {
+		panels = [],
+		episodeId = '',
+		storyboardPath = '',
 		selectedPage = $bindable(1),
 		pageLayouts = {},
-		mode = 'manga'
+		mode = 'manga',
+		onupdate
 	} = $props<{
 		panels: Panel[];
 		episodeId?: string;
@@ -27,9 +28,14 @@
 		selectedPage: number;
 		pageLayouts?: Record<number, PageLayoutInfo>;
 		mode?: 'manga' | 'graphic-novel';
+		onupdate?: (detail: { pageNumber: number; panel: number; data: PanelData }) => void;
 	}>();
 
 	const dispatch = createEventDispatcher();
+	function emitUpdate(detail: { pageNumber: number; panel: number; data: PanelData }) {
+		if (onupdate) onupdate(detail);
+		else dispatch('update', detail);
+	}
 
 	let sortedAllPanels = $derived([...panels].sort((a, b) => {
 		if (a.pageNumber !== b.pageNumber) return a.pageNumber - b.pageNumber;
@@ -47,7 +53,7 @@
 
 	let storyPageNumbers = $derived(Object.keys(episodePagesMap)
 		.map(Number)
-		.filter((pageNum) => pageNum > 0)
+		.filter((pageNum) => mode === 'manga' || pageNum > 0)
 		.sort((a, b) => a - b));
 
 	let displayPages = $derived((storyPageNumbers.length > 0 ? storyPageNumbers : Object.keys(episodePagesMap).map(Number).sort((a, b) => a - b))
@@ -75,7 +81,7 @@
 
 	// Auto-apply layout when page changes and no layout is applied
 	$effect(() => {
-		if (selectedPage < 1 || (displayPages.length > 0 && !displayPages.some((p) => p.displayPage === selectedPage))) {
+		if (displayPages.length > 0 && !displayPages.some((p) => p.displayPage === selectedPage)) {
 			selectedPage = displayPages[0]?.displayPage ?? 1;
 			return;
 		}
@@ -153,12 +159,42 @@
 		panel: number,
 		data: PanelData
 	) {
-		dispatch('update', {
-			pageNumber,
-			panel,
-			data
-		});
+		emitUpdate({ pageNumber, panel, data });
 	}
+
+	function goToPageOffset(offset: number) {
+		if (displayPages.length === 0) return false;
+		const idx = displayPages.findIndex((p) => p.displayPage === selectedPage);
+		const currentIdx = idx === -1 ? 0 : idx;
+		const nextIdx = currentIdx + offset;
+		if (nextIdx < 0 || nextIdx >= displayPages.length) return false;
+		const next = displayPages[nextIdx];
+		if (!next) return false;
+		selectedPage = next.displayPage;
+		dispatch('contextAdd', { type: 'page', data: { pageNumber: selectedPage } });
+		return true;
+	}
+
+	$effect(() => {
+		if (typeof window === 'undefined') return;
+		function handleKeyDown(e: KeyboardEvent) {
+			if (e.metaKey || e.ctrlKey || e.altKey) return;
+			const target = e.target as HTMLElement | null;
+			if (target) {
+				const tag = target.tagName;
+				if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || target.isContentEditable) return;
+			}
+			let handled = false;
+			if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown') {
+				handled = goToPageOffset(1);
+			} else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') {
+				handled = goToPageOffset(-1);
+			}
+			if (handled) e.preventDefault();
+		}
+		window.addEventListener('keydown', handleKeyDown);
+		return () => window.removeEventListener('keydown', handleKeyDown);
+	});
 </script>
 
 <div class="manga-editor">
@@ -197,7 +233,7 @@
 				{storyboardPath}
 				{layoutStyle}
 				useStoredLayout={mode === 'graphic-novel'}
-				on:update={(e) => handlePanelUpdate(e.detail.pageNumber, e.detail.panel, e.detail.data)}
+				onupdate={(detail) => handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
 				on:panelSelect={(e) => handlePanelSelect(e.detail)}
 			/>
 		{:else}

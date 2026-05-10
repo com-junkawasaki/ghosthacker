@@ -25,7 +25,10 @@
 		editMode: 'episode' | 'arc';
 		resourceId: string;  // episodeId or arcId
 		view: string;
+		page?: number;
 	}
+
+	const pagedViews = new Set(['manga', 'graphic-novel']);
 
 	function parseUrl(): UrlState {
 		if (typeof window === 'undefined') return { projectId: '', editMode: 'episode', resourceId: '', view: 'storyboard' };
@@ -43,30 +46,47 @@
 			// /{projectId}/{view} shorthand
 			state.view = segments[1]!;
 		}
+		const pageParam = new URLSearchParams(window.location.search).get('page');
+		if (pageParam !== null) {
+			const n = Number(pageParam);
+			if (Number.isFinite(n)) state.page = n;
+		}
 		return state;
 	}
 
-	function buildUrl(projectId: string, mode: string, resourceId: string, view: string): string {
+	function buildUrl(projectId: string, mode: string, resourceId: string, view: string, page?: number): string {
 		if (!projectId) return '/';
 		const base = `/${encodeURIComponent(projectId)}`;
 		const resource = mode === 'arc' ? 'arcs' : 'episodes';
-		if (!resourceId) return view === 'storyboard' ? base : `${base}/${view}`;
-		const viewSuffix = view === 'storyboard' ? '' : `/${view}`;
-		return `${base}/${resource}/${encodeURIComponent(resourceId)}${viewSuffix}`;
+		let path: string;
+		if (!resourceId) {
+			path = view === 'storyboard' ? base : `${base}/${view}`;
+		} else {
+			const viewSuffix = view === 'storyboard' ? '' : `/${view}`;
+			path = `${base}/${resource}/${encodeURIComponent(resourceId)}${viewSuffix}`;
+		}
+		if (pagedViews.has(view) && page !== undefined && Number.isFinite(page)) {
+			path += `?page=${page}`;
+		}
+		return path;
+	}
+
+	function currentLocationPath(): string {
+		return window.location.pathname + window.location.search;
 	}
 
 	function pushUrl() {
 		if (typeof window === 'undefined') return;
-		const target = buildUrl(activeProject, editMode, editMode === 'episode' ? selectedEpisode : selectedArc, viewMode);
-		if (window.location.pathname !== target) {
+		const target = buildUrl(activeProject, editMode, editMode === 'episode' ? selectedEpisode : selectedArc, viewMode, pagedViews.has(viewMode) ? selectedPage : undefined);
+		if (currentLocationPath() !== target) {
 			history.pushState({}, '', target);
 		}
 	}
 
 	function replaceUrl() {
 		if (typeof window === 'undefined') return;
-		const target = buildUrl(activeProject, editMode, editMode === 'episode' ? selectedEpisode : selectedArc, viewMode);
-		if (window.location.pathname !== target) {
+		const target = buildUrl(activeProject, editMode, editMode === 'episode' ? selectedEpisode : selectedArc, viewMode, pagedViews.has(viewMode) ? selectedPage : undefined);
+		if (currentLocationPath() !== target) {
 			history.replaceState({}, '', target);
 		}
 	}
@@ -83,7 +103,7 @@
 	let panels: Panel[] = $state([]);
 	let loading = $state(false);
 	let error = $state('');
-	let selectedPage = $state(1);
+	let selectedPage = $state(initialUrl.page ?? (initialUrl.view === 'manga' ? 0 : 1));
 	let selectedPanelIndex = $state(1);
 	let selectedPanelData = $state<PanelData | undefined>(undefined);
 	let viewMode = $state<string>(initialUrl.view);
@@ -172,6 +192,7 @@
 	// Sync viewMode ↔ URL
 	function setViewMode(v: string) {
 		viewMode = v;
+		if (v === 'manga') selectedPage = 0;
 		workspacePane = 'canvas';
 		pushUrl();
 	}
@@ -208,9 +229,21 @@
 				viewMode = s.view;
 				workspacePane = 'canvas';
 			}
+			if (pagedViews.has(s.view) && s.page !== undefined && s.page !== selectedPage) {
+				selectedPage = s.page;
+			}
 		};
 		window.addEventListener('popstate', handlePopState);
 		return () => window.removeEventListener('popstate', handlePopState);
+	});
+
+	// Sync URL when page changes inside paged views (manga / graphic-novel).
+	$effect(() => {
+		if (typeof window === 'undefined') return;
+		if (!pagedViews.has(viewMode)) return;
+		// Track selectedPage so the effect re-runs on change.
+		void selectedPage;
+		replaceUrl();
 	});
 
 	let initialized = false;
@@ -470,12 +503,12 @@
 					<KindleView {panels} episodeId={editMode === 'episode' ? selectedEpisode : selectedArc} {storyboardPath} />
 				{:else if viewMode === 'manga'}
 					<MangaEditor {panels} episodeId={editMode === 'episode' ? selectedEpisode : selectedArc} {storyboardPath} bind:selectedPage mode="manga"
-						on:update={({ detail }) => handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+						onupdate={(detail) => handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
 						on:panelSelect={({ detail }) => { selectedPanelIndex = detail.panel; selectedPanelData = detail.data; addContextToChat('panel', detail); }}
 						on:contextAdd={({ detail }) => addContextToChat(detail.type, detail.data)} />
 				{:else if viewMode === 'graphic-novel'}
 					<MangaEditor {panels} episodeId={editMode === 'episode' ? selectedEpisode : selectedArc} {storyboardPath} bind:selectedPage mode="graphic-novel"
-						on:update={({ detail }) => handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
+						onupdate={(detail) => handlePanelUpdate(detail.pageNumber, detail.panel, detail.data)}
 						on:panelSelect={({ detail }) => { selectedPanelIndex = detail.panel; selectedPanelData = detail.data; addContextToChat('panel', detail); }}
 						on:contextAdd={({ detail }) => addContextToChat(detail.type, detail.data)} />
 				{:else if viewMode === 'script'}

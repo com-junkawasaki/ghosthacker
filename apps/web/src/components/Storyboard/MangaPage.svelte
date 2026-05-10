@@ -19,7 +19,8 @@
 		episodeId = '',
 		storyboardPath = '',
 		layoutStyle = 'jump-manga',
-		useStoredLayout = true
+		useStoredLayout = true,
+		onupdate
 	} = $props<{
 		panels: Panel[];
 		pageNumber: number;
@@ -27,9 +28,14 @@
 		storyboardPath?: string;
 		layoutStyle?: LayoutStyle;
 		useStoredLayout?: boolean;
+		onupdate?: (detail: { pageNumber: number; panel: number; data: PanelData }) => void;
 	}>();
 
 	const dispatch = createEventDispatcher();
+	function emitUpdate(detail: { pageNumber: number; panel: number; data: PanelData }) {
+		if (onupdate) onupdate(detail);
+		else dispatch('update', detail);
+	}
 
 	// Derived states
 	let sortedPanels = $derived([...panels].sort((a, b) => {
@@ -163,7 +169,7 @@
 	}
 
 	function handleUpdate(sourcePageNumber: number, panelNumber: number, data: PanelData) {
-		dispatch('update', {
+		emitUpdate({
 			pageNumber: sourcePageNumber,
 			panel: panelNumber,
 			data
@@ -222,7 +228,7 @@
 						{panel}
 						{episodeId}
 						{storyboardPath}
-						on:update={(e) => handleUpdate(panel.pageNumber, panel.panel, e.detail)}
+						onupdate={(data) => handleUpdate(panel.pageNumber, panel.panel, data)}
 					/>
 					<!-- svelte-ignore a11y_no_static_element_interactions -->
 					<div class="resize-handle" onmousedown={(e) => {
