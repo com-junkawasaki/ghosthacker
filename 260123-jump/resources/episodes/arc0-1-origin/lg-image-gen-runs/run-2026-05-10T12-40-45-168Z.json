@@ -1,0 +1,16 @@
+{
+  "model": "gpt-image-2",
+  "dryRun": false,
+  "panelsProcessed": 1,
+  "ok": 0,
+  "fail": 1,
+  "totalMs": 0,
+  "results": [
+    {
+      "panelId": "panel:p12n3-v2",
+      "pageNum": 12,
+      "ok": false,
+      "error": "OpenAI HTTP 400: {\n  \"error\": {\n    \"message\": \"Billing hard limit has been reached.\",\n    \"type\": \"billing_limit_user_error\",\n    \"param\": null,\n    \"code\": \"billing_hard_limit_reached\"\n  }\n} | No image data to persist"
+    }
+  ]
+}

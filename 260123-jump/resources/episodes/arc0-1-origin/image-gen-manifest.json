@@ -1,0 +1,958 @@
+{
+  "episode": "episode:arc0-1-origin",
+  "generatedAt": "2026-05-10T11:31:58.629Z",
+  "totalPanels": 32,
+  "defaultModel": "openai/gpt-image-2",
+  "panels": [
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n1-v2",
+      "panelIndex": 1,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Medium Shot",
+      "visual": "廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。",
+      "characters": [
+        "Nei",
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Nei",
+          "text": "レン"
+        },
+        {
+          "speaker": "Ren",
+          "text": "……"
+        },
+        {
+          "speaker": "Nei",
+          "text": "レン、起きろ"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。. Shot type: Medium Shot. Dialogue: Nei: 「レン」 / Ren: 「……」 / Nei: 「レン、起きろ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n1-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [
+        "Nei",
+        "Ren"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Nei",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        },
+        {
+          "character": "Ren",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n2-v2",
+      "panelIndex": 2,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Medium Shot",
+      "visual": "Ren: 「……ねむい」 / Nei: 「ご飯」",
+      "characters": [
+        "Ren",
+        "Nei"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Ren",
+          "text": "……ねむい"
+        },
+        {
+          "speaker": "Nei",
+          "text": "ご飯"
+        },
+        {
+          "speaker": "Ren",
+          "text": "……うーん。ねむい"
+        },
+        {
+          "speaker": "Nei",
+          "text": "起きないと、コメッコンの米粉ドーナツ、わたしが、全部 食べるよ"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Ren: 「……ねむい」 / Nei: 「ご飯」. Shot type: Medium Shot. Dialogue: Ren: 「……ねむい」 / Nei: 「ご飯」 / Ren: 「……うーん。ねむい」 / Nei: 「起きないと、コメッコンの米粉ドーナツ、わたしが、全部 食べるよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n2-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [
+        "Ren",
+        "Nei"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Ren",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        },
+        {
+          "character": "Nei",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n3-v2",
+      "panelIndex": 3,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Medium Shot",
+      "visual": "[telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学",
+      "characters": [],
+      "dialogues": [],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Shot type: Medium Shot. telop: 白瀬 寧 / 好きなもの: コメッコンシリーズ、物理工学. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n3-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n4-v2",
+      "panelIndex": 4,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Medium Shot",
+      "visual": "Neiはおもむろに蓮の米粉ドーナツを食べ始めた。",
+      "characters": [
+        "Ren",
+        "Nei"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Ren",
+          "text": "それ俺の・・・なんだけど"
+        },
+        {
+          "speaker": "Nei",
+          "text": "ちゃんと起きてお昼食べなよ"
+        },
+        {
+          "speaker": "Ren",
+          "text": "怠惰がおれの美徳なんだよ..."
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Neiはおもむろに蓮の米粉ドーナツを食べ始めた。. Shot type: Medium Shot. Dialogue: Ren: 「それ俺の・・・なんだけど」 / Nei: 「ちゃんと起きてお昼食べなよ」 / Ren: 「怠惰がおれの美徳なんだよ...」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n4-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [
+        "Ren",
+        "Nei"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Ren",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        },
+        {
+          "character": "Nei",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n5-v2",
+      "panelIndex": 5,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Medium Shot",
+      "visual": "[telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング",
+      "characters": [],
+      "dialogues": [],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. [telop] 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Shot type: Medium Shot. telop: 沼野 蓮 / 好きなもの: 怠惰、ハッキング. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n5-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n6-v2",
+      "panelIndex": 6,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Medium Shot",
+      "visual": "蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。",
+      "characters": [
+        "Yuto",
+        "Akira"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "沼野くん、今日も寝てた。いつも、隣のクラスの白瀬さんが、起こしに来る。授業は聞いてないのに、テストはいつも上位にいる。変な奴、だ。"
+        },
+        {
+          "speaker": "Akira",
+          "text": "見てくれ。ついに、限定モデル"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. 蓮は半分だけ目を開けて、Neiが差し出したコメッコンの米粉ドーナツを左手で受け取り、そのままかじった。 / 教室の中央。林彰（アキラ）が、真新しいスニーカーを箱から出した。. Shot type: Medium Shot. Dialogue: Yuto: 「沼野くん、今日も寝てた。いつも、隣のクラスの白瀬さんが、起こしに来る。授業は聞いてないのに、テストはいつも上位にいる。変な奴、だ。」 / Akira: 「見てくれ。ついに、限定モデル」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n6-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [
+        "Yuto",
+        "Akira"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Yuto",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        },
+        {
+          "character": "Akira",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n7-v2",
+      "panelIndex": 7,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Medium Shot",
+      "visual": "Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」",
+      "characters": [
+        "Mei",
+        "Saki"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Mei",
+          "text": "うわっ、即完売のやつ！"
+        },
+        {
+          "speaker": "Saki",
+          "text": "えっ、本物？"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Shot type: Medium Shot. Dialogue: Mei: 「うわっ、即完売のやつ！」 / Saki: 「えっ、本物？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n7-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [
+        "Mei",
+        "Saki"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Mei",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        },
+        {
+          "character": "Saki",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 1,
+      "panelId": "panel:p1n8-v2",
+      "panelIndex": 8,
+      "pageTitle": "昼休み、3日前の教室",
+      "shot": "Close Up",
+      "visual": "Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」",
+      "characters": [
+        "Akira"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Akira",
+          "text": "本物。発売30秒で勝負ついた"
+        },
+        {
+          "speaker": "Akira",
+          "text": "指の速さがモノを言うんだよ"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: C中学校3年B組。3日前の昼休み。窓際3番目の席で蓮が寝ている。. Visual note: 机の上に未開封のコメッコン米粉ドーナツ。イヤホン片方外れ、シャーペンは手から転げ落ちている。. Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Shot type: Close Up. Dialogue: Akira: 「本物。発売30秒で勝負ついた」 / Akira: 「指の速さがモノを言うんだよ」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n8-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/1",
+      "referenceCharacters": [
+        "Akira"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Akira",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 3,
+      "panelId": "panel:p3n1-v2",
+      "panelIndex": 1,
+      "pageTitle": "放課後、下校路",
+      "shot": "Medium Shot",
+      "visual": "教室を出る直前、Yutoの姿がNeiの視界の端に映っていた。15秒、右手の人差し指が机の端を、ずっと触っていた。",
+      "characters": [
+        "Nei",
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Nei",
+          "text": "レン"
+        },
+        {
+          "speaker": "Ren",
+          "text": "ん"
+        },
+        {
+          "speaker": "Nei",
+          "text": "3年B組の、藤崎くん"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: 放課後の下校路。隣家同士の幼馴染であるNeiと蓮が並んで歩く。蓮はイヤホン、Neiはヘッドホン。. 教室を出る直前、Yutoの姿がNeiの視界の端に映っていた。15秒、右手の人差し指が机の端を、ずっと触っていた。. Shot type: Medium Shot. Dialogue: Nei: 「レン」 / Ren: 「ん」 / Nei: 「3年B組の、藤崎くん」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n1-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3",
+      "referenceCharacters": [
+        "Nei",
+        "Ren"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Nei",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        },
+        {
+          "character": "Ren",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 3,
+      "panelId": "panel:p3n2-v2",
+      "panelIndex": 2,
+      "pageTitle": "放課後、下校路",
+      "shot": "Medium Shot",
+      "visual": "Ren: 「知らん」 / Nei: 「15秒、机の端を、指で触ってた」",
+      "characters": [
+        "Ren",
+        "Nei"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Ren",
+          "text": "知らん"
+        },
+        {
+          "speaker": "Nei",
+          "text": "15秒、机の端を、指で触ってた"
+        },
+        {
+          "speaker": "Ren",
+          "text": "それがどうしたんだ?"
+        },
+        {
+          "speaker": "Nei",
+          "text": "迷ってる時の、癖だね"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: 放課後の下校路。隣家同士の幼馴染であるNeiと蓮が並んで歩く。蓮はイヤホン、Neiはヘッドホン。. Ren: 「知らん」 / Nei: 「15秒、机の端を、指で触ってた」. Shot type: Medium Shot. Dialogue: Ren: 「知らん」 / Nei: 「15秒、机の端を、指で触ってた」 / Ren: 「それがどうしたんだ?」 / Nei: 「迷ってる時の、癖だね」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n2-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3",
+      "referenceCharacters": [
+        "Ren",
+        "Nei"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Ren",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        },
+        {
+          "character": "Nei",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 3,
+      "panelId": "panel:p3n3-v2",
+      "panelIndex": 3,
+      "pageTitle": "放課後、下校路",
+      "shot": "Medium Shot",
+      "visual": "Nei: 「何かを、買いたがってる」 / Ren: 「ふーん」",
+      "characters": [
+        "Nei",
+        "Ren"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Nei",
+          "text": "何かを、買いたがってる"
+        },
+        {
+          "speaker": "Ren",
+          "text": "ふーん"
+        },
+        {
+          "speaker": "Nei",
+          "text": "わたしは、人の細かい動きを、数えてしまう。止められない。15秒以上、同じ場所を触る人は、何かを買いたがっている。"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: 放課後の下校路。隣家同士の幼馴染であるNeiと蓮が並んで歩く。蓮はイヤホン、Neiはヘッドホン。. Nei: 「何かを、買いたがってる」 / Ren: 「ふーん」. Shot type: Medium Shot. Dialogue: Nei: 「何かを、買いたがってる」 / Ren: 「ふーん」 / Nei: 「わたしは、人の細かい動きを、数えてしまう。止められない。15秒以上、同じ場所を触る人は、何かを買いたがっている。」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n3-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/3",
+      "referenceCharacters": [
+        "Nei",
+        "Ren"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Nei",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        },
+        {
+          "character": "Ren",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 4,
+      "panelId": "panel:p4n1-v2",
+      "panelIndex": 1,
+      "pageTitle": "Yutoの部屋、その夜",
+      "shot": "Close Up",
+      "visual": "Yuto: 「5万……高い……」 / Yuto: 「でも、Akiraだけ、ズルい……」",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "5万……高い……"
+        },
+        {
+          "speaker": "Yuto",
+          "text": "でも、Akiraだけ、ズルい……"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: 夜。Yutoの部屋。ノートPC。限定スニーカーの転売サイトを検索している。. Yuto: 「5万……高い……」 / Yuto: 「でも、Akiraだけ、ズルい……」. Shot type: Close Up. Dialogue: Yuto: 「5万……高い……」 / Yuto: 「でも、Akiraだけ、ズルい……」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n1-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Yuto",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 4,
+      "panelId": "panel:p4n2-v2",
+      "panelIndex": 2,
+      "pageTitle": "Yutoの部屋、その夜",
+      "shot": "Wide Shot",
+      "visual": "検索結果の中ほど。新着広告。",
+      "characters": [],
+      "dialogues": [],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: 夜。Yutoの部屋。ノートPC。限定スニーカーの転売サイトを検索している。. 検索結果の中ほど。新着広告。. Shot type: Wide Shot. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n2-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 4,
+      "panelId": "panel:p4n3-v2",
+      "panelIndex": 3,
+      "pageTitle": "Yutoの部屋、その夜",
+      "shot": "Medium Shot",
+      "visual": "[ad] 『TokyoSneaker-Premium.shop』時間限定・在庫1足！定価2万5千円 → 1万2千円。残り27分",
+      "characters": [],
+      "dialogues": [],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: 夜。Yutoの部屋。ノートPC。限定スニーカーの転売サイトを検索している。. [ad] 『TokyoSneaker-Premium.shop』時間限定・在庫1足！定価2万5千円 → 1万2千円。残り27分. Shot type: Medium Shot. adText: 『TokyoSneaker-Premium.shop』時間限定・在庫1足！定価2万5千円 → 1万2千円。残り27分. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n3-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 4,
+      "panelId": "panel:p4n4-v2",
+      "panelIndex": 4,
+      "pageTitle": "Yutoの部屋、その夜",
+      "shot": "Close Up",
+      "visual": "Yuto: 「え、安……」 / Yuto: 「時間限定、マジか……」",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "え、安……"
+        },
+        {
+          "speaker": "Yuto",
+          "text": "時間限定、マジか……"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: 夜。Yutoの部屋。ノートPC。限定スニーカーの転売サイトを検索している。. Yuto: 「え、安……」 / Yuto: 「時間限定、マジか……」. Shot type: Close Up. Dialogue: Yuto: 「え、安……」 / Yuto: 「時間限定、マジか……」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n4-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Yuto",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 4,
+      "panelId": "panel:p4n5-v2",
+      "panelIndex": 5,
+      "pageTitle": "Yutoの部屋、その夜",
+      "shot": "Insert",
+      "visual": "[screen] カウントダウン: 00:27:00 → 00:26:59",
+      "characters": [],
+      "dialogues": [],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: 夜。Yutoの部屋。ノートPC。限定スニーカーの転売サイトを検索している。. [screen] カウントダウン: 00:27:00 → 00:26:59. Shot type: Insert. screenText: カウントダウン: 00:27:00 → 00:26:59. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n5-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/4",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 8,
+      "panelId": "panel:p8n1-v2",
+      "panelIndex": 1,
+      "pageTitle": "Yuto、3日の待機",
+      "shot": "Medium Shot",
+      "visual": "届かない。スマホの画面で、配送状況を、何度も更新する。 / 母が買い物袋を玄関に置く音。Yutoはベッドで慌ててスマホを隠す。",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "……まだ、来ない"
+        },
+        {
+          "speaker": "Yuto",
+          "text": "3日経った。何も、来ない。"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: Yutoの部屋、翌朝、翌々朝、3日目。. 届かない。スマホの画面で、配送状況を、何度も更新する。 / 母が買い物袋を玄関に置く音。Yutoはベッドで慌ててスマホを隠す。. Shot type: Medium Shot. Dialogue: Yuto: 「……まだ、来ない」 / Yuto: 「3日経った。何も、来ない。」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n1-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/8",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Yuto",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 9,
+      "panelId": "panel:p9n1-v2",
+      "panelIndex": 1,
+      "pageTitle": "問い合わせ",
+      "shot": "Wide Shot",
+      "visual": "Yutoは意を決して、転売サイトの問い合わせフォームからDMを送る。",
+      "characters": [],
+      "dialogues": [],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Yutoは意を決して、転売サイトの問い合わせフォームからDMを送る。. Shot type: Wide Shot. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n1-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 9,
+      "panelId": "panel:p9n2-v2",
+      "panelIndex": 2,
+      "pageTitle": "問い合わせ",
+      "shot": "Close Up",
+      "visual": "[dm] すみません、まだ届かないんですが……",
+      "characters": [],
+      "dialogues": [],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. [dm] すみません、まだ届かないんですが……. Shot type: Close Up. dmText: Yuto: すみません、まだ届かないんですが……. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n2-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 9,
+      "panelId": "panel:p9n3-v2",
+      "panelIndex": 3,
+      "pageTitle": "問い合わせ",
+      "shot": "Wide Shot",
+      "visual": "1分で返信。",
+      "characters": [],
+      "dialogues": [],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. 1分で返信。. Shot type: Wide Shot. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n3-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 9,
+      "panelId": "panel:p9n4-v2",
+      "panelIndex": 4,
+      "pageTitle": "問い合わせ",
+      "shot": "Close Up",
+      "visual": "[dm] お問い合わせありがとうございます！確認させてください (^^)",
+      "characters": [],
+      "dialogues": [],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. [dm] お問い合わせありがとうございます！確認させてください (^^). Shot type: Close Up. dmText: TokyoSneaker-Premium.shop: お問い合わせありがとうございます！確認させてください (^^). Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n4-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 9,
+      "panelId": "panel:p9n5-v2",
+      "panelIndex": 5,
+      "pageTitle": "問い合わせ",
+      "shot": "Close Up",
+      "visual": "Yuto: 「あ、返事、くれた」 / Yuto: 「ちゃんと対応してくれる人で、よかった……」",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "あ、返事、くれた"
+        },
+        {
+          "speaker": "Yuto",
+          "text": "ちゃんと対応してくれる人で、よかった……"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Yuto: 「あ、返事、くれた」 / Yuto: 「ちゃんと対応してくれる人で、よかった……」. Shot type: Close Up. Dialogue: Yuto: 「あ、返事、くれた」 / Yuto: 「ちゃんと対応してくれる人で、よかった……」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n5-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/9",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Yuto",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 12,
+      "panelId": "panel:p12n1-v2",
+      "panelIndex": 1,
+      "pageTitle": "翌朝、教室 — リンクの出所",
+      "shot": "Medium Shot",
+      "visual": "翌朝、C中学校3年B組。Yutoが教室に入った瞬間、空気が凍った。30人の目が、彼を、一斉に、見る。",
+      "characters": [
+        "Akira",
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Akira",
+          "text": "おい、昨日の夜、お前のリンク、何だよ！？"
+        },
+        {
+          "speaker": "Yuto",
+          "text": "え、リンク……？"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. 翌朝、C中学校3年B組。Yutoが教室に入った瞬間、空気が凍った。30人の目が、彼を、一斉に、見る。. Shot type: Medium Shot. Dialogue: Akira: 「おい、昨日の夜、お前のリンク、何だよ！？」 / Yuto: 「え、リンク……？」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/12/panel_panel_p12n1-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/12",
+      "referenceCharacters": [
+        "Akira",
+        "Yuto"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Akira",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        },
+        {
+          "character": "Yuto",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 12,
+      "panelId": "panel:p12n2-v2",
+      "panelIndex": 2,
+      "pageTitle": "翌朝、教室 — リンクの出所",
+      "shot": "Insert",
+      "visual": "[screen] Neli（Yuto名義・友達全員宛に一斉送信）：『みんな見て！限定スニーカー、半額で譲ってる神サイト、見つけた！このリンクから → [怪しいURL]』",
+      "characters": [],
+      "dialogues": [],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. [screen] Neli（Yuto名義・友達全員宛に一斉送信）：『みんな見て！限定スニーカー、半額で譲ってる神サイト、見つけた！このリンクから → [怪しいURL]』. Shot type: Insert. screenText: Neli（Yuto名義・友達全員宛に一斉送信）：『みんな見て！限定スニーカー、半額で譲ってる神サイト、見つけた！このリンクから → [怪しいURL]』. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/12/panel_panel_p12n2-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/12",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 12,
+      "panelId": "panel:p12n3-v2",
+      "panelIndex": 3,
+      "pageTitle": "翌朝、教室 — リンクの出所",
+      "shot": "Medium Shot",
+      "visual": "Akira: 「俺も、クラスの半分も、お前からの通知で、このリンク、送られてきたんだよ！」 / Yuto: 「そんな、俺、送ってない……！」",
+      "characters": [
+        "Akira",
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Akira",
+          "text": "俺も、クラスの半分も、お前からの通知で、このリンク、送られてきたんだよ！"
+        },
+        {
+          "speaker": "Yuto",
+          "text": "そんな、俺、送ってない……！"
+        },
+        {
+          "speaker": "Akira",
+          "text": "でも、お前のアカウントから来てんだよ！"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Akira: 「俺も、クラスの半分も、お前からの通知で、このリンク、送られてきたんだよ！」 / Yuto: 「そんな、俺、送ってない……！」. Shot type: Medium Shot. Dialogue: Akira: 「俺も、クラスの半分も、お前からの通知で、このリンク、送られてきたんだよ！」 / Yuto: 「そんな、俺、送ってない……！」 / Akira: 「でも、お前のアカウントから来てんだよ！」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/12/panel_panel_p12n3-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/12",
+      "referenceCharacters": [
+        "Akira",
+        "Yuto"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Akira",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        },
+        {
+          "character": "Yuto",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 12,
+      "panelId": "panel:p12n4-v2",
+      "panelIndex": 4,
+      "pageTitle": "翌朝、教室 — リンクの出所",
+      "shot": "Medium Shot",
+      "visual": "そこへ、Meiが、青ざめた顔で前に出てきた。震えている。目は下を向いている。",
+      "characters": [
+        "Mei",
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Mei",
+          "text": "……私、リンク、踏んじゃって……"
+        },
+        {
+          "speaker": "Yuto",
+          "text": "え……"
+        },
+        {
+          "speaker": "Mei",
+          "text": "私の鍵付きアカウント、全部……公開に、なってる"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. そこへ、Meiが、青ざめた顔で前に出てきた。震えている。目は下を向いている。. Shot type: Medium Shot. Dialogue: Mei: 「……私、リンク、踏んじゃって……」 / Yuto: 「え……」 / Mei: 「私の鍵付きアカウント、全部……公開に、なってる」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/12/panel_panel_p12n4-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/12",
+      "referenceCharacters": [
+        "Mei",
+        "Yuto"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Mei",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        },
+        {
+          "character": "Yuto",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 12,
+      "panelId": "panel:p12n5-v2",
+      "panelIndex": 5,
+      "pageTitle": "翌朝、教室 — リンクの出所",
+      "shot": "Wide Shot",
+      "visual": "Meiがスマホを差し出す。画面には、Meiの鍵付きだったSNSの投稿が、全件、公開の設定で晒されていた。",
+      "characters": [],
+      "dialogues": [],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Meiがスマホを差し出す。画面には、Meiの鍵付きだったSNSの投稿が、全件、公開の設定で晒されていた。. Shot type: Wide Shot. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/12/panel_panel_p12n5-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/12",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 14,
+      "panelId": "panel:p14n1-v2",
+      "panelIndex": 1,
+      "pageTitle": "階段、1人",
+      "shot": "Medium Shot",
+      "visual": "Yutoは教室から逃げ、階段の踊り場で、しゃがみ込んだ。両膝を抱えて、顔を埋める。 / 窓際で、蓮が寝ている姿が、階段の上から、見えた。",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "（俺の、せいで……）（俺が、ポチッ、って、やったせいで……）（息が、できない……）"
+        },
+        {
+          "speaker": "Yuto",
+          "text": "Yutoは、蓮の方を、見なかった。見ても、助けてくれるわけ、ないから。"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Yutoは教室から逃げ、階段の踊り場で、しゃがみ込んだ。両膝を抱えて、顔を埋める。 / 窓際で、蓮が寝ている姿が、階段の上から、見えた。. Shot type: Medium Shot. Dialogue: Yuto: 「（俺の、せいで……）（俺が、ポチッ、って、やったせいで……）（息が、できない……）」 / Yuto: 「Yutoは、蓮の方を、見なかった。見ても、助けてくれるわけ、ないから。」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/14/panel_panel_p14n1-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/14",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Yuto",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 16,
+      "panelId": "panel:p16n1-v2",
+      "panelIndex": 1,
+      "pageTitle": "夜、プレタイトルの場面に帰る",
+      "shot": "Insert",
+      "visual": "[sfx] ブーン、ブーン。スマホ。",
+      "characters": [],
+      "dialogues": [],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: 夜。Yutoの部屋。プレタイトルと同じ構図。毛布の中で丸まっている。. [sfx] ブーン、ブーン。スマホ。. Shot type: Insert. sfx: ブーン、ブーン。スマホ。. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/16/panel_panel_p16n1-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/16",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    },
+    {
+      "pageNum": 16,
+      "panelId": "panel:p16n2-v2",
+      "panelIndex": 2,
+      "pageTitle": "夜、プレタイトルの場面に帰る",
+      "shot": "Medium Shot",
+      "visual": "絶縁、最悪、もう連絡しないで、の通知。",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "（全部、俺のせいだ……）"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Setting: 夜。Yutoの部屋。プレタイトルと同じ構図。毛布の中で丸まっている。. 絶縁、最悪、もう連絡しないで、の通知。. Shot type: Medium Shot. Dialogue: Yuto: 「（全部、俺のせいだ……）」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/16/panel_panel_p16n2-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/16",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Yuto",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 19,
+      "panelId": "panel:p19n7-v2",
+      "panelIndex": 7,
+      "pageTitle": "Nei、Yutoに声をかける",
+      "shot": "Close Up",
+      "visual": "Yuto: 「……え」",
+      "characters": [
+        "Yuto"
+      ],
+      "dialogues": [
+        {
+          "speaker": "Yuto",
+          "text": "……え"
+        }
+      ],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Yuto: 「……え」. Shot type: Close Up. Dialogue: Yuto: 「……え」. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/19/panel_panel_p19n7-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/19",
+      "referenceCharacters": [
+        "Yuto"
+      ],
+      "referenceSelections": [
+        {
+          "character": "Yuto",
+          "variant": "focused_3q_right",
+          "note": "default reference"
+        }
+      ]
+    },
+    {
+      "pageNum": 21,
+      "panelId": "panel:p21n1-v2",
+      "panelIndex": 1,
+      "pageTitle": "Ren、動く",
+      "shot": "Insert",
+      "visual": "[sfx] カチャ。",
+      "characters": [],
+      "dialogues": [],
+      "prompt": "Anime / manga panel illustration. Cinematic storyboard thumbnail sketch, rough compositional guide for animators, layout reference. Visual note: RenがHHKBを軽く叩く瞬間。動く前の1叩き（カチャ）. [sfx] カチャ。. Shot type: Insert. sfx: カチャ。. Rough sketch aesthetic, monochrome with screen tones, cinematic composition. Use the supplied face reference image(s) only for character identity: face shape, eye design, hairstyle, age impression, and manga line style. The supplied references may use different face angles and expressions; follow those angle/expression cues only when they match the current scene. Do not preserve the reference outfit, clothing, body pose, background, or props. Clothing must follow the current scene description, school setting, and panel prompt. Generate a new single-panel storyboard image for the described scene.",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/21/panel_panel_p21n1-v2_sketch_v1.png",
+      "outputDir": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/images/episodes/episode:arc0-1-origin/pages/21",
+      "referenceCharacters": [],
+      "referenceSelections": []
+    }
+  ]
+}

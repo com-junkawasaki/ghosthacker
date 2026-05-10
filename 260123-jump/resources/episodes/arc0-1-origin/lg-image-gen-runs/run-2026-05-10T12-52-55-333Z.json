@@ -1,0 +1,66 @@
+{
+  "model": "gpt-image-2",
+  "dryRun": false,
+  "panelsProcessed": 8,
+  "ok": 8,
+  "fail": 0,
+  "totalMs": 222374,
+  "results": [
+    {
+      "panelId": "panel:p12n3-v2",
+      "pageNum": 12,
+      "ok": true,
+      "durationMs": 31634,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/12/panel_panel_p12n3-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p12n4-v2",
+      "pageNum": 12,
+      "ok": true,
+      "durationMs": 27813,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/12/panel_panel_p12n4-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p12n5-v2",
+      "pageNum": 12,
+      "ok": true,
+      "durationMs": 26896,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/12/panel_panel_p12n5-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p14n1-v2",
+      "pageNum": 14,
+      "ok": true,
+      "durationMs": 26604,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/14/panel_panel_p14n1-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p16n1-v2",
+      "pageNum": 16,
+      "ok": true,
+      "durationMs": 29898,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/16/panel_panel_p16n1-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p16n2-v2",
+      "pageNum": 16,
+      "ok": true,
+      "durationMs": 29201,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/16/panel_panel_p16n2-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p19n7-v2",
+      "pageNum": 19,
+      "ok": true,
+      "durationMs": 24374,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/19/panel_panel_p19n7-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p21n1-v2",
+      "pageNum": 21,
+      "ok": true,
+      "durationMs": 25954,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/21/panel_panel_p21n1-v2_sketch_v1.png"
+    }
+  ]
+}

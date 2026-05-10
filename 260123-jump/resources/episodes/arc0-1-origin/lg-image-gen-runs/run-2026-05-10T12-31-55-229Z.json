@@ -1,0 +1,226 @@
+{
+  "model": "gpt-image-1",
+  "dryRun": false,
+  "panelsProcessed": 32,
+  "ok": 24,
+  "fail": 8,
+  "totalMs": 1348996,
+  "results": [
+    {
+      "panelId": "panel:p1n1-v2",
+      "pageNum": 1,
+      "ok": true,
+      "durationMs": 60119,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n1-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p1n2-v2",
+      "pageNum": 1,
+      "ok": true,
+      "durationMs": 57750,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n2-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p1n3-v2",
+      "pageNum": 1,
+      "ok": true,
+      "durationMs": 58776,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n3-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p1n4-v2",
+      "pageNum": 1,
+      "ok": true,
+      "durationMs": 58876,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n4-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p1n5-v2",
+      "pageNum": 1,
+      "ok": true,
+      "durationMs": 55499,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n5-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p1n6-v2",
+      "pageNum": 1,
+      "ok": true,
+      "durationMs": 56837,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n6-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p1n7-v2",
+      "pageNum": 1,
+      "ok": true,
+      "durationMs": 54613,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n7-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p1n8-v2",
+      "pageNum": 1,
+      "ok": true,
+      "durationMs": 55639,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n8-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p3n1-v2",
+      "pageNum": 3,
+      "ok": true,
+      "durationMs": 56232,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n1-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p3n2-v2",
+      "pageNum": 3,
+      "ok": true,
+      "durationMs": 72470,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n2-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p3n3-v2",
+      "pageNum": 3,
+      "ok": true,
+      "durationMs": 52936,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/3/panel_panel_p3n3-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p4n1-v2",
+      "pageNum": 4,
+      "ok": true,
+      "durationMs": 47333,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n1-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p4n2-v2",
+      "pageNum": 4,
+      "ok": true,
+      "durationMs": 53659,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n2-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p4n3-v2",
+      "pageNum": 4,
+      "ok": true,
+      "durationMs": 52618,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n3-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p4n4-v2",
+      "pageNum": 4,
+      "ok": true,
+      "durationMs": 49323,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n4-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p4n5-v2",
+      "pageNum": 4,
+      "ok": true,
+      "durationMs": 67409,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/4/panel_panel_p4n5-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p8n1-v2",
+      "pageNum": 8,
+      "ok": true,
+      "durationMs": 60867,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/8/panel_panel_p8n1-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p9n1-v2",
+      "pageNum": 9,
+      "ok": true,
+      "durationMs": 50299,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n1-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p9n2-v2",
+      "pageNum": 9,
+      "ok": true,
+      "durationMs": 51023,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n2-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p9n3-v2",
+      "pageNum": 9,
+      "ok": true,
+      "durationMs": 52270,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n3-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p9n4-v2",
+      "pageNum": 9,
+      "ok": true,
+      "durationMs": 64465,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n4-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p9n5-v2",
+      "pageNum": 9,
+      "ok": true,
+      "durationMs": 54787,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/9/panel_panel_p9n5-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p12n1-v2",
+      "pageNum": 12,
+      "ok": true,
+      "durationMs": 52607,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/12/panel_panel_p12n1-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p12n2-v2",
+      "pageNum": 12,
+      "ok": true,
+      "durationMs": 52589,
+      "outputUrl": "/images/episodes/episode:arc0-1-origin/pages/12/panel_panel_p12n2-v2_sketch_v1.png"
+    },
+    {
+      "panelId": "panel:p12n3-v2",
+      "pageNum": 12,
+      "ok": false,
+      "error": "OpenAI HTTP 400: {\n  \"error\": {\n    \"message\": \"Billing hard limit has been reached.\",\n    \"type\": \"billing_limit_user_error\",\n    \"param\": null,\n    \"code\": \"billing_hard_limit_reached\"\n  }\n} | No image data to persist"
+    },
+    {
+      "panelId": "panel:p12n4-v2",
+      "pageNum": 12,
+      "ok": false,
+      "error": "OpenAI HTTP 400: {\n  \"error\": {\n    \"message\": \"Billing hard limit has been reached.\",\n    \"type\": \"billing_limit_user_error\",\n    \"param\": null,\n    \"code\": \"billing_hard_limit_reached\"\n  }\n} | No image data to persist"
+    },
+    {
+      "panelId": "panel:p12n5-v2",
+      "pageNum": 12,
+      "ok": false,
+      "error": "OpenAI HTTP 400: {\n  \"error\": {\n    \"message\": \"Billing hard limit has been reached.\",\n    \"type\": \"billing_limit_user_error\",\n    \"param\": null,\n    \"code\": \"billing_hard_limit_reached\"\n  }\n} | No image data to persist"
+    },
+    {
+      "panelId": "panel:p14n1-v2",
+      "pageNum": 14,
+      "ok": false,
+      "error": "OpenAI HTTP 400: {\n  \"error\": {\n    \"message\": \"Billing hard limit has been reached.\",\n    \"type\": \"billing_limit_user_error\",\n    \"param\": null,\n    \"code\": \"billing_hard_limit_reached\"\n  }\n} | No image data to persist"
+    },
+    {
+      "panelId": "panel:p16n1-v2",
+      "pageNum": 16,
+      "ok": false,
+      "error": "OpenAI HTTP 400: {\n  \"error\": {\n    \"message\": \"Billing hard limit has been reached.\",\n    \"type\": \"billing_limit_user_error\",\n    \"param\": null,\n    \"code\": \"billing_hard_limit_reached\"\n  }\n} | No image data to persist"
+    },
+    {
+      "panelId": "panel:p16n2-v2",
+      "pageNum": 16,
+      "ok": false,
+      "error": "OpenAI HTTP 400: {\n  \"error\": {\n    \"message\": \"Billing hard limit has been reached.\",\n    \"type\": \"billing_limit_user_error\",\n    \"param\": null,\n    \"code\": \"billing_hard_limit_reached\"\n  }\n} | No image data to persist"
+    },
+    {
+      "panelId": "panel:p19n7-v2",
+      "pageNum": 19,
+      "ok": false,
+      "error": "OpenAI HTTP 400: {\n  \"error\": {\n    \"message\": \"Billing hard limit has been reached.\",\n    \"type\": \"billing_limit_user_error\",\n    \"param\": null,\n    \"code\": \"billing_hard_limit_reached\"\n  }\n} | No image data to persist"
+    },
+    {
+      "panelId": "panel:p21n1-v2",
+      "pageNum": 21,
+      "ok": false,
+      "error": "OpenAI HTTP 400: {\n  \"error\": {\n    \"message\": \"Billing hard limit has been reached.\",\n    \"type\": \"billing_limit_user_error\",\n    \"param\": null,\n    \"code\": \"billing_hard_limit_reached\"\n  }\n} | No image data to persist"
+    }
+  ]
+}
