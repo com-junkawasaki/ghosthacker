@@ -27,17 +27,54 @@
 	let generatedImages = $derived(panel.data?.generatedImages ?? []);
 	let currentImageIndex = $derived(panel.data?.currentImageIndex ?? (generatedImages.length > 0 ? generatedImages.length - 1 : -1));
 
-	let currentImageUrl = $derived(currentImageIndex >= 0 && currentImageIndex < generatedImages.length 
-		? (() => {
-			const url = generatedImages[currentImageIndex]?.imageUrl ?? '';
-			if (!url) return '';
-			if (url.startsWith('http') || url.startsWith('data:')) return url;
-			const baseUrl = typeof window !== 'undefined' 
-				? (window.location.port === '1421' ? 'http://localhost:8081' : window.location.origin)
-				: 'http://localhost:8081';
-			return baseUrl + url;
-		})()
-		: '');
+	// Resolve image URLs through the SvelteKit /api/images/ proxy so they work
+	// regardless of the Go backend's port / origin (StoryboardPanel & KindleView
+	// use the same proxy — MangaPanel previously hit :8081 cross-origin and
+	// would silently break outside the local Vite dev setup).
+	function resolveImageUrl(rawUrl: string): string {
+		const url = (rawUrl ?? '').trim();
+		if (!url) return '';
+		if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) return url;
+		const marker = '/resources/images/';
+		const markerIndex = url.indexOf(marker);
+		if (markerIndex >= 0) return `/api/images/${url.slice(markerIndex + marker.length)}`;
+		if (url.startsWith('/images/')) return `/api/images/${url.slice('/images/'.length)}`;
+		if (url.startsWith('/')) return `/api/images${url}`;
+		return `/api/images/${url}`;
+	}
+
+	let currentImageUrl = $derived(
+		currentImageIndex >= 0 && currentImageIndex < generatedImages.length
+			? resolveImageUrl(generatedImages[currentImageIndex]?.imageUrl ?? '')
+			: ''
+	);
+
+	let imageLoadFailed = $state(false);
+	$effect(() => {
+		// Reset failure flag whenever the URL we're trying to display changes
+		void currentImageUrl;
+		imageLoadFailed = false;
+	});
+
+	function selectVersion(index: number) {
+		if (!panel.data) return;
+		if (index < 0 || index >= generatedImages.length) return;
+		if (index === currentImageIndex) return;
+		const updatedData = create(PanelDataSchema, {
+			...panel.data,
+			currentImageIndex: index,
+			generatedImageUrl: generatedImages[index]?.imageUrl ?? panel.data.generatedImageUrl,
+		} as any);
+		emitUpdate(updatedData);
+	}
+
+	function navigateVersion(direction: 'prev' | 'next') {
+		if (generatedImages.length === 0) return;
+		const len = generatedImages.length;
+		const cur = currentImageIndex < 0 ? 0 : currentImageIndex;
+		const next = direction === 'prev' ? (cur - 1 + len) % len : (cur + 1) % len;
+		selectVersion(next);
+	}
 
 	let dialogues = $derived(panel.data?.dialogue ?? []);
 	let visualNote = $derived(panel.data?.visualNote ?? '');
@@ -239,17 +276,50 @@
 	onpointerdown={(e) => handlePointerDown(e, 'image')}
 	onwheel={handleZoom}
 >
-	{#if currentImageUrl}
-		<img 
-			src={currentImageUrl} 
-			alt="Panel {panel.panel}" 
-			class="panel-image" 
+	{#if currentImageUrl && !imageLoadFailed}
+		<img
+			src={currentImageUrl}
+			alt="Panel {panel.panel}"
+			class="panel-image"
 			style={imageStyle}
 			draggable="false"
+			onerror={() => { imageLoadFailed = true; }}
 		/>
 	{:else}
 		<div class="panel-placeholder">
 			Panel {panel.panel}
+			{#if imageLoadFailed}
+				<div class="panel-placeholder-sub">画像を読み込めませんでした</div>
+			{/if}
+		</div>
+	{/if}
+
+	{#if generatedImages.length > 1}
+		<div class="version-controls" onpointerdown={(e) => e.stopPropagation()}>
+			<button
+				type="button"
+				class="version-btn"
+				title="前のバージョン"
+				onclick={(e) => { e.stopPropagation(); navigateVersion('prev'); }}
+			>‹</button>
+			<select
+				class="version-select"
+				value={currentImageIndex}
+				title="採用するバージョンを選択"
+				onchange={(e) => selectVersion(Number((e.currentTarget as HTMLSelectElement).value))}
+				onclick={(e) => e.stopPropagation()}
+			>
+				{#each generatedImages as img, idx}
+					<option value={idx}>v{idx + 1}{img.model ? ` · ${img.model}` : ''}</option>
+				{/each}
+			</select>
+			<button
+				type="button"
+				class="version-btn"
+				title="次のバージョン"
+				onclick={(e) => { e.stopPropagation(); navigateVersion('next'); }}
+			>›</button>
+			<span class="version-count">{currentImageIndex + 1}/{generatedImages.length}</span>
 		</div>
 	{/if}
 
@@ -331,11 +401,64 @@
 		right: 0;
 		bottom: 0;
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		color: #ccc;
 		font-weight: bold;
 		font-size: 0.9rem;
+		gap: 4px;
+	}
+
+	.panel-placeholder-sub {
+		font-size: 0.7rem;
+		font-weight: normal;
+		color: #b91c1c;
+	}
+
+	.version-controls {
+		position: absolute;
+		top: 5px;
+		left: 5px;
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		padding: 3px 6px;
+		background: rgba(0, 0, 0, 0.55);
+		border-radius: 6px;
+		z-index: 50;
+		pointer-events: auto;
+	}
+
+	.version-controls .version-btn {
+		background: rgba(255, 255, 255, 0.15);
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		border-radius: 4px;
+		color: #fff;
+		font-size: 0.9rem;
+		line-height: 1;
+		padding: 1px 6px;
+		cursor: pointer;
+	}
+
+	.version-controls .version-btn:hover {
+		background: rgba(255, 255, 255, 0.3);
+	}
+
+	.version-controls .version-select {
+		background: #fff;
+		color: #000;
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		border-radius: 4px;
+		font-size: 0.7rem;
+		padding: 1px 4px;
+		max-width: 140px;
+	}
+
+	.version-controls .version-count {
+		color: #fff;
+		font-size: 0.65rem;
+		opacity: 0.8;
 	}
 
 	.panel-overlay {
