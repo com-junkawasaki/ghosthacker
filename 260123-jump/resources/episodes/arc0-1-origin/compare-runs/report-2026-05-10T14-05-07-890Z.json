@@ -1,0 +1,143 @@
+{
+  "runAt": "2026-05-10T14:05:07.890Z",
+  "model": "gpt-image-2",
+  "quality": "low",
+  "panels": [
+    "panel:p1n1-v2",
+    "panel:p1n5-v2"
+  ],
+  "results": [
+    {
+      "method": "m1",
+      "panelId": "panel:p1n1-v2",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/compare-runs/panel_p1n1-v2_m1.png",
+      "durationMs": {
+        "plan": 0,
+        "genChars": 49257,
+        "genBG": 35103,
+        "composite": 151,
+        "harmonize": 30369
+      },
+      "totalMs": 114904,
+      "errors": [],
+      "critic": {
+        "score": 3,
+        "settingMatch": false,
+        "charactersMatch": false,
+        "hasUnwantedText": false,
+        "notes": "The setting does not match the specified classroom environment with Ren sleeping at a desk. The characters are present but do not reflect the intended poses or actions described in the prompt."
+      }
+    },
+    {
+      "method": "m2",
+      "panelId": "panel:p1n1-v2",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/compare-runs/panel_p1n1-v2_m2.png",
+      "durationMs": {
+        "plan": 1,
+        "generate": 30708,
+        "critique": 5354,
+        "persist": 4
+      },
+      "totalMs": 36081,
+      "errors": [],
+      "critic": {
+        "score": 7,
+        "settingMatch": true,
+        "charactersMatch": false,
+        "hasUnwantedText": true,
+        "notes": "The characters' facial designs are close but do not match the reference. The dialogue is not present, but the intended elements of the scene are well captured."
+      },
+      "iterCount": 1
+    },
+    {
+      "method": "m3",
+      "panelId": "panel:p1n1-v2",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/compare-runs/panel_p1n1-v2_m3.png",
+      "durationMs": {},
+      "totalMs": 0,
+      "errors": [
+        "Error: plan is already being used as a state attribute (a.k.a. a channel), cannot also be used as a node name."
+      ],
+      "critic": null
+    },
+    {
+      "method": "m1",
+      "panelId": "panel:p1n5-v2",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/compare-runs/panel_p1n5-v2_m1.png",
+      "durationMs": {
+        "plan": 0,
+        "genChars": 0,
+        "genBG": 24278,
+        "composite": 83,
+        "harmonize": 31931
+      },
+      "totalMs": 56302,
+      "errors": [],
+      "critic": {
+        "score": 4,
+        "settingMatch": true,
+        "charactersMatch": false,
+        "hasUnwantedText": false,
+        "notes": "The setting matches a school environment, but the character is missing entirely. The shot is not a medium shot as specified, but instead focuses on the desk and surroundings."
+      }
+    },
+    {
+      "method": "m2",
+      "panelId": "panel:p1n5-v2",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/compare-runs/panel_p1n5-v2_m2.png",
+      "durationMs": {
+        "plan": 0,
+        "generate": 26143,
+        "critique": 5180,
+        "persist": 4
+      },
+      "totalMs": 31343,
+      "errors": [],
+      "critic": {
+        "score": 8,
+        "settingMatch": true,
+        "charactersMatch": true,
+        "hasUnwantedText": false,
+        "notes": "The setting aligns well with the description of a school environment during lunch break. The details like the unopened donuts and dropped pen further enhance the scene's authenticity."
+      },
+      "iterCount": 1
+    },
+    {
+      "method": "m3",
+      "panelId": "panel:p1n5-v2",
+      "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/compare-runs/panel_p1n5-v2_m3.png",
+      "durationMs": {},
+      "totalMs": 1,
+      "errors": [
+        "Error: plan is already being used as a state attribute (a.k.a. a channel), cannot also be used as a node name."
+      ],
+      "critic": null
+    }
+  ],
+  "summary": {
+    "m1": {
+      "n": 2,
+      "avgScore": 3.5,
+      "settingOK": 1,
+      "charsOK": 0,
+      "textClean": 2,
+      "avgMs": 85603
+    },
+    "m2": {
+      "n": 2,
+      "avgScore": 7.5,
+      "settingOK": 2,
+      "charsOK": 1,
+      "textClean": 1,
+      "avgMs": 33712
+    },
+    "m3": {
+      "n": 2,
+      "avgScore": 0,
+      "settingOK": 0,
+      "charsOK": 0,
+      "textClean": 0,
+      "avgMs": 0.5
+    }
+  }
+}

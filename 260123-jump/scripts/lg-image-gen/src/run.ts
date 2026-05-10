@@ -18,6 +18,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { buildGraph, type PanelManifestEntry, type PanelState } from "./graph.js";
 import { buildGraph3Stage, type PanelState as PanelState3 } from "./graph-3stage.js";
+import { buildGraphM2 } from "./graph-m2.js";
 
 const REPO = "/Users/junkawasaki/github/ghosthacker/260123-jump";
 const MANIFEST_PATH = `${REPO}/resources/episodes/arc0-1-origin/image-gen-manifest.json`;
@@ -33,7 +34,7 @@ interface CliArgs {
   dryRun: boolean;
   delayMs: number;
   onlyPending: boolean;
-  pipeline: "1-stage" | "3-stage";
+  pipeline: "1-stage" | "3-stage" | "m2ref";
 }
 
 function parseArgs(): CliArgs {
@@ -46,7 +47,7 @@ function parseArgs(): CliArgs {
     else if (args[i] === "--dry-run") out.dryRun = true;
     else if (args[i] === "--only-pending") out.onlyPending = true;
     else if (args[i] === "--delay-ms" && args[i + 1]) out.delayMs = Number(args[++i]);
-    else if (args[i] === "--pipeline" && args[i + 1]) out.pipeline = args[++i] as "1-stage" | "3-stage";
+    else if (args[i] === "--pipeline" && args[i + 1]) out.pipeline = args[++i] as "1-stage" | "3-stage" | "m2ref";
   }
   return out;
 }
