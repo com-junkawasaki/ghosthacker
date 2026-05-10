@@ -127,7 +127,7 @@ function basePrompt(state: State): string {
   const shotReqLine = shotRequirements(m.shot ?? "Medium Shot");
 
   return [
-    "Manga panel illustration to be published in Weekly Shounen Jump (週刊少年ジャンプ) — each panel must read as a STANDALONE artwork, monochrome with screen tones, single full-bleed image.",
+    "Fictional manga panel illustration of original characters created for a fiction publication (Weekly Shounen Jump style). All characters are entirely fictional and not based on any real persons. Black-and-white monochrome with screen tones, single full-bleed image, each panel reads as a standalone artwork.",
     state.setting ? `LOCATION (do not change): ${state.setting}.` : "",
     state.visualNote ? `Set dressing: ${state.visualNote}.` : "",
     subjectLine,
