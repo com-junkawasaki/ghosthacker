@@ -66398,88 +66398,27 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/35/panel_panel_p35n1-v3_v1.png",
               "gh:imagePrompt": "Fictional manga panel illustration of original characters created for a fiction publication (Weekly Shounen Jump style). All characters are entirely fictional and not based on any real persons. Black-and-white monochrome with screen tones, single full-bleed image, each panel reads as a standalone artwork. SCENE SUBJECT (the panel's main beat): Ren's determined approach. Visual to render: Ren steps forward with determination, casting a shadow over Yuto. The room is tense with anticipation as Ren's eyes focus intensely ahead.. Shot framing: Medium. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Ren [FOCUS] (in-frame 1/2) / Yuto (in-frame 2/2). Compositional focus is on Ren. Required physical signals (must be visible in the rendered image): Ren: focused eyes, tightened fists. Emotional tone: tense. Style: cinematic film-like medium shot — rule-of-thirds composition, layered foreground/midground/background with depth of field, set dressing visible, characters staged with intentional spacing, soft tonal gradients. Inspired by 攻殻機動隊 (押井守 film aesthetics) calm dialogue scenes and Aria's tonal medium shots. Story continuity — preceding beat: Ren begins to approach Yuto. / following beat: Saki and Akira's concern builds.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
               "gh:generatedAt": 1778457211,
-              "gh:model": "gpt-image-2",
-              "gh:quality": "low",
-              "gh:durationMs": 29330,
-              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
-              "gh:generationStages": [
-                {
-                  "name": "plan",
-                  "durationMs": 0
-                },
-                {
-                  "name": "generate",
-                  "durationMs": 23841
-                },
-                {
-                  "name": "critique",
-                  "durationMs": 5480
-                },
-                {
-                  "name": "persist",
-                  "durationMs": 9
-                }
-              ],
-              "gh:referenceCharacters": [
-                "Ren"
-              ],
-              "gh:referenceSelections": [
-                {
-                  "character": "Ren",
-                  "variant": "three_quarter_right_neutral",
-                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
-                }
-              ],
-              "gh:Q_p": 0.86875,
-              "gh:Q_i": 0.8949999999999999,
-              "gh:Q_total": 0.8779081973495955,
-              "gh:Q_tier": "ship"
+              "gh:model": "gpt-image-2"
             },
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/35/panel_panel_p35n1-v3_hybrid_v2.png",
               "gh:imagePrompt": "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons. SCENE SUBJECT (the panel's main beat): Ren's determined approach. Visual to render: Ren steps forward with determination, casting a shadow over Yuto. The room is tense with anticipation as Ren's eyes focus intensely ahead.. Shot framing: Medium. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Ren [FOCUS] (in-frame 1/2) / Yuto (in-frame 2/2). Compositional focus is on Ren. Required physical signals (must be visible in the rendered image): Ren: focused eyes, tightened fists. Emotional tone: tense. Style: cinematic film-like medium shot — rule-of-thirds composition, layered foreground/midground/background with depth of field, set dressing visible, characters staged with intentional spacing, soft tonal gradients. Inspired by 攻殻機動隊 (押井守 film aesthetics) calm dialogue scenes and Aria's tonal medium shots. Story continuity — preceding beat: Ren begins to approach Yuto. / following beat: Saki and Akira's concern builds.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers.",
               "gh:generatedAt": 1778478277,
-              "gh:model": "gpt-image-2",
-              "gh:quality": "low",
-              "gh:durationMs": 26732,
-              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
-              "gh:generationStages": [
-                {
-                  "name": "plan",
-                  "durationMs": 1
-                },
-                {
-                  "name": "generate",
-                  "durationMs": 22134
-                },
-                {
-                  "name": "critique",
-                  "durationMs": 4588
-                },
-                {
-                  "name": "persist",
-                  "durationMs": 9
-                }
-              ],
-              "gh:referenceCharacters": [
-                "Ren"
-              ],
-              "gh:referenceSelections": [
-                {
-                  "character": "Ren",
-                  "variant": "three_quarter_right_neutral",
-                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
-                }
-              ],
-              "gh:Q_p": 0.86875,
-              "gh:Q_i": 0.8949999999999999,
-              "gh:Q_total": 0.8779081973495955,
-              "gh:Q_tier": "ship"
+              "gh:model": "gpt-image-2"
             }
           ],
           "gh:currentImageIndex": 1,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/35/panel_panel_p35n1-v3_hybrid_v2.png",
-          "gh:imagePrompt": "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons. SCENE SUBJECT (the panel's main beat): Ren's determined approach. Visual to render: Ren steps forward with determination, casting a shadow over Yuto. The room is tense with anticipation as Ren's eyes focus intensely ahead.. Shot framing: Medium. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Ren [FOCUS] (in-frame 1/2) / Yuto (in-frame 2/2). Compositional focus is on Ren. Required physical signals (must be visible in the rendered image): Ren: focused eyes, tightened fists. Emotional tone: tense. Style: cinematic film-like medium shot — rule-of-thirds composition, layered foreground/midground/background with depth of field, set dressing visible, characters staged with intentional spacing, soft tonal gradients. Inspired by 攻殻機動隊 (押井守 film aesthetics) calm dialogue scenes and Aria's tonal medium shots. Story continuity — preceding beat: Ren begins to approach Yuto. / following beat: Saki and Akira's concern builds.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers."
+          "gh:imagePrompt": "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons. SCENE SUBJECT (the panel's main beat): Ren's determined approach. Visual to render: Ren steps forward with determination, casting a shadow over Yuto. The room is tense with anticipation as Ren's eyes focus intensely ahead.. Shot framing: Medium. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Ren [FOCUS] (in-frame 1/2) / Yuto (in-frame 2/2). Compositional focus is on Ren. Required physical signals (must be visible in the rendered image): Ren: focused eyes, tightened fists. Emotional tone: tense. Style: cinematic film-like medium shot — rule-of-thirds composition, layered foreground/midground/background with depth of field, set dressing visible, characters staged with intentional spacing, soft tonal gradients. Inspired by 攻殻機動隊 (押井守 film aesthetics) calm dialogue scenes and Aria's tonal medium shots. Story continuity — preceding beat: Ren begins to approach Yuto. / following beat: Saki and Akira's concern builds.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers.",
+          "gh:dialogue": [],
+          "gh:characters": [
+            "character:Ren",
+            "character:Yuto"
+          ],
+          "gh:visual": {
+            "en": "Ren steps forward with determination, casting a shadow over Yuto. The room is tense with anticipation as Ren's eyes focus intensely ahead."
+          },
+          "gh:shot": "Medium"
         },
         {
           "@id": "panel:p35n2-v3",
@@ -69982,76 +69921,33 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/37/panel_panel_p37n1-v3_v1.png",
               "gh:imagePrompt": "Atmospheric manga illustration, monochrome with screen tones, single full-bleed image. Mood / scene: A wide establishing illustration frames the classroom as Yuto's elongated shadow becomes a vast atmospheric shadow shape across the floor and wall. The ordinary room feels hushed and small beside the abstract presence, turning the panel into a quiet climax of recognition and decision. Pure atmospheric composition, no text, no labels, no captions, no scene markers. Rendered in shounen manga style with cinematic composition, depth of field, and tonal gradients.",
               "gh:generatedAt": 1778462885,
-              "gh:model": "gpt-image-2",
-              "gh:quality": "low",
-              "gh:durationMs": 21916,
-              "gh:generationPipeline": "langgraph-ts-minimal-fallback-no-ref",
-              "gh:referenceCharacters": [],
-              "gh:referenceSelections": [],
-              "gh:Q_p": 0.43125,
-              "gh:Q_i": 0.8275,
-              "gh:Q_total": 0.5603381238218899,
-              "gh:Q_tier": "review"
+              "gh:model": "gpt-image-2"
             },
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/37/panel_panel_p37n1-v3_v2.png",
               "gh:imagePrompt": "Wide atmospheric establishing shot of a school classroom interior, where a single tall elongated shadow stretches dramatically along the floor and wall, suggesting an immense abstract presence looming. The room itself appears small and quiet by contrast. Strong tonal contrast, manga screen-tone shading, cinematic perspective, ink-flow line work, no text.",
               "gh:generatedAt": 1778463317,
-              "gh:model": "gpt-image-2",
-              "gh:quality": "low",
-              "gh:durationMs": 32107,
-              "gh:generationPipeline": "langgraph-ts-alt-phenomenon-framing",
-              "gh:Q_p": 0.43125,
-              "gh:Q_i": 0.6774999999999999,
-              "gh:Q_total": 0.5132837763582347,
-              "gh:Q_tier": "regen",
-              "gh:Q_total_override": 0.6774999999999999,
-              "gh:Q_tier_override": "review",
-              "gh:Q_override_reason": "phenomenon-framing prompt artificially caps Q_p; Q_i alone reflects image quality"
+              "gh:model": "gpt-image-2"
             },
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/37/panel_panel_p37n1-v3_hybrid_v3.png",
               "gh:imagePrompt": "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons. SCENE SUBJECT (the panel's main beat): Yuto's elongated shadow becoming an abstract atmospheric presence. Visual to render: A wide establishing illustration frames the classroom as Yuto's elongated shadow becomes a vast atmospheric shadow shape across the floor and wall. The ordinary room feels hushed and small beside the abstract presence, turning the panel into a quiet climax of recognition and decision.. Shot framing: Wide. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Yuto (in-frame 1/2) / Daemon (in-frame 2/2). Required physical signals (must be visible in the rendered image): Yuto: upright stillness, steady gaze oriented toward the large shadow pattern / atmospheric shadow shape: broad soft-edged silhouette, large vertical form occupying the background. Emotional tone: ominous. Style: detailed atmospheric establishing illustration — full environmental detail with weather/light condition, scenic depth, architectural specificity, texture-rich screen tones. Inspired by 天野こずえ Aria's establishing pages — peaceful, world-grounding detail. Story continuity — preceding beat: Yuto stands in the classroom. / following beat: Ren names the atmospheric presence.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers.",
               "gh:generatedAt": 1778478554,
-              "gh:model": "gpt-image-2",
-              "gh:quality": "low",
-              "gh:durationMs": 43340,
-              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
-              "gh:generationStages": [
-                {
-                  "name": "plan",
-                  "durationMs": 1
-                },
-                {
-                  "name": "generate",
-                  "durationMs": 37483
-                },
-                {
-                  "name": "critique",
-                  "durationMs": 5843
-                },
-                {
-                  "name": "persist",
-                  "durationMs": 13
-                }
-              ],
-              "gh:referenceCharacters": [],
-              "gh:referenceSelections": [
-                {
-                  "character": "Yuto",
-                  "variant": "three_quarter_right_neutral",
-                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
-                }
-              ],
-              "gh:Q_p": 0.86875,
-              "gh:Q_i": 0.7875,
-              "gh:Q_total": 0.8156383812512686,
-              "gh:Q_tier": "ship"
+              "gh:model": "gpt-image-2"
             }
           ],
-          "gh:currentImageIndex": 2,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/37/panel_panel_p37n1-v3_hybrid_v3.png",
-          "gh:imagePrompt": "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons. SCENE SUBJECT (the panel's main beat): Yuto's elongated shadow becoming an abstract atmospheric presence. Visual to render: A wide establishing illustration frames the classroom as Yuto's elongated shadow becomes a vast atmospheric shadow shape across the floor and wall. The ordinary room feels hushed and small beside the abstract presence, turning the panel into a quiet climax of recognition and decision.. Shot framing: Wide. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Yuto (in-frame 1/2) / Daemon (in-frame 2/2). Required physical signals (must be visible in the rendered image): Yuto: upright stillness, steady gaze oriented toward the large shadow pattern / atmospheric shadow shape: broad soft-edged silhouette, large vertical form occupying the background. Emotional tone: ominous. Style: detailed atmospheric establishing illustration — full environmental detail with weather/light condition, scenic depth, architectural specificity, texture-rich screen tones. Inspired by 天野こずえ Aria's establishing pages — peaceful, world-grounding detail. Story continuity — preceding beat: Yuto stands in the classroom. / following beat: Ren names the atmospheric presence.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers."
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/37/panel_panel_p37n1-v3_v1.png",
+          "gh:imagePrompt": "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons. SCENE SUBJECT (the panel's main beat): Yuto's elongated shadow becoming an abstract atmospheric presence. Visual to render: A wide establishing illustration frames the classroom as Yuto's elongated shadow becomes a vast atmospheric shadow shape across the floor and wall. The ordinary room feels hushed and small beside the abstract presence, turning the panel into a quiet climax of recognition and decision.. Shot framing: Wide. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Yuto (in-frame 1/2) / Daemon (in-frame 2/2). Required physical signals (must be visible in the rendered image): Yuto: upright stillness, steady gaze oriented toward the large shadow pattern / atmospheric shadow shape: broad soft-edged silhouette, large vertical form occupying the background. Emotional tone: ominous. Style: detailed atmospheric establishing illustration — full environmental detail with weather/light condition, scenic depth, architectural specificity, texture-rich screen tones. Inspired by 天野こずえ Aria's establishing pages — peaceful, world-grounding detail. Story continuity — preceding beat: Yuto stands in the classroom. / following beat: Ren names the atmospheric presence.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers.",
+          "gh:dialogue": [],
+          "gh:characters": [
+            "character:Yuto",
+            "character:Daemon"
+          ],
+          "gh:visual": {
+            "en": "A wide establishing illustration frames the classroom as Yuto's elongated shadow becomes a vast atmospheric shadow shape across the floor and wall. The ordinary room feels hushed and small beside the abstract presence, turning the panel into a quiet climax of recognition and decision."
+          },
+          "gh:shot": "Wide"
         },
         {
           "@id": "panel:p37n2-v3",
@@ -73284,96 +73180,55 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/39/panel_panel_p39n1-v3_v1.png",
               "gh:imagePrompt": "Fictional manga panel illustration of original characters created for a fiction publication (Weekly Shounen Jump style). All characters are entirely fictional and not based on any real persons. Black-and-white monochrome with screen tones, single full-bleed image, each panel reads as a standalone artwork. SCENE SUBJECT (the panel's main beat): Ren begins to dismantle the accusations. Visual to render: Ren stands with determination, his piercing eyes focused on Daemon. Shadows cast intense shapes around them, creating a charged atmosphere.. Shot framing: Medium. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Ren [FOCUS] (in-frame 1/3) / Daemon (in-frame 2/3) / Yuto (in-frame 3/3). Compositional focus is on Ren. Required physical signals (must be visible in the rendered image): Ren: piercing eyes, determined stance. Emotional tone: contemplative. Style: cinematic film-like medium shot — rule-of-thirds composition, layered foreground/midground/background with depth of field, set dressing visible, characters staged with intentional spacing, soft tonal gradients. Inspired by 攻殻機動隊 (押井守 film aesthetics) calm dialogue scenes and Aria's tonal medium shots. Story continuity — preceding beat: Ren gears up for a verbal confrontation. / following beat: Ren analyzes Daemon's actions critically.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image. The previous attempt did NOT show the correct location. Strictly render: . Do not drift to any other setting (no jewelry shop, no street, no home — only the school location specified). Critic notes: The setting is not as charged as expected, missing the intense atmosphere. However, character design is strong, particularly with Ren's determined stance.. Address these.",
               "gh:generatedAt": 1778457981,
-              "gh:model": "gpt-image-2",
-              "gh:quality": "low",
-              "gh:durationMs": 86153,
-              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=3, score=7)",
-              "gh:generationStages": [
-                {
-                  "name": "plan",
-                  "durationMs": 0
-                },
-                {
-                  "name": "generate",
-                  "durationMs": 70672
-                },
-                {
-                  "name": "critique",
-                  "durationMs": 15465
-                },
-                {
-                  "name": "refine",
-                  "durationMs": 0
-                },
-                {
-                  "name": "persist",
-                  "durationMs": 16
-                }
-              ],
-              "gh:referenceCharacters": [
-                "Ren"
-              ],
-              "gh:referenceSelections": [
-                {
-                  "character": "Ren",
-                  "variant": "three_quarter_right_neutral",
-                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
-                }
-              ],
-              "gh:Q_p": 0.86875,
-              "gh:Q_i": 0.7374999999999998,
-              "gh:Q_total": 0.7826317997475551,
-              "gh:Q_tier": "ship"
+              "gh:model": "gpt-image-2"
             },
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/39/panel_panel_p39n1-v3_hybrid_v2.png",
               "gh:imagePrompt": "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons. SCENE SUBJECT (the panel's main beat): Ren begins to dismantle the accusations. Visual to render: Ren stands with determination, his piercing eyes focused on Daemon. Shadows cast intense shapes around them, creating a charged atmosphere.. Shot framing: Medium. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Ren [FOCUS] (in-frame 1/3) / Daemon (in-frame 2/3) / Yuto (in-frame 3/3). Compositional focus is on Ren. Required physical signals (must be visible in the rendered image): Ren: piercing eyes, determined stance. Emotional tone: contemplative. Style: cinematic film-like medium shot — rule-of-thirds composition, layered foreground/midground/background with depth of field, set dressing visible, characters staged with intentional spacing, soft tonal gradients. Inspired by 攻殻機動隊 (押井守 film aesthetics) calm dialogue scenes and Aria's tonal medium shots. Story continuity — preceding beat: Ren gears up for a verbal confrontation. / following beat: Ren analyzes Daemon's actions critically.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers. The previous attempt did NOT show the correct location. Strictly render: . Do not drift to any other setting (no jewelry shop, no street, no home — only the school location specified). Critic notes: The setting lacks the intense shadows and charged atmosphere required. Ren's determination is present, but the overall context does not align with the specified scene.. Address these.",
               "gh:generatedAt": 1778479097,
-              "gh:model": "gpt-image-2",
-              "gh:quality": "low",
-              "gh:durationMs": 112563,
-              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=3, score=5)",
-              "gh:generationStages": [
-                {
-                  "name": "plan",
-                  "durationMs": 1
-                },
-                {
-                  "name": "generate",
-                  "durationMs": 73119
-                },
-                {
-                  "name": "critique",
-                  "durationMs": 39435
-                },
-                {
-                  "name": "refine",
-                  "durationMs": 0
-                },
-                {
-                  "name": "persist",
-                  "durationMs": 8
-                }
-              ],
-              "gh:referenceCharacters": [
-                "Ren"
-              ],
-              "gh:referenceSelections": [
-                {
-                  "character": "Ren",
-                  "variant": "three_quarter_right_neutral",
-                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Ren/reference_variants/three_quarter_right_neutral.png"
-                }
-              ],
-              "gh:Q_p": 0.86875,
-              "gh:Q_i": 0.44999999999999996,
-              "gh:Q_total": 0.5863249850059971,
-              "gh:Q_tier": "review"
+              "gh:model": "gpt-image-2"
             }
           ],
           "gh:currentImageIndex": 1,
           "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/39/panel_panel_p39n1-v3_hybrid_v2.png",
-          "gh:imagePrompt": "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons. SCENE SUBJECT (the panel's main beat): Ren begins to dismantle the accusations. Visual to render: Ren stands with determination, his piercing eyes focused on Daemon. Shadows cast intense shapes around them, creating a charged atmosphere.. Shot framing: Medium. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Ren [FOCUS] (in-frame 1/3) / Daemon (in-frame 2/3) / Yuto (in-frame 3/3). Compositional focus is on Ren. Required physical signals (must be visible in the rendered image): Ren: piercing eyes, determined stance. Emotional tone: contemplative. Style: cinematic film-like medium shot — rule-of-thirds composition, layered foreground/midground/background with depth of field, set dressing visible, characters staged with intentional spacing, soft tonal gradients. Inspired by 攻殻機動隊 (押井守 film aesthetics) calm dialogue scenes and Aria's tonal medium shots. Story continuity — preceding beat: Ren gears up for a verbal confrontation. / following beat: Ren analyzes Daemon's actions critically.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers. The previous attempt did NOT show the correct location. Strictly render: . Do not drift to any other setting (no jewelry shop, no street, no home — only the school location specified). Critic notes: The setting lacks the intense shadows and charged atmosphere required. Ren's determination is present, but the overall context does not align with the specified scene.. Address these."
+          "gh:imagePrompt": "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons. SCENE SUBJECT (the panel's main beat): Ren begins to dismantle the accusations. Visual to render: Ren stands with determination, his piercing eyes focused on Daemon. Shadows cast intense shapes around them, creating a charged atmosphere.. Shot framing: Medium. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Ren [FOCUS] (in-frame 1/3) / Daemon (in-frame 2/3) / Yuto (in-frame 3/3). Compositional focus is on Ren. Required physical signals (must be visible in the rendered image): Ren: piercing eyes, determined stance. Emotional tone: contemplative. Style: cinematic film-like medium shot — rule-of-thirds composition, layered foreground/midground/background with depth of field, set dressing visible, characters staged with intentional spacing, soft tonal gradients. Inspired by 攻殻機動隊 (押井守 film aesthetics) calm dialogue scenes and Aria's tonal medium shots. Story continuity — preceding beat: Ren gears up for a verbal confrontation. / following beat: Ren analyzes Daemon's actions critically.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Ren. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers. The previous attempt did NOT show the correct location. Strictly render: . Do not drift to any other setting (no jewelry shop, no street, no home — only the school location specified). Critic notes: The setting lacks the intense shadows and charged atmosphere required. Ren's determination is present, but the overall context does not align with the specified scene.. Address these.",
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Ren",
+              "en": "俺がハックするのは——『常識（呪い）』という、情報（言葉）だ",
+              "gh:mangaLayout": {
+                "$typeName": "gftd.ghosthacker.storyboard.v1.MangaText",
+                "text": "俺がハックするのは——『常識（呪い）』という、情報（言葉）だ",
+                "type": "dialogue",
+                "x": 8.249027237354085,
+                "y": 13.937863096741602,
+                "fontSize": 16,
+                "style": "vertical"
+              }
+            },
+            {
+              "gh:speaker": "Ren",
+              "en": "きっかけを作ったのは、お前。そこは、認めろ",
+              "gh:mangaLayout": {
+                "$typeName": "gftd.ghosthacker.storyboard.v1.MangaText",
+                "text": "きっかけを作ったのは、お前。そこは、認めろ",
+                "type": "dialogue",
+                "x": 28.09338521400778,
+                "y": 45.8651174539025,
+                "fontSize": 16,
+                "style": "vertical"
+              }
+            }
+          ],
+          "gh:characters": [
+            "character:Ren",
+            "character:Daemon",
+            "character:Yuto"
+          ],
+          "gh:visual": {
+            "en": "Ren stands with determination, his piercing eyes focused on Daemon. Shadows cast intense shapes around them, creating a charged atmosphere."
+          },
+          "gh:shot": "Medium"
         },
         {
           "@id": "panel:p39n2-v3",
@@ -78635,88 +78490,27 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/42/panel_panel_p42n1-v3_v1.png",
               "gh:imagePrompt": "Fictional manga panel illustration of original characters created for a fiction publication (Weekly Shounen Jump style). All characters are entirely fictional and not based on any real persons. Black-and-white monochrome with screen tones, single full-bleed image, each panel reads as a standalone artwork. SCENE SUBJECT (the panel's main beat): Mei approaches Saki. Visual to render: Mei stands resolute before Saki, tension visible on her face while the classroom background blurs, highlighting the moment's gravity.. Shot framing: Medium. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Mei [FOCUS] (in-frame 1/2) / Saki (in-frame 2/2). Compositional focus is on Mei. Required physical signals (must be visible in the rendered image): Mei: furrowed brows, clenched fists / Saki: shifty gaze, crossed arms. Emotional tone: tense. Style: cinematic film-like medium shot — rule-of-thirds composition, layered foreground/midground/background with depth of field, set dressing visible, characters staged with intentional spacing, soft tonal gradients. Inspired by 攻殻機動隊 (押井守 film aesthetics) calm dialogue scenes and Aria's tonal medium shots. Story continuity — preceding beat: Yuto notices Mei standing in front of Saki. / following beat: Mei begins her apology.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Mei. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
               "gh:generatedAt": 1778458641,
-              "gh:model": "gpt-image-2",
-              "gh:quality": "low",
-              "gh:durationMs": 32519,
-              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
-              "gh:generationStages": [
-                {
-                  "name": "plan",
-                  "durationMs": 0
-                },
-                {
-                  "name": "generate",
-                  "durationMs": 27019
-                },
-                {
-                  "name": "critique",
-                  "durationMs": 5485
-                },
-                {
-                  "name": "persist",
-                  "durationMs": 15
-                }
-              ],
-              "gh:referenceCharacters": [
-                "Mei"
-              ],
-              "gh:referenceSelections": [
-                {
-                  "character": "Mei",
-                  "variant": "three_quarter_right_neutral",
-                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Mei/reference_variants/three_quarter_right_neutral.png"
-                }
-              ],
-              "gh:Q_p": 0.86875,
-              "gh:Q_i": 0.8875,
-              "gh:Q_total": 0.8752974862269733,
-              "gh:Q_tier": "ship"
+              "gh:model": "gpt-image-2"
             },
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/42/panel_panel_p42n1-v3_hybrid_v2.png",
               "gh:imagePrompt": "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons. SCENE SUBJECT (the panel's main beat): Mei approaches Saki. Visual to render: Mei stands resolute before Saki, tension visible on her face while the classroom background blurs, highlighting the moment's gravity.. Shot framing: Medium. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Mei [FOCUS] (in-frame 1/2) / Saki (in-frame 2/2). Compositional focus is on Mei. Required physical signals (must be visible in the rendered image): Mei: furrowed brows, clenched fists / Saki: shifty gaze, crossed arms. Emotional tone: tense. Style: cinematic film-like medium shot — rule-of-thirds composition, layered foreground/midground/background with depth of field, set dressing visible, characters staged with intentional spacing, soft tonal gradients. Inspired by 攻殻機動隊 (押井守 film aesthetics) calm dialogue scenes and Aria's tonal medium shots. Story continuity — preceding beat: Yuto notices Mei standing in front of Saki. / following beat: Mei begins her apology.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Mei. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers.",
               "gh:generatedAt": 1778479699,
-              "gh:model": "gpt-image-2",
-              "gh:quality": "low",
-              "gh:durationMs": 28537,
-              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
-              "gh:generationStages": [
-                {
-                  "name": "plan",
-                  "durationMs": 0
-                },
-                {
-                  "name": "generate",
-                  "durationMs": 23682
-                },
-                {
-                  "name": "critique",
-                  "durationMs": 4847
-                },
-                {
-                  "name": "persist",
-                  "durationMs": 8
-                }
-              ],
-              "gh:referenceCharacters": [
-                "Mei"
-              ],
-              "gh:referenceSelections": [
-                {
-                  "character": "Mei",
-                  "variant": "three_quarter_right_neutral",
-                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Mei/reference_variants/three_quarter_right_neutral.png"
-                }
-              ],
-              "gh:Q_p": 0.86875,
-              "gh:Q_i": 0.8875,
-              "gh:Q_total": 0.8752974862269733,
-              "gh:Q_tier": "ship"
+              "gh:model": "gpt-image-2"
             }
           ],
-          "gh:currentImageIndex": 1,
-          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/42/panel_panel_p42n1-v3_hybrid_v2.png",
-          "gh:imagePrompt": "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons. SCENE SUBJECT (the panel's main beat): Mei approaches Saki. Visual to render: Mei stands resolute before Saki, tension visible on her face while the classroom background blurs, highlighting the moment's gravity.. Shot framing: Medium. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Mei [FOCUS] (in-frame 1/2) / Saki (in-frame 2/2). Compositional focus is on Mei. Required physical signals (must be visible in the rendered image): Mei: furrowed brows, clenched fists / Saki: shifty gaze, crossed arms. Emotional tone: tense. Style: cinematic film-like medium shot — rule-of-thirds composition, layered foreground/midground/background with depth of field, set dressing visible, characters staged with intentional spacing, soft tonal gradients. Inspired by 攻殻機動隊 (押井守 film aesthetics) calm dialogue scenes and Aria's tonal medium shots. Story continuity — preceding beat: Yuto notices Mei standing in front of Saki. / following beat: Mei begins her apology.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Mei. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers."
+          "gh:currentImageIndex": 0,
+          "gh:generatedImageUrl": "/images/episodes/episode:arc0-1-origin/pages/42/panel_panel_p42n1-v3_v1.png",
+          "gh:imagePrompt": "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons. SCENE SUBJECT (the panel's main beat): Mei approaches Saki. Visual to render: Mei stands resolute before Saki, tension visible on her face while the classroom background blurs, highlighting the moment's gravity.. Shot framing: Medium. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Mei [FOCUS] (in-frame 1/2) / Saki (in-frame 2/2). Compositional focus is on Mei. Required physical signals (must be visible in the rendered image): Mei: furrowed brows, clenched fists / Saki: shifty gaze, crossed arms. Emotional tone: tense. Style: cinematic film-like medium shot — rule-of-thirds composition, layered foreground/midground/background with depth of field, set dressing visible, characters staged with intentional spacing, soft tonal gradients. Inspired by 攻殻機動隊 (押井守 film aesthetics) calm dialogue scenes and Aria's tonal medium shots. Story continuity — preceding beat: Yuto notices Mei standing in front of Saki. / following beat: Mei begins her apology.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Mei. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers.",
+          "gh:dialogue": [],
+          "gh:characters": [
+            "character:Mei",
+            "character:Saki"
+          ],
+          "gh:visual": {
+            "en": "Mei stands resolute before Saki, tension visible on her face while the classroom background blurs, highlighting the moment's gravity."
+          },
+          "gh:shot": "Medium"
         },
         {
           "@id": "panel:p42n2-v3",
