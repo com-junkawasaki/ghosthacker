@@ -60,11 +60,24 @@
 		if (!panel.data) return;
 		if (index < 0 || index >= generatedImages.length) return;
 		if (index === currentImageIndex) return;
-		const updatedData = create(PanelDataSchema, {
+		// IMPORTANT: build a plain object, NOT create(PanelDataSchema, ...).
+		// Proto's `create()` converts int64 fields (generatedAt) into BigInt,
+		// which makes JSON.stringify() throw inside the API client and silently
+		// drop the request — so the episode JSON-LD would never get written.
+		// The /api/panels/update handler reads the same shape as $lib/types
+		// PanelData (numbers everywhere), so a plain spread is sufficient.
+		const sanitizedImages = generatedImages.map((img: any) => ({
+			imageUrl: img?.imageUrl ?? '',
+			imagePrompt: img?.imagePrompt ?? '',
+			generatedAt: typeof img?.generatedAt === 'bigint' ? Number(img.generatedAt) : (img?.generatedAt ?? 0),
+			model: img?.model ?? '',
+		}));
+		const updatedData = {
 			...panel.data,
+			generatedImages: sanitizedImages,
 			currentImageIndex: index,
-			generatedImageUrl: generatedImages[index]?.imageUrl ?? panel.data.generatedImageUrl,
-		} as any);
+			generatedImageUrl: sanitizedImages[index]?.imageUrl ?? panel.data.generatedImageUrl,
+		} as PanelData;
 		emitUpdate(updatedData);
 	}
 

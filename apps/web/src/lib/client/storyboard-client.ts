@@ -11,10 +11,17 @@ async function get<T>(path: string): Promise<T> {
 }
 
 async function post<T>(path: string, body: unknown): Promise<T> {
+	// Coerce BigInt → number so int64 fields produced by @bufbuild/protobuf
+	// (e.g. GeneratedImage.generatedAt) survive JSON.stringify instead of
+	// throwing "Do not know how to serialize a BigInt" and silently dropping
+	// the request.
+	const serialized = JSON.stringify(body, (_key, value) =>
+		typeof value === 'bigint' ? Number(value) : value
+	);
 	const res = await fetch(path, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify(body)
+		body: serialized
 	});
 	if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
 	return res.json();

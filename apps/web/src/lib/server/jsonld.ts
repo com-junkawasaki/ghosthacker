@@ -297,6 +297,18 @@ export async function updatePanel(
 				}));
 			}
 			if (panelData.currentImageIndex != null) panel['gh:currentImageIndex'] = panelData.currentImageIndex;
+			// Keep the cached `gh:generatedImageUrl` in sync with the selected version
+			// so consumers that read it directly (PDF export, kindle preview, etc.)
+			// reflect the user's chosen version.
+			if (panelData.generatedImageUrl) {
+				panel['gh:generatedImageUrl'] = panelData.generatedImageUrl;
+			} else if (
+				panelData.generatedImages &&
+				panelData.currentImageIndex != null
+			) {
+				const sel = panelData.generatedImages[panelData.currentImageIndex];
+				if (sel?.imageUrl) panel['gh:generatedImageUrl'] = sel.imageUrl;
+			}
 
 			break;
 		}

@@ -10,7 +10,7 @@
       "panelIndex": 1,
       "pageTitle": "Renの部屋、事件の全体（捜査壁）",
       "shot": "Wide",
-      "visual": "Ren stands with arms crossed before a wall covered in photos, papers, and red strings connecting them like a detective's crime wall. His posture is tense yet contemplative as he stares deeply at his work.",
+      "visual": "Ren stands in a wide, contemplative establishing view before an organized research wall arranged with photographs, notes, papers, and colored threads mapping relationships across the surface. The composition emphasizes quiet analysis and a turning point of understanding, with the wall presented as a layered constellation of clues rather than a scene of conflict.",
       "sceneSubject": "Ren contemplates the investigation wall",
       "focusCharacter": "Ren",
       "allCharacters": [
@@ -30,9 +30,9 @@
         {
           "character": "Ren",
           "signals": [
-            "furrowed brows",
-            "arms crossed",
-            "intense stare"
+            "composed posture",
+            "hands resting together",
+            "calm attentive gaze"
           ]
         }
       ],
@@ -62,7 +62,7 @@
       "panelIndex": 5,
       "pageTitle": "Hacker Nues、動く",
       "shot": "Medium",
-      "visual": "Ren leans forward, fingers rapid on the HHKB as he navigates the thread. His intense focus is highlighted by the monitor's glow, showing a mix of posts and technological data.",
+      "visual": "Medium anime-action shot of Ren leaning forward over the HHKB, fingers moving in crisp, decisive bursts as he engages with the thread. The Monitor glow frames his focused expression, displaying a layered mix of posts and technical data that heightens the fast-paced momentum.",
       "sceneSubject": "Thread Engagement",
       "focusCharacter": "Ren",
       "allCharacters": [
@@ -83,8 +83,8 @@
         {
           "character": "Ren",
           "signals": [
-            "furrowed brows",
-            "quick finger motions"
+            "focused brow",
+            "swift typing gestures"
           ]
         }
       ],
@@ -165,7 +165,7 @@
       "panelIndex": 1,
       "pageTitle": "乗っ取りの一瞬（Yutoは気づかない）",
       "shot": "Wide",
-      "visual": "A wide shot of a dimly lit room. The young Middle-Eastern man leans forward intently with focused eyes, typing '847293' on the keyboard, having received it from Yuto. The monitor in front shows a Japanese SNS login screen.",
+      "visual": "A wide establishing shot of a dimly lit room, centered on the Young Man at a desk with a monitor and keyboard. He leans forward with concentrated focus, entering \"847293\" on the keyboard after receiving it from Yuto, while the monitor displays a Japanese SNS login screen.",
       "sceneSubject": "Illicit Authentication",
       "focusCharacter": "Young Man",
       "allCharacters": [
@@ -312,7 +312,7 @@
       "panelIndex": 1,
       "pageTitle": "翌朝、教室 — リンクの出所",
       "shot": "Wide",
-      "visual": "Yuto stands at the classroom's threshold as all 30 students turn their heads towards him simultaneously, creating a stark, frozen atmosphere. His eyes are wide with surprise.",
+      "visual": "Wide establishing shot: Yuto pauses at the classroom doorway as all 30 students turn toward him at the same moment, the room settling into a stark, suspended silence. The composition emphasizes his sudden arrival and the collective attention on him, with Yuto caught off guard under the tense classroom atmosphere.",
       "sceneSubject": "Yuto enters the tense classroom",
       "focusCharacter": "Yuto",
       "allCharacters": [
@@ -331,8 +331,8 @@
         {
           "character": "Yuto",
           "signals": [
-            "wide eyes",
-            "hands clenched into fists"
+            "alert, widened gaze",
+            "hands tightened at his sides"
           ]
         }
       ],
@@ -2330,7 +2330,7 @@
       "panelIndex": 1,
       "pageTitle": "Nei、Yutoに声をかける",
       "shot": "Wide",
-      "visual": "Nei pushes open the door to a classroom that isn't her own. She strides with intent towards Yuto's desk, predominant within the panel, while other students turn to look at her unexpected presence.",
+      "visual": "Wide establishing illustration: the classroom doorway opens as Nei steps into an unfamiliar room, framed by soft hallway light like a quiet reveal. The composition centers on Yuto's desk while nearby students' attention gradually reorients toward Nei, making her arrival feel deliberate and significant.",
       "sceneSubject": "Nei enters class with purpose",
       "focusCharacter": "Nei",
       "allCharacters": [
@@ -2349,8 +2349,16 @@
         {
           "character": "Nei",
           "signals": [
-            "determined stride",
-            "focused eyes"
+            "measured pace",
+            "level gaze",
+            "upright posture"
+          ]
+        },
+        {
+          "character": "Yuto",
+          "signals": [
+            "seated stillness",
+            "attention directed toward the doorway"
           ]
         }
       ],
@@ -2867,7 +2875,7 @@
       "panelIndex": 2,
       "pageTitle": "NeiからRenへ",
       "shot": "Medium",
-      "visual": "Ren, halfway through standing up with his backpack slung over one shoulder, is surprised as Nei bursts into the room. Nei's assertive stride interrupts Ren's movement, their presence commanding the space.",
+      "visual": "Medium anime-action shot: Ren is caught mid-rise, カバン slung over one shoulder, pausing as Nei makes a decisive entrance into the room. Nei steps in with confident momentum, cleanly interrupting Ren's motion and drawing the scene's focus to their shared tension.",
       "sceneSubject": "Nei's Sudden Entrance",
       "focusCharacter": "shared",
       "allCharacters": [
@@ -2886,15 +2894,15 @@
         {
           "character": "Ren",
           "signals": [
-            "surprised look",
-            "raised eyebrows"
+            "wide-eyed surprise",
+            "lifted brows"
           ]
         },
         {
           "character": "Nei",
           "signals": [
-            "determined stance",
-            "firm gaze"
+            "grounded stance",
+            "steady gaze"
           ]
         }
       ],
@@ -3200,7 +3208,7 @@
       "panelIndex": 7,
       "pageTitle": "NeiからRenへ",
       "shot": "Wide",
-      "visual": "With renewed energy, Nei turns to leave, uplifted by Ren's decision. Ren watches her go, showing a subtle smile of acceptance.",
+      "visual": "In a quiet wide establishing illustration, Nei moves into the open space with a calm sense of renewal, her カバン resting neatly at her side. Ren remains nearby with a soft, accepting expression, and the shared decision feels like a subtle shift in the atmosphere between them.",
       "sceneSubject": "Call to Action",
       "focusCharacter": "shared",
       "allCharacters": [
@@ -3219,15 +3227,17 @@
         {
           "character": "Ren",
           "signals": [
-            "soft smile",
-            "relaxed shoulders"
+            "soft facial expression",
+            "balanced stance",
+            "calm gaze direction"
           ]
         },
         {
           "character": "Nei",
           "signals": [
-            "energetic step",
-            "hopeful gaze"
+            "measured forward motion",
+            "upright posture",
+            "clear gaze direction"
           ]
         }
       ],
@@ -6839,7 +6849,7 @@
       "panelIndex": 2,
       "pageTitle": "幻肢痛",
       "shot": "Wide",
-      "visual": "Nei stands by the window looking out, while Ren is seated and oblivious to anything but their conversation. Nei suddenly turns to Ren with a serious expression.",
+      "visual": "In a quiet wide establishing view, Nei stands beside the window, gazing outward as soft room tones frame the moment. Ren remains seated, comfortably engaged in the conversation and unaware of Nei’s shift in attention. Nei then turns toward Ren with a composed, serious look, gently changing the atmosphere of the scene.",
       "sceneSubject": "Nei's appearance by the window",
       "focusCharacter": "shared",
       "allCharacters": [
@@ -6856,15 +6866,15 @@
         {
           "character": "Nei",
           "signals": [
-            "serious expression",
-            "focused gaze"
+            "composed serious expression",
+            "steady focused gaze"
           ]
         },
         {
           "character": "Ren",
           "signals": [
-            "relaxed disposition",
-            "casual glance"
+            "easy relaxed posture",
+            "casual attentive glance"
           ]
         }
       ],
@@ -7671,7 +7681,7 @@
       "panelIndex": 7,
       "pageTitle": "SIP Project Map: ON ／ 白瀬博士、明かされる",
       "shot": "Wide",
-      "visual": "Nei places the cube gently on the desk, pressing its top with their thumb. The cube illuminates, casting pulsating blue ripples throughout the class.",
+      "visual": "In a wide establishing view, Nei places the crystal cube device on the desk with calm precision, their fingertip hovering over its upper surface. A serene blue radiance blooms from the cube, spreading abstract ripple patterns through the classroom as a projection map gradually reveals itself with a clear, triumphant atmosphere.",
       "sceneSubject": "Activating the projection map",
       "focusCharacter": "Nei",
       "allCharacters": [
@@ -7691,15 +7701,9 @@
         {
           "character": "Nei",
           "signals": [
-            "calm demeanor",
-            "focused gaze"
-          ]
-        },
-        {
-          "character": "Yuto",
-          "signals": [
-            "gaze fixed on cube",
-            "breathless awe"
+            "steady posture",
+            "focused gaze",
+            "calm, deliberate hand position"
           ]
         }
       ],
@@ -7738,7 +7742,7 @@
       "panelIndex": 1,
       "pageTitle": "情報場の可視化 ／ ロゴ、見つける",
       "shot": "Wide",
-      "visual": "The classroom is depicted in a surreal transformation, where everything from the blackboard to classmates is visually converted into a black and blue wireframe. It overlays reality, creating a dual view effect.",
+      "visual": "A wide establishing view of the classroom shows reality shifting into a surreal black-and-blue wireframe layer, with the ワイヤーフレームの黒板, 窓, 机, and classmates all rendered in geometric outlines. The effect creates a dual-view atmosphere, as if the familiar room has been overlaid with an uncanny digital blueprint, setting an ominous tone around the shared group reaction.",
       "sceneSubject": "Transformed classroom",
       "focusCharacter": "shared",
       "allCharacters": [
@@ -7762,29 +7766,29 @@
         {
           "character": "クラスメイト",
           "signals": [
-            "wide eyes",
-            "open mouth"
+            "fixed wide gaze",
+            "stunned expression"
           ]
         },
         {
           "character": "Mei",
           "signals": [
-            "raised eyebrows",
-            "slightly open mouth"
+            "lifted brows",
+            "focused look of disbelief"
           ]
         },
         {
           "character": "Akira",
           "signals": [
-            "hands on head",
-            "leaning back"
+            "hands pressed to head",
+            "leaning back in alarm"
           ]
         },
         {
           "character": "Saki",
           "signals": [
-            "raised arms",
-            "stepping back"
+            "arms raised in reflex",
+            "stepping back with tense posture"
           ]
         }
       ],
@@ -8396,7 +8400,7 @@
       "panelIndex": 4,
       "pageTitle": "ランダウアーの原理",
       "shot": "Establishing-Illustration",
-      "visual": "An atmospheric scene where every classmate has a small black dot hovering on their back, symbolizing whispers and jealousy. Yuto has a notably larger black mass, pulsating ominously.",
+      "visual": "An atmospheric establishing illustration frames the classroom as a shared field of quiet social information, with each classmate accompanied by a small Black Dot hovering like an abstract marker of unspoken thoughts. Around Yuto, the Black Dots arrange into a larger geometric cluster, visually revealing him as the central point where the room’s attention and hidden comparisons converge.",
       "sceneSubject": "Visualizing the classroom's information field",
       "focusCharacter": "shared",
       "allCharacters": [
@@ -8408,15 +8412,16 @@
         "Black Dots"
       ],
       "precedingBeat": "Ren reveals the concept of a Ghost.",
-      "followingBeat": "Yuto confronts his realization.",
+      "followingBeat": "Yuto absorbs his observation.",
       "visualStyle": "establishing-illustration",
       "tone": "ominous",
       "emotionPhysicalSignals": [
         {
           "character": "Yuto",
           "signals": [
-            "wide eyes",
-            "slightly open mouth"
+            "steady forward gaze",
+            "slightly open mouth",
+            "upright still posture"
           ]
         }
       ],
@@ -8572,7 +8577,7 @@
       "panelIndex": 7,
       "pageTitle": "ランダウアーの原理",
       "shot": "Insert",
-      "visual": "A bold overlay of the phrase 'INFORMATION IS PHYSICS' dominates, with Ren and Yuto's profiles visible in the background, emphasizing the gravity of the revelation.",
+      "visual": "Insert, cinematic-close: a bold Text Overlay reading \"INFORMATION IS PHYSICS\" fills the frame as the central visual anchor. Behind the lettering, Ren and Yuto's profiles sit in soft focus, their presence tying the phrase to the emotional weight of the moment and the philosophical scope of the reveal.",
       "sceneSubject": "Overlay ties the concept philosophically",
       "focusCharacter": "shared",
       "allCharacters": [
@@ -8587,7 +8592,22 @@
       "followingBeat": "The page ends on a philosophical note.",
       "visualStyle": "cinematic-close",
       "tone": "emotional",
-      "emotionPhysicalSignals": [],
+      "emotionPhysicalSignals": [
+        {
+          "character": "Ren",
+          "signals": [
+            "steady profile",
+            "focused gaze"
+          ]
+        },
+        {
+          "character": "Yuto",
+          "signals": [
+            "quiet posture",
+            "intent expression"
+          ]
+        }
+      ],
       "panelLayout": {
         "gh:row": 5,
         "gh:colSpan": 3,
@@ -8781,7 +8801,7 @@
       "panelIndex": 4,
       "pageTitle": "ゴーストハックの時間だ",
       "shot": "Wide",
-      "visual": "Ren stands firm, holding the NULL AXE aloft, his voice steady and resolute. The surrounding atmosphere feels charged with potential energy.",
+      "visual": "In a wide cinematic anime frame, Ren stands centered beneath a radiant abstract glowing pattern, the luminous geometric emblem rising above him like a symbolic crest. The surrounding air shimmers with layered light and sweeping motion lines, framing his calm decisive declaration as a triumphant turning point.",
       "sceneSubject": "Ren's declaration",
       "focusCharacter": "Ren",
       "allCharacters": [
@@ -8801,8 +8821,10 @@
         {
           "character": "Ren",
           "signals": [
-            "raised axe",
-            "steady stance"
+            "luminous geometric emblem raised in view",
+            "balanced centered posture",
+            "steady forward gaze",
+            "calm facial composure"
           ]
         }
       ],
@@ -9367,8 +9389,8 @@
       "panelIndex": 1,
       "pageTitle": "Daemon出現",
       "shot": "Wide",
-      "visual": "A wide shot captures Yuto's shadow grotesquely expanding into a colossal Daemon. The classroom is dwarfed by this ominous silhouette, adding a sense of foreboding and scale.",
-      "sceneSubject": "Yuto's shadow transforms into Daemon",
+      "visual": "A wide establishing illustration frames the classroom as Yuto's elongated shadow becomes a vast atmospheric shadow shape across the floor and wall. The ordinary room feels hushed and small beside the abstract presence, turning the panel into a quiet climax of recognition and decision.",
+      "sceneSubject": "Yuto's elongated shadow becoming an abstract atmospheric presence",
       "focusCharacter": "shared",
       "allCharacters": [
         "Yuto",
@@ -9377,10 +9399,25 @@
       "focusedCharacters": [],
       "props": [],
       "precedingBeat": "Yuto stands in the classroom.",
-      "followingBeat": "Ren identifies the entity as Daemon.",
+      "followingBeat": "Ren names the atmospheric presence.",
       "visualStyle": "establishing-illustration",
       "tone": "ominous",
-      "emotionPhysicalSignals": [],
+      "emotionPhysicalSignals": [
+        {
+          "character": "Yuto",
+          "signals": [
+            "upright stillness",
+            "steady gaze oriented toward the large shadow pattern"
+          ]
+        },
+        {
+          "character": "atmospheric shadow shape",
+          "signals": [
+            "broad soft-edged silhouette",
+            "large vertical form occupying the background"
+          ]
+        }
+      ],
       "panelLayout": {
         "gh:row": 1,
         "gh:colSpan": 3,
@@ -9816,7 +9853,7 @@
       "panelIndex": 1,
       "pageTitle": "Daemonの攻撃 ／ Renの覚悟",
       "shot": "Medium",
-      "visual": "Daemon is shown with an intense expression, gesturing with his hand as energy waves emanate towards Ren. His hair flows with the energy, and the background distorts with motion lines.",
+      "visual": "Daemon dominates the medium shot with a sharp, taunting expression, sweeping one hand forward in a decisive energy-charged gesture toward Ren. His hair streams with the surging waves as the background bends into bold motion lines, heightening the anime-action intensity of the moment.",
       "sceneSubject": "Daemon's taunt and attack",
       "focusCharacter": "Daemon",
       "allCharacters": [
@@ -9836,8 +9873,8 @@
           "character": "Daemon",
           "signals": [
             "intense gaze",
-            "arm thrust motion",
-            "energetic posture"
+            "decisive arm sweep",
+            "charged forward posture"
           ]
         }
       ],
@@ -9874,7 +9911,7 @@
       "panelIndex": 2,
       "pageTitle": "Daemonの攻撃 ／ Renの覚悟",
       "shot": "Close Up",
-      "visual": "Ren has been knocked down, one knee on the ground, his hand pressing against the floor for support. His face is partly shadowed, showing determination despite the struggle.",
+      "visual": "Ren is brought down to one knee, one hand planted firmly against the floor as he steadies himself. In the tight cinematic close-up, part of his face falls into shadow, while his intense gaze and set expression show determination through the tense moment.",
       "sceneSubject": "Ren knocked down",
       "focusCharacter": "Ren",
       "allCharacters": [
@@ -9892,9 +9929,9 @@
         {
           "character": "Ren",
           "signals": [
-            "clenched jaw",
-            "slight grimace",
-            "bracing hand on floor"
+            "set jaw",
+            "focused intense gaze",
+            "steadying hand on floor"
           ]
         }
       ],
@@ -10573,8 +10610,8 @@
       "panelIndex": 1,
       "pageTitle": "Daemon消滅 ／ Yutoの謝罪",
       "shot": "Wide",
-      "visual": "The classroom is bathed in a gentle light as it slowly returns to normal. Yuto is opening his eyes in the foreground, with light particles dissipating the last traces of Daemon.",
-      "sceneSubject": "Daemon消滅と環境の変化",
+      "visual": "A wide establishing view shows the classroom bathed in soft radiance as its familiar details gently reappear, with 光の粒子 floating like a quiet constellation across the room. In the foreground, Yuto opens his eyes as the last traces of an abstract shadowy mood fade into the glow, giving the scene a calm, triumphant stillness.",
+      "sceneSubject": "atmospheric restoration scene",
       "focusCharacter": "Yuto",
       "allCharacters": [
         "Yuto",
@@ -10587,7 +10624,7 @@
       "props": [
         "光の粒子"
       ],
-      "precedingBeat": "The Daemon has been defeated.",
+      "precedingBeat": "The atmospheric presence has dissipated.",
       "followingBeat": "Yuto feels the relief from his chest.",
       "visualStyle": "establishing-illustration",
       "tone": "triumph",
@@ -10595,8 +10632,8 @@
         {
           "character": "Yuto",
           "signals": [
-            "eyes opening slowly",
-            "deep exhale"
+            "eyes open at an even pace",
+            "breathing settles into a steady rhythm"
           ]
         }
       ],
@@ -11548,7 +11585,7 @@
       "panelIndex": 5,
       "pageTitle": "翌日、教室、3段の和解",
       "shot": "Medium",
-      "visual": "Yuto walks toward Mei and Saki, his face showing determination to clear the air.",
+      "visual": "Medium shot of Yuto stepping forward toward Mei, his posture composed and purposeful. His steady expression shows a clear resolve to speak honestly and ease the tension between them.",
       "sceneSubject": "Yuto steps forward",
       "focusCharacter": "Yuto",
       "allCharacters": [
@@ -11567,8 +11604,9 @@
         {
           "character": "Yuto",
           "signals": [
-            "determined eyes",
-            "preparing posture"
+            "steady gaze",
+            "squared shoulders",
+            "purposeful stance"
           ]
         }
       ],
@@ -11787,7 +11825,7 @@
       "panelIndex": 1,
       "pageTitle": "放課後、Renの部屋 ／ 気づき",
       "shot": "Wide",
-      "visual": "Ren stands before a wall crowded with detailed victim records. He is attentively adding a new line to the list with a pensive demeanor.",
+      "visual": "Ren stands before a detection board filled with organized case profiles, notes, and a prominently placed central list. Holding a pen, he adds a new line with quiet care, the wide establishing view emphasizing his contemplative focus and the weight of the update.",
       "sceneSubject": "Ren updates the victim list",
       "focusCharacter": "Ren",
       "allCharacters": [
@@ -11809,8 +11847,8 @@
         {
           "character": "Ren",
           "signals": [
-            "furrowed brow",
-            "focused gaze"
+            "knitted brow",
+            "steady focused gaze"
           ]
         }
       ],
@@ -12183,7 +12221,7 @@
       "panelIndex": 7,
       "pageTitle": "放課後、Renの部屋 ／ 気づき",
       "shot": "Wide",
-      "visual": "Ren stands in quiet awe, contemplating the far-reaching implications of collective power. His father’s lessons resonate deeply within him.",
+      "visual": "In a wide establishing view, Ren stands beside the Holon device as its quiet glow suggests a luminous geometric emblem of connection, possibility, and shared intention. The scene carries the feeling of a turning point, with his father’s guiding idea present as an atmospheric echo while Nei remains nearby as a warm, steady presence.",
       "sceneSubject": "Ren reflects on his father's vision",
       "focusCharacter": "Ren",
       "allCharacters": [
@@ -12196,23 +12234,25 @@
       "props": [
         "Holon device"
       ],
-      "precedingBeat": "Validation and understanding settle in Ren's mind.",
-      "followingBeat": "Pondering future possibilities and challenges.",
+      "precedingBeat": "Quiet clarity settles in Ren’s mind.",
+      "followingBeat": "Reflecting on future possibilities.",
       "visualStyle": "establishing-illustration",
       "tone": "contemplative",
       "emotionPhysicalSignals": [
         {
           "character": "Ren",
           "signals": [
-            "thoughtful gaze",
-            "subtle smile"
+            "steady forward gaze",
+            "relaxed facial posture",
+            "upright stillness"
           ]
         },
         {
           "character": "Nei",
           "signals": [
-            "teasing grin",
-            "playful shrug"
+            "open facial expression",
+            "easy shoulder position",
+            "light conversational stance"
           ]
         }
       ],
@@ -12655,7 +12695,7 @@
       "panelIndex": 7,
       "pageTitle": "決意",
       "shot": "Wide",
-      "visual": "In a multi-shot layout, emphasis on Ren's resolute expression as he outlines his belief in helping people case-by-case, guided by the principles that intertwine with ghost hacking.",
+      "visual": "Wide cinematic anime layout: Ren stands at the center of a bright, triumphant reveal, offering a decisive declaration that he will guide each case one step at a time through his digital-spiritual craft. Subtle geometric light shapes and a calm atmospheric glow frame the moment, while Nei remains nearby with quiet approval, reinforcing the sense of chosen purpose.",
       "sceneSubject": "Decisive acceptance of the mission",
       "focusCharacter": "Ren",
       "allCharacters": [
@@ -12674,15 +12714,17 @@
         {
           "character": "Ren",
           "signals": [
-            "confident stance",
-            "steady gaze"
+            "upright posture",
+            "forward-facing attention",
+            "calm facial set"
           ]
         },
         {
           "character": "Nei",
           "signals": [
-            "supportive smile",
-            "encouraging nod"
+            "relaxed mouth shape",
+            "small nod",
+            "open shoulder angle"
           ]
         }
       ],

@@ -36,17 +36,19 @@ interface CliArgs {
   delayMs: number;
   onlyPending: boolean;
   pipeline: "1-stage" | "3-stage" | "m2ref";
+  noRef: boolean;
 }
 
 function parseArgs(): CliArgs {
   const args = process.argv.slice(2);
-  const out: CliArgs = { dryRun: false, delayMs: 1500, onlyPending: false, pipeline: "1-stage" };
+  const out: CliArgs = { dryRun: false, delayMs: 1500, onlyPending: false, pipeline: "1-stage", noRef: false };
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--panel-id" && args[i + 1]) out.panelId = args[++i];
     else if (args[i] === "--page" && args[i + 1]) out.page = Number(args[++i]);
     else if (args[i] === "--limit" && args[i + 1]) out.limit = Number(args[++i]);
     else if (args[i] === "--dry-run") out.dryRun = true;
     else if (args[i] === "--only-pending") out.onlyPending = true;
+    else if (args[i] === "--no-ref") out.noRef = true;
     else if (args[i] === "--delay-ms" && args[i + 1]) out.delayMs = Number(args[++i]);
     else if (args[i] === "--pipeline" && args[i + 1]) out.pipeline = args[++i] as "1-stage" | "3-stage" | "m2ref";
   }
@@ -193,12 +195,21 @@ async function main() {
       continue;
     }
 
-    // Determine versioned output path: read panel's current image count, use _v{n+1}.png
+    // Determine versioned output path
     const targetPage = ep["gh:pages"].find((p: any) => p["gh:pageNumber"] === m.pageNum);
     const targetPanel = targetPage?.["gh:panels"]?.find((pn: any) => pn["@id"] === m.panelId);
     const existingCount = targetPanel?.["gh:generatedImages"]?.length ?? 0;
     const versionedOutputPath = m.outputPath.replace(/_v\d+\.png$|_sketch_v\d+\.png$|\.png$/, `_v${existingCount + 1}.png`);
-    const versionedManifest = { ...m, outputPath: versionedOutputPath };
+    const versionedManifest: any = { ...m, outputPath: versionedOutputPath };
+    if (cli.noRef) {
+      // Strip references entirely: planNode resolves refs from focusedCharacters OR allCharacters fallback,
+      // so we must clear both to truly disable ref-image injection.
+      versionedManifest.focusedCharacters = [];
+      versionedManifest.referenceCharacters = [];
+      versionedManifest.allCharacters = [];  // disable fallback ref resolution
+      versionedManifest.characters = [];     // also clear legacy field
+      versionedManifest._noRefAllCharsBackup = m.allCharacters; // preserve for description if needed
+    }
 
     try {
       const final = (await graph.invoke({ manifest: versionedManifest })) as PanelState | PanelState3;
