@@ -264,17 +264,17 @@ function panelShape(slot: any): { d: string; bounds: { xMm: number; yMm: number;
   return { d, bounds: b };
 }
 
-function renderPanel(panel: any, idx: number): string {
+function renderPanel(panel: any, idx: number): { contained: string; overflow: string } {
   const slot = panel["gh:panelSlot"];
-  if (!slot) return "";
+  if (!slot) return { contained: "", overflow: "" };
   const shape = panelShape(slot);
   const clipId = `panel-clip-${idx}`;
   const imagePath = getPanelImagePath(panel);
+  const overflow = panel["gh:panelOverflow"] ?? {};
 
   let imageEl = "";
   if (imagePath && fs.existsSync(imagePath)) {
     const buf = fs.readFileSync(imagePath);
-    // Detect MIME from magic bytes
     let mime = "image/png";
     if (buf[0] === 0xFF && buf[1] === 0xD8 && buf[2] === 0xFF) mime = "image/jpeg";
     else if (buf[0] === 0x47 && buf[1] === 0x49 && buf[2] === 0x46) mime = "image/gif";
@@ -287,27 +287,71 @@ function renderPanel(panel: any, idx: number): string {
   }
 
   const bubbles = panel["gh:bubbles"] ?? [];
-  let bubblesSvg = "";
+  const crossPanels: string[] = overflow["gh:bubbleCrossesPanels"] ?? [];
+  const sfxCross: string[] = overflow["gh:sfxCrossesPanels"] ?? [];
+
+  // Contained bubbles (inside panel) and overflow bubbles (crosses panels)
+  let bubblesInside = "";
+  let bubblesOverflow = "";
   bubbles.forEach((b: any, bIdx: number) => {
     const svg = renderBubbleSvg(b, shape.bounds, bIdx);
-    bubblesSvg += `<g transform="translate(${shape.bounds.xMm},${shape.bounds.yMm})">${svg}</g>\n`;
+    const wrapper = `<g transform="translate(${shape.bounds.xMm},${shape.bounds.yMm})">${svg}</g>\n`;
+    // Bubble crosses panel boundary if `gh:crossesPanels` set on the bubble OR overflow flag includes this bIdx
+    if (b["gh:crossesPanels"] || crossPanels.length > 0) {
+      bubblesOverflow += wrapper;
+    } else {
+      bubblesInside += wrapper;
+    }
   });
 
+  // SFX: similar overflow treatment
+  let sfxInside = "";
+  let sfxOverflow = "";
   const sfxArr = panel["gh:sfx"] ?? [];
-  let sfxSvg = "";
   sfxArr.forEach((s: any) => {
-    sfxSvg += `<g transform="translate(${shape.bounds.xMm},${shape.bounds.yMm})">${renderSfxSvg(s)}</g>\n`;
+    const wrapper = `<g transform="translate(${shape.bounds.xMm},${shape.bounds.yMm})">${renderSfxSvg(s)}</g>\n`;
+    if (s["gh:crossesPanel"] || sfxCross.length > 0) sfxOverflow += wrapper;
+    else sfxInside += wrapper;
   });
+
+  // Character breaks frame (image with extended clip past panel border)
+  let characterOverflowEl = "";
+  const charBreak = overflow["gh:characterBreaksFrame"];
+  if (charBreak && imagePath && fs.existsSync(imagePath)) {
+    // Render the same image but with a relaxed clip: panel bounds + small extension in `extensionDirection`
+    const ext = charBreak["gh:extensionMm"] ?? 8;
+    const dir = charBreak["gh:extensionDirection"] ?? "top";
+    let extClipD = "";
+    const b = shape.bounds;
+    if (dir === "top") extClipD = `M${b.xMm},${b.yMm - ext} L${b.xMm + b.wMm},${b.yMm - ext} L${b.xMm + b.wMm},${b.yMm + b.hMm} L${b.xMm},${b.yMm + b.hMm} Z`;
+    else if (dir === "bottom") extClipD = `M${b.xMm},${b.yMm} L${b.xMm + b.wMm},${b.yMm} L${b.xMm + b.wMm},${b.yMm + b.hMm + ext} L${b.xMm},${b.yMm + b.hMm + ext} Z`;
+    else if (dir === "left") extClipD = `M${b.xMm - ext},${b.yMm} L${b.xMm + b.wMm},${b.yMm} L${b.xMm + b.wMm},${b.yMm + b.hMm} L${b.xMm - ext},${b.yMm + b.hMm} Z`;
+    else /* right */ extClipD = `M${b.xMm},${b.yMm} L${b.xMm + b.wMm + ext},${b.yMm} L${b.xMm + b.wMm + ext},${b.yMm + b.hMm} L${b.xMm},${b.yMm + b.hMm} Z`;
+    const extClipId = `panel-clip-${idx}-ext`;
+    const buf = fs.readFileSync(imagePath);
+    let mime = "image/png";
+    if (buf[0] === 0xFF && buf[1] === 0xD8 && buf[2] === 0xFF) mime = "image/jpeg";
+    const dataUrl = `data:${mime};base64,${buf.toString("base64")}`;
+    characterOverflowEl = `<defs><clipPath id="${extClipId}"><path d="${extClipD}"/></clipPath></defs>
+    <image href="${dataUrl}" x="${b.xMm}" y="${b.yMm}" width="${b.wMm}" height="${b.hMm}" preserveAspectRatio="xMidYMid slice" clip-path="url(#${extClipId})"/>`;
+  }
+
+  // Floating panel on page (with shadow)
+  const floating = overflow["gh:floatingPanelOnPage"];
+  const floatingFilter = floating?.["gh:withShadow"] ? `filter="url(#drop-shadow)"` : "";
 
   const borderEl = `<path d="${shape.d}" fill="none" stroke="#000" stroke-width="0.5"/>`;
 
-  return `<g class="panel panel-${idx}">
+  const contained = `<g class="panel panel-${idx}" ${floatingFilter}>
   <defs><clipPath id="${clipId}"><path d="${shape.d}"/></clipPath></defs>
   ${imageEl}
+  ${characterOverflowEl}
   ${borderEl}
-  ${bubblesSvg}
-  ${sfxSvg}
+  ${bubblesInside}
+  ${sfxInside}
 </g>`;
+  const overflowLayer = bubblesOverflow + sfxOverflow;
+  return { contained, overflow: overflowLayer };
 }
 
 function renderPage(page: any, options: { showFrame: boolean }): string {
@@ -331,21 +375,44 @@ function renderPage(page: any, options: { showFrame: boolean }): string {
 
   const panels = page["gh:panels"] ?? [];
   let panelsSvg = "";
+  let overflowSvg = "";
   panels.forEach((panel: any, idx: number) => {
-    const panelSvg = renderPanel(panel, idx);
-    panelsSvg += `<g transform="translate(${innerX},${innerY})">${panelSvg}</g>\n`;
+    const { contained, overflow } = renderPanel(panel, idx);
+    panelsSvg += `<g transform="translate(${innerX},${innerY})">${contained}</g>\n`;
+    if (overflow) overflowSvg += `<g transform="translate(${innerX},${innerY})">${overflow}</g>\n`;
   });
 
   const pageNumSvg = `<text x="${canvasW - 5}" y="${canvasH - 8}" text-anchor="end" font-family="sans-serif" font-size="2.5" fill="#000">— ${pageNum} —</text>`;
+
+  // Embed font @font-face for Japanese serif/sans (Google Fonts via web URL — for SVG used in browser/Inkscape)
+  const fontsCss = `
+  <style><![CDATA[
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+    text { font-feature-settings: "palt" on; }
+  ]]></style>`;
+
+  // Drop shadow filter for floating panels
+  const filterDefs = `
+  <defs>
+    <filter id="drop-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/>
+      <feOffset dx="0.8" dy="0.8" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.4"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>`;
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
      width="${canvasW}mm" height="${canvasH}mm"
      viewBox="${-BLEED} ${-BLEED} ${canvasW + 2*BLEED} ${canvasH + 2*BLEED}">
   <title>${escapeXml(title)} (p${pageNum})</title>
+  ${fontsCss}
+  ${filterDefs}
   <rect x="${-BLEED}" y="${-BLEED}" width="${canvasW + 2*BLEED}" height="${canvasH + 2*BLEED}" fill="#fff"/>
   ${frameSvg}
   ${panelsSvg}
+  ${overflowSvg}
   ${pageNumSvg}
 </svg>`;
 }

@@ -10,6 +10,7 @@
   "dependencies": {
     "@langchain/core": "^0.3.30",
     "@langchain/langgraph": "^0.2.34",
+    "pdf-lib": "^1.17.1",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
