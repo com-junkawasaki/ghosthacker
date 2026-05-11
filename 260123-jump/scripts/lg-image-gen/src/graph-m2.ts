@@ -12,6 +12,7 @@ import { StateGraph, START, END, Annotation } from "@langchain/langgraph";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { generate, edit, critique, MODEL } from "./lib/openai.js";
+import { generateGemini, selectProvider } from "./lib/gemini.js";
 import { extractSetting, pickVariant, refPath, characterDescriptor, type Variant } from "./lib/refs.js";
 
 export interface PanelManifestEntry {
@@ -127,7 +128,7 @@ function basePrompt(state: State): string {
   const shotReqLine = shotRequirements(m.shot ?? "Medium Shot");
 
   return [
-    "Fictional manga panel illustration of original characters created for a fiction publication (Weekly Shounen Jump style). All characters are entirely fictional and not based on any real persons. Black-and-white monochrome with screen tones, single full-bleed image, each panel reads as a standalone artwork.",
+    "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons.",
     state.setting ? `LOCATION (do not change): ${state.setting}.` : "",
     state.visualNote ? `Set dressing: ${state.visualNote}.` : "",
     subjectLine,
@@ -142,7 +143,7 @@ function basePrompt(state: State): string {
     styleLine,
     continuityLine,
     refsHint,
-    "ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
+    "ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers.",
   ].filter(Boolean).join(" ");
 }
 
@@ -172,23 +173,28 @@ async function planNode(state: State): Promise<Partial<State>> {
 
 async function generateNode(state: State): Promise<Partial<State>> {
   const t0 = Date.now();
+  const m = state.manifest as any;
+  // Hybrid provider routing: gemini for ominous/tense/contemplative, openai otherwise
+  const provider = process.env.LG_FORCE_PROVIDER === "openai" ? "openai"
+                 : process.env.LG_FORCE_PROVIDER === "gemini" ? "gemini"
+                 : selectProvider(m.tone, m.visualStyle);
   try {
     let b64: string;
-    if (state.resolvedRefs.length > 0) {
-      // Use /v1/images/edits with ref images injected
-      const refPaths = state.resolvedRefs.map((r) => r.refPath);
-      b64 = await edit(state.currentPrompt, refPaths);
+    if (provider === "gemini") {
+      // Gemini doesn't support ref-image injection in the same way; use prompt-only
+      b64 = await generateGemini(state.currentPrompt);
+    } else if (state.resolvedRefs.length > 0) {
+      b64 = await edit(state.currentPrompt, state.resolvedRefs.map((r) => r.refPath));
     } else {
-      // No characters → plain generation
       b64 = await generate(state.currentPrompt);
     }
-    const candidatePath = state.manifest.outputPath.replace(/\.png$/, `_m2ref_iter${state.iter + 1}.png`);
+    const candidatePath = state.manifest.outputPath.replace(/\.png$/, `_${provider}_iter${state.iter + 1}.png`);
     fs.mkdirSync(path.dirname(candidatePath), { recursive: true });
     fs.writeFileSync(candidatePath, Buffer.from(b64, "base64"));
     const dur = state.durationMs.generate ?? 0;
     return { candidatePath, iter: state.iter + 1, durationMs: { generate: dur + (Date.now() - t0) } };
   } catch (e) {
-    return { errors: [`generate: ${e instanceof Error ? e.message : String(e)}`], durationMs: { generate: Date.now() - t0 } };
+    return { errors: [`generate (${provider}): ${e instanceof Error ? e.message : String(e)}`], durationMs: { generate: Date.now() - t0 } };
   }
 }
 

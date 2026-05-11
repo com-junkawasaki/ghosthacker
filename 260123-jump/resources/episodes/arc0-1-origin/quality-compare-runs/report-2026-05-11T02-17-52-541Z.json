@@ -1,0 +1,316 @@
+{
+  "runAt": "2026-05-11T02:17:52.542Z",
+  "targets": [
+    "panel:p0n1-v3",
+    "panel:p0n2-v3",
+    "panel:p0n3-v3",
+    "panel:p0n4-v3"
+  ],
+  "variants": [
+    "gpt2low",
+    "gpt2med",
+    "gpt2high"
+  ],
+  "results": [
+    {
+      "panelId": "panel:p0n1-v3",
+      "pageNum": 0,
+      "shot": "Extreme Close Up",
+      "visualStyle": "cinematic-close",
+      "variants": [
+        {
+          "variant": "gpt2low",
+          "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/quality-compare-runs/panel_p0n1-v3_gpt2low.png",
+          "durationMs": 27132,
+          "ok": true,
+          "critique": {
+            "score": 8,
+            "settingMatch": true,
+            "charactersMatch": true,
+            "hasUnwantedText": false,
+            "compositionScore": 0.9,
+            "expressionConcrete": true,
+            "propsRecognized": [
+              "smartphone",
+              "blanket"
+            ],
+            "notes": "The extreme close-up effectively conveys Yuto's emotional state. However, the dark circles around his eyes could be more pronounced for stronger visual impact."
+          },
+          "Q_p": 1,
+          "Q_i": 0.9349999999999999,
+          "Q_total": 0.9575861940872057,
+          "Q_tier": "ship"
+        },
+        {
+          "variant": "gpt2med",
+          "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/quality-compare-runs/panel_p0n1-v3_gpt2med.png",
+          "durationMs": 51142,
+          "ok": true,
+          "critique": {
+            "score": 8,
+            "settingMatch": true,
+            "charactersMatch": true,
+            "hasUnwantedText": false,
+            "compositionScore": 0.85,
+            "expressionConcrete": true,
+            "propsRecognized": [
+              "smartphone",
+              "blanket"
+            ],
+            "notes": "The portrayal of Yuto's expression effectively captures his intense reaction. However, the overall framing could enhance the sense of isolation further."
+          },
+          "Q_p": 1,
+          "Q_i": 0.9275,
+          "Q_total": 0.9526704042638734,
+          "Q_tier": "ship"
+        },
+        {
+          "variant": "gpt2high",
+          "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/quality-compare-runs/panel_p0n1-v3_gpt2high.png",
+          "durationMs": 140473,
+          "ok": true,
+          "critique": {
+            "score": 8,
+            "settingMatch": true,
+            "charactersMatch": true,
+            "hasUnwantedText": false,
+            "compositionScore": 0.85,
+            "expressionConcrete": true,
+            "propsRecognized": [
+              "smartphone",
+              "blanket"
+            ],
+            "notes": "The panel effectively captures Yuto’s emotional state, but the blanket coverage could be more pronounced to enhance the intended shadowed effect. The composition is strong, though a slight adjustment in framing could improve visual balance."
+          },
+          "Q_p": 1,
+          "Q_i": 0.9275,
+          "Q_total": 0.9526704042638734,
+          "Q_tier": "ship"
+        }
+      ]
+    },
+    {
+      "panelId": "panel:p0n2-v3",
+      "pageNum": 0,
+      "shot": "Insert",
+      "visualStyle": "cinematic-close",
+      "variants": [
+        {
+          "variant": "gpt2low",
+          "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/quality-compare-runs/panel_p0n2-v3_gpt2low.png",
+          "durationMs": 23057,
+          "ok": true,
+          "critique": {
+            "score": 8,
+            "settingMatch": false,
+            "charactersMatch": true,
+            "hasUnwantedText": false,
+            "compositionScore": 0.75,
+            "expressionConcrete": true,
+            "propsRecognized": [
+              "smartphone"
+            ],
+            "notes": "The chaos of the notifications is not visually conveyed on the smartphone screen. The overall composition effectively highlights Yuto's emotional turmoil, but more vibrant representation of the text would enhance clarity."
+          },
+          "Q_p": 0.9500000000000001,
+          "Q_i": 0.7625,
+          "Q_total": 0.826580667958238,
+          "Q_tier": "ship"
+        },
+        {
+          "variant": "gpt2med",
+          "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/quality-compare-runs/panel_p0n2-v3_gpt2med.png",
+          "durationMs": 39695,
+          "ok": true,
+          "critique": {
+            "score": 8,
+            "settingMatch": true,
+            "charactersMatch": true,
+            "hasUnwantedText": false,
+            "compositionScore": 0.85,
+            "expressionConcrete": true,
+            "propsRecognized": [
+              "smartphone"
+            ],
+            "notes": "The intense emotional reflection in Yuto's eyes effectively captures the scene, but the composition could benefit from enhanced depth to emphasize his isolation further."
+          },
+          "Q_p": 0.9500000000000001,
+          "Q_i": 0.9275,
+          "Q_total": 0.9353547762379041,
+          "Q_tier": "ship"
+        },
+        {
+          "variant": "gpt2high",
+          "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/quality-compare-runs/panel_p0n2-v3_gpt2high.png",
+          "durationMs": 142180,
+          "ok": true,
+          "critique": {
+            "score": 8,
+            "settingMatch": true,
+            "charactersMatch": true,
+            "hasUnwantedText": false,
+            "compositionScore": 0.75,
+            "expressionConcrete": true,
+            "propsRecognized": [
+              "smartphone"
+            ],
+            "notes": "The tension in Yuto's expression and the reflected light successfully convey emotion, but the chaotic notifications are visually implied rather than explicit. The overall composition could use stronger depth to enhance the cinematic feel."
+          },
+          "Q_p": 0.9500000000000001,
+          "Q_i": 0.9124999999999999,
+          "Q_total": 0.9255683667430411,
+          "Q_tier": "ship"
+        }
+      ]
+    },
+    {
+      "panelId": "panel:p0n3-v3",
+      "pageNum": 0,
+      "shot": "Medium",
+      "visualStyle": "film-medium",
+      "variants": [
+        {
+          "variant": "gpt2low",
+          "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/quality-compare-runs/panel_p0n3-v3_gpt2low.png",
+          "durationMs": 26144,
+          "ok": true,
+          "critique": {
+            "score": 7,
+            "settingMatch": false,
+            "charactersMatch": true,
+            "hasUnwantedText": false,
+            "compositionScore": 0.6,
+            "expressionConcrete": true,
+            "propsRecognized": [
+              "blanket",
+              "smartphone"
+            ],
+            "notes": "The setting is too close-up and lacks the wider shot requirement. While Yuto's emotions are well portrayed, the composition does not effectively show the environment."
+          },
+          "Q_p": 0.9500000000000001,
+          "Q_i": 0.7149999999999999,
+          "Q_total": 0.7947498736096744,
+          "Q_tier": "ship"
+        },
+        {
+          "variant": "gpt2med",
+          "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/quality-compare-runs/panel_p0n3-v3_gpt2med.png",
+          "durationMs": 48815,
+          "ok": true,
+          "critique": {
+            "score": 7,
+            "settingMatch": false,
+            "charactersMatch": true,
+            "hasUnwantedText": false,
+            "compositionScore": 0.7,
+            "expressionConcrete": true,
+            "propsRecognized": [
+              "blanket"
+            ],
+            "notes": "The setting is too close-up and intimate, failing to capture the wider context of Yuto's bedroom. While the expressions are strong, the lack of a medium shot diminishes the intended scene's impact."
+          },
+          "Q_p": 0.9500000000000001,
+          "Q_i": 0.7299999999999999,
+          "Q_total": 0.8048299421606625,
+          "Q_tier": "ship"
+        },
+        {
+          "variant": "gpt2high",
+          "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/quality-compare-runs/panel_p0n3-v3_gpt2high.png",
+          "durationMs": 139638,
+          "ok": true,
+          "critique": {
+            "score": 8,
+            "settingMatch": false,
+            "charactersMatch": true,
+            "hasUnwantedText": false,
+            "compositionScore": 0.75,
+            "expressionConcrete": true,
+            "propsRecognized": [
+              "blanket"
+            ],
+            "notes": "The shot is too close to be a medium shot, and the wider setting is not adequately captured. However, the emotional detail and clutching of the blanket are effectively portrayed."
+          },
+          "Q_p": 0.9500000000000001,
+          "Q_i": 0.7625,
+          "Q_total": 0.826580667958238,
+          "Q_tier": "ship"
+        }
+      ]
+    },
+    {
+      "panelId": "panel:p0n4-v3",
+      "pageNum": 0,
+      "shot": "Wide",
+      "visualStyle": "establishing-illustration",
+      "variants": [
+        {
+          "variant": "gpt2low",
+          "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/quality-compare-runs/panel_p0n4-v3_gpt2low.png",
+          "durationMs": 27765,
+          "ok": true,
+          "critique": {
+            "score": 6,
+            "settingMatch": false,
+            "charactersMatch": true,
+            "hasUnwantedText": true,
+            "compositionScore": 0.7,
+            "expressionConcrete": true,
+            "propsRecognized": [
+              "smartphone"
+            ],
+            "notes": "The setting lacks the expected darkened room with blue light fading out. The composition is strong, but the overlay text is cluttered."
+          },
+          "Q_p": 0.9500000000000001,
+          "Q_i": 0.605,
+          "Q_total": 0.7199368044094887,
+          "Q_tier": "review"
+        },
+        {
+          "variant": "gpt2med",
+          "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/quality-compare-runs/panel_p0n4-v3_gpt2med.png",
+          "durationMs": 59237,
+          "ok": true,
+          "critique": {
+            "score": 8,
+            "settingMatch": true,
+            "charactersMatch": true,
+            "hasUnwantedText": true,
+            "compositionScore": 0.75,
+            "expressionConcrete": true,
+            "propsRecognized": [
+              "smartphone"
+            ],
+            "notes": "The overlay text detracts from the overall impact of the panel. While the setting effectively conveys a dark atmosphere, the character's isolation could be emphasized further."
+          },
+          "Q_p": 0.9500000000000001,
+          "Q_i": 0.8125,
+          "Q_total": 0.8598192508620838,
+          "Q_tier": "ship"
+        },
+        {
+          "variant": "gpt2high",
+          "outputPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/episodes/arc0-1-origin/quality-compare-runs/panel_p0n4-v3_gpt2high.png",
+          "durationMs": 114751,
+          "ok": true,
+          "critique": {
+            "score": 7,
+            "settingMatch": false,
+            "charactersMatch": true,
+            "hasUnwantedText": true,
+            "compositionScore": 0.65,
+            "expressionConcrete": true,
+            "propsRecognized": [
+              "smartphone"
+            ],
+            "notes": "The setting does not fully resemble a darkened room with blue light fading out. The overlay text is not present, detracting from the intended design."
+          },
+          "Q_p": 0.9500000000000001,
+          "Q_i": 0.6224999999999999,
+          "Q_total": 0.7319527308030834,
+          "Q_tier": "review"
+        }
+      ]
+    }
+  ]
+}

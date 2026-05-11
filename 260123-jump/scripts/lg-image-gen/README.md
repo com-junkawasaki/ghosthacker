@@ -41,12 +41,17 @@ scripts/lg-image-gen/
 ## クイックスタート
 
 ```bash
-# Apple Keychain に OpenAI key 保存 (一度だけ)
+# Apple Keychain に key 保存 (一度だけ)
 security add-generic-password -s "gftd.openai" -a "OPENAI_API_KEY" -w "sk-..."
+security add-generic-password -s "gftd.openrouter" -a "OPENROUTER_API_KEY" -w "sk-or-v1-..."
 
-# 単一 panel 生成
+# 環境変数 export
 export OPENAI_API_KEY=$(security find-generic-password -s "gftd.openai" -a "OPENAI_API_KEY" -w)
+export OPENROUTER_API_KEY=$(security find-generic-password -s "gftd.openrouter" -a "OPENROUTER_API_KEY" -w)
+
 cd scripts/lg-image-gen
+
+# 単一 panel 生成 (hybrid auto-route)
 npx tsx src/run.ts --pipeline m2ref --panel-id panel:p1n8-v3
 
 # page 単位
@@ -54,6 +59,10 @@ npx tsx src/run.ts --pipeline m2ref --page 1
 
 # 未生成 panel のみ (resume)
 npx tsx src/run.ts --pipeline m2ref --only-pending
+
+# Provider 強制 (safety_system 回避 / 比較検証)
+LG_FORCE_PROVIDER=gemini npx tsx src/run.ts --pipeline m2ref --only-pending
+LG_FORCE_PROVIDER=openai npx tsx src/run.ts --pipeline m2ref --only-pending
 ```
 
 ## オプション
@@ -152,7 +161,33 @@ Threshold:
 - ✓ M2+ref (agent loop) — 平均 score 7.5+、35-50s/panel
 - △ M3 (PEGEL/3D-proxy) — 設定安定だが harmonize が identity 破壊
 
-採用: **M2+ref + Phase 3.4 rich-schema + Q-score gate**
+採用: **M2+ref + Phase 3.4 rich-schema + Q-score gate + Hybrid provider routing**
+
+### Hybrid provider routing
+
+Visual style と tone で gpt-image-2 / Gemini 3 Pro Image を auto switch:
+
+| tone | provider | 採用理由 |
+|---|---|---|
+| `ominous` / `tense` / `contemplative` / `quiet` / `emotional` | Gemini | 手描き horror manga (伊藤潤二系) |
+| `action` / `triumph` / `comedic` | gpt-image-2 low | clean anime action (Naruto / OP系) |
+| default | gpt-image-2 low | safe baseline |
+
+`LG_FORCE_PROVIDER=gemini|openai` env で強制 override。
+
+### v2 prompt (single-illustration 制約)
+
+`"panel"` 単語が gpt-image-2 で multi-frame 解釈を誘発するため、v2 では:
+- 冒頭で `ONE SINGLE manga-style illustration filling the entire image` 明示
+- 末尾で `ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout`
+
+### 最終結果 (279 panel, 2026-05-11)
+
+- ship tier (Q_total ≥ 0.75): 270/279 (96.8%)
+- review tier: 9
+- regen tier: 0
+- avg Q_total: 0.88
+- 見開き: p6↔p7, p39↔p40
 
 ## トラブルシューティング
 

@@ -28,7 +28,7 @@ arc 0-1 の panel 画像 (216 active) を AI 画像生成で量産する必要�
 - Pattern: PEGEL (plan → parallel execute → assemble → eval)
 - 結果: avg 6.0/10 — 設定 2/2 OK だが harmonize 段で identity 0/2 (gpt-image-2 が顔を再描画)
 
-### 採用: Method 2 + ref injection + Phase 3.4 rich schema
+### 採用: Method 2 + Hybrid provider routing (gpt-image-2 + Gemini 3 Pro Image) + Phase 3.4 rich schema
 
 ## 決定事項
 
@@ -118,13 +118,40 @@ threshold:
 - 0.55 ≤ Q_total < 0.75 → manual review
 - Q_total < 0.55 → auto-regen (max 3 反復)
 
-### 7. インフラ
+### 7. Hybrid provider routing (2026-05-11 added)
 
-- **モデル**: `gpt-image-2` 強制 (gpt-image-1 は禁止 throw)
+Visual style と tone に応じて provider を route:
+
+| tone / visualStyle | provider | 採用理由 |
+|---|---|---|
+| `ominous` / `tense` / `contemplative` / `quiet` / `emotional` | **Gemini 3 Pro Image** | 手描き horror manga (伊藤潤二系 / 押井守 GitS 系)、psychological intensity に最適 |
+| `cinematic-close` (visualStyle) | **Gemini** | cross-hatching と raw line work で emotional close-up を活かす |
+| `action` / `triumph` / `comedic` | **gpt-image-2 low** | clean anime action (Naruto / OP 系)、polished screen-tone work |
+| `anime-action` (visualStyle) | **gpt-image-2 low** | dynamic motion line + speed effects に最適 |
+| default | gpt-image-2 low | safe baseline |
+
+実装: `lib/gemini.ts` `selectProvider(tone, visualStyle)`。
+強制 override: `LG_FORCE_PROVIDER=gemini|openai` env var (moderation 回避時に有用)。
+
+最終結果 (279 panels, 2026-05-11):
+- Gemini route: ~217 panels (78%)
+- OpenAI route: ~62 panels (22%)
+- ship tier (Q≥0.75): 270 / 279 (96.8%)
+- review tier: 9 (3.2%)
+- regen tier: 0
+- Avg Q_total: 0.88
+
+### 8. インフラ
+
+- **モデル**:
+  - `gpt-image-2` (OpenAI direct, gpt-image-1 は禁止 throw)
+  - `google/gemini-3-pro-image-preview` (OpenRouter経由)
 - **画像サイズ**: 1024×1536 portrait (manga panel 比率)
 - **quality**: `low` (cost-efficient で十分な品質)
 - **vision critic**: `gpt-4o-mini` (response_format json_object)
-- **シークレット**: macOS Keychain (`gftd.openai` / `OPENAI_API_KEY`) — 1Password CLI session timeout 回避
+- **シークレット**: macOS Keychain — 1Password CLI session timeout 回避
+  - `gftd.openai` / `OPENAI_API_KEY`
+  - `gftd.openrouter` / `OPENROUTER_API_KEY`
 - **versioning**: 出力 PNG は `_v{N}.png` (N = 既存 generatedImages.length + 1)
 - **history**: episode.jsonld の `gh:generatedImages[]` に append、`gh:currentImageIndex` で最新参照
 
@@ -132,7 +159,13 @@ threshold:
 
 - **p1 (8 panel)** rich schema + M2+ref: avg score 8.6/10
 - **p2-p10 (64 panel)** rich schema + M2+ref: 64/64 OK, p6 が double-page-spread (with p7) と LLM が Jump 流に判断
-- 残課題: 服装 drift (自宅でも学生服)、p7n10 同部屋構図、p6/p7 spread タグ整合
+- **Full arc 0-1 (279 panels, Hybrid pipeline 2026-05-11)**:
+  - Generated 279/279 (100%)
+  - ship tier 270, review tier 9, regen 0
+  - avg Q_total 0.88
+  - Gemini route 78%, OpenAI route 22% (psychological-horror manga tonality を反映)
+  - 見開き判定: p6↔p7 (Renの捜査壁→Hacker Nues), p39↔p40 (/dev/null SLASH→Daemon消滅)
+- 残課題: 服装 drift (自宅でも学生服)、p7n10 同部屋構図、p6/p7 spread タグ整合、9 review-tier panel の polish
 
 ## トレードオフ
 
