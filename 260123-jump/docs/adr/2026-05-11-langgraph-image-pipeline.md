@@ -180,6 +180,119 @@ Visual style と tone に応じて provider を route:
 - **M3 (3D-proxy)**: 完全 3D 構築は数週間コスト、本作 1 話分には合わない (連載開始時に再評価)
 - **OpenRouter Gemini 3 Pro Image**: マルチモーダルだが OpenAI 直接の方が token コスト低・gpt-image-2 安定
 
+## Phase 4 — Typesetting layer (2026-05-11 追加)
+
+画像生成 layer の上に **manga typesetting layer** を追加:
+
+### Manuscript frame (Jump 原稿用紙仕様)
+
+`gh:manuscriptFrame` を episode 単位で保持:
+```
+format: weekly-shounen-jump-A4
+trim:   210×297mm
+bleed:  ±3mm
+innerFrame: 180×270mm (x=15, y=15)
+gutter: 3mm × 3mm
+pageNumberArea: outer-bottom corner
+readingDirection: right-to-left, top-to-bottom
+```
+
+### Page template library (`page-templates.jsonld`)
+
+19 template (Jump 流):
+
+**Standard pacing**:
+- `tpl:impact-spread-1` — 1 panel = 1 page (title splash, climax)
+- `tpl:standard-grid-4` — 2x2 calm pacing
+- `tpl:jump-build-release-{5,6}` — Jump 標準
+- `tpl:jump-7-asymmetric` — 多用される asymmetric
+- `tpl:jump-9-grid` — dense educational (countermeasure pages)
+- `tpl:dialogue-cascade-4` — calm dialogue
+- `tpl:title-splash-3` — pretitle hook
+- `tpl:reveal-spread-2`, `tpl:single-impact-with-margin`
+- `tpl:double-page-spread` (見開き, pageSpan 2)
+
+**Diagonal layouts (Jump 流ダイナミック)**:
+- `tpl:diagonal-2-split` — time shift (before/after)
+- `tpl:diagonal-3-cascade` — continuous motion (action build)
+- `tpl:diagonal-x-cross` — collision / confrontation
+- `tpl:vortex-impact-7` — central impact + peripheral fragments
+- `tpl:shutter-pan-5` — camera-pan effect
+- `tpl:inverse-diagonal-anxiety` — psychological wobble (逆斜)
+- `tpl:flashback-blur-7` — memory / dream (soft-edge irregular)
+
+### 斜めコマ割り効果分析
+
+| 角度 | 効果 | 用途 |
+|---|---|---|
+| 15-30° | 軽い動勢 | 日常+α |
+| 30-45° | 標準ダイナミック | バトル |
+| 45-60° | 強い impact | 必殺技、ショック |
+| 60°+ | 暴力的・極端 | 大破壊 |
+| 逆方向 (negative) | 不安・違和感 | 心理サスペンス |
+
+### Bubble system
+
+panel ごとの `gh:bubbles[]` に:
+- `sizeMode`: auto / fit-to-text / fixed
+- `widthMm` / `heightMm` (manual override)
+- `position` (xMm/yMm 相対座標)
+- `tail` (方向+長さ)
+- `style`: round / jagged (叫び) / thought (心) / narration / telop / radio / whisper
+- `fontSize`: S / M / L / XL
+- `overflowPolicy`: shrink-text / auto-extend-bubble / split-bubble
+- `maxWidthFraction: 0.5`, `maxHeightFraction: 0.4` (panel に占める最大比 — 吹き出し肥大化防止)
+
+emotion から style 自動導出: `shout` → jagged, `thought/monologue` → thought, default → round。
+
+### SFX (擬音) system
+
+panel ごとの `gh:sfx[]` (空 array で初期化):
+- `text`: 「ドンッ」等
+- `font`: impact / brush / hand-drawn / rough
+- `size`: S / M / L / XL / spread
+- `position` + `rotation` + `skew`
+- `strokeWidth`, `strokeColor`, `fillColor`
+- `effect`: speed-lines / burst / shadow / halo / none
+- `crossesPanel`: 隣接 panel ID list (パネル越え擬音)
+
+### Panel overflow (コマを超える表現)
+
+`gh:panelOverflow`:
+- `characterBreaksFrame`: { bodyPart, extendsTo[], effect: punch-out / lean-out / burst-through }
+- `bubbleCrossesPanels[]`: panel ID 配列
+- `sfxCrossesPanels[]`: 同上
+- `backgroundContinuity`: 隣接 panel 背景連続
+- `floatingPanelOnPage`: { zIndex, withShadow } (浮遊コマ)
+
+### Template selection heuristics
+
+`phase4-typesetting-schema.ts` の `selectTemplate()` 関数:
+1. spread mark → `tpl:double-page-spread`
+2. 単一 panel → `tpl:impact-spread-1`
+3. プレタイトル → `tpl:title-splash-3`
+4. action + impact 3-4 panel → diagonal
+5. ominous/tense → inverse-diagonal-anxiety
+6. contemplative/emotional → flashback-blur
+7. countermeasure → jump-9-grid
+8. デフォルト: panel count に応じた standard pacing
+
+### Phase 4 適用結果 (2026-05-11, 46 pages / 279 panels)
+
+```
+13 × tpl:jump-7-asymmetric
+11 × tpl:flashback-blur-7
+ 7 × tpl:jump-9-grid (countermeasure pages)
+ 3 × tpl:jump-build-release-5
+ 3 × tpl:dialogue-cascade-4
+ 2 × tpl:title-splash-3
+ 2 × tpl:diagonal-x-cross (climax conflict)
+ 2 × tpl:double-page-spread (p6/7, p39/40)
+ 2 × tpl:diagonal-3-cascade
+ 1 × tpl:impact-spread-1
++ 他
+```
+
 ## 今後の進化候補
 
 1. **3D-proxy 連載再評価** — 第 2 話以降で character set が固定化したら、Method 3 を再検討 (initial 3D modeling コストを連載で amortize)

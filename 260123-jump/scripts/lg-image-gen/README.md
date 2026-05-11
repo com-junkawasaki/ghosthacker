@@ -145,7 +145,7 @@ Threshold:
 
 詳細は ADR-2026-05-11-langgraph-image-pipeline 参照。
 
-## Phase 3.x 履歴
+## Phase 3.x / 4 履歴
 
 - **Phase 2** — episode.jsonld 構造を v2 outline (260419-GH-jump.md) に整合
 - **Phase 3.1** — image-gen-manifest.json 生成、初期 32 placeholder
@@ -153,6 +153,17 @@ Threshold:
 - **Phase 3.3** — same-page rescue (v1 ≈ v2 タイトルで rescue)
 - **Phase 3.3b** — cross-page rescue (v1 番号ずれ救出)
 - **Phase 3.4** — semantic panel decomposition via LLM (Jump-style layout + 見開き)
+- **Phase 4** — Typesetting schema 拡張: manuscript frame (Jump A4) + 19 page templates (含 7 diagonal patterns) + bubble system + SFX + panel overflow
+
+### Phase 4 仕様 (2026-05-11)
+
+- `resources/episodes/arc0-1-origin/page-templates.jsonld` — 19 template library
+- `scripts/lg-image-gen/src/phase4-typesetting-schema.ts` — schema injector + template auto-assigner
+- 詳細: ADR §Phase 4 — Typesetting layer
+
+吹き出しサイズ制約: `maxWidthFraction: 0.5` + `maxHeightFraction: 0.4` (panel の最大 50%×40%、肥大化防止)。
+擬音 SFX 配置: `gh:sfx[]` per panel、position/rotation/font/effect 指定。
+斜めコマ割り 7 種: diagonal-2-split / 3-cascade / x-cross / vortex / shutter-pan / inverse-anxiety / flashback-blur — 角度と用途の対応は ADR 参照。
 
 ## 参考実装の判断
 
