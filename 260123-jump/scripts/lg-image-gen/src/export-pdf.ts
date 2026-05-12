@@ -8,12 +8,15 @@
  * - Spreads (p6-p7, p39-p40) rendered as single landscape pages
  *
  * Usage:
- *   npx tsx src/export-pdf.ts
- *   npx tsx src/export-pdf.ts --no-trim-marks    # skip crop marks
+ *   npx tsx src/export-pdf.ts                              # lossless PNG embed (print master)
+ *   npx tsx src/export-pdf.ts --jpeg                       # mozjpeg q=82 (preview / share, ~10-15x smaller)
+ *   npx tsx src/export-pdf.ts --jpeg --jpeg-quality 90     # higher quality JPEG
+ *   npx tsx src/export-pdf.ts --no-trim-marks
  *   npx tsx src/export-pdf.ts --output ../my.pdf
  */
 import * as fs from "node:fs";
 import { PDFDocument, rgb, PDFPage } from "pdf-lib";
+import sharp from "sharp";
 
 const REPO = "/Users/junkawasaki/github/ghosthacker/260123-jump";
 const EPISODE_PATH = `${REPO}/resources/episodes/arc0-1-origin/episode.jsonld`;
@@ -26,13 +29,15 @@ const PAGE_W = (TRIM_W + 2*BLEED) * MM_TO_PT;
 const PAGE_H = (TRIM_H + 2*BLEED) * MM_TO_PT;
 const SPREAD_PAGE_W = (TRIM_W*2 + 2*BLEED) * MM_TO_PT;
 
-interface CliArgs { noTrimMarks: boolean; output: string }
+interface CliArgs { noTrimMarks: boolean; output: string; jpeg: boolean; jpegQuality: number }
 function parseArgs(): CliArgs {
   const a = process.argv.slice(2);
-  const o: CliArgs = { noTrimMarks: false, output: `${REPO}/arc0-1-origin.pdf` };
+  const o: CliArgs = { noTrimMarks: false, output: `${REPO}/arc0-1-origin.pdf`, jpeg: false, jpegQuality: 82 };
   for (let i = 0; i < a.length; i++) {
     if (a[i] === "--no-trim-marks") o.noTrimMarks = true;
     else if (a[i] === "--output" && a[i+1]) o.output = a[++i];
+    else if (a[i] === "--jpeg") o.jpeg = true;
+    else if (a[i] === "--jpeg-quality" && a[i+1]) { o.jpeg = true; o.jpegQuality = Number(a[++i]); }
   }
   return o;
 }
@@ -112,11 +117,17 @@ async function main() {
     if (!fs.existsSync(pngPath)) { console.log(`p${pn}: PNG missing, skip`); continue; }
 
     const pngBuf = fs.readFileSync(pngPath);
-    const png = await doc.embedPng(pngBuf);
+    let img;
+    if (cli.jpeg) {
+      const jpegBuf = await sharp(pngBuf).jpeg({ quality: cli.jpegQuality, mozjpeg: true }).toBuffer();
+      img = await doc.embedJpg(jpegBuf);
+    } else {
+      img = await doc.embedPng(pngBuf);
+    }
     const w = isSpread ? SPREAD_PAGE_W : PAGE_W;
     const h = PAGE_H;
     const pdfPage = doc.addPage([w, h]);
-    pdfPage.drawImage(png, { x: 0, y: 0, width: w, height: h });
+    pdfPage.drawImage(img, { x: 0, y: 0, width: w, height: h });
     if (!cli.noTrimMarks) drawTrimMarks(pdfPage, isSpread);
     added++;
     console.log(`p${pn}: ${isSpread ? "spread" : "single"} (${(w/MM_TO_PT).toFixed(0)}×${(h/MM_TO_PT).toFixed(0)}mm)`);

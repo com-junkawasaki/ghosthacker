@@ -154,6 +154,7 @@ Threshold:
 - **Phase 3.3b** — cross-page rescue (v1 番号ずれ救出)
 - **Phase 3.4** — semantic panel decomposition via LLM (Jump-style layout + 見開き)
 - **Phase 4** — Typesetting schema 拡張: manuscript frame (Jump A4) + 19 page templates (含 7 diagonal patterns) + bubble system + SFX + panel overflow
+- **Phase C** — Rendering pipeline: SVG → PNG → 入稿 PDF。縦書き吹き出し / panel overflow z-layer / LLM SFX 自動配置 / Noto Serif JP 埋め込み / trim mark 付き A4 PDF (449 MB, 44 page)
 
 ### Phase 4 仕様 (2026-05-11)
 
@@ -164,6 +165,37 @@ Threshold:
 吹き出しサイズ制約: `maxWidthFraction: 0.5` + `maxHeightFraction: 0.4` (panel の最大 50%×40%、肥大化防止)。
 擬音 SFX 配置: `gh:sfx[]` per panel、position/rotation/font/effect 指定。
 斜めコマ割り 7 種: diagonal-2-split / 3-cascade / x-cross / vortex / shutter-pan / inverse-anxiety / flashback-blur — 角度と用途の対応は ADR 参照。
+
+### Phase C — Rendering → PDF (2026-05-11 完了)
+
+```bash
+# 1) episode.jsonld → SVG (46 page)
+npx tsx src/render-page.ts --all
+
+# 2) SVG → PNG (@150 dpi, sharp)
+npx tsx src/svg-to-png.ts
+
+# 3) PNG → 入稿 PDF (A4 trim + 3mm bleed + trim marks)
+npx tsx src/export-pdf.ts          # → arc0-1-origin.pdf
+npx tsx src/export-pdf.ts --no-trim-marks --output ../preview.pdf
+
+# SFX を再生成 (LLM)
+OPENAI_API_KEY=... npx tsx src/sfx-auto.ts --page 35    # 単一 page
+OPENAI_API_KEY=... npx tsx src/sfx-auto.ts              # 全 eligible panel
+OPENAI_API_KEY=... npx tsx src/sfx-auto.ts --force      # 既存 SFX 上書き
+```
+
+実装ファイル:
+
+| 機能 | file |
+|---|---|
+| 縦書き吹き出し (`writing-mode: vertical-rl`) | `src/render-page.ts` `renderBubbleSvg()` |
+| panel overflow z-layer | `src/render-page.ts` `renderPanel() → {contained, overflow}` |
+| Noto Serif JP 埋め込み | `src/render-page.ts` `<style><![CDATA[@import ...]]></style>` |
+| LLM SFX 自動配置 (gpt-4o) | `src/sfx-auto.ts` |
+| 入稿 PDF + trim mark | `src/export-pdf.ts` (pdf-lib) |
+
+最終成果物: `260123-jump/arc0-1-origin.pdf` (44 page, 見開き 2 か所統合, 449 MB)。
 
 ## 参考実装の判断
 
