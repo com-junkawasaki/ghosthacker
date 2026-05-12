@@ -183,6 +183,15 @@ npx tsx src/export-pdf.ts --no-trim-marks --output ../preview.pdf
 OPENAI_API_KEY=... npx tsx src/sfx-auto.ts --page 35    # 単一 page
 OPENAI_API_KEY=... npx tsx src/sfx-auto.ts              # 全 eligible panel
 OPENAI_API_KEY=... npx tsx src/sfx-auto.ts --force      # 既存 SFX 上書き
+
+# Panel overflow を LLM で curate (16% 採用率, spotlight 設計)
+OPENAI_API_KEY=... npx tsx src/overflow-auto.ts
+OPENAI_API_KEY=... npx tsx src/overflow-auto.ts --page 5
+OPENAI_API_KEY=... npx tsx src/overflow-auto.ts --force
+
+# PDF: print master (lossless PNG, 445 MB) vs preview (mozjpeg q=82, 38 MB)
+npx tsx src/export-pdf.ts                       # master
+npx tsx src/export-pdf.ts --jpeg --output ../arc0-1-origin-preview.pdf
 ```
 
 実装ファイル:
@@ -193,7 +202,8 @@ OPENAI_API_KEY=... npx tsx src/sfx-auto.ts --force      # 既存 SFX 上書き
 | panel overflow z-layer | `src/render-page.ts` `renderPanel() → {contained, overflow}` |
 | Noto Serif JP 埋め込み | `src/render-page.ts` `<style><![CDATA[@import ...]]></style>` |
 | LLM SFX 自動配置 (gpt-4o) | `src/sfx-auto.ts` |
-| 入稿 PDF + trim mark | `src/export-pdf.ts` (pdf-lib) |
+| LLM panel-overflow 配置 (gpt-4o) | `src/overflow-auto.ts` |
+| 入稿 PDF + trim mark + JPEG compression | `src/export-pdf.ts` (pdf-lib + sharp) |
 
 最終成果物: `260123-jump/arc0-1-origin.pdf` (44 page, 見開き 2 か所統合, 449 MB)。
 

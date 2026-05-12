@@ -511,42 +511,7 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/0/panel_panel_p0n3-v3_hybrid_v1.png",
               "gh:imagePrompt": "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons. SCENE SUBJECT (the panel's main beat): Yuto's Monologue. Visual to render: A wider shot of Yuto sitting up on his bed, clutching the smartphone tightly with one hand while the other grips the blanket. His face is a mixture of desperation and confusion, mouth slightly open as he whispers to himself.. KEY PROPS in scene (must be visible and recognizable, integrated into the composition): blanket. Shot framing: Medium. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Yuto [FOCUS]. Compositional focus is on Yuto. Required physical signals (must be visible in the rendered image): Yuto: downcast eyes, trembling hand, blanket clutching. Emotional tone: emotional. Style: cinematic film-like medium shot — rule-of-thirds composition, layered foreground/midground/background with depth of field, set dressing visible, characters staged with intentional spacing, soft tonal gradients. Inspired by 攻殻機動隊 (押井守 film aesthetics) calm dialogue scenes and Aria's tonal medium shots. Story continuity — preceding beat: Flash of aggressive notifications. / following beat: The realization hits Yuto.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Yuto. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers.",
               "gh:generatedAt": 1778468329,
-              "gh:model": "gpt-image-2",
-              "gh:quality": "low",
-              "gh:durationMs": 27732,
-              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
-              "gh:generationStages": [
-                {
-                  "name": "plan",
-                  "durationMs": 0
-                },
-                {
-                  "name": "generate",
-                  "durationMs": 23261
-                },
-                {
-                  "name": "critique",
-                  "durationMs": 4458
-                },
-                {
-                  "name": "persist",
-                  "durationMs": 13
-                }
-              ],
-              "gh:referenceCharacters": [
-                "Yuto"
-              ],
-              "gh:referenceSelections": [
-                {
-                  "character": "Yuto",
-                  "variant": "three_quarter_right_neutral",
-                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Yuto/reference_variants/three_quarter_right_neutral.png"
-                }
-              ],
-              "gh:Q_p": 0.9500000000000001,
-              "gh:Q_i": 0.7549999999999999,
-              "gh:Q_total": 0.8215718402342141,
-              "gh:Q_tier": "ship"
+              "gh:model": "gpt-image-2"
             }
           ],
           "gh:currentImageIndex": 0,
@@ -603,7 +568,20 @@
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
             "gh:floatingPanelOnPage": null
-          }
+          },
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Yuto",
+              "en": "……おれ、スニーカーを、買っただけ、なのに。"
+            }
+          ],
+          "gh:characters": [
+            "character:Yuto"
+          ],
+          "gh:visual": {
+            "en": "A wider shot of Yuto sitting up on his bed, clutching the smartphone tightly with one hand while the other grips the blanket. His face is a mixture of desperation and confusion, mouth slightly open as he whispers to himself."
+          },
+          "gh:shot": "Medium"
         },
         {
           "@id": "panel:p0n4-v3",
@@ -1242,83 +1220,13 @@
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n1-v3_v1.png",
               "gh:imagePrompt": "Manga panel illustration to be published in Weekly Shounen Jump (週刊少年ジャンプ) — each panel must read as a STANDALONE artwork, monochrome with screen tones, single full-bleed image. SCENE SUBJECT (the panel's main beat): Nei enters the classroom. Visual to render: Nei enters the classroom confidently, holding a bag of donut in one hand. The room is filled with sunlight falling on Ren's sleeping form at the desk. Nei's expression is a mix of mischief and determination.. KEY PROPS in scene (must be visible and recognizable, integrated into the composition): donut bag, Kommetcon donut. Shot framing: Wide. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Nei [FOCUS] (in-frame 1/2) / Ren (in-frame 2/2). Compositional focus is on Nei. Required physical signals (must be visible in the rendered image): Nei: bright eyes, slight smirk. Emotional tone: quiet. Style: detailed atmospheric establishing illustration — full environmental detail with weather/light condition, scenic depth, architectural specificity, texture-rich screen tones. Inspired by 天野こずえ Aria's establishing pages — peaceful, world-grounding detail. Story continuity — preceding beat: Nei approaches the classroom. / following beat: Nei calls out to Ren.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Nei. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers in the rendered image.",
               "gh:generatedAt": 1778431145,
-              "gh:model": "gpt-image-2",
-              "gh:quality": "low",
-              "gh:durationMs": 36698,
-              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=7)",
-              "gh:generationStages": [
-                {
-                  "name": "plan",
-                  "durationMs": 0
-                },
-                {
-                  "name": "generate",
-                  "durationMs": 31420
-                },
-                {
-                  "name": "critique",
-                  "durationMs": 5275
-                },
-                {
-                  "name": "persist",
-                  "durationMs": 3
-                }
-              ],
-              "gh:referenceCharacters": [
-                "Nei"
-              ],
-              "gh:referenceSelections": [
-                {
-                  "character": "Nei",
-                  "variant": "three_quarter_right_neutral",
-                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
-                }
-              ],
-              "gh:Q_p": 1,
-              "gh:Q_i": 0.8875,
-              "gh:Q_total": 0.9263716552212515,
-              "gh:Q_tier": "ship"
+              "gh:model": "gpt-image-2"
             },
             {
               "gh:imageUrl": "/images/episodes/episode:arc0-1-origin/pages/1/panel_panel_p1n1-v3_hybrid_v2.png",
               "gh:imagePrompt": "ONE SINGLE manga-style illustration filling the entire image, black-and-white monochrome with screen tones. NOT a manga page with multiple sub-frames — just ONE single contiguous illustration. Fictional original characters for Weekly Shounen Jump style fiction publication, entirely fictional and not based on any real persons. SCENE SUBJECT (the panel's main beat): Nei enters the classroom. Visual to render: Nei enters the classroom confidently, holding a bag of donut in one hand. The room is filled with sunlight falling on Ren's sleeping form at the desk. Nei's expression is a mix of mischief and determination.. KEY PROPS in scene (must be visible and recognizable, integrated into the composition): donut bag, Kommetcon donut. Shot framing: Wide. Composition: rule-of-thirds with focal character on golden ratio line; at least one prop in mid-ground; hand position and body language must be intentional and readable; depth of field with softened background. Characters in frame (each must be visually distinct): Nei [FOCUS] (in-frame 1/2) / Ren (in-frame 2/2). Compositional focus is on Nei. Required physical signals (must be visible in the rendered image): Nei: bright eyes, slight smirk. Emotional tone: quiet. Style: detailed atmospheric establishing illustration — full environmental detail with weather/light condition, scenic depth, architectural specificity, texture-rich screen tones. Inspired by 天野こずえ Aria's establishing pages — peaceful, world-grounding detail. Story continuity — preceding beat: Nei approaches the classroom. / following beat: Nei calls out to Ren.. The panel must visually connect with these beats. Character face-identity references are supplied as input images IN THIS ORDER: (1) Nei. Use each reference ONLY for face identity (face shape, eye design, hairstyle, age impression) of the named character — do NOT copy reference clothing, pose, or background. Apply standard Japanese school uniform appropriate to the setting and the pose described. ABSOLUTE: ONE seamless full-bleed image only. NO sub-panels, NO panel dividers, NO multi-frame layout, NO text, NO speech bubbles, NO captions, NO labels, NO storyboard frames or scene numbers.",
               "gh:generatedAt": 1778468433,
-              "gh:model": "gpt-image-2",
-              "gh:quality": "low",
-              "gh:durationMs": 28598,
-              "gh:generationPipeline": "langgraph-ts-m2ref-agent-loop (iter=1, score=8)",
-              "gh:generationStages": [
-                {
-                  "name": "plan",
-                  "durationMs": 1
-                },
-                {
-                  "name": "generate",
-                  "durationMs": 23371
-                },
-                {
-                  "name": "critique",
-                  "durationMs": 5219
-                },
-                {
-                  "name": "persist",
-                  "durationMs": 7
-                }
-              ],
-              "gh:referenceCharacters": [
-                "Nei"
-              ],
-              "gh:referenceSelections": [
-                {
-                  "character": "Nei",
-                  "variant": "three_quarter_right_neutral",
-                  "refPath": "/Users/junkawasaki/github/ghosthacker/260123-jump/resources/characters/Nei/reference_variants/three_quarter_right_neutral.png"
-                }
-              ],
-              "gh:Q_p": 1,
-              "gh:Q_i": 0.9199999999999999,
-              "gh:Q_total": 0.947749891398763,
-              "gh:Q_tier": "ship"
+              "gh:model": "gpt-image-2"
             }
           ],
           "gh:currentImageIndex": 1,
@@ -1375,7 +1283,30 @@
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
             "gh:floatingPanelOnPage": null
-          }
+          },
+          "gh:dialogue": [
+            {
+              "gh:speaker": "Narration",
+              "en": "廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。",
+              "gh:mangaLayout": {
+                "$typeName": "gftd.ghosthacker.storyboard.v1.MangaText",
+                "text": "廊下から、隣のD組の白瀬寧が、コメッコンのドーナツ袋を片手に、ずかずかと入ってきた。",
+                "type": "dialogue",
+                "x": 7.505197505197505,
+                "y": 24.041424602172267,
+                "fontSize": 16,
+                "style": "vertical"
+              }
+            }
+          ],
+          "gh:characters": [
+            "character:Nei",
+            "character:Ren"
+          ],
+          "gh:visual": {
+            "en": "Nei enters the classroom confidently, holding a bag of donut in one hand. The room is filled with sunlight falling on Ren's sleeping form at the desk. Nei's expression is a mix of mischief and determination."
+          },
+          "gh:shot": "Wide"
         },
         {
           "@id": "panel:p1n2-v3",
@@ -10497,7 +10428,13 @@
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": {
+              "gh:withShadow": true,
+              "gh:autoGenerated": true
+            },
+            "gh:autoGeneratedAt": "2026-05-12T04:43:16.825Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The contemplative close-up of Nei during her final realization is a subtle yet significant moment, warranting a floating panel to emphasize her introspection and the warmth of the scene."
           }
         }
       ],
@@ -13638,7 +13575,13 @@
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": {
+              "gh:withShadow": true,
+              "gh:autoGenerated": true
+            },
+            "gh:autoGeneratedAt": "2026-05-12T04:43:20.080Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The floating panel effect will highlight Yuto's close-up reaction, emphasizing the emotional peak as he faces the opportunity with tension."
           }
         }
       ],
@@ -16577,11 +16520,18 @@
             }
           ],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 10,
+              "gh:extensionDirection": "top",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:43:23.568Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Yuto's triumphant moment of purchase is the emotional peak, emphasizing his excitement and impulsiveness."
           }
         },
         {
@@ -19103,7 +19053,13 @@
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": {
+              "gh:withShadow": true,
+              "gh:autoGenerated": true
+            },
+            "gh:autoGeneratedAt": "2026-05-12T04:43:25.671Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Ren's emotional and contemplative moment deserves a distinct focus to highlight its significance as the page's emotional peak."
           }
         },
         {
@@ -29315,9 +29271,15 @@
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
             "gh:bubbleCrossesPanels": [],
-            "gh:sfxCrossesPanels": [],
+            "gh:sfxCrossesPanels": [
+              "panel:p10n1-v3",
+              "panel:p10n3-v3"
+            ],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:43:39.083Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Emphasizing the notification sound 'ピン' across panels amplifies the tension of the moment, marking Yuto's realization of the trap."
           }
         },
         {
@@ -29500,7 +29462,13 @@
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": {
+              "gh:withShadow": true,
+              "gh:autoGenerated": true
+            },
+            "gh:autoGeneratedAt": "2026-05-12T04:43:40.803Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "A floating panel amplifies the intense focus on Yuto's realization moment and the critical detail of the SMS, creating a dramatic focal point at the emotional peak."
           }
         },
         {
@@ -29711,7 +29679,13 @@
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": {
+              "gh:withShadow": true,
+              "gh:autoGenerated": true
+            },
+            "gh:autoGeneratedAt": "2026-05-12T04:43:42.871Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The extreme close-up on Yuto's confused expression is a pivotal moment of realization and benefits from being accentuated as a floating panel to highlight his internal response."
           }
         },
         {
@@ -33715,10 +33689,15 @@
           ],
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
-            "gh:bubbleCrossesPanels": [],
+            "gh:bubbleCrossesPanels": [
+              "panel:p12n1-v3"
+            ],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:43:51.289Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The tense accusation is a critical turning point, and extending Akira's dialogue into the previous panel amplifies the dramatic tension of the confrontation."
           }
         },
         {
@@ -34191,10 +34170,15 @@
           ],
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
-            "gh:bubbleCrossesPanels": [],
+            "gh:bubbleCrossesPanels": [
+              "panel:p12n5-v3"
+            ],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:43:53.926Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The intensity of Akira's assertive dialogue revealing the compromised account merits a bubble overflow to create a seamless tension into the next panel."
           }
         },
         {
@@ -34769,7 +34753,13 @@
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": {
+              "gh:withShadow": true,
+              "gh:autoGenerated": true
+            },
+            "gh:autoGeneratedAt": "2026-05-12T04:43:56.503Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The close-up of Mei's distressed expression and smartphone underscores the emotional peak of revelation, benefiting from additional focus by floating over the page."
           }
         },
         {
@@ -34969,9 +34959,14 @@
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
             "gh:bubbleCrossesPanels": [],
-            "gh:sfxCrossesPanels": [],
+            "gh:sfxCrossesPanels": [
+              "panel:p12n6-v3"
+            ],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:43:58.195Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The SFX 'バキッ' emphasizes the impactful moment of Mei's revelation and crossing the panel boundary heightens the dramatic tension of her exposed account."
           }
         }
       ],
@@ -36032,9 +36027,14 @@
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
             "gh:bubbleCrossesPanels": [],
-            "gh:sfxCrossesPanels": [],
+            "gh:sfxCrossesPanels": [
+              "panel:p13n3-v3"
+            ],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:44:00.921Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The large SFX 'ガーン' emphasizes Saki's shock, enhancing the emotional peak of her realization."
           }
         },
         {
@@ -36635,7 +36635,13 @@
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": {
+              "gh:withShadow": true,
+              "gh:autoGenerated": true
+            },
+            "gh:autoGeneratedAt": "2026-05-12T04:44:03.068Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The close-up on Saki's tears at the emotional peak warrants an inset floating panel to amplify the raw emotion of her realization, drawing the reader's focus distinctly."
           }
         },
         {
@@ -36869,11 +36875,18 @@
             }
           ],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 10,
+              "gh:extensionDirection": "left",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:44:05.021Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Overflowing Mei's emotional expression from the panel heightens the impact of her confession, conveying her vulnerability and emotional intensity."
           }
         },
         {
@@ -45176,9 +45189,14 @@
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
             "gh:bubbleCrossesPanels": [],
-            "gh:sfxCrossesPanels": [],
+            "gh:sfxCrossesPanels": [
+              "panel:p17n2-v3"
+            ],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:44:15.026Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The large 'ガシャッ' SFX signifies the phone's dramatic impact, enhancing the scene's emotional peak."
           }
         }
       ],
@@ -46970,7 +46988,13 @@
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": {
+              "gh:withShadow": true,
+              "gh:autoGenerated": true
+            },
+            "gh:autoGeneratedAt": "2026-05-12T04:44:16.552Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The extreme close-up and emotional tone of Nei's introspection makes a floating panel visually emphasize her reflective moment, highlighting the internal emotional peak on this page."
           }
         }
       ],
@@ -51302,7 +51326,13 @@
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": {
+              "gh:withShadow": true,
+              "gh:autoGenerated": true
+            },
+            "gh:autoGeneratedAt": "2026-05-12T04:44:24.160Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "A floating panel enhances the emotional intimacy and tension of Nei's silent plea, highlighting her impact on Ren's decision."
           }
         },
         {
@@ -51812,11 +51842,18 @@
             }
           ],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 10,
+              "gh:extensionDirection": "top",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:44:26.054Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Ren's decisive moment is a triumphal and pivotal scene, enhanced by breaking the panel to emphasize his determination."
           }
         },
         {
@@ -52641,7 +52678,10 @@
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:44:29.010Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The sound effect 'カチャ' crossing the panel boundary emphasizes the critical and deliberate impact of Ren's decisive keystroke, highlighting the moment's significance."
           }
         }
       ],
@@ -55925,7 +55965,13 @@
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": {
+              "gh:withShadow": true,
+              "gh:autoGenerated": true
+            },
+            "gh:autoGeneratedAt": "2026-05-12T04:44:37.403Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The close-up of Yuto's emotional moment is a punchline that benefits from an inset floating panel to emphasize his acceptance of responsibility, marking the page's emotional peak."
           }
         }
       ],
@@ -57525,11 +57571,18 @@
           ],
           "gh:sfx": [],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 10,
+              "gh:extensionDirection": "top",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:44:40.942Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Nei's confident gesture underlines the scene's triumph and urgency, elevating the impact of understanding the chargeback concept."
           }
         },
         {
@@ -65047,10 +65100,15 @@
           ],
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
-            "gh:bubbleCrossesPanels": [],
+            "gh:bubbleCrossesPanels": [
+              "panel:p28n3-v3"
+            ],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:01.842Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The urgency and tension in the dialogue between Yuto and Nei merit a bubble crossing to emphasize the critical nature of their conversation and its need to flow seamlessly into the next panel."
           }
         },
         {
@@ -65705,11 +65763,18 @@
             }
           ],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 12,
+              "gh:extensionDirection": "top",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:04.374Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Ren's determined interjection and the scene's impact focus justifies amplifying the action, emphasizing his commitment to stop further harm."
           }
         }
       ],
@@ -72169,7 +72234,13 @@
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": {
+              "gh:withShadow": true,
+              "gh:autoGenerated": true
+            },
+            "gh:autoGeneratedAt": "2026-05-12T04:45:14.982Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The close-up introduction of the Holon Device is a key moment with significant impact, warranting a floating effect to emphasize its importance and innovation in the story."
           }
         },
         {
@@ -73092,11 +73163,18 @@
             }
           ],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 12,
+              "gh:extensionDirection": "top",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:17.890Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Nei's excitement and the revelation of the Holon Device as a game-changer can be heightened by having her expression slightly break the frame, amplifying the scene's triumph and impact."
           }
         }
       ],
@@ -74940,9 +75018,14 @@
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
             "gh:bubbleCrossesPanels": [],
-            "gh:sfxCrossesPanels": [],
+            "gh:sfxCrossesPanels": [
+              "panel:p32n3-v3"
+            ],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:19.342Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The L-sized SFX 'シーン' crossing into an adjacent panel emphasizes the moment of shock and reveals the tension dramatically."
           }
         },
         {
@@ -75672,11 +75755,18 @@
             }
           ],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 12,
+              "gh:extensionDirection": "top",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:21.843Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Nei's triumphant activation of the projection map is the emotional peak of the scene, so extending their character slightly beyond the panel border emphasizes the impact and grandeur of this reveal."
           }
         }
       ],
@@ -81034,9 +81124,14 @@
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
             "gh:bubbleCrossesPanels": [],
-            "gh:sfxCrossesPanels": [],
+            "gh:sfxCrossesPanels": [
+              "panel:p35n2-v3"
+            ],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:31.924Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The large 'ゴォン' SFX emphasizes the dramatic moment when Ren activates the powerful Holon Device, highlighting the page's emotional peak."
           }
         },
         {
@@ -81262,11 +81357,18 @@
             }
           ],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 12,
+              "gh:extensionDirection": "top",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:33.502Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Ren's declaration amid the radiant symbol marks the emotional and thematic climax, and having the emblem overflow emphasizes his triumph and significance."
           }
         },
         {
@@ -81491,9 +81593,14 @@
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
             "gh:bubbleCrossesPanels": [],
-            "gh:sfxCrossesPanels": [],
+            "gh:sfxCrossesPanels": [
+              "panel:p35n4-v3"
+            ],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:35.447Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The large SFX 'ゴォッ' emphasizes the awe-inspiring moment of Ren's axe impacting the ghost, enhancing the scene's impact through a visual overflow."
           }
         }
       ],
@@ -83371,7 +83478,13 @@
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": {
+              "gh:withShadow": true,
+              "gh:autoGenerated": true
+            },
+            "gh:autoGeneratedAt": "2026-05-12T04:45:38.622Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The close-up of Nei retrieving the tape is crucial to the impending action, deserving focused isolation to heighten the tension before the confrontation with the black mass."
           }
         },
         {
@@ -84103,9 +84216,14 @@
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
             "gh:bubbleCrossesPanels": [],
-            "gh:sfxCrossesPanels": [],
+            "gh:sfxCrossesPanels": [
+              "panel:p36n6-v3"
+            ],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:41.673Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The large, ominous SFX 'グゥゥ' crossing panels enhances the impact of the black mass's growth, amplifying the scene's emotional peak as it emphasizes the supernatural tension."
           }
         }
       ],
@@ -85050,11 +85168,18 @@
           "gh:bubbles": [],
           "gh:sfx": [],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 10,
+              "gh:extensionDirection": "right",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:43.479Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Yuto's elongated shadow breaking the panel frame heightens the ominous atmosphere and emphasizes the emergence of the Daemon as a moment of revelation."
           }
         },
         {
@@ -85634,11 +85759,18 @@
             }
           ],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 12,
+              "gh:extensionDirection": "top",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:45.744Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Emphasizing Daemon's emergence enhances the emotional peak of his ominous reveal."
           }
         },
         {
@@ -85885,9 +86017,15 @@
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
             "gh:bubbleCrossesPanels": [],
-            "gh:sfxCrossesPanels": [],
+            "gh:sfxCrossesPanels": [
+              "panel:p37n4-v3",
+              "panel:p37n6-v3"
+            ],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:47.472Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The medium-sized SFX ゾクッ can spill into adjacent panels to emphasize the chilling revelation of the Daemon, enhancing the tense atmosphere at this emotional peak."
           }
         },
         {
@@ -87360,9 +87498,14 @@
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
             "gh:bubbleCrossesPanels": [],
-            "gh:sfxCrossesPanels": [],
+            "gh:sfxCrossesPanels": [
+              "panel:p38n2-v3"
+            ],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:50.798Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The large SFX 'ズワッ' can dramatically enhance the impact of Daemon's energy-charged gesture and his dominating presence by crossing into the adjacent panel, intensifying the action scene."
           }
         },
         {
@@ -87983,11 +88126,18 @@
             }
           ],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 12,
+              "gh:extensionDirection": "top",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:54.462Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Ren's rising stance and determined expression against Daemon is the emotional peak, warranting an overflow effect to enhance his defiance and impact."
           }
         },
         {
@@ -88196,11 +88346,18 @@
             }
           ],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 12,
+              "gh:extensionDirection": "top",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:56.166Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Ren's defiant stand is the emotional peak of the page and emphasizing his presence with a characterBreaksFrame effect heightens the impact of his triumphant defiance."
           }
         }
       ],
@@ -89883,11 +90040,18 @@
             }
           ],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 12,
+              "gh:extensionDirection": "top",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:45:59.474Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Ren's passionate gesture embodies the emotional peak and breaking the panel frame underscores his impactful plea to the crowd."
           }
         },
         {
@@ -90352,9 +90516,15 @@
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
             "gh:bubbleCrossesPanels": [],
-            "gh:sfxCrossesPanels": [],
+            "gh:sfxCrossesPanels": [
+              "panel:p39n5-v3",
+              "panel:p39n7-v3"
+            ],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:46:00.945Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The XL SFX 'ゴオッ' emphasizes Ren's triumphant strike and should cross panels to amplify the scene's dramatic impact."
           }
         },
         {
@@ -90543,9 +90713,14 @@
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
             "gh:bubbleCrossesPanels": [],
-            "gh:sfxCrossesPanels": [],
+            "gh:sfxCrossesPanels": [
+              "panel:p39n6-v3"
+            ],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:46:02.531Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The large 'バキッ' SFX highlights the peak moment of triumph and impact as the curse shatters, emphasizing the drama of the climax."
           }
         }
       ],
@@ -102754,10 +102929,15 @@
           ],
           "gh:panelOverflow": {
             "gh:characterBreaksFrame": null,
-            "gh:bubbleCrossesPanels": [],
+            "gh:bubbleCrossesPanels": [
+              "panel:p44n4-v3"
+            ],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:46:17.540Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "The emotional impact of Ren's decision can be highlighted by allowing his words to spill into the next panel, stressing the continuity and significance of his choice."
           }
         },
         {
@@ -103476,11 +103656,18 @@
             }
           ],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 12,
+              "gh:extensionDirection": "top",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:46:19.464Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Ren's triumphant gesture and decision to help people is the emotional peak of the page, warranting a dramatic visual emphasis."
           }
         },
         {
@@ -103945,11 +104132,18 @@
             }
           ],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 12,
+              "gh:extensionDirection": "top",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:46:21.308Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Ren's triumphant acceptance of the mission is the emotional peak, and having him break the frame enhances the impact of his decisive declaration."
           }
         },
         {
@@ -106081,11 +106275,18 @@
           ],
           "gh:sfx": [],
           "gh:panelOverflow": {
-            "gh:characterBreaksFrame": null,
+            "gh:characterBreaksFrame": {
+              "gh:extensionMm": 10,
+              "gh:extensionDirection": "top",
+              "gh:autoGenerated": true
+            },
             "gh:bubbleCrossesPanels": [],
             "gh:sfxCrossesPanels": [],
             "gh:backgroundContinuity": false,
-            "gh:floatingPanelOnPage": null
+            "gh:floatingPanelOnPage": null,
+            "gh:autoGeneratedAt": "2026-05-12T04:46:24.553Z",
+            "gh:autoModel": "gpt-4o",
+            "gh:autoRationale": "Overflowing Ren's confident stance above the panel emphasizes his triumphant decision to carry on his father's legacy."
           }
         },
         {
