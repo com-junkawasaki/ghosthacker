@@ -1,0 +1,26 @@
+{:schema/age 14,
+ :gh/slug "NeiMiddleSchool",
+ :gh/relationship
+ #:gh{:withRen "転校初日にRenの隣の席になる。Renの「普通じゃなさ」に興味を持ち、自分から話しかける。"},
+ :schema/name "Nei - 中学時代",
+ :id "character:qZg3Z6iB1Fem4HgwiJz7y",
+ :gh/appearance
+ #:gh{:build
+      "Slender and petite, wearing navy blazer school uniform neatly.",
+      :eyes
+      "Striking blue irises, bright crystalline catchlights, observant and somewhat distant gaze.",
+      :face
+      "14-year-old Japanese female, intelligent and curious sharp eyes with striking blue irises. Doll-like beauty.",
+      :generationPrompt
+      "photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese female student, doll-like beauty, platinum blonde layered bob, striking blue irises with sharp catchlights, navy blazer school uniform worn neatly, white blouse, grey checkered skirt.",
+      :hair
+      "Platinum blonde layered bob hair, slightly longer than current style.",
+      :style "Photorealistic, soft afternoon light, 8k.",
+      :uniform "紺のブレザー、白シャツ、グレーのチェック柄スカート（膝下丈）"},
+ :gh/personality
+ #:gh{:interests "人間観察、読書、情報分析",
+      :mystery "転校の理由を誰にも話さない",
+      :traits "静かで観察力が鋭い。感情表現が独特。空気を読まない発言をする。"},
+ :gh/timeframe "3年前（2023年）",
+ :gh/school "港南第一中学校 2年B組",
+ :schema/role "中学2年生 / 転校生"}

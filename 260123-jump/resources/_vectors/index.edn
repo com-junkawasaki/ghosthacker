@@ -1,0 +1,24 @@
+{:context {:gh "https://ghosthacker.gftd.ai/ns/"},
+ :id "gh:vectorIndex",
+ :gh/collections
+ {:dialogues
+  #:gh{:name "dialogues",
+       :sourceFile "dialogues.json",
+       :count 0,
+       :dimensions 1536,
+       :model "text-embedding-3-small",
+       :updatedAt "2026-01-25T00:00:00Z"},
+  :characters
+  #:gh{:name "characters",
+       :sourceFile "characters.json",
+       :count 0,
+       :dimensions 1536,
+       :model "text-embedding-3-small",
+       :updatedAt "2026-01-25T00:00:00Z"},
+  :prompts
+  #:gh{:name "prompts",
+       :sourceFile "prompts.json",
+       :count 0,
+       :dimensions 1536,
+       :model "text-embedding-3-small",
+       :updatedAt "2026-01-25T00:00:00Z"}}}

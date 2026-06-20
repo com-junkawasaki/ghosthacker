@@ -1,0 +1,36 @@
+{:schema/age 14,
+ :gh/slug "Akira",
+ :schema/name "黒川 亮 (Akira Kurokawa)",
+ :gh/familyBackground
+ #:gh{:parents "父は会社経営、母は元モデル",
+      :economic "裕福",
+      :issue "両親は忙しく、物で愛情を示す傾向"},
+ :id "character:hV4weJL67XBV2Bmhn7Zk-",
+ :gh/appearance
+ #:gh{:build
+      "Slim build, wearing a school uniform with a trendy accessory.",
+      :eyes
+      "Confident dark eyes, sharp catchlights, slightly arrogant look.",
+      :face
+      "14-year-old Japanese male student, confident and smug expression, stylish features.",
+      :generationPrompt
+      "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 14-year-old Japanese middle school boy, stylishly messy black hair, confident smug expression, dark eyes with sharp catchlights, wearing a navy blazer school uniform with trendy sneakers.",
+      :hair "Stylishly messy black hair.",
+      :style
+      "Photorealistic, cinematic lighting, 8k, high-end webtoon aesthetic."},
+ :gh/arc01Role
+ #:gh{:function "Yutoの羨望の対象。彼の「限定スニーカー」がYutoの物欲を刺激し、詐欺への導線となる",
+      :keyDialogue "見てこれ！限定モデル、やっとゲットしたわ",
+      :emotionalArc "得意げ → Sakiの悪口で傷つく → 距離を置く",
+      :thematicRole "物質主義と見栄の象徴。Sakiから裏で「調子乗りすぎ」と言われていた"},
+ :gh/personality
+ #:gh{:traits ["ファッション好き" "見栄っ張り" "実は寂しがり" "承認欲求強め"],
+      :description
+      "お金持ちの家庭で、いつも最新のスニーカーやガジェットを持っている。見せびらかすのが好きだが、それは注目を浴びたいから。Yutoの「フリースマホ」企画に最初は興味を示した（後で後悔）。"},
+ :gh/relationships
+ [{:character "character:Yuto", :type "クラスメイト", :note "Yutoにとって羨望の対象"}
+  {:character "character:Saki",
+   :type "クラスメイト",
+   :note "Sakiから密かに批判されていた"}
+  {:character "character:Mei", :type "クラスメイト"}],
+ :schema/role "Student / Trendsetter"}

@@ -1,6 +1,15 @@
 
 # Ghost Hacker Producer Pipeline
 
+> ⚠️ **DEPRECATED (2026-06).** This TypeScript (SvelteKit) + Go pipeline is
+> superseded by the Clojure + Datomic pipeline in
+> `orgs/com-junkawasaki/kami-engine/kami-app-sip-clj` (`sip.render` / `sip.page` /
+> `sip.storyboard` over datalevin). As part of that migration the resource data
+> here was converted from JSON-LD to **EDN** (`*.jsonld` → `*.edn`, keyword keys),
+> so the TS/Go runtime loaders (`apps/web/src/lib/server/jsonld.ts`, `state.ts`,
+> `apps/server/.../main.go`) no longer find their data and are no longer the
+> source of truth. Kept for reference/history only. (`.auth/wattpad.json` left as-is.)
+
 AI駆動型コンテンツ生成システムで、Ghost Hackerストーリーを多様なフォーマット（Webtoon、Wattpad、YouTube動画）で生成します。
 
 ## 概要

@@ -1,0 +1,25 @@
+{:schema/age 40,
+ :gh/arc "Arc C",
+ :gh/slug "NakamuraShunsuke",
+ :type "gh:Character",
+ :gh/organization "company:TokaiSecurities",
+ :schema/name "中村 俊介 (Shunsuke Nakamura)",
+ :id "character:0FFnOqBf5pPJFepYxQ-EC",
+ :gh/appearance
+ #:gh{:build
+      "Average, IT professional physique. Business casual with security badge prominently displayed.",
+      :eyes
+      "Intelligent tired eyes, frustrated by being ignored, hopeful catchlights at Kaname's arrival.",
+      :face
+      "40-year-old Japanese male, tired but determined face, technical competence overshadowed by politics.",
+      :generationPrompt
+      "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 40-year-old Japanese male, tired but determined expression, slightly messy black hair, business casual, security badge, SOC monitors background.",
+      :hair "Slightly messy black hair, too busy to style.",
+      :style
+      "Photorealistic, SOC room lighting with monitors, cybersecurity professional, 8k."},
+ :gh/personality
+ #:gh{:arc "Kanameの介入で再び声を上げる。",
+      :core "技術はわかるが政治に潰される。『ログインMFAだけでは不十分』と提言したが却下された過去。"},
+ :gh/relationships
+ #:gh{:kaname #:gh{:dynamic "支援士同士の専門会話。", :role "技術的な対話相手"}},
+ :schema/role "InfoSec Director / Arc C Technical Ally"}

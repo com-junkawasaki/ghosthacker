@@ -1,0 +1,29 @@
+{:schema/age 48,
+ :gh/arc "Arc B",
+ :gh/slug "YamashitaTsuyoshi",
+ :type "gh:Character",
+ :gh/organization "company:KojimaLogistics",
+ :schema/name "山下 剛 (Tsuyoshi Yamashita)",
+ :id "character:VQR7tcQhHjyM3v4ukVfKj",
+ :gh/appearance
+ #:gh{:build
+      "Stocky, muscular from physical work. Wears company polo shirt with rolled sleeves.",
+      :eyes
+      "Intense dark eyes, stress lines visible, sharp but impatient catchlights.",
+      :face
+      "48-year-old Japanese male, weathered face from years on the logistics floor, intense eyes, perpetual urgency in expression.",
+      :generationPrompt
+      "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 48-year-old Japanese male, weathered face, intense impatient eyes, short cropped black hair with gray temples, company polo shirt, industrial warehouse background.",
+      :hair
+      "Short cropped black hair with gray at temples, military-style cut.",
+      :style
+      "Photorealistic, industrial lighting, blue-collar executive, 8k."},
+ :gh/ghost
+ #:gh{:form "締切のプレッシャーが物理化したGhost。秒針の刃が首元に迫る形で顕現。", :name "始業の鐘"},
+ :gh/personality
+ #:gh{:arc "今回の事件で「短気」が招いた災厄を目の当たりにする。",
+      :core "『始業絶対』の信念。現場叩き上げ。スピード至上主義で、セキュリティより納期。",
+      :flaw "短気。リスク計算より即決を好む。"},
+ :gh/relationships
+ #:gh{:takeru #:gh{:final "手順主義の価値を認める。", :initial "衝突。『止めるな、動かせ！』"}},
+ :schema/role "Logistics Director / Arc B Client"}

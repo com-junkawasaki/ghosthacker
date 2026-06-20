@@ -1,0 +1,27 @@
+{:schema/age 42,
+ :gh/arc "Arc B",
+ :gh/slug "TamuraSeiichi",
+ :type "gh:Character",
+ :gh/organization "company:KojimaLogistics",
+ :schema/name "田村 誠一 (Seiichi Tamura)",
+ :id "character:rqbsK-PoU9FA3sVHEU-qu",
+ :gh/appearance
+ #:gh{:build
+      "Slim, office worker physique. Wears button-down shirt, no tie.",
+      :eyes
+      "Soft brown eyes behind glasses, apologetic catchlights, technically competent but politically weak.",
+      :face
+      "42-year-old Japanese male, gentle face, slight worry lines, glasses, non-confrontational expression.",
+      :generationPrompt
+      "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 42-year-old Japanese male, gentle worried expression, glasses, neat black hair, button-down shirt, server room background with monitor glow.",
+      :hair "Neat black hair, standard business cut.",
+      :style
+      "Photorealistic, office lighting, IT professional aesthetic, 8k."},
+ :gh/personality
+ #:gh{:core "温厚だが優柔不断。技術はわかるが政治に弱い。",
+      :flaw "現場の『急げ』に押されてVPN接続を許可してしまった。",
+      :function "技術的な説明役。Takeruの専門用語を現場向けに翻訳。"},
+ :gh/relationships
+ #:gh{:takeru
+      #:gh{:dynamic "Takeruの技術を尊敬。内部から情報提供する。", :role "内部協力者"}},
+ :schema/role "IT Director / Arc B Ally"}

@@ -1,0 +1,16 @@
+{:id "character:Ydot0mzyV4dHmmOjya8uS",
+ :gh/appearance
+ #:gh{:build
+      "Slim build, wearing a light blue polo shirt and dark chinos.",
+      :eyes
+      "Fatigued worried eyes, soft iris detail, crystalline catchlights reflecting monitor glow.",
+      :face
+      "24-year-old Japanese male, fatigued and worried expression.",
+      :generationPrompt
+      "photorealistic, 8k, highly detailed skin texture, 24-year-old Japanese male, slim build, fatigued expression, short black hair, light blue polo shirt, carrying cables, realistic office lighting, worried eyes with crystalline catchlights.",
+      :hair "Simple short black hair, slightly messy.",
+      :style "Photorealistic, fatigued youth, realistic sweat, 8k."},
+ :gh/slug "Sato",
+ :schema/age 24,
+ :schema/name "佐藤 健太 (Kenta Sato)",
+ :schema/role "IT Support"}

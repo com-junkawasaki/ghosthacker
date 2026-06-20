@@ -1,0 +1,26 @@
+{:schema/age 28,
+ :gh/arc "Arc B",
+ :gh/slug "EndoRisa",
+ :type "gh:Character",
+ :gh/organization "company:KojimaLogistics",
+ :schema/name "遠藤 理沙 (Risa Endo)",
+ :id "character:nXNHr6ILqqJWjW0emVq9V",
+ :gh/appearance
+ #:gh{:build
+      "Slim, professional. Wears company polo and utility vest with tools.",
+      :eyes
+      "Sharp analytical eyes, cool blue-gray iris, observant catchlights.",
+      :face
+      "28-year-old Japanese female, calm analytical face, professional demeanor, slight frustration at being ignored.",
+      :generationPrompt
+      "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, 28-year-old Japanese female, calm professional expression, black ponytail, company polo, utility vest, multiple monitors background.",
+      :hair "Black hair tied in practical ponytail.",
+      :style "Photorealistic, tech operations aesthetic, 8k."},
+ :gh/personality
+ #:gh{:arc "Takeruの介入で初めて声を上げる。",
+      :core "冷静沈着。セキュリティの重要性を理解しているが、現場で発言力がない。"},
+ :gh/relationships
+ #:gh{:takeru
+      #:gh{:dynamic "Takeruの技術力に感銘。事件後、セキュリティ強化の推進役に。",
+           :role "技術協力者"}},
+ :schema/role "System Operations Chief / Arc B Tech Support"}

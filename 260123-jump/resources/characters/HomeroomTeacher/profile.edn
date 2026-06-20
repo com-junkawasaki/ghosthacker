@@ -1,0 +1,16 @@
+{:id "character:ae9p4sSheUXcDY3_dYiNZ",
+ :gh/appearance
+ #:gh{:build "Average build, wearing a white shirt and a gray tie.",
+      :eyes
+      "Kind tired eyes, realistic iris patterns, soft catchlights.",
+      :face
+      "35-year-old Japanese male teacher, kind but tired expression, professional look.",
+      :generationPrompt
+      "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 35-year-old Japanese male teacher, neatly combed short black hair, kind but slightly tired expression, wearing a white shirt and gray tie, classroom background.",
+      :hair "Neatly combed short black hair.",
+      :style
+      "Photorealistic, cinematic lighting, 8k, high-end webtoon aesthetic."},
+ :gh/slug "HomeroomTeacher",
+ :schema/age 35,
+ :schema/name "高橋 先生 (Mr. Takahashi)",
+ :schema/role "Teacher / Homeroom"}

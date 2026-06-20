@@ -1,0 +1,26 @@
+{:schema/age 14,
+ :gh/slug "RenMiddleSchool",
+ :gh/relationship
+ #:gh{:withNei "この時期に初めて出会う。最初は無関心だったが、Neiの「普通じゃなさ」に興味を持つ。"},
+ :schema/name "沼野 蓮 (Ren Numano) - 中学時代",
+ :id "character:YGCd5A0C9euA7gdgjQZOl",
+ :gh/appearance
+ #:gh{:build
+      "Slender and smaller, wearing navy blazer school uniform (often disheveled).",
+      :eyes
+      "Clear silver-grey crystalline iris, sharp sparkling catchlights, sleepy but observant expression.",
+      :face
+      "14-year-old Japanese male, pale translucent skin, sleepy half-lidded eyes with silver-grey crystalline irises. Still has some childish softness.",
+      :generationPrompt
+      "photorealistic, 8k, highly detailed skin texture, soft afternoon lighting, raw photo, 14-year-old Japanese male student, pale porcelain skin, messy raven black hair, sleepy half-lidded eyes with silver-grey crystalline irises, navy blazer school uniform slightly disheveled, white shirt with top button open.",
+      :hair
+      "Messy raven black hair, slightly shorter than current style.",
+      :style "Photorealistic, soft afternoon light, 8k.",
+      :uniform "紺のブレザー、白シャツ（だいたいボタンが開いてる）、グレーのチェック柄スラックス"},
+ :gh/personality
+ #:gh{:interests "プログラミング、ネットワーク解析、昼寝",
+      :secretSpot "屋上（立入禁止）",
+      :traits "孤独だが天才的。授業中はほぼ寝ている。友人はいないが、気にしていない。"},
+ :gh/timeframe "3年前（2023年）",
+ :gh/school "港南第一中学校 2年B組",
+ :schema/role "中学2年生 / Ghost Hacker見習い"}

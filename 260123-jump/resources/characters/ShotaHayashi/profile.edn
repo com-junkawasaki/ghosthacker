@@ -1,0 +1,27 @@
+{:gh/storyFunction
+ #:gh{:contribution "Ryoを Chiseに紹介する。二人の間を取り持つ。",
+      :message "困った時に頼れる友人の存在の大切さ。",
+      :role "橋渡し役 / コメディリリーフ"},
+ :schema/age 19,
+ :gh/arc "Arc 0-2",
+ :gh/slug "ShotaHayashi",
+ :gh/background
+ #:gh{:family "実家はラーメン屋。3人兄弟の末っ子。",
+      :job "放課後は実家のラーメン屋を手伝っている。",
+      :school "都立工科高等学校 3年（機械科）。Chiseの数少ない友人。"},
+ :schema/name "林 翔太 (Shota Hayashi)",
+ :id "character:XnrMBurq8abYjzuwHJDvG",
+ :gh/appearance
+ #:gh{:build "Stocky but fit. Wears baggy jeans and band t-shirts.",
+      :eyes "Bright, energetic dark brown eyes.",
+      :face
+      "19-year-old Japanese male, cheerful round face, always smiling.",
+      :generationPrompt
+      "photorealistic, 8k, highly detailed skin texture, natural lighting, raw photo, 19-year-old Japanese male, cheerful round face, short black hair with fade, bright brown eyes, band t-shirt, casual pose.",
+      :hair "Short black hair with a slight fade on the sides.",
+      :style "Photorealistic, casual street style, 8k."},
+ :gh/personality
+ #:gh{:hidden "Chiseのことを心配している。『あいつ、いつか線を越えるんじゃないか』と。",
+      :role "Chiseのストッパー役。暴走しそうな時に止める。",
+      :surface "お調子者。ムードメーカー。誰とでもすぐ仲良くなれる。"},
+ :schema/role "Chise's Best Friend"}
