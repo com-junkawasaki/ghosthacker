@@ -30,3 +30,10 @@ playwright-report/
 test-results/
 blob-report/
 playwright/.cache/
+
+# compiled server binaries / build output (untracked 2026-06-25)
+/apps/server/indexer
+/apps/server/mcp-agent
+/apps/server/mcp-cursor
+/apps/server/server
+/apps/server/tmp/
