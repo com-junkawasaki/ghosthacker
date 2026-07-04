@@ -343,6 +343,8 @@
     "episode:260123-cschool-privacy"
     "episode:260123-cschool-defamation"
     "episode:260123-cschool-yami-baito"
+    ;; ARCHIVED (2026-07-04): arcA-D は drafts/arc-structure.md v2 に無い旧アーク割り。
+    ;; ファイル本体は resources/episodes/_archive/ へ移動済み。参照は履歴として残す。
     "episode:260125-jump-arcA-1"
     "episode:260125-jump-arcA-2"
     "episode:260125-jump-arcA-3"
@@ -1078,6 +1080,7 @@
     "character:Nei"
     "character:Takeru"
     "character:Kaname"
+    ;; ARCHIVED (2026-07-04): 以下 arcA-D は旧アーク割り。resources/episodes/_archive/ 参照。
     "episode:260125-jump-arcA-1"
     "episode:260125-jump-arcA-2"
     "episode:260125-jump-arcA-3"
