@@ -2,6 +2,10 @@
  "A manga series designed to teach cybersecurity through case studies, using real-world terminology and frameworks (CISA, CISSP, CMMI).",
  :gh/previousSessions
  [{:type "prov:Activity",
+   :prov/endedAtTime "2026-07-04T00:00:00Z",
+   :gh/summary
+   "旧アーク割り(arcA/B/C/D、計12話)を resources/episodes/_archive/ へ移動。drafts/arc-structure.md v2（Chise/Kaname中心のArc 0-x構成）には存在しない旧方向性のため、内容は保持したまま現行構成と分離した"}
+  {:type "prov:Activity",
    :prov/endedAtTime "2026-01-26T00:30:00Z",
    :gh/summary "Arc 0-1「パスワードは覚えるな」45ページ最終構成完成（プレタイトル+8幕構成）"}
   {:type "prov:Activity",
