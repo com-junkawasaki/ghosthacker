@@ -1,0 +1,111 @@
+;; Ghost Hacker: Episode 1 — komawari redesign (17pp v3 "Daimon Construction"
+;; script, compressed to 5pp). See ./README.md for the rationale.
+;;
+;; Row shape: :gh/pages[N] :rows is a vector of ROWS in top-to-bottom order;
+;; each row is a vector of beats in READING order (right-to-left — the first
+;; beat in a row renders rightmost). Feed straight to
+;; `mangaka.layout.komawari/propose-page-layout` (or the composeKomawari
+;; graph) to get :panel/rect/:panel/tilt/:panel/polygon for every panel.
+{:gh/title "Ghost Hacker: Episode 1 (komawari redesign, 5pp)"
+ :gh/slug "episode01-komawari-redesign"
+ :gh/pageCount 5
+ :gh/sourceScript "gh:script:DQ6LSCQSS3NC8XgWDIglw" ; the 17pp v3 this compresses
+
+ :gh/pages
+ [{:id "page:1"
+   :page/title "怠惰な天才"
+   :rows
+   [[{:panel/id 1 :beat/weight :medium
+      :visual "コンクリート打ちっぱなしの壁のオフィス。Renはデスクチェアに仰向けでダラけている。"
+      :dialogue [{:speaker "Ren (Monologue)" :text "世界はバグだらけだ。だから、直そうとは思わない。"}]}]
+    [{:panel/id 2 :beat/weight :small
+      :visual "部屋の隅でタブレットを操作しているNei。Renを一瞥。"
+      :dialogue [{:speaker "Nei" :text "マスター、サーバー代が逼迫しております。少しは稼働くださいませ。"}
+                 {:speaker "Ren" :text "怠惰こそ美徳。効率化の母だよ。"}]}]
+    [{:panel/id 3 :beat/weight :large
+      :visual "ドアのチャイム。モニターに訪問者(スーツの青年・大門翔太)が映る。"
+      :dialogue [{:speaker "SE" :text "ピンポーン"}
+                 {:speaker "Nei" :text "ご予約の大門様です!"}]}]
+    [{:panel/id 4 :beat/weight :medium
+      :visual "翔太、焦燥した顔で駆け込んでくる。"
+      :dialogue [{:speaker "Shouta" :text "Renさんですか!? 会社のシステムが全停止して…お願いします、直してください!"}]}]]}
+
+  {:id "page:2"
+   :page/title "違和感"
+   :rows
+   [[{:panel/id 1 :beat/weight :large
+      :visual "大門建設のオフィス。経理の松田が電話口で叫び、佐藤がPCの裏で右往左往。"
+      :dialogue [{:speaker "Matsuda" :text "給料日は明日なのよ!画面が真っ黒じゃない!"}
+                 {:speaker "Sato" :text "サーバーのアクセス権もロックされてて…!"}]}
+     {:panel/id 2 :beat/weight :small
+      :visual "ロックされた社内モニターのクローズアップ。「ACCESS DENIED」の文字。"
+      :dialogue []}]
+    [{:panel/id 3 :beat/weight :medium
+      :visual "総務部長・安本が汗だくで割り込んでくる。翔太を睨む。"
+      :dialogue [{:speaker "Yasumoto" :text "部外者を勝手に入れるな!システムは私が何とかする!"}
+                 {:speaker "Shouta" :text "あんたの管理でこうなったんだろ!"}]}]
+    [{:panel/id 4 :beat/weight :medium :beat/intensity :tension :beat/vector 15
+      :visual "Ren、目を細める。AR視点で安本の背後にへばりつく黒い影(嫉妬と恐怖のGhost)。"
+      :dialogue [{:speaker "Ren (Monologue)" :text "…ビンゴ。原因はマルウェアじゃない。"}]}]
+    [{:panel/id 5 :beat/weight :medium :beat/intensity :tension :beat/vector 15
+      :visual "Ren、勝手に空席に座りノートPCを開く。"
+      :dialogue [{:speaker "Ren" :text "Nei、ポート開放。物理レイヤーから入って。"}]}]]}
+
+  {:id "page:3"
+   :page/title "解剖"
+   :rows
+   [[{:panel/id 1 :beat/weight :medium :beat/intensity :tension :beat/vector 18
+      :visual "Renの超高速タイピング。翔太と佐藤が息を呑む。"
+      :dialogue [{:speaker "Sato" :text "暗号化シェルをリアルタイムで…!?"}
+                 {:speaker "Ren" :text "「情報は物理量である」。この攻撃は、質量を持った悪意だ。"}]}]
+    [{:panel/id 2 :beat/weight :medium :beat/intensity :tension :beat/vector 18
+      :visual "Neiが画面いっぱいに表示される。「FOUND!!」"
+      :dialogue [{:speaker "Nei" :text "特定完了、マスター。アクセス元は総務部長の端末です。"}]}]
+    [{:panel/id 3 :beat/weight :medium :beat/intensity :tension :beat/vector 22
+      :visual "Ren、振り返って安本を指差す。"
+      :dialogue [{:speaker "Ren" :text "新システムを潰すため、闇サイトのウィルスを自分で撒いた。ついでに横領の履歴も全部出てるよ。"}]}]
+    [{:panel/id 4 :beat/weight :large :beat/intensity :tension :beat/vector 26
+      :visual "安本、絶叫。背後の影が膨張しオフィスを覆う。次ページで実体化する予兆。"
+      :dialogue [{:speaker "Yasumoto" :text "うるさい!!俺はこの会社に30年尽くしてきたんだ!!"}]}]]}
+
+  {:id "page:4"
+   :page/title "斬"
+   :gh/description "コマ割りデザインの核心ページ — φ:1 の大ゴマ比率 + フォースライン(斜めコマ割り)"
+   :rows
+   [[{:panel/id 1 :beat/weight :splash :beat/intensity :impact :beat/vector 28
+      :visual "安本の体からGhostが分離、古びた書類とケーブルの塊のような巨大な怪物になる。棚をなぎ倒す。"
+      :dialogue [{:speaker "Ghost" :text "俺ノ居場所ヲ…奪ウナァァァ!!"}]}]
+    [{:panel/id 2 :beat/weight :medium :beat/intensity :impact :beat/vector 24
+      :visual "Ren、スマホでSIP起動。「SIP Device: ON」。手元にデータの光が集まり始める。"
+      :dialogue [{:speaker "Ren" :text "Nei、SIP起動。こいつを物理レイヤーに固定する。"}]}
+     {:panel/id 3 :beat/weight :small :beat/intensity :impact :beat/vector 24
+      :visual "光が斧(Digital Axe)の形を成すクローズアップ。"
+      :dialogue [{:speaker "Ren" :text "そのエゴ、デリートしてやる。"}]}]
+    [{:panel/id 4 :beat/weight :large :beat/intensity :impact :beat/vector 30
+      :visual "大ゴマ。一閃。Ghostの核(安本のコンプレックスの象徴)を両断する斜めの斬撃線 — コマ枠そのものが斬撃の角度で切れている。"
+      :dialogue [{:speaker "Ren" :text "/> /dev/null chop --force"}
+                 {:speaker "SE" :text "ZBAAAAAN!!"}]}]]}
+
+  {:id "page:5"
+   :page/title "手数料"
+   :rows
+   [[{:panel/id 1 :beat/weight :medium
+      :visual "Ghostが霧散し、安本が泣き崩れる。モニターのロックが解け、デスクトップが戻る。"
+      :dialogue [{:speaker "Yasumoto" :text "俺ハ…タダ、認メテ…欲シカッタ…"}
+                 {:speaker "Sato" :text "画面が戻った…!サーバーも復旧してます!"}]}]
+    [{:panel/id 2 :beat/weight :medium
+      :visual "戻ってきた社長(大門五郎)に、翔太が一瞬沈黙してから告げる — 決意の一言。"
+      :dialogue [{:speaker "President" :text "何があったんだ、この惨状は…"}
+                 {:speaker "Shouta" :text "…安本さんが、システムを直そうとして。横領の件は、後で俺がケジメをつけさせます。"}]}]
+    [{:panel/id 3 :beat/weight :medium
+      :visual "Ren、USBを抜いて席を立つ。"
+      :dialogue [{:speaker "Ren" :text "データは戻したし、安本さんが溶かした金も隠し口座から戻しといた。手数料は引いたけど。"}]}
+     {:panel/id 4 :beat/weight :small
+      :visual "松田、通帳(ネットバンク画面)を二度見して固まる。"
+      :dialogue [{:speaker "Matsuda" :text "あら…給料払えるどころか増えてるじゃない!"}]}]
+    [{:panel/id 5 :beat/weight :large
+      :visual "夕暮れの蒲田。RenとNei、背中合わせに歩く。ロゴ「Ghost Hacker Episode 1 End」がフェードイン。"
+      :dialogue [{:speaker "Shouta (off-panel)" :text "Renさん…ありがとう。"}
+                 {:speaker "Ren" :text "Ghostを溜め込むなよ、次期社長。"}
+                 {:speaker "Nei" :text "…手数料、頂きすぎでは?"}
+                 {:speaker "Ren" :text "技術料だよ。"}]}]]}]}
