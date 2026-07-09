@@ -10,6 +10,18 @@
 > `apps/server/.../main.go`) no longer find their data and are no longer the
 > source of truth. Kept for reference/history only. (`.auth/wattpad.json` left as-is.)
 
+> ⚠️ **Doc/code mismatch (confirmed 2026-07-10, ADR-2607100900 addendum 1).**
+> Everything below this line (Architecture, Tech Stack, `producer/` project
+> layout, Quick Start, Wattpad auto-publish CLI, Roadmap checklist) describes
+> a Next.js + Neo4j `producer/` app that **does not exist in this checkout** —
+> `producer/` is absent, and `wattpad`/`video-gen`/`neo4j` have zero hits
+> outside this file. There is no automated Wattpad publishing and no video
+> generation implemented anywhere in this repo today; the roadmap checklist's
+> `[x]` marks do not reflect working code. The only real, currently-working
+> pipeline is `apps/web` (SvelteKit) + `apps/server` (Go), itself deprecated
+> per the note above. Treat the rest of this README as historical/aspirational
+> design notes, not a description of what runs.
+
 AI駆動型コンテンツ生成システムで、Ghost Hackerストーリーを多様なフォーマット（Webtoon、Wattpad、YouTube動画）で生成します。
 
 ## 概要
