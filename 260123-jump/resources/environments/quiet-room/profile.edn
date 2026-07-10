@@ -1,4 +1,1 @@
-{:id "env:ZcOS_Tv8p2pSsJEzhDgVW",
- :dct/description "落ち着いて説明できる小部屋（支援・相談の場）。",
- :dct/title "Quiet room",
- :gh/slug "quiet-room"}
+[{:db/id -1, :gh/id "env:ZcOS_Tv8p2pSsJEzhDgVW", :dct/description "落ち着いて説明できる小部屋（支援・相談の場）。", :dct/title "Quiet room", :gh/slug "quiet-room"}]

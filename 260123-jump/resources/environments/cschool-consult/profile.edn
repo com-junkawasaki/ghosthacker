@@ -1,4 +1,1 @@
-{:id "env:qnyR7FZ70l5DLem_olBMd",
- :dct/description "C高校の相談スペース。少人数で話せる静かな場所。",
- :dct/title "C-school consultation room",
- :gh/slug "cschool-consult"}
+[{:db/id -1, :gh/id "env:qnyR7FZ70l5DLem_olBMd", :dct/description "C高校の相談スペース。少人数で話せる静かな場所。", :dct/title "C-school consultation room", :gh/slug "cschool-consult"}]

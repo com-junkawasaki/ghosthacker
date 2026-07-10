@@ -1,10 +1,1 @@
-{:id "chat:7Mrsu22VPAVNNitTpwQYX",
- :type "gh:ChatSession",
- :dct/title "🚀 Requesting OpenRouter\nModel...",
- :gh/messages
- [{:agent_mode "episode",
-   :content
-   "🚀 Requesting OpenRouter\nModel: anthropic/claude-sonnet-4.5\nPrompt Length: 1671 chars",
-   :role "debug"}],
- :gh/slug "8wuxym7nic",
- :schema/dateCreated 1769339230613}
+[{:db/id -1, :gh/id "chat:7Mrsu22VPAVNNitTpwQYX", :gh/type "gh:ChatSession", :dct/title "🚀 Requesting OpenRouter\nModel...", :gh/messages "[{:agent_mode \"episode\", :content \"🚀 Requesting OpenRouter\\nModel: anthropic/claude-sonnet-4.5\\nPrompt Length: 1671 chars\", :role \"debug\"}]", :gh/slug "8wuxym7nic", :schema/dateCreated 1769339230613}]

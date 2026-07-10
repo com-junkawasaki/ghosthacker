@@ -1,4 +1,1 @@
-{:id "env:jAtjXcAWuErClNXGySbJS",
- :dct/description "立場の違う人物が落ち着いて話す中立的な場所。",
- :dct/title "Neutral meeting place",
- :gh/slug "meeting-neutral"}
+[{:db/id -1, :gh/id "env:jAtjXcAWuErClNXGySbJS", :dct/description "立場の違う人物が落ち着いて話す中立的な場所。", :dct/title "Neutral meeting place", :gh/slug "meeting-neutral"}]

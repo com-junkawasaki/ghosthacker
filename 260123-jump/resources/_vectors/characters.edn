@@ -1,10 +1,1 @@
-{:context {:gh "https://ghosthacker.gftd.ai/ns/"},
- :id "gh:vectors/characters",
- :gh/meta
- #:gh{:name "characters",
-      :sourceFile "characters.json",
-      :count 0,
-      :dimensions 1536,
-      :model "text-embedding-3-small",
-      :updatedAt "2026-01-25T00:00:00Z"},
- :gh/vectors []}
+[{:db/id -1, :gh/context "{:gh \"https://ghosthacker.gftd.ai/ns/\"}", :gh/id "gh:vectors/characters", :gh/meta "#:gh{:name \"characters\", :sourceFile \"characters.json\", :count 0, :dimensions 1536, :model \"text-embedding-3-small\", :updatedAt \"2026-01-25T00:00:00Z\"}", :gh/vectors []}]

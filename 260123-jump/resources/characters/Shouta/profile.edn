@@ -1,17 +1,1 @@
-{:id "character:E6xXDDLkMPAsUfvulgNg7",
- :gh/appearance
- #:gh{:build
-      "Fit and athletic build, wearing a navy blue three-piece suit.",
-      :eyes
-      "Intricate dark brown iris, sharp catchlights, reflecting office light.",
-      :face
-      "26-year-old Japanese male, sharp eyes with deep brown iris patterns, slightly fatigued but determined expression.",
-      :generationPrompt
-      "photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 26-year-old Japanese businessman, sharp eyes with intricate deep brown iris patterns and sparkling catchlights, short clean-cut black hair, wearing a navy blue three-piece suit, natural skin tone.",
-      :hair "Short clean-cut black hair, business style.",
-      :style
-      "Photorealistic, cinematic lighting, 8k, highly detailed skin texture."},
- :gh/slug "Shouta",
- :schema/age 26,
- :schema/name "大門 翔太 (Shouta Daimon)",
- :schema/role "Client / Successor"}
+[{:db/id -1, :gh/id "character:E6xXDDLkMPAsUfvulgNg7", :gh/appearance "#:gh{:build \"Fit and athletic build, wearing a navy blue three-piece suit.\", :eyes \"Intricate dark brown iris, sharp catchlights, reflecting office light.\", :face \"26-year-old Japanese male, sharp eyes with deep brown iris patterns, slightly fatigued but determined expression.\", :generationPrompt \"photorealistic, 8k, highly detailed skin texture, cinematic lighting, raw photo, a 26-year-old Japanese businessman, sharp eyes with intricate deep brown iris patterns and sparkling catchlights, short clean-cut black hair, wearing a navy blue three-piece suit, natural skin tone.\", :hair \"Short clean-cut black hair, business style.\", :style \"Photorealistic, cinematic lighting, 8k, highly detailed skin texture.\"}", :gh/slug "Shouta", :schema/age 26, :schema/name "大門 翔太 (Shouta Daimon)", :schema/role "Client / Successor"}]
