@@ -1,4 +1,1 @@
-{:id "env:iOY_e64N3q0y13UxigttG",
- :dct/description "自室の机。スマホ通知、ノート、PC。",
- :dct/title "Home desk",
- :gh/slug "home-desk"}
+[{:db/id -1, :gh/id "env:iOY_e64N3q0y13UxigttG", :dct/description "自室の机。スマホ通知、ノート、PC。", :dct/title "Home desk", :gh/slug "home-desk"}]
