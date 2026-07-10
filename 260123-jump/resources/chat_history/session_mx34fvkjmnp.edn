@@ -1,11 +1,1 @@
-{:id "chat:pTrlBgKKuHD78l2zrlJ66",
- :type "gh:ChatSession",
- :dct/title "[AUTO-PILOT START] Goal: 今のストー...",
- :gh/messages
- [{:content
-   "[AUTO-PILOT START] Goal: 今のストーリーの完成度を評価して、ブラッシュアップ案を提示・適用してください。",
-   :context_json
-   "[{\"type\":\"episode\",\"id\":\"episode:260123-cschool-privacy\"}]",
-   :role "user"}],
- :gh/slug "mx34fvkjmnp",
- :schema/dateCreated 1769330469163}
+[{:db/id -1, :gh/id "chat:pTrlBgKKuHD78l2zrlJ66", :gh/type "gh:ChatSession", :dct/title "[AUTO-PILOT START] Goal: 今のストー...", :gh/messages "[{:content \"[AUTO-PILOT START] Goal: 今のストーリーの完成度を評価して、ブラッシュアップ案を提示・適用してください。\", :context_json \"[{\\\"type\\\":\\\"episode\\\",\\\"id\\\":\\\"episode:260123-cschool-privacy\\\"}]\", :role \"user\"}]", :gh/slug "mx34fvkjmnp", :schema/dateCreated 1769330469163}]

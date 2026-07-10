@@ -1,6 +1,1 @@
-{:id "chat:E7fmpJIDGhQs3uptEYopG",
- :type "gh:ChatSession",
- :dct/title "New Conversation",
- :gh/messages nil,
- :gh/slug "gl2u4uw8ab",
- :schema/dateCreated 1769342448773}
+[{:db/id -1, :gh/id "chat:E7fmpJIDGhQs3uptEYopG", :gh/type "gh:ChatSession", :dct/title "New Conversation", :gh/messages nil, :gh/slug "gl2u4uw8ab", :schema/dateCreated 1769342448773}]
