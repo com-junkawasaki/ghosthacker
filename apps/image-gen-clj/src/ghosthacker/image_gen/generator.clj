@@ -1,14 +1,19 @@
 (ns ghosthacker.image-gen.generator
-  "Style presets, aspect ratios, and the murakumo-backed panel render — ported
-  from apps/image-gen/{config,generator}.py's plain-txt2img path only (see
-  ADR-2607131400). Model is fixed to animagine-xl-4.0, the one checkpoint
-  confirmed present on the fleet (gad) that also matches the Python
-  service's config.MODEL_ID."
-  (:require [cloud-murakumo.engine :as murakumo]
-            [cloud-murakumo.executor :as murakumo-exec]
-            [clojure.java.io :as io]))
+  "Style presets, aspect ratios, and the panel render — ported from
+  apps/image-gen/{config,generator}.py's plain-txt2img path only (see
+  ADR-2607131400). The actual fleet dispatch delegates to kotoba-lang/
+  murakumo (murakumo.infer.gateway/media/fleet/schedule) rather than
+  talking to cloud-murakumo directly — that library already has real
+  crash-recovery (murakumo.infer.media's consecutive-miss detection,
+  /queue cross-check) that an earlier draft of this file duplicated ad
+  hoc. Model defaults to animagine-xl-4.0, matching the Python service's
+  config.MODEL_ID and confirmed resident on the fleet's `gad` node."
+  (:require [clojure.java.io :as io]
+            [murakumo.fleet :as fleet]
+            [murakumo.infer.media :as media]
+            [murakumo.infer.schedule :as sched]))
 
-(def model "animagine-xl-4.0")
+(def default-checkpoint "animagine-xl-4.0.safetensors")
 
 (def default-negative-prompt
   (str "lowres, bad anatomy, bad hands, text, error, missing finger, "
@@ -63,36 +68,48 @@
 (defn dims [aspect-ratio]
   (get aspect-ratios aspect-ratio (get aspect-ratios default-aspect-ratio)))
 
-(defn- murakumo-attempt [backend-url {:keys [prompt negative width height seed]}]
-  (let [job {:gen.job/engine :comfy
-             :gen.job/model model
-             :gen.job/input {:prompt prompt :refs []
-                             :params (cond-> {:width width :height height}
-                                       (seq negative) (assoc :negative negative)
-                                       seed (assoc :seed seed))}}
-        inv (-> (murakumo/invocation job) (assoc-in [:backend :url] backend-url))
-        {:keys [outputs]} (murakumo-exec/execute inv)
-        bytes (.readAllBytes (io/input-stream (io/file (first outputs))))]
-    {:image-bytes bytes :seed (or seed 0)}))
+(defn- murakumo-root
+  "Absolute path to the kotoba-lang/murakumo checkout (holds fleet.edn/
+  infer.edn, read relative-to-cwd by murakumo.fleet/load-fleet — this repo
+  doesn't run FROM that directory, so the path is resolved explicitly
+  rather than assumed). Override with MURAKUMO_ROOT; defaults to the west
+  layout's sibling path (orgs/kotoba-lang/murakumo, 4 levels up from this
+  file's own repo root — see deps.edn's :local/root for the same path)."
+  []
+  (or (System/getenv "MURAKUMO_ROOT")
+      (let [here (io/file (System/getProperty "user.dir"))]
+        (.getCanonicalPath (io/file here "../../../../kotoba-lang/murakumo")))))
 
-(defn backend-url []
-  (or (System/getenv "MURAKUMO_COMFY_URL") (System/getenv "COMFY_URL") "http://100.82.98.110:8188"))
+(defn- fleet-edn-path [] (str (murakumo-root) "/fleet.edn"))
 
 (defn generate-panel
-  "txt2img panel render via cloud-murakumo. `style` and `aspect-ratio` match
-  the Python service's /generate-panel preset names. `seed` nil → let the
-  fleet pick one (recorded as 0, same as mangaka.comfy's convention — the
-  fleet node doesn't currently echo back a server-chosen seed).
+  "txt2img panel render via kotoba-lang/murakumo's fleet-dispatch client.
+  `style` and `aspect-ratio` match the Python service's /generate-panel
+  preset names. `seed` nil → murakumo.infer.media/txt2img-workflow's own
+  default seed (deterministic, not random — matches that library's
+  reproducibility contract, unlike the Python service's random-per-call
+  default).
   IP-Adapter reference images (`reference-image-paths`) are NOT applied —
   known gap, see README; the panel still renders, just without character-
-  reference conditioning. Retries once on the fleet's known transient
-  'completed with empty output' glitch before giving up."
+  reference conditioning."
   [{:keys [prompt style aspect-ratio seed]}]
   (let [[w h] (dims aspect-ratio)
-        spec {:prompt (full-prompt style prompt) :negative default-negative-prompt
-              :width w :height h :seed seed}
-        url (backend-url)]
-    (try
-      (murakumo-attempt url spec)
-      (catch Exception _e1
-        (murakumo-attempt url spec)))))
+        f (fleet/enrich (fleet/load-fleet (fleet-edn-path)))
+        live (media/live-fleet f)
+        wanted {:model/engine :comfyui :model/checkpoint default-checkpoint}
+        node-info (or (sched/pick live wanted)
+                      (throw (ex-info "no eligible murakumo fleet node for animagine-xl-4.0" {:live-count (count live)})))
+        node (or (first (filter #(= (:name node-info) (:name %)) (:nodes f)))
+                 (throw (ex-info "picked node not found in fleet.edn" {:node (:name node-info)})))
+        hist (media/run-job! node :image (cond-> {:prompt (full-prompt style prompt)
+                                                   :negative default-negative-prompt
+                                                   :ckpt default-checkpoint
+                                                   :width w :height h}
+                                            seed (assoc :seed seed)))
+        filename (get-in hist [:outputs :7 :images 0 :filename])]
+    (when-not filename
+      (throw (ex-info "murakumo render produced no output file" {:history hist :node (:name node-info)})))
+    (let [local (str "murakumo-" filename)
+          bytes (.readAllBytes (io/input-stream local))]
+      (io/delete-file local true)
+      {:image-bytes bytes :seed (or seed 0) :node (:name node-info)})))

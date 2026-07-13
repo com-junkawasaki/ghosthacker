@@ -3,7 +3,9 @@
   port/contract apps/server's Go client already calls (IMAGE_GEN_URL,
   default :8100) — see ADR-2607131400. Only /health and /generate-panel are
   implemented; /generate-cinematic(-fast) still needs the Python service
-  (missing RealVisXL_V4.0[-Lightning] checkpoints on the fleet — see README)."
+  (missing RealVisXL_V4.0[-Lightning] checkpoints on the fleet — see README).
+  Fleet dispatch itself is kotoba-lang/murakumo's (this is a thin adapter
+  translating apps/server's Go-shaped HTTP contract to and from it)."
   (:require [reitit.ring :as ring]
             [org.httpkit.server :as hk]
             [jsonista.core :as j]
@@ -21,7 +23,7 @@
   (when body (j/read-value (slurp body))))
 
 (defn- health-handler [_]
-  (json-response 200 {"status" "ok" "model" gen/model "device" "murakumo-fleet" "model_loaded" true}))
+  (json-response 200 {"status" "ok" "model" gen/default-checkpoint "device" "murakumo-fleet" "model_loaded" true}))
 
 (defn- generate-panel-handler [req]
   (let [{:strs [prompt style aspect_ratio seed reference_image_paths]} (read-json req)]
@@ -54,7 +56,7 @@
   ([] (start! (Integer/parseInt (or (System/getenv "PORT") "8100"))))
   ([port]
    (reset! server (hk/run-server app {:port port :legacy-return-value? false}))
-   (println (str "ghosthacker image-gen (clj, via cloud-murakumo) listening on :" port))
+   (println (str "ghosthacker image-gen (clj, via kotoba-lang/murakumo) listening on :" port))
    @server))
 
 (defn stop! []
