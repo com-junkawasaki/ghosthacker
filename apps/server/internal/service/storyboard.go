@@ -1,12 +1,14 @@
 package service
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
 	"io/fs"
 	"log"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"regexp"
 	"sort"
@@ -15,15 +17,11 @@ import (
 	"time"
 
 	"connectrpc.com/connect"
-	"cuelang.org/go/cue"
-	"cuelang.org/go/cue/cuecontext"
 	"github.com/dapr/go-sdk/workflow"
 	"storyboard-editor/backend/internal/jsonld"
 	"storyboard-editor/backend/internal/mcp"
-	"storyboard-editor/backend/internal/schema"
 	"storyboard-editor/backend/proto"
 
-	"bytes"
 	goimage "image"
 	"image/color"
 	"image/jpeg"
@@ -51,8 +49,6 @@ type StoryboardService struct {
 	storyboardPath string
 	workspaceRoot  string
 	projectDir     string
-	cueCtx         *cue.Context
-	schema         cue.Value
 	mcpServer      *mcp.StoryboardMCPServer
 	workflowClient *workflow.Client
 	jobQueue       *JobQueue
@@ -90,13 +86,10 @@ func (s *StoryboardService) GetWorkflowClient() *workflow.Client {
 }
 
 func NewStoryboardService(storyboardPath, workspaceRoot, projectDir string) *StoryboardService {
-	cueCtx := cuecontext.New()
 	svc := &StoryboardService{
 		storyboardPath: storyboardPath,
 		workspaceRoot:  workspaceRoot,
 		projectDir:     projectDir,
-		cueCtx:         cueCtx,
-		schema:         schema.GetSchema(),
 		mcpServer:      mcp.NewStoryboardMCPServer(),
 		subscribers:    make(map[string]chan *storyboardpb.StreamUpdatesResponse),
 	}
@@ -184,6 +177,35 @@ func (s *StoryboardService) SwitchProject(
 	}), nil
 }
 
+// storyboardValidatorScript/kotobaSpecClasspath locate the nbb-based
+// replacement for the old CUE schema (internal/schema/storyboard.cue.go,
+// removed) — a kotoba-lang/spec EDN schema + validator, run out-of-process
+// since kotoba-lang/spec is cljs/cljc, not Go. Defaults assume this server
+// runs from apps/server (its usual dev/deploy cwd, west layout: sibling
+// checkouts under orgs/<org>/); override both via env if that's not true
+// for a given deployment.
+func storyboardValidatorScript() string {
+	if v := os.Getenv("GHOSTHACKER_VALIDATOR_SCRIPT"); v != "" {
+		return v
+	}
+	return "scripts/validate_storyboard.cljs"
+}
+
+func kotobaSpecClasspath() string {
+	if v := os.Getenv("KOTOBA_SPEC_SRC"); v != "" {
+		return v
+	}
+	return "../../../../kotoba-lang/spec/src"
+}
+
+// validateAndLoad reads `filePath`, parses it as JSON (Go's own
+// encoding/json — independent of the validator below, same as when this
+// used CUE: the returned data is never derived from the validator's own
+// parse), and validates it against the storyboard EDN spec by shelling out
+// to `nbb scripts/validate_storyboard.cljs <filePath>` (kotoba-lang/spec —
+// EDN data + cljs functions, no clojure.spec/malli dep, portable to
+// kotoba-WASM; ADR-2607131400 addendum). Exit 0 ("OK" on stdout) means
+// valid; exit 1 with a JSON problem array on stdout means invalid.
 func (s *StoryboardService) validateAndLoad(filePath string) (map[string]interface{}, error) {
 	content, err := os.ReadFile(filePath)
 	if err != nil {
@@ -196,11 +218,15 @@ func (s *StoryboardService) validateAndLoad(filePath string) (map[string]interfa
 		return nil, fmt.Errorf("invalid JSON: %w", err)
 	}
 
-	// Validate with CUE
-	val := s.cueCtx.CompileBytes(content)
-	unified := val.Unify(s.schema)
-	if err := unified.Validate(cue.Final()); err != nil {
-		return nil, fmt.Errorf("CUE validation failed: %w", err)
+	cmd := exec.Command("nbb", "-cp", kotobaSpecClasspath(), storyboardValidatorScript(), filePath)
+	var stdout, stderr bytes.Buffer
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+	if err := cmd.Run(); err != nil {
+		if _, isExit := err.(*exec.ExitError); isExit {
+			return nil, fmt.Errorf("storyboard schema validation failed: %s", strings.TrimSpace(stdout.String()))
+		}
+		return nil, fmt.Errorf("failed to run storyboard validator (nbb on PATH? kotoba-lang/spec checked out?): %w: %s", err, stderr.String())
 	}
 
 	return data, nil
