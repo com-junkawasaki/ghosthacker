@@ -1,0 +1,22 @@
+{:paths ["src" "resources"]
+
+ ;; Ghost Hacker image-gen — cljc replacement for apps/image-gen (Python/
+ ;; Diffusers-on-MPS FastAPI service). See ADR-2607131400: only the plain
+ ;; txt2img /generate-panel path is migrated here, via cloud-murakumo's
+ ;; native ComfyUI /prompt+/history+/view protocol against the same GPU
+ ;; fleet used by gftdcojp/ai-gftd-mangaka. /generate-cinematic(-fast) and
+ ;; IP-Adapter reference conditioning stay on the Python service for now
+ ;; (see README "Known gaps" — RealVisXL_V4.0 / RealVisXL_V4.0_Lightning
+ ;; checkpoints and a verified IP-Adapter weight file are not confirmed
+ ;; present on the fleet nodes; faking either would silently change output).
+ :deps
+ {gftdcojp/cloud-murakumo {:local/root "../../../../gftdcojp/cloud-murakumo"}
+
+  http-kit/http-kit   {:mvn/version "2.8.0"}
+  metosin/reitit-ring {:mvn/version "0.7.2"}
+  ring/ring-core      {:mvn/version "1.12.2"}
+  metosin/jsonista    {:mvn/version "0.3.11"}
+  org.clojure/clojure {:mvn/version "1.12.0"}}
+
+ :aliases
+ {:run {:main-opts ["-m" "ghosthacker.image-gen.server"]}}}
