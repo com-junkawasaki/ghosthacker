@@ -2,9 +2,14 @@
 
 Clojure replacement for `apps/image-gen`'s plain txt2img path, per
 [ADR-2607131400](../../../../../90-docs/adr/2607131400-ghosthacker-cljc-migration-svelte-go-prune-scoping.md).
-Calls `gftdcojp/cloud-murakumo` (native ComfyUI `/prompt`+`/history`+`/view`
-protocol against the same GPU fleet used by `gftdcojp/ai-gftd-mangaka`)
-instead of running Diffusers locally on Apple Silicon.
+Dispatches to `kotoba-lang/murakumo`'s own hardened fleet render client
+(`murakumo.infer.gateway`/`.media`/`.fleet`/`.schedule` — SSH-dispatched
+against the same GPU fleet used by `gftdcojp/ai-gftd-mangaka`, ~20s/image
+on `gad`) rather than talking to the fleet's ComfyUI protocol directly —
+that library already has real crash-recovery (consecutive-miss detection,
+`/queue` cross-check for a ComfyUI process that crashed and lost its
+in-memory queue/history) that an earlier draft of this repo's `image-gen-
+clj` duplicated ad hoc, less robustly.
 
 Drop-in on the same port/contract `apps/server`'s Go client already expects
 (`IMAGE_GEN_URL`, default `http://localhost:8100`):
@@ -12,6 +17,11 @@ Drop-in on the same port/contract `apps/server`'s Go client already expects
 ```bash
 clojure -M:run          # listens on :8100 (or $PORT)
 ```
+
+Requires `kotoba-lang/murakumo` checked out as a sibling (west layout:
+`orgs/kotoba-lang/murakumo`) or `MURAKUMO_ROOT` pointing at it — that repo's
+`fleet.edn`/`infer.edn` (SSoT for which nodes exist and which models they
+serve) are read from there, not duplicated here.
 
 ## Implemented
 
