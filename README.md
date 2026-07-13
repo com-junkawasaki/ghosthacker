@@ -22,6 +22,32 @@
 > per the note above. Treat the rest of this README as historical/aspirational
 > design notes, not a description of what runs.
 
+> ⚠️ **Correction (2026-07-13, ADR-2607131400 addenda).** The claim just above
+> ("the only real, currently-working pipeline") no longer held even before
+> today: investigation found `apps/web`'s live UI already bypasses
+> `apps/server` (Go) entirely for everything that actually works — panel
+> editing/loading/etc. run through `apps/web/src/lib/server/*` TypeScript
+> directly, not via `apps/server`'s ConnectRPC service. `apps/server`'s Dapr
+> workflow feature ("autopilot"/chat autonomous-generation) was already
+> unreachable from the UI — `ChatPanel.svelte` calls client methods
+> (`startAutonomousGeneration` etc.) that don't exist on the fetch-based
+> client that actually replaced the generated ConnectRPC client. Given this,
+> `apps/server`'s Dapr (`internal/dapr/`), ConnectRPC (`proto/`,
+> `internal/service/`, `cmd/server/`) — its entire external interface — and
+> `apps/web`'s Lexical rich-text editor (`LexicalSceneEditor.svelte`, never
+> mounted anywhere, confirmed zero references) have been removed outright
+> rather than ported to cljs, since there was nothing live left to port.
+> `apps/server/cmd/{mcp-cursor,indexer}` (independent tools, don't depend on
+> the removed code) are kept. Also also: the named successor in the note
+> above (`kami-app-sip-clj`) has itself moved to `orgs/etzhayyim/com-etzhayyim-sip`
+> and, per its own README, is a distinct game product with a read-only
+> storyboard *reader* (no save/edit/RPC/chat/PDF/job-queue) — it does not
+> actually cover this pipeline's editing surface. The real current authoring
+> workflow for published content is hand-edited EDN under
+> `orgs/com-junkawasaki/org-spirit-in-physics-comics/` rendered by a
+> babashka static-site generator, independent of both `apps/server` and
+> `kami-app-sip-clj`.
+
 AI駆動型コンテンツ生成システムで、Ghost Hackerストーリーを多様なフォーマット（Webtoon、Wattpad、YouTube動画）で生成します。
 
 ## 概要
