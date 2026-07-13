@@ -8,10 +8,7 @@
     "build": "pnpm run typecheck && vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --threshold error --diagnostic-sources js,svelte",
-    "typecheck": "tsc --noEmit && svelte-kit sync && svelte-check --threshold error --diagnostic-sources js,svelte",
-    "dev:backend": "export WORKSPACE_ROOT=../.. && export PORT=8081 && cd ../server && go run cmd/server/main.go",
-    "dev:worker": "export WORKSPACE_ROOT=../../.. && cd backend && go run cmd/worker/main.go",
-    "buf:generate": "cd backend && buf generate"
+    "typecheck": "tsc --noEmit && svelte-kit sync && svelte-check --threshold error --diagnostic-sources js,svelte"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.0",
@@ -27,20 +24,12 @@
   },
   "dependencies": {
     "@bufbuild/protobuf": "^2.2.3",
-    "@connectrpc/connect": "^2.1.1",
-    "@connectrpc/connect-web": "^2.1.1",
-    "@lexical/history": "^0.42.0",
-    "@lexical/link": "^0.42.0",
-    "@lexical/list": "^0.42.0",
-    "@lexical/rich-text": "^0.42.0",
-    "@lexical/selection": "^0.42.0",
     "@melt-ui/pp": "^0.3.2",
     "@melt-ui/svelte": "^0.86.6",
     "@skeletonlabs/skeleton": "^4.12.1",
     "@skeletonlabs/skeleton-svelte": "^4.12.1",
     "@types/marked": "^6.0.0",
     "html2canvas": "^1.4.1",
-    "lexical": "^0.42.0",
     "lucide-svelte": "^0.562.0",
     "marked": "^17.0.1",
     "pngjs": "^7.0.0"
