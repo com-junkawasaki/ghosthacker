@@ -308,11 +308,6 @@
 		}
 	}
 
-	function handleApplyPatches(patches: any[]) {
-		for (const patch of patches) console.log('[StoryboardEditor] Patch pending:', patch.path);
-		alert(`AI suggested ${patches.length} changes. Patch application in progress.`);
-	}
-
 	let lastContextId = $state<string | null>(null);
 	$effect(() => {
 		const currentId = editMode === 'episode' ? selectedEpisode : selectedArc;
@@ -483,7 +478,7 @@
 			</div>
 
 			<div class="pane pane-assistant" class:pane-active={workspacePane === 'assistant'}>
-				<ChatPanel bind:this={chatPanel} selectedEpisode={editMode === 'episode' ? selectedEpisode : selectedArc} {storyboardPath} onApplyPatches={handleApplyPatches} />
+				<ChatPanel bind:this={chatPanel} selectedEpisode={editMode === 'episode' ? selectedEpisode : selectedArc} {storyboardPath} />
 			</div>
 		</div>
 
