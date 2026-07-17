@@ -6,30 +6,119 @@
 ;; from this repo instead of the orphaned app-aozora-svelte export it was
 ;; originally produced from (that repo no longer exists in this workspace).
 ;;
-;; Run: npx nbb scripts/export-aozora-manga-work.cljs
+;; Run: npx nbb --classpath ../../kotoba-lang/kami-mangaka-page/src \
+;;        scripts/export-aozora-manga-work.cljs
+;;   (the classpath brings in kami.mangaka.komawari for panel geometry —
+;;   the sibling west checkout path from this repo's place in the
+;;   superproject. It is REQUIRED: nbb resolves namespaces at require time
+;;   only — a runtime resolve-based optional dep doesn't work there — so
+;;   the script fails fast with a clear namespace error if it's missing.)
 ;; Writes: resources/aozora-manga-work.edn (feed this into app-aozora's
 ;;   `clojure -M -e "(require '[aozora.appview.manga-export :as e]) (e/work-file->tx-file! \"<this file>\" tx-out)"`
 ;;   or `-main` with this file as the first arg, to produce the tx.edn.)
 ;;
 ;; Scope (ADR-2607141700 open questions, resolved pragmatically for this
-;; first pass rather than left blocking): only :visual/:dialogue/:imageUrl
-;; carry forward per panel (matches work->tx's panel-entity exactly -- no
-;; slot exists yet for character-bible data, sdxl generation metadata, or
-;; komawari panel geometry, so none of that is dropped from THIS repo, it's
-;; simply not part of the aozora projection until those schemas grow a slot
-;; for it). Episodes are ordered by :gh/episodeId string sort (deterministic
-;; but not hand-curated narrative order) and pages are renumbered globally
-;; 0-based across the whole work, since aozora's tx model has one flat page
-;; list per work with no episode-grouping concept. Episode files with no
-;; :gh/episodeId (e.g. episodes/ep1-komawari-redesign, a komawari-beat-format
-;; design demo, not real page/panel content) and anything under
-;; episodes/_archive are skipped.
+;; first pass rather than left blocking): :visual/:dialogue/:imageUrl carry
+;; forward per panel, plus — ADR-2607172230, closing ADR-2607141700's
+;; remaining "exporter computes no geometry" gap — komawari :rect/:tilt
+;; (the panel-entity slots ADR-2607141700 addendum 2 grew), derived
+;; deterministically from the fields the real episodes DO have:
+;;   :beat/weight    <- panel :shot (film-grammar distance: Full Page →
+;;                      :splash; Wide/Establishing → :large; Insert/Extreme
+;;                      Close Up → :small; else :medium)
+;;   :beat/intensity <- page :gh/pageLayout :gh/category (impact/climax →
+;;                      :impact, action → :tension, on the page's single
+;;                      strongest beat only; dialogue/establishing/
+;;                      transition stay calm)
+;;   :beat/vector    <- constant design value (the data has no
+;;                      action-direction field; a fixed 20° reads as a
+;;                      consistent house force-line, never a random one)
+;;   rows            <- :splash/:large beats get their own tier, the rest
+;;                      pair up 2 per tier (a deterministic approximation
+;;                      of the Jump Hero-Top/rhythm-tier templates named in
+;;                      :gh/templateName)
+;; Style is :toriyama (the preset proven against these same Arc0-1 panels,
+;; ADR-2607051520). Pages whose generated layout fails the komawari
+;; governor export WITHOUT geometry (fall back to the flat list) rather
+;; than shipping half-broken rects. Episodes are ordered by :gh/episodeId
+;; string sort (deterministic but not hand-curated narrative order) and
+;; pages are renumbered globally 0-based across the whole work, since
+;; aozora's tx model has one flat page list per work with no
+;; episode-grouping concept. Episode files with no :gh/episodeId (e.g.
+;; episodes/ep1-komawari-redesign, a komawari-beat-format design demo, not
+;; real page/panel content) and anything under episodes/_archive are
+;; skipped.
 
 (ns export-aozora-manga-work
   (:require ["fs" :as fs]
             ["path" :as path]
             [clojure.string :as str]
-            [clojure.edn :as edn]))
+            [clojure.edn :as edn]
+            [kami.mangaka.komawari :as k]))
+
+;; ── komawari geometry (see Run note above for the required classpath) ───────
+
+(def komawari-style :toriyama)
+
+(def shot->weight
+  {"Full Page" :splash
+   "Extreme Wide Shot" :large "Establishing Shot" :large "Wide Shot" :large
+   "Insert" :small "Extreme Close Up" :small})
+
+(def category->intensity
+  {"impact" :impact "climax" :impact "action" :tension})
+
+(def ^:private design-vector
+  "The episodes carry no action-direction field, so the force-line vector is
+  a constant house value (20° — inside the :impact φ bound, clamped to 10°
+  on :tension rows), NOT a per-panel guess."
+  20)
+
+(def ^:private weight-rank {:splash 3 :large 2 :medium 1 :small 0})
+
+(defn page->rows
+  "Flat :gh/panels -> komawari rows-of-beats (see ns comment for the rules).
+  Each beat keeps ::i (its 0-based index in :gh/panels) so the computed
+  geometry can be joined back regardless of row grouping."
+  [gpage]
+  (let [intensity (get category->intensity (get-in gpage [:gh/pageLayout :gh/category]))
+        beats (vec (map-indexed
+                    (fn [i p] {:beat/weight (get shot->weight (:shot p) :medium) ::i i})
+                    (:gh/panels gpage)))
+        strongest (when (and intensity (seq beats))
+                    (::i (apply max-key #(weight-rank (:beat/weight %)) beats)))
+        beats (cond-> beats
+                strongest (update strongest assoc
+                                  :beat/intensity intensity :beat/vector design-vector))]
+    (loop [bs beats row [] rows []]
+      (cond
+        (empty? bs)
+        (cond-> rows (seq row) (conj row))
+
+        (contains? #{:splash :large} (:beat/weight (first bs)))
+        (recur (rest bs) [] (-> rows (cond-> (seq row) (conj row)) (conj [(first bs)])))
+
+        (= 1 (count row))
+        (recur (rest bs) [] (conj rows (conj row (first bs))))
+
+        :else
+        (recur (rest bs) (conj row (first bs)) rows)))))
+
+(defn- round4 [n] (/ (js/Math.round (* n 10000.0)) 10000.0))
+
+(defn page-geometry
+  "gpage -> {panel-index {:rect [x y w h] :tilt deg}}, or nil when the page
+  has no panels or the generated layout fails the komawari governor (then
+  the page exports geometry-free, as before)."
+  [gpage]
+  (when (seq (:gh/panels gpage))
+    (let [panels (k/propose-page-layout (page->rows gpage) {:style komawari-style})]
+      (when (:ok? (k/validate-layout panels {:style komawari-style}))
+        (into {}
+              (map (fn [p]
+                     [(::i p) (cond-> {:rect (mapv round4 (:panel/rect p))}
+                                (:panel/tilt p) (assoc :tilt (round4 (:panel/tilt p))))]))
+              panels)))))
 
 (def resources-dir (path/join (path/dirname *file*) ".." "260123-jump" "resources"))
 (def episodes-dir (path/join resources-dir "episodes"))
@@ -52,17 +141,20 @@
   (cond-> {:text (or text "")}
     speaker (assoc :speaker speaker)))
 
-(defn ->panel [panel fallback-n]
-  {:id (:id panel)
-   :panelNumber (or (:panel panel) fallback-n)
-   :visual (:visual panel)
-   :imageUrl (:generatedImageUrl panel)
-   :dialogue (mapv dialogue-line (:dialogue panel))})
+(defn ->panel [panel fallback-n geom]
+  (cond-> {:id (:id panel)
+           :panelNumber (or (:panel panel) fallback-n)
+           :visual (:visual panel)
+           :imageUrl (:generatedImageUrl panel)
+           :dialogue (mapv dialogue-line (:dialogue panel))}
+    (:rect geom) (assoc :rect (:rect geom))
+    (:tilt geom) (assoc :tilt (:tilt geom))))
 
 (defn ->pages [episode-title gpage global-page-no]
-  {:pageNumber global-page-no
-   :title (str episode-title " — " (:gh/pageTitle gpage))
-   :panels (vec (map-indexed (fn [i p] (->panel p (inc i))) (:gh/panels gpage)))})
+  (let [geoms (page-geometry gpage)]
+    {:pageNumber global-page-no
+     :title (str episode-title " — " (:gh/pageTitle gpage))
+     :panels (vec (map-indexed (fn [i p] (->panel p (inc i) (get geoms i))) (:gh/panels gpage)))}))
 
 (defn build-work []
   (let [episodes (keep load-episode (episode-dirs))
@@ -83,11 +175,14 @@
      :pages all-pages}))
 
 (defn -main []
-  (let [work (build-work)]
+  (let [work (build-work)
+        panels (mapcat :panels (:pages work))
+        geo-pages (count (filter #(some :rect (:panels %)) (:pages work)))]
     (fs/mkdirSync (path/dirname out-file) #js {:recursive true})
     (fs/writeFileSync out-file (str (pr-str work) "\n"))
     (println "wrote" out-file
              "-" (count (:pages work)) "pages,"
-             (reduce + (map #(count (:panels %)) (:pages work))) "panels")))
+             (count panels) "panels,"
+             geo-pages "pages /" (count (filter :rect panels)) "panels with komawari :rect")))
 
 (-main)
