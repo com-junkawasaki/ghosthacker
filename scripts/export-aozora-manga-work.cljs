@@ -45,16 +45,31 @@
 ;; pages are renumbered globally 0-based across the whole work, since
 ;; aozora's tx model has one flat page list per work with no
 ;; episode-grouping concept. Episode files with no :gh/episodeId (e.g.
-;; episodes/ep1-komawari-redesign, a komawari-beat-format design demo, not
-;; real page/panel content) and anything under episodes/_archive are
-;; skipped.
+;; episodes/ep1-komawari-redesign, a komawari-beat-format design demo — a
+;; standalone Ren/Nei scene, not part of the arc0-* Yuto continuity) and
+;; anything under episodes/_archive are skipped -- unchanged by
+;; ADR-2607172250 below: that's a narrative-inclusion call, not a plumbing
+;; gap, so it stays out of scope here.
+;;
+;; ADR-2607172250: a page can ALSO be hand-authored directly in komawari's
+;; own rows-of-beats input shape (`:rows`, e.g. episodes/
+;; ep1-komawari-redesign/episode.edn -- the format
+;; `kami.mangaka.komawari/propose-page-layout` takes natively: a vector of
+;; rows, each a vector of beat maps carrying :panel/id/:beat/weight/:visual/
+;; :dialogue/:beat/intensity/:beat/vector). Such a page skips the
+;; :shot/:gh/pageLayout heuristic in `page->rows` below entirely and feeds
+;; :rows straight to propose-page-layout -- exact author intent instead of
+;; an inference. Still governed the same way: a page whose hand-authored
+;; rows fail the komawari governor exports geometry-free (visual/dialogue
+;; only), the same fallback the heuristic path uses.
 
 (ns export-aozora-manga-work
   (:require ["fs" :as fs]
             ["path" :as path]
             [clojure.string :as str]
             [clojure.edn :as edn]
-            [kami.mangaka.komawari :as k]))
+            [kami.mangaka.komawari :as k]
+            [komawari-rows-export :as kre]))
 
 ;; ── komawari geometry (see Run note above for the required classpath) ───────
 
@@ -150,11 +165,20 @@
     (:rect geom) (assoc :rect (:rect geom))
     (:tilt geom) (assoc :tilt (:tilt geom))))
 
+;; ── hand-authored :rows pages (ADR-2607172250) ──────────────────────────────
+;; The rows->export-panels conversion itself lives in komawari-rows-export.cljs
+;; (shared with scripts/verify-rows-format-export.cljs — see that ns's own
+;; docstring for why it's a separate underscore-named module).
+
 (defn ->pages [episode-title gpage global-page-no]
-  (let [geoms (page-geometry gpage)]
+  (if (:rows gpage)
     {:pageNumber global-page-no
-     :title (str episode-title " — " (:gh/pageTitle gpage))
-     :panels (vec (map-indexed (fn [i p] (->panel p (inc i) (get geoms i))) (:gh/panels gpage)))}))
+     :title (str episode-title " — " (:page/title gpage))
+     :panels (kre/rows-page-panels (:rows gpage))}
+    (let [geoms (page-geometry gpage)]
+      {:pageNumber global-page-no
+       :title (str episode-title " — " (:gh/pageTitle gpage))
+       :panels (vec (map-indexed (fn [i p] (->panel p (inc i) (get geoms i))) (:gh/panels gpage)))})))
 
 (defn build-work []
   (let [episodes (keep load-episode (episode-dirs))
@@ -185,4 +209,14 @@
              (count panels) "panels,"
              geo-pages "pages /" (count (filter :rect panels)) "panels with komawari :rect")))
 
-(-main)
+;; Only auto-run when nbb was invoked directly on THIS file (`nbb
+;; [--classpath …] scripts/export-aozora-manga-work.cljs`), not when
+;; another script `require`s this ns as a library (e.g.
+;; scripts/verify-rows-format-export.cljs reusing ->pages/rows-page-panels).
+;; *file* (this ns's own absolute path) is compared against EVERY argv
+;; entry, not a fixed index -- `--classpath <dir>` shifts where the script
+;; path lands in process.argv, so a fixed index (e.g. argv[2]) silently
+;; breaks the guard the moment a classpath flag is added (as this script's
+;; own Run note requires); scanning is invocation-flag-agnostic.
+(when (some #(str/ends-with? *file* %) (array-seq js/process.argv))
+  (-main))
