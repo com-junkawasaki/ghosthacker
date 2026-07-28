@@ -1,0 +1,178 @@
+#!/usr/bin/env nbb
+;; Standalone nbb port of edn-datomize.cljs (ADR-2607173000 Wave 1).
+;; Schema lives at <git-root>/schema.edn (child-repo convention).
+;; Superproject uses manifest/edn-datomize.cljs (schema at manifest/schema.edn).
+;;
+;;   nbb edn-datomize.cljs wrap-map <path> <ns>
+;;   nbb edn-datomize.cljs wrap-map-keep-ns <path> <ns>
+;;   nbb edn-datomize.cljs adr-dir <dir>
+;;   nbb edn-datomize.cljs adr-file <path>
+(require '[clojure.edn :as edn]
+         '[clojure.string :as str])
+
+(def fs (js/require "node:fs"))
+(def path (js/require "node:path"))
+(def cp (js/require "node:child_process"))
+
+(defn- sh [& args]
+  (let [r (.spawnSync cp (first args) (to-array (rest args)) #js {:encoding "utf8"})]
+    {:exit (or (.-status r) 1) :out (or (.-stdout r) "") :err (or (.-stderr r) "")}))
+
+(defn- slurp [f] (.readFileSync fs (str f) "utf8"))
+(defn- spit [f s]
+  (.mkdirSync fs (.dirname path (str f)) #js {:recursive true})
+  (.writeFileSync fs (str f) (str s)))
+(defn- exists? [f] (.existsSync fs (str f)))
+(defn- file-join [& xs] (apply (.-join path) (map str xs)))
+
+(def root (str/trim (:out (sh "git" "rev-parse" "--show-toplevel"))))
+(defn schema-path [] (file-join root "schema.edn"))
+
+(defn slurp-edn [p] (edn/read-string (slurp p)))
+
+(defn already-tx-data? [content]
+  (and (vector? content) (seq content) (map? (first content)) (contains? (first content) :db/id)))
+
+(defn classify [v]
+  (cond
+    (string? v)  {:type :db.type/string  :card :db.cardinality/one}
+    (boolean? v) {:type :db.type/boolean :card :db.cardinality/one}
+    (integer? v) {:type :db.type/long    :card :db.cardinality/one}
+    (double? v)  {:type :db.type/double  :card :db.cardinality/one}
+    (keyword? v) {:type :db.type/keyword :card :db.cardinality/one}
+    (nil? v)     {:type :db.type/string  :card :db.cardinality/one}
+    (and (coll? v) (empty? v)) {:type :db.type/string :card :db.cardinality/many}
+    (and (coll? v) (every? string? v))  {:type :db.type/string  :card :db.cardinality/many}
+    (and (coll? v) (every? keyword? v)) {:type :db.type/keyword :card :db.cardinality/many}
+    (and (coll? v) (every? integer? v)) {:type :db.type/long    :card :db.cardinality/many}
+    :else {:type :db.type/string :card :db.cardinality/one :blob true}))
+
+(defn attr-value [v]
+  (let [{:keys [blob]} (classify v)]
+    (if blob (pr-str v) v)))
+
+(defn namespaced-key [ns-name k]
+  (keyword ns-name (name k)))
+
+(defn schema-attrs [content ns-name]
+  (into {}
+        (for [[k v] content
+              :let [{:keys [type card]} (classify v)
+                    a (namespaced-key ns-name k)]]
+          [a {:db/ident a :db/valueType type :db/cardinality card}])))
+
+(defn schema-attrs-keep-ns [content ns-name]
+  (into {}
+        (for [[k v] content
+              :let [{:keys [type card]} (classify v)
+                    a (if (namespace k) k (namespaced-key ns-name k))]]
+          [a {:db/ident a :db/valueType type :db/cardinality card}])))
+
+(defn load-schema []
+  (let [f (schema-path)]
+    (if (exists? f) (edn/read-string (slurp f)) [])))
+
+(def ^:private schema-header
+  "schema.edn の先頭コメント。**生成のたびに丸ごと書き直される**ので、
+  ここが schema.edn のヘッダの正本。schema.edn 側を手で直しても次の生成で
+  消えるため、直すならこの文字列を直す。
+
+  末尾3段落は、この repo のデータ由来（JSON-LD → EDN）と、同一 ident でも
+  ファイルによって scalar/blob に揺れるという実際に踏んだ落とし穴を説明する。
+  読み手がその揺れに出くわしたときの唯一の手掛かりなので落とさない。"
+  (str ";; schema.edn — Datomic/Datascript 互換スキーマ定義（自動生成 by edn-datomize.cljs）\n"
+       ";; :db/ident 属性定義のリスト。Datomic 固有キー(:db.install/_attribute 等)は使わない。\n"
+       ";; 手編集禁止 — 再生成すると上書きされる。\n"
+       ";;\n"
+       ";; ghosthacker リポの資源データ(260123-jump/resources/** 等)は元々\n"
+       ";; JSON-LD (*.jsonld → *.edn、README記載)由来で :gh/* :dct/* :prov/*\n"
+       ";; :schema/* の名前空間付きキーを使っており、wrap-map-keep-ns モードは\n"
+       ";; これを温存しつつ bare top-level キーだけ <ns>/* に昇格する\n"
+       ";; (namespace-preserving、Phase 2 の net-kotobase/security pilot と同型。\n"
+       ";; 旧 bb 版の gh-dir モードが ns を \"gh\" に固定していたものの一般化)。\n"
+       ";; 同じ属性名でも入れ子構造を含む場合は blob(:db.type/string 化した\n"
+       ";; pr-str)になるため、ファイルによって同一 ident の実データ shape が\n"
+       ";; scalar/blob で揺れることがある — 最初に遭遇した型のみ登録。\n\n"))
+
+(defn merge-schema!
+  "既存 schema に new-attrs を統合して書き戻す。
+
+  **先勝ち**: ident が既に登録済みならそのまま残し、new-attrs 側で
+  上書きしない。これはヘッダ末尾の『最初に遭遇した型のみ登録』という
+  不変条件そのもので、後勝ち(`merge`)にすると処理するファイル順で
+  scalar/blob が入れ替わり、schema が実行ごとに揺れる。
+
+  **ident 昇順で出力**する。map の走査順に任せると内容が同じでも
+  再生成のたびに並びが変わり、無意味な差分が出る。"
+  [new-attrs]
+  (let [existing (load-schema)
+        by-ident (into {} (map (fn [a] [(:db/ident a) a]) existing))
+        merged-by-ident (reduce (fn [acc [ident attr]]
+                                  (if (contains? acc ident) acc (assoc acc ident attr)))
+                                by-ident
+                                new-attrs)
+        merged (vec (sort-by (comp str :db/ident) (vals merged-by-ident)))]
+    (spit (schema-path)
+          (str schema-header (pr-str merged) "\n"))
+    merged))
+
+(defn wrap-map! [rel-path ns-name keep-ns?]
+  (let [f (if (.isAbsolute path rel-path) rel-path (file-join root rel-path))
+        content (slurp-edn f)]
+    (when-not (map? content)
+      (binding [*out* *err*] (println "not a map:" f))
+      (.exit js/process 1))
+    (if (already-tx-data? [content])
+      (println "already tx-data, skip" f)
+      (let [attrs (if keep-ns?
+                    (schema-attrs-keep-ns content ns-name)
+                    (schema-attrs content ns-name))
+            entity (into {:db/id -1}
+                         (for [[k v] content]
+                           [(if (and keep-ns? (namespace k)) k (namespaced-key ns-name k))
+                            (attr-value v)]))]
+        (merge-schema! attrs)
+        (spit f (str (pr-str [entity]) "\n"))
+        (println "wrote" f)))))
+
+(defn- parse-frontmatter [text]
+  (if-let [[_ fm body] (re-find #"(?s)^---\n(.*?)\n---\n?(.*)$" text)]
+    (let [pairs (for [line (str/split-lines fm)
+                      :when (str/includes? line ":")
+                      :let [[k & rest] (str/split line #":" 2)]]
+                  [(keyword (str/trim k)) (str/trim (str/join ":" rest))])]
+      [(into {} pairs) body])
+    [{} text]))
+
+(defn adr-file! [rel-path]
+  (let [f (if (.isAbsolute path rel-path) rel-path (file-join root rel-path))
+        text (slurp f)
+        [fm body] (parse-frontmatter text)
+        entity (into {:db/id -1
+                      :adr/path (str/replace (str f) (str root "/") "")
+                      :adr/body body}
+                     (for [[k v] fm]
+                       [(keyword "adr" (name k)) v]))]
+    (merge-schema! (schema-attrs (dissoc entity :db/id) "adr"))
+    (let [out (str f ".edn")]
+      (spit out (str (pr-str [entity]) "\n"))
+      (println "wrote" out))))
+
+(defn adr-dir! [rel]
+  (let [d (if (.isAbsolute path rel) rel (file-join root rel))
+        files (.readdirSync fs d)]
+    (doseq [name files
+            :when (or (str/ends-with? name ".md") (str/ends-with? name ".md.edn"))]
+      (adr-file! (file-join d name)))))
+
+(let [args (vec *command-line-args*)
+      args (if (and (seq args) (str/includes? (str (first args)) "edn-datomize"))
+             (subvec args 1) args)
+      [cmd a b] args]
+  (case cmd
+    "wrap-map" (wrap-map! a b false)
+    "wrap-map-keep-ns" (wrap-map! a b true)
+    "adr-file" (adr-file! a)
+    "adr-dir" (adr-dir! a)
+    (do (println "usage: edn-datomize.cljs wrap-map|wrap-map-keep-ns|adr-file|adr-dir ...")
+        (.exit js/process 2))))
