@@ -1,6 +1,6 @@
 # Producing an episode
 
-`bin/produce.cljs` is the command `kotoba-lang/loop-ka-production` invokes for
+`scripts/produce.cljs` is the command `kotoba-lang/loop-ka-production` invokes for
 the `ghosthacker` channel. The split is the loop's, not ours:
 
 | owns | where |
@@ -10,7 +10,7 @@ the `ghosthacker` channel. The split is the loop's, not ours:
 | **producing one episode, and reporting what actually ran** | **this repo** |
 
 ```bash
-nbb --classpath src bin/produce.cljs arc0-1-origin
+nbb --classpath src scripts/produce.cljs arc0-1-origin
 ```
 
 Prints one EDN map:
@@ -87,6 +87,9 @@ plane the node's own `:requires` gate is what establishes the capability.
 whose shape varies across files become `:db.type/string` blobs). Reading pages is
 two decodes. A reader that treats `:gh/pages` as a collection gets a string's seq
 of characters and finds no panels.
+
+> It lives in `scripts/`, not `bin/`, because this repo's `.gitignore` lists
+> `bin/` under build artifacts — a file put there is silently not committed.
 
 ## Tests
 
