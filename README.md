@@ -1,14 +1,33 @@
 
 # Ghost Hacker Producer Pipeline
 
-> ⚠️ **DEPRECATED (2026-06).** This TypeScript (SvelteKit) + Go pipeline is
-> superseded by the Clojure + Datomic pipeline in
-> `orgs/com-junkawasaki/kami-engine/kami-app-sip-clj` (`sip.render` / `sip.page` /
-> `sip.storyboard` over datalevin). As part of that migration the resource data
-> here was converted from JSON-LD to **EDN** (`*.jsonld` → `*.edn`, keyword keys),
-> so the TS/Go runtime loaders (`apps/web/src/lib/server/jsonld.ts`, `state.ts`,
-> `apps/server/.../main.go`) no longer find their data and are no longer the
-> source of truth. Kept for reference/history only. (`.auth/wattpad.json` left as-is.)
+> ✅ **The 2026-06 deprecation is retracted (2026-07-30, ADR-2607309900 addendum).**
+> This repository is the home of GHOST HACKER. It is not superseded and it is
+> not history.
+>
+> The retracted note said this pipeline was superseded by
+> `kami-engine/kami-app-sip-clj` and that the repo was "kept for reference/history
+> only". Neither held when checked:
+>
+> - `kotoba-lang/kami-engine/kami-app-sip-clj` contains `.shadow-cljs/` and
+>   `public/` — no `src/`, no `deps.edn`. There is no pipeline there to be
+>   superseded *by*.
+> - Searching `kami-engine` for `ghosthacker` returns **zero** hits. The series
+>   was never moved there.
+> - This repo kept receiving real work after the note was written: the direct
+>   rows-of-beats komawari export (ADR-2607172250) and the `edn-datomize`
+>   bb → nbb migration (ADR-2607173000 Wave 1), through 2026-07.
+>
+> A series belongs with its own content, not inside a 3D/render engine's app
+> directory. That is the reason the move was inappropriate in the first place.
+>
+> **What was true in that note and remains true:** the resource data here was
+> converted from JSON-LD to EDN (`*.jsonld` → `*.edn`, keyword keys), so the
+> TS/Go runtime loaders (`apps/web/src/lib/server/jsonld.ts`, `state.ts`,
+> `apps/server/.../main.go`) no longer find their data. Those loaders are stale
+> — the EDN is the source of truth. `.auth/wattpad.json` is left as-is.
+>
+> The two notes below still stand and are not affected by this retraction.
 
 > ⚠️ **Doc/code mismatch (confirmed 2026-07-10, ADR-2607100900 addendum 1).**
 > Everything below this line (Architecture, Tech Stack, `producer/` project
