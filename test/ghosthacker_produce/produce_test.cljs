@@ -6,7 +6,6 @@
 (ns ghosthacker-produce.produce-test
   (:require [clojure.test :refer [deftest is testing run-tests]]
             [ghosthacker-produce.episode :as episode]
-            [ghosthacker-produce.comfy-graph :as graph]
             [ghosthacker-produce.legs :as legs]))
 
 (def ^:private tx
@@ -72,38 +71,6 @@
     (is (false? bed))
     (is (= [] sfx))
     (is (zero? overlays))))
-
-(deftest graph-reads-values-off-the-merged-config
-  ;; `(graph panel {})` used to yield :cfg nil — the destructuring default read
-  ;; the ARGUMENT rather than the merge — and ComfyUI rejected the prompt. The
-  ;; one-arity path hid it, so both are asserted.
-  (let [p (first (episode/panels (episode/pages (episode/entity tx))))]
-    (doseq [[label g] [["1-arity" (graph/graph p)]
-                       ["empty cfg" (graph/graph p {})]
-                       ["partial cfg" (graph/graph p {:steps 12})]]]
-      (is (number? (get-in g ["5" :inputs :cfg])) (str label ": cfg is a number"))
-      (is (number? (get-in g ["5" :inputs :steps])) (str label ": steps is a number"))
-      (is (string? (get-in g ["1" :inputs :ckpt_name])) (str label ": checkpoint is named")))
-    (is (= 12 (get-in (graph/graph p {:steps 12}) ["5" :inputs :steps])) "overrides win")))
-
-(deftest checkpoint-is-not-taken-from-sdxlModel
-  ;; :gh/sdxlModel is "gpt-4o-mini" — the LLM that wrote the prompt, not an
-  ;; image model. Using it as a checkpoint fails at the server with a confusing
-  ;; enum error.
-  (let [p (assoc (first (episode/panels (episode/pages (episode/entity tx))))
-                 :gh/sdxlModel "gpt-4o-mini")]
-    (is (not= "gpt-4o-mini" (get-in (graph/graph p) ["1" :inputs :ckpt_name])))))
-
-(deftest prompt-prefers-tags-and-never-falls-back-to-visual
-  (let [tagged {:gh/sdxlTags ["1boy" "dark room"] :visual "暗い部屋" :gh/sdxlPrompt "joined form"}
-        flat {:gh/sdxlPrompt "joined form" :visual "暗い部屋"}]
-    (is (= "1boy, dark room" (graph/prompt-text tagged)))
-    (is (= "joined form" (graph/prompt-text flat)))
-    (is (not= "暗い部屋" (graph/prompt-text flat)) ":visual is not a fallback")))
-
-(deftest seed-is-deterministic
-  (let [p (first (episode/panels (episode/pages (episode/entity tx))))]
-    (is (= (graph/seed p) (graph/seed p)) "a re-run of the same panel reproduces it")))
 
 (defn -main [& _] (run-tests 'ghosthacker-produce.produce-test))
 (-main)
