@@ -19,7 +19,12 @@
   `:checkpoint` in particular: panels carry `:gh/sdxlModel \"gpt-4o-mini\"`, which
   is the LLM that WROTE the prompt, not an image model. Using it as a checkpoint
   name would fail at the server with a confusing enum error. The value here is
-  one the server actually reports having."
+  one the server actually reports having.
+
+  **GHOST HACKER is a COLOUR manga** (owner, 2026-07-31). So a colour anime SDXL
+  checkpoint is the intended choice, not a compromise pending a monochrome or
+  lineart model — nobody should \"fix\" this later by swapping in a greyscale
+  checkpoint or appending `monochrome`/`greyscale` to the negative prompt."
   {:checkpoint "Illustrious-XL-v2.0.safetensors"
    :width 832
    :height 1216           ; manga panels are portrait more often than not

@@ -107,10 +107,15 @@ Choices that the episode data does **not** determine live in
 
 | | value | why |
 |---|---|---|
-| checkpoint | `Illustrious-XL-v2.0.safetensors` | one the server reports having |
+| checkpoint | `Illustrious-XL-v2.0.safetensors` | colour anime SDXL, and one the server reports having |
 | size | 832×1216 | manga panels are portrait more often than not |
 | steps / cfg | 28 / 5.0 | |
 | sampler / scheduler | `euler_ancestral` / `karras` | |
+
+**GHOST HACKER is a colour manga** (owner, 2026-07-31). The colour checkpoint is
+the intended choice, not a placeholder waiting on a monochrome/lineart model —
+do not "fix" it later by swapping in a greyscale checkpoint or adding
+`monochrome` to the negative prompt.
 
 > `:gh/sdxlModel` is `"gpt-4o-mini"` on every panel — the **LLM that wrote the
 > prompt**, not an image model. Using it as a checkpoint fails at the server
