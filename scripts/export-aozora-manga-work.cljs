@@ -145,7 +145,19 @@
   (->> (fs/readdirSync episodes-dir)
        (remove #(str/starts-with? % "_"))
        (filter #(fs/existsSync (path/join episodes-dir % "episode.edn")))
-       sort))
+       ;; Arc 0 first, then the dated standalone episodes — within each group
+       ;; still a plain name sort, so the result stays deterministic.
+       ;;
+       ;; A plain sort over all of them put the 260123-/260125- standalones
+       ;; first (digits sort before letters), which buried Arc 0-1 at page 68
+       ;; of 213. Arc 0-1 is the origin arc AND the only episode whose panels
+       ;; have actually been rendered, so aozora.app/manga/ghosthacker opened
+       ;; on 68 pages of dialogue-only frames before reaching any art — while
+       ;; the site's own catalog entry advertises the work as "arc0-1-origin,
+       ;; 45 pages". This is the "deterministic but not hand-curated narrative
+       ;; order" gap this file's header notes, closed.
+       sort
+       (sort-by #(if (str/starts-with? % "arc") 0 1))))
 
 (defn load-episode [dir]
   (let [ep (first (read-edn (path/join episodes-dir dir "episode.edn")))]
