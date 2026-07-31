@@ -168,14 +168,61 @@
   (cond-> {:text (or text "")}
     speaker (assoc :speaker speaker)))
 
+;; ── panel variants (production runs, not revisions) ─────────────────────────
+;; The pipeline re-produces the same episode with different workflows/LLMs
+;; rather than editing one render in place, so several images can exist for one
+;; panel. The filenames already record which run made them — that IS the
+;; register, so this scans the page directory instead of asking episode.edn to
+;; carry a list some producer would have to remember to update:
+;;
+;;   <key>_v<N>.png                      the canonical line ("baseline")
+;;   panel_<key>_<workflow>_v<N>.png     one workflow's run, e.g. sdxl / sketch / edit
+;;
+;; Highest _v wins per workflow (a re-run of the same workflow is a revision of
+;; that variant, not a new one). Panels with only a baseline get no :variants
+;; key at all, so this is additive for the 42 of 44 pages that have never been
+;; re-produced.
+
+(def ^:private variant-re #"^panel_(.+)_([a-z0-9]+)_v(\d+)\.png$")
+(def ^:private baseline-re #"^(.+)_v(\d+)\.png$")
+
+(defn- panel-key
+  "Panel key of an image basename, independent of workflow and version."
+  [basename]
+  (if-let [[_ k] (re-matches variant-re basename)]
+    k
+    (second (re-matches baseline-re basename))))
+
+(defn- image-variants
+  "{workflow -> url} for every non-canonical run of this panel, newest version
+  per workflow. Empty when the panel has only ever been produced once."
+  [canonical-url]
+  (when canonical-url
+    (let [dir (path/join resources-dir (subs (path/dirname canonical-url) 1))
+          k (panel-key (path/basename canonical-url))]
+      (when (and k (fs/existsSync dir))
+        (->> (fs/readdirSync dir)
+             (keep (fn [f]
+                     (when-let [[_ fk wf v] (re-matches variant-re f)]
+                       (when (= fk k)
+                         {:workflow wf :version (js/parseInt v 10)
+                          :url (str (path/dirname canonical-url) "/" f)}))))
+             (group-by :workflow)
+             (reduce-kv (fn [acc wf xs]
+                          (assoc acc wf (:url (last (sort-by :version xs)))))
+                        {}))))))
+
 (defn ->panel [panel fallback-n geom]
-  (cond-> {:id (:id panel)
-           :panelNumber (or (:panel panel) fallback-n)
-           :visual (:visual panel)
-           :imageUrl (:generatedImageUrl panel)
-           :dialogue (mapv dialogue-line (:dialogue panel))}
-    (:rect geom) (assoc :rect (:rect geom))
-    (:tilt geom) (assoc :tilt (:tilt geom))))
+  (let [image (:generatedImageUrl panel)
+        variants (image-variants image)]
+    (cond-> {:id (:id panel)
+             :panelNumber (or (:panel panel) fallback-n)
+             :visual (:visual panel)
+             :imageUrl image
+             :dialogue (mapv dialogue-line (:dialogue panel))}
+      (:rect geom) (assoc :rect (:rect geom))
+      (:tilt geom) (assoc :tilt (:tilt geom))
+      (seq variants) (assoc :variants variants))))
 
 ;; ── hand-authored :rows pages (ADR-2607172250) ──────────────────────────────
 ;; The rows->export-panels conversion itself lives in komawari-rows-export.cljs
