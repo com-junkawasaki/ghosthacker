@@ -3,16 +3,21 @@
 ;; channel. The loop owns cadence, admission and verdict; this owns producing
 ;; one episode and reporting honestly what its legs actually did.
 ;;
-;;   nbb --classpath src bin/produce.cljs <plan-id>
+;;   nbb --classpath src scripts/produce.cljs <plan-id> [--dry-run] [--limit N] [--force]
 ;;
-;; Prints one EDN map on stdout. Exit 0 produced (whatever the legs say),
-;; 1 could not even plan. A missing image backend is NOT exit 1 — it is a run
-;; whose video legs are :placeholder, which the loop grades and holds.
+;; Talks ComfyUI's NATIVE protocol (see comfy-client). No OpenAI-images bridge
+;; in the middle — that bridge was down while ComfyUI itself was up, which is
+;; exactly the silent middle-layer failure this loop exists to catch.
+;;
+;; Exit 0 produced (whatever the legs say), 1 could not even plan. An
+;; unreachable backend is NOT exit 1 — it is a run whose legs are :placeholder,
+;; which the loop grades and holds. Crashing would hide the degradation.
 (ns produce
   (:require ["fs" :as fs]
             ["path" :as path]
             [clojure.edn :as edn]
             [clojure.string :as str]
+            [ghosthacker-produce.comfy-client :as comfy]
             [ghosthacker-produce.episode :as episode]
             [ghosthacker-produce.legs :as legs]))
 
@@ -24,53 +29,91 @@
     (when (seq data) (println (pr-str data))))
   (js/process.exit 1))
 
+(defn- note [& xs]
+  (binding [*out* *err*] (println (str "produce: " (str/join " " xs)))))
+
 (defn- read-edn [file]
   (when-not (fs/existsSync file) (die "file not found" {:file file}))
-  (try
-    (edn/read-string (fs/readFileSync file "utf8"))
-    (catch :default e
-      (die "could not parse EDN" {:file file :error (ex-message e)}))))
+  (try (edn/read-string (fs/readFileSync file "utf8"))
+       (catch :default e (die "could not parse EDN" {:file file :error (ex-message e)}))))
 
-(defn- backends
-  "Env -> what we can reach. `(js->clj js/process.env)` yields a Function under
-  nbb and every lookup comes back nil, which would report every leg degraded no
-  matter how the node is configured. Read the property directly."
-  []
-  (let [got (fn [k] (not (str/blank? (str (aget js/process.env k)))))]
-    {:image {:murakumo (got "MURAKUMO_BACKEND_URL") :comfy (got "COMFY_URL")}}))
+(defn- parse-args [argv]
+  (loop [[a & more] argv acc {:limit nil}]
+    (cond
+      (nil? a) acc
+      (= a "--limit") (recur (rest more) (assoc acc :limit (js/parseInt (first more))))
+      (= a "--dry-run") (recur more (assoc acc :dry-run true))
+      (= a "--force") (recur more (assoc acc :force true))
+      (str/starts-with? a "--") (recur more acc)
+      :else (recur more (assoc acc :plan-id a)))))
+
+(defn- render-sequentially
+  "Render `todo` panels one at a time, returning a promise of outcomes keyed by
+  panel index.
+
+  Sequential on purpose: the fleet head node runs ONE ComfyUI on one GPU, so
+  firing 257 prompts concurrently would queue them all server-side and lose the
+  ability to stop early. `--limit` is what bounds a run."
+  [base out-dir indexed]
+  (reduce (fn [p [idx panel]]
+            (.then p (fn [acc]
+                       (-> (comfy/render-panel! {:base base :out-dir out-dir :panel panel})
+                           (.then (fn [{:keys [ok? file reason]}]
+                                    (note (if ok? "rendered" "FAILED") "panel" idx
+                                          (if ok? file (str reason)))
+                                    (assoc acc idx (if ok?
+                                                     {:status :rendered :backend :comfy :file file}
+                                                     {:status :failed :reason reason}))))))))
+          (js/Promise.resolve {})
+          indexed))
 
 (defn -main [& argv]
-  ;; Take args from `*command-line-args*` (see the call at the bottom), not from
-  ;; process.argv. Dropping a fixed prefix off process.argv leaves nbb's own
-  ;; flags in the list — `--classpath src bin/produce.cljs <id>` makes "src" the
-  ;; first non-flag token, so the producer looked for production-catalog/src.edn.
-  (let [plan-id (first (remove #(str/starts-with? % "--") argv))]
-    (when (str/blank? (str plan-id))
-      (die "usage: produce.cljs <plan-id>" {}))
+  (let [{:keys [plan-id dry-run limit force]} (parse-args argv)]
+    (when (str/blank? (str plan-id)) (die "usage: produce.cljs <plan-id>" {}))
     (let [plan (read-edn (path/join catalog-dir (str plan-id ".edn")))
           src (:plan/source plan)
           e (episode/entity (read-edn src))
           pgs (episode/pages e)
-          pnls (episode/panels pgs)]
-      ;; A plan that counted panels and now finds none means the episode changed
-      ;; under it. Say so rather than emitting a clean-looking empty run.
+          pnls (episode/panels pgs)
+          out-dir (path/join "production-out" plan-id)]
       (when (and (pos? (or (:plan/panels plan) 0)) (empty? pnls))
         (die "episode yielded zero panels" {:source src :expected (:plan/panels plan)}))
-      (doseq [[label expected actual]
-              [["pages" (:plan/pages plan) (count pgs)]
-               ["panels" (:plan/panels plan) (count pnls)]]]
+      (doseq [[label expected actual] [["pages" (:plan/pages plan) (count pgs)]
+                                       ["panels" (:plan/panels plan) (count pnls)]]]
         (when (and expected (not= expected actual))
-          (binding [*out* *err*]
-            (println (str "produce: warning — plan/" label " says " expected
-                          " but the episode has " actual " (" src ")")))))
-      (println
-       (pr-str {:plan/id plan-id
-                :plan/episode-id (:plan/episode-id plan)
-                :source src
-                :pages (count pgs)
-                :panels (count pnls)
-                ;; Prior state, not a leg — see episode/already-generated?.
-                :panels-already-generated (count (filter episode/already-generated? pnls))
-                :legs (legs/report pnls (backends))})))))
+          (note "warning —" (str "plan/" label) "says" expected "but the episode has" actual)))
+      (let [base (comfy/base-url)
+            emit (fn [outcomes]
+                   (println (pr-str
+                             (merge {:plan/id plan-id
+                                     :plan/episode-id (:plan/episode-id plan)
+                                     :source src
+                                     :pages (count pgs)
+                                     :panels (count pnls)
+                                     :backend base
+                                     :legs (legs/report outcomes)}
+                                    (into {} (map (fn [[k v]] [(keyword (str "panels-" (name k))) v]))
+                                          (legs/counts outcomes))))))]
+        (if (or dry-run (str/blank? (str base)))
+          (do (when-not base (note "no COMFY_URL / MURAKUMO_BACKEND_URL — nothing rendered"))
+              (emit (legs/dry-outcomes pnls)))
+          (-> (comfy/reachable? base)
+              (.then
+               (fn [up]
+                 (if-not up
+                   ;; Configured but not answering. The producer must not report a
+                   ;; served leg for a URL nothing is listening on.
+                   (do (note "backend configured but unreachable:" base)
+                       (emit (legs/dry-outcomes pnls)))
+                   (let [base-outcomes (legs/dry-outcomes pnls)
+                         todo (cond->> (map-indexed vector pnls)
+                                (not force) (remove (fn [[_ p]] (episode/already-generated? p)))
+                                true (filter (fn [[_ p]] (episode/renderable? p)))
+                                limit (take limit))]
+                     (note "rendering" (count todo) "of" (count pnls) "panels")
+                     (-> (render-sequentially base out-dir todo)
+                         (.then (fn [rendered]
+                                  (emit (vec (map-indexed (fn [i o] (get rendered i o))
+                                                          base-outcomes))))))))))))))))
 
 (apply -main *command-line-args*)

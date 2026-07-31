@@ -3,6 +3,9 @@ node_modules/
 /vendor/
 
 # Build artifacts
+# Rendered panels. Large binaries do not go in git history (B2/DataLad is the
+# route for those); a run's output is reproducible from the episode + seed.
+production-out/
 dist/
 build/
 bin/

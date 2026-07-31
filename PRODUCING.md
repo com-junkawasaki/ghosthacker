@@ -10,7 +10,10 @@ the `ghosthacker` channel. The split is the loop's, not ours:
 | **producing one episode, and reporting what actually ran** | **this repo** |
 
 ```bash
-nbb --classpath src scripts/produce.cljs arc0-1-origin
+nbb --classpath src scripts/produce.cljs arc0-1-origin            # render what is missing
+nbb --classpath src scripts/produce.cljs arc0-1-origin --dry-run  # report without rendering
+nbb --classpath src scripts/produce.cljs arc0-1-origin --limit 3  # bound a run
+nbb --classpath src scripts/produce.cljs arc0-1-origin --force    # redraw already-generated panels
 ```
 
 Prints one EDN map:
@@ -46,39 +49,84 @@ panels — it is a layout redesign artifact, not an episode.
 
 ## Legs are a report, not an intention
 
-`:legs` names **what actually served each leg**, which is the one thing the loop
-cannot find out for itself.
+A leg answers the question `evaluate` is actually asking: **does this panel have
+a real generated image, or a fallback?**
 
-- **`:video` indexes panels.** A panel is what gets an image, which is what a
-  shot is to a video channel. The prompt is `:gh/sdxlPrompt` — `:visual` is the
-  human-facing description and is not a substitute, since feeding it to a model
-  would silently change what gets drawn.
-- **`:voice` is empty.** There is no narration leg in a manga; dialogue is drawn,
-  not spoken. `loop-ka.evaluate`'s `silent-shots` over `[]` is `[]`, so the run
-  is not graded degraded for a leg that does not exist. Emitting `:silent` per
-  panel would permanently mark every manga run degraded for failing to do
-  something it never had to do.
-- **`:bed` false, `:sfx` empty** for the same reason. A run therefore grades
-  `:thin` at best, with `:no-music-bed` as the reason — accurate for a silent
-  format. The channel can pass `:require-bed? false` if that becomes noise.
-
-With no image backend configured every panel is `:placeholder`, the loop grades
-`:degraded`, and it holds instead of publishing.
-
-`:panels-already-generated` is **prior state, not a leg**. A panel that already
-carries an image from an earlier run says nothing about what this run did, so it
-is reported as a count beside the legs rather than as a leg value.
-
-## Backends
-
-| var | serves |
+| panel | leg |
 |---|---|
-| `MURAKUMO_BACKEND_URL` | panel images |
-| `COMFY_URL` | panel images |
+| this run rendered it | `:comfy` |
+| it already had an image | `:comfy` — it is not a flat card |
+| failed, or never attempted | `:placeholder` |
 
-Presence of a URL is taken as reachability. That is an assumption and the weakest
-link here: an unreachable URL is reported as a served leg. On the murakumo task
-plane the node's own `:requires` gate is what establishes the capability.
+The middle row is not a claim that this run drew it. `:panels-rendered` /
+`:panels-already` / `:panels-failed` / `:panels-skipped` are reported beside the
+legs so the breakdown is never inferred from the leg list.
+
+An earlier version derived legs from **whether an env var was set**. That is a
+claim about configuration, not about work — it reported served legs for a URL
+nothing was listening on.
+
+- **`:video` indexes panels.** The prompt is `:gh/sdxlTags` (joined), falling
+  back to `:gh/sdxlPrompt`. `:visual` is the human-facing description and is
+  **not** a fallback: substituting it changes what gets drawn.
+- **`:voice` is empty.** Dialogue is drawn, not spoken. `loop-ka.evaluate`'s
+  `silent-shots` over `[]` is `[]`, so the run is not graded degraded for a leg
+  that does not exist. Emitting `:silent` per panel would mark every manga run
+  degraded forever for failing to do something it never had to do.
+- **`:bed` false, `:sfx` empty** for the same reason, so a run grades `:thin` at
+  best with `:no-music-bed` — accurate for a silent format.
+
+## The image backend is ComfyUI, spoken natively
+
+```
+COMFY_URL=http://100.82.98.110:8188   # murakumo fleet head node `gad`, over Tailscale
+```
+
+`MURAKUMO_BACKEND_URL` is accepted as a fallback name.
+
+**murakumo.cloud does not serve images.** That Worker proxies
+`/api/v1/chat/completions`, `/responses` and `/messages` — text inference only.
+The image backend is a ComfyUI on the fleet head node.
+
+This talks ComfyUI's **native** protocol:
+
+```
+POST /prompt   {prompt: <node graph>, client_id}  -> {prompt_id}
+GET  /history/{prompt_id}                          -> outputs when finished
+GET  /view?filename&subfolder&type                 -> the bytes
+```
+
+`kotoba-lang/comfyui`'s `comfyui.gateway` speaks the OpenAI-images shape instead
+and needs `comfy-openai-bridge` in front of a real ComfyUI. That bridge was
+**down** when this was written while ComfyUI itself was **up** — a translating
+middle layer that can fail silently is the thing `loop-ka-production` exists to
+catch, so this goes native and removes it.
+
+Choices that the episode data does **not** determine live in
+`comfy-graph/default-config`, explicitly:
+
+| | value | why |
+|---|---|---|
+| checkpoint | `Illustrious-XL-v2.0.safetensors` | one the server reports having |
+| size | 832×1216 | manga panels are portrait more often than not |
+| steps / cfg | 28 / 5.0 | |
+| sampler / scheduler | `euler_ancestral` / `karras` | |
+
+> `:gh/sdxlModel` is `"gpt-4o-mini"` on every panel — the **LLM that wrote the
+> prompt**, not an image model. Using it as a checkpoint fails at the server
+> with a confusing enum error. A test pins that it is never used as one.
+
+Seeds are derived from the panel, not random, so a re-run of the same panel
+reproduces the same image and a retry is distinguishable from a change.
+
+Rendering is **sequential**: the head node runs one ComfyUI on one GPU, so
+firing every panel at once would queue them all server-side and lose the ability
+to stop early. `--limit N` bounds a run. Panels that already have an image are
+skipped unless `--force`.
+
+Rendered PNGs land in `production-out/<plan-id>/` and are **gitignored** — large
+binaries stay out of git history, and a run is reproducible from the episode
+plus the seed.
 
 ## `:gh/pages` is a blob
 
@@ -97,5 +145,5 @@ of characters and finds no panels.
 nbb --classpath src:test test/ghosthacker_produce/produce_test.cljs
 ```
 
-7 tests / 17 assertions. They pin the blob decode, the empty-pages case, prompt
+11 tests / 33 assertions. They pin the blob decode, the empty-pages case, prompt
 provenance, that already-generated is not a leg, and that manga has no voice leg.
