@@ -10,10 +10,10 @@ the `ghosthacker` channel. The split is the loop's, not ours:
 | **producing one episode, and reporting what actually ran** | **this repo** |
 
 ```bash
-nbb --classpath src scripts/produce.cljs arc0-1-origin            # render what is missing
-nbb --classpath src scripts/produce.cljs arc0-1-origin --dry-run  # report without rendering
-nbb --classpath src scripts/produce.cljs arc0-1-origin --limit 3  # bound a run
-nbb --classpath src scripts/produce.cljs arc0-1-origin --force    # redraw already-generated panels
+nbb --classpath src:../../kotoba-lang/comfyui/src scripts/produce.cljs arc0-1-origin            # render what is missing
+nbb --classpath src:../../kotoba-lang/comfyui/src scripts/produce.cljs arc0-1-origin --dry-run  # report without rendering
+nbb --classpath src:../../kotoba-lang/comfyui/src scripts/produce.cljs arc0-1-origin --limit 3  # bound a run
+nbb --classpath src:../../kotoba-lang/comfyui/src scripts/produce.cljs arc0-1-origin --force    # redraw already-generated panels
 ```
 
 Prints one EDN map:
@@ -77,6 +77,13 @@ nothing was listening on.
   best with `:no-music-bed` — accurate for a silent format.
 
 ## The image backend is ComfyUI, spoken natively
+
+The node-graph builder and client are `comfyui.native` / `comfyui.native-client`
+in **kotoba-lang/comfyui** — on the classpath, not copied here. shiropico needs
+the same thing, and the same file in two content repos diverges.
+
+This series' craft choices (colour checkpoint, size, sampler) stay here, in
+`checkpoint-config`, because they are not the library's to decide.
 
 ```
 COMFY_URL=http://100.82.98.110:8188   # murakumo fleet head node `gad`, over Tailscale
@@ -147,8 +154,8 @@ of characters and finds no panels.
 ## Tests
 
 ```bash
-nbb --classpath src:test test/ghosthacker_produce/produce_test.cljs
+nbb --classpath src:../../kotoba-lang/comfyui/src:test test/ghosthacker_produce/produce_test.cljs
 ```
 
-11 tests / 33 assertions. They pin the blob decode, the empty-pages case, prompt
+7 tests / 18 assertions (the graph and seed cases moved to kotoba-lang/comfyui with the code). They pin the blob decode, the empty-pages case, prompt
 provenance, that already-generated is not a leg, and that manga has no voice leg.

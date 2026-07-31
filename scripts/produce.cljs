@@ -3,7 +3,8 @@
 ;; channel. The loop owns cadence, admission and verdict; this owns producing
 ;; one episode and reporting honestly what its legs actually did.
 ;;
-;;   nbb --classpath src scripts/produce.cljs <plan-id> [--dry-run] [--limit N] [--force]
+;;   nbb --classpath src:../../kotoba-lang/comfyui/src scripts/produce.cljs \
+;;       <plan-id> [--dry-run] [--limit N] [--force]
 ;;
 ;; Talks ComfyUI's NATIVE protocol (see comfy-client). No OpenAI-images bridge
 ;; in the middle — that bridge was down while ComfyUI itself was up, which is
@@ -17,11 +18,26 @@
             ["path" :as path]
             [clojure.edn :as edn]
             [clojure.string :as str]
-            [ghosthacker-produce.comfy-client :as comfy]
+            [comfyui.native-client :as comfy]
             [ghosthacker-produce.episode :as episode]
             [ghosthacker-produce.legs :as legs]))
 
 (def ^:private catalog-dir "production-catalog")
+
+(def ^:private checkpoint-config
+  "GHOST HACKER is a COLOUR manga (owner, 2026-07-31), so a colour anime SDXL
+  checkpoint is the intended choice — not a compromise pending a monochrome or
+  lineart model. Do not \"fix\" this later by swapping in a greyscale checkpoint
+  or adding `monochrome` to the negative prompt.
+
+  These live here rather than in `comfyui.native/default-config` because they
+  are this series' craft decisions; the shared library's defaults are generic.
+
+  Never pass `:gh/sdxlModel` as the checkpoint: it is \"gpt-4o-mini\" on every
+  panel — the LLM that WROTE the prompt, not an image model."
+  {:checkpoint "Illustrious-XL-v2.0.safetensors"
+   :width 832 :height 1216 :steps 28 :cfg 5.0
+   :sampler "euler_ancestral" :scheduler "karras"})
 
 (defn- die [msg data]
   (binding [*out* *err*]
@@ -54,10 +70,16 @@
   Sequential on purpose: the fleet head node runs ONE ComfyUI on one GPU, so
   firing 257 prompts concurrently would queue them all server-side and lose the
   ability to stop early. `--limit` is what bounds a run."
-  [base out-dir indexed]
+  [base out-dir config indexed]
   (reduce (fn [p [idx panel]]
             (.then p (fn [acc]
-                       (-> (comfy/render-panel! {:base base :out-dir out-dir :panel panel})
+                       (-> (comfy/render!
+                            {:base base :out-dir out-dir
+                             :req {:prompt (or (seq (:gh/sdxlTags panel))
+                                               (:gh/sdxlPrompt panel))
+                                   :negative (:gh/sdxlNegative panel)
+                                   :key (str "ghosthacker/" (or (:id panel) idx))}
+                             :config config})
                            (.then (fn [{:keys [ok? file reason]}]
                                     (note (if ok? "rendered" "FAILED") "panel" idx
                                           (if ok? file (str reason)))
@@ -111,7 +133,7 @@
                                 true (filter (fn [[_ p]] (episode/renderable? p)))
                                 limit (take limit))]
                      (note "rendering" (count todo) "of" (count pnls) "panels")
-                     (-> (render-sequentially base out-dir todo)
+                     (-> (render-sequentially base out-dir checkpoint-config todo)
                          (.then (fn [rendered]
                                   (emit (vec (map-indexed (fn [i o] (get rendered i o))
                                                           base-outcomes))))))))))))))))
