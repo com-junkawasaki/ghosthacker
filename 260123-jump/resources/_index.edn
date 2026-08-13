@@ -1,6 +1,6 @@
 {:index/source-dir "260123-jump/resources",
- :index/scanned 130,
- :index/indexed 130,
+ :index/scanned 131,
+ :index/indexed 131,
  :index/unreadable 0,
  :index/unindexed 0,
  :index/generator "scripts/gen-index.cljs",
@@ -152,6 +152,7 @@
   "episodes/arc0-3-digital-footprint/episode.edn",
   :episode/arc0-3-digital-footprint.story-outline.edn
   "episodes/arc0-3-digital-footprint/story-outline.edn",
+  :episode/arc12-keiei.episode.edn "episodes/arc12-keiei/episode.edn",
   :episode/arc12-keiei.story-outline.edn
   "episodes/arc12-keiei/story-outline.edn",
   :episode/arc13-heiiki.story-outline.edn
