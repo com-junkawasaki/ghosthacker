@@ -1,6 +1,6 @@
 {:index/source-dir "260123-jump/resources",
- :index/scanned 126,
- :index/indexed 126,
+ :index/scanned 130,
+ :index/indexed 130,
  :index/unreadable 0,
  :index/unindexed 0,
  :index/generator "scripts/gen-index.cljs",
@@ -154,6 +154,14 @@
   "episodes/arc0-3-digital-footprint/story-outline.edn",
   :episode/arc12-keiei.story-outline.edn
   "episodes/arc12-keiei/story-outline.edn",
+  :episode/arc13-heiiki.story-outline.edn
+  "episodes/arc13-heiiki/story-outline.edn",
+  :episode/arc14-log.story-outline.edn
+  "episodes/arc14-log/story-outline.edn",
+  :episode/arc15-mtp.story-outline.edn
+  "episodes/arc15-mtp/story-outline.edn",
+  :episode/arc16-fake-warning.story-outline.edn
+  "episodes/arc16-fake-warning/story-outline.edn",
   :episode/ep1-komawari-redesign.episode.edn
   "episodes/ep1-komawari-redesign/episode.edn",
   :job/queue.edn "jobs/queue.edn",
