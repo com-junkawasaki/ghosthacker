@@ -10,7 +10,15 @@
 ;;
 ;; ここで検査するのは 4 つ:
 ;;   1. arc-order の slug がディレクトリとして実在するか
-;;   2. episode / story-outline の :gh/arc・:gh/episodeIndex が arc-order と一致するか
+;;   2. episode / story-outline の :gh/arc・:gh/episodeIndex・:gh/presentationTagline が
+;;      arc-order と一致するか
+;;
+;;      ⚠ **:gh/episodeIndex は repo 内で二つの意味を持っている。**
+;;      slug 登録された Arc 1-17 では **アーク番号**だが、Arc 0 の各話
+;;      （arc0-1-origin / arc0-2-private-account / 260123-cschool-* 等）では
+;;      **アーク内の話番号**である（1, 2, 3…）。これは既存の規約で、直していない。
+;;      本検査は slug 登録アークだけを見るので、Arc 0 では発火しない
+;;      ——**発火しないことを、ここに書いておく。**
 ;;   3. :gh/mainCharacter が arc-order の :lead と一致するか
 ;;   4. **presence ladder**: sighting に挙げたアークの episode.edn に久我が居るか
 ;;
@@ -94,6 +102,16 @@
                              (not= lead (:gh/mainCharacter m)))
                     (v! "ARC-LEAD-MISMATCH" (str slug "/" f)
                         (str "— arc-order のアーク主役は " lead "、story-outline は " (:gh/mainCharacter m)))))
+                ;; **tagline の Arc 番号も見る。**2026-08-14 の改番では :gh/arc と
+                ;; :gh/episodeIndex を直して **:gh/presentationTagline を直し損ねた**
+                ;; ——6 ファイルが古い番号のまま残り、この検査が無かったので誰も気づかなかった。
+                ;; 表示に出る番号がずれるのは、内部値がずれるのと同じだけ悪い。
+                (when-let [tl (:gh/presentationTagline m)]
+                  (when-let [hit (re-find #"Arc (\d+)" tl)]
+                    (let [n (js/parseInt (second hit) 10)]
+                      (when-not (= n (:arc a))
+                        (v! "TAGLINE-MISMATCH" (str slug "/" f)
+                            (str "— arc-order は Arc " (:arc a) "、tagline は「" tl "」"))))))
                 (when (= f "episode.edn")
                   (println (str "  ep-lead  " slug " → " (:gh/mainCharacter m))))))))))
 
