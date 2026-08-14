@@ -1,6 +1,6 @@
 {:index/source-dir "260123-jump/resources",
- :index/scanned 135,
- :index/indexed 135,
+ :index/scanned 136,
+ :index/indexed 136,
  :index/unreadable 0,
  :index/unindexed 0,
  :index/generator "scripts/gen-index.cljs",
@@ -155,6 +155,8 @@
   "episodes/arc0-3-digital-footprint/story-outline.edn",
   :episode/ep1-komawari-redesign.episode.edn
   "episodes/ep1-komawari-redesign/episode.edn",
+  :episode/fake-warning.episode.edn
+  "episodes/fake-warning/episode.edn",
   :episode/fake-warning.story-outline.edn
   "episodes/fake-warning/story-outline.edn",
   :episode/heiiki.episode.edn "episodes/heiiki/episode.edn",
