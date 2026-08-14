@@ -1,6 +1,6 @@
 {:index/source-dir "260123-jump/resources",
- :index/scanned 138,
- :index/indexed 138,
+ :index/scanned 149,
+ :index/indexed 149,
  :index/unreadable 0,
  :index/unindexed 0,
  :index/generator "scripts/gen-index.cljs",
@@ -141,6 +141,8 @@
   "episodes/260123-cschool-yami-baito/story-outline.edn",
   :episode/_260125-parent-smartphone-safety.episode.edn
   "episodes/260125-parent-smartphone-safety/episode.edn",
+  :episode/akabane-miko.story-outline.edn
+  "episodes/akabane-miko/story-outline.edn",
   :episode/arc0-1-origin.episode.edn
   "episodes/arc0-1-origin/episode.edn",
   :episode/arc0-1-origin.story-outline.edn
@@ -153,15 +155,29 @@
   "episodes/arc0-3-digital-footprint/episode.edn",
   :episode/arc0-3-digital-footprint.story-outline.edn
   "episodes/arc0-3-digital-footprint/story-outline.edn",
+  :episode/collected-too-much.story-outline.edn
+  "episodes/collected-too-much/story-outline.edn",
+  :episode/duplicate-self.story-outline.edn
+  "episodes/duplicate-self/story-outline.edn",
   :episode/ep1-komawari-redesign.episode.edn
   "episodes/ep1-komawari-redesign/episode.edn",
+  :episode/face-made.story-outline.edn
+  "episodes/face-made/story-outline.edn",
   :episode/fake-warning.episode.edn
   "episodes/fake-warning/episode.edn",
   :episode/fake-warning.story-outline.edn
   "episodes/fake-warning/story-outline.edn",
+  :episode/father-written.story-outline.edn
+  "episodes/father-written/story-outline.edn",
+  :episode/friends-vanish.story-outline.edn
+  "episodes/friends-vanish/story-outline.edn",
+  :episode/frozen-crypto.story-outline.edn
+  "episodes/frozen-crypto/story-outline.edn",
   :episode/heiiki.episode.edn "episodes/heiiki/episode.edn",
   :episode/heiiki.story-outline.edn
   "episodes/heiiki/story-outline.edn",
+  :episode/hospital-night.story-outline.edn
+  "episodes/hospital-night/story-outline.edn",
   :episode/keiei.episode.edn "episodes/keiei/episode.edn",
   :episode/keiei.story-outline.edn "episodes/keiei/story-outline.edn",
   :episode/monkeys-paw.episode.edn "episodes/monkeys-paw/episode.edn",
@@ -169,9 +185,14 @@
   "episodes/monkeys-paw/story-outline.edn",
   :episode/mtp.episode.edn "episodes/mtp/episode.edn",
   :episode/mtp.story-outline.edn "episodes/mtp/story-outline.edn",
+  :episode/nue.story-outline.edn "episodes/nue/story-outline.edn",
   :episode/nuts-log.episode.edn "episodes/nuts-log/episode.edn",
   :episode/nuts-log.story-outline.edn
   "episodes/nuts-log/story-outline.edn",
+  :episode/romance-transfer.story-outline.edn
+  "episodes/romance-transfer/story-outline.edn",
+  :episode/seiran-pride.story-outline.edn
+  "episodes/seiran-pride/story-outline.edn",
   :job/queue.edn "jobs/queue.edn",
   :organization/AkabaneHachimanShrine
   "organizations/AkabaneHachimanShrine/profile.edn",
