@@ -1,6 +1,6 @@
 {:index/source-dir "260123-jump/resources",
- :index/scanned 149,
- :index/indexed 149,
+ :index/scanned 150,
+ :index/indexed 150,
  :index/unreadable 0,
  :index/unindexed 0,
  :index/generator "scripts/gen-index.cljs",
@@ -176,6 +176,8 @@
   :episode/heiiki.episode.edn "episodes/heiiki/episode.edn",
   :episode/heiiki.story-outline.edn
   "episodes/heiiki/story-outline.edn",
+  :episode/hospital-night.episode.edn
+  "episodes/hospital-night/episode.edn",
   :episode/hospital-night.story-outline.edn
   "episodes/hospital-night/story-outline.edn",
   :episode/keiei.episode.edn "episodes/keiei/episode.edn",
