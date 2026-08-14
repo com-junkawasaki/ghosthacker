@@ -1,0 +1,125 @@
+#!/usr/bin/env nbb
+;; 260123-jump/scripts/assign-panel-ids.cljs — 欠けている／衝突しているコマ :id を振り直す。
+;; verify-panel-ids.cljs が違反として報告するものを直す側。冪等。
+;;
+;; **既に一意な :id は絶対に触らない。** arc0-1 は 255 コマ分の生成済み画像を
+;; :id で参照しており、振り直せばその参照が全部切れる。触るのは
+;;   - :id が無い（nil / 空文字）
+;;   - そのエピソード内で 2 回以上出てくる
+;; ものだけ。
+;;
+;; 形は既存の慣習に合わせる: `panel:[<prefix>-]p<pageNumber>n<panel>`
+;;   arc0 系      panel:p0n1-dark-room        → prefix 無し
+;;   pss          panel:pss-p1n1-misaki-worried → prefix あり
+;; prefix は、そのエピソードに既にある id から判定する。1 つも無ければ slug。
+;;
+;; 生成した id が「残す既存 id」と衝突したら、黙って -b を付けたりせず**止まる**。
+;; 静かに直すと、直したつもりのものが別の衝突になる。
+;;
+;; usage:
+;;   nbb 260123-jump/scripts/assign-panel-ids.cljs [--dry-run]
+;;
+;; 終了コード: 0 完了（書いた／書くものが無かった） / 1 衝突して止まった /
+;;             2 答えられなかった（読めない）
+
+(ns assign-panel-ids
+  (:require ["fs" :as fs]
+            ["path" :as path]
+            [clojure.edn :as edn]
+            [clojure.string :as str]))
+
+(def ^:private episodes-dir "260123-jump/resources/episodes")
+
+(defn- bare-convention?
+  "そのエピソードの既存 id が `panel:p<n>n<n>…` の prefix 無し形か。"
+  [ids]
+  (boolean (some #(re-find #"^panel:p\d+n\d+" (str %)) ids)))
+
+(defn- prefix-for [slug ids]
+  (cond
+    (bare-convention? ids) ""
+    ;; `panel:keiei-ep5-1` → `keiei-ep5`。末尾の連番だけを落とす。
+    :else (let [stem (some (fn [i]
+                             (when-let [m (re-find #"^panel:(.+?)-\d+$" (str i))]
+                               (second m)))
+                           ids)]
+            (str (or stem slug) "-"))))
+
+(defn- new-id [prefix page-no panel-no]
+  (str "panel:" prefix "p" page-no "n" panel-no))
+
+(defn- fix-episode
+  "[新しい pages, 変更件数] を返す。衝突したら ex-info を投げる。"
+  [slug pages]
+  (let [all   (mapcat :gh/panels pages)
+        ids   (map :id all)
+        named (remove #(str/blank? (str %)) ids)
+        freq  (frequencies named)
+        keep? (fn [i] (and (not (str/blank? (str i))) (= 1 (get freq i))))
+        kept  (set (filter keep? ids))
+        pref  (prefix-for slug named)
+        n     (atom 0)
+        pages'
+        (vec (map-indexed
+              (fn [pi page]
+                (let [pno (or (:gh/pageNumber page) pi)]
+                  (update page :gh/panels
+                          (fn [ps]
+                            (vec (map-indexed
+                                  (fn [xi p]
+                                    (if (keep? (:id p))
+                                      p
+                                      (let [pn (or (:panel p) (inc xi))
+                                            id (new-id pref pno pn)]
+                                        (when (contains? kept id)
+                                          (throw (ex-info "生成した id が既存の id と衝突した"
+                                                          {:slug slug :id id})))
+                                        (swap! n inc)
+                                        (assoc p :id id))))
+                                  ps))))))
+              pages))
+        ;; 直したあと本当に一意か、自分で確かめてから返す。
+        ids' (map :id (mapcat :gh/panels pages'))
+        dup' (->> ids' frequencies (filter #(> (val %) 1)) (map key) sort)]
+    (when (seq dup')
+      (throw (ex-info "振り直した結果がまだ一意でない"
+                      {:slug slug :dups (vec (take 5 dup'))})))
+    [pages' @n]))
+
+(defn -main [& args]
+  (let [dry? (some #{"--dry-run"} (vec args))]
+    (when-not (fs/existsSync episodes-dir)
+      (println "assign-panel-ids: episodes dir not found. Run from the repo root.")
+      (js/process.exit 2))
+    (let [slugs (->> (fs/readdirSync episodes-dir)
+                     (remove #{"_archive"})
+                     (filter #(fs/existsSync (path/join episodes-dir % "episode.edn")))
+                     sort vec)
+          changed (atom 0)]
+      (doseq [s slugs]
+        (let [f  (path/join episodes-dir s "episode.edn")
+              tx (try (edn/read-string (fs/readFileSync f "utf8"))
+                      (catch :default e
+                        (println "  UNREADABLE" s "—" (ex-message e))
+                        (js/process.exit 2)))
+              ep (first tx)
+              raw (:gh/pages ep)
+              blob? (string? raw)
+              pages (if blob? (edn/read-string raw) raw)
+              [pages' n] (try (fix-episode s pages)
+                              (catch :default e
+                                (println "  STOP" s "—" (ex-message e) (pr-str (ex-data e)))
+                                (js/process.exit 1)))]
+          (if (zero? n)
+            (println (str "  ok       \t" s))
+            (do (swap! changed inc)
+                (println (str "  ASSIGNED \t" s "\t" n " コマに :id を振った"))
+                (when-not dry?
+                  (let [ep'  (assoc ep :gh/pages (if blob? (pr-str pages') pages'))
+                        tx'  (vec (cons ep' (rest tx)))]
+                    (fs/writeFileSync f (pr-str tx'))))))))
+      (println (str "assign-panel-ids: EPISODES\t" (count slugs)
+                    "\tCHANGED\t" @changed
+                    (when dry? "\t(dry-run — 書いていない)"))))))
+
+(apply -main *command-line-args*)
