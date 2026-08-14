@@ -1,6 +1,6 @@
 {:index/source-dir "260123-jump/resources",
- :index/scanned 133,
- :index/indexed 133,
+ :index/scanned 134,
+ :index/indexed 134,
  :index/unreadable 0,
  :index/unindexed 0,
  :index/generator "scripts/gen-index.cljs",
@@ -157,6 +157,7 @@
   "episodes/ep1-komawari-redesign/episode.edn",
   :episode/fake-warning.story-outline.edn
   "episodes/fake-warning/story-outline.edn",
+  :episode/heiiki.episode.edn "episodes/heiiki/episode.edn",
   :episode/heiiki.story-outline.edn
   "episodes/heiiki/story-outline.edn",
   :episode/keiei.episode.edn "episodes/keiei/episode.edn",
