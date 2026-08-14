@@ -139,26 +139,64 @@
         (println "gen-catalog:" (count bad) "unreadable episode(s). Refusing to report a pass.")
         (js/process.exit 2))
 
-      ;; **孤児の検出。**episode が消えた（改名された）のに catalog が残ると、
-      ;; produce.cljs が存在しない episode を指す plan を読める状態になる。
-      ;; 実測 2026-08-14: arc12-keiei → keiei の改名で実際に孤児が 1 件出た。
-      (let [want (set (map #(str % ".edn") slugs))
-            have (if (fs/existsSync catalog-dir)
-                   (set (filter #(str/ends-with? % ".edn") (fs/readdirSync catalog-dir)))
-                   #{})
-            orphans (sort (remove want have))]
-        (doseq [o orphans] (println "  ORPHAN" o "— この plan が指す episode.edn は存在しない"))
-        (when (seq orphans)
-          (if check?
-            (do (println "gen-catalog:" (count orphans) "orphan(s). STALE")
-                (js/process.exit 1))
-            (do (doseq [o orphans] (fs/unlinkSync (path/join catalog-dir o)))
-                (println "gen-catalog: removed" (count orphans) "orphan(s)")))))
+      ;; **produce.cljs が描けない episode を catalog に載せない。**
+      ;;
+      ;; catalog は running order であって episode の一覧ではない。コマが 0 の
+      ;; episode を載せると loop はそれを admit し、producer は何も描けず、
+      ;; その結果が採点される。shiropico の PRODUCING.md が同じことを書いている:
+      ;; "a catalog entry the producer cannot render is worse than an absent one,
+      ;; because the loop would admit it and then grade the result."
+      ;;
+      ;; 実測 2026-08-14: この生成器は ep1-komawari-redesign（episode-id nil /
+      ;; 0 コマ / 5 頁のコマ割り設計メモ）を catalog に入れていた。
+      ;; loop-ka-production の channels.edn は、まさにそれを名指しで除外対象と
+      ;; 書いている —— **除外の理由が上流に書かれているのに、生成器がそれを
+      ;; 知らずに入れ直していた。**
+      ;;
+      ;; 判定は「コマが 0」だけにする。画像が未生成なのは正常（描かせるために
+      ;; 載せる）ので、`panels-already-generated` は判定に使わない。
+      (let [producible?  (fn [r] (pos? (:plan/panels (:plan r))))
+            producible   (filterv producible? reads)
+            unproducible (vec (remove producible? reads))]
+        (doseq [{:keys [slug plan]} unproducible]
+          (println "  NOT-PRODUCIBLE" slug "— コマ 0（episode-id"
+                   (pr-str (:plan/episode-id plan)) "/" (:plan/pages plan) "頁）"))
 
-      (println (str "gen-catalog: EPISODES\t" (count slugs)))
-      (let [results
-            (doall
-             (for [{:keys [slug plan]} reads]
+        ;; 床は producible 側にも当てる。全部が弾かれたのに「0 件書いた」で
+        ;; 成功して終わると、載っていないことが緑として積み上がる。
+        (when (< (count producible) min-episodes)
+          (println (str "gen-catalog: only " (count producible) " producible episode(s) (min "
+                        min-episodes ").\n  Refusing to write a catalog this small."))
+          (js/process.exit 2))
+
+        ;; **catalog 側に余分に在るものを消す。**理由は 2 つあり、混ぜない:
+        ;;   ORPHAN         episode.edn が消えた（改名など。実測: arc12-keiei → keiei）
+        ;;   NOT-PRODUCIBLE episode.edn は在るが描けない（上記）
+        (let [want    (set (map #(str (:slug %) ".edn") producible))
+              unprod  (set (map #(str (:slug %) ".edn") unproducible))
+              have    (if (fs/existsSync catalog-dir)
+                        (set (filter #(str/ends-with? % ".edn") (fs/readdirSync catalog-dir)))
+                        #{})
+              extra   (sort (remove want have))]
+          (doseq [o extra]
+            (println (if (unprod o) "  DROP" "  ORPHAN") o
+                     (if (unprod o)
+                       "— コマ 0 なので running order から外す"
+                       "— この plan が指す episode.edn は存在しない")))
+          (when (seq extra)
+            (if check?
+              (do (println "gen-catalog:" (count extra) "stale catalog file(s). STALE")
+                  (js/process.exit 1))
+              (do (doseq [o extra] (fs/unlinkSync (path/join catalog-dir o)))
+                  (println "gen-catalog: removed" (count extra) "stale catalog file(s)")))))
+
+        ;; **「飛ばした」と「合格した」が出力で区別できること。**
+        (println (str "gen-catalog: EPISODES\t" (count slugs)
+                      "\tPRODUCIBLE\t" (count producible)
+                      "\tSKIPPED\t" (count unproducible)))
+        (let [results
+              (doall
+               (for [{:keys [slug plan]} producible]
                (let [out (path/join catalog-dir (str slug ".edn"))
                      text (render plan)
                      cur (when (fs/existsSync out) (fs/readFileSync out "utf8"))
@@ -174,6 +212,6 @@
             (println "gen-catalog: FRESH")
             (do (println "gen-catalog: STALE — regenerate with `nbb scripts/gen-catalog.cljs`")
                 (js/process.exit 1)))
-          (println "gen-catalog: wrote" (count results) "catalog entr(ies)"))))))
+            (println "gen-catalog: wrote" (count results) "catalog entr(ies)")))))))
 
 (apply -main *command-line-args*)
