@@ -6,8 +6,11 @@
  :plan/episode-id "episode:arc0-1-origin",
  :plan/pages 46,
  :plan/id "arc0-1-origin",
+ :plan/panels-annexed 255,
  :plan/panels 257,
- :plan/panels-already-generated 255,
+ :plan/image-note
+ "panels-already-generated は**バイトが取れたコマ数**。panels-annexed は URL はあるがローカルに実体が無いコマ（git-annex 未取得／参照切れ）。`git annex get` していない作業ツリーでは前者が 0 になるのが正常。",
+ :plan/panels-already-generated 0,
  :plan/version 1,
  :plan/arc "Arc 0", 
  :plan/tagline "Arc 0-1 | パスワードは覚えるな"}

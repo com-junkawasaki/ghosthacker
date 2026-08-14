@@ -5,7 +5,10 @@
  :plan/episode-id "episode:monkeys-paw-ep1",
  :plan/pages 13,
  :plan/id "monkeys-paw",
+ :plan/panels-annexed 0,
  :plan/panels 48,
+ :plan/image-note
+ "panels-already-generated は**バイトが取れたコマ数**。panels-annexed は URL はあるがローカルに実体が無いコマ（git-annex 未取得／参照切れ）。`git annex get` していない作業ツリーでは前者が 0 になるのが正常。",
  :plan/panels-already-generated 0,
  :plan/version 1,
  :plan/arc "Part 1 / Arc 17",

@@ -41,13 +41,45 @@
 (defn- count-panels [pages]
   (reduce + 0 (map #(count (or (:gh/panels %) (:panels %))) pages)))
 
-(defn- generated-panels
-  "既に画像が生成されたコマ数。**生成済みフィールドが在るものだけ数える。**
-  無いものを 0 と数えるのは正しい（まだ生成していない）が、
-  読めなかったものを 0 と数えるのは間違い —— 後者は上で exit 2 にしてある。"
-  [pages]
-  (count (filter #(or (:generatedImageUrl %) (:gh/generatedImageUrl %))
-                 (mapcat #(or (:gh/panels %) (:panels %)) pages))))
+(def ^:private resources-root "260123-jump/resources")
+
+(defn- panel-image-url
+  "そのコマが「現在採用している」画像の URL。arc0-1 系は
+  :gh/generatedImages（候補の配列）+ :gh/currentImageIndex を持ち、
+  各要素は #:gh{:imageUrl … :model … :generatedAt …}。
+  古い :generatedImageUrl / :gh/generatedImageUrl も見るが、**実測 2026-08-14 では
+  arc0-1 の 255 件すべてが、実在しないファイル名（_v2）を指していた**。"
+  [p]
+  (or (when-let [v (:gh/generatedImages p)]
+        (:gh/imageUrl (get v (or (:gh/currentImageIndex p) 0))))
+      (:gh/generatedImageUrl p)
+      (:generatedImageUrl p)))
+
+(defn- image-bytes-present?
+  "**URL があることと、バイトが取れることは別である。**
+  この repo の画像は git-annex の symlink なので、tree にパスが在っても
+  実体は B2（remote `b2`, bucket com-junkawasaki-annex, encryption=hybrid）に在り、
+  `git annex get` するまで**リンクは切れている**。
+  fs/existsSync は symlink を辿るので、実体が無ければ false になる——それが欲しい。"
+  [url]
+  (and (string? url)
+       (fs/existsSync (path/join resources-root url))))
+
+(defn- image-status
+  "コマの画像の状態を 3 つに分ける。**2 つではない。**
+    :present   URL があり、バイトも取れる
+    :annexed   URL はあるが、バイトが無い（annex 未取得 or 参照切れ）
+    :none      URL that が無い（まだ生成していない）
+  **:annexed を :present と同じ数に混ぜたのが、2026-08-14 まであった欠陥。**
+  production-catalog は『255 コマ生成済み』と書いていたが、**実在は 0** だった。"
+  [p]
+  (let [u (panel-image-url p)]
+    (cond (nil? u) :none
+          (image-bytes-present? u) :present
+          :else :annexed)))
+
+(defn- image-counts [pages]
+  (frequencies (map image-status (mapcat #(or (:gh/panels %) (:panels %)) pages))))
 
 (defn- plan-for [slug ep-path ep idx]
   (let [pages (nested ep :gh/pages)]
@@ -59,7 +91,15 @@
      :plan/tagline (:gh/presentationTagline ep)
      :plan/pages (count pages)
      :plan/panels (count-panels pages)
-     :plan/panels-already-generated (generated-panels pages)
+     ;; **3 つに分けて書く。**`:plan/panels-already-generated` は「URL がある」の意味に
+     ;; 読まれてきたので、名前を変えずに**値の意味を狭めた**——ここは
+     ;; **バイトが取れたコマ数**だけを入れる。取れなかった分は :plan/panels-annexed に出す。
+     :plan/panels-already-generated (get (image-counts pages) :present 0)
+     :plan/panels-annexed (get (image-counts pages) :annexed 0)
+     :plan/image-note (str "panels-already-generated は**バイトが取れたコマ数**。"
+                           "panels-annexed は URL はあるがローカルに実体が無いコマ"
+                           "（git-annex 未取得／参照切れ）。"
+                           "`git annex get` していない作業ツリーでは前者が 0 になるのが正常。")
      :plan/version 1}))
 
 (defn- render [plan]
@@ -119,7 +159,8 @@
                      state (cond (nil? cur) :new (= cur text) :fresh :else :stale)]
                  (println (str "  " (name state) "\t" slug
                                "\t" (:plan/pages plan) "頁 / " (:plan/panels plan) "コマ"
-                               " / 生成済 " (:plan/panels-already-generated plan)))
+                               " / 実体あり " (:plan/panels-already-generated plan)
+                               " / annex待ち " (:plan/panels-annexed plan)))
                  (when-not check? (fs/writeFileSync out text))
                  state)))]
         (if check?

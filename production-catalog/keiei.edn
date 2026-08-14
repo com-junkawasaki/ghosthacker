@@ -5,8 +5,11 @@
  :plan/episode-id "episode:keiei-ep5",
  :plan/pages 18,
  :plan/id "keiei",
+ :plan/panels-annexed 0,
  :plan/panels 55,
+ :plan/image-note
+ "panels-already-generated は**バイトが取れたコマ数**。panels-annexed は URL はあるがローカルに実体が無いコマ（git-annex 未取得／参照切れ）。`git annex get` していない作業ツリーでは前者が 0 になるのが正常。",
  :plan/panels-already-generated 0,
  :plan/version 1,
  :plan/arc "Part 1 / Arc 11",
- :plan/tagline "Arc 12-5 | Cyber = Govern = 経営"}
+ :plan/tagline "Arc 11-5 | Cyber = Govern = 経営"}
