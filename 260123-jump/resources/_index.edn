@@ -1,6 +1,6 @@
 {:index/source-dir "260123-jump/resources",
- :index/scanned 131,
- :index/indexed 131,
+ :index/scanned 132,
+ :index/indexed 132,
  :index/unreadable 0,
  :index/unindexed 0,
  :index/generator "scripts/gen-index.cljs",
@@ -163,6 +163,8 @@
   "episodes/arc15-mtp/story-outline.edn",
   :episode/arc16-fake-warning.story-outline.edn
   "episodes/arc16-fake-warning/story-outline.edn",
+  :episode/arc17-monkeys-paw.story-outline.edn
+  "episodes/arc17-monkeys-paw/story-outline.edn",
   :episode/ep1-komawari-redesign.episode.edn
   "episodes/ep1-komawari-redesign/episode.edn",
   :job/queue.edn "jobs/queue.edn",
