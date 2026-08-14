@@ -1,6 +1,6 @@
 {:index/source-dir "260123-jump/resources",
- :index/scanned 132,
- :index/indexed 132,
+ :index/scanned 133,
+ :index/indexed 133,
  :index/unreadable 0,
  :index/unindexed 0,
  :index/generator "scripts/gen-index.cljs",
@@ -73,6 +73,7 @@
   :chat/session_s70yhgy4brm.edn "chat_history/session_s70yhgy4brm.edn",
   :chat/session_ssw1ajhc6kg.edn "chat_history/session_ssw1ajhc6kg.edn",
   :chat/session_vvmggu9gr1.edn "chat_history/session_vvmggu9gr1.edn",
+  :dataset/arc-order "arc-order.edn",
   :dataset/generation-prompts "generation_prompts.edn",
   :dataset/incidents "incidents.edn",
   :dataset/manga-script "manga_script.edn",
@@ -152,21 +153,19 @@
   "episodes/arc0-3-digital-footprint/episode.edn",
   :episode/arc0-3-digital-footprint.story-outline.edn
   "episodes/arc0-3-digital-footprint/story-outline.edn",
-  :episode/arc12-keiei.episode.edn "episodes/arc12-keiei/episode.edn",
-  :episode/arc12-keiei.story-outline.edn
-  "episodes/arc12-keiei/story-outline.edn",
-  :episode/arc13-heiiki.story-outline.edn
-  "episodes/arc13-heiiki/story-outline.edn",
-  :episode/arc14-log.story-outline.edn
-  "episodes/arc14-log/story-outline.edn",
-  :episode/arc15-mtp.story-outline.edn
-  "episodes/arc15-mtp/story-outline.edn",
-  :episode/arc16-fake-warning.story-outline.edn
-  "episodes/arc16-fake-warning/story-outline.edn",
-  :episode/arc17-monkeys-paw.story-outline.edn
-  "episodes/arc17-monkeys-paw/story-outline.edn",
   :episode/ep1-komawari-redesign.episode.edn
   "episodes/ep1-komawari-redesign/episode.edn",
+  :episode/fake-warning.story-outline.edn
+  "episodes/fake-warning/story-outline.edn",
+  :episode/heiiki.story-outline.edn
+  "episodes/heiiki/story-outline.edn",
+  :episode/keiei.episode.edn "episodes/keiei/episode.edn",
+  :episode/keiei.story-outline.edn "episodes/keiei/story-outline.edn",
+  :episode/monkeys-paw.story-outline.edn
+  "episodes/monkeys-paw/story-outline.edn",
+  :episode/mtp.story-outline.edn "episodes/mtp/story-outline.edn",
+  :episode/nuts-log.story-outline.edn
+  "episodes/nuts-log/story-outline.edn",
   :job/queue.edn "jobs/queue.edn",
   :organization/AkabaneHachimanShrine
   "organizations/AkabaneHachimanShrine/profile.edn",

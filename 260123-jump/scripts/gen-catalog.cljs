@@ -93,6 +93,22 @@
         (println "gen-catalog:" (count bad) "unreadable episode(s). Refusing to report a pass.")
         (js/process.exit 2))
 
+      ;; **孤児の検出。**episode が消えた（改名された）のに catalog が残ると、
+      ;; produce.cljs が存在しない episode を指す plan を読める状態になる。
+      ;; 実測 2026-08-14: arc12-keiei → keiei の改名で実際に孤児が 1 件出た。
+      (let [want (set (map #(str % ".edn") slugs))
+            have (if (fs/existsSync catalog-dir)
+                   (set (filter #(str/ends-with? % ".edn") (fs/readdirSync catalog-dir)))
+                   #{})
+            orphans (sort (remove want have))]
+        (doseq [o orphans] (println "  ORPHAN" o "— この plan が指す episode.edn は存在しない"))
+        (when (seq orphans)
+          (if check?
+            (do (println "gen-catalog:" (count orphans) "orphan(s). STALE")
+                (js/process.exit 1))
+            (do (doseq [o orphans] (fs/unlinkSync (path/join catalog-dir o)))
+                (println "gen-catalog: removed" (count orphans) "orphan(s)")))))
+
       (println (str "gen-catalog: EPISODES\t" (count slugs)))
       (let [results
             (doall

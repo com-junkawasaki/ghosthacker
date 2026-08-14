@@ -59,7 +59,8 @@
   {"incidents.edn"           :dataset/incidents
    "manga_script.edn"        :dataset/manga-script
    "storyboard.edn"          :dataset/storyboard
-   "generation_prompts.edn"  :dataset/generation-prompts})
+   "generation_prompts.edn"  :dataset/generation-prompts
+   "arc-order.edn"           :dataset/arc-order})
 
 (def ^:private skip-dirs #{"_vectors" "images" "logo" "_archive"})
 
