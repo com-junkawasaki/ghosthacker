@@ -213,7 +213,13 @@
                         {}))))))
 
 (defn ->panel [panel fallback-n geom]
-  (let [image (:generatedImageUrl panel)
+  ;; **両方の綴りを見る。** データには :generatedImageUrl と
+  ;; :gh/generatedImageUrl の両方が現れる（arc0-1 は 255 コマ全部で両方を持つ）。
+  ;; ここが裸の方しか見ていなかったため、:gh/ 側だけを持つエピソードは
+  ;; **静かに画像なしとして export された** —— 取り込みは成功し、URL の実体も
+  ;; 在り、export も 0 件のエラーで終わるのに、tx の imageUrl だけが増えない。
+  ;; episode.cljc の already-generated? は最初から両方見ている。
+  (let [image (or (:generatedImageUrl panel) (:gh/generatedImageUrl panel))
         variants (image-variants image)]
     (cond-> {:id (:id panel)
              :panelNumber (or (:panel panel) fallback-n)

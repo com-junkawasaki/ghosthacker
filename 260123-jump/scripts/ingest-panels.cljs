@@ -1,0 +1,151 @@
+#!/usr/bin/env nbb
+;; 260123-jump/scripts/ingest-panels.cljs — 描いた PNG を resources の規約パスへ置き、
+;; episode.edn の :gh/generatedImageUrl に書く。
+;;
+;; produce.cljs は `production-out/<plan>/<panel-id>_00001_.png` に描くだけで、
+;; そこで終わる。作品として参照されるのはそこではなく
+;;
+;;   260123-jump/resources/images/episodes/<episodeId>/pages/<pageNumber>/<name>.png
+;;
+;; で、tx の :gh.manga/imageUrl も app-aozora の sync-manga-images.cljs も
+;; この形（resources root からの相対 URL）を読む。**その 1 手が無かったので、
+;; 描いた絵は誰からも参照されないままだった。**
+;;
+;; 名前の規約は arc0-1 に倣う: panel id から先頭の `panel:` を落としたもの。
+;; （arc0-1 の実ファイルは `_v2` が付くが、あれは描き直しの世代標識であって
+;; 規約ではない。新規は素の名前で置く。）
+;;
+;; usage:
+;;   nbb 260123-jump/scripts/ingest-panels.cljs <plan-id> [--force] [--dry-run]
+;;
+;; 終了コード: 0 取り込んだ / 1 書いた URL の実体が無い（自己検査に落ちた） /
+;;             2 答えられなかった（出力が 1 枚も無い・読めない）
+;;
+;; ⚠ ここで置く PNG は **git に入れてはいけない**（CLAUDE.md 大容量バイナリ）。
+;;    実体は git-annex + B2 に載せる。annex に載せるまでの間、この repo を
+;;    clone した別の作業ツリーでは gen-catalog が :annexed（URL はあるが
+;;    バイトが無い）と報告する —— それが正しい報告であって、欠陥ではない。
+
+(ns ingest-panels
+  (:require ["fs" :as fs]
+            ["path" :as path]
+            [clojure.edn :as edn]
+            [clojure.string :as str]))
+
+(def ^:private episodes-dir "260123-jump/resources/episodes")
+(def ^:private resources-dir "260123-jump/resources")
+(def ^:private out-root "production-out")
+
+(defn- panel-basename
+  "panel id -> ファイル名の幹。`panel:keiei-ep5-p1n1` -> `keiei-ep5-p1n1`"
+  [id]
+  (str/replace (str id) #"^panel:" ""))
+
+(defn- url-for [episode-id page-no id]
+  (str "/images/episodes/" episode-id "/pages/" page-no "/" (panel-basename id) ".png"))
+
+(defn- rendered-file
+  "その id で描かれた PNG のうち最新のもの。ComfyUI は `_00001_` と連番を振るので
+  複数在りうる —— **黙って 1 枚目を採らない**。最後の run の結果を採る。"
+  [dir id]
+  (let [pre (str id "_")]
+    (when (fs/existsSync dir)
+      (some->> (fs/readdirSync dir)
+               (filter #(str/starts-with? % pre))
+               sort
+               last
+               (path/join dir)))))
+
+(defn -main [& argv]
+  (let [args    (vec argv)
+        force?  (some #{"--force"} args)
+        dry?    (some #{"--dry-run"} args)
+        plan-id (first (remove #(str/starts-with? % "--") args))]
+    (when (str/blank? (str plan-id))
+      (println "usage: ingest-panels.cljs <plan-id> [--force] [--dry-run]")
+      (js/process.exit 2))
+    (let [ep-file (path/join episodes-dir plan-id "episode.edn")
+          out-dir (path/join out-root plan-id)]
+      (when-not (fs/existsSync ep-file)
+        (println "ingest-panels: episode.edn not found:" ep-file)
+        (js/process.exit 2))
+      (when-not (fs/existsSync out-dir)
+        (println "ingest-panels: 出力ディレクトリが無い:" out-dir)
+        (println "  produce.cljs を先に走らせる。Refusing to report a result.")
+        (js/process.exit 2))
+      (let [pngs (filter #(str/ends-with? % ".png") (fs/readdirSync out-dir))]
+        ;; 0 枚を「取り込むものが無かった = 成功」にしない。
+        (when (empty? pngs)
+          (println "ingest-panels:" out-dir "に PNG が 1 枚も無い。")
+          (println "  Refusing to report a pass.")
+          (js/process.exit 2))
+        (println (str "ingest-panels: RENDERED\t" (count pngs) "\tin " out-dir)))
+
+      (let [tx     (edn/read-string (fs/readFileSync ep-file "utf8"))
+            ep     (first tx)
+            ep-id  (:gh/episodeId ep)
+            raw    (:gh/pages ep)
+            blob?  (string? raw)
+            pages  (if blob? (edn/read-string raw) raw)
+            copied (atom 0) kept (atom 0) missing (atom [])
+            claimed (atom [])
+            pages'
+            (vec (map-indexed
+                  (fn [pi page]
+                    (let [pno (or (:gh/pageNumber page) pi)]
+                      (update page :gh/panels
+                              (fn [ps]
+                                (vec (for [p ps]
+                                       (let [id  (:id p)
+                                             src (rendered-file (path/join out-root plan-id) id)
+                                             url (url-for ep-id pno id)
+                                             had (or (:gh/generatedImageUrl p) (:generatedImageUrl p))]
+                                         (cond
+                                           ;; 既に URL があり --force でないなら触らない
+                                           (and (seq (str had)) (not force?))
+                                           (do (swap! kept inc) p)
+
+                                           (nil? src)
+                                           (do (swap! missing conj id) p)
+
+                                           :else
+                                           (let [dst (path/join resources-dir (subs url 1))]
+                                             (when-not dry?
+                                               (fs/mkdirSync (path/dirname dst) #js{:recursive true})
+                                               (fs/copyFileSync src dst))
+                                             (swap! copied inc)
+                                             (swap! claimed conj [url dst])
+                                             ;; **両方の綴りで書く。** arc0-1 の 255 コマは
+                                             ;; :gh/generatedImageUrl と :generatedImageUrl の
+                                             ;; 両方を持っており、読む側は割れている ——
+                                             ;; episode/already-generated? は両方見るが、
+                                             ;; export-aozora-manga-work.cljs は裸の方だけ見る。
+                                             ;; 片方だけ書くと、取り込みは成功して VERIFIED も
+                                             ;; 通るのに **tx に画像が出ない**（実測 2026-08-14、
+                                             ;; :gh/ だけ書いて images が 255 のまま動かなかった）。
+                                             (assoc p
+                                                    :gh/generatedImageUrl url
+                                                    :generatedImageUrl url))))))))))
+                  pages))]
+        (doseq [id (take 8 @missing)] (println "  NO-RENDER\t" id))
+        (when (> (count @missing) 8)
+          (println (str "  … 他 " (- (count @missing) 8) " コマ（描かれていない）")))
+        (println (str "ingest-panels: COPIED\t" @copied
+                      "\tKEPT\t" @kept
+                      "\tNO-RENDER\t" (count @missing)
+                      (when dry? "\t(dry-run — 書いていない)")))
+
+        (when-not dry?
+          (let [ep' (assoc ep :gh/pages (if blob? (pr-str pages') pages'))]
+            (fs/writeFileSync ep-file (pr-str (vec (cons ep' (rest tx))))))
+          ;; **書いた URL の実体が本当に在るか、自分で確かめてから終わる。**
+          ;; 「URL を書いた」と「絵が在る」を同じ値にしない。
+          (let [broken (remove (fn [[_ dst]] (fs/existsSync dst)) @claimed)]
+            (doseq [[url _] (take 5 broken)] (println "  BROKEN\t" url))
+            (println (str "ingest-panels: VERIFIED\t" (- (count @claimed) (count broken))
+                          " / " (count @claimed) " claimed URL(s) resolve to a file"))
+            (when (seq broken)
+              (println "ingest-panels: 書いた URL の実体が無い。")
+              (js/process.exit 1))))))))
+
+(apply -main *command-line-args*)
