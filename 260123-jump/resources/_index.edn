@@ -1,6 +1,6 @@
 {:index/source-dir "260123-jump/resources",
- :index/scanned 137,
- :index/indexed 137,
+ :index/scanned 138,
+ :index/indexed 138,
  :index/unreadable 0,
  :index/unindexed 0,
  :index/generator "scripts/gen-index.cljs",
@@ -164,6 +164,7 @@
   "episodes/heiiki/story-outline.edn",
   :episode/keiei.episode.edn "episodes/keiei/episode.edn",
   :episode/keiei.story-outline.edn "episodes/keiei/story-outline.edn",
+  :episode/monkeys-paw.episode.edn "episodes/monkeys-paw/episode.edn",
   :episode/monkeys-paw.story-outline.edn
   "episodes/monkeys-paw/story-outline.edn",
   :episode/mtp.episode.edn "episodes/mtp/episode.edn",
