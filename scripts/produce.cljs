@@ -80,14 +80,39 @@
                                    :negative (:gh/sdxlNegative panel)
                                    :key (str "ghosthacker/" (or (:id panel) idx))}
                              :config config})
-                           (.then (fn [{:keys [ok? file reason]}]
+                           ;; **失敗の本文を捨てない。** comfyui.native-client は
+                           ;; `{:ok? false :reason :error :error (ex-message e)}` を返す
+                           ;; ので、reason だけ印字すると全部が `:error` に潰れる。
+                           ;; 実測 2026-08-14: keiei の 38 コマが `FAILED panel N :error`
+                           ;; とだけ記録され、原因（一過性のバックエンド断）を突き止めるのに
+                           ;; 1 コマ分を手で叩き直す必要があった。原因は応答の中に在った。
+                           (.then (fn [{:keys [ok? file reason error]}]
                                     (note (if ok? "rendered" "FAILED") "panel" idx
-                                          (if ok? file (str reason)))
+                                          (if ok? file (str reason
+                                                            (when error (str " — " error)))))
                                     (assoc acc idx (if ok?
                                                      {:status :rendered :backend :comfy :file file}
-                                                     {:status :failed :reason reason}))))))))
+                                                     {:status :failed :reason reason
+                                                      :error error}))))))))
           (js/Promise.resolve {})
           indexed))
+
+(defn- on-disk?
+  "そのコマの PNG が既に out-dir に在るか。
+
+  **`episode/already-generated?` では再開できない。** あれが見るのは episode.edn の
+  `:gh/generatedImageUrl` で、それが書かれるのは取り込みの後なので、レンダ中に
+  落ちた run の成果は 1 枚も『済み』にならない。実測 2026-08-14: keiei は
+  17 枚描いた時点でバックエンドが一時的に落ち、38 枚が失敗した。再実行すると
+  17 枚を描き直すところだった（1 枚 95 秒 = 27 分）。
+
+  ComfyUI の SaveImage は `<key>_00001_.png` と連番を付けるので、名前は
+  完全には予測できない。予測できるのは接頭辞だけなので、それで照合する。
+  **URL やフィールドではなくバイトを見る**（gen-catalog で同じ誤りを直したのと同じ理由）。"
+  [out-dir panel idx]
+  (let [pre (str (or (:id panel) idx) "_")]
+    (and (fs/existsSync out-dir)
+         (boolean (some #(str/starts-with? % pre) (fs/readdirSync out-dir))))))
 
 (defn -main [& argv]
   (let [{:keys [plan-id dry-run force] :as a} (parse-args argv)
@@ -134,11 +159,27 @@
                    ;; served leg for a URL nothing is listening on.
                    (do (note "backend configured but unreachable:" base)
                        (emit (legs/dry-outcomes pnls)))
-                   (let [base-outcomes (legs/dry-outcomes pnls)
+                   (let [disk? (fn [[i p]] (and (not force) (on-disk? out-dir p i)))
+                         ;; ディスクに在るものは `:already` にする。legs の語彙どおり
+                         ;; 「この run が描いたのではないが、フラットな代替でもない」。
+                         ;; :placeholder のままにすると、実在する絵を持つコマが
+                         ;; degraded として採点される。
+                         base-outcomes (vec (map-indexed
+                                             (fn [i o]
+                                               (if (disk? [i (nth pnls i)])
+                                                 {:status :already :backend :comfy}
+                                                 o))
+                                             (legs/dry-outcomes pnls)))
                          todo (cond->> (map-indexed vector pnls)
                                 (not force) (remove (fn [[_ p]] (episode/already-generated? p)))
+                                ;; 途中で落ちた run の続きから。--force で無視できる。
+                                (not force) (remove disk?)
                                 true (filter (fn [[_ p]] (episode/renderable? p)))
-                                limit (take limit))]
+                                limit (take limit))
+                         resumed (count (filter disk? (map-indexed vector pnls)))]
+                     ;; 「飛ばした」と「描いた」を出力で区別する。
+                     (when (pos? resumed)
+                       (note "resuming —" resumed "panel(s) already on disk in" out-dir))
                      (note "rendering" (count todo) "of" (count pnls) "panels")
                      (-> (render-sequentially base out-dir checkpoint-config todo)
                          (.then (fn [rendered]
