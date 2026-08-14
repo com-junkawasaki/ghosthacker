@@ -47,8 +47,14 @@
   "そのコマが「現在採用している」画像の URL。arc0-1 系は
   :gh/generatedImages（候補の配列）+ :gh/currentImageIndex を持ち、
   各要素は #:gh{:imageUrl … :model … :generatedAt …}。
-  古い :generatedImageUrl / :gh/generatedImageUrl も見るが、**実測 2026-08-14 では
-  arc0-1 の 255 件すべてが、実在しないファイル名（_v2）を指していた**。"
+  古い :generatedImageUrl / :gh/generatedImageUrl も見る。
+
+  ⚠ **訂正（2026-08-14 同日）**: 最初この docstring は「255 件すべてが実在しない
+  ファイル名（_v2）を指していた」と書いていた。**両方とも誤り。**
+  実測し直すと flat フィールド 255 件のうち `_v2` を指すのは **6 件だけ**で、
+  **248/255 は :gh/generatedImages にも在る名前を指している**——参照はほぼ整合している。
+  最初の判断は `take 3` のサンプルがたまたま v2 だったのを一般化したもの。
+  **バイトが取れないのは参照の不整合ではなく、git-annex の実体が未取得だから**である。"
   [p]
   (or (when-let [v (:gh/generatedImages p)]
         (:gh/imageUrl (get v (or (:gh/currentImageIndex p) 0))))
