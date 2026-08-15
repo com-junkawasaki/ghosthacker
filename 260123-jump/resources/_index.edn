@@ -1,6 +1,6 @@
 {:index/source-dir "260123-jump/resources",
- :index/scanned 155,
- :index/indexed 155,
+ :index/scanned 158,
+ :index/indexed 158,
  :index/unreadable 0,
  :index/unindexed 0,
  :index/generator "scripts/gen-index.cljs",
@@ -165,6 +165,7 @@
   "episodes/ep1-komawari-redesign/episode.edn",
   :episode/face-made.story-outline.edn
   "episodes/face-made/story-outline.edn",
+  :episode/fake-warning.affect.edn "episodes/fake-warning/affect.edn",
   :episode/fake-warning.episode.edn
   "episodes/fake-warning/episode.edn",
   :episode/fake-warning.story-outline.edn
@@ -175,6 +176,7 @@
   "episodes/friends-vanish/story-outline.edn",
   :episode/frozen-crypto.story-outline.edn
   "episodes/frozen-crypto/story-outline.edn",
+  :episode/heiiki.affect.edn "episodes/heiiki/affect.edn",
   :episode/heiiki.episode.edn "episodes/heiiki/episode.edn",
   :episode/heiiki.story-outline.edn
   "episodes/heiiki/story-outline.edn",
@@ -193,6 +195,7 @@
   :episode/nue.affect.edn "episodes/nue/affect.edn",
   :episode/nue.episode.edn "episodes/nue/episode.edn",
   :episode/nue.story-outline.edn "episodes/nue/story-outline.edn",
+  :episode/nuts-log.affect.edn "episodes/nuts-log/affect.edn",
   :episode/nuts-log.episode.edn "episodes/nuts-log/episode.edn",
   :episode/nuts-log.story-outline.edn
   "episodes/nuts-log/story-outline.edn",
