@@ -95,8 +95,17 @@
     {:slug slug :focal focal :title (:dct/title m)
      :steps (vec (for [pg pages :when (:gh/affect pg)]
                    (let [a (:gh/affect pg)
-                         panels (:panels pg)
+                         ;; **:gh/panels が正**（repo 15 話中 14 話）。かつて nue だけ
+                         ;; :panels を使っており、この script はそちらを読んでいたため
+                         ;; monkeys-paw 側の :exposure / :hint が**全頁 0 として静かに
+                         ;; 計算されていた**（実測 2026-08-15）。両方受けるが、空なら拒否する。
+                         panels (or (:gh/panels pg) (:panels pg))
                          n (count panels)]
+                     (when (zero? n)
+                       (die! 2 "score-affect:" slug "p" (:gh/pageNumber pg)
+                             "は :gh/affect を持つのにコマが 0 枚。"
+                             "\n  Refusing to compute — コマが読めないと :exposure も :hint も"
+                             "\n  0 になり、『反例が居なかった』と区別がつかない。"))
                      (when (or (contains? a :exposure) (contains? a :hint))
                        (die! 2 "score-affect:" slug "p" (:gh/pageNumber pg)
                              "の :gh/affect に :exposure / :hint が書かれている。"
