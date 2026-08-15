@@ -83,6 +83,16 @@
             ;; 実測 2026-08-15: :ladder/ 名前空間を付け忘れた ladder が sightings 0 件
             ;; として読まれ、**この script は OK を出した**——ladder を宣言したのに
             ;; 一件も検査していない状態が、合格と同じ顔をしていた。
+            ;; **払いの宣言が「消えたら黙る」ことを許さない。**:ladder/payoff-rule や
+            ;; :ladder/payoff-gap だけ残って :ladder/payoffs が消えると、PAYOFFS の行ごと
+            ;; 出力から消える——**約束が消えたことが、約束が無いことと同じ顔になる。**
+            ;; 実測 2026-08-15: キー名を 1 文字変えただけで検査が静かに緑になった。
+            (when (and (some #(and (keyword? %) (str/starts-with? (name %) "payoff")) (keys l))
+                       (empty? (:ladder/payoffs l)))
+              (println (str "verify-arc-plan: " (::key l)
+                            " は :ladder/payoff-* を宣言しているのに :ladder/payoffs が空。"
+                            "\n  Refusing to report a pass — 払いの約束が消えている。"))
+              (js/process.exit 2))
             (when (empty? (:ladder/sightings l))
               (println (str "verify-arc-plan: " (::key l) " の :ladder/sightings が空。"
                             "\n  Refusing to report a pass — ladder を宣言して一件も検査していない。"
@@ -103,6 +113,10 @@
                          (if (::error d) {:err (::error d) :path p} {:m (first d) :path p})))))
         violations (atom [])
         notyet (atom [])
+        ;; **払いを sighting と同じ atom に入れない。**入れると SIGHTINGS の
+        ;; 「OK n / NOT-YET m」が払いの件数で汚れる（実測 2026-08-15: 12 件中 OK 11 が
+        ;; OK 4 に見えた）。**集計が混ざると、どちらの数字も読めなくなる。**
+        payoff-notyet (atom [])
         checked (atom 0)
         v! (fn [& xs] (swap! violations conj (str/join " " xs)))]
 
@@ -117,7 +131,10 @@
               (v! "UNREADABLE" (str slug "/" f) "—" (:err r))
               (let [m (:m r)]
                 (swap! checked inc)
-                (let [want-arc (str "Part 1 / Arc " (:arc a))]
+                ;; **part をハードコードしない。**:order/part が正（Part 2/3 の
+                ;; アーク一覧は :order/later-parts に別枠で載っており、番号が Part 1 と
+                ;; 衝突している——番号単体では一意でないため、比較は part 込みで行う）。
+                (let [want-arc (str (:order/part order "Part 1") " / Arc " (:arc a))]
                   (when-not (= want-arc (:gh/arc m))
                     (v! "ARC-MISMATCH" (str slug "/" f)
                         (str "— arc-order は「" want-arc "」、実体は「" (:gh/arc m) "」"))))
@@ -178,6 +195,26 @@
                   (v! "LADDER-MISS" (str slug "/episode.edn")
                       (str "— Arc " arc " は" label "の sighting だが、cast に " who " が居ない")))))))))
 
+    ;; 5) 払い（payoff）ladder
+    ;; **設計した払いを、誰も検査していない**という状態を作らない。ladder の
+    ;; :ladder/payoffs は「後のアークで誰が何を思い出すか」を書いた約束であり、
+    ;; **約束は、それを果たしたと宣言する episode が現れるまで NOT-YET である。**
+    ;; episode 側は :gh/payoffOf ["character:Ren" ...] で宣言する。
+    (let [paid (into #{} (mapcat (fn [slug]
+                                   (let [r (read-one slug "episode.edn")]
+                                     (when (and r (not (:err r)))
+                                       (nested (:gh/payoffOf (:m r))))))
+                                 (keys by-slug)))]
+      (doseq [ladder ladders]
+        (when-let [ps (seq (:ladder/payoffs ladder))]
+          (println (str "\n-- " (or (:ladder/label ladder) (:ladder/character ladder))
+                        " payoff ladder --"))
+          (doseq [{:keys [who part beat]} ps]
+            (if (contains? paid who)
+              (println (str "  OK       " who " / " part))
+              (do (swap! payoff-notyet conj (str who "（" part "）"))
+                  (println (str "  NOT-YET  " who " / " part " — " (subs (str beat) 0 (min 44 (count (str beat)))) "…"))))))))
+
     ;; 報告
     (println (str "\nverify-arc-plan: CHECKED\t" @checked " ファイル"))
     (println (str "verify-arc-plan: ARCS\t" (count arcs) " （うち slug 付き " (count by-slug) "）"))
@@ -190,6 +227,18 @@
                     " （OK " (- total (count @notyet)
                                 (count (filter #(str/starts-with? % "LADDER-MISS") @violations)))
                     " / NOT-YET " (count @notyet) "）")))
+
+    (let [total (reduce + (map (comp count :ladder/payoffs) ladders))]
+      (when (zero? total)
+        ;; **ゼロを黙って省略しない。**行が出ないことと 0 件であることを区別する
+        (println "\nverify-arc-plan: PAYOFFS\t0 （どの ladder も払いを宣言していない）")))
+    (when (seq @payoff-notyet)
+      (println (str "\nverify-arc-plan: PAYOFFS\t"
+                    (reduce + (map (comp count :ladder/payoffs) ladders))
+                    " （NOT-YET " (count @payoff-notyet) "）"))
+      (println "\n**払いは、果たしたと宣言する episode が現れるまで NOT-YET である。**"
+               "\nepisode 側で :gh/payoffOf [\"character:...\"] を宣言すると OK になる:")
+      (doseq [n @payoff-notyet] (println "  -" n)))
 
     (when (seq @notyet)
       (println "\n**NOT-YET は pass ではない。**下記は episode.edn が書かれた時点で"
