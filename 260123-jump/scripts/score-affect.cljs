@@ -227,62 +227,110 @@
     (die! 2 "score-affect:" episodes-dir "が無い。repo root から実行する。"))
 
   (let [eps (mapv load-episode slugs)
-        focals (set (map :focal eps))
-        steps (vec (mapcat :steps eps))]
-    (when (< (count steps) min-steps)
-      (die! 2 (str "score-affect: :gh/affect のある頁が " (count steps) " しかない（最低 " min-steps "）。")
-            "\n  Refusing to report a score on a timeline this short."))
-    (when (> (count focals) 1)
-      (println (str "score-affect: ⚠ 焦点人物が複数 " focals
-                    " — 連結した時間軸は**同一人物の成長**を仮定している。"
-                    "\n  この結果は『複数人の合成』であって誰の成長でもない。")))
+        ;; **焦点人物ごとに別の時間軸にする。**成長は人ごとに積む値で、
+        ;; 複数人を 1 本に連結すると『誰の成長でもない合成』になる（旧版は警告して
+        ;; そのまま連結していた——警告は、間違った数字を出すことの言い訳にならない）。
+        groups (->> eps
+                    (group-by :focal)
+                    (sort-by (fn [[f _]] (.indexOf (mapv :focal eps) f)))
+                    (mapv (fn [[f es]] {:focal f :eps (vec es)
+                                        :steps (vec (mapcat :steps es))})))
+        results
+        (vec (for [{:keys [focal eps steps] :as g} groups]
+               (do
+                 (when (< (count steps) min-steps)
+                   (die! 2 (str "score-affect: " focal " の :gh/affect のある頁が "
+                                (count steps) " しかない（最低 " min-steps "）。")
+                         "\n  Refusing to report a score on a timeline this short."))
+                 (assoc g :base (simulate steps {}) :cf (simulate steps {:no-hint? true})))))]
 
-    (let [base (simulate steps {})
-          cf   (simulate steps {:no-hint? true})]
+    (doseq [{:keys [focal eps steps base cf]} results]
       (println (str "\n=== " (str/join " → " (map :title eps)) " ==="))
-      (println (str "焦点人物: " (str/join "," focals)
-                    " / " (count steps) " 頁 / 反例の出現 "
+      (println (str "焦点人物: " focal " / " (count steps) " 頁 / 反例の出現 "
                     (count (filter #(pos? (:hint %)) steps)) " 頁"))
       (println "\n  #  頁                       緊張  情緒  信念  未回収  気づき  成長")
       (doseq [[i r] (map-indexed vector (:rows base))]
         (println (format-row (inc i) r)))
-      (println "\n-- 総括 --")
+      ;; **反例 → 失敗の順序と距離。**Latent はゆっくり熟すので、反例が失敗より
+      ;; *後* に置かれた回は、その回では一度も回収されない。模型が出した数字の
+      ;; 理由がここにあるので、数字と一緒に必ず印字する。
+      (let [hs (keep-indexed (fn [i x] (when (pos? (:hint x)) i)) steps)
+            fs (keep-indexed (fn [i x] (when (>= (:failure x) 0.5) i)) steps)
+            ripe-gap 6]
+        (println (str "-- 反例と失敗の順序 --"))
+        (println (str "  反例: " (if (seq hs) (str/join "," (map #(str "#" (inc %)) hs)) "なし")
+                      " / 失敗(>=0.5): " (if (seq fs) (str/join "," (map #(str "#" (inc %)) fs)) "なし")))
+        (doseq [h hs]
+          (let [after (filter #(> % h) fs)]
+            (if (empty? after)
+              (println (str "  #" (inc h) " の反例 → **この後に失敗が来ない。**"
+                            "この時間軸では一度も回収されない——回収は後のアークに委ねられている"))
+              (println (str "  #" (inc h) " の反例 → "
+                            (str/join "、"
+                              (for [f after :let [d (- f h)]]
+                                (str "#" (inc f) " まで " d " 頁"
+                                     (if (< d ripe-gap) "（未熟）" "（**熟している**）"))))))))))
+      (println "-- 総括 --")
       (doseq [[k v] (sort (:summary base))] (println (str "  " k "\t" v)))
-      (println "\n-- 反実仮想: シショウが居なかった場合 --")
-      (println (str "  final-growth  " (:affect/final-growth (:summary base))
-                    "  →  " (:affect/final-growth (:summary cf))
-                    "   (差 " (r3 (- (:affect/final-growth (:summary base))
-                                    (:affect/final-growth (:summary cf)))) ")"))
-      (println (str "  final-insight " (:affect/insight (last (:rows base)))
-                    "  →  " (:affect/insight (last (:rows cf)))))
-      (println (str "\n  ⚠ 反実仮想が測っているのは**大きさと時期**であって、主張の真偽ではない。"
-                    "\n    『反例を置くと成長する』は模型の中に書き込まれている——検証していない。"
-                    "\n    比較が意味を持つのは、気づきの入口が Latent 以外にもあるからで"
-                    "\n    （:learn＝失敗のときに誰かが隣に居ること）、そこを消せばこの差も消える。"))
-      (println (str "\n  " (:params/provenance params)))
+      (println (str "  反実仮想（シショウ不在）: 成長 " (:affect/final-growth (:summary base))
+                    " → " (:affect/final-growth (:summary cf))
+                    " （差 " (r3 (- (:affect/final-growth (:summary base))
+                                   (:affect/final-growth (:summary cf)))) "）")))
 
-      (when (contains? flags "--write")
+    ;; --- 人物どうしの比較 ---
+    (when (> (count results) 1)
+      (println "\n=== 焦点人物ごとの比較 ===")
+      (println (str (padr "焦点人物" 26) (padl "頁" 4) (padl "反例" 5) (padl "起伏" 7)
+                    (padl "最長平坦" 9) (padl "信念" 7) (padl "成長" 7)
+                    (padl "未回収" 8) (padl "反例の寄与" 11)))
+      (doseq [{:keys [focal steps base cf]} (sort-by #(- (:affect/final-growth (:summary (:base %)))) results)]
+        (let [s (:summary base)]
+          (println (str (padr (str/replace focal "character:" "") 26)
+                        (padl (count steps) 4)
+                        (padl (count (filter #(pos? (:hint %)) steps)) 5)
+                        (padl (:affect/swing s) 7)
+                        (padl (:affect/flat-run s) 9)
+                        (padl (:affect/final-belief s) 7)
+                        (padl (:affect/final-growth s) 7)
+                        (padl (:affect/latent-unrecovered s) 8)
+                        (padl (r3 (- (:affect/final-growth s)
+                                     (:affect/final-growth (:summary cf)))) 11))))))
+
+    (println (str "\n  ⚠ 反実仮想が測っているのは**大きさと時期**であって、主張の真偽ではない。"
+                  "\n    『反例を置くと成長する』は模型の中に書き込まれている——検証していない。"
+                  "\n    比較が意味を持つのは、気づきの入口が Latent 以外にもあるからで"
+                  "\n    （:learn＝失敗のときに誰かが隣に居ること）、そこを消せばこの差も消える。"))
+    (println (str "\n  " (:params/provenance params)))
+
+    (when (contains? flags "--write")
+      (doseq [{:keys [eps base cf]} results]
         (doseq [e eps]
           (let [rows (filterv #(= (:slug e) (:slug %)) (:rows base))
                 out (path/join episodes-dir (:slug e) "affect.edn")]
-            (fs/writeFileSync out (str (pr-str [{:db/id -1
-                                                 :affect/episode (:slug e)
-                                                 :affect/focal (:focal e)
-                                                 :affect/generator "260123-jump/scripts/score-affect.cljs"
-                                                 :affect/engine "kotoba-lang/org-oasis-open-xmile (OASIS XMILE 1.0)"
-                                                 :affect/note "**生成物。手で編集しない。**読者の測定ではなく、脚本が意図している感情の形の模型"
-                                                 :affect/params (pr-str params)
-                                                 :affect/rows (pr-str rows)}]) "\n"))
-            (println "  wrote" out)))
-        (let [out "260123-jump/resources/affect-timeline.edn"]
-          (fs/writeFileSync out (str (pr-str [{:db/id -1
-                                               :affect/timeline (vec slugs)
-                                               :affect/focal (vec focals)
-                                               :affect/generator "260123-jump/scripts/score-affect.cljs"
-                                               :affect/engine "kotoba-lang/org-oasis-open-xmile (OASIS XMILE 1.0)"
-                                               :affect/params (pr-str params)
-                                               :affect/summary (pr-str (:summary base))
-                                               :affect/counterfactual-no-hint (pr-str (:summary cf))
-                                               :affect/rows (pr-str (:rows base))}]) "\n"))
-          (println "  wrote" out)))
-      (println))))
+            (fs/writeFileSync
+             out (str (pr-str [{:db/id -1
+                                :affect/episode (:slug e)
+                                :affect/focal (:focal e)
+                                :affect/generator "260123-jump/scripts/score-affect.cljs"
+                                :affect/engine "kotoba-lang/org-oasis-open-xmile (OASIS XMILE 1.0)"
+                                :affect/note "**生成物。手で編集しない。**読者の測定ではなく、脚本が意図している感情の形の模型"
+                                :affect/params (pr-str params)
+                                :affect/rows (pr-str rows)}]) "\n"))
+            (println "  wrote" out))))
+      (let [out "260123-jump/resources/affect-timeline.edn"]
+        (fs/writeFileSync
+         out (str (pr-str [{:db/id -1
+                            :affect/timeline (vec slugs)
+                            :affect/generator "260123-jump/scripts/score-affect.cljs"
+                            :affect/engine "kotoba-lang/org-oasis-open-xmile (OASIS XMILE 1.0)"
+                            :affect/note "**焦点人物ごとに別の時間軸で回している。**成長は人ごとに積む値で、複数人を 1 本に連結すると誰の成長でもない合成になる"
+                            :affect/params (pr-str params)
+                            :affect/per-focal
+                            (pr-str (vec (for [{:keys [focal eps base cf]} results]
+                                           {:focal focal
+                                            :episodes (mapv :slug eps)
+                                            :summary (:summary base)
+                                            :counterfactual-no-hint (:summary cf)
+                                            :rows (:rows base)})))}]) "\n"))
+        (println "  wrote" out)))
+    (println)))
