@@ -1,6 +1,6 @@
 {:index/source-dir "260123-jump/resources",
- :index/scanned 158,
- :index/indexed 158,
+ :index/scanned 162,
+ :index/indexed 162,
  :index/unreadable 0,
  :index/unindexed 0,
  :index/generator "scripts/gen-index.cljs",
@@ -157,6 +157,10 @@
   "episodes/arc0-3-digital-footprint/episode.edn",
   :episode/arc0-3-digital-footprint.story-outline.edn
   "episodes/arc0-3-digital-footprint/story-outline.edn",
+  :episode/collected-too-much.affect.edn
+  "episodes/collected-too-much/affect.edn",
+  :episode/collected-too-much.episode.edn
+  "episodes/collected-too-much/episode.edn",
   :episode/collected-too-much.story-outline.edn
   "episodes/collected-too-much/story-outline.edn",
   :episode/duplicate-self.story-outline.edn
@@ -170,6 +174,10 @@
   "episodes/fake-warning/episode.edn",
   :episode/fake-warning.story-outline.edn
   "episodes/fake-warning/story-outline.edn",
+  :episode/father-written.affect.edn
+  "episodes/father-written/affect.edn",
+  :episode/father-written.episode.edn
+  "episodes/father-written/episode.edn",
   :episode/father-written.story-outline.edn
   "episodes/father-written/story-outline.edn",
   :episode/friends-vanish.story-outline.edn
