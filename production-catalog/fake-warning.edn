@@ -7,7 +7,7 @@
  :plan/pages 13,
  :plan/id "fake-warning",
  :plan/panels-annexed 0,
- :plan/panels 46,
+ :plan/panels 47,
  :plan/image-note
  "panels-already-generated は**バイトが取れたコマ数**。panels-annexed は URL はあるがローカルに実体が無いコマ（git-annex 未取得／参照切れ）。`git annex get` していない作業ツリーでは前者が 0 になるのが正常。",
  :plan/panels-already-generated 0,
