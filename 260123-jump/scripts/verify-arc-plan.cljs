@@ -3,10 +3,16 @@
 ;;
 ;; **なぜ必要か（2026-08-14）**
 ;;
-;; resources/arc-order.edn には順序と主役と、久我の presence ladder（Arc 4/8/10/11/12 に
-;; 姿を出す）が書いてある。**だが誰も守らせていない。**Arc 4 の episode.edn を書く人が
-;; ladder を忘れても、何も起きない。計画だけが live に見えて、実体が付いてこない
-;; ——CLAUDE.md が名指しする形である。
+;; resources/arc-order.edn には順序と主役と、presence ladder（ある人物を既存アークに
+;; 一〜二コマずつ配る計画）が書いてある。**だが誰も守らせていない。**該当アークの
+;; episode.edn を書く人が ladder を忘れても、何も起きない。計画だけが live に見えて、
+;; 実体が付いてこない——CLAUDE.md が名指しする形である。
+;;
+;; **ladder は複数ある**（2026-08-15）: :order/koga-presence（久我・Arc 4/8/10/11/12）と
+;; :order/shisho-presence（シショウ・Arc 5/10/12/13/15/16/17）。**検査は ladder 名を
+;; ハードコードせず、:order/*-presence を全部拾う。**新しい ladder を足した人が
+;; この script を直し忘れても、検査が黙って素通りしないようにするため
+;; ——**ladder を増やしたのに検査が増えないのが、まさにこの script が防ぐ形である。**
 ;;
 ;; ここで検査するのは 4 つ:
 ;;   1. arc-order の slug がディレクトリとして実在するか
@@ -20,7 +26,10 @@
 ;;      本検査は slug 登録アークだけを見るので、Arc 0 では発火しない
 ;;      ——**発火しないことを、ここに書いておく。**
 ;;   3. :gh/mainCharacter が arc-order の :lead と一致するか
-;;   4. **presence ladder**: sighting に挙げたアークの episode.edn に久我が居るか
+;;   4. **presence ladder**: sighting に挙げたアークの episode.edn に、その ladder の
+;;      :ladder/character が cast に居るか。**:ladder/character を持たない ladder は
+;;      exit 2（答えられなかった）で落とす**——誰を探せばよいか分からないまま
+;;      「違反なし」と言わないため
 ;;
 ;; **NOT-YET を pass にしない。**episode.edn がまだ無い sighting は「まだ書かれていない」
 ;; として**必ず名指しで報告する**。黙って通すと、書き忘れが永久に見えなくなる。
@@ -52,8 +61,33 @@
             (js/process.exit 2))
         order (first order-raw)
         arcs (nested (:order/arcs order))
-        ladder (nested (:order/koga-presence order))
-        sightings (:ladder/sightings ladder)
+        ;; **ladder 名をハードコードしない。**:order/*-presence を全部拾う。
+        ladders (->> order
+                     (keep (fn [[k v]]
+                             (when (and (keyword? k)
+                                        (= "order" (namespace k))
+                                        (str/ends-with? (name k) "-presence"))
+                               (assoc (nested v) ::key k))))
+                     (sort-by ::key)
+                     vec)
+        _ (when (empty? ladders)
+            (println "verify-arc-plan: arc-order.edn に :order/*-presence が一つも無い。"
+                     "\n  Refusing to report a pass — ladder 検査が空振りしている。")
+            (js/process.exit 2))
+        _ (doseq [l ladders]
+            (when-not (string? (:ladder/character l))
+              (println (str "verify-arc-plan: " (::key l) " に :ladder/character が無い。"
+                            "\n  Refusing to report a result — 誰を探せばよいか分からない。"))
+              (js/process.exit 2))
+            ;; **evidence floor.** sighting ゼロの ladder を「違反なし」で通さない。
+            ;; 実測 2026-08-15: :ladder/ 名前空間を付け忘れた ladder が sightings 0 件
+            ;; として読まれ、**この script は OK を出した**——ladder を宣言したのに
+            ;; 一件も検査していない状態が、合格と同じ顔をしていた。
+            (when (empty? (:ladder/sightings l))
+              (println (str "verify-arc-plan: " (::key l) " の :ladder/sightings が空。"
+                            "\n  Refusing to report a pass — ladder を宣言して一件も検査していない。"
+                            "\n  （キーが :ladder/ 名前空間になっているか確認する）"))
+              (js/process.exit 2)))
         by-slug (into {} (for [a arcs :when (:slug a)] [(:slug a) a]))
 
         dirs (->> (fs/readdirSync episodes-dir) (remove #{"_archive"}) sort vec)
@@ -115,43 +149,51 @@
                 (when (= f "episode.edn")
                   (println (str "  ep-lead  " slug " → " (:gh/mainCharacter m))))))))))
 
-    ;; 4) presence ladder
-    (println "\n-- 久我 presence ladder --")
-    (doseq [{:keys [arc title]} sightings]
-      (let [a (first (filter #(= arc (:arc %)) arcs))
-            slug (:slug a)
-            ep (when slug (read-one slug "episode.edn"))]
-        (cond
-          (nil? slug)
-          (do (swap! notyet conj (str "Arc " arc "『" title "』"))
-              (println (str "  NOT-YET  Arc " arc " 『" title "』 — arc-order に slug が無い（既存アーク、episode.edn 未作成）")))
+    ;; 4) presence ladder（複数）
+    (doseq [ladder ladders]
+      (let [who (:ladder/character ladder)
+            label (or (:ladder/label ladder) who)]
+        (println (str "\n-- " label " presence ladder (" (::key ladder) ") --"))
+        (doseq [{:keys [arc title]} (:ladder/sightings ladder)]
+          (let [a (first (filter #(= arc (:arc %)) arcs))
+                slug (:slug a)
+                ep (when slug (read-one slug "episode.edn"))]
+            (cond
+              (nil? slug)
+              (do (swap! notyet conj (str label " Arc " arc "『" title "』"))
+                  (println (str "  NOT-YET  Arc " arc " 『" title "』 — arc-order に slug が無い（既存アーク、episode.edn 未作成）")))
 
-          (nil? ep)
-          (do (swap! notyet conj (str "Arc " arc "『" title "』(" slug ")"))
-              (println (str "  NOT-YET  Arc " arc " 『" title "』 (" slug ") — episode.edn がまだ無い")))
+              (nil? ep)
+              (do (swap! notyet conj (str label " Arc " arc "『" title "』(" slug ")"))
+                  (println (str "  NOT-YET  Arc " arc " 『" title "』 (" slug ") — episode.edn がまだ無い")))
 
-          (:err ep)
-          (v! "UNREADABLE" (str slug "/episode.edn") "—" (:err ep))
+              (:err ep)
+              (v! "UNREADABLE" (str slug "/episode.edn") "—" (:err ep))
 
-          :else
-          (let [m (:m ep)
-                cast- (set (cons (:gh/mainCharacter m) (nested (:gh/supportingCharacters m))))]
-            (if (contains? cast- "character:KogaMio")
-              (println (str "  OK       Arc " arc " 『" title "』 (" slug ")"))
-              (v! "LADDER-MISS" (str slug "/episode.edn")
-                  (str "— Arc " arc " は久我の sighting だが、cast に character:KogaMio が居ない")))))))
+              :else
+              (let [m (:m ep)
+                    cast- (set (cons (:gh/mainCharacter m) (nested (:gh/supportingCharacters m))))]
+                (if (contains? cast- who)
+                  (println (str "  OK       Arc " arc " 『" title "』 (" slug ")"))
+                  (v! "LADDER-MISS" (str slug "/episode.edn")
+                      (str "— Arc " arc " は" label "の sighting だが、cast に " who " が居ない")))))))))
 
     ;; 報告
     (println (str "\nverify-arc-plan: CHECKED\t" @checked " ファイル"))
     (println (str "verify-arc-plan: ARCS\t" (count arcs) " （うち slug 付き " (count by-slug) "）"))
-    (println (str "verify-arc-plan: SIGHTINGS\t" (count sightings)
-                  " （OK " (- (count sightings) (count @notyet)
-                              (count (filter #(str/starts-with? % "LADDER-MISS") @violations)))
-                  " / NOT-YET " (count @notyet) "）"))
+    (let [total (reduce + (map (comp count :ladder/sightings) ladders))]
+      (println (str "verify-arc-plan: LADDERS\t" (count ladders) " （"
+                    (str/join " / " (map #(str (or (:ladder/label %) (:ladder/character %))
+                                               " " (count (:ladder/sightings %))) ladders))
+                    "）"))
+      (println (str "verify-arc-plan: SIGHTINGS\t" total
+                    " （OK " (- total (count @notyet)
+                                (count (filter #(str/starts-with? % "LADDER-MISS") @violations)))
+                    " / NOT-YET " (count @notyet) "）")))
 
     (when (seq @notyet)
       (println "\n**NOT-YET は pass ではない。**下記は episode.edn が書かれた時点で"
-               "\n久我のコマを入れる必要がある——忘れると、この行が消えるだけで誰も気づかない:")
+               "\nその人物のコマを入れる必要がある——忘れると、この行が消えるだけで誰も気づかない:")
       (doseq [n @notyet] (println "  -" n)))
 
     (if (seq @violations)
