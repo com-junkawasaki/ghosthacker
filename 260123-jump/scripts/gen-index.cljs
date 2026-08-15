@@ -60,7 +60,9 @@
    "manga_script.edn"        :dataset/manga-script
    "storyboard.edn"          :dataset/storyboard
    "generation_prompts.edn"  :dataset/generation-prompts
-   "arc-order.edn"           :dataset/arc-order})
+   "arc-order.edn"           :dataset/arc-order
+   ;; 生成物（scripts/score-affect.cljs）。手で編集しない
+   "affect-timeline.edn"     :dataset/affect-timeline})
 
 (def ^:private skip-dirs #{"_vectors" "images" "logo" "_archive"})
 
