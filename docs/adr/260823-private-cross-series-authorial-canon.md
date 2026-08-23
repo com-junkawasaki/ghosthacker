@@ -48,5 +48,7 @@ Ghosthacker、Shiropico、Spirit in Physicsに通底する作者の原体験、�
 
 - `docs/creative-bible/series-authorial-core.md`
 - `docs/creative-bible/series-authorial-core.edn`
+- `docs/creative-bible/character-scenario-arcs.md`
+- `docs/creative-bible/character-scenario-arcs.edn`
 - `com-junkawasaki/org-spirit-in-physics`
 - `com-junkawasaki/ghosthacker-shiropico`
