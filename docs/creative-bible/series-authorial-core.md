@@ -1,7 +1,9 @@
 # Ghosthacker / Shiropico / Spirit in Physics — 作者核
 
-状態: **private canonical draft / 作者確認を継続**  
-初出: 2026-08-23  
+状態: **private canonical draft / 作者確認を継続**
+
+初出: 2026-08-23
+
 公開可否: **非公開。要約や引用を外部へ出す場合は作者の明示承認を要する。**
 
 ## 書きたいこと

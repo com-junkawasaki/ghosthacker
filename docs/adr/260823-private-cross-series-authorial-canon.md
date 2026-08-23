@@ -1,7 +1,9 @@
 # ADR-260823: 作者核をprivateなGhosthacker正本に置く
 
-**Status:** accepted  
-**Date:** 2026-08-23  
+**Status:** accepted
+
+**Date:** 2026-08-23
+
 **Decider:** Jun Kawasaki
 
 ## Context
