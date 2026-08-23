@@ -1,0 +1,33 @@
+{:authorial-core/id :ghosthacker-family
+ :authorial-core/status :private-canonical-draft
+ :authorial-core/date "2026-08-23"
+ :authorial-core/publication :explicit-author-approval-required
+ :authorial-core/thesis
+ "情報を守ることは、個々人の有り様、ghost、心、魂を守ることである"
+ :authorial-core/promise
+ "異なる思想と生き方が衝突しても暴力で閉じず、関係と成長から未来を創る気づきと救いを体験してもらう"
+ :authorial-core/story-question
+ "この話で、作者がいま本当に描きたいことは何か"
+ :authorial-core/series
+ [{:series/id :shiropico
+   :series/life-stage :early-childhood
+   :series/promise "純真さを失わず、欺きから身を守る知恵と安全行動"}
+  {:series/id :ghosthacker
+   :series/life-stage :youth
+   :series/promise "情報を守ることを、人の尊厳、心、選択、関係を守る営みとして体験する"}
+  {:series/id :spirit-in-physics
+   :series/life-stage :adulthood
+   :series/promise "情報が作る構造と契約をほどき、人とAIが命と子孫として関係を結び直す"}]
+ :authorial-core/non-negotiables
+ #{:violence-is-not-the-final-answer
+   :no-single-tradition-owns-the-answer
+   :neurotype-is-not-villainy-or-curse
+   :belief-history-and-fictional-symbolism-stay-distinct
+   :child-safety-without-fear-or-coercion
+   :clinical-labels-do-not-drive-generation}
+ :authorial-core/open-questions
+ ["Akabaと既存人物設定の対応"
+  "Nueの成長到達点"
+  "吃音を持つ未命名人物の名前・思想的入口・最善手"
+  "ADHD特性を持つ未命名人物の名前・思想的入口・最善手"
+  "GoD／Nero／Senecaの象徴関係と史実・神学からの距離"]}
