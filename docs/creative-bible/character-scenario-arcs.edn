@@ -1,0 +1,101 @@
+{:scenario/id :ghosthacker-character-growth
+ :scenario/status :private-canonical-direction
+ :scenario/structure [:curse-is-useful :best-move-fails :cross-tradition-contact :action-payoff]
+ :scenario/characters
+ [{:character/id :ren
+   :observable-bias :high-cognitive-empathy-low-affective-resonance
+   :learns :relational-self
+   :contact :shinto
+   :payoff :wait-for-consent-instead-of-taking-root}
+  {:character/id :nei
+   :observable-bias :unmeasured-feeling-treated-as-noise
+   :learns :non-separation
+   :contact :love-as-physical-fluctuation
+   :payoff :remain-with-uncertainty}
+  {:character/id :kaname
+   :observable-bias :self-worth-proven-by-correctness
+   :learns :love-not-earned-by-perfection
+   :contact :buddhist-nonself-and-biblical-love
+   :payoff :act-without-special-status}
+  {:character/id :chise-akabane
+   :author-name :akaba
+   :observable-bias :takes-others-feelings-as-own-duty
+   :learns :boundary-and-separation
+   :contact :church-sanctuary
+   :payoff :leave-harm-without-denying-pain}
+  {:character/id :nue
+   :identity :unresolved
+   :conflict "current handle nue belongs to character:NanaoAyumu"
+   :observable-bias :own-feeling-fills-closed-world
+   :learns :connection-without-mind-reading
+   :contact :shinto-role-network
+   :payoff :open-a-participation-path-and-wait}
+  {:character/id :nanao-ayumu
+   :observable-bias :abandons-dialogue-before-speech-blocks
+   :learns :communication-can-use-many-channels
+   :contact :a-person-who-waits
+   :payoff :choose-channel-and-say-no}
+  {:character/id :koga-mio
+   :observable-bias :everything-becomes-top-priority
+   :learns :externalized-priority
+   :contact :shared-promises-and-sunset
+   :payoff :bind-own-root-authority}]
+ :scenario/required-outline-keys
+ [:gh/authorialQuestion :gh/protectedBeing :gh/characterBestMoves
+  :gh/boundaryOrConnection :gh/growthBeat :gh/structuralCause]
+ :scenario/episode-overlays
+ [{:episode/slug :father-written
+   :character/id :ren
+   :gh/authorialQuestion "人を正しく推論できても共に感じられない蓮は、誰かを許容損失にせず首魁へ届けるか"
+   :gh/protectedBeing "証言者が、自分の情報をいつ誰へ渡すか選ぶ権利"
+   :gh/characterBestMoves {:ren "一度で根を切る" :witness "同意できるまで待つ"
+                           :conflict "証拠保全の期限と本人の時間は両立しない"}
+   :gh/boundaryOrConnection :connection-with-consent
+   :gh/growthBeat "蓮はrootを取れる画面を閉じ、証言者の返事を待つ"
+   :gh/structuralCause "被害者の同意より成果と速度を評価する捜査・企業・報道の構造"}
+  {:episode/slug :nuts-log
+   :character/id :nei
+   :gh/authorialQuestion "測れない感情をノイズとして捨てる寧は、分からないまま相手と居られるか"
+   :gh/protectedBeing "被害者が、統計上の型ではなく矛盾した感情を持つ自由"
+   :gh/characterBestMoves {:nei "型を断定して被害拡大を止める" :victim "意味づけを待ってほしい"
+                           :conflict "早い封じ込めと本人の意味づけは同じ時間で進まない"}
+   :gh/boundaryOrConnection :remain-connected-with-unknown
+   :gh/growthBeat "寧は分類欄を空白のまま保存し、画面を閉じず隣に座る"
+   :gh/structuralCause "分類可能な被害だけを支援対象にする制度と完全なログを求める監査文化"}
+  {:episode/slug :mtp
+   :character/id :kaname
+   :gh/authorialQuestion "正しさによって愛される価値を証明する要は、特別扱いされなくても動けるか"
+   :gh/protectedBeing "内部告発者が、要の完全な証拠物語へ回収されず自分の言葉を保つこと"
+   :gh/characterBestMoves {:kaname "完全な証拠束で制度を動かす" :whistleblower "安全を先に確保する"
+                           :conflict "立証の完成と人の安全は順序が逆"}
+   :gh/boundaryOrConnection :love-without-possession
+   :gh/growthBeat "要は『手続きは踏んでいません』と先に告げ、判断を相手へ返す"
+   :gh/structuralCause "完全な物証が揃うまで人を守れない手続きと成果を個人の威信に変える組織"}
+  {:episode/slug :fake-warning
+   :character/id :chise-akabane
+   :gh/authorialQuestion "他者の恐怖を全部自分事にする千世は、見捨てずに離れられるか"
+   :gh/protectedBeing "被害者と千世の双方が、恐怖と有害な関係から距離を取る権利"
+   :gh/characterBestMoves {:chise "恐怖を引き受けて最後まで付き添う" :supporter "第三者へ渡して離れる"
+                           :conflict "共感の継続が詐欺側の再侵入路になる"}
+   :gh/boundaryOrConnection :boundary
+   :gh/growthBeat "千世は受話器を外し、被害者を第三者へ渡して自分も部屋を出る"
+   :gh/structuralCause "恐怖、孤立、家族役割を利用し、相談を恥に変える詐欺産業"}
+  {:episode/slug :nue
+   :character/id :nanao-ayumu
+   :gh/authorialQuestion "話すことを恐れる歩は、流暢さではなく自分で選んだ経路で拒否を伝えられるか"
+   :gh/protectedBeing "歩の沈黙、待つ時間、音声以外の声が同意として尊重されること"
+   :gh/characterBestMoves {:ayumu "コードだけで処理を終える" :team "本人の返事を待つ"
+                           :conflict "即時対応の期限が発話を待つ時間を奪う"}
+   :gh/boundaryOrConnection :connection-through-chosen-channel
+   :gh/growthBeat "誰も補完しない沈黙の後、歩が文字で『違う』と送り、全員がその順序に従う"
+   :gh/structuralCause "即答と音声を能力・同意の基準にする学校、会議、業務慣行"
+   :gh/identityConflict "現行nueは七尾歩のhandle。作者核のNueを別人物とするかは未解決"}
+  {:episode/slug :heiiki
+   :character/id :koga-mio
+   :gh/authorialQuestion "すべてを最優先にする久我は、自分の権限も約束と期限で縛れるか"
+   :gh/protectedBeing "現場の人が、長官の熱量に同調せず優先順位と退出を選べること"
+   :gh/characterBestMoves {:koga "root権限で全系統を同時に止める" :operators "紙と局所運用で順番に守る"
+                           :conflict "全体停止の速さが現場の継続を壊す"}
+   :gh/boundaryOrConnection :externalized-boundary
+   :gh/growthBeat "久我は決裁へsunsetと再承認者を記し、先に署名してから命令する"
+   :gh/structuralCause "迅速な危機対応を一人の裁量と英雄性へ集中させる制度"}]}
