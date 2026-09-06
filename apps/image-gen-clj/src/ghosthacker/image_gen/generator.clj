@@ -9,16 +9,18 @@
   hoc. Model defaults to animagine-xl-4.0, matching the Python service's
   config.MODEL_ID and confirmed resident on the fleet's `gad` node.
 
-  JVM-only: rendezvous with the fleet render result involves the local
-  filesystem (`clojure.java.io` — `io/file`, `io/input-stream`,
-  `.readAllBytes`, `io/delete-file`) to read back the produced PNG bytes.
-  kotoba-lang/fs's `read` returns a UTF-8 String, not raw bytes, so it is
-  not a drop-in for the binary PNG read here — this file stays JVM-only
-  while the Base64 side (server.clj) uses kotoba.bytes."
-  (:require [clojure.java.io :as io]
+  Host-injected filesystem: the produced PNG bytes are read back through
+  kotoba-lang/fs's host-injected `IFilesystem` protocol rather than
+  touching `clojure.java.io` directly — the kotoba lib stays pure, and
+  this consumer (the JVM app) supplies the real-file host (`host-fs`,
+  defined below) that adapts `fs/read-bytes` to `java.io`'s
+  `.readAllBytes` (masked to unsigned [0..255]). The `update-on-start`
+  base64 side (server.clj) uses kotoba.bytes."
+  (:require [kotoba.lang.fs :as fs]
             [murakumo.fleet :as fleet]
             [murakumo.infer.media :as media]
-            [murakumo.infer.schedule :as sched]))
+            [murakumo.infer.schedule :as sched]
+            [clojure.java.io :as io]))
 
 (def default-checkpoint "animagine-xl-4.0.safetensors")
 
@@ -81,11 +83,28 @@
   doesn't run FROM that directory, so the path is resolved explicitly
   rather than assumed). Override with MURAKUMO_ROOT; defaults to the west
   layout's sibling path (orgs/kotoba-lang/murakumo, 4 levels up from this
-  file's own repo root — see deps.edn's :local/root for the same path)."
+  file's own repo root — see deps.edn's :local/root for the same path).
+  Resolved with kotoba-lang/fs path ops (lexical — no java.io)."
   []
   (or (System/getenv "MURAKUMO_ROOT")
-      (let [here (io/file (System/getProperty "user.dir"))]
-        (.getCanonicalPath (io/file here "../../../../kotoba-lang/murakumo")))))
+      (fs/normalize
+       (fs/join (System/getProperty "user.dir")
+                "../../../../kotoba-lang/murakumo"))))
+
+;; Real-file host adapter for kotoba.lang.fs/IFilesystem. This is the ONE
+;; place this consumer is allowed to touch java.io — the host lives in the
+;; JVM app, and the kotoba-lang/fs lib itself stays pure. read-bytes masks
+;; java's signed bytes to unsigned [0..255] to match the protocol contract.
+(def host-fs
+  (reify fs/IFilesystem
+    (read       [_ path] (slurp path))
+    (read-bytes [_ path]
+      (with-open [s (io/input-stream path)]
+        (mapv #(bit-and % 0xFF) (map byte (seq (.readAllBytes s))))))
+    (write      [_ path content] nil)
+    (list       [_ path] [])
+    (exists?   [_ path] false)
+    (delete     [_ path] (io/delete-file path true) nil)))
 
 (defn- fleet-edn-path [] (str (murakumo-root) "/fleet.edn"))
 
@@ -117,6 +136,6 @@
     (when-not filename
       (throw (ex-info "murakumo render produced no output file" {:history hist :node (:name node-info)})))
     (let [local (str "murakumo-" filename)
-          bytes (.readAllBytes (io/input-stream local))]
-      (io/delete-file local true)
+          bytes (fs/read-bytes host-fs local)]
+      (fs/delete host-fs local)
       {:image-bytes bytes :seed (or seed 0) :node (:name node-info)})))
