@@ -7,7 +7,14 @@
   crash-recovery (murakumo.infer.media's consecutive-miss detection,
   /queue cross-check) that an earlier draft of this file duplicated ad
   hoc. Model defaults to animagine-xl-4.0, matching the Python service's
-  config.MODEL_ID and confirmed resident on the fleet's `gad` node."
+  config.MODEL_ID and confirmed resident on the fleet's `gad` node.
+
+  JVM-only: rendezvous with the fleet render result involves the local
+  filesystem (`clojure.java.io` — `io/file`, `io/input-stream`,
+  `.readAllBytes`, `io/delete-file`) to read back the produced PNG bytes.
+  kotoba-lang/fs's `read` returns a UTF-8 String, not raw bytes, so it is
+  not a drop-in for the binary PNG read here — this file stays JVM-only
+  while the Base64 side (server.clj) uses kotoba.bytes."
   (:require [clojure.java.io :as io]
             [murakumo.fleet :as fleet]
             [murakumo.infer.media :as media]
