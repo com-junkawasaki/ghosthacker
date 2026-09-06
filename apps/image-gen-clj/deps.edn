@@ -14,6 +14,7 @@
  ;; present on the fleet nodes; faking either would silently change output).
  :deps
  {kotoba-lang/murakumo {:local/root "../../../../kotoba-lang/murakumo"}
+  kotoba-lang/bytes    {:local/root "../../../../kotoba-lang/bytes"}
   ;; murakumo.infer.media/.gateway/.fleet/.ssh's own deps — kotoba-lang/
   ;; murakumo's deps.edn is the bb-facing one and doesn't declare these
   ;; (bb has them built in); the JVM classpath needs them as real Maven

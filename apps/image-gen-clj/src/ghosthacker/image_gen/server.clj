@@ -9,6 +9,7 @@
   (:require [reitit.ring :as ring]
             [org.httpkit.server :as hk]
             [jsonista.core :as j]
+            [kotoba.bytes :as b64]
             [ghosthacker.image-gen.generator :as gen])
   (:gen-class))
 
@@ -36,7 +37,7 @@
                                           :style (or style gen/default-style)
                                           :aspect-ratio (or aspect_ratio gen/default-aspect-ratio)
                                           :seed seed})
-            b64 (.encodeToString (java.util.Base64/getEncoder) image-bytes)]
+            b64 (b64/base64-encode (mapv #(bit-and 0xff %) image-bytes))]
         (json-response 200 {"image_base64" (str "data:image/png;base64," b64)
                              "seed" seed
                              "generation_time_ms" (int (- (System/currentTimeMillis) t0))
