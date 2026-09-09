@@ -8,7 +8,7 @@
   `:db.type/string` blobs. So reading pages is two decodes, and a reader that
   treats `:gh/pages` as a collection gets a string's seq of characters."
   (:require [clojure.edn :as edn]
-            [kotoba.lang.text :as str]))
+            [clojure.string :as str]))
 
 (defn entity
   "episode.edn tx-data -> the single episode entity."
