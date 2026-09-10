@@ -1,4 +1,4 @@
-;; schema.edn â Datomic/Datascript äºæã¹ã­ã¼ãå®ç¾©ï¼èªåçæ by edn-datomize.cljsï¼
+;; schema.edn â Datomic/Datascript äºæã¹ã­ã¼ãå®ç¾©ï¼èªåçæ by edn-datomize.kotobaï¼
 ;; :db/ident å±æ§å®ç¾©ã®ãªã¹ããDatomic åºæã­ã¼(:db.install/_attribute ç­)ã¯ä½¿ããªãã
 ;; æç·¨éç¦æ­¢ â åçæããã¨ä¸æ¸ããããã
 ;;
