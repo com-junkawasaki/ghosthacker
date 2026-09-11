@@ -1,4 +1,4 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; 260123-jump/scripts/ingest-panels.cljs — 描いた PNG を resources の規約パスへ置き、
 ;; episode.edn の :gh/generatedImageUrl に書く。
 ;;
@@ -16,7 +16,7 @@
 ;; 規約ではない。新規は素の名前で置く。）
 ;;
 ;; usage:
-;;   nbb 260123-jump/scripts/ingest-panels.cljs <plan-id> [--force] [--dry-run]
+;;   kbb --backend sci 260123-jump/scripts/ingest-panels.cljk <plan-id> [--force] [--dry-run]
 ;;
 ;; 終了コード: 0 取り込んだ / 1 書いた URL の実体が無い（自己検査に落ちた） /
 ;;             2 答えられなかった（出力が 1 枚も無い・読めない）

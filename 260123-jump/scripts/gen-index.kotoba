@@ -1,4 +1,4 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; 260123-jump/scripts/gen-index.cljs — resources/_index.edn を .edn ソースから生成する。
 ;;
 ;; **なぜ書き直したか（実測 2026-08-13）**
@@ -29,9 +29,9 @@
 ;;   `--strict` なら失敗する。「読めなかったものを 0 件として数えない」。
 ;;
 ;; usage:
-;;   nbb scripts/gen-index.cljs                 # 生成して書く
-;;   nbb scripts/gen-index.cljs --check         # 生成物が最新か検査（書かない）
-;;   nbb scripts/gen-index.cljs --min-files 100 --strict
+;;   kbb --backend sci scripts/gen-index.cljk                 # 生成して書く
+;;   kbb --backend sci scripts/gen-index.cljk --check         # 生成物が最新か検査（書かない）
+;;   kbb --backend sci scripts/gen-index.cljk --min-files 100 --strict
 
 (ns gen-index
   (:require ["fs" :as fs]
@@ -180,7 +180,7 @@
       (let [current (when (fs/existsSync out-path) (fs/readFileSync out-path "utf8"))]
         (if (= current text)
           (println "gen-index: FRESH")
-          (do (println "gen-index: STALE — regenerate with `nbb scripts/gen-index.cljs`")
+          (do (println "gen-index: STALE — regenerate with `kbb --backend sci scripts/gen-index.cljk`")
               (js/process.exit 1))))
       (do (fs/writeFileSync out-path text)
           (println "gen-index: wrote" (str resources-dir "/" out-name)

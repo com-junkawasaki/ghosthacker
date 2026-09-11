@@ -6,7 +6,7 @@
 ;; from this repo instead of the orphaned app-aozora-svelte export it was
 ;; originally produced from (that repo no longer exists in this workspace).
 ;;
-;; Run: npx nbb --classpath ../../kotoba-lang/kami-mangaka-page/src \
+;; Run: kbb --backend sci --classpath ../../kotoba-lang/kami-mangaka-page/src \
 ;;        scripts/export-aozora-manga-work.cljs
 ;;   (the classpath brings in kami.mangaka.komawari for panel geometry —
 ;;   the sibling west checkout path from this repo's place in the
@@ -14,7 +14,7 @@
 ;;   only — a runtime resolve-based optional dep doesn't work there — so
 ;;   the script fails fast with a clear namespace error if it's missing.)
 ;; Writes: resources/aozora-manga-work.edn (feed this into app-aozora's
-;;   `clojure -M -e "(require '[aozora.appview.manga-export :as e]) (e/work-file->tx-file! \"<this file>\" tx-out)"`
+;;   `kbb -M -e "(require '[aozora.appview.manga-export :as e]) (e/work-file->tx-file! \"<this file>\" tx-out)"`
 ;;   or `-main` with this file as the first arg, to produce the tx.edn.)
 ;;
 ;; Scope (ADR-2607141700 open questions, resolved pragmatically for this

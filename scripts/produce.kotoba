@@ -1,9 +1,9 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; GHOST HACKER producer — the command `loop-ka-production` invokes for this
 ;; channel. The loop owns cadence, admission and verdict; this owns producing
 ;; one episode and reporting honestly what its legs actually did.
 ;;
-;;   nbb --classpath src:../../kotoba-lang/comfyui/src scripts/produce.cljs \
+;;   kbb --backend sci --classpath src:../../kotoba-lang/comfyui/src scripts/produce.cljs \
 ;;       <plan-id> [--dry-run] [--limit N] [--force]
 ;;
 ;; Talks ComfyUI's NATIVE protocol (see comfy-client). No OpenAI-images bridge

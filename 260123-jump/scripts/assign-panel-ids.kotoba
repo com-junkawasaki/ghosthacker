@@ -1,4 +1,4 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; 260123-jump/scripts/assign-panel-ids.cljs — 欠けている／衝突しているコマ :id を振り直す。
 ;; verify-panel-ids.cljs が違反として報告するものを直す側。冪等。
 ;;
@@ -17,7 +17,7 @@
 ;; 静かに直すと、直したつもりのものが別の衝突になる。
 ;;
 ;; usage:
-;;   nbb 260123-jump/scripts/assign-panel-ids.cljs [--dry-run]
+;;   kbb --backend sci 260123-jump/scripts/assign-panel-ids.cljk [--dry-run]
 ;;
 ;; 終了コード: 0 完了（書いた／書くものが無かった） / 1 衝突して止まった /
 ;;             2 答えられなかった（読めない）

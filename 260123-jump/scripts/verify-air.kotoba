@@ -1,4 +1,4 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; 260123-jump/scripts/verify-air.cljs — 空気感（日差し・光源・光質・湿度・粒子・体感温度）が
 ;; **実際にレンダラまで届いているか**を測る／検査する。
 ;;
@@ -18,8 +18,8 @@
 ;; したがってこの script が見るのは「:gh/air が書いてあるか」ではなく
 ;; **「:gh/air の語が prompt に出現しているか」**である——届いていない注釈は無い注釈と同じ。
 ;;
-;;   nbb 260123-jump/scripts/verify-air.cljs            # 検査（宣言済みの話だけ厳密に）
-;;   nbb 260123-jump/scripts/verify-air.cljs --audit    # 全話の実測表
+;;   kbb --backend sci 260123-jump/scripts/verify-air.cljk            # 検査（宣言済みの話だけ厳密に）
+;;   kbb --backend sci 260123-jump/scripts/verify-air.cljk --audit    # 全話の実測表
 ;;
 ;; **宣言していない話は fail させない**（恒久的に赤い gate を landing させない）。
 ;; 代わりに未達として**必ず名指しで報告**する——NOT-YET は pass ではない。

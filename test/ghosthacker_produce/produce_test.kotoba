@@ -1,4 +1,4 @@
-;; nbb --classpath src:test test/ghosthacker_produce/produce_test.cljs
+;; kbb --backend sci --classpath src:test test/ghosthacker_produce/produce_test.cljs
 ;;
 ;; The cases pin the two things that are easy to get wrong here and that fail
 ;; silently rather than loudly: `:gh/pages` being a blob string rather than a

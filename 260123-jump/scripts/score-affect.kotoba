@@ -1,4 +1,4 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; 260123-jump/scripts/score-affect.cljs — シナリオ（episode.edn）を EDN のまま
 ;; OASIS XMILE 1.0 のストック＝フロー模型に落として、感情・情緒・成長を計算する。
 ;;
@@ -11,7 +11,7 @@
 ;; system-dynamics 計算の正本）。**自前の積分器を書かない**（CLAUDE.md:
 ;; 「system dynamics の計算は既存を使う。ゼロから再発明しない」）。
 ;;
-;;   nbb --classpath "<workspace>/orgs/kotoba-lang/org-oasis-open-xmile/src" \
+;;   kbb --backend sci --classpath "<workspace>/orgs/kotoba-lang/org-oasis-open-xmile/src" \
 ;;     260123-jump/scripts/score-affect.cljs nue monkeys-paw [--write] [--no-hint]
 ;;
 ;; 引数: episode の slug を**アーク順に**並べる（複数渡すと 1 本の時間軸に連結される。
@@ -45,7 +45,7 @@
 (when-not (fs/existsSync (path/join engine-hint "xmile" "model.cljc"))
   (println (str "score-affect: 注意 — " engine-hint " に engine が見当たりません。\n"
                 "  --classpath に org-oasis-open-xmile/src を渡してください:\n"
-                "  nbb --classpath \"<workspace>/orgs/kotoba-lang/org-oasis-open-xmile/src\" \\\n"
+                "  kbb --backend sci --classpath \"<workspace>/orgs/kotoba-lang/org-oasis-open-xmile/src\" \\\n"
                 "    260123-jump/scripts/score-affect.cljs nue monkeys-paw\n"
                 "  **自前の積分器では代用しません**（ADR-2607072350）。")))
 (require '[xmile.model :as xm] '[xmile.execute :as xe])

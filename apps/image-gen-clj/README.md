@@ -15,7 +15,7 @@ Drop-in on the same port/contract `apps/server`'s Go client already expects
 (`IMAGE_GEN_URL`, default `http://localhost:8100`):
 
 ```bash
-clojure -M:run          # listens on :8100 (or $PORT)
+kbb -M:run          # listens on :8100 (or $PORT)
 ```
 
 Requires `kotoba-lang/murakumo` checked out as a sibling (west layout:
