@@ -10,10 +10,10 @@ the `ghosthacker` channel. The split is the loop's, not ours:
 | **producing one episode, and reporting what actually ran** | **this repo** |
 
 ```bash
-nbb --classpath src:../../kotoba-lang/comfyui/src scripts/produce.kotoba arc0-1-origin            # render what is missing
-nbb --classpath src:../../kotoba-lang/comfyui/src scripts/produce.kotoba arc0-1-origin --dry-run  # report without rendering
-nbb --classpath src:../../kotoba-lang/comfyui/src scripts/produce.kotoba arc0-1-origin --limit 3  # bound a run
-nbb --classpath src:../../kotoba-lang/comfyui/src scripts/produce.kotoba arc0-1-origin --force    # redraw already-generated panels
+kbb --backend sci --classpath src:../../kotoba-lang/comfyui/src scripts/produce.kotoba arc0-1-origin            # render what is missing
+kbb --backend sci --classpath src:../../kotoba-lang/comfyui/src scripts/produce.kotoba arc0-1-origin --dry-run  # report without rendering
+kbb --backend sci --classpath src:../../kotoba-lang/comfyui/src scripts/produce.kotoba arc0-1-origin --limit 3  # bound a run
+kbb --backend sci --classpath src:../../kotoba-lang/comfyui/src scripts/produce.kotoba arc0-1-origin --force    # redraw already-generated panels
 ```
 
 Prints one EDN map:
@@ -154,7 +154,7 @@ of characters and finds no panels.
 ## Tests
 
 ```bash
-nbb --classpath src:../../kotoba-lang/comfyui/src:test test/ghosthacker_produce/produce_test.kotoba
+kbb --backend sci --classpath src:../../kotoba-lang/comfyui/src:test test/ghosthacker_produce/produce_test.kotoba
 ```
 
 7 tests / 18 assertions (the graph and seed cases moved to kotoba-lang/comfyui with the code). They pin the blob decode, the empty-pages case, prompt

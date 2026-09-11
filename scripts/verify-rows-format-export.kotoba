@@ -8,7 +8,7 @@
 ;; does not ship in the real export -- see export-aozora-manga-work.cljs's
 ;; ns comment).
 ;;
-;; Run: npx nbb --classpath "scripts:../../kotoba-lang/kami-mangaka-page/src" \
+;; Run: kbb --backend sci --classpath "scripts:../../kotoba-lang/kami-mangaka-page/src" \
 ;;        scripts/verify-rows-format-export.cljs
 ;; Exits non-zero (throws) on any assertion failure.
 

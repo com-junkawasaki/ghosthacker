@@ -1,4 +1,4 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; 260123-jump/scripts/verify-arc-plan.cljs — 書いたエピソードを、計画に対して検査する。
 ;;
 ;; **なぜ必要か（2026-08-14）**

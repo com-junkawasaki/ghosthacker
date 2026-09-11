@@ -18,7 +18,7 @@
   kotoba-lang/fs       {:local/root "../../../../kotoba-lang/fs"}
   ;; murakumo.infer.media/.gateway/.fleet/.ssh's own deps — kotoba-lang/
   ;; murakumo's deps.edn is the bb-facing one and doesn't declare these
-  ;; (bb has them built in); the JVM classpath needs them as real Maven
+  ;; (kbb -M:has them built in); the JVM classpath needs them as real Maven
   ;; deps (org.babashka/http-client is the standalone-published coordinate
   ;; for babashka.http-client, confirmed 2026-07-13 — babashka/http-client
   ;; is NOT the right artifact id).

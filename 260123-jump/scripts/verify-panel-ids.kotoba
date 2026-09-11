@@ -1,4 +1,4 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; 260123-jump/scripts/verify-panel-ids.cljs — コマの :id が在り、エピソード内で一意か。
 ;;
 ;; **なぜ要るか（実測 2026-08-14）。** produce.cljs はレンダ結果のファイル名を
@@ -22,7 +22,7 @@
 ;; 形は強制しない —— 強制するのは「在ること」と「一意であること」だけ。
 ;;
 ;; usage:
-;;   nbb 260123-jump/scripts/verify-panel-ids.cljs
+;;   kbb --backend sci 260123-jump/scripts/verify-panel-ids.cljk
 ;;
 ;; 終了コード: 0 適合 / 1 違反 / 2 答えられなかった（読めない・少なすぎる）
 
