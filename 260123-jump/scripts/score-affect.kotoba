@@ -8,7 +8,7 @@
 ;; したものを書こうとしている」だけである。
 ;;
 ;; engine: kotoba-lang/org-oasis-open-xmile（ADR-2607072350 で kotoba-lang の
-;; system-dynamics 計算の正本）。**自前の積分器を書かない**（CLAUDE.md:
+;; system-dynamics 計算の正本）。**自前の積分器を書かない**（AGENTS.md:
 ;; 「system dynamics の計算は既存を使う。ゼロから再発明しない」）。
 ;;
 ;;   kbb --backend sci --classpath "<workspace>/orgs/kotoba-lang/org-oasis-open-xmile/src" \
