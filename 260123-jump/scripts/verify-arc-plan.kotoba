@@ -6,7 +6,7 @@
 ;; resources/arc-order.edn には順序と主役と、presence ladder（ある人物を既存アークに
 ;; 一〜二コマずつ配る計画）が書いてある。**だが誰も守らせていない。**該当アークの
 ;; episode.edn を書く人が ladder を忘れても、何も起きない。計画だけが live に見えて、
-;; 実体が付いてこない——CLAUDE.md が名指しする形である。
+;; 実体が付いてこない——AGENTS.md が名指しする形である。
 ;;
 ;; **ladder は複数ある**（2026-08-15）: :order/koga-presence（久我・Arc 4/8/10/11/12）と
 ;; :order/shisho-presence（シショウ・Arc 5/10/12/13/15/16/17）。**検査は ladder 名を
